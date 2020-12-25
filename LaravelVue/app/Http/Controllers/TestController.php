@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Test\test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TestController extends Controller
 {
@@ -58,7 +59,10 @@ class TestController extends Controller
         if($category->save()){
             return response()->json($category,200);
         }else{
-            return response()->json($category,500);
+            return response()->json([
+                'message' => '!!儲存(store)發生錯誤!!',
+                'status_code' => 500
+            ],500);
         }
 
     }
@@ -94,7 +98,40 @@ class TestController extends Controller
      */
     public function update(Request $request, test $test)
     {
-        //
+        $request -> validate([
+            'name' => 'required|min:3',
+            'mail' => 'required',
+            'password' => 'required|min:8',
+            'abc' => 'required',
+        ]);
+
+        $test->name = $request->name;
+        $test->mail = $request->mail;
+        $test->password = $request->password;
+        $test->abc = $request->abc;
+
+        $oldPath = $test->image;
+
+        if($request->hasFile('image')){
+            $request -> validate([
+                'image'  => 'required|image|mimes:jped,png,jpg',
+            ]);
+
+            $path = $request->file('image')->store('test_image');
+            $test->image = $path;
+            Storage::delete($oldPath);
+        }
+
+        if($test->save()){
+            return response()->json($test,200);
+        }else{
+            Storage::delete($path);
+            return response()->json([
+                'message' => '!!更新(update)發生錯誤!!',
+                'status_code' => 500
+            ],500);
+        }
+
     }
 
     /**
@@ -103,8 +140,25 @@ class TestController extends Controller
      * @param  \App\Models\Test\test  $test
      * @return \Illuminate\Http\Response
      */
-    public function destroy(test $test)
+    public function destroy($name)
     {
-        //
+        $test = test::where('name',$name)->get();
+        $deleteTestData = test::where('name',$name);
+
+        // 刪除圖片用
+        Storage::delete($test[0]->image);
+
+        if($deleteTestData->delete()){
+            return response()->json([
+                'message' => '刪除已完成!!',
+                'status_code' => 200
+            ],200);
+        }else{
+            return response()->json([
+                'message' => '!!刪除發生錯誤!!',
+                'status_code' => 500
+            ],500);
+        }
+
     }
 }

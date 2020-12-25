@@ -7,3 +7,11 @@ export function createCategory(data) {
 export function loadCategories() {
     return http().get('/categories');
 }
+
+export function deleteCategory(test) {
+    return http().delete(`categories/${test.name}`);
+}
+
+export function UpdateCategory(name, data) {
+    return httpFile().post(`/categories/${name}`, data);
+}

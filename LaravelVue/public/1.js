@@ -14,10 +14,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_category_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/category_service */ "./resources/js/services/category_service.js");
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -131,6 +180,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         abc: '',
         image: ''
       },
+      editData: {},
       errors: {}
     };
   },
@@ -151,9 +201,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 response = _context.sent;
-                // console.log(response);
-                this.categories = response.data.data; // console.log(this.categories);
-
+                this.categories = response.data.data;
                 _context.next = 10;
                 break;
 
@@ -212,8 +260,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 9:
                 response = _context2.sent;
-                // console.log(response);
-                // console.log('成功');
                 this.categories.unshift(response.data); // 將新增的資料馬上顯示
 
                 this.hideNewCategoryModal(); // 讓按下儲存時，隱藏表單
@@ -222,13 +268,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   message: 'test 資料寫入成功!!',
                   time: 3000
                 });
+                this.categoryData = {
+                  name: '',
+                  mail: '',
+                  password: '',
+                  abc: '',
+                  image: ''
+                };
                 _context2.next = 25;
                 break;
 
-              case 15:
-                _context2.prev = 15;
+              case 16:
+                _context2.prev = 16;
                 _context2.t0 = _context2["catch"](6);
-                console.log(_context2.t0.response.status);
                 _context2.t1 = _context2.t0.response.status;
                 _context2.next = _context2.t1 === 422 ? 21 : 23;
                 break;
@@ -249,7 +301,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[6, 15]]);
+        }, _callee2, this, [[6, 16]]);
       }));
 
       function createCategory() {
@@ -257,6 +309,127 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return createCategory;
+    }(),
+    deleteCategory: function () {
+      var _deleteCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(test) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (window.confirm("\u4F60\u78BA\u5B9A\u8981\u522A\u9664 ".concat(test.name, " \u55CE?"))) {
+                  _context3.next = 2;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 2:
+                _context3.prev = 2;
+                _context3.next = 5;
+                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["deleteCategory"](test);
+
+              case 5:
+                // 刪除資料後，馬上更新顯示的資料
+                //export default的data的return的categories
+                this.categories = this.categories.filter(function (obj) {
+                  return obj.name != test.name;
+                });
+                this.flashMessage.success({
+                  message: 'test 資料刪除成功!!',
+                  time: 3000
+                });
+                _context3.next = 12;
+                break;
+
+              case 9:
+                _context3.prev = 9;
+                _context3.t0 = _context3["catch"](2);
+                this.flashMessage.error({
+                  message: _context3.t0.response.data.message,
+                  time: 5000
+                });
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[2, 9]]);
+      }));
+
+      function deleteCategory(_x) {
+        return _deleteCategory.apply(this, arguments);
+      }
+
+      return deleteCategory;
+    }(),
+    hideEditCategoryModal: function hideEditCategoryModal() {
+      this.$refs.EditCategoryModal.hide();
+    },
+    showEditCategoryModal: function showEditCategoryModal() {
+      this.$refs.EditCategoryModal.show();
+    },
+    EditCategory: function EditCategory(test) {
+      this.editData = _objectSpread({}, test);
+      this.showEditCategoryModal();
+    },
+    EditAttachImage: function EditAttachImage() {
+      this.editData.image = this.$refs.EditCategoryImage.files[0];
+      var reader = new FileReader();
+      reader.addEventListener('load', function () {
+        this.$refs.EditCategoryImageDisplay.src = reader.result;
+      }.bind(this), false);
+      reader.readAsDataURL(this.editData.image);
+    },
+    UpdateCategory: function () {
+      var _UpdateCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var formData, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                formData = new FormData();
+                formData.append('name', this.editData.name);
+                formData.append('mail', this.editData.mail);
+                formData.append('password', this.editData.password);
+                formData.append('abc', this.editData.abc);
+                formData.append('image', this.editData.image);
+                formData.append('_method', 'put');
+                _context4.next = 10;
+                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["UpdateCategory"](this.editData.name, formData);
+
+              case 10:
+                response = _context4.sent;
+                this.categories.map(function (test) {
+                  if (test.name == response.data.name) {
+                    test = response.data;
+                  }
+                });
+                _context4.next = 17;
+                break;
+
+              case 14:
+                _context4.prev = 14;
+                _context4.t0 = _context4["catch"](0);
+                this.flashMessage.error({
+                  message: _context4.t0.response.data.message,
+                  time: 5000
+                });
+
+              case 17:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[0, 14]]);
+      }));
+
+      function UpdateCategory() {
+        return _UpdateCategory.apply(this, arguments);
+      }
+
+      return UpdateCategory;
     }()
   }
 });
@@ -335,7 +508,33 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _vm._m(2, true)
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-sm",
+                          on: {
+                            click: function($event) {
+                              return _vm.EditCategory(test)
+                            }
+                          }
+                        },
+                        [_c("span", { staticClass: "fa fa-edit" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteCategory(test)
+                            }
+                          }
+                        },
+                        [_c("span", { staticClass: "fa fa-trash" })]
+                      )
+                    ])
                   ])
                 }),
                 0
@@ -349,7 +548,7 @@ var render = function() {
         "b-modal",
         {
           ref: "NewCategoryModal",
-          attrs: { "hide-footer": "", title: "Add New Category" }
+          attrs: { "hide-footer": "", title: "新增資料" }
         },
         [
           _c("div", { staticClass: "d-block" }, [
@@ -562,6 +761,228 @@ var render = function() {
                       staticClass: "btn btn-primary",
                       attrs: { type: "submit" }
                     },
+                    [_c("span", { staticClass: "fa fa-check" }), _vm._v("創建")]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("hr")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          ref: "EditCategoryModal",
+          attrs: { "hide-footer": "", title: "編輯資料" }
+        },
+        [
+          _c("div", { staticClass: "d-block" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.UpdateCategory($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "name" } }, [_vm._v("編輯姓名")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.editData.name,
+                        expression: "editData.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "name",
+                      placeholder: "請輸入姓名"
+                    },
+                    domProps: { value: _vm.editData.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.editData, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.name
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.name[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "mail" } }, [_vm._v("編輯信箱")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.editData.mail,
+                        expression: "editData.mail"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "email",
+                      id: "mail",
+                      placeholder: "請輸入信箱"
+                    },
+                    domProps: { value: _vm.editData.mail },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.editData, "mail", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.mail
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.mail[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "password" } }, [
+                    _vm._v("編輯密碼")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.editData.password,
+                        expression: "editData.password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "password",
+                      id: "word",
+                      placeholder: "請輸入密碼"
+                    },
+                    domProps: { value: _vm.editData.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.editData, "password", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.password
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.password[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "abc" } }, [_vm._v("編輯abc")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.editData.abc,
+                        expression: "editData.abc"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "abc",
+                      placeholder: "請輸入abc"
+                    },
+                    domProps: { value: _vm.editData.abc },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.editData, "abc", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.abc
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.abc[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "image" } }, [
+                    _vm._v("選擇圖片")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("img", {
+                      ref: "EditCategoryImageDisplay",
+                      staticClass: "w-150px",
+                      attrs: { src: "/image/" + _vm.editData.image }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    ref: "EditCategoryImage",
+                    staticClass: "form-control",
+                    attrs: { type: "file", id: "image" },
+                    on: { change: _vm.EditAttachImage }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.image
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.image[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-right" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: { type: "button" },
+                      on: { click: _vm.hideEditCategoryModal }
+                    },
+                    [_vm._v("取消")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
                     [_c("span", { staticClass: "fa fa-check" }), _vm._v("儲存")]
                   )
                 ])
@@ -605,20 +1026,6 @@ var staticRenderFns = [
         _c("td", [_vm._v("動作")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-primary btn-sm" }, [
-        _c("span", { staticClass: "fa fa-edit" })
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-danger btn-sm" }, [
-        _c("span", { staticClass: "fa fa-trash" })
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -631,13 +1038,15 @@ render._withStripped = true
 /*!***************************************************!*\
   !*** ./resources/js/services/category_service.js ***!
   \***************************************************/
-/*! exports provided: createCategory, loadCategories */
+/*! exports provided: createCategory, loadCategories, deleteCategory, UpdateCategory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCategory", function() { return createCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadCategories", function() { return loadCategories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCategory", function() { return deleteCategory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateCategory", function() { return UpdateCategory; });
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http_service */ "./resources/js/services/http_service.js");
 
 function createCategory(data) {
@@ -645,6 +1054,12 @@ function createCategory(data) {
 }
 function loadCategories() {
   return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().get('/categories');
+}
+function deleteCategory(test) {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])()["delete"]("categories/".concat(test.name));
+}
+function UpdateCategory(name, data) {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post("/categories/".concat(name), data);
 }
 
 /***/ }),
