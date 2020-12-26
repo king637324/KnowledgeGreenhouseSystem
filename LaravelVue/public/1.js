@@ -397,32 +397,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 formData.append('image', this.editData.image);
                 formData.append('_method', 'put');
                 _context4.next = 10;
-                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["UpdateCategory"](this.editData.name, formData);
+                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["UpdateCategory"](this.editData, formData);
 
               case 10:
                 response = _context4.sent;
                 this.categories.map(function (test) {
+                  console.log("-----test-----");
+                  console.log(test);
+                  console.log("-----response.data-----");
+                  console.log(response);
+
                   if (test.name == response.data.name) {
-                    test = response.data;
+                    console.log("e04"); // test = response.data;
+
+                    for (var key in response.data) {
+                      test[key] = response.data[key];
+                    }
                   }
                 });
-                _context4.next = 17;
+                this.hideEditCategoryModal(); // 讓按下儲存時，隱藏表單
+
+                this.flashMessage.success({
+                  message: 'test 資料更新成功!!',
+                  time: 3000
+                });
+                _context4.next = 19;
                 break;
 
-              case 14:
-                _context4.prev = 14;
+              case 16:
+                _context4.prev = 16;
                 _context4.t0 = _context4["catch"](0);
                 this.flashMessage.error({
                   message: _context4.t0.response.data.message,
                   time: 5000
                 });
 
-              case 17:
+              case 19:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, this, [[0, 14]]);
+        }, _callee4, this, [[0, 16]]);
       }));
 
       function UpdateCategory() {
@@ -1050,6 +1065,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http_service */ "./resources/js/services/http_service.js");
 
 function createCategory(data) {
+  console.log("-----------createdata-------------");
+  console.log(data);
   return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post('/categories', data);
 }
 function loadCategories() {
@@ -1058,8 +1075,14 @@ function loadCategories() {
 function deleteCategory(test) {
   return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])()["delete"]("categories/".concat(test.name));
 }
-function UpdateCategory(name, data) {
-  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post("/categories/".concat(name), data);
+function UpdateCategory(test, data) {
+  // console.log("-----------test-------------");
+  // console.log(test);
+  // console.log("-----------data-------------");
+  // console.log(data);
+  // console.log("-----------test.name-------------");
+  // console.log(test.name);
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post("/categories/".concat(test.name), data);
 }
 
 /***/ }),

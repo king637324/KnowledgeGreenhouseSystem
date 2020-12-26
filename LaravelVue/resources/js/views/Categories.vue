@@ -286,13 +286,29 @@
                     formData.append('abc',this.editData.abc);
                     formData.append('image',this.editData.image);
                     formData.append('_method','put');
-
-                    const response = await categoryService.UpdateCategory(this.editData.name, formData);
+                    const response = await categoryService.UpdateCategory(this.editData, formData);
 
                     this.categories.map(test => {
+                        console.log("-----test-----");
+                        console.log(test);
+                        console.log("-----response.data-----");
+                        console.log(response);
+
+
                         if(test.name == response.data.name){
-                            test = response.data;
+                            console.log("e04");
+                            // test = response.data;
+                            for(let key in response.data){
+                                test[key] = response.data[key];
+                            }
                         }
+                    });
+
+                    this.hideEditCategoryModal(); // 讓按下儲存時，隱藏表單
+
+                    this.flashMessage.success({
+                        message: 'test 資料更新成功!!',
+                        time: 3000
                     });
 
                 } catch (error) {

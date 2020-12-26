@@ -60,7 +60,7 @@ class TestController extends Controller
             return response()->json($category,200);
         }else{
             return response()->json([
-                'message' => '!!儲存(store)發生錯誤!!',
+                'message' => '!!創建(store)發生錯誤!!',
                 'status_code' => 500
             ],500);
         }
@@ -98,34 +98,42 @@ class TestController extends Controller
      */
     public function update(Request $request, test $test)
     {
+
+
         $request -> validate([
             'name' => 'required|min:3',
             'mail' => 'required',
             'password' => 'required|min:8',
             'abc' => 'required',
+            'image'=>'required',
         ]);
 
-        $test->name = $request->name;
-        $test->mail = $request->mail;
-        $test->password = $request->password;
-        $test->abc = $request->abc;
-
-        $oldPath = $test->image;
+        $data = $request->only(['name','mail','password','abc','image']);
+        $testdata = test::where('name',$data['name']);
+        $deleteImage = test::where('name',$data['name'])->get();
+        $oldPath = $deleteImage[0]->image;
 
         if($request->hasFile('image')){
             $request -> validate([
-                'image'  => 'required|image|mimes:jped,png,jpg',
+                'image'  => 'image|mimes:jped,png,jpg',
             ]);
 
             $path = $request->file('image')->store('test_image');
-            $test->image = $path;
+            $testdata->image = $path;
+            $data['image'] = $path;
+
+            // 刪除圖片用
             Storage::delete($oldPath);
+
         }
 
-        if($test->save()){
-            return response()->json($test,200);
+
+
+        if($testdata->update($data)){
+
+            return response()->json($data,200);
         }else{
-            Storage::delete($path);
+            Storage::delete($data['image']);
             return response()->json([
                 'message' => '!!更新(update)發生錯誤!!',
                 'status_code' => 500

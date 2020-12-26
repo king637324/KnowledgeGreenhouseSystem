@@ -1,11 +1,40 @@
 <template>
-    <div class="container-fluid">
-        <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-            <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
+    <div class = "container-fluid" >
+        <div class = "row">
+            <div class="col-md-4">
+                <div class="d-flex justify-content-around">
+                    <div class="p-2">
+                    </div>
+                    <div class="p-2">
+                        <img src = '/image/MIRDC.png' width="300">
+                    </div>
+                    <div class="p-2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex justify-content-around">
+                    <div class="p-2">
+                    </div>
+                    <div class="p-2">
+                        <img src = '/image/ARICA.jpg' width="150">
+                    </div>
+                    <div class="p-2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <div class="d-flex justify-content-around">
+                    <div class="p-2">
+                    </div>
+                    <div class="p-2">
+                        <h6>聯絡窗口   E-mail :  0651095@nkust.edu.tw</h6>
+                        <h6>MIRDC UC 開發</h6>
+                    </div>
+                    <div class="p-2">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
