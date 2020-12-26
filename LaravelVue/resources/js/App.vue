@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <!-- <main>
         <Header />
         <div id="layoutSidenav">
             <Sidrbar />
@@ -14,7 +14,17 @@
 
         <FlashMessage position="right bottom"></FlashMessage>
 
-    </main>
+    </main> -->
+
+    <v-app class="grey lighten-4">
+        <Navbar />
+        <v-content>
+            <router-view></router-view>
+        </v-content>
+
+
+
+    </v-app>
 
 </template>
 
