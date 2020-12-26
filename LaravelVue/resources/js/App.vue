@@ -1,9 +1,9 @@
 <template>
-    <!-- <main>
-        <Header />
+    <main>
+        <!-- <Header /> -->
+        <Navbar />
         <div id="layoutSidenav">
-            <Sidrbar />
-            <Navbar />
+            <!-- <Sidrbar /> -->
             <div id="layoutSidenav_content">
                 <main>
                     <router-view></router-view>
@@ -14,17 +14,7 @@
 
         <FlashMessage position="right bottom"></FlashMessage>
 
-    </main> -->
-
-    <v-app class="grey lighten-4">
-        <Navbar />
-        <v-content>
-            <router-view></router-view>
-        </v-content>
-
-
-
-    </v-app>
+    </main>
 
 </template>
 
@@ -33,13 +23,15 @@
     import Sidrbar from './components/Sidrbar.vue';
     import Foot from './components/Foot.vue';
     import Navbar from './components/Navbar.vue';
+    import BootstrapSideBar from 'b-sidebar';
 
     export default {
         components:{
             Header,
             Sidrbar,
             Foot,
-            Navbar
+            Navbar,
+            BootstrapSideBar
         }
     }
 </script>
