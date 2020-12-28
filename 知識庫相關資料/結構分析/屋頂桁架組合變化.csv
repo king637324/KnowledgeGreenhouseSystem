@@ -1,0 +1,4 @@
+id,StructureForm,StructureAnalysis,MaxForcePosition,MaxStress,MaxStressRatio,StructureWeight,WeightRatio,StructureAnalysisDiagram,MaxStressValue1,MaxStressValue2,MaxStressValue3,MaxStressValue4
+A,單斜屋架下方加桁架,/images/greenhousestructure/Truss/TrussRoofCombinationChanges/SingleRoofTruss_A.png,水平桁架上弦,24.02,100%,322.24,100%,/images/greenhousestructure/Truss/TrussRoofCombinationChanges/StressAnalysis_A.png,3.42,24.02,23.38,11.36
+B,單斜屋架上方加桁架,/images/greenhousestructure/Truss/TrussRoofCombinationChanges/SingleRoofTruss_B.png,斜桁架下弦,19.01,79%,293.58,91%,/images/greenhousestructure/Truss/TrussRoofCombinationChanges/StressAnalysis_B.png,16.27,19.01,9.21,15.2
+C,單斜屋架內化為桁架,/images/greenhousestructure/Truss/TrussRoofCombinationChanges/SingleRoofTruss_C.png,屋架下弦,15.04,63%,265.26,82%,/images/greenhousestructure/Truss/TrussRoofCombinationChanges/StressAnalysis_C.png,14.78,15.04,10.51,

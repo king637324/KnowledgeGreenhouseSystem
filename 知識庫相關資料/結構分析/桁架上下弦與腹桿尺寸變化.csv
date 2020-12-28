@@ -1,0 +1,7 @@
+id,Icon,ItemVariety,FormSize,MaxStressUpper,BellyRodMaxStress,MaxStressLower,TotalMaterialWeight,UpperStressRatio,BellyRodStressRatio,LowerStressRatio,WeightRatio
+1,/images/greenhousestructure/Truss/TrussBellyRodSizeUpperLowerChords/1.png,原型,"上下弦C100x50厚度2.3mm,腹桿C100x50,厚度2.3mm",336.42,71.82,190.2,112.18,96%,21%,54%,100%
+2,/images/greenhousestructure/Truss/TrussBellyRodSizeUpperLowerChords/2.png,腹桿變薄,"上下弦C100x50厚度2.3mm,腹桿C100x50,厚度1.6mm",336.69,100.1,189.81,97.87,96%,29%,54%,87%
+3,/images/greenhousestructure/Truss/TrussBellyRodSizeUpperLowerChords/3.png,腹桿變小,"上下弦100x50厚度2.3mm,腹桿C75x50，厚1.6mm",337.53,118.73,190.92,92.54,96%,34%,55%,82%
+4,/images/greenhousestructure/Truss/TrussBellyRodSizeUpperLowerChords/4.png,腹桿角度全部變大,"上下弦100x50厚度2.3mm,腹桿頂角改為126度",289.07,188.94,189.07,86.93,83%,54%,54%,77%
+5,/images/greenhousestructure/Truss/TrussBellyRodSizeUpperLowerChords/5.png,腹桿角度部分變大,"上下弦100x50厚度2.3mm,部分腹桿頂角改為126度",289.12,183.64,179.8,88.28,83%,52%,51%,79%
+6,/images/greenhousestructure/Truss/TrussBellyRodSizeUpperLowerChords/6.png,"部分腹桿角度變大,下弦變薄","上弦C100x50厚度2.3mm,部分腹桿頂角改為126度,下弦C100x50厚度為2mm",289.25,183.21,208.2,84.31,83%,52%,59%,75%

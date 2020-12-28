@@ -1,9 +1,9 @@
 <template>
     <main>
-        <!-- <Header /> -->
-        <Navbar />
+        <Header />
+        <!-- <Navbar /> -->
         <div id="layoutSidenav">
-            <!-- <Sidrbar /> -->
+            <Sidrbar />
             <div id="layoutSidenav_content">
                 <main>
                     <router-view></router-view>
@@ -19,18 +19,19 @@
 </template>
 
 <script>
+    import BootstrapSideBar from 'b-sidebar';
+
     import Header from './components/Header.vue';
     import Sidrbar from './components/Sidrbar.vue';
     import Foot from './components/Foot.vue';
     import Navbar from './components/Navbar.vue';
-    import BootstrapSideBar from 'b-sidebar';
 
     export default {
         components:{
             Header,
             Sidrbar,
             Foot,
-            Navbar,
+            // Navbar,
             BootstrapSideBar
         }
     }
