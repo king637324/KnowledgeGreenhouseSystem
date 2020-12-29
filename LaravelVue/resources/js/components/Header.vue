@@ -29,7 +29,7 @@
             <!-- <b-navbar-brand href="/">NavBar</b-navbar-brand> -->
 
             <router-link to="/" class="nav-link" exact style="color: #fff">
-                <b-icon icon="house-fill"></b-icon>
+                <b-icon icon="house-door-fill"></b-icon>
             </router-link>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -75,7 +75,7 @@
 
                                 <div class="sb-sidenav-menu-heading">Core</div>
                                 <router-link to="/" class="nav-link" exact>
-                                    <b-icon icon="house"></b-icon> 首頁
+                                    <b-icon icon="house-door"></b-icon> 首頁
                                 </router-link>
 
                                 <div class="sb-sidenav-menu-heading">測試</div>

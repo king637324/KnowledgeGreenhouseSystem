@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 use App\Http\Controllers\TestController;
 Route::resource('/categories',TestController::class);
+

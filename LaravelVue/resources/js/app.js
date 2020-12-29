@@ -8,6 +8,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+import axios from 'axios'
+import jQuery from 'jquery';
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin)
 
@@ -18,5 +22,7 @@ new Vue({
     el: '#app',
     router,
     store,
+    jQuery,
+    axios,
     render: h => h(App)
 });

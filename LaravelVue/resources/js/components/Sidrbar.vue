@@ -7,7 +7,7 @@
 
                         <div class="sb-sidenav-menu-heading">Core</div>
                         <router-link to="/" class="nav-link" exact>
-                            <b-icon icon="house"></b-icon> 首頁
+                            <b-icon icon="house-door"></b-icon> 首頁
                         </router-link>
 
                         <div class="sb-sidenav-menu-heading">測試</div>
@@ -44,7 +44,7 @@
                                         </a>
                                         <div class="collapse" id="溫室流體分析" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                             <nav class="sb-sidenav-menu-nested nav">
-                                                <router-link to="/" class="nav-link" exact>
+                                                <router-link to="/GreenhouseFluidAnalysis/SimpleGreenhouse" class="nav-link" exact>
                                                     簡易型溫室
                                                 </router-link>
                                                 <router-link to="/" class="nav-link" exact>
