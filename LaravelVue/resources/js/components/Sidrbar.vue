@@ -45,18 +45,18 @@
                                         <div class="collapse" id="溫室流體分析" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                             <nav class="sb-sidenav-menu-nested nav">
                                                 <router-link to="/GreenhouseFluidAnalysis/SimpleGreenhouse" class="nav-link" exact>
-                                                    簡易型溫室
+                                                    簡易溫室
                                                 </router-link>
-                                                <router-link to="/" class="nav-link" exact>
+                                                <router-link to="/GreenhouseFluidAnalysis/DomeGreenhouse" class="nav-link" exact>
                                                     圓頂溫室
                                                 </router-link>
-                                                <router-link to="/" class="nav-link" exact>
+                                                <router-link to="/GreenhouseFluidAnalysis/MountainGreenhouse" class="nav-link" exact>
                                                     山型溫室
                                                 </router-link>
-                                                <router-link to="/" class="nav-link" exact>
+                                                <router-link to="/GreenhouseFluidAnalysis/InclinedRoofGreenhouse" class="nav-link" exact>
                                                     斜頂溫室
                                                 </router-link>
-                                                <router-link to="/" class="nav-link" exact>
+                                                <router-link to="/GreenhouseFluidAnalysis/GreenhouseWindPressureChart" class="nav-link" exact>
                                                     型式風壓比較
                                                 </router-link>
                                             </nav>
