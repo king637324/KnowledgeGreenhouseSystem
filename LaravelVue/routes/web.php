@@ -23,3 +23,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\FluidController;
 Route::get('/FluidAnalysisJSON',[FluidController::class, 'ToJSON']); // 溫室流體分析使用的JSON
+Route::get('/FluidAnalysisChartData',[FluidController::class, 'ChartData']); // 溫室流體分析圖表分析使用的JSON
+

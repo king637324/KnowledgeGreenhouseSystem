@@ -1,5 +1,6 @@
 <template>
     <div>
+        <br>
         <h3><img src ="/images/GreenhouseDesigner/簡易溫室.png" class="table-image" width="150"/>簡易溫室(UP)</h3>
         <table class="table" align="center">
             <thead align="center">

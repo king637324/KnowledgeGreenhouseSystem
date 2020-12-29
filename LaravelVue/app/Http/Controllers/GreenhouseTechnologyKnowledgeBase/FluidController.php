@@ -18,6 +18,7 @@ class FluidController extends Controller
 
         $ChartData = array();
 
+
         foreach ($formats as $value){
             array_push($ChartData, [$value -> Greenhouse_Type,$value -> Greenhouse_id,$value -> width,$value -> ColumnHeight,$value -> ChordHeight,$value -> Donggao,$value -> Bevel,$value -> ShoulderHeight,$value -> Span]);
             // ,$value -> Greenhouse_id
@@ -30,9 +31,22 @@ class FluidController extends Controller
         $fluid = fluidanalysisresult::get();
 
         $ChartData = array();
+        $data =[];
 
         foreach ($fluid as $value){
-            array_push($ChartData, [$value -> GreenhouseId,$value -> AverageWindPressure_a,$value -> AverageWindPressure_b,$value -> AverageWindPressure_c,$value -> AverageWindPressure_d,$value -> AverageWindPressure_e,$value -> AverageWindPressure_f,$value -> AverageWindPressure_g,$value -> AverageWindPressure_h]);
+            $data['name']=$value -> GreenhouseId;
+            $temp['a']=$value -> AverageWindPressure_a;
+            $temp['b']=$value -> AverageWindPressure_b;
+            $temp['c']=$value -> AverageWindPressure_c;
+            $temp['d']=$value -> AverageWindPressure_d;
+            $temp['e']=$value -> AverageWindPressure_e;
+            $temp['f']=$value -> AverageWindPressure_f;
+            $temp['g']=$value -> AverageWindPressure_g;
+            $temp['h']=$value -> AverageWindPressure_h;
+            $data['data']=$temp;
+
+            array_push($ChartData, $data);
+
         }
         return $ChartData;
     }

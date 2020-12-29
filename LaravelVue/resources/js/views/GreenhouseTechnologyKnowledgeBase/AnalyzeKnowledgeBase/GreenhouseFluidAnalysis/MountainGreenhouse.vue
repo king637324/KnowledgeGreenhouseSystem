@@ -1,5 +1,6 @@
 <template>
     <div>
+        <br>
         <h3>
             <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image" width="150"/>
             <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image" width="150"/>

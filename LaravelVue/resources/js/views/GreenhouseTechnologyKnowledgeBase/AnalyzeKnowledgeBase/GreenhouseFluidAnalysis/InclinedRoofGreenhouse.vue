@@ -1,5 +1,6 @@
 <template>
     <div>
+        <br>
         <h3>
             <img src ="/images/GreenhouseDesigner/斜頂溫室.png" class="table-image" width="150"/>
             斜頂溫室(SP)
@@ -78,7 +79,6 @@ export default {
             // axios
             // .get('/FluidAnalysisJSON')
             // .then(response => (this.Fluidjson = response));
-
             var InclinedRoof=[];
             for(var i=0; i<this.Fluidjson.length ; i++){
                 if(this.Fluidjson[i][0][0].GreenhouseType == "斜頂溫室"){
@@ -86,7 +86,6 @@ export default {
                 }
             }
             this.InclinedRoofData = InclinedRoof;
-            console.log(this.InclinedRoofData);
         }
     }
 }
