@@ -2,7 +2,7 @@
     <div>
         <br>
         <h3>
-            <img src ="/images/GreenhouseDesigner/斜頂溫室.png" class="table-image" width="150"/>
+            <img src ="/images/GreenhouseDesigner/斜頂溫室.png" class="table-image"/>
             斜頂溫室(SP)
         </h3>
 
@@ -38,16 +38,16 @@
                     <td> {{InclinedRoof[1][0].AverageWindPressure_c}} </td>
                     <td> {{InclinedRoof[1][0].MaxWindSpeed}} </td>
                     <td>
-                        <img :src ="InclinedRoof[1][0].WindPressureChart_1 " class="table-image" width="150"/>
+                        <img :src ="InclinedRoof[1][0].WindPressureChart_1 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="InclinedRoof[1][0].WindPressureChart_2 " class="table-image" width="230"/>
+                        <img :src ="InclinedRoof[1][0].WindPressureChart_2 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="InclinedRoof[1][0].WindPressureChart_3 " class="table-image" width="150"/>
+                        <img :src ="InclinedRoof[1][0].WindPressureChart_3 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="InclinedRoof[1][0].WindFieldMap " class="table-image" width="150"/>
+                        <img :src ="InclinedRoof[1][0].WindFieldMap " class="table-image"/>
                     </td>
                 </tr>
             </tbody>
@@ -79,13 +79,11 @@ export default {
             // axios
             // .get('/FluidAnalysisJSON')
             // .then(response => (this.Fluidjson = response));
-            var InclinedRoof=[];
             for(var i=0; i<this.Fluidjson.length ; i++){
                 if(this.Fluidjson[i][0][0].GreenhouseType == "斜頂溫室"){
-                    InclinedRoof.push(this.Fluidjson[i]);
+                    this.InclinedRoofData.push(this.Fluidjson[i]);
                 }
             }
-            this.InclinedRoofData = InclinedRoof;
         }
     }
 }

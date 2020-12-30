@@ -2,9 +2,9 @@
     <div>
         <br>
         <h3>
-            <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image" width="150"/>
+            <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image"/>
             山型溫室(VBP)、Velno溫室(WTG-640系列)
-            <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image" width="150"/>
+            <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image"/>
             Velno溫室(WTG-960系列)、山型力霸溫室(VTP)
         </h3>
 
@@ -50,16 +50,16 @@
                     <td> {{mountain[1][0].AverageWindPressure_h}} </td>
                     <td> {{mountain[1][0].MaxWindSpeed}} </td>
                     <td>
-                        <img :src ="mountain[1][0].WindPressureChart_1 " class="table-image" width="150"/>
+                        <img :src ="mountain[1][0].WindPressureChart_1 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="mountain[1][0].WindPressureChart_2 " class="table-image" width="230"/>
+                        <img :src ="mountain[1][0].WindPressureChart_2 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="mountain[1][0].WindPressureChart_3 " class="table-image" width="150"/>
+                        <img :src ="mountain[1][0].WindPressureChart_3 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="mountain[1][0].WindFieldMap " class="table-image" width="150"/>
+                        <img :src ="mountain[1][0].WindFieldMap " class="table-image"/>
                     </td>
                 </tr>
             </tbody>
@@ -92,13 +92,11 @@ export default {
             // .get('/FluidAnalysisJSON')
             // .then(response => (this.Fluidjson = response));
 
-            var mountain=[];
             for(var i=0; i<this.Fluidjson.length ; i++){
                 if(this.Fluidjson[i][0][0].GreenhouseType == "2連棟山型溫室" || this.Fluidjson[i][0][0].GreenhouseType == "3連棟山型溫室"){
-                    mountain.push(this.Fluidjson[i]);
+                    this.MountainData.push(this.Fluidjson[i]);
                 }
             }
-            this.MountainData = mountain;
         }
     }
 }

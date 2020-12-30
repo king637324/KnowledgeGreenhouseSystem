@@ -2,7 +2,7 @@
     <div>
         <br>
         <h3>
-            <img src ="/images/GreenhouseDesigner/簡易溫室.png" class="table-image" width="150"/>
+            <img src ="/images/GreenhouseDesigner/簡易溫室.png" class="table-image"/>
             簡易溫室(UP)
         </h3>
         <table class="table" align="center">
@@ -39,16 +39,16 @@
                     <td> {{simple[1][0].AverageWindPressure_d}} </td>
                     <td> {{simple[1][0].MaxWindSpeed}} </td>
                     <td>
-                        <img :src ="simple[1][0].WindPressureChart_1 " class="table-image" width="150"/>
+                        <img :src ="simple[1][0].WindPressureChart_1 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="simple[1][0].WindPressureChart_2 " class="table-image" width="230"/>
+                        <img :src ="simple[1][0].WindPressureChart_2 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="simple[1][0].WindPressureChart_3 " class="table-image" width="150"/>
+                        <img :src ="simple[1][0].WindPressureChart_3 " class="table-image"/>
                     </td>
                     <td>
-                        <img :src ="simple[1][0].WindFieldMap " class="table-image" width="150"/>
+                        <img :src ="simple[1][0].WindFieldMap " class="table-image"/>
                     </td>
                 </tr>
             </tbody>
@@ -81,13 +81,11 @@ export default {
             // .get('/FluidAnalysisJSON')
             // .then(response => (this.Fluidjson = response));
 
-            var simple=[];
             for(var i=0; i<this.Fluidjson.length ; i++){
                 if(this.Fluidjson[i][0][0].GreenhouseType == "簡易溫室"){
-                    simple.push(this.Fluidjson[i]);
+                    this.SimpleData.push(this.Fluidjson[i]);
                 }
             }
-            this.SimpleData = simple;
 
         }
     }

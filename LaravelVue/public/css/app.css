@@ -11254,3 +11254,7 @@ img.table-image {
   background-position: center center;
 }
 
+.tab-title-class {
+  color: #FF0000 !important;
+}
+

@@ -22,6 +22,19 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\FluidController;
-Route::get('/FluidAnalysisJSON',[FluidController::class, 'ToJSON']); // 溫室流體分析使用的JSON
-Route::get('/FluidAnalysisChartData',[FluidController::class, 'ChartData']); // 溫室流體分析圖表分析使用的JSON
+// 溫室流體分析使用的JSON
+Route::get('/FluidAnalysisJSON',[FluidController::class, 'ToJSON']);
+// 溫室流體分析圖表分析使用的JSON
+Route::get('/FluidAnalysisChartData',[FluidController::class, 'ChartData']);
 
+use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\MaterialController;
+// 材料分析使用的JSON
+Route::get('/MaterialAnalysisJSON',[MaterialController::class, 'ToJSON']);
+// 桁架高度分析使用的JSON
+Route::get('/TrussHeightAnalysisJSON',[MaterialController::class, 'getJSON_trussheightanalysis']);
+// 桁架腹桿角度分析使用的JSON
+Route::get('/TrussBellyRodAngleanAlysisJSON',[MaterialController::class, 'getJSON_trussbellyrodangleanalysis']);
+// 桁架上下弦與腹桿大小分析使用的JSON
+Route::get('/TrussBellyRodSizeUpperLowerChordsJSON',[MaterialController::class, 'getJSON_trussbellyrodsizeupperlowerchords']);
+// 屋頂桁架的優化組合設計使用的JSON
+Route::get('/TrussRoofCombinationChangesJSON',[MaterialController::class, 'getJSON_trussroofcombinationchanges']);

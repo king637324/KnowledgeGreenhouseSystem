@@ -9,7 +9,7 @@
         <div class="d-flex flex-row bd-highlight mb-3">
             <div class="p-2 bd-highlight" style='border-right:1px solid LightGray'>
                 <h2>
-                    <img src ="/images/GreenhouseDesigner/簡易溫室.png" class="table-image" width="150"/>
+                    <img src ="/images/GreenhouseDesigner/簡易溫室.png" class="table-image"/>
                     簡易溫室(UP)
                 </h2>
                 <input type="checkbox" id="UP540_185" value="UP540_185" v-model="checkedNames" v-on:change="updateChart">
@@ -27,7 +27,7 @@
                 <label>UP800_500</label>
 
                 <h2>
-                    <img src ="/images/GreenhouseDesigner/圓頂溫室.png" class="table-image" width="150"/>
+                    <img src ="/images/GreenhouseDesigner/圓頂溫室.png" class="table-image"/>
                     圓頂溫室(UBP)
                 </h2>
                 <input type="checkbox" id="UBP520_300" value="UBP520_300" v-model="checkedNames" v-on:change="updateChart">
@@ -40,7 +40,7 @@
                 <label>UBP680_350</label>
 
                 <h2>
-                    <img src ="/images/GreenhouseDesigner/圓頂溫室.png" class="table-image" width="150"/>
+                    <img src ="/images/GreenhouseDesigner/圓頂溫室.png" class="table-image"/>
                     圓頂力霸溫室(UTP)
                 </h2>
                 <input type="checkbox" id="UTP960_350" value="UTP960_350" v-model="checkedNames" v-on:change="updateChart">
@@ -54,7 +54,7 @@
             </div>
             <div class="p-2 bd-highlight" style='border-right:1px solid LightGray'>
                 <h2>
-                    <img src ="/images/GreenhouseDesigner/斜頂溫室.png" class="table-image" width="150"/>
+                    <img src ="/images/GreenhouseDesigner/斜頂溫室.png" class="table-image"/>
                     斜頂溫室(SP)
                 </h2>
                 <input type="checkbox" id="SP1100_12" value="SP1100_12" v-model="checkedNames" v-on:change="updateChart">
@@ -67,7 +67,7 @@
                 <label>SP1100_30</label>
 
                 <h2>
-                    <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image" width="150"/>
+                    <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image"/>
                     Velno溫室(WTG-640系列)
                 </h2>
                 <input type="checkbox" id="WTG640_300" value="WTG640_300" v-model="checkedNames" v-on:change="updateChart">
@@ -78,7 +78,7 @@
                 <label>WTG640_400</label>
 
                 <h2>
-                    <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image" width="150"/>
+                    <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image"/>
                     Velno溫室(WTG-960系列)
                 </h2>
                 <input type="checkbox" id="WTG960_300" value="WTG960_300" v-model="checkedNames" v-on:change="updateChart">
@@ -91,7 +91,7 @@
 
             <div class="p-2 bd-highlight">
                 <h2>
-                    <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image" width="150"/>
+                    <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image"/>
                     山型溫室(VBP)
                 </h2>
                 <input type="checkbox" id="VBP820_300" value="VBP820_300" v-model="checkedNames" v-on:change="updateChart">
@@ -102,7 +102,7 @@
                 <label>VBP860_350</label>
 
                 <h2>
-                    <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image" width="150"/>
+                    <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image"/>
                     山型力霸溫室(VTP)
                 </h2>
                 <input type="checkbox" id="VTP800_400" value="VTP800_400" v-model="checkedNames" v-on:change="updateChart">
@@ -119,7 +119,7 @@
 
         </div>
         <!-- <span>Checked names: {{ checkedNames }}</span> -->
-        <line-chart :data="data" download="型式風壓比較" :colors="['#3e95cd', '#8e5ea2', '#3cba9f', 'tomato', '#c45850', '#74AFA9', '#009FC7', '#668600', '#C08900', '#C96986', '#DE6948', '#9370DB', '#FF8C00', '#008080', '#1E90FF', '#40E0D0', 'hotpink', 'orchid', 'LightSalmon', 'SaddleBrown', 'GoldenRod', 'Gold', 'DarkKhaki', 'YellowGreen', 'DarkSeaGreen', 'LightSeaGreen', 'DeepSkyBlue', 'SteelBlue', 'CornflowerBlue', 'Khaki']" :curve="false"></line-chart>
+        <line-chart :data="data" height="45vmin" download="型式風壓比較" :colors="['#3e95cd', '#8e5ea2', '#3cba9f', 'tomato', '#c45850', '#74AFA9', '#009FC7', '#668600', '#C08900', '#C96986', '#DE6948', '#9370DB', '#FF8C00', '#008080', '#1E90FF', '#40E0D0', 'hotpink', 'orchid', 'LightSalmon', 'SaddleBrown', 'GoldenRod', 'Gold', 'DarkKhaki', 'YellowGreen', 'DarkSeaGreen', 'LightSeaGreen', 'DeepSkyBlue', 'SteelBlue', 'CornflowerBlue', 'Khaki']" :curve="false"></line-chart>
     </div>
 </template>
 <script>
@@ -128,37 +128,7 @@ export default {
         return {
             Fluidjson: [],
             checkedNames: [],
-            data :[
-                //
-                // UBP680_300
-                // UBP680_350
-                // UTP960_350
-                // UTP1040_350
-                // UTP1140_350
-                // UTP1140_400
-                // UP540_185
-                // UP600_205
-                // UP720_180
-                // UP720_400
-                // UP800_400
-                // UP800_500
-                // SP1100_12
-                // SP1100_20
-                // SP1100_23
-                // SP1100_30
-                // WTG640_300
-                // WTG640_350
-                // WTG640_400
-                // VBP820_300
-                // VBP860_300
-                // VBP860_350
-                // WTG960_300
-                // WTG960_350
-                // WTG960_400
-                // VTP2400_400
-                // VTP2400_450
-                // VTP2400_500
-            ],
+            data :[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入

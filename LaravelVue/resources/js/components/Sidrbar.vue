@@ -61,9 +61,26 @@
                                                 </router-link>
                                             </nav>
                                         </div>
-                                        <router-link to="/" class="nav-link" exact>
+
+
+
+                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#材料結構分析" aria-expanded="false" aria-controls="材料結構分析">
                                             材料結構分析
-                                        </router-link>
+                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        </a>
+                                        <div class="collapse" id="材料結構分析" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <router-link to="/MaterialStructureAnalysis/RoundPipe" class="nav-link" exact>
+                                                    圓管材
+                                                </router-link>
+                                                <router-link to="/MaterialStructureAnalysis/ProfilePipe" class="nav-link" exact>
+                                                    型材
+                                                </router-link>
+                                                <router-link to="/MaterialStructureAnalysis/Truss" class="nav-link" exact>
+                                                    桁架
+                                                </router-link>
+                                            </nav>
+                                        </div>
                                         <router-link to="/" class="nav-link" exact>
                                             溫室結構分析
                                         </router-link>
