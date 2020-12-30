@@ -3,8 +3,9 @@
         <br>
         <h3>
             <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image" width="150"/>
+            山型溫室(VBP)、Velno溫室(WTG-640系列)
             <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image" width="150"/>
-            Velno溫室(WTG)、山型溫室(VBP)、山型力霸溫室(VTP)
+            Velno溫室(WTG-960系列)、山型力霸溫室(VTP)
         </h3>
 
         <table class="table" align="center">
