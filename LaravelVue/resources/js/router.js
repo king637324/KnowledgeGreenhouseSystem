@@ -23,35 +23,35 @@ const routes = [{
         // component: Welcome
 }, {
     path: '/GreenhouseFluidAnalysis/SimpleGreenhouse',
-    name: '/GreenhouseFluidAnalysis/SimpleGreenhouse',
+    name: '溫室流體分析-簡易溫室',
     component: GreenhouseFluidAnalysis_SimpleGreenhouse
 }, {
     path: '/GreenhouseFluidAnalysis/DomeGreenhouse',
-    name: '/GreenhouseFluidAnalysis/DomeGreenhouse',
+    name: '溫室流體分析-圓頂溫室',
     component: GreenhouseFluidAnalysis_DomeGreenhouse
 }, {
     path: '/GreenhouseFluidAnalysis/MountainGreenhouse',
-    name: '/GreenhouseFluidAnalysis/MountainGreenhouse',
+    name: '溫室流體分析-山型溫室',
     component: GreenhouseFluidAnalysis_MountainGreenhouse
 }, {
     path: '/GreenhouseFluidAnalysis/InclinedRoofGreenhouse',
-    name: '/GreenhouseFluidAnalysis/InclinedRoofGreenhouse',
+    name: '溫室流體分析-斜頂溫室',
     component: GreenhouseFluidAnalysis_InclinedRoofGreenhouse
 }, {
     path: '/GreenhouseFluidAnalysis/GreenhouseWindPressureChart',
-    name: '/GreenhouseFluidAnalysis/GreenhouseWindPressureChart',
+    name: '溫室流體分析-風壓型式比較',
     component: GreenhouseFluidAnalysis_GreenhouseWindPressureChart
 }, {
     path: '/MaterialStructureAnalysis/RoundPipe',
-    name: '/MaterialStructureAnalysis/RoundPipe',
+    name: '材料結構分析-圓管材',
     component: MaterialStructureAnalysis_RoundPipe
 }, {
     path: '/MaterialStructureAnalysis/ProfilePipe',
-    name: '/MaterialStructureAnalysis/ProfilePipe',
+    name: '材料結構分析-型管材',
     component: MaterialStructureAnalysis_ProfilePipe
 }, {
     path: '/MaterialStructureAnalysis/Truss',
-    name: '/MaterialStructureAnalysis/Truss',
+    name: '材料結構分析-桁架',
     component: MaterialStructureAnalysis_Truss
 }, {
     path: '/categories',

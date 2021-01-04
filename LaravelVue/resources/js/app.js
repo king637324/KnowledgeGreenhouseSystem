@@ -17,6 +17,9 @@ import Chartkick from 'vue-chartkick'
 import Chart from 'chart.js'
 Vue.use(Chartkick.use(Chart))
 
+var VueScrollTo = require('vue-scrollto');
+Vue.use(VueScrollTo)
+
 import FlashMessage from '@smartweb/vue-flash-message';
 Vue.use(FlashMessage);
 
