@@ -6,8 +6,8 @@
             斜頂溫室(SP)
         </h3>
 
-        <table class="table" align="center">
-            <thead align="center">
+        <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+            <thead align="center" class="table-active">
                 <tr>
                     <td>溫室代號</td>
                     <td>風向</td>

@@ -5,8 +5,8 @@
             <img src ="/images/GreenhouseDesigner/簡易溫室.png" class="table-image"/>
             簡易溫室(UP)
         </h3>
-        <table class="table" align="center">
-            <thead align="center">
+        <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+            <thead align="center" class="table-active">
                 <tr>
                     <td>溫室代號</td>
                     <td>風向</td>
@@ -25,35 +25,32 @@
                     <td>風場圖</td>
                 </tr>
             </thead>
-            <tbody align="center">
-                <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                    <td>{{simple[1][0].WindSpeed}}</td>
-                    <td> {{simple[2]}} </td>
-                    <td> {{simple[5]}} </td>
-                    <td> {{simple[3]}} </td>
-                    <td> {{simple[1][0].AverageWindPressure_a}} </td>
-                    <td> {{simple[1][0].AverageWindPressure_b}} </td>
-                    <td> {{simple[1][0].AverageWindPressure_c}} </td>
-                    <td> {{simple[1][0].AverageWindPressure_d}} </td>
-                    <td> {{simple[1][0].MaxWindSpeed}} </td>
-                    <td>
-                        <img :src ="simple[1][0].WindPressureChart_1 " class="table-image"/>
-                    </td>
-                    <td>
-                        <img :src ="simple[1][0].WindPressureChart_2 " class="table-image"/>
-                    </td>
-                    <td>
-                        <img :src ="simple[1][0].WindPressureChart_3 " class="table-image"/>
-                    </td>
-                    <td>
-                        <img :src ="simple[1][0].WindFieldMap " class="table-image"/>
-                    </td>
-                </tr>
-            </tbody>
+            <tr v-for="(simple, index) in SimpleData" :key="index">
+                <td>{{simple[1][0].GreenhouseId}}</td>
+                <td>{{simple[1][0].WindDirection}}</td>
+                <td>{{simple[1][0].WindSpeed}}</td>
+                <td> {{simple[2]}} </td>
+                <td> {{simple[5]}} </td>
+                <td> {{simple[3]}} </td>
+                <td> {{simple[1][0].AverageWindPressure_a}} </td>
+                <td> {{simple[1][0].AverageWindPressure_b}} </td>
+                <td> {{simple[1][0].AverageWindPressure_c}} </td>
+                <td> {{simple[1][0].AverageWindPressure_d}} </td>
+                <td> {{simple[1][0].MaxWindSpeed}} </td>
+                <td>
+                    <img :src ="simple[1][0].WindPressureChart_1 " class="table-image"/>
+                </td>
+                <td>
+                    <img :src ="simple[1][0].WindPressureChart_2 " class="table-image"/>
+                </td>
+                <td>
+                    <img :src ="simple[1][0].WindPressureChart_3 " class="table-image"/>
+                </td>
+                <td>
+                    <img :src ="simple[1][0].WindFieldMap " class="table-image"/>
+                </td>
+            </tr>
         </table>
-
 
     </div>
 

@@ -35,13 +35,16 @@
 
         <h3>強固型統計分析</h3>
         <table style="border:1px solid black;" border='1'>
-            <tr align = "center">
-                <td> 類 型 </td>
-                <td> 結構最大應力(MPa) </td>
-                <td> 最大應力位置 </td>
-                <td> 結構最大變形量(mm) </td>
-                <td> 最大變形量位置 </td>
-            </tr >
+            <thead class="table-active">
+                <tr align = "center">
+                    <td> 類 型 </td>
+                    <td> 結構最大應力(MPa) </td>
+                    <td> 最大應力位置 </td>
+                    <td> 結構最大變形量(mm) </td>
+                    <td> 最大變形量位置 </td>
+                </tr >
+            </thead>
+
             <tr align = "center" v-for="(Robust, index) in RobustGreenhouse" :key="index">
                 <td> {{Robust.Type }} </td>
                 <td> {{Robust.StructureStressMax }} </td>

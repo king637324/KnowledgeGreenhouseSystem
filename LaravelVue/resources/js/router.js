@@ -20,6 +20,7 @@ import GreenhouseStructureAnalysis_SimpleGreenhouse from './views/GreenhouseTech
 // 溫室總體規劃
 import GreenhouseMasterPlan_GeographicalEnvironmentAnalysis from './views/GreenhouseMasterPlan/GeographicalEnvironmentAnalysis.vue';
 import GreenhouseMasterPlan_CropSelection from './views/GreenhouseMasterPlan/CropSelection.vue';
+import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis.vue';
 
 Vue.use(VueRouter);
 
@@ -78,10 +79,18 @@ const routes = [{
     name: '溫室作物選擇',
     component: GreenhouseMasterPlan_CropSelection
 }, {
+    path: '/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis',
+    name: '作物環境分析',
+    component: GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis
+}, {
     path: '/categories',
     name: 'categories',
     component: () =>
         import ('./views/Categories.vue')
+}, {
+    path: '/123',
+    name: 'welcome',
+    component: Welcome
 }];
 
 const router = new VueRouter({

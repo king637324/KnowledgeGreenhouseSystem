@@ -109,7 +109,7 @@
                                     溫室作物選擇
                                 </router-link>
 
-                                <router-link to="#" class="nav-link" exact>
+                                <router-link to="/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis" class="nav-link" exact>
                                     作物環境需求分析
                                 </router-link>
 

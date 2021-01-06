@@ -9,17 +9,20 @@
         <p> 可直接點擊 類型 前往類型的應力應變分析</p>
 
         <table style="border:1px solid black;" border='1'>
-            <tr align="center">
-                <td> 類 型 </td>
-                <td> 桁架間距 (m)</td>
-                <td> 錏管規格 </td>
-                <td> 尺寸 (mm) </td>
-                <td> 圓管厚度 (mm) </td>
-                <td> 連接管厚度 (mm) </td>
-                <td> 重量(kg/m) </td>
-                <td> 結構最大應力 (MPa)</td>
-                <td> 結構最大變形量 (mm) </td>
-            </tr>
+            <thead class="table-active">
+                <tr align="center">
+                    <td> 類 型 </td>
+                    <td> 桁架間距 (m)</td>
+                    <td> 錏管規格 </td>
+                    <td> 尺寸 (mm) </td>
+                    <td> 圓管厚度 (mm) </td>
+                    <td> 連接管厚度 (mm) </td>
+                    <td> 重量(kg/m) </td>
+                    <td> 結構最大應力 (MPa)</td>
+                    <td> 結構最大變形量 (mm) </td>
+                </tr>
+            </thead>
+
             <tr align="center" v-for="(Simple, index) in SimpleGreenhouse" :key="index">
                 <td>
                     <button  class="btn" v-scroll-to="{ el: '#StructuralSimple'+Simple.Type }">

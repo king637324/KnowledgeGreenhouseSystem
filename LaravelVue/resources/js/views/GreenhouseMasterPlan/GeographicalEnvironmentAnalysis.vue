@@ -4,33 +4,41 @@
         <h2>地理環境分析</h2>
         <hr>
 
+
+
         <div class="d-flex justify-content-around">
             <div class="p-2 bd-highlight">
-                <select v-model="cityIdx" v-on:change="updateCity">
-                    <option v-for="(data, index) in City" :value="index">
-                        {{data}}
-                    </option>
-                </select>
+                <div class="card">
+                    <label class="card-header  bg-info text-white" style="font-size: 2.3vmin">地區選擇</label>
+                    <div class="card-body">
+                        <select v-model="cityIdx" v-on:change="updateCity" style="font-size: 2vmin">
+                            <option v-for="(data, index) in City" :value="index">
+                                {{data}}
+                            </option>
+                        </select>
 
-                <select v-model="regionIdx" v-on:change="updateRegion">
-                    <option v-for="(data, index) in Region" :value="index">
-                        {{data}}
-                    </option>
-                </select>
+                        <select v-model="regionIdx" v-on:change="updateRegion" style="font-size: 2vmin">
+                            <option v-for="(data, index) in Region" :value="index">
+                                {{data}}
+                            </option>
+                        </select>
 
-                <br>
-                <h5>縣市：{{selectCity}} </h5>
-                <h5>地區：{{selectRegion}} </h5>
-                <h5>風速(m/sec)：{{SpeedPerSecond}} </h5>
-                <h5>級數：{{Series}} </h5>
-                <h5>風名： {{Wind}} </h5>
-                <h5>風力登陸分析： {{Landing}} </h5>
-                <h5>風力路徑分析： {{Path}} </h5>
-                <h5>颱風登陸總機率： {{LandingProbability}} %</h5>
-                <h5>颱風路徑總機率： {{PathProbability}} %</h5>
+                        <br>
+                        <h5>縣市：{{selectCity}} </h5>
+                        <h5>地區：{{selectRegion}} </h5>
+                        <h5>風速(m/sec)：{{SpeedPerSecond}} </h5>
+                        <h5>級數：{{Series}} </h5>
+                        <h5>風名： {{Wind}} </h5>
+                        <h5>風力登陸分析： {{Landing}} </h5>
+                        <h5>風力路徑分析： {{Path}} </h5>
+                        <h5>颱風登陸總機率： {{LandingProbability}} %</h5>
+                        <h5>颱風路徑總機率： {{PathProbability}} %</h5>
 
-                <br>
-                <h6>備註：風速為臺灣地區各地之基本設計風速 </h6>
+                        <br>
+                        <h6>備註：風速為臺灣地區各地之基本設計風速 </h6>
+
+                    </div>
+                </div>
             </div>
 
             <div class="p-2 bd-highlight">
@@ -40,21 +48,16 @@
                     <img src = "/images/地理環境分析/風力登陸分析 (1911～2017).png"  style='width:30vmin'>
                 </div>
                 <br><br>
-                <!-- 風力路徑分析 圖片 -->
-                <div>
-                    <p align="center" style="font-size: 3vmin">風力路徑分析</p>
-                    <img src = "/images/地理環境分析/風力路徑分析 (1911～2017).png" style='width:30vmin'>
-                </div>
-            </div>
 
-            <div class="p-2 bd-highlight">
                 <h5>風力登陸分析表 </h5>
                 <table style="border:1px solid black;" border='1'>
-                    <tr align="center">
-                        <td>編號</td>
-                        <td>次數</td>
-                        <td>百分比 (%)</td>
-                    </tr>
+                    <thead class="table-active">
+                        <tr align="center">
+                            <td>編號</td>
+                            <td>次數</td>
+                            <td>百分比 (%)</td>
+                        </tr>
+                    </thead>
                     <tr align="center"  v-for="(Land, index) in WindLand" :key="index">
                         <td> {{Land.item_Id}} </td>
                         <td> {{Land.frequency}} </td>
@@ -62,13 +65,27 @@
                     </tr>
                 </table>
 
+            </div>
+
+            <div class="p-2 bd-highlight">
+
+
+                <!-- 風力路徑分析 圖片 -->
+                <div>
+                    <p align="center" style="font-size: 3vmin">風力路徑分析</p>
+                    <img src = "/images/地理環境分析/風力路徑分析 (1911～2017).png" style='width:30vmin'>
+                </div>
+                <br><br>
+
                 <h5>風力路徑分析表 </h5>
                 <table style="border:1px solid black;" border='1'>
-                    <tr align="center">
-                        <td>編號</td>
-                        <td>次數</td>
-                        <td>百分比 (%)</td>
-                    </tr>
+                    <thead class="table-active">
+                        <tr align="center">
+                            <td>編號</td>
+                            <td>次數</td>
+                            <td>百分比 (%)</td>
+                        </tr>
+                    </thead>
                     <tr align="center"  v-for="(Path, index) in WindPath" :key="index">
                         <td> {{Path.item_Id}} </td>
                         <td> {{Path.frequency}} </td>
@@ -134,15 +151,7 @@ export default {
             });
             this.windlandingandpathjson = await WindLandingAndPath.json();
 
-            console.log("-----------windspeedjson-------------");
-            console.log(this.windspeedjson);
-            console.log("-----------regionalwindspeedjson-------------");
-            console.log(this.regionalwindspeedjson);
-            console.log("-----------windlandingandpathjson-------------");
-            console.log(this.windlandingandpathjson);
-
             var filterfalg = false;
-
             // 篩選重複出現的縣市
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
                 filterfalg = false;
@@ -163,13 +172,12 @@ export default {
             }
 
         },updateCity(){
+            // 從所選的縣市id 找到 所選的縣市名稱
             for(var i = 0 ; i < this.City.length ; i++){
                 if(i == this.cityIdx)    this.selectCity = this.City[i];
             }
 
-            console.log("--------cityIdx / selectCity----");
-            console.log(this.cityIdx , this.selectCity);
-
+            // 將地區資料初始化
             this.selectRegion = null;
             this.SpeedPerSecond = null;
             this.Series = null;
@@ -177,6 +185,8 @@ export default {
             this.regionIdx = 0;
             this.LandingProbability = null,
             this.PathProbability = null,
+            this.Landing = null,
+            this.Path = null,
             this.Region = ['==請選擇地區=='];
 
             // 篩選所選縣市的地區
@@ -187,30 +197,23 @@ export default {
             }
 
         },updateRegion(){
+            // 從所選的地區id 找到 所選的地區名稱
             for(var i = 0 ; i < this.Region.length ; i++){
                 if(i == this.regionIdx)    this.selectRegion = this.Region[i];
             }
 
-            console.log("--------regionIdx / selectRegion----");
-            console.log(this.regionIdx,this.selectRegion);
-
-
-            var StrLanding,StrPath
+            var StrLanding,StrPath;  // 字串切割
             // 取得 風速、風力登陸分析、風力路徑分析
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
                 if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
                     this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
                     this.Landing = this.regionalwindspeedjson[i].WindLandingId;
                     this.Path = this.regionalwindspeedjson[i].WindPathId;
+
                     StrLanding = this.Landing.split(",");
                     StrPath =  this.Path.split(",");
                 }
             }
-
-            console.log("--------StrLanding----");
-            console.log(StrLanding);
-            console.log("--------StrPath----");
-            console.log(StrPath);
 
             // 取得 級數 & 風名
             for(var i = 0 ; i < this.windspeedjson.length ; i++){
@@ -242,6 +245,7 @@ export default {
                 }
             }
 
+            // 過濾計算所出現的小數點bug
             this.LandingProbability = this.LandingProbability.toFixed(2);
             this.PathProbability = this.PathProbability.toFixed(2);
 

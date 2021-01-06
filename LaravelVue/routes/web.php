@@ -50,3 +50,4 @@ Route::get('/WindLandingAndPathJSON',[GeographicalController::class, 'getJSON_Wi
 
 use App\Http\Controllers\GreenhouseMasterPlan\CropController;
 Route::get('/VegetableJSON',[CropController::class, 'getJSON_Vegetable']);
+Route::get('/LMEMetalPriceJSON',[CropController::class, 'LME']);  // 倫敦金屬交易所的金屬價格
