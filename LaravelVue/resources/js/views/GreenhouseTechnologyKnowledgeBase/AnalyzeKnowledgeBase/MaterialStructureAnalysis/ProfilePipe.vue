@@ -5,6 +5,8 @@
         <h3>
             型材
         </h3>
+        <hr>
+
         <table class="table" align="center">
             <thead align="center">
                 <tr>

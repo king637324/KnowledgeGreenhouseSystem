@@ -35,9 +35,10 @@
                         <td> 圖示 </td>
                     </tr>
                     <tr align="center" v-for="(Height, index) in TrussHeight" :key="index">
-                        <td><a class="btn" :href="'TrussHeight'+Height.TrussType">
+                        <td>
+                            <button  class="btn" v-scroll-to="{ el: '#TrussHeight'+Height.TrussType }">
                                 <img :src ="Height.Icon" style='width:10vmin'>
-                            </a>
+                            </button>
                         </td>
                         <td>
                             <img :src ="Height.DeformationAnalysisDiagram" style='width:80vmin'>
@@ -54,9 +55,10 @@
                         <td> 圖示 </td>
                     </tr>
                     <tr align="center" v-for="(Height, index) in TrussHeight" :key="index">
-                        <td><a class="btn" :href="'TrussHeight'+Height.TrussType">
+                        <td>
+                            <button  class="btn" v-scroll-to="{ el: '#TrussHeight'+Height.TrussType }">
                                 <img :src ="Height.Icon" style='width:10vmin'>
-                            </a>
+                            </button>
                         </td>
                         <td>
                             <img :src ="Height.DeformationAnalysisDiagram" style='width:80vmin'>

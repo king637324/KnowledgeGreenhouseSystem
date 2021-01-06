@@ -38,3 +38,15 @@ Route::get('/TrussBellyRodAngleanAlysisJSON',[MaterialController::class, 'getJSO
 Route::get('/TrussBellyRodSizeUpperLowerChordsJSON',[MaterialController::class, 'getJSON_trussbellyrodsizeupperlowerchords']);
 // 屋頂桁架的優化組合設計使用的JSON
 Route::get('/TrussRoofCombinationChangesJSON',[MaterialController::class, 'getJSON_trussroofcombinationchanges']);
+
+use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\GreenhouseStructureController;
+// 溫室結構分析使用的JSON
+Route::get('/StructuralAnalysisJSON',[GreenhouseStructureController::class, 'getJSON_structuralanalysi']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\GeographicalController;
+Route::get('/WindSpeedControlJSON',[GeographicalController::class, 'getJSON_WindSpeedControl']);
+Route::get('/RegionalWindSpeedJSON',[GeographicalController::class, 'getJSON_RegionalWindSpeed']);
+Route::get('/WindLandingAndPathJSON',[GeographicalController::class, 'getJSON_WindLandingAndPath']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\CropController;
+Route::get('/VegetableJSON',[CropController::class, 'getJSON_Vegetable']);

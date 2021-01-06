@@ -77,9 +77,6 @@ export default {
             });
 
             this.Fluidjson = await res.json();
-            // axios
-            // .get('/FluidAnalysisJSON')
-            // .then(response => (this.Fluidjson = response));
 
             for(var i=0; i<this.Fluidjson.length ; i++){
                 if(this.Fluidjson[i][0][0].GreenhouseType == "簡易溫室"){
