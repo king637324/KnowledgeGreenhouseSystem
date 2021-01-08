@@ -2,44 +2,11 @@
     <div class="container-fluid">
         <br>
         <h2>作物環境需求分析</h2>
-        <button type="button" class="btn btn-danger" v-on:click="check">檢查</button>
+        <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
         <hr>
 
         <!-- <div class="card-header bg-info text-white"> -->
         <div class="row">
-            <!-- LME倫敦金屬價格 -->
-            <div class="col-xl-2">
-                <div class="d-flex justify-content-center mb-3">
-                    <div class="p-2"></div>
-                    <div class="p-2">
-                        <br><br>
-                        <h4 align="center">金屬價格</h4>
-                        <br>
-                        <table align="center" style="border:1px solid black;" border='1' >
-                            <thead>
-                                <tr>
-                                    <td colspan="2" class="table-dark"> {{MetalDate}} </td>
-                                </tr>
-                            </thead>
-                            <tbody v-for="(metal, index) in MetalPrice" :key="index">
-                                <tr>
-                                    <td align="center">
-                                        <a :href="metal[3]" target="_blank" style="color:gray;"> {{metal[0]}} </a>
-                                    </td>
-                                    <td align="right">
-                                        {{metal[1]}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <p style = "font-size: 1.5vmin;"><br>備註：<br>金屬價格走勢圖請點選金屬材料</p>
-                        <p style = "font-size: 1.5vmin;">資料來源：<a href="https://www.lme.com/" target="_blank" style="color:gray;">倫敦金屬交易所</a></p>
-                    </div>
-                    <div class="p-2"></div>
-                </div>
-            </div>
-
             <!-- 作物環境需求分析 -->
             <div class="col-xl-10">
                 <div class="row">
@@ -181,7 +148,7 @@
 
                                     <div class="p-2 bd-highlight">
                                         <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地  形</span></p>
-                                        <select id="SelectTerrain" onchange="SelectTerrain()" >
+                                        <select id="SelectTerrain">
                                             <option value="">==請選擇地形==</option>
                                             <option value="平原">平原</option>
                                             <option value="山區">山區</option>
@@ -223,7 +190,7 @@
 
                                     <div class="p-2 bd-highlight">
                                         <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地  貌</span></p>
-                                        <select id="SelectLandform" onchange="SelectLandform()" >
+                                        <select id="SelectLandform">
                                             <option value="">==請選擇地貌==</option>
                                             <option value="建築物">建築物</option>
                                             <option value="空曠">空曠</option>
@@ -236,14 +203,8 @@
                                     </div>
                                 </div>
 
-
-
                                 <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">日照時數與全天空日射量</span></p>
-                                <line-chart :data="data" height="45vmin" :colors="['Gold', 'DarkGreen']" :curve="false"></line-chart>
-                                <!-- <div class="canvasDiv">
-                                    <canvas id="SunshineChart" style="display: block;"></canvas>
-                                </div> -->
-
+                                <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
 
                             </div>
                         </div>
@@ -257,10 +218,8 @@
                             </div>
                             <div class="card-body">
                                 <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">溫度分析圖</span></p>
-                                <line-chart :data="data" height="45vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
-                                <!-- <div class="canvasDiv">
-                                    <canvas id="TemperatureChart" style="display: block;"></canvas>
-                                </div> -->
+                                <line-chart xtitle="月份" ytitle="溫度" :discrete="true" :data="CropTemperature" height="30vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
+
                                 <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">各月作物與地區適合種植高低溫差值</span></p>
                                 <table style="border:1px solid black;" border='1'>
                                     <tr align="center">
@@ -280,19 +239,34 @@
                                     </tr>
                                     <tr align="center" id="HighTemperatureDifference">
                                         <td>高溫差</td>
-                                        <td v-for="(i, n) in 12"></td>
+                                        <td v-for="(temperature, index) in StrHighTemperature" :key="index">
+                                            {{StrOptimalTemperature[1]-temperature}}
+                                        </td>
                                     </tr>
                                     <tr align="center" id="HighApproach">
                                         <td>環控</td>
-                                        <td v-for="(i, n) in 12"></td>
+                                        <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="StrOptimalTemperature[1]-temperature < 0">
+                                            需降溫
+                                        </td>
+                                        <td v-else>
+                                            -
+                                        </td>
+
                                     </tr>
-                                    <tr align="center" id="LowTemperatureDifference">
+                                    <tr align="center">
                                         <td>低溫差</td>
-                                        <td v-for="(i, n) in 12"></td>
+                                        <td v-for="(temperature, index) in StrLowTemperature" :key="index">
+                                            {{StrOptimalTemperature[0]-temperature}}
+                                        </td>
                                     </tr>
-                                    <tr align="center" id="LowApproach">
+                                    <tr align="center">
                                         <td>環控</td>
-                                        <td v-for="(i, n) in 12"></td>
+                                        <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="StrOptimalTemperature[0]-temperature > 0">
+                                            需加溫
+                                        </td>
+                                        <td v-else>
+                                            -
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -305,7 +279,7 @@
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-chart-area mr-1"></i>
+                                <b-icon icon="building"></b-icon>
                                 Area Chart Example
                             </div>
                             <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
@@ -314,13 +288,46 @@
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-chart-bar mr-1"></i>
+                                <b-icon icon="building"></b-icon>
                                 Bar Chart Example
                             </div>
                             <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                         </div>
                     </div>
                 </div> -->
+            </div>
+
+            <!-- LME倫敦金屬價格 -->
+            <div class="col-xl-2">
+                <div class="d-flex justify-content-center mb-3">
+                    <div class="p-2"></div>
+                    <div class="p-2">
+                        <br><br>
+                        <h4 align="center">金屬價格</h4>
+                        <br>
+                        <table align="center" style="border:1px solid black;" border='1' >
+                            <thead>
+                                <tr>
+                                    <td colspan="2" class="table-dark"> {{MetalDate}} </td>
+                                </tr>
+                            </thead>
+                            <tbody v-for="(metal, index) in MetalPrice" :key="index">
+                                <tr>
+                                    <td align="center">
+                                        <a :href="metal[3]" target="_blank" style="color:gray;"> {{metal[0]}} </a>
+                                    </td>
+                                    <td align="right">
+                                        {{metal[1]}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p style = "font-size: 1.5vmin;"><br>備註：<br>金屬價格走勢圖請點選金屬材料</p>
+                        <p style = "font-size: 1.5vmin;">資料來源：<a href="https://www.lme.com/" target="_blank" style="color:gray;">倫敦金屬交易所</a></p>
+                    </div>
+                    <div class="p-2"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -362,6 +369,13 @@ export default {
             OptimumGerminationTemperature: '-',
             HighestGerminationTemperature: '-',
             CO2IncreasedProductionRate: '-',
+            CropTemperature:[
+                {name: "地區最低月均溫", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+                {name: "地區最高月均溫", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+                {name: "作物生長最適溫區間", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+                {name: "作物生長最適溫區間", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+            ],  // 所選作物的種植最適溫度 圖表用
+            StrOptimalTemperature:[0,0], // 字串切割  作物生長最適溫區間
 
             /* 種植地區環境分析 */
             City:['==請選擇縣市==',],   // 縣市選單的陣列表
@@ -371,10 +385,18 @@ export default {
             Region:['==請選擇地區==',], // 地區選單的陣列表
             regionIdx: 0,   // 所選地區的id
             selectRegion: '-', // 所選地區的名稱
+            StrHighTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最高月均溫
+            StrLowTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最低月均溫
 
             Series: '-', // 風力級數
             Wind: '-',   // 風的名稱
             SpeedPerSecond: '-',    // 風速
+            GloblRad:null, // 全天空日射量
+            SunShine:null, // 日照量
+            GloblRadSunShineChartData:[
+                {name: "日照時數(小時)", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+                {name: "全天空日射量(MJ/㎡)", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+            ],  // 日照時數與全天空日射量 圖表用
 
 
             /* 栽種面積 */
@@ -466,11 +488,9 @@ export default {
                 if(i == this.plantIdx)    this.selectplant = this.GrowPlants[i];
             }
 
-            this.CropData = [];  // 作物資料初始化
             // 找出所選資料的data
             for(var i = 0 ; i < this.vegetablejson.length ; i++){
                 if(this.vegetablejson[i].VegetableTypes == this.selectplant){
-                    // this.CropData = this.vegetablejson[i];
                     this.Goodlight = this.vegetablejson[i].Goodlight;
                     this.Photoperiod = this.vegetablejson[i].Photoperiod;
                     this.Illuminance = this.vegetablejson[i].Illuminance;
@@ -485,9 +505,15 @@ export default {
                     this.OptimumGerminationTemperature = this.vegetablejson[i].OptimumGerminationTemperature;
                     this.HighestGerminationTemperature = this.vegetablejson[i].HighestGerminationTemperature;
                     this.CO2IncreasedProductionRate = this.vegetablejson[i].CO2IncreasedProductionRate;
+                    this.StrOptimalTemperature = this.OptimalGrowthTemperature.split("~");
                     break;
                 }
             }
+
+            // 更新 作物生長最適溫最高區間 的圖表
+            this.CropTemperature[2].data = {"1月":this.StrOptimalTemperature[0],"2月":this.StrOptimalTemperature[0],"3月":this.StrOptimalTemperature[0],"4月":this.StrOptimalTemperature[0],"5月":this.StrOptimalTemperature[0],"6月":this.StrOptimalTemperature[0],"7月":this.StrOptimalTemperature[0],"8月":this.StrOptimalTemperature[0],"9月":this.StrOptimalTemperature[0],"10月":this.StrOptimalTemperature[0],"11月":this.StrOptimalTemperature[0],"12月":this.StrOptimalTemperature[0]};
+            // 更新 作物生長最適溫最低區間 的圖表
+            this.CropTemperature[3].data = {"1月":this.StrOptimalTemperature[1],"2月":this.StrOptimalTemperature[1],"3月":this.StrOptimalTemperature[1],"4月":this.StrOptimalTemperature[1],"5月":this.StrOptimalTemperature[1],"6月":this.StrOptimalTemperature[1],"7月":this.StrOptimalTemperature[1],"8月":this.StrOptimalTemperature[1],"9月":this.StrOptimalTemperature[1],"10月":this.StrOptimalTemperature[1],"11月":this.StrOptimalTemperature[1],"12月":this.StrOptimalTemperature[1]};
 
         },updateCity(){
             // 從所選的縣市id 找到 所選的縣市名稱
@@ -505,7 +531,9 @@ export default {
             this.PathProbability = null,
             this.Landing = null,
             this.Path = null,
-            this.Region = ['==請選擇地區=='];
+            this.Region = ['==請選擇地區=='],
+            this.GloblRad = null,
+            this.SunShine = null;
 
             // 篩選所選縣市的地區
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
@@ -520,12 +548,31 @@ export default {
                 if(i == this.regionIdx)    this.selectRegion = this.Region[i];
             }
 
+            var StrGloblRad,StrSunShine; // 字串切割：全天空日射量、日照量
             // 取得 風速、風力登陸分析、風力路徑分析
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
                 if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
                     this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
+                    StrGloblRad = this.regionalwindspeedjson[i].monthGloblRad.split(",");
+                    StrSunShine = this.regionalwindspeedjson[i].monthSunShine.split(",");
+
+                    this.StrHighTemperature = this.regionalwindspeedjson[i].monthHighTemperature.split(",");
+                    this.StrLowTemperature = this.regionalwindspeedjson[i].monthLowTemperature.split(",");
+                    break;
                 }
             }
+
+            // 更新 日照時數與全天空日射量 的圖表
+            this.GloblRadSunShineChartData = [
+                {name: "日照時數(小時)", data: {"1月":StrGloblRad[0],"2月":StrGloblRad[1],"3月":StrGloblRad[2],"4月":StrGloblRad[3],"5月":StrGloblRad[4],"6月":StrGloblRad[5],"7月":StrGloblRad[6],"8月":StrGloblRad[7],"9月":StrGloblRad[8],"10月":StrGloblRad[9],"11月":StrGloblRad[10],"12月":StrGloblRad[11]}},
+                {name: "全天空日射量(MJ/㎡)", data: {"1月":StrSunShine[0],"2月":StrSunShine[1],"3月":StrSunShine[2],"4月":StrSunShine[3],"5月":StrSunShine[4],"6月":StrSunShine[5],"7月":StrSunShine[6],"8月":StrSunShine[7],"9月":StrSunShine[8],"10月":StrSunShine[9],"11月":StrSunShine[10],"12月":StrSunShine[11]}},
+            ];
+
+            // 更新 地區最低月均溫 的圖表
+            this.CropTemperature[0].data = {"1月":this.StrLowTemperature[0],"2月":this.StrLowTemperature[1],"3月":this.StrLowTemperature[2],"4月":this.StrLowTemperature[3],"5月":this.StrLowTemperature[4],"6月":this.StrLowTemperature[5],"7月":this.StrLowTemperature[6],"8月":this.StrLowTemperature[7],"9月":this.StrLowTemperature[8],"10月":this.StrLowTemperature[9],"11月":this.StrLowTemperature[10],"12月":this.StrLowTemperature[11]};
+            // 更新 地區最高月均溫 的圖表
+            this.CropTemperature[1].data = {"1月":this.StrHighTemperature[0],"2月":this.StrHighTemperature[1],"3月":this.StrHighTemperature[2],"4月":this.StrHighTemperature[3],"5月":this.StrHighTemperature[4],"6月":this.StrHighTemperature[5],"7月":this.StrHighTemperature[6],"8月":this.StrHighTemperature[7],"9月":this.StrHighTemperature[8],"10月":this.StrHighTemperature[9],"11月":this.StrHighTemperature[10],"12月":this.StrHighTemperature[11]};
+
 
             // 取得 級數 & 風名
             for(var i = 0 ; i < this.windspeedjson.length ; i++){
@@ -537,8 +584,6 @@ export default {
                     this.Wind = this.windspeedjson[i].Wind;
                 }
             }
-
-        },check(){
 
         }
     },

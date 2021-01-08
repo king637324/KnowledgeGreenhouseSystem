@@ -119,10 +119,13 @@
 
         </div>
         <!-- <span>Checked names: {{ checkedNames }}</span> -->
-        <line-chart :data="data" height="45vmin" download="型式風壓比較" :colors="['#3e95cd', '#8e5ea2', '#3cba9f', 'tomato', '#c45850', '#74AFA9', '#009FC7', '#668600', '#C08900', '#C96986', '#DE6948', '#9370DB', '#FF8C00', '#008080', '#1E90FF', '#40E0D0', 'hotpink', 'orchid', 'LightSalmon', 'SaddleBrown', 'GoldenRod', 'Gold', 'DarkKhaki', 'YellowGreen', 'DarkSeaGreen', 'LightSeaGreen', 'DeepSkyBlue', 'SteelBlue', 'CornflowerBlue', 'Khaki']" :curve="false"></line-chart>
+        <line-chart xtitle="區域(平均風壓)" ytitle="風壓值 (Pa)" :data="data" height="45vmin" download="型式風壓比較" :colors="['#3e95cd', '#8e5ea2', '#3cba9f', 'tomato', '#c45850', '#74AFA9', '#009FC7', '#668600', '#C08900', '#C96986', '#DE6948', '#9370DB', '#FF8C00', '#008080', '#1E90FF', '#40E0D0', 'hotpink', 'orchid', 'LightSalmon', 'SaddleBrown', 'GoldenRod', 'Gold', 'DarkKhaki', 'YellowGreen', 'DarkSeaGreen', 'LightSeaGreen', 'DeepSkyBlue', 'SteelBlue', 'CornflowerBlue', 'Khaki']" :curve="false"></line-chart>
     </div>
 </template>
 <script>
+
+
+
 export default {
     data () {
         return {

@@ -44,10 +44,17 @@ use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\GreenhouseStructureCo
 Route::get('/StructuralAnalysisJSON',[GreenhouseStructureController::class, 'getJSON_structuralanalysi']);
 
 use App\Http\Controllers\GreenhouseMasterPlan\GeographicalController;
+// 溫室總體規劃設計－地理環境分析
 Route::get('/WindSpeedControlJSON',[GeographicalController::class, 'getJSON_WindSpeedControl']);
 Route::get('/RegionalWindSpeedJSON',[GeographicalController::class, 'getJSON_RegionalWindSpeed']);
 Route::get('/WindLandingAndPathJSON',[GeographicalController::class, 'getJSON_WindLandingAndPath']);
 
 use App\Http\Controllers\GreenhouseMasterPlan\CropController;
+// 溫室總體規劃設計－溫室作物選擇
 Route::get('/VegetableJSON',[CropController::class, 'getJSON_Vegetable']);
 Route::get('/LMEMetalPriceJSON',[CropController::class, 'LME']);  // 倫敦金屬交易所的金屬價格
+
+use App\Http\Controllers\GreenhouseMasterPlan\CostAnalysisController;
+// 溫室總體規劃設計－成本分析
+Route::get('/GreenhouseCostJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCost']);
+Route::get('/GreenhouseCostRatioJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCostRatio']);

@@ -189,6 +189,7 @@ export default {
             this.Path = null,
             this.Region = ['==請選擇地區=='];
 
+
             // 篩選所選縣市的地區
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
                 if(this.regionalwindspeedjson[i].County == this.selectCity){
@@ -202,7 +203,7 @@ export default {
                 if(i == this.regionIdx)    this.selectRegion = this.Region[i];
             }
 
-            var StrLanding,StrPath;  // 字串切割
+            var StrLanding,StrPath;  // 字串切割：風力登陸分析、風力路徑分析
             // 取得 風速、風力登陸分析、風力路徑分析
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
                 if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
@@ -212,6 +213,7 @@ export default {
 
                     StrLanding = this.Landing.split(",");
                     StrPath =  this.Path.split(",");
+
                 }
             }
 
