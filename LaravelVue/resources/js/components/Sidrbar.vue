@@ -131,7 +131,7 @@
                                 </a>
                                 <div class="collapse" id="成本分析" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <router-link to="#" class="nav-link" exact>
+                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" class="nav-link" exact>
                                             溫室材料成本分析
                                         </router-link>
                                         <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis" class="nav-link" exact>

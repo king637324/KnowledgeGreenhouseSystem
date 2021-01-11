@@ -22,6 +22,7 @@ import GreenhouseMasterPlan_GeographicalEnvironmentAnalysis from './views/Greenh
 import GreenhouseMasterPlan_CropSelection from './views/GreenhouseMasterPlan/CropSelection.vue';
 import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis.vue';
+import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 
 import UnitConversion from './views/UnitConversion.vue';
 
@@ -91,6 +92,10 @@ const routes = [{
     path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis',
     name: '溫室構造成本分析',
     component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis
+}, {
+    path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis',
+    name: '溫室材料成本分析',
+    component: GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis
 }, {
     path: '/UnitConversion',
     name: '各單位換算',

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\GreenhouseMasterPlan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\GreenhouseMasterPlan\CostAnalysis\GreenhouseMaterialCostAnalysis\materialcostanalysi;
+
 use App\Models\GreenhouseMasterPlan\CostAnalysis\GreenhouseConstructionCostAnalysis\greenhousecostanalysi;
 use App\Models\GreenhouseMasterPlan\CostAnalysis\GreenhouseConstructionCostAnalysis\greenhousecostratio;
 
@@ -23,6 +25,14 @@ class CostAnalysisController extends Controller
     public function getJSON_GreenhouseCostRatio()
     {
         $MaterialCost = greenhousecostratio::get();
+        return $MaterialCost;
+    }
+
+    /* 溫室材料成本分析 */
+    // 將資料庫的costanalysis資料表  轉成JSON
+    public function getJSON_MaterialCost()
+    {
+        $MaterialCost = materialcostanalysi::get();
         return $MaterialCost;
     }
 }

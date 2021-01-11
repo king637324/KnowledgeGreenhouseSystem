@@ -56,5 +56,6 @@ Route::get('/LMEMetalPriceJSON',[CropController::class, 'LME']);  // 倫敦金�
 
 use App\Http\Controllers\GreenhouseMasterPlan\CostAnalysisController;
 // 溫室總體規劃設計－成本分析
-Route::get('/GreenhouseCostJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCost']);
+Route::get('/GreenhouseCostJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCost']);    // 溫室構造成本分析
 Route::get('/GreenhouseCostRatioJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCostRatio']);
+Route::get('/MaterialCostJSON',[CostAnalysisController::class, 'getJSON_MaterialCost']);    // 溫室材料成本分析
