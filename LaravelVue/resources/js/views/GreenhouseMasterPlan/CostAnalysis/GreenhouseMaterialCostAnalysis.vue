@@ -2,7 +2,7 @@
     <div>
         <br>
         <h2>溫室材料成本分析</h2>
-        <button type="button" class="btn btn-danger" v-on:click="check">檢查</button>
+        <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
         <hr>
 
         <div class="row">

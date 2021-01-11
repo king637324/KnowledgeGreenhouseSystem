@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-01-04 02:57:15
+-- 產生時間： 2021-01-11 08:49:14
 -- 伺服器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -557,19 +557,19 @@ CREATE TABLE `lme_metal_prices` (
 --
 
 INSERT INTO `lme_metal_prices` (`MetalName`, `MetalPrice`, `MetalDate`, `MetalLink`) VALUES
-('廢鋼', 441.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
-('特種鋁合金', 1884.500, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
-('金', 1833.900, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
-('鈷', 31580.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
-('鉛', 2083.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
-('銀', 23.960, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
-('銅', 7712.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
-('鋁', 2031.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
-('鋁合金', 1930.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
-('鋅', 2810.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
-('鋼筋', 615.500, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
-('錫', 19740.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
-('鎳', 16807.000, 'US$:  10 December 2020', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
+('廢鋼', 471.500, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
+('特種鋁合金', 2043.000, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
+('金', 1836.700, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
+('鈷', 36500.000, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
+('鉛', 2000.000, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
+('銀', 24.655, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
+('銅', 8146.000, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
+('鋁', 2029.500, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
+('鋁合金', 1968.500, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
+('鋅', 2824.500, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
+('鋼筋', 650.500, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
+('錫', 21325.000, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
+('鎳', 17890.000, 'US$:  8 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
 
 -- --------------------------------------------------------
 
@@ -578,7 +578,7 @@ INSERT INTO `lme_metal_prices` (`MetalName`, `MetalPrice`, `MetalDate`, `MetalLi
 --
 
 CREATE TABLE `materialcostanalysis` (
-  ` id` int(4) NOT NULL,
+  `id` int(4) NOT NULL,
   `Type` varchar(16) DEFAULT NULL,
   `MaterialName` varchar(32) DEFAULT NULL,
   `Steel` varchar(8) DEFAULT NULL,
@@ -606,7 +606,7 @@ CREATE TABLE `materialcostanalysis` (
 -- 傾印資料表的資料 `materialcostanalysis`
 --
 
-INSERT INTO `materialcostanalysis` (` id`, `Type`, `MaterialName`, `Steel`, `HighStrengthMaterial`, `SteelBillet`, `HotRolledSteelSheet`, `ColdRolledSteelSheet`, `ContinuousHotDipGalvanizing`, `ContinuousPaint`, `ColdForming`, `Welding`, `Processing`, `AfterHotDipGalvanizing`, `Galvalume`, `MagnesiumAluminumZincPlating`, `AfterBaking`, `Cost`, `Speed`, `StructuralRisk`, `Corrosive`, `Weight`) VALUES
+INSERT INTO `materialcostanalysis` (`id`, `Type`, `MaterialName`, `Steel`, `HighStrengthMaterial`, `SteelBillet`, `HotRolledSteelSheet`, `ColdRolledSteelSheet`, `ContinuousHotDipGalvanizing`, `ContinuousPaint`, `ColdForming`, `Welding`, `Processing`, `AfterHotDipGalvanizing`, `Galvalume`, `MagnesiumAluminumZincPlating`, `AfterBaking`, `Cost`, `Speed`, `StructuralRisk`, `Corrosive`, `Weight`) VALUES
 (1, '', '成本', '12', '1', '3', '5', '3', '3', '2', '3', '3', '1', '10', '1', '2', '5', '54', '', '', '', ''),
 (2, '', '工期', ' ', '', ' ', '1', '1', '1', '1', '5', ' ', '1', '15', '', ' ', ' ', ' ', '', '', '', ''),
 (3, '管材', '冷彎熱軋鋼管', '12', ' ', '3', '5', ' ', ' ', ' ', '3', '3', '1', ' ', '', ' ', ' ', '27', '7', '10', '10', '10'),
@@ -1539,7 +1539,7 @@ ALTER TABLE `lme_metal_prices`
 -- 資料表索引 `materialcostanalysis`
 --
 ALTER TABLE `materialcostanalysis`
-  ADD PRIMARY KEY (` id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `materialformats`
@@ -1658,7 +1658,7 @@ ALTER TABLE `knowledgeeditors`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `materialcostanalysis`
 --
 ALTER TABLE `materialcostanalysis`
-  MODIFY ` id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `materialformats`
