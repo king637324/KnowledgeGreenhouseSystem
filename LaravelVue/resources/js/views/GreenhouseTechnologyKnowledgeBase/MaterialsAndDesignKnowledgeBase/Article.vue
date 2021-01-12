@@ -1,11 +1,33 @@
 <template>
-    <div>
+    <div >
+        <v-container >
+            <v-container>
+        <v-navigation-drawer light absolute  >
         <h1>文章</h1>
         <button type="button" class="btn btn-danger" v-on:click="check">檢查</button>
+        
         <v-jstree :data="KnowledgeTreejson" @item-click="itemClick"></v-jstree>
         <v-jstree :data="data" @item-click="itemClick"></v-jstree>
-
         <vue-tree-navigation :items="items"/>
+        </v-navigation-drawer>
+            </v-container>
+
+                 <div class="pages">
+                     <h1>
+                         123
+                     </h1>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                 </div>
+
+        </v-container>
     </div>
 </template>
 

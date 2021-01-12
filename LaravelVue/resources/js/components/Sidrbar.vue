@@ -1,7 +1,36 @@
 <template>
 
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div >
+      <v-app-bar
+      color="deep-purple accent-4"
+      app
+      dark
+      >
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+  
+        <v-toolbar-title>溫室設計專家知識系統</v-toolbar-title>
+  
+        <v-spacer></v-spacer>
+  
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+  
+        <v-btn icon>
+          <v-icon>mdi-filter</v-icon>
+        </v-btn>
+  
+        <v-btn icon>
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+      </v-app-bar>
+  
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+        dark
+      >
+                  <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
 
@@ -223,5 +252,21 @@
                     Start Bootstrap
                 </div> -->
             </nav>
+      </v-navigation-drawer>
         </div>
 </template>
+
+
+<script>
+
+    export default {
+        data: () => ({
+            drawer: true,
+            group: null,
+        }),watch: {
+        group () {
+        this.drawer = false
+      },
+    },
+}
+</script>

@@ -76,7 +76,7 @@ nav,
 section {
     display: block;
 }
-
+nav
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -724,7 +724,7 @@ pre code {
     position: relative;
     width: 100%;
     padding-right: 0.75rem;
-    padding-left: 0.75rem;
+    padding-left: 450px !important;
 }
 
 .col {
@@ -10331,7 +10331,6 @@ body {
 }
 
 .sb-sidenav-dark {
-    background-color: #212529;
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -10445,7 +10444,6 @@ img.table-image {
 .tab-title-class {
     color: #FF0000 !important;
 }
-.v-navigation-drawer__content{
-    background: #212529;
-
+.pages{
+    height: 600px;
 }

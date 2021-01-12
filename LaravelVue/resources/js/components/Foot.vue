@@ -1,7 +1,7 @@
 <template>
-    <div class = "container-fluid" >
+    <div class = "container-fluid"  style="bottom=0px">
         <div class = "row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="d-flex justify-content-around">
                     <div class="p-2">
                     </div>
@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="d-flex justify-content-around">
                     <div class="p-2">
                     </div>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
 
                 <div class="d-flex justify-content-around">
                     <div class="p-2">
