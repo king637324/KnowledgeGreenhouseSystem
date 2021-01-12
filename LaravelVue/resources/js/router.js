@@ -3,6 +3,9 @@ import VueRouter from 'vue-router';
 import Welcome from './views/Welcome.vue';
 import Home from './views/Home.vue';
 
+// 溫室材料與設計知識庫
+import GreenhouseTechnologyKnowledgeBase_MaterialsAndDesignKnowledgeBase from './views/GreenhouseTechnologyKnowledgeBase/MaterialsAndDesignKnowledgeBase/Article.vue';
+
 // 溫室技術知識庫
 import GreenhouseFluidAnalysis_SimpleGreenhouse from './views/GreenhouseTechnologyKnowledgeBase/AnalyzeKnowledgeBase/GreenhouseFluidAnalysis/SimpleGreenhouse.vue';
 import GreenhouseFluidAnalysis_DomeGreenhouse from './views/GreenhouseTechnologyKnowledgeBase/AnalyzeKnowledgeBase/GreenhouseFluidAnalysis/DomeGreenhouse.vue';
@@ -36,6 +39,10 @@ const routes = [{
     component: Home
         // name: 'welcome',
         // component: Welcome
+}, {
+    path: '/MaterialsAndDesignKnowledgeBase/Article',
+    name: '材料與設計知識庫',
+    component: GreenhouseTechnologyKnowledgeBase_MaterialsAndDesignKnowledgeBase
 }, {
     path: '/GreenhouseFluidAnalysis/SimpleGreenhouse',
     name: '溫室流體分析-簡易溫室',

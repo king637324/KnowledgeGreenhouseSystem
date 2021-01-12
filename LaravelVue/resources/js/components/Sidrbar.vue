@@ -23,7 +23,7 @@
                         </a>
                         <div class="collapse" id="溫室技術知識庫" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <router-link to="/MaterialDesignKnowledgeBase" class="nav-link" exact>
+                                <router-link to="/MaterialsAndDesignKnowledgeBase/Article" class="nav-link" exact>
                                     材料知識庫
                                 </router-link>
 
@@ -92,7 +92,7 @@
                                     </nav>
                                 </div>
 
-                                <router-link to="/MaterialDesignKnowledgeBase" class="nav-link" exact>
+                                <router-link to="/MaterialsAndDesignKnowledgeBase/Article" class="nav-link" exact>
                                     設計知識庫
                                 </router-link>
                             </nav>

@@ -59,3 +59,7 @@ use App\Http\Controllers\GreenhouseMasterPlan\CostAnalysisController;
 Route::get('/GreenhouseCostJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCost']);    // 溫室構造成本分析
 Route::get('/GreenhouseCostRatioJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCostRatio']);
 Route::get('/MaterialCostJSON',[CostAnalysisController::class, 'getJSON_MaterialCost']);    // 溫室材料成本分析
+
+use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
+Route::get('/KnowledgeJSON',[KnowledgeEditorController::class, 'getJSON_Knowledge']);    // 知識庫的資料
+Route::get('/KnowledgeTreeJSON',[KnowledgeEditorController::class, 'getCategories']);    // 知識庫做樹狀結構

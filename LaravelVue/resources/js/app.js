@@ -25,6 +25,11 @@ import 'vue-select/dist/vue-select.css';
 import vSelect from 'vue-select'
 Vue.component('v-select', vSelect)
 
+import VJstree from 'vue-jstree'
+Vue.use(VJstree)
+import VueTreeNavigation from 'vue-tree-navigation';
+Vue.use(VueTreeNavigation);
+
 import FlashMessage from '@smartweb/vue-flash-message';
 Vue.use(FlashMessage);
 
