@@ -17,7 +17,7 @@ import 'vue-select/dist/vue-select.css';
 import vSelect from 'vue-select'
 import VJstree from 'vue-jstree'
 import VueTreeNavigation from 'vue-tree-navigation';
-import FlashMessage from '@smartweb/vue-flash-message';
+
 
 var VueScrollTo = require('vue-scrollto');
 
