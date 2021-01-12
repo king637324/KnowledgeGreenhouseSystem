@@ -1,42 +1,50 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-
 import store from './store';
-
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+import '@mdi/font/css/materialdesignicons.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
-
 import axios from 'axios'
-
 import Chartkick from 'vue-chartkick'
 import Chart from 'chart.js'
-Vue.use(Chartkick.use(Chart))
+import FlashMessage from '@smartweb/vue-flash-message';
+import 'vue-select/dist/vue-select.css';
+import vSelect from 'vue-select'
+import VJstree from 'vue-jstree'
+import VueTreeNavigation from 'vue-tree-navigation';
+import FlashMessage from '@smartweb/vue-flash-message';
 
 var VueScrollTo = require('vue-scrollto');
-Vue.use(VueScrollTo)
 
-import 'vue-select/dist/vue-select.css';
 
-import vSelect from 'vue-select'
 Vue.component('v-select', vSelect)
 
-import VJstree from 'vue-jstree'
 Vue.use(VJstree)
-import VueTreeNavigation from 'vue-tree-navigation';
 Vue.use(VueTreeNavigation);
-
-import FlashMessage from '@smartweb/vue-flash-message';
+Vue.use(Vuetify)
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+Vue.use(Chartkick.use(Chart))
+Vue.use(VueScrollTo)
 Vue.use(FlashMessage);
+
+
 
 new Vue({
     el: '#app',
+    vuetify: new Vuetify(),
     router,
     store,
     axios,
     render: h => h(App)
 });
+export default new Vuetify({
+    icons: {
+      iconfont: 'mdiSvg', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+    },
+  })

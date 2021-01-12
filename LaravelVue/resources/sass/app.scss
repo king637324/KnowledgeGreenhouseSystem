@@ -10182,7 +10182,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+
     background: #000;
     z-index: 1037;
     opacity: 0.5;
@@ -10279,7 +10279,6 @@ body {
 .sb-sidenav {
     display: flex;
     flex-direction: column;
-    height: 100%;
     flex-wrap: nowrap;
 }
 
@@ -10435,10 +10434,21 @@ img.table-image {
     background: -moz-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), url("/images/greenhouse.jpg") center bottom no-repeat;
     background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), url("/images/greenhouse.jpg") center bottom no-repeat;
     background-size: cover; */
-    height: 80vmin;
+    height: 100vmin;
     margin-bottom: 10px;
     background-image: url("/image/圖片1.png");
     background-size: 140vmin 80vmin;
     background-repeat: no-repeat;
     background-position: center center;
+<<<<<<< HEAD
+=======
+}
+
+.tab-title-class {
+    color: #FF0000 !important;
+}
+.v-navigation-drawer__content{
+    background: #212529;
+
+>>>>>>> NavbarTest
 }
