@@ -6,6 +6,7 @@
   
       <v-app-bar
       color="deep-purple accent-4"
+      app
       dark
       >
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -29,10 +30,7 @@
   
       <v-navigation-drawer
         v-model="drawer"
-        absolute
-        temporary
-        dark
-        
+        app
       >
                    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
@@ -184,8 +182,10 @@
                 </div> -->
             </nav>
       </v-navigation-drawer>
+      <v-content>
         <router-view></router-view>
         <Foot/>
+    </v-content>
     </main>
 
 </template>
@@ -207,7 +207,7 @@
             BootstrapSideBar
         },
         data: () => ({
-            drawer: false,
+            drawer: true,
             group: null,
         }),watch: {
         group () {
