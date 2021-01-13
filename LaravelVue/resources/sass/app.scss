@@ -76,8 +76,8 @@ nav,
 section {
     display: block;
 }
-nav
-body {
+
+nav body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1rem;
@@ -724,11 +724,13 @@ pre code {
     position: relative;
     width: 100%;
     padding-right: 0.75rem;
-    padding-left: 0.75rem ;
+    padding-left: 0.75rem;
 }
-.col-md-3{
+
+.col-md-3 {
     padding-left: 450px !important;
 }
+
 .col {
     flex-basis: 0;
     flex-grow: 1;
@@ -10184,7 +10186,6 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-
     background: #000;
     z-index: 1037;
     opacity: 0.5;
@@ -10446,6 +10447,11 @@ img.table-image {
 .tab-title-class {
     color: #FF0000 !important;
 }
-.pages{
+
+.pages {
     height: 600px;
 }
+
+// @import '~vuetify/dist/vuetify.min.css';
+// @import '~material-icons/iconfont/material-icons.scss';
+// @import '@~mdi/font/scss/materialdesignicons.scss';

@@ -48,7 +48,7 @@ class knowledgeeditor extends Model
     // }
 
     protected $fillable = [
-        'id','parent_id', 'text', 'content', 'editor', 'created_at', 'updated_at',
+        'id','parent_id', 'name', 'content', 'editor', 'created_at', 'updated_at',
     ];
 
     public $timestamps = true;
@@ -62,16 +62,16 @@ class knowledgeeditor extends Model
     public function children($single = false)
     {
         // return $this->hasMany('App\KnowledgeEditor\knowledgeeditor', 'parent_id')
-        //     ->select(['id','parent_id', 'text'])
+        //     ->select(['id','parent_id', 'name'])
         //     ->with('children')
-        //     ->orderBy('text', 'ASC');
+        //     ->orderBy('name', 'ASC');
 
         // return $this->hasMany('App\KnowledgeEditor\knowledgeeditor', 'id', 'parent_id')
-        //             ->select(['id','parent_id', 'text'])
+        //             ->select(['id','parent_id', 'name'])
         //             ->with('children');
 
         return $this->hasMany('App\Models\GreenhouseTechnologyKnowledgeBase\knowledgeeditor', 'parent_id', 'id')
-                    ->select(['id','parent_id', 'text','content', 'editor'])
+                    ->select(['id','parent_id', 'name','content', 'editor'])
                     ->with('children');
     }
 

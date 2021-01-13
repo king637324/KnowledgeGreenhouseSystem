@@ -31,7 +31,7 @@ class KnowledgeEditorController extends Controller
         //             ->get();
 
         $articles = knowledgeeditor::where('parent_id', 0)
-                    ->select(['id','parent_id', 'text','content', 'editor'])
+                    ->select(['id','parent_id', 'name','content', 'editor'])
                     ->with('children')
                     ->orderBy('id', 'ASC')
                     ->get();
