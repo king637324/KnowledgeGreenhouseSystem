@@ -2,8 +2,8 @@
     <div >
         <v-container >
             <v-container>
-                    <v-navigation-drawer light absolute  permanent >
-                    <h1>文章</h1>
+                    <v-navigation-drawer light absolute  >
+                    <h3>材料與設計知識庫</h3>
                     <button type="button" class="btn btn-danger" v-on:click="check">檢查</button>
                         <v-treeview
                             activatable
@@ -22,26 +22,22 @@
             </v-container>
 
 
-                <h6>
-                    open<br>{{open}}
-                </h6>
-                <br>
-                <br>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 w-100 bd-highlight">
+                        <h3>
+                            {{KnowledgeContent[1]}}
+                        </h3>
+                    </div>
+                    <div class="p-2 flex-shrink-1 bd-highlight">
+                        <h6>
+                            {{KnowledgeContent[2]}}
+                        </h6>
+                    </div>
+                </div>
+                <hr>
 
-                <h6>
-                    test<br>{{test}}
-                </h6>
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <h6>
-                    test.content<br>{{test[3]}}
-                </h6>
-                <br>
-                <br>
-                <br>
+                <h5 v-html="KnowledgeContent[3]">
+                </h5>
 
 
         </v-container>
@@ -58,25 +54,9 @@ export default {
             children:null,
             active:null,
 
-            test:[],
+            KnowledgeContent:[],
 
             KnowledgeTreejson:[],
-            data: [{
-                "id": 1,
-                "text": "Text 1",
-                "children": [
-                    {
-                        "id": 2,
-                        "text": "Text 1.1",
-                        "children": []
-                    },
-                    {
-                        "id": 3,
-                        "text": "Text 1.2",
-                        "children": []
-                    }
-                ]
-            }],
 
         }
     },
@@ -111,9 +91,9 @@ export default {
             console.log("item.content:");
             console.log(item.content);
 
-            this.test = [];
+            this.KnowledgeContent = [];
 
-            this.test.push(item.id,item.name,item.editor,item.content);
+            this.KnowledgeContent.push(item.id,item.name,item.editor,item.content);
 
         }
     },
