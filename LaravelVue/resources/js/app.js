@@ -33,6 +33,7 @@ Vue.use(Chartkick.use(Chart))
 Vue.use(VueScrollTo)
 Vue.use(FlashMessage);
 
+Vue.use(BootstrapVue)
 
 
 new Vue({
@@ -45,6 +46,6 @@ new Vue({
 });
 export default new Vuetify({
     icons: {
-      iconfont: 'md', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+        iconfont: 'md', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
     },
-  })
+})

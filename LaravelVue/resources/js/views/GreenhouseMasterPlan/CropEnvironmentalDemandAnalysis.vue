@@ -5,300 +5,265 @@
         <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
         <hr>
 
-        <!-- <div class="card-header bg-info text-white"> -->
-        <div class="row">
-            <!-- 作物環境需求分析 -->
-            <div class="col-xl-10">
-                <div class="row">
-                    <!-- 種植植物生長環境需求 -->
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <b-icon icon="flower1"></b-icon>
-                                種植植物生長環境需求
-                            </div>
-                            <div class="card-body">
-                                <select v-model="cropIdx" v-on:change="updateCrop">
-                                    <option v-for="(crop, index) in CropOrder" :value="index">
-                                        {{crop}}
-                                    </option>
-                                </select>
+        <div class="d-flex justify-content-around">
+            <div class="p-2 w-100 bd-highlight">
+                <b-card-group deck>
+                    <b-card header-tag="header">
+                        <template #header>
+                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長環境需求</h6>
+                        </template>
+                        <b-card-text>
+                            <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
+                                <option v-for="(crop, index) in CropOrder" :value="index">
+                                    {{crop}}
+                                </option>
+                            </b-select>
 
-                                <select v-model="plantIdx" v-on:change="updatePlant">
-                                    <option v-for="(plant, index) in GrowPlants" :value="index">
-                                        {{plant}}
-                                    </option>
-                                </select>
+                            <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
+                                <option v-for="(plant, index) in GrowPlants" :value="index">
+                                    {{plant}}
+                                </option>
+                            </b-select>
 
 
-                                <table class="separate" style="border:1px solid black;" border='1'>
-                                    <tr align="center" class="table-active">
-                                        <td rowspan="4">光環境</td>
-                                        <td colspan="2">好光性</td>
-                                        <td colspan="2">光週期</td>
-                                        <td colspan="2">光照度</td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td id="Goodlight" colspan="2"> {{Goodlight}} </td>
-                                        <td id="Photoperiod" colspan="2"> {{Photoperiod}} </td>
-                                        <td id="Illuminance" colspan="2"> {{Illuminance}} </td>
-                                    </tr>
-                                    <tr align="center" class="table-active">
-                                        <td colspan="2">光合光子密度</td>
-                                        <td colspan="2">光飽和點(klx)</td>
-                                        <td colspan="2">光補償點(klx)</td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td id="PPFD" colspan="2"> {{PPFD}} </td>
-                                        <td id="LightSaturationPoint" colspan="2"> {{LightSaturationPoint}} </td>
-                                        <td id="LightCompensationPoint" colspan="2"> {{LightCompensationPoint}} </td>
-                                    </tr>
-                                    <tr align="center" class="table-active">
-                                        <td rowspan="5">溫環境</td>
-                                        <td colspan="6">溫度適應性</td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td id="Temperatureadaptability" colspan="6"> {{Temperatureadaptability}} </td>
-                                    </tr>
-                                    <tr align="center" class="table-active">
-                                        <td colspan="3">生長溫度</td>
-                                        <td colspan="3">發芽溫度</td>
-                                    </tr>
-                                    <tr align="center" class="table-active">
-                                        <td>最低溫</td>
-                                        <td>最適溫</td>
-                                        <td>最高溫</td>
-                                        <td>最低溫</td>
-                                        <td>最適溫</td>
-                                        <td>最高溫</td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td id="LowestGrowthTemperature"> {{LowestGrowthTemperature}} </td>
-                                        <td id="OptimalGrowthTemperature"> {{OptimalGrowthTemperature}} </td>
-                                        <td id="HighestGrowthTemperature"> {{HighestGrowthTemperature}} </td>
-                                        <td id="LowestGerminationTemperature"> {{LowestGerminationTemperature}} </td>
-                                        <td id="OptimumGerminationTemperature"> {{OptimumGerminationTemperature}} </td>
-                                        <td id="HighestGerminationTemperature"> {{HighestGerminationTemperature}} </td>
-                                    </tr>
-                                    <tr align="center" class="table-active">
-                                        <td rowspan="5">氣環境</td>
-                                        <td colspan="6">CO₂增產率</td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td id="CO2IncreasedProductionRate" colspan="6"> {{CO2IncreasedProductionRate}} </td>
-                                    </tr>
-                                </table>
+                            <table class="separate" style="border:1px solid black;" border='1'>
+                                <tr align="center" class="table-active">
+                                    <td rowspan="4">光環境</td>
+                                    <td colspan="2">好光性</td>
+                                    <td colspan="2">光週期</td>
+                                    <td colspan="2">光照度</td>
+                                </tr>
+                                <tr align="center">
+                                    <td id="Goodlight" colspan="2"> {{Goodlight}} </td>
+                                    <td id="Photoperiod" colspan="2"> {{Photoperiod}} </td>
+                                    <td id="Illuminance" colspan="2"> {{Illuminance}} </td>
+                                </tr>
+                                <tr align="center" class="table-active">
+                                    <td colspan="2">光合光子密度</td>
+                                    <td colspan="2">光飽和點(klx)</td>
+                                    <td colspan="2">光補償點(klx)</td>
+                                </tr>
+                                <tr align="center">
+                                    <td id="PPFD" colspan="2"> {{PPFD}} </td>
+                                    <td id="LightSaturationPoint" colspan="2"> {{LightSaturationPoint}} </td>
+                                    <td id="LightCompensationPoint" colspan="2"> {{LightCompensationPoint}} </td>
+                                </tr>
+                                <tr align="center" class="table-active">
+                                    <td rowspan="5">溫環境</td>
+                                    <td colspan="6">溫度適應性</td>
+                                </tr>
+                                <tr align="center">
+                                    <td id="Temperatureadaptability" colspan="6"> {{Temperatureadaptability}} </td>
+                                </tr>
+                                <tr align="center" class="table-active">
+                                    <td colspan="3">生長溫度</td>
+                                    <td colspan="3">發芽溫度</td>
+                                </tr>
+                                <tr align="center" class="table-active">
+                                    <td>最低溫</td>
+                                    <td>最適溫</td>
+                                    <td>最高溫</td>
+                                    <td>最低溫</td>
+                                    <td>最適溫</td>
+                                    <td>最高溫</td>
+                                </tr>
+                                <tr align="center">
+                                    <td id="LowestGrowthTemperature"> {{LowestGrowthTemperature}} </td>
+                                    <td id="OptimalGrowthTemperature"> {{OptimalGrowthTemperature}} </td>
+                                    <td id="HighestGrowthTemperature"> {{HighestGrowthTemperature}} </td>
+                                    <td id="LowestGerminationTemperature"> {{LowestGerminationTemperature}} </td>
+                                    <td id="OptimumGerminationTemperature"> {{OptimumGerminationTemperature}} </td>
+                                    <td id="HighestGerminationTemperature"> {{HighestGerminationTemperature}} </td>
+                                </tr>
+                                <tr align="center" class="table-active">
+                                    <td rowspan="5">氣環境</td>
+                                    <td colspan="6">CO₂增產率</td>
+                                </tr>
+                                <tr align="center">
+                                    <td id="CO2IncreasedProductionRate" colspan="6"> {{CO2IncreasedProductionRate}} </td>
+                                </tr>
+                            </table>
+                        </b-card-text>
+                    </b-card>
 
-
-                            </div>
-                        </div>
-                    </div>
                     <!-- 栽種面積 -->
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <b-icon icon="brightness-alt-high"></b-icon>
-                                栽種面積(單位：公尺)
-                            </div>
-                            <div class="card-body">
-                                <div>
-                                    <label>長 = </label>
-                                    <input type="text" value="" v-model="AreaLong" placeholder="請輸入長度">
-                                    <br>
-                                    <label>寬 = </label>
-                                    <input type="text" value="" v-model="AreaWidth" placeholder="請輸入寬度">
-                                    <br>
-                                </div>
-                                <label>面積 =  {{AreaLong*AreaWidth}} 平方公尺</label>
+                    <b-card header-tag="header">
+                        <template #header>
+                            <h6 class="mb-0"><b-icon icon="brightness-alt-high"></b-icon> 栽種面積(單位：公尺)</h6>
+                        </template>
+                        <b-card-text>
+                            <div>
+
+                                <label>長 = </label>
+                                <!-- <b-input value="" v-model="AreaLong" placeholder="請輸入長度" style="width:20vmin"></b-input> -->
+                                <input type="text" value="" v-model="AreaLong" placeholder="請輸入長度">
                                 <br>
-                                <label>溫室走向 = </label>
-                                <input type="text" value="" v-model="GreenhouseTrend" placeholder="請輸入角度">
-                                <p style = "font-size: 1.2vmin;"> 備註：屋脊走向：東西為 0度、南北為90度</p>
+                                <label>寬 = </label>
+                                <input type="text" value="" v-model="AreaWidth" placeholder="請輸入寬度">
+                                <br>
                             </div>
-                        </div>
-                    </div>
+                            <label>面積 =  {{AreaLong*AreaWidth}} 平方公尺</label>
+                            <br>
+                            <label>溫室走向 = </label>
+                            <input type="text" value="" v-model="GreenhouseTrend" placeholder="請輸入角度">
+                            <p style = "font-size: 1.2vmin;"> 備註：屋脊走向：東西為 0度、南北為90度</p>
+                        </b-card-text>
+                    </b-card>
+                </b-card-group>
 
-                </div>
-
-                <div class="row">
+                <b-card-group deck>
                     <!-- 種植地區環境分析 -->
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <b-icon icon="bar-chart-fill"></b-icon>
-                                種植地區環境分析
-                            </div>
-                            <div class="card-body">
+                    <b-card header-tag="header">
+                        <template #header>
+                            <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 種植地區環境分析</h6>
+                        </template>
+                        <b-card-text>
+                            <div class="d-flex justify-content-between">
+                                <div class="p-2 bd-highlight">
+                                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地 點</span></p>
+                                    <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
+                                        <option v-for="(city, index) in City" :value="index">
+                                            {{city}}
+                                        </option>
+                                    </b-select>
 
-                                <div class="d-flex justify-content-between">
-                                    <div class="p-2 bd-highlight">
-                                        <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地 點</span></p>
-                                        <select v-model="cityIdx" v-on:change="updateCity" style="font-size: 2vmin">
-                                            <option v-for="(city, index) in City" :value="index">
-                                                {{city}}
-                                            </option>
-                                        </select>
-
-                                        <select v-model="regionIdx" v-on:change="updateRegion" style="font-size: 2vmin">
-                                            <option v-for="(region, index) in Region" :value="index">
-                                                {{region}}
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="p-2 bd-highlight">
-                                        <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地  形</span></p>
-                                        <select id="SelectTerrain">
-                                            <option value="">==請選擇地形==</option>
-                                            <option value="平原">平原</option>
-                                            <option value="山區">山區</option>
-                                            <option value="海邊">海邊</option>
-                                        </select>
-                                        <br><br>
-                                    </div>
-
-                                    <div class="p-2 bd-highlight">
-
-                                    </div>
+                                    <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
+                                        <option v-for="(region, index) in Region" :value="index">
+                                            {{region}}
+                                        </option>
+                                    </b-select>
                                 </div>
 
-                                <div class="d-flex justify-content-between">
-                                    <div class="p-2 bd-highlight">
-                                        <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">設 計 風 速</span></p>
-                                        <table class="separate" style="border:1px solid black;" border='1'>
-                                            <thead>
-                                                <tr align="center" class="table-active">
-                                                    <td style='width:7vmin'>縣市</td>
-                                                    <td style='width:7vmin'>地區</td>
-                                                    <td style='width:7vmin'>風速(m/sec)</td>
-                                                    <td style='width:7vmin'>級數</td>
-                                                    <td style='width:7vmin'>風名</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr align="center">
-                                                    <td id="County"> {{selectCity}} </td>
-                                                    <td id="Region"> {{selectRegion}} </td>
-                                                    <td id="SpeedPerSecond"> {{SpeedPerSecond}} </td>
-                                                    <td id="Series"> {{Series}} </td>
-                                                    <td id="Wind"> {{Wind}} </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p>
-                                    </div>
-
-                                    <div class="p-2 bd-highlight">
-                                        <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地  貌</span></p>
-                                        <select id="SelectLandform">
-                                            <option value="">==請選擇地貌==</option>
-                                            <option value="建築物">建築物</option>
-                                            <option value="空曠">空曠</option>
-                                            <option value="風口">風口</option>
-                                        </select>
-                                        <br><br>
-                                    </div>
-                                    <div class="p-2 bd-highlight">
-
-                                    </div>
+                                <div class="p-2 bd-highlight">
+                                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地  形</span></p>
+                                    <b-select v-model="SelectTerrain">
+                                        <option value="0">==請選擇地形==</option>
+                                        <option value="平原">平原</option>
+                                        <option value="山區">山區</option>
+                                        <option value="海邊">海邊</option>
+                                    </b-select>
+                                    <br><br>
                                 </div>
 
-                                <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">日照時數與全天空日射量</span></p>
-                                <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
+                                <div class="p-2 bd-highlight">
 
+                                </div>
                             </div>
-                        </div>
-                    </div>
+
+                            <div class="d-flex justify-content-between">
+                                <div class="p-2 bd-highlight">
+                                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">設 計 風 速</span></p>
+                                    <table class="separate" style="border:1px solid black;" border='1'>
+                                        <thead>
+                                            <tr align="center" class="table-active">
+                                                <td style='width:7vmin'>縣市</td>
+                                                <td style='width:7vmin'>地區</td>
+                                                <td style='width:7vmin'>風速(m/sec)</td>
+                                                <td style='width:7vmin'>級數</td>
+                                                <td style='width:7vmin'>風名</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr align="center">
+                                                <td id="County"> {{selectCity}} </td>
+                                                <td id="Region"> {{selectRegion}} </td>
+                                                <td id="SpeedPerSecond"> {{SpeedPerSecond}} </td>
+                                                <td id="Series"> {{Series}} </td>
+                                                <td id="Wind"> {{Wind}} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p>
+                                </div>
+
+                                <div class="p-2 bd-highlight">
+                                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地  貌</span></p>
+                                    <b-select v-model="SelectLandform">
+                                        <option value="0">==請選擇地貌==</option>
+                                        <option value="建築物">建築物</option>
+                                        <option value="空曠">空曠</option>
+                                        <option value="風口">風口</option>
+                                    </b-select>
+                                    <br><br>
+                                </div>
+                                <div class="p-2 bd-highlight">
+
+                                </div>
+                            </div>
+
+                            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">日照時數與全天空日射量</span></p>
+                            <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
+
+                        </b-card-text>
+
+                    </b-card>
+
                     <!-- 作物與地區溫度比較 -->
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-area"></i>
-                                作物與地區溫度比較
-                            </div>
-                            <div class="card-body">
-                                <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">溫度分析圖</span></p>
-                                <line-chart xtitle="月份" ytitle="溫度" :discrete="true" :data="CropTemperature" height="30vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
+                    <b-card header-tag="header">
+                        <template #header>
+                            <h6 class="mb-0"><i class="fas fa-chart-area"></i> 作物與地區溫度比較</h6>
+                        </template>
+                        <b-card-text>
+                            <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">溫度分析圖</span></p>
+                            <line-chart xtitle="月份" ytitle="溫度" :discrete="true" :data="CropTemperature" height="30vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
 
-                                <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">各月作物與地區適合種植高低溫差值</span></p>
-                                <table style="border:1px solid black;" border='1'>
-                                    <tr align="center">
-                                        <td></td>
-                                        <td>1月份</td>
-                                        <td>2月份</td>
-                                        <td>3月份</td>
-                                        <td>4月份</td>
-                                        <td>5月份</td>
-                                        <td>6月份</td>
-                                        <td>7月份</td>
-                                        <td>8月份</td>
-                                        <td>9月份</td>
-                                        <td>10月份</td>
-                                        <td>11月份</td>
-                                        <td>12月份</td>
-                                    </tr>
-                                    <tr align="center" id="HighTemperatureDifference">
-                                        <td>高溫差</td>
-                                        <td v-for="(temperature, index) in StrHighTemperature" :key="index">
-                                            {{StrOptimalTemperature[1]-temperature}}
-                                        </td>
-                                    </tr>
-                                    <tr align="center" id="HighApproach">
-                                        <td>環控</td>
-                                        <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="StrOptimalTemperature[1]-temperature < 0">
-                                            需降溫
-                                        </td>
-                                        <td v-else>
-                                            -
-                                        </td>
+                            <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">各月作物與地區適合種植高低溫差值</span></p>
+                            <table style="border:1px solid black;" border='1'>
+                                <tr align="center">
+                                    <td></td>
+                                    <td>1月份</td>
+                                    <td>2月份</td>
+                                    <td>3月份</td>
+                                    <td>4月份</td>
+                                    <td>5月份</td>
+                                    <td>6月份</td>
+                                    <td>7月份</td>
+                                    <td>8月份</td>
+                                    <td>9月份</td>
+                                    <td>10月份</td>
+                                    <td>11月份</td>
+                                    <td>12月份</td>
+                                </tr>
+                                <tr align="center" id="HighTemperatureDifference">
+                                    <td>高溫差</td>
+                                    <td v-for="(temperature, index) in StrHighTemperature" :key="index">
+                                        {{StrOptimalTemperature[1]-temperature}}
+                                    </td>
+                                </tr>
+                                <tr align="center" id="HighApproach">
+                                    <td>環控</td>
+                                    <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="StrOptimalTemperature[1]-temperature < 0">
+                                        需降溫
+                                    </td>
+                                    <td v-else>
+                                        -
+                                    </td>
 
-                                    </tr>
-                                    <tr align="center">
-                                        <td>低溫差</td>
-                                        <td v-for="(temperature, index) in StrLowTemperature" :key="index">
-                                            {{StrOptimalTemperature[0]-temperature}}
-                                        </td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td>環控</td>
-                                        <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="StrOptimalTemperature[0]-temperature > 0">
-                                            需加溫
-                                        </td>
-                                        <td v-else>
-                                            -
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                                </tr>
+                                <tr align="center">
+                                    <td>低溫差</td>
+                                    <td v-for="(temperature, index) in StrLowTemperature" :key="index">
+                                        {{StrOptimalTemperature[0]-temperature}}
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td>環控</td>
+                                    <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="StrOptimalTemperature[0]-temperature > 0">
+                                        需加溫
+                                    </td>
+                                    <td v-else>
+                                        -
+                                    </td>
+                                </tr>
+                            </table>
+                        </b-card-text>
 
-                </div>
-
-                <!-- <div class="row">
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <b-icon icon="building"></b-icon>
-                                Area Chart Example
-                            </div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <b-icon icon="building"></b-icon>
-                                Bar Chart Example
-                            </div>
-                            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                        </div>
-                    </div>
-                </div> -->
+                    </b-card>
+                </b-card-group>
             </div>
 
             <!-- LME倫敦金屬價格 -->
-            <div class="col-xl-2">
+            <div class="p-2 flex-shrink-1 bd-highlight">
                 <div class="d-flex justify-content-center mb-3">
                     <div class="p-2"></div>
                     <div class="p-2">
@@ -330,6 +295,29 @@
                 </div>
             </div>
         </div>
+
+        <!-- <b-card-group deck>
+            <b-card header-tag="header">
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 分 析</h6>
+                </template>
+                <b-card-text>
+
+                </b-card-text>
+
+            </b-card>
+
+            <b-card header-tag="header">
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 分 析</h6>
+                </template>
+                <b-card-text>
+
+                </b-card-text>
+
+            </b-card>
+        </b-card-group> -->
+
     </div>
 </template>
 
@@ -387,6 +375,9 @@ export default {
             selectRegion: '-', // 所選地區的名稱
             StrHighTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最高月均溫
             StrLowTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最低月均溫
+
+            SelectTerrain:0, // 選擇地形
+            SelectLandform:0, // 選擇地貌
 
             Series: '-', // 風力級數
             Wind: '-',   // 風的名稱

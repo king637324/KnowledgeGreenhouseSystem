@@ -4,24 +4,22 @@
         <h2>地理環境分析</h2>
         <hr>
 
-
-
         <div class="d-flex justify-content-around">
             <div class="p-2 bd-highlight">
                 <div class="card">
                     <label class="card-header  bg-info text-white" style="font-size: 2.3vmin">地區選擇</label>
                     <div class="card-body">
-                        <select v-model="cityIdx" v-on:change="updateCity" style="font-size: 2vmin">
+                        <b-select v-model="cityIdx" v-on:change="updateCity" style="font-size: 2vmin; width:20vmin" >
                             <option v-for="(data, index) in City" :value="index">
                                 {{data}}
                             </option>
-                        </select>
+                        </b-select>
 
-                        <select v-model="regionIdx" v-on:change="updateRegion" style="font-size: 2vmin">
+                        <b-select v-model="regionIdx" v-on:change="updateRegion" style="font-size: 2vmin; width:20vmin" >
                             <option v-for="(data, index) in Region" :value="index">
                                 {{data}}
                             </option>
-                        </select>
+                        </b-select>
 
                         <br>
                         <h5>縣市：{{selectCity}} </h5>

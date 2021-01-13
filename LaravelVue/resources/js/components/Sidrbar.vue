@@ -7,24 +7,24 @@
       dark
       >
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-  
+
         <v-toolbar-title>溫室設計專家知識系統</v-toolbar-title>
-  
+
         <v-spacer></v-spacer>
-  
+
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
-  
+
         <v-btn icon>
           <v-icon>mdi-filter</v-icon>
         </v-btn>
-  
+
         <v-btn icon>
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </v-app-bar>
-  
+
       <v-navigation-drawer
         v-model="drawer"
         app
@@ -34,10 +34,10 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
 
-                        <!-- <div class="sb-sidenav-menu-heading">Core</div>
+                        <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
                         <router-link to="/" class="nav-link" exact>
                             <b-icon icon="house-door"></b-icon> 首頁
-                        </router-link> -->
+                        </router-link>
 
                         <div class="sb-sidenav-menu-heading">測試</div>
                         <router-link to="/categories" class="nav-link" exact>
