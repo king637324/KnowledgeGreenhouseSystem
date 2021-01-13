@@ -724,9 +724,11 @@ pre code {
     position: relative;
     width: 100%;
     padding-right: 0.75rem;
+    padding-left: 0.75rem ;
+}
+.col-md-3{
     padding-left: 450px !important;
 }
-
 .col {
     flex-basis: 0;
     flex-grow: 1;
