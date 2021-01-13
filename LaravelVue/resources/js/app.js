@@ -17,8 +17,7 @@ import 'vue-select/dist/vue-select.css';
 import vSelect from 'vue-select'
 import VJstree from 'vue-jstree'
 import VueTreeNavigation from 'vue-tree-navigation';
-
-
+import CKEditor from 'ckeditor4-vue';
 var VueScrollTo = require('vue-scrollto');
 
 
@@ -32,7 +31,7 @@ Vue.use(IconsPlugin);
 Vue.use(Chartkick.use(Chart))
 Vue.use(VueScrollTo)
 Vue.use(FlashMessage);
-
+Vue.use( CKEditor );
 Vue.use(BootstrapVue)
 
 

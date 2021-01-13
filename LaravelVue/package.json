@@ -14,6 +14,7 @@
     "b-sidebar": "^1.2.1",
     "bootstrap-vue": "^2.21.1",
     "chart.js": "^2.9.4",
+    "ckeditor4-vue": "^1.2.0",
     "echarts": "^4.9.0",
     "highcharts": "^8.2.2",
     "v-charts": "^1.19.0",

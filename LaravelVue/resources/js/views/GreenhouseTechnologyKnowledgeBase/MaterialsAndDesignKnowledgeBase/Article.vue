@@ -1,27 +1,33 @@
 <template>
     <div >
         <v-container >
-            <v-container>
-                    <v-navigation-drawer light absolute  >
+
+                    <v-navigation-drawer light absolute permanent stateless>
                     <h3>材料與設計知識庫</h3>
+                    
+         
                     <button type="button" class="btn btn-danger" v-on:click="check">檢查</button>
+                    <button type="button" class="btn btn-primary" v-on:click="showNewArticleModal" >新增</button>
+
                         <v-treeview
                             activatable
                             :items="KnowledgeTreejson"
                             item-key="id"
-                            open-on-click>
+                            open-on-click >
 
-                            <template slot="label" slot-scope="{ item }">
-                                <a v-on:click="getChilds(item)"> {{item.name}} </a>
+                            <template slot="label" slot-scope="{ item }" >
+                                <div v-on:click="getChilds(item)">
+                                <a> {{item.name}} </a>
+                                </div>
                             </template>
                         </v-treeview>
 
                     </v-navigation-drawer>
 
 
-            </v-container>
 
 
+                <div class="pages">
                 <div class="d-flex bd-highlight">
                     <div class="p-2 w-100 bd-highlight">
                         <h3>
@@ -38,9 +44,57 @@
 
                 <h5 v-html="KnowledgeContent[3]">
                 </h5>
-
+                </div>
 
         </v-container>
+        <b-modal size='xl' ref="NewCategoryModal"  hide-footer title="新增資料">
+            <div class="d-block ">
+                <form v-on:submit.prevent="createCategory">
+                    <table>
+                        <td>
+                            <tr>
+                                <div style="width:200px;">
+                                <div class="form-group" >
+                                <label for="FatherClass">父項目:</label>
+                                <v-select  v-model="categoryData.FatherClass" :items="items" label="父項目:"></v-select>
+                                <div class="invalid-feedback" v-if="errors.FatherClass">{{ errors.FatherClass[0] }}</div>
+                                </div>
+                                </div>
+                            </tr>
+                        </td>
+                            <td>
+                            <tr>
+                            <div class="form-group">
+                            <label for="Title">標題:</label>
+                            <input type="Title" v-model="categoryData.Title" class="form-control" id="Title" placeholder="標題">
+                            <div class="invalid-feedback" v-if="errors.Title">{{ errors.Title[0] }}</div>
+                        </div>
+                            </tr>
+                            </td>
+                            <td>
+                            <tr>
+                        <div class="form-group">
+                        <label for="Editor">編輯人:                        </label>
+                        <input type="Editor" v-model="categoryData.Editor" class="form-control" id="Editor" placeholder="編輯人">
+                        <div class="invalid-feedback" v-if="errors.Editor">{{ errors.Editor[0] }}</div>
+                    </div>
+                            </tr>
+                            
+                        </td>
+                    </table>
+                    <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
+    
+
+                    <hr>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-default" v-on:click="hideNewCategoryModal">取消</button>
+                        <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>創建</button>
+                    </div>
+
+                </form>
+                <hr>
+            </div>
+        </b-modal>
     </div>
 </template>
 
@@ -48,6 +102,16 @@
 export default {
     data() {
         return {
+            items:[],
+            categoryData:{
+                    FatherClass:'',
+                    Title:'',
+                    Editor:'',
+
+                },
+            errors:{
+
+                },
             selectionType: 'leaf',
             selection: [],
             open:null,
@@ -95,7 +159,11 @@ export default {
 
             this.KnowledgeContent.push(item.id,item.name,item.editor,item.content);
 
-        }
+        },showNewArticleModal(){
+            this.$refs.NewCategoryModal.show();
+        },hideNewCategoryModal(){
+                this.$refs.NewCategoryModal.hide();
+        },
     },
 }
 </script>

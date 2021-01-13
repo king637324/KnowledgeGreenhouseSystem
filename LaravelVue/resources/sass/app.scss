@@ -10449,7 +10449,9 @@ img.table-image {
 }
 
 .pages {
-    height: 600px;
+    min-height: 800px;
+    max-height: 100%;
+    padding-left: 250px;
 }
 
 // @import '~vuetify/dist/vuetify.min.css';
