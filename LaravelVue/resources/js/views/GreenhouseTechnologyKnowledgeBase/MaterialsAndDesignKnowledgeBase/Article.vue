@@ -2,41 +2,25 @@
     <div >
         <v-container >
             <v-container>
+                    <v-navigation-drawer light absolute  permanent >
                     <h1>文章</h1>
                     <button type="button" class="btn btn-danger" v-on:click="check">檢查</button>
+                        <v-treeview
+                            activatable
+                            :items="KnowledgeTreejson"
+                            item-key="id"
+                            open-on-click>
 
-                    <!-- <v-jstree :data="KnowledgeTreejson" @item-click="itemClick"></v-jstree>
-                    <v-jstree :data="data" @item-click="itemClick"></v-jstree>
-                    <vue-tree-navigation :items="items"/> -->
-                    <!-- <v-treeview :items="KnowledgeTreejson" open-on-click :open.sync="open" :active="children">
+                            <template slot="label" slot-scope="{ item }">
+                                <a v-on:click="getChilds(item)"> {{item.name}} </a>
+                            </template>
+                        </v-treeview>
 
-                    </v-treeview> -->
+                    </v-navigation-drawer>
 
-                    <!-- <v-treeview
-                        v-model="seleselectioncted"
-                        :active.sync="active"
-                        :open.sync="open"
-                        :items="KnowledgeTreejson"
-                        :load-children="getChilds"
-                        open-on-click>
-
-                    </v-treeview> -->
-
-                    <v-treeview
-                        activatable
-                        :items="KnowledgeTreejson"
-                        item-key="id"
-                        open-on-click>
-
-                        <template slot="label" slot-scope="{ item }">
-                            <a @click="getChilds(item)">{{item.name}}</a>
-                        </template>
-
-                    </v-treeview>
 
             </v-container>
 
-            <div class="pages">
 
                 <h6>
                     open<br>{{open}}
@@ -51,10 +35,14 @@
                 <br>
                 <br>
                 <br>
+
+                <h6>
+                    test.content<br>{{test[3]}}
+                </h6>
                 <br>
                 <br>
                 <br>
-            </div>
+
 
         </v-container>
     </div>
@@ -120,8 +108,10 @@ export default {
             console.log(item.name);
             console.log("item.editor:");
             console.log(item.editor);
-            // console.log("item.content:");
-            // console.log(item.content);
+            console.log("item.content:");
+            console.log(item.content);
+
+            this.test = [];
 
             this.test.push(item.id,item.name,item.editor,item.content);
 
