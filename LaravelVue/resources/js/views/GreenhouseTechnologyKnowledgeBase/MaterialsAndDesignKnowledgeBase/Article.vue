@@ -4,9 +4,21 @@
         <v-container >
             <v-navigation-drawer light absolute permanent stateless>
                 <h3>材料與設計知識庫</h3>
+                <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
+                <v-text-field
+                    label="Search"
+                    v-model="Search"
+                    @input="getSearchSelect"
+                    >
+                </v-text-field>
 
-                <button type="button" class="btn btn-danger" v-on:click="check">檢查</button>
-                <button type="button" class="btn btn-primary" v-on:click="showNewKnowledgeModal" >新 增 知 識</button>
+                <b-select v-model="SearchIndex" v-on:change="SearchSelectReslut" style="font-size: 2vmin; width:25vmin" >
+                    <option v-for="(data, index) in SearchList" :value="data[0]">
+                        {{data[1]}}
+                    </option>
+                </b-select>
+
+                <button type="button" class="btn btn-primary" v-on:click="showNewKnowledgeModal">新 增 知 識</button>
 
                 <v-treeview
                     activatable
@@ -24,24 +36,29 @@
             </v-navigation-drawer>
 
             <div class="pages">
-            <div class="d-flex bd-highlight">
-                <div class="p-2 w-100 bd-highlight">
-                    <h3>
-                        {{KnowledgeContent[1]}}
-                    </h3>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <h3>
+                            {{KnowledgeContent[1]}}
+                        </h3>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <h6>
+                            編輯者：{{KnowledgeContent[2]}}
+                        </h6>
+                        <h6>
+                            最後修改日：{{KnowledgeContent[4]}}
+                        </h6>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button class="btn btn-primary btn-sm" v-on:click="EditKnowledge(KnowledgeContent)"><span class="fa fa-edit"></span></button>
+                        <button class="btn btn-danger btn-sm"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
+                    </div>
                 </div>
-                <div class="p-2 flex-shrink-1 bd-highlight">
-                    <h6>
-                        {{KnowledgeContent[2]}}
-                    </h6>
-                    <button class="btn btn-primary btn-sm" v-on:click="EditKnowledge(KnowledgeContent)"><span class="fa fa-edit"></span></button>
-                    <button class="btn btn-danger btn-sm"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
-                </div>
-            </div>
-            <hr>
+                <hr>
 
-            <h5 v-html="KnowledgeContent[3]">
-            </h5>
+                <h5 v-html="KnowledgeContent[3]">
+                </h5>
             </div>
 
         </v-container>
@@ -56,7 +73,7 @@
                                 <div class="form-group">
                                     <div class="form-group" >
                                         <label for="parent_id" style="width: 10vmin">父項目:</label>
-                                        <b-select  v-model="KnowledgeData.parent_id" label="父項目:" v-on:change="check">
+                                        <b-select  v-model="KnowledgeData.parent_id" label="父項目:">
                                             <option v-for="(data, index) in SelectParent" :value="data[0]">
                                                 {{data[0]}} {{data[1]}}
                                             </option>
@@ -97,6 +114,7 @@
             </div>
         </b-modal>
 
+        <!-- 編輯知識資料 -->
         <b-modal size='xl' ref="EditKnowledgeModal" hide-footer title="編輯知識資料">
             <div class="d-block">
                 <form v-on:submit.prevent="UpdateKnowledge">
@@ -106,8 +124,8 @@
                                 <div class="form-group">
                                     <div class="form-group" >
                                         <label for="parent_id" style="width: 30vmin">父項目:</label>
-                                        <b-select  v-model="EditKnowledgeData.parent_id" :items="SelectParent" label="父項目:" v-on:change="check">
-                                            <option v-for="(data, index) in SelectParent" :value="index">
+                                        <b-select  v-model="EditKnowledgeData.parent_id" :items="SelectParent" label="父項目:">
+                                            <option v-for="(data, index) in SelectParent" :value="data[0]">
                                                 {{data[0]}} {{data[1]}}
                                             </option>
                                         </b-select>
@@ -174,6 +192,9 @@ export default {
 
             SelectParent:[[0,'無父項目']],    // 選擇父項目
 
+            Search:null,
+            SearchIndex:0,
+            SearchList:[[0,'==請輸入搜尋=='],],
 
         }
     },
@@ -187,16 +208,16 @@ export default {
                 method: 'GET',
             });
             this.KnowledgeTreejson = await KnowledgeTree.json();
-            this.KnowledgeContent = [];
-
-            this.KnowledgeContent.push(this.KnowledgeTreejson[0].id,this.KnowledgeTreejson[0].name,this.KnowledgeTreejson[0].editor,this.KnowledgeTreejson[0].content);
-
 
             // 知識庫資料
             const Knowledge = await fetch('/KnowledgeJSON',  {
                 method: 'GET',
             });
             this.Knowledgejson = await Knowledge.json();
+
+            this.KnowledgeContent = [];
+            var updateDate = this.Knowledgejson[0].created_at.split('T');   // 讓修改時間，只顯示日期
+            this.KnowledgeContent.push(this.Knowledgejson[0].id,this.Knowledgejson[0].name,this.Knowledgejson[0].editor,this.Knowledgejson[0].content,updateDate[0]);
 
             this.SelectParent = [];
             this.SelectParent = [[0,'無父項目']];
@@ -207,29 +228,17 @@ export default {
                 this.SelectParent.push(idname);
             }
 
-        },check(){
-            // console.log("----KnowledgeTreejson----");
-            // console.log(this.KnowledgeTreejson);
-            // console.log("----Knowledgejson----");
-            // console.log(this.Knowledgejson);
-
-            console.log("----KnowledgeData.parent_i----");
-            console.log(this.KnowledgeData.parent_id);
-
         },getItemContent(item){  // 得到所點擊的項目id
 
             this.KnowledgeContent = [];
-            this.KnowledgeContent.push(item.id,item.name,item.editor,item.content);
-            console.log("-----item.id-----");
-            console.log(item.id);
-            console.log("-----this.KnowledgeContent-----");
-            console.log(this.KnowledgeContent[0]);
+            var updateDate = item.created_at.split('T');    // 讓修改時間，只顯示日期
+            this.KnowledgeContent.push(item.id,item.name,item.editor,item.content,updateDate[0]);
 
-        },hideNewKnowledgeModal(){
+        },hideNewKnowledgeModal(){  // 隱藏 新增資料 視窗
             this.$refs.NewKnowledgeModal.hide();
-        },showNewKnowledgeModal(){
+        },showNewKnowledgeModal(){  // 顯示 新增資料 視窗
             this.$refs.NewKnowledgeModal.show();
-        },createKnowledge: async function(){
+        },createKnowledge: async function(){    // 新增資料 函式呼叫
             let formData = new FormData();
             formData.append('parent_id',this.KnowledgeData.parent_id);
             formData.append('name',this.KnowledgeData.name);
@@ -263,7 +272,7 @@ export default {
                         break;
                 }
             }
-        },deleteKnowledge: async function(DeleteId){
+        },deleteKnowledge: async function(DeleteId){    // 刪除資料 函式呼叫
             if(!window.confirm(`你確定要刪除 ${DeleteId[1]} 嗎?`)){
                 return;
             }
@@ -285,14 +294,11 @@ export default {
                     time: 5000
                 });
             }
-        },hideEditKnowledgeModal(){
+        },hideEditKnowledgeModal(){ // 隱藏 編輯資料 視窗
             this.$refs.EditKnowledgeModal.hide();
-        },showEditKnowledgeModal(){
+        },showEditKnowledgeModal(){ // 顯示 編輯資料 視窗
             this.$refs.EditKnowledgeModal.show();
-        },
-        EditKnowledge(KnowledgeContent){
-            console.log("有進EditKnowledge");
-
+        },EditKnowledge(KnowledgeContent){  // 編輯資料 變數宣告
             var find = null;
             for(var i=0; i<this.Knowledgejson.length;i++){
                 if(KnowledgeContent[0] == this.Knowledgejson[i].id){
@@ -304,7 +310,7 @@ export default {
             this.EditKnowledgeData = {...find};
             this.showEditKnowledgeModal();
 
-        },UpdateKnowledge:async function(){
+        },UpdateKnowledge:async function(){ // 編輯資料 函式呼叫
 
 
             try {
@@ -331,7 +337,52 @@ export default {
                     time: 5000
                 });
             }
+        },getSearchSelect: function (val) { // 搜尋列一但有input，就觸發 選擇欄可選擇的內容值
+            this.SearchList = [];    // 將搜尋選項列清空
+            var empty = true;   // 確認是否有搜尋到相關知識，有則false，沒有則true
+            if (this.Search.length == 0) {
+                this.SearchList = [[0,'==請輸入搜尋=='],];
+                this.SearchIndex = 0;
+                empty = true;
+            }else{
+                this.SearchList = [[0,'==選擇搜尋結果=='],];
+                this.SearchIndex = 0;
+                for(var i = 0 ; i < this.Knowledgejson.length ; i++){
+                    // var value = val.toLowerCase();
+                    var content = this.Knowledgejson[i].content.toLowerCase();
+
+                    if(content.includes(this.Search.toLowerCase())){
+                        var test = [];
+                        test.push(this.Knowledgejson[i].id);
+                        test.push(this.Knowledgejson[i].name);
+                        this.SearchList.push(test)
+                        empty = false;
+                    }
+                }
+
+                if(empty){
+                    this.SearchList = [[0,'!!無相關關鍵字!!'],];
+                    this.SearchIndex = 0;
+                }
+            }
+
+        },SearchSelectReslut(){ // 顯示所點擊的知識內容
+            this.KnowledgeContent = []; // 初始化知識內容
+            for(var i=0; i<this.Knowledgejson.length;i++){
+                if(this.SearchIndex == this.Knowledgejson[i].id){
+                    var updateDate = this.Knowledgejson[i].created_at.split('T');   // 讓修改時間，只顯示日期
+                    this.KnowledgeContent.push(this.Knowledgejson[i].id,this.Knowledgejson[i].name,this.Knowledgejson[i].editor,this.Knowledgejson[i].content,updateDate[0]);
+                }
+            }
+        },check(){  // 檢查用
+            // console.log("----KnowledgeTreejson----");
+            // console.log(this.KnowledgeTreejson);
+            // console.log("----Knowledgejson----");
+            // console.log(this.Knowledgejson);
+            // console.log("----KnowledgeData.parent_i----");
+            // console.log(this.KnowledgeData.parent_id);
+
         }
-    },
+    }
 }
 </script>

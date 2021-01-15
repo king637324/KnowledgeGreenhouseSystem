@@ -24,7 +24,7 @@ class knowledgeeditor extends Model
     public function children($single = false)
     {
         return $this->hasMany('App\Models\GreenhouseTechnologyKnowledgeBase\knowledgeeditor', 'parent_id', 'id')
-                    ->select(['id','parent_id', 'name','content', 'editor'])
+                    ->select(['id','parent_id', 'name','content', 'editor','created_at'])
                     ->with('children');
     }
 

@@ -63,3 +63,5 @@ Route::get('/MaterialCostJSON',[CostAnalysisController::class, 'getJSON_Material
 use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
 Route::get('/KnowledgeJSON',[KnowledgeEditorController::class, 'getJSON_Knowledge']);    // 知識庫的資料
 Route::get('/KnowledgeTreeJSON',[KnowledgeEditorController::class, 'getCategories']);    // 知識庫做樹狀結構
+Route::get('/MaterialsAndDesignKnowledgeBase/Article/show/{title}',[KnowledgeEditorController::class, 'show']);    // 知識庫做樹狀結構
+// Route::get('/MaterialsAndDesignKnowledgeBase/Article/show/{title}','KnowledgeEditor\KnowledgeEditorController@reader');

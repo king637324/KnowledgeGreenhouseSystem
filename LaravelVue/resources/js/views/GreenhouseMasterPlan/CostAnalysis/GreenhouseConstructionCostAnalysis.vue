@@ -113,231 +113,231 @@
                 </template>
                 <b-card-text>
                     <div v-if="SelectSimple.length != 9">
-                    <h5 style="color:red;">請完成簡易型溫室規格選擇 還有 {{9-SelectSimple.length}}個未完成選擇</h5>
-                    <br>
-                    <!-- 標準簡易型溫室成本價格 -->
-                    <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                        <thead class="table-active">
-                            <tr align="center">
-                                <td>構建分部</td>
-                                <td>標準規格</td>
-                                <td>成本性</td>
-                                <td>結構風險</td>
-                                <td>作業難度</td>
-                            </tr>
-                        </thead>
-                        <tr align="center">
-                            <td> 溫室管材 </td>
-                            <td> 標準管材 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 圓頂形式 </td>
-                            <td> 單一圓拱 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 圓拱距 </td>
-                            <td> 1M-1" </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 基礎 </td>
-                            <td> 直插40cm </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 跨距 </td>
-                            <td> 5.4m </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 肩高 </td>
-                            <td> 2m </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 長度 </td>
-                            <td> 30m </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 連續性	 </td>
-                            <td> 獨棟 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 披覆膜	</td>
-                            <td> PE獨棟 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 參數分析 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td>總價格</td>
-                            <td>  </td>
-                            <td colspan="3">NT$ 500000</td>
-                        </tr>
-
-                    </table>
-                    <br><br><br>
-                </div>
-                <div v-else>
-                    <div class="d-flex justify-content-around">
+                        <h5 style="color:red;">請完成簡易型溫室規格選擇 還有 {{9-SelectSimple.length}}個未完成選擇</h5>
+                        <br>
                         <!-- 標準簡易型溫室成本價格 -->
-                        <div class="p-2 bd-highlight">
-                            <h5>標準簡易型溫室成本</h5>
-                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                <thead class="table-active">
-                                    <tr align="center">
-                                        <td>構建分部</td>
-                                        <td>標準規格</td>
-                                        <td>成本性</td>
-                                        <td>結構風險</td>
-                                        <td>作業難度</td>
-                                    </tr>
-                                </thead>
+                        <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                            <thead class="table-active">
                                 <tr align="center">
-                                    <td> 溫室管材 </td>
-                                    <td> 標準管材 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
+                                    <td>構建分部</td>
+                                    <td>標準規格</td>
+                                    <td>成本性</td>
+                                    <td>結構風險</td>
+                                    <td>作業難度</td>
                                 </tr>
-                                <tr align="center">
-                                    <td> 圓頂形式 </td>
-                                    <td> 單一圓拱 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 圓拱距 </td>
-                                    <td> 1M-1" </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 基礎 </td>
-                                    <td> 直插40cm </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 跨距 </td>
-                                    <td> 5.4m </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 肩高 </td>
-                                    <td> 2m </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 長度 </td>
-                                    <td> 30m </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 連續性	 </td>
-                                    <td> 獨棟 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 披覆膜	</td>
-                                    <td> PE獨棟 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 參數分析 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td>總價格</td>
-                                    <td>  </td>
-                                    <td colspan="3">NT$ 500000</td>
-                                </tr>
+                            </thead>
+                            <tr align="center">
+                                <td> 溫室管材 </td>
+                                <td> 標準管材 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 圓頂形式 </td>
+                                <td> 單一圓拱 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 圓拱距 </td>
+                                <td> 1M-1" </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 基礎 </td>
+                                <td> 直插40cm </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 跨距 </td>
+                                <td> 5.4m </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 肩高 </td>
+                                <td> 2m </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 長度 </td>
+                                <td> 30m </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 連續性	 </td>
+                                <td> 獨棟 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 披覆膜	</td>
+                                <td> PE獨棟 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 參數分析 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                                <td> 1.00 </td>
+                            </tr>
+                            <tr align="center">
+                                <td>總價格</td>
+                                <td>  </td>
+                                <td colspan="3">NT$ 500000</td>
+                            </tr>
 
-                            </table>
-                        </div>
-                        <div class="p-2 bd-highlight"></div>
-                        <!-- 所選擇的簡易型溫室成本價格 -->
-                        <div class="p-2 bd-highlight">
-                            <h5>所選擇之簡易型溫室成本</h5>
-                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                <thead class="table-active">
-                                    <tr align="center">
-                                        <td>構建分部</td>
-                                        <td>規格選擇</td>
-                                        <td>成本性</td>
-                                        <td>結構風險</td>
-                                        <td>作業難度</td>
-                                    </tr>
-                                </thead>
-                                <tr align="center" v-for="(select, index) in SelectSimple" :key="index">
-                                    <td> {{select.BuildBranch}}</td>
-                                    <td> {{select.BuildItem}} </td>
-                                    <td> {{select.Cost}} </td>
-                                    <td> {{select.StructuralRisk}} </td>
-                                    <td> {{select.JobDifficulty}} </td>
-                                </tr>
-                                <tr align="center">
-                                    <td colspan=""> 參數分析 </td>
-                                    <td>  </td>
-                                    <td> {{SimpleCostAdd}} </td>
-                                    <td> {{SimpleStructuralRiskAdd}} </td>
-                                    <td> {{SimpleJobDifficultyAdd}} </td>
-
-                                </tr>
-                                <tr align="center">
-                                    <td>總價格</td>
-                                    <td>  </td>
-                                    <td colspan="3">NT$ {{SimpleTotalSimpleCost}} </td>
-                                </tr>
-                            </table>
-                        </div>
+                        </table>
+                        <br><br><br>
                     </div>
-                    <br><br>
-                </div>
-            </b-card-text>
+                    <div v-else>
+                        <div class="d-flex justify-content-around">
+                            <!-- 標準簡易型溫室成本價格 -->
+                            <div class="p-2 bd-highlight">
+                                <h5>標準簡易型溫室成本</h5>
+                                <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>構建分部</td>
+                                            <td>標準規格</td>
+                                            <td>成本性</td>
+                                            <td>結構風險</td>
+                                            <td>作業難度</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center">
+                                        <td> 溫室管材 </td>
+                                        <td> 標準管材 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 圓頂形式 </td>
+                                        <td> 單一圓拱 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 圓拱距 </td>
+                                        <td> 1M-1" </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 基礎 </td>
+                                        <td> 直插40cm </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 跨距 </td>
+                                        <td> 5.4m </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 肩高 </td>
+                                        <td> 2m </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 長度 </td>
+                                        <td> 30m </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 連續性	 </td>
+                                        <td> 獨棟 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 披覆膜	</td>
+                                        <td> PE獨棟 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 參數分析 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td>總價格</td>
+                                        <td>  </td>
+                                        <td colspan="3">NT$ 500000</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <div class="p-2 bd-highlight"></div>
+                            <!-- 所選擇的簡易型溫室成本價格 -->
+                            <div class="p-2 bd-highlight">
+                                <h5>所選擇之簡易型溫室成本</h5>
+                                <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>構建分部</td>
+                                            <td>規格選擇</td>
+                                            <td>成本性</td>
+                                            <td>結構風險</td>
+                                            <td>作業難度</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center" v-for="(select, index) in SelectSimple" :key="index">
+                                        <td> {{select.BuildBranch}}</td>
+                                        <td> {{select.BuildItem}} </td>
+                                        <td> {{select.Cost}} </td>
+                                        <td> {{select.StructuralRisk}} </td>
+                                        <td> {{select.JobDifficulty}} </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td colspan=""> 參數分析 </td>
+                                        <td>  </td>
+                                        <td> {{SimpleCostAdd}} </td>
+                                        <td> {{SimpleStructuralRiskAdd}} </td>
+                                        <td> {{SimpleJobDifficultyAdd}} </td>
+
+                                    </tr>
+                                    <tr align="center">
+                                        <td>總價格</td>
+                                        <td>  </td>
+                                        <td colspan="3">NT$ {{SimpleTotalSimpleCost}} </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+                </b-card-text>
 
             </b-card>
         </b-card-group>

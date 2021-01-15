@@ -26,7 +26,7 @@ class KnowledgeEditorController extends Controller
     {
 
         $articles = knowledgeeditor::where('parent_id', 0)
-                    ->select(['id','parent_id', 'name','content', 'editor'])
+                    ->select(['id','parent_id', 'name','content', 'editor','created_at'])
                     ->with('children')
                     ->orderBy('id', 'ASC')
                     ->get();
@@ -95,9 +95,13 @@ class KnowledgeEditorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id)   // 建立獨立讀取文章的頁面
     {
-        //
+        $reader = DB::table('knowledgeeditors')->where('id',$id)->first();
+        $arr = explode(" ",$reader->created_at); // 讓修改時間，只顯示日期
+        $reader->created_at = $arr[0];
+
+        return view('/KnowledgeReader',compact('reader'));
     }
 
     /**
