@@ -1,40 +1,33 @@
 <template>
 
-        <div >
-      <v-app-bar
-      color="deep-purple accent-4"
-      app
-      dark
-      >
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <div >
+        <v-app-bar color="deep-purple accent-4" app dark >
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>溫室設計專家知識系統</v-toolbar-title>
+            <v-toolbar-title>溫室設計專家知識系統</v-toolbar-title>
 
-        <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
 
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
+            <v-btn icon>
+                <v-icon>mdi-magnify</v-icon>
+            </v-btn>
 
-        <v-btn icon>
-          <v-icon>mdi-filter</v-icon>
-        </v-btn>
+            <v-btn icon>
+                <v-icon>mdi-filter</v-icon>
+            </v-btn>
 
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-      </v-app-bar>
+            <v-btn icon>
+                <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+        </v-app-bar>
 
-      <v-navigation-drawer
-        v-model="drawer"
-        app
-        dark
-      >
-                  <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <v-navigation-drawer v-model="drawer" app dark>
+
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
 
-                        <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
+                        <div class="sb-sidenav-menu-heading">Core</div>
                         <router-link to="/" class="nav-link" exact>
                             <b-icon icon="house-door"></b-icon> 首頁
                         </router-link>
@@ -42,6 +35,14 @@
                         <div class="sb-sidenav-menu-heading">測試</div>
                         <router-link to="/categories" class="nav-link" exact>
                             Categories
+                        </router-link>
+
+                        <div class="sb-sidenav-menu-heading">其他</div>
+                        <router-link to="/UnitConversion" class="nav-link" exact>
+                            各單位換算
+                        </router-link>
+                        <router-link to="/Q&A" class="nav-link" exact>
+                            常見問題Q&A
                         </router-link>
 
                         <div class="sb-sidenav-menu-heading">Interface</div>
@@ -252,8 +253,8 @@
                     Start Bootstrap
                 </div> -->
             </nav>
-      </v-navigation-drawer>
-        </div>
+        </v-navigation-drawer>
+    </div>
 </template>
 
 
@@ -265,8 +266,8 @@
             group: null,
         }),watch: {
         group () {
-        this.drawer = false
-      },
+            this.drawer = false
+        },
     },
 }
 </script>

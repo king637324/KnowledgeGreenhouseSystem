@@ -21,6 +21,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <td>物件</td>
                                 <td>姓名</td>
                                 <td>信箱</td>
                                 <td>密碼</td>
@@ -33,6 +34,8 @@
                         </thead>
                         <tbody>
                             <tr v-for="(test, index) in categories" :key="index">
+                                <td>{{test}}</td>
+
                                 <td>{{test.name}}</td>
                                 <td>{{test.mail}}</td>
                                 <td>{{test.password}}</td>

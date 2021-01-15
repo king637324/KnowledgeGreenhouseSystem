@@ -31,7 +31,7 @@ Vue.use(IconsPlugin);
 Vue.use(Chartkick.use(Chart))
 Vue.use(VueScrollTo)
 Vue.use(FlashMessage);
-Vue.use( CKEditor );
+Vue.use(CKEditor);
 Vue.use(BootstrapVue)
 
 

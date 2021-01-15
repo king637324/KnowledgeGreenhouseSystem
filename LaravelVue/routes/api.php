@@ -21,3 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 use App\Http\Controllers\TestController;
 Route::resource('/categories',TestController::class);
 
+use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
+Route::resource('/MaterialsAndDesignKnowledgeBase/Article',KnowledgeEditorController::class);
+
+

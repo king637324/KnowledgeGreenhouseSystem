@@ -1,9 +1,8 @@
 import { http, httpFile } from './http_service';
 
 export function createCategory(data) {
-    console.log("-----------createdata-------------");
-    console.log(data);
-
+    // console.log("-----------createdata-------------");
+    // console.log(data);
 
     return httpFile().post('/categories', data);
 }

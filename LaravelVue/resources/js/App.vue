@@ -3,14 +3,12 @@
 
 
     <main>
-    <Sidrbar/>
-    <v-content>
-
-        <router-view></router-view>
-
-
-    </v-content>
-            <Foot/>
+        <Sidrbar/>
+        <v-content>
+            <router-view></router-view>
+        </v-content>
+        <Foot/>
+        <FlashMessage position="right bottom"></FlashMessage>
     </main>
 
 </template>

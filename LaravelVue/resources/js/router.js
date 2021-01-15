@@ -104,6 +104,11 @@ const routes = [{
     name: '溫室材料成本分析',
     component: GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis
 }, {
+    path: '/Q&A',
+    name: '常見問題Q&A',
+    component: () =>
+        import ('./views/QandA.vue')
+}, {
     path: '/UnitConversion',
     name: '各單位換算',
     component: UnitConversion
