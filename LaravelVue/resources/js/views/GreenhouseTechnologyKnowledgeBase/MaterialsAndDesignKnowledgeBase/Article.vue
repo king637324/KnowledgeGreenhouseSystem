@@ -18,7 +18,8 @@
                     </option>
                 </b-select>
 
-                <button type="button" class="btn btn-primary" v-on:click="showNewKnowledgeModal">新 增 知 識</button>
+                <!-- <button type="button" class="btn btn-primary" v-on:click="showNewKnowledgeModal">新 增 知 識</button> -->
+                <a class="btn btn-primary" href = "/#/MaterialsAndDesignKnowledgeBase/AddArticle"><span class="fa fa-plus"></span> 新 增 知 識</a>
 
                 <v-treeview
                     activatable
@@ -99,7 +100,9 @@
                         </tr>
                     </table>
 
-                    <ckeditor v-model="KnowledgeData.content" editorUrl="https://cdn.ckeditor.com/4.14.0/full-all/ckeditor.js"></ckeditor>
+                    <ckeditor v-model="KnowledgeData.content" :editorUrl="editorURL" :config="editorConfig"></ckeditor>
+
+
                     <div class="invalid-feedback" v-if="errors.content">{{ errors.content[0] }}</div>
 
 
@@ -150,7 +153,9 @@
                         </tr>
                     </table>
 
-                    <ckeditor v-model="EditKnowledgeData.content" editorUrl="https://cdn.ckeditor.com/4.14.0/full-all/ckeditor.js"></ckeditor>
+                    <ckeditor v-model="EditKnowledgeData.content" :editorUrl="editorURL" :config="editorConfig"></ckeditor>
+
+
 
                     <hr>
                     <div class="text-right">
@@ -166,6 +171,8 @@
     </div>
 </template>
 
+<script src="/js/ckfinder/ckfinder.js"></script><!-- 處理圖片上傳 -->
+
 <script>
 import * as KnowledgeService from '../../../services/knowledge_service';
 
@@ -175,6 +182,23 @@ export default {
             KnowledgeTreejson:[],   // 知識庫資料，treeview 所需的資料結構
             KnowledgeContent:[],    // 顯示 所選擇的 知識 資料
             Knowledgejson:[],   // 知識庫資料
+            editorURL:'https://cdn.ckeditor.com/4.14.0/full-all/ckeditor.js',
+            editorConfig: {
+                // The configuration of the editor.
+                height : 450,
+                autoGrow_minHeight : 450,
+                autoGrow_onStartup : true,
+                language: 'zh',// 設定語言
+                filebrowserBrowseUrl: '/js/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+
+                // filebrowserBrowseUrl: '/js/ckfinder/ckfinder.html',
+                // filebrowserImageBrowseUrl: '/js/ckfinder/ckfinder.html?type=Images',
+                // filebrowserFlashBrowseUrl: '/js/ckfinder/ckfinder.html?type=Flash',
+                // filebrowserUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                // filebrowserImageUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                // filebrowserFlashUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+            },
 
             KnowledgeData:{
                     parent_id:0,
@@ -196,10 +220,18 @@ export default {
             SearchIndex:0,
             SearchList:[[0,'==請輸入搜尋=='],],
 
+
+
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
+    },
+    mounted() {
+        CKEDITOR.env.isCompatible = true;
+        CKEDITOR.replace('ckeditor', {
+            height: 500
+        });
     },
     methods: {
         async getJson(){
@@ -308,6 +340,7 @@ export default {
             }
 
             this.EditKnowledgeData = {...find};
+            // window.location = "#/articles/edit/" + KnowledgeContent[0];
             this.showEditKnowledgeModal();
 
         },UpdateKnowledge:async function(){ // 編輯資料 函式呼叫

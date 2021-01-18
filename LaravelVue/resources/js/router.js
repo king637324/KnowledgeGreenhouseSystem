@@ -5,6 +5,8 @@ import Home from './views/Home.vue';
 
 // 溫室材料與設計知識庫
 import GreenhouseTechnologyKnowledgeBase_MaterialsAndDesignKnowledgeBase from './views/GreenhouseTechnologyKnowledgeBase/MaterialsAndDesignKnowledgeBase/Article.vue';
+import GreenhouseTechnologyKnowledgeBase_AddKnowledgeBase from './views/GreenhouseTechnologyKnowledgeBase/MaterialsAndDesignKnowledgeBase/AddArticle.vue';
+import GreenhouseTechnologyKnowledgeBase_EditKnowledgeBase from './views/GreenhouseTechnologyKnowledgeBase/MaterialsAndDesignKnowledgeBase/EditArticle.vue';
 
 // 溫室技術知識庫
 import GreenhouseFluidAnalysis_SimpleGreenhouse from './views/GreenhouseTechnologyKnowledgeBase/AnalyzeKnowledgeBase/GreenhouseFluidAnalysis/SimpleGreenhouse.vue';
@@ -43,6 +45,14 @@ const routes = [{
     path: '/MaterialsAndDesignKnowledgeBase/Article',
     name: '材料與設計知識庫',
     component: GreenhouseTechnologyKnowledgeBase_MaterialsAndDesignKnowledgeBase
+}, {
+    path: '/MaterialsAndDesignKnowledgeBase/AddArticle',
+    name: '材料與設計知識庫新增',
+    component: GreenhouseTechnologyKnowledgeBase_AddKnowledgeBase
+}, {
+    path: '/MaterialsAndDesignKnowledgeBase/EditArticle',
+    name: '材料與設計知識庫編輯',
+    component: GreenhouseTechnologyKnowledgeBase_EditKnowledgeBase
 }, {
     path: '/GreenhouseFluidAnalysis/SimpleGreenhouse',
     name: '溫室流體分析-簡易溫室',

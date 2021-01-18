@@ -31,8 +31,6 @@ class KnowledgeEditorController extends Controller
                     ->orderBy('id', 'ASC')
                     ->get();
 
-
-
         return $articles;
     }
 
@@ -78,9 +76,8 @@ class KnowledgeEditorController extends Controller
         $creatData->editor = $request->editor;
         $creatData->content = $request->content;
 
-
         if($creatData->save()){
-            return response()->json($creatData,200);
+            return Redirect::to("/#/MaterialsAndDesignKnowledgeBase/Article");
         }else{
             return response()->json([
                 'message' => '!!創建知識發生錯誤!!(Controller的store有問題)',
@@ -112,7 +109,11 @@ class KnowledgeEditorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = DB::table('knowledgeeditors')->where('id',$id)->first();
+
+        dd("123456789");
+        return Redirect::to("/#/MaterialsAndDesignKnowledgeBase/EditArticle", compact('data'));
+
     }
 
     /**
