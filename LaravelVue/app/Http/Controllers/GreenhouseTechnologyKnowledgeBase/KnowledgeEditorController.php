@@ -22,7 +22,7 @@ class KnowledgeEditorController extends Controller
      * Display articles index.
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCategories()
+    public function getCategories() // 將知識資料做成樹狀結構的形式的json
     {
 
         $articles = knowledgeeditor::where('parent_id', 0)
@@ -77,6 +77,7 @@ class KnowledgeEditorController extends Controller
         $creatData->content = $request->content;
 
         if($creatData->save()){
+            // 創建成功，將導向材料與設計知識庫
             return Redirect::to("/#/MaterialsAndDesignKnowledgeBase/Article");
         }else{
             return response()->json([
@@ -92,10 +93,10 @@ class KnowledgeEditorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)   // 建立獨立讀取文章的頁面
+    public function show($id)   // 建立獨立讀取知識頁面(這是Laravel的用法)
     {
         $reader = DB::table('knowledgeeditors')->where('id',$id)->first();
-        $arr = explode(" ",$reader->created_at); // 讓修改時間，只顯示日期
+        $arr = explode(" ",$reader->created_at); // 讓created_at，只顯示日期
         $reader->created_at = $arr[0];
 
         return view('/KnowledgeReader',compact('reader'));
@@ -109,11 +110,7 @@ class KnowledgeEditorController extends Controller
      */
     public function edit($id)
     {
-        $data = DB::table('knowledgeeditors')->where('id',$id)->first();
-
-        dd("123456789");
-        return Redirect::to("/#/MaterialsAndDesignKnowledgeBase/EditArticle", compact('data'));
-
+        //
     }
 
     /**
@@ -123,7 +120,7 @@ class KnowledgeEditorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)   // 更新資料
+    public function update(Request $request, $id)   // 更新知識資料
     {
 
         $request -> validate([
@@ -137,7 +134,6 @@ class KnowledgeEditorController extends Controller
         $knowledgedata = knowledgeeditor::where('id',$id);
 
         if($knowledgedata->update($data)){
-
             return response()->json($data,200);
         }else{
             return response()->json([

@@ -38,9 +38,7 @@
 
             <ckeditor v-model="KnowledgeData.content" :editorUrl="editorURL" :config="editorConfig"></ckeditor>
 
-
             <div class="invalid-feedback" v-if="errors.content">{{ errors.content[0] }}</div>
-
 
             <hr>
             <div class="text-right">
@@ -69,14 +67,11 @@ export default {
                 autoGrow_onStartup : true,
                 language: 'zh',// 設定語言
                 filebrowserBrowseUrl: '/js/ckfinder/ckfinder.html',
+                filebrowserImageBrowseUrl: '/js/ckfinder/ckfinder.html?type=Images',
+                filebrowserFlashBrowseUrl: '/js/ckfinder/ckfinder.html?type=Flash',
                 filebrowserUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-
-                // filebrowserBrowseUrl: '/js/ckfinder/ckfinder.html',
-                // filebrowserImageBrowseUrl: '/js/ckfinder/ckfinder.html?type=Images',
-                // filebrowserFlashBrowseUrl: '/js/ckfinder/ckfinder.html?type=Flash',
-                // filebrowserUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                // filebrowserImageUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                // filebrowserFlashUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+                filebrowserImageUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                filebrowserFlashUploadUrl: '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
             },
 
             KnowledgeData:{
@@ -91,8 +86,6 @@ export default {
             },
 
             SelectParent:[[0,'無父項目']],    // 選擇父項目
-
-
 
         }
     },
@@ -109,6 +102,7 @@ export default {
             });
             this.Knowledgejson = await Knowledge.json();
 
+            // 初始化 父項目下拉選單的選項
             this.SelectParent = [];
             this.SelectParent = [[0,'無父項目']];
             for(var i=0; i<this.Knowledgejson.length;i++){
@@ -118,7 +112,8 @@ export default {
                 this.SelectParent.push(idname);
             }
 
-        },createKnowledge: async function(){    // 新增資料 函式呼叫
+        },
+        createKnowledge: async function(){    // 新增資料 函式呼叫
             let formData = new FormData();
             formData.append('parent_id',this.KnowledgeData.parent_id);
             formData.append('name',this.KnowledgeData.name);
@@ -126,8 +121,9 @@ export default {
             formData.append('content',this.KnowledgeData.content);
             try{
                 const response = await KnowledgeService.createKnowledge(formData);
-                this.getJson(); // 將新增的資料馬上顯示
+                // 創建成功後，頁面跳轉回 文章知識頁面
                 window.location = '/#/MaterialsAndDesignKnowledgeBase/Article';
+                // 創建成功的提示視窗
                 this.flashMessage.success({
                     message: '知識 資料寫入成功!!',
                     time: 3000
@@ -140,6 +136,7 @@ export default {
                 };
             } catch (error){
 
+                // 創建失敗的提示視窗
                 switch (error.response.status) {
                     case 422:
                         this.errors = error.response.data.errors;
@@ -152,7 +149,9 @@ export default {
                         break;
                 }
             }
-        },returnArticle(){
+        },
+        returnArticle(){
+            // 返回文章知識頁面
             window.location = '/#/MaterialsAndDesignKnowledgeBase/Article';
         }
     }

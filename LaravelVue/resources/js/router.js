@@ -30,6 +30,11 @@ import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/Gre
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 
 import UnitConversion from './views/UnitConversion.vue';
+import QandA from './views/QandA.vue';
+
+
+import Categories from './views/Categories.vue';
+
 
 
 
@@ -44,13 +49,13 @@ const routes = [{
 }, {
     path: '/MaterialsAndDesignKnowledgeBase/Article',
     name: '材料與設計知識庫',
-    component: GreenhouseTechnologyKnowledgeBase_MaterialsAndDesignKnowledgeBase
+    component: GreenhouseTechnologyKnowledgeBase_MaterialsAndDesignKnowledgeBase,
 }, {
     path: '/MaterialsAndDesignKnowledgeBase/AddArticle',
     name: '材料與設計知識庫新增',
     component: GreenhouseTechnologyKnowledgeBase_AddKnowledgeBase
 }, {
-    path: '/MaterialsAndDesignKnowledgeBase/EditArticle',
+    path: '/MaterialsAndDesignKnowledgeBase/EditArticle/:id',
     name: '材料與設計知識庫編輯',
     component: GreenhouseTechnologyKnowledgeBase_EditKnowledgeBase
 }, {
@@ -116,8 +121,7 @@ const routes = [{
 }, {
     path: '/Q&A',
     name: '常見問題Q&A',
-    component: () =>
-        import ('./views/QandA.vue')
+    component: QandA,
 }, {
     path: '/UnitConversion',
     name: '各單位換算',
@@ -125,8 +129,7 @@ const routes = [{
 }, {
     path: '/categories',
     name: 'categories',
-    component: () =>
-        import ('./views/Categories.vue')
+    component: Categories
 }, {
     path: '/123',
     name: 'welcome',

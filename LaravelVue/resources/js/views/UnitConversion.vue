@@ -51,11 +51,31 @@
                         <br><br>
                         <h5>以下為鍍鋅膜厚換算小程式</h5>
                         <div>
-                            <input type="text" value="" v-model="μm_gm" placeholder="請輸入值" style="width:13vmin">
-                            <label>μm = {{ Math.round(μm_gm * 7.1416) }} g/㎡</label>
-                            <br>
-                            <input type="text" value="" v-model="gm_μm" placeholder="請輸入值"  style="width:13vmin">
-                            <label>g/㎡ = {{ Math.round(gm_μm / 7.1416) }} μm</label>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <v-text-field
+                                            label="請輸入μm值"
+                                            v-model="μm_gm"
+                                            height = 5vmin
+                                        ></v-text-field>
+                                    </td>
+                                    <td>
+                                        <label>μm = {{ Math.round(μm_gm * 7.1416) }} g/㎡</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <v-text-field
+                                            label="請輸入gm值"
+                                            v-model="gm_μm"
+                                        ></v-text-field>
+                                    </td>
+                                    <td>
+                                        <label>g/㎡ = {{ Math.round(gm_μm / 7.1416) }} μm</label>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
