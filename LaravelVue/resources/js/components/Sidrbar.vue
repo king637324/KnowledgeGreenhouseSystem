@@ -17,7 +17,9 @@
             </v-btn>
 
             <v-btn icon>
-                <v-icon>mdi-dots-vertical</v-icon>
+                <router-link to="/Auth/Login">
+                    <b-icon icon="person-fill"></b-icon>
+                </router-link>
             </v-btn>
         </v-app-bar>
 
@@ -262,12 +264,7 @@
 
     export default {
         data: () => ({
-            drawer: true,
-            group: null,
-        }),watch: {
-        group () {
-            this.drawer = false
-        },
-    },
+            drawer: true, // 導覽列的開關
+        }),
 }
 </script>

@@ -3,6 +3,10 @@ import VueRouter from 'vue-router';
 import Welcome from './views/Welcome.vue';
 import Home from './views/Home.vue';
 
+// Auth
+import Auth_Login from './views/Auth/Login.vue';
+
+
 // 溫室材料與設計知識庫
 import GreenhouseTechnologyKnowledgeBase_MaterialsAndDesignKnowledgeBase from './views/GreenhouseTechnologyKnowledgeBase/MaterialsAndDesignKnowledgeBase/Article.vue';
 import GreenhouseTechnologyKnowledgeBase_AddKnowledgeBase from './views/GreenhouseTechnologyKnowledgeBase/MaterialsAndDesignKnowledgeBase/AddArticle.vue';
@@ -46,6 +50,10 @@ const routes = [{
     component: Home
         // name: 'welcome',
         // component: Welcome
+}, {
+    path: '/Auth/Login',
+    name: '使用者登入',
+    component: Auth_Login,
 }, {
     path: '/MaterialsAndDesignKnowledgeBase/Article',
     name: '材料與設計知識庫',
