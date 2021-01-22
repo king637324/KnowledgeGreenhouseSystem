@@ -93,20 +93,48 @@
                         </template>
                         <b-card-text>
                             <div>
+                                <table>
+                                    <tr>
+                                        <td style='width:5vmin'>
+                                            <label>長 = </label>
+                                        </td>
+                                        <td>
+                                            <v-text-field
+                                                label="請輸入長度"
+                                                v-model="AreaLong"
+                                            ></v-text-field>
+                                        </td>
 
-                                <label>長 = </label>
-                                <!-- <b-input value="" v-model="AreaLong" placeholder="請輸入長度" style="width:20vmin"></b-input> -->
-                                <input type="text" value="" v-model="AreaLong" placeholder="請輸入長度">
-                                <br>
-                                <label>寬 = </label>
-                                <input type="text" value="" v-model="AreaWidth" placeholder="請輸入寬度">
-                                <br>
+                                    </tr>
+                                    <tr>
+                                        <td style='width:5vmin'>
+                                            <label>寬 = </label>
+                                        </td>
+                                        <td>
+                                            <v-text-field
+                                                label="請輸入寬度"
+                                                v-model="AreaWidth"
+                                            ></v-text-field>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <label>面積 =  {{AreaLong*AreaWidth}} 平方公尺</label>
+
+                                <table>
+                                    <tr>
+                                        <td style='width:9vmin'>
+                                            <label>溫室走向 = </label>
+                                        </td>
+                                        <td>
+                                            <v-text-field
+                                                label="請輸入角度"
+                                                v-model="GreenhouseTrend"
+                                            ></v-text-field>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p style = "font-size: 1.2vmin;"> 備註：屋脊走向：東西為 0度、南北為90度</p>
                             </div>
-                            <label>面積 =  {{AreaLong*AreaWidth}} 平方公尺</label>
-                            <br>
-                            <label>溫室走向 = </label>
-                            <input type="text" value="" v-model="GreenhouseTrend" placeholder="請輸入角度">
-                            <p style = "font-size: 1.2vmin;"> 備註：屋脊走向：東西為 0度、南北為90度</p>
                         </b-card-text>
                     </b-card>
                 </b-card-group>
