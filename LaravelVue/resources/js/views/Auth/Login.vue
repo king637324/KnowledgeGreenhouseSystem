@@ -1,4 +1,7 @@
 <template>
+<div style='height:800px;'>
+    <div style="margin-top: 100px;">
+            <v-card  class="mx-auto my-12" max-width="600px">
                 <v-tabs v-model="tab" show-arrows background-color="deep-purple accent-4"  persistent max-width="600px" min-width="360px" icons-and-text dark grow>
                     <v-tabs-slider color="purple darken-4"></v-tabs-slider>
                     <v-tab v-for="i in tabs" :key="i.id">
@@ -11,16 +14,16 @@
                                 <v-form ref="loginForm" v-model="valid" lazy-validation>
                                     <v-row>
                                         <v-col cols="12">
-                                            <v-text-field v-model="loginEmail" :rules="loginEmailRules" label="E-mail" required></v-text-field>
+                                            <v-text-field v-model="loginEmail" :rules="loginEmailRules" label="信箱帳號" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field v-model="loginPassword" :append-icon="show1?'eye':'eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Password" hint="At least 8 characters" counter @click:append="show1 = !show1"></v-text-field>
+                                            <v-text-field v-model="loginPassword" :append-icon="show1?'eye':'eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="密碼" hint="至少八個字" counter @click:append="show1 = !show1"></v-text-field>
                                         </v-col>
                                         <v-col class="d-flex" cols="12" sm="6" xsm="12">
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
-                                            <v-btn x-large block :disabled="!valid" color="success" @click="validate"> Login </v-btn>
+                                            <v-btn x-large block :disabled="!valid" color="green" @click="validate"> Login </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -33,23 +36,30 @@
                                 <v-form ref="registerForm" v-model="valid" lazy-validation>
                                     <v-row>
                                         <v-col cols="12" sm="6" md="6">
-                                            <v-text-field v-model="firstName" :rules="[rules.required]" label="First Name" maxlength="20" required></v-text-field>
+                                            <v-text-field v-model="Name" :rules="[rules.required]" label="姓名" maxlength="20" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="6">
-                                            <v-text-field v-model="lastName" :rules="[rules.required]" label="Last Name" maxlength="20" required></v-text-field>
+                                            <v-text-field v-model="phone" :rules="[rules.required]" label="手機" maxlength="20" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+                                            <v-text-field v-model="email" :rules="emailRules" label="信箱帳號" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Password" hint="At least 8 characters" counter @click:append="show1 = !show1"></v-text-field>
+                                        <b-form-select :required='selected==null' v-model="selected" :options="options" >
+
+                                        </b-form-select>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field block v-model="verify" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, passwordMatch]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Confirm Password" counter @click:append="show1 = !show1"></v-text-field>
+                                            <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="密碼" hint="至少八個字" counter @click:append="show1 = !show1"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <v-text-field block v-model="verify" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, passwordMatch]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="確認密碼" counter @click:append="show1 = !show1"></v-text-field>
+                                        </v-col>
+                                        <v-col class="d-flex" cols="12" sm="6" xsm="12">
                                         </v-col>
                                         <v-spacer></v-spacer>
-                                        <v-col class="d-flex ml-auto" cols="12" sm="3" xsm="12">
-                                            <v-btn x-large block :disabled="!valid" color="success" @click="validate">Register</v-btn>
+                                        <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
+                                            <v-btn x-large block :disabled="!valid" color="green" @click="validate">Register</v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -57,7 +67,9 @@
                         </v-card>
                     </v-tab-item>
                 </v-tabs>
-    
+            </v-card>
+    </div>
+</div>
 </template>
 
 <script>
@@ -72,8 +84,8 @@ export default {
             ],
             valid: true,
             
-            firstName: "",
-            lastName: "",
+            Name: "",
+            phone: "",
             email: "",
             password: "",
             verify: "",
@@ -81,31 +93,40 @@ export default {
             loginEmail: "",
             loginEmailRules: [
             v => !!v || "Required",
-            v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+            v => /.+@.+\..+/.test(v) || "信箱格式錯誤"
             ],
             emailRules: [
             v => !!v || "Required",
-            v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+            v => /.+@.+\..+/.test(v) || "信箱格式錯誤"
             ],
 
             show1: false,
             rules: {
-            required: value => !!value || "Required.",
-            min: v => (v && v.length >= 8) || "Min 8 characters"
-            }
+            required: value => !!value || "錯誤",
+            min: v => (v && v.length >= 8) || "最少八個字"
+            },selected: null,
+            options: [
+          { value: null, text: '請選擇身分' ,disabled:true },
+          { value: '農民', text: '農民' },
+          { value: '業者', text: '業者' },
+          { value: '專家', text: '專家' },
+        ],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
 
     },
-    
+      computed: {
+    passwordMatch() {
+      return () => this.password === this.verify || "Password must match";
+    }
+  },
     methods:{
-        passwordMatch() {
-        return () => this.password === this.verify || "Password must match";
-        },
+
         validate() {
             if (this.$refs.loginForm.validate()) {
                 // submit form to server/API here...
+
             }
         },
         reset() {
