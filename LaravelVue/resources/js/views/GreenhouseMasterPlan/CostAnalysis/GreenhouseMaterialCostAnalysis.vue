@@ -6,7 +6,11 @@
         <hr>
 
         <!-- 管 材 製 程 成 本 分 析 -->
-        <b-card header-tag="header">
+        <b-card
+            header-tag="header"
+            header-text-variant="white"
+            header-bg-variant="info"
+        >
             <template #header>
                 <h6 class="mb-0"><b-icon icon="building"></b-icon> 管 材 製 程 成 本 分 析</h6>
             </template>
@@ -39,32 +43,33 @@
                     </thead>
                     <tr align="center" v-for="(all, index) in PipeData" :key="index">
                         <td>
-                            <input type="checkbox" :value="all.id" v-model="checkedPipe" v-on:change="updateSelectPipe">
+                            <input type="checkbox" :value="all[0].id" v-model="checkedPipe" v-on:change="updateSelectPipe">
                         </td>
-                        <td align="left"> {{all.MaterialName}}</td>
-                        <td>NT$ {{all.Steel}}</td>
-                        <td>{{all.HighStrengthMaterial}}</td>
-                        <td>{{all.SteelBillet}}</td>
-                        <td>{{all.HotRolledSteelSheet}}</td>
-                        <td>{{all.ColdRolledSteelSheet}}</td>
-                        <td>{{all.ContinuousHotDipGalvanizing}}</td>
-                        <td>{{all.ContinuousPaint}} </td>
-                        <td>{{all.ColdForming}}</td>
-                        <td>{{all.Welding}}</td>
-                        <td>{{all.Processing}} </td>
-                        <td>{{all.AfterHotDipGalvanizing}}</td>
-                        <td>{{all.Galvalume}}</td>
-                        <td>{{all.MagnesiumAluminumZincPlating}}</td>
-                        <td>{{all.AfterBaking}}</td>
-                        <td>{{all.Speed}}</td>
-                        <td>{{all.StructuralRisk}}</td>
-                        <td>{{all.Corrosive}}</td>
-                        <td>{{all.Weight}}</td>
-                        <td>NT$ {{all.Cost}}</td>
+                        <td align="left"> {{all[0].MaterialName}}</td>
+                        <td>NT$ {{SteelPrice}}</td>
+                        <td>{{all[0].HighStrengthMaterial}}</td>
+                        <td>{{all[0].SteelBillet}}</td>
+                        <td>{{all[0].HotRolledSteelSheet}}</td>
+                        <td>{{all[0].ColdRolledSteelSheet}}</td>
+                        <td>{{all[0].ContinuousHotDipGalvanizing}}</td>
+                        <td>{{all[0].ContinuousPaint}} </td>
+                        <td>{{all[0].ColdForming}}</td>
+                        <td>{{all[0].Welding}}</td>
+                        <td>{{all[0].Processing}} </td>
+                        <td>{{all[0].AfterHotDipGalvanizing}}</td>
+                        <td>{{all[0].Galvalume}}</td>
+                        <td>{{all[0].MagnesiumAluminumZincPlating}}</td>
+                        <td>{{all[0].AfterBaking}}</td>
+                        <td>{{all[0].Speed}}</td>
+                        <td>{{all[0].StructuralRisk}}</td>
+                        <td>{{all[0].Corrosive}}</td>
+                        <td>{{all[0].Weight}}</td>
+                        <td>NT$ {{all[1]}}</td>
                     </tr>
                 </table>
                 <br>
                 <h6>備註：請將欲比較的勾選</h6>
+                <h6>備註：鋼料價格會隨著倫敦金屬所交易價格與美金匯率有所波動</h6>
 
                 <!-- 管 材 製 程 比 較 分 析 -->
                 <div v-if="checkedPipe.length != 0">
@@ -97,26 +102,26 @@
                             </tr>
                         </thead>
                         <tr align="center" v-for="(select, index) in selectPipe" :key="index">
-                            <td align="left"> {{select.MaterialName}}</td>
-                            <td>NT$ {{select.Steel}}</td>
-                            <td>{{select.HighStrengthMaterial}}</td>
-                            <td>{{select.SteelBillet}}</td>
-                            <td>{{select.HotRolledSteelSheet}}</td>
-                            <td>{{select.ColdRolledSteelSheet}}</td>
-                            <td>{{select.ContinuousHotDipGalvanizing}}</td>
-                            <td>{{select.ContinuousPaint}} </td>
-                            <td>{{select.ColdForming}}</td>
-                            <td>{{select.Welding}}</td>
-                            <td>{{select.Processing}} </td>
-                            <td>{{select.AfterHotDipGalvanizing}}</td>
-                            <td>{{select.Galvalume}}</td>
-                            <td>{{select.MagnesiumAluminumZincPlating}}</td>
-                            <td>{{select.AfterBaking}}</td>
-                            <td>{{select.Speed}}</td>
-                            <td>{{select.StructuralRisk}}</td>
-                            <td>{{select.Corrosive}}</td>
-                            <td>{{select.Weight}}</td>
-                            <td>NT$ {{select.Cost}}</td>
+                            <td align="left"> {{select[0].MaterialName}}</td>
+                            <td>NT$ {{SteelPrice}}</td>
+                            <td>{{select[0].HighStrengthMaterial}}</td>
+                            <td>{{select[0].SteelBillet}}</td>
+                            <td>{{select[0].HotRolledSteelSheet}}</td>
+                            <td>{{select[0].ColdRolledSteelSheet}}</td>
+                            <td>{{select[0].ContinuousHotDipGalvanizing}}</td>
+                            <td>{{select[0].ContinuousPaint}} </td>
+                            <td>{{select[0].ColdForming}}</td>
+                            <td>{{select[0].Welding}}</td>
+                            <td>{{select[0].Processing}} </td>
+                            <td>{{select[0].AfterHotDipGalvanizing}}</td>
+                            <td>{{select[0].Galvalume}}</td>
+                            <td>{{select[0].MagnesiumAluminumZincPlating}}</td>
+                            <td>{{select[0].AfterBaking}}</td>
+                            <td>{{select[0].Speed}}</td>
+                            <td>{{select[0].StructuralRisk}}</td>
+                            <td>{{select[0].Corrosive}}</td>
+                            <td>{{select[0].Weight}}</td>
+                            <td>NT$ {{select[1]}}</td>
                             <td>{{selectPipeRank[index]}}</td>
                             <td>{{selectPipeRankValue[index]}}</td>
                         </tr>
@@ -141,19 +146,34 @@
                         </thead>
                         <tr align="center">
                             <td>
-                                <input type="text" value="" v-model="PipeSpeed" placeholder="請輸入速度性">
+                                <v-text-field
+                                    label="請輸入速度性"
+                                    v-model="PipeSpeed"
+                                ></v-text-field>
                             </td>
                             <td>
-                                <input type="text" value="" v-model="PipeStructuralRisk" placeholder="請輸入結構風險">
+                                <v-text-field
+                                    label="請輸入結構風險"
+                                    v-model="PipeStructuralRisk"
+                                ></v-text-field>
                             </td>
                             <td>
-                                <input type="text" value="" v-model="PipeCorrosive" placeholder="請輸入腐蝕性">
+                                <v-text-field
+                                    label="請輸入腐蝕性"
+                                    v-model="PipeCorrosive"
+                                ></v-text-field>
                             </td>
                             <td>
-                                <input type="text" value="" v-model="PipeWeightiness" placeholder="請輸入重量性">
+                                <v-text-field
+                                    label="請輸入重量性"
+                                    v-model="PipeWeightiness"
+                                ></v-text-field>
                             </td>
                             <td>
-                                <input type="text" value="" v-model="PipeCost" placeholder="請輸入成本性">
+                                <v-text-field
+                                    label="請輸入成本性"
+                                    v-model="PipeCost"
+                                ></v-text-field>
                             </td>
                         </tr>
                         <tr align="center">
@@ -172,7 +192,9 @@
         <br>
 
         <!-- 型 材 製 程 成 本 分 析 -->
-        <b-card header-tag="header">
+        <b-card header-tag="header"
+            header-text-variant="white"
+            header-bg-variant="info">
             <template #header>
                 <h6 class="mb-0"><b-icon icon="building"></b-icon> 型 材 製 程 成 本 分 析</h6>
             </template>
@@ -205,32 +227,33 @@
                     </thead>
                     <tr align="center" v-for="(all, index) in ProfileData" :key="index">
                         <td>
-                            <input type="checkbox" :value="all.id" v-model="checkedProfile" v-on:change="updateSelectProfile">
+                            <input type="checkbox" :value="all[0].id" v-model="checkedProfile" v-on:change="updateSelectProfile">
                         </td>
-                        <td align="left"> {{all.MaterialName}}</td>
-                        <td>NT$ {{all.Steel}}</td>
-                        <td>{{all.HighStrengthMaterial}}</td>
-                        <td>{{all.SteelBillet}}</td>
-                        <td>{{all.HotRolledSteelSheet}}</td>
-                        <td>{{all.ColdRolledSteelSheet}}</td>
-                        <td>{{all.ContinuousHotDipGalvanizing}}</td>
-                        <td>{{all.ContinuousPaint}} </td>
-                        <td>{{all.ColdForming}}</td>
-                        <td>{{all.Welding}}</td>
-                        <td>{{all.Processing}} </td>
-                        <td>{{all.AfterHotDipGalvanizing}}</td>
-                        <td>{{all.Galvalume}}</td>
-                        <td>{{all.MagnesiumAluminumZincPlating}}</td>
-                        <td>{{all.AfterBaking}}</td>
-                        <td>{{all.Speed}}</td>
-                        <td>{{all.StructuralRisk}}</td>
-                        <td>{{all.Corrosive}}</td>
-                        <td>{{all.Weight}}</td>
-                        <td>NT$ {{all.Cost}}</td>
+                        <td align="left"> {{all[0].MaterialName}}</td>
+                        <td>NT$ {{SteelPrice}}</td>
+                        <td>{{all[0].HighStrengthMaterial}}</td>
+                        <td>{{all[0].SteelBillet}}</td>
+                        <td>{{all[0].HotRolledSteelSheet}}</td>
+                        <td>{{all[0].ColdRolledSteelSheet}}</td>
+                        <td>{{all[0].ContinuousHotDipGalvanizing}}</td>
+                        <td>{{all[0].ContinuousPaint}} </td>
+                        <td>{{all[0].ColdForming}}</td>
+                        <td>{{all[0].Welding}}</td>
+                        <td>{{all[0].Processing}} </td>
+                        <td>{{all[0].AfterHotDipGalvanizing}}</td>
+                        <td>{{all[0].Galvalume}}</td>
+                        <td>{{all[0].MagnesiumAluminumZincPlating}}</td>
+                        <td>{{all[0].AfterBaking}}</td>
+                        <td>{{all[0].Speed}}</td>
+                        <td>{{all[0].StructuralRisk}}</td>
+                        <td>{{all[0].Corrosive}}</td>
+                        <td>{{all[0].Weight}}</td>
+                        <td>NT$ {{all[1]}}</td>
                     </tr>
                 </table>
                 <br>
                 <h6>備註：請將欲比較的勾選</h6>
+                <h6>備註：鋼料價格會隨著倫敦金屬所交易價格與美金匯率有所波動</h6>
 
                 <!-- 型 材 製 程 比 較 分 析 -->
                 <div v-if="checkedProfile.length != 0">
@@ -263,26 +286,26 @@
                             </tr>
                         </thead>
                         <tr align="center" v-for="(select, index) in selectProfile" :key="index">
-                            <td align="left"> {{select.MaterialName}}</td>
-                            <td>NT$ {{select.Steel}}</td>
-                            <td>{{select.HighStrengthMaterial}}</td>
-                            <td>{{select.SteelBillet}}</td>
-                            <td>{{select.HotRolledSteelSheet}}</td>
-                            <td>{{select.ColdRolledSteelSheet}}</td>
-                            <td>{{select.ContinuousHotDipGalvanizing}}</td>
-                            <td>{{select.ContinuousPaint}} </td>
-                            <td>{{select.ColdForming}}</td>
-                            <td>{{select.Welding}}</td>
-                            <td>{{select.Processing}} </td>
-                            <td>{{select.AfterHotDipGalvanizing}}</td>
-                            <td>{{select.Galvalume}}</td>
-                            <td>{{select.MagnesiumAluminumZincPlating}}</td>
-                            <td>{{select.AfterBaking}}</td>
-                            <td>{{select.Speed}}</td>
-                            <td>{{select.StructuralRisk}}</td>
-                            <td>{{select.Corrosive}}</td>
-                            <td>{{select.Weight}}</td>
-                            <td>NT$ {{select.Cost}}</td>
+                            <td align="left"> {{select[0].MaterialName}}</td>
+                            <td>NT$ {{SteelPrice}}</td>
+                            <td>{{select[0].HighStrengthMaterial}}</td>
+                            <td>{{select[0].SteelBillet}}</td>
+                            <td>{{select[0].HotRolledSteelSheet}}</td>
+                            <td>{{select[0].ColdRolledSteelSheet}}</td>
+                            <td>{{select[0].ContinuousHotDipGalvanizing}}</td>
+                            <td>{{select[0].ContinuousPaint}} </td>
+                            <td>{{select[0].ColdForming}}</td>
+                            <td>{{select[0].Welding}}</td>
+                            <td>{{select[0].Processing}} </td>
+                            <td>{{select[0].AfterHotDipGalvanizing}}</td>
+                            <td>{{select[0].Galvalume}}</td>
+                            <td>{{select[0].MagnesiumAluminumZincPlating}}</td>
+                            <td>{{select[0].AfterBaking}}</td>
+                            <td>{{select[0].Speed}}</td>
+                            <td>{{select[0].StructuralRisk}}</td>
+                            <td>{{select[0].Corrosive}}</td>
+                            <td>{{select[0].Weight}}</td>
+                            <td>NT$ {{select[1]}}</td>
                             <td>{{selectProfileRank[index]}}</td>
                             <td>{{selectProfileRankValue[index]}}</td>
                         </tr>
@@ -307,19 +330,34 @@
                         </thead>
                         <tr align="center">
                             <td>
-                                <input type="text" value="" v-model="ProfileSpeed" placeholder="請輸入速度性">
+                                <v-text-field
+                                    label="請輸入速度性"
+                                    v-model="ProfileSpeed"
+                                ></v-text-field>
                             </td>
                             <td>
-                                <input type="text" value="" v-model="ProfileStructuralRisk" placeholder="請輸入結構風險">
+                                <v-text-field
+                                    label="請輸入結構風險"
+                                    v-model="ProfileStructuralRisk"
+                                ></v-text-field>
                             </td>
                             <td>
-                                <input type="text" value="" v-model="ProfileCorrosive" placeholder="請輸入腐蝕性">
+                                <v-text-field
+                                    label="請輸入腐蝕性"
+                                    v-model="ProfileCorrosive"
+                                ></v-text-field>
                             </td>
                             <td>
-                                <input type="text" value="" v-model="ProfileWeightiness" placeholder="請輸入重量性">
+                                <v-text-field
+                                    label="請輸入重量性"
+                                    v-model="ProfileWeightiness"
+                                ></v-text-field>
                             </td>
                             <td>
-                                <input type="text" value="" v-model="ProfileCost" placeholder="請輸入成本性">
+                                <v-text-field
+                                    label="請輸入成本性"
+                                    v-model="ProfileCost"
+                                ></v-text-field>
                             </td>
                         </tr>
                         <tr align="center">
@@ -344,8 +382,14 @@ export default {
     data(){
         return{
             MaterialCostjson: [],
+            LMEjson:[],
+            USDjson:[],
             PipeData:[],
             ProfileData:[],
+
+            USD:null,   // 美津
+            SteelPrice:null, //鋼料價格
+
 
             // 管材
             checkedPipe:[],
@@ -378,17 +422,61 @@ export default {
     },
     methods:{
         async getJson(){
+            // LME 倫敦金屬交易所
+            const LMEMetalPrice = await fetch('/LMEMetalPriceJSON',  {
+                method: 'GET',
+            });
+            this.LMEjson = await LMEMetalPrice.json();
+
             // 溫室構造成本
             const MaterialCostJSON = await fetch('/MaterialCostJSON',  {
                 method: 'GET',
             });
             this.MaterialCostjson = await MaterialCostJSON.json();
 
+            // 美金價格
+            const USDJSON = await fetch('/USDPriceJSON',  {
+                method: 'GET',
+            });
+            this.USDjson = await USDJSON.json();
+            this.USD = this.USDjson[0].USD; // 抓取美金價格
+
+            this.SteelPrice = Math.round(this.LMEjson[0][1]/this.USD)+1; //計算鋼料價格
+
             for (var i = 0; i < this.MaterialCostjson.length; i++) {
+                var data=[];
+                var dataCalculator=[];
+                var Cost = this.SteelPrice;
+
+                // dataCalculator 做 成本的計算
+                dataCalculator.push(this.MaterialCostjson[i].HighStrengthMaterial);
+                dataCalculator.push(this.MaterialCostjson[i].SteelBillet);
+                dataCalculator.push(this.MaterialCostjson[i].HotRolledSteelSheet);
+                dataCalculator.push(this.MaterialCostjson[i].ColdRolledSteelSheet);
+                dataCalculator.push(this.MaterialCostjson[i].ContinuousHotDipGalvanizing);
+                dataCalculator.push(this.MaterialCostjson[i].ContinuousPaint);
+                dataCalculator.push(this.MaterialCostjson[i].ColdForming);
+                dataCalculator.push(this.MaterialCostjson[i].Welding);
+                dataCalculator.push(this.MaterialCostjson[i].Processing);
+                dataCalculator.push(this.MaterialCostjson[i].AfterHotDipGalvanizing);
+                dataCalculator.push(this.MaterialCostjson[i].Galvalume);
+                dataCalculator.push(this.MaterialCostjson[i].MagnesiumAluminumZincPlating);
+                dataCalculator.push(this.MaterialCostjson[i].AfterBaking);
+
+                for(var j = 0; j < dataCalculator.length; j++) {
+                    if(dataCalculator[j] != " " && dataCalculator[j] !=""){
+                        Cost = Cost + parseFloat(dataCalculator[j]);
+                    }
+                }
+
                 if(this.MaterialCostjson[i].Type == "管材"){
-                    this.PipeData.push(this.MaterialCostjson[i]);
+                    data.push(this.MaterialCostjson[i]);
+                    data.push(Cost);
+                    this.PipeData.push(data);
                 }else if(this.MaterialCostjson[i].Type == "型材"){
-                    this.ProfileData.push(this.MaterialCostjson[i]);
+                    data.push(this.MaterialCostjson[i]);
+                    data.push(Cost);
+                    this.ProfileData.push(data);
                 }
             }
 
@@ -398,7 +486,7 @@ export default {
 
             for (var i = 0; i < this.PipeData.length; i++) {
                 for (var j = 0; j < this.checkedPipe.length; j++) {
-                    if(this.checkedPipe[j] == this.PipeData[i].id)  this.selectPipe.push(this.PipeData[i]);
+                    if(this.checkedPipe[j] == this.PipeData[i][0].id)  this.selectPipe.push(this.PipeData[i]);
                 }
             }
 
@@ -408,11 +496,11 @@ export default {
             var Compare = 0,selectComparelist = [],rank = [];
             // 計算 比較值
             for (var i = 0; i < this.selectPipe.length; i++) {
-                Compare = (this.selectPipe[i].Speed * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectPipe[i].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].Corrosive * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].Weight * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].Cost * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
+                Compare = (this.selectPipe[i][0].Speed * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectPipe[i][0].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Corrosive * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Weight * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][1] * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
                 Compare = Compare.toFixed(2);
 
                 rank = [];
-                rank.push(this.selectPipe[i].id);
+                rank.push(this.selectPipe[i][0].id);
                 rank.push(Compare);
                 rank.push(0);
                 selectComparelist.push(rank);
@@ -462,8 +550,9 @@ export default {
 
             for (var i = 0; i < this.ProfileData.length; i++) {
                 for (var j = 0; j < this.checkedProfile.length; j++) {
-                    if(this.checkedProfile[j] == this.ProfileData[i].id)  this.selectProfile.push(this.ProfileData[i]);
+                    if(this.checkedProfile[j] == this.ProfileData[i][0].id)  this.selectProfile.push(this.ProfileData[i]);
                 }
+
             }
 
         },updateProfileCompare(){
@@ -472,11 +561,11 @@ export default {
             var Compare = 0,selectComparelist = [],rank = [];
             // 計算 比較值
             for (var i = 0; i < this.selectProfile.length; i++) {
-                Compare = (this.selectProfile[i].Speed * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectProfile[i].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].Corrosive * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].Weight * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].Cost * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
+                Compare = (this.selectProfile[i][0].Speed * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectProfile[i][0].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Corrosive * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Weight * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][1] * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
                 Compare = Compare.toFixed(2);
 
                 rank = [];
-                rank.push(this.selectProfile[i].id);
+                rank.push(this.selectProfile[i][0].id);
                 rank.push(Compare);
                 rank.push(0);
                 selectComparelist.push(rank);

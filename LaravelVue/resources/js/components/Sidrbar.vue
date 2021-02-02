@@ -34,6 +34,10 @@
                             <b-icon icon="house-door"></b-icon> 首頁
                         </router-link>
 
+                        <router-link to="/test" class="nav-link" exact>
+                            <b-icon icon="hammer"></b-icon> 頁面測試
+                        </router-link>
+
                         <div class="sb-sidenav-menu-heading">測試</div>
                         <router-link to="/categories" class="nav-link" exact>
                             Categories

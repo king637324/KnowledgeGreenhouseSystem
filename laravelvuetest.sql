@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-01-18 02:59:19
+-- 產生時間： 2021-02-02 09:21:08
 -- 伺服器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -557,78 +557,74 @@ CREATE TABLE `lme_metal_prices` (
 --
 
 INSERT INTO `lme_metal_prices` (`MetalName`, `MetalPrice`, `MetalDate`, `MetalLink`) VALUES
-('廢鋼', 445.500, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
-('特種鋁合金', 2058.500, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
-('金', 1830.500, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
-('鈷', 37995.000, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
-('鉛', 1981.000, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
-('銀', 24.850, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
-('銅', 7979.500, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
-('鋁', 2000.500, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
-('鋁合金', 1974.500, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
-('鋅', 2698.500, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
-('鋼筋', 622.500, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
-('錫', 21495.000, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
-('鎳', 17970.000, 'US$:  15 January 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
+('廢鋼', 396.000, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
+('特種鋁合金', 1980.000, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
+('金', 1861.300, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
+('鈷', 41240.000, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
+('鉛', 2024.500, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
+('銀', 29.200, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
+('銅', 7827.000, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
+('鋁', 1985.500, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
+('鋁合金', 1965.500, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
+('鋅', 2548.500, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
+('鋼筋', 565.000, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
+('錫', 24325.000, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
+('鎳', 17807.000, 'US$:  1 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `materialcostanalysis`
+-- 資料表結構 `materialcosts`
 --
 
-CREATE TABLE `materialcostanalysis` (
-  `id` int(4) NOT NULL,
-  `Type` varchar(16) DEFAULT NULL,
-  `MaterialName` varchar(32) DEFAULT NULL,
-  `Steel` varchar(8) DEFAULT NULL,
-  `HighStrengthMaterial` varchar(8) DEFAULT NULL,
-  `SteelBillet` varchar(8) DEFAULT NULL,
-  `HotRolledSteelSheet` varchar(8) DEFAULT NULL,
-  `ColdRolledSteelSheet` varchar(8) DEFAULT NULL,
-  `ContinuousHotDipGalvanizing` varchar(8) DEFAULT NULL,
-  `ContinuousPaint` varchar(8) DEFAULT NULL,
-  `ColdForming` varchar(8) DEFAULT NULL,
-  `Welding` varchar(8) DEFAULT NULL,
-  `Processing` varchar(8) DEFAULT NULL,
-  `AfterHotDipGalvanizing` varchar(8) DEFAULT NULL,
-  `Galvalume` varchar(8) DEFAULT NULL,
-  `MagnesiumAluminumZincPlating` varchar(8) DEFAULT NULL,
-  `AfterBaking` varchar(8) DEFAULT NULL,
-  `Cost` varchar(8) DEFAULT NULL,
-  `Speed` varchar(8) DEFAULT NULL,
-  `StructuralRisk` varchar(8) DEFAULT NULL,
-  `Corrosive` varchar(8) DEFAULT NULL,
-  `Weight` varchar(8) DEFAULT NULL
+CREATE TABLE `materialcosts` (
+  `id` int(2) NOT NULL,
+  `Type` varchar(2) DEFAULT NULL,
+  `MaterialName` varchar(13) DEFAULT NULL,
+  `HighStrengthMaterial` varchar(1) DEFAULT NULL,
+  `SteelBillet` int(1) DEFAULT NULL,
+  `HotRolledSteelSheet` int(1) DEFAULT NULL,
+  `ColdRolledSteelSheet` varchar(1) DEFAULT NULL,
+  `ContinuousHotDipGalvanizing` varchar(1) DEFAULT NULL,
+  `ContinuousPaint` varchar(1) DEFAULT NULL,
+  `ColdForming` varchar(1) DEFAULT NULL,
+  `Welding` varchar(1) DEFAULT NULL,
+  `Processing` varchar(1) DEFAULT NULL,
+  `AfterHotDipGalvanizing` varchar(2) DEFAULT NULL,
+  `Galvalume` varchar(1) DEFAULT NULL,
+  `MagnesiumAluminumZincPlating` varchar(1) DEFAULT NULL,
+  `AfterBaking` varchar(1) DEFAULT NULL,
+  `Speed` int(2) DEFAULT NULL,
+  `StructuralRisk` int(2) DEFAULT NULL,
+  `Corrosive` int(2) DEFAULT NULL,
+  `Weight` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `materialcostanalysis`
+-- 傾印資料表的資料 `materialcosts`
 --
 
-INSERT INTO `materialcostanalysis` (`id`, `Type`, `MaterialName`, `Steel`, `HighStrengthMaterial`, `SteelBillet`, `HotRolledSteelSheet`, `ColdRolledSteelSheet`, `ContinuousHotDipGalvanizing`, `ContinuousPaint`, `ColdForming`, `Welding`, `Processing`, `AfterHotDipGalvanizing`, `Galvalume`, `MagnesiumAluminumZincPlating`, `AfterBaking`, `Cost`, `Speed`, `StructuralRisk`, `Corrosive`, `Weight`) VALUES
-(1, '', '成本', '12', '1', '3', '5', '3', '3', '2', '3', '3', '1', '10', '1', '2', '5', '54', '', '', '', ''),
-(2, '', '工期', ' ', '', ' ', '1', '1', '1', '1', '5', ' ', '1', '15', '', ' ', ' ', ' ', '', '', '', ''),
-(3, '管材', '冷彎熱軋鋼管', '12', ' ', '3', '5', ' ', ' ', ' ', '3', '3', '1', ' ', '', ' ', ' ', '27', '7', '10', '10', '10'),
-(4, '管材', '冷彎冷軋鋼管', '12', '', '3', '5', '3', ' ', ' ', '3', '3', '1', ' ', '', ' ', ' ', '30', '7', '10', '10', '10'),
-(5, '管材', '冷彎後鍍熱軋鋼管', '12', '', '3', '5', ' ', ' ', ' ', '3', '3', '1', '10', '', ' ', ' ', '37', '22', '8', '8', '9'),
-(6, '管材', '冷彎後鍍冷軋鋼管', '12', '', '3', '5', '3', ' ', ' ', '3', '3', '1', '12', '', ' ', ' ', '42', '21', '8', '7', '9'),
-(7, '管材', '冷彎預鍍熱軋鋼管', '12', '', '3', '5', ' ', '3', ' ', '5', '3', '1', ' ', '1', ' ', ' ', '33', '6', '6', '5', '8'),
-(8, '管材', '冷彎預鍍冷軋鋼管', '12', '', '3', '5', '3', '3', ' ', '5', '', '1', ' ', '1', ' ', ' ', '33', '6', '6', '5', '8'),
-(9, '管材', '冷彎預鍍熱軋鋼管+鎂鋁', '12', '', '3', '6', ' ', '3', ' ', '5', '', '1', ' ', '', '3', '', '33', '6', '4', '2', '6'),
-(10, '管材', '冷彎預鍍冷軋鋼管+鎂鋁', '12', '', '3', '6', '3', '3', ' ', '5', '', '1', ' ', '', '3', '', '36', '6', '4', '2', '6'),
-(11, '管材', '冷彎預鍍高強熱軋型鋼+鎂鋁', '12', '1', '3', '6', ' ', '3', ' ', '3', '', '2', ' ', '', '3', '', '33', '6', '3', '1', '5'),
-(12, '管材', '冷彎預鍍高強冷軋型鋼+鎂鋁', '12', '1', '3', '6', '3', '3', ' ', '3', '', '2', ' ', '', '3', '', '36', '6', '3', '1', '5'),
-(13, '型材', '熱軋型鋼', '12', '', '3', '5', ' ', ' ', ' ', ' ', '5', '5', '10', '', ' ', ' ', '40', '21', '12', '6', '20'),
-(14, '型材', '冷彎熱軋型鋼', '12', '', '3', '5', ' ', ' ', ' ', '3', '5', '5', '10', '', ' ', ' ', '43', '6', '10', '1', '20'),
-(15, '型材', '冷彎後鍍熱軋型鋼', '12', '', '3', '5', ' ', ' ', ' ', '3', '', '', '10', '', ' ', ' ', '33', '21', '12', '6', '20'),
-(16, '型材', '冷彎後鍍冷軋型鋼', '12', '', '3', '5', '3', ' ', ' ', '3', '', '', '12', '', ' ', ' ', '38', '21', '13', '8', '18'),
-(17, '型材', '冷彎預鍍熱軋型鋼', '12', '', '3', '5', ' ', '3', ' ', '5', '', '', ' ', '1', ' ', ' ', '29', '6', '15', '10', '20'),
-(18, '型材', '冷彎預鍍冷軋型鋼', '12', '', '3', '5', '3', '3', ' ', '5', '', '', ' ', '1', ' ', ' ', '32', '6', '16', '12', '18'),
-(19, '型材', '冷彎預鍍熱軋型鋼+鎂鋁', '12', '', '3', '6', ' ', '3', ' ', '5', '', '', ' ', '', '3', '', '32', '6', '18', '18', '16'),
-(20, '型材', '冷彎預鍍冷軋型鋼+鎂鋁', '12', '', '3', '6', '3', '3', ' ', '5', '', '', ' ', '', '3', '', '35', '6', '20', '20', '16'),
-(21, '型材', '冷彎預鍍熱軋高強型鋼+鎂鋁', '12', '1', '3', '6', ' ', '3', ' ', '3', '', '2', ' ', '', '3', '', '33', '6', '23', '20', '14'),
-(22, '型材', '冷彎預鍍冷軋高強型鋼+鎂鋁', '12', '1', '3', '6', '3', '3', ' ', '3', '', '2', ' ', '', '3', '', '36', '6', '23', '20', '14');
+INSERT INTO `materialcosts` (`id`, `Type`, `MaterialName`, `HighStrengthMaterial`, `SteelBillet`, `HotRolledSteelSheet`, `ColdRolledSteelSheet`, `ContinuousHotDipGalvanizing`, `ContinuousPaint`, `ColdForming`, `Welding`, `Processing`, `AfterHotDipGalvanizing`, `Galvalume`, `MagnesiumAluminumZincPlating`, `AfterBaking`, `Speed`, `StructuralRisk`, `Corrosive`, `Weight`) VALUES
+(1, '管材', '冷彎熱軋鋼管', ' ', 3, 5, ' ', ' ', ' ', '3', '3', '1', ' ', '', ' ', ' ', 7, 10, 10, 10),
+(2, '管材', '冷彎冷軋鋼管', '', 3, 5, '3', ' ', ' ', '3', '3', '1', ' ', '', ' ', ' ', 7, 10, 10, 10),
+(3, '管材', '冷彎後鍍熱軋鋼管', '', 3, 5, ' ', ' ', ' ', '3', '3', '1', '10', '', ' ', ' ', 22, 8, 8, 9),
+(4, '管材', '冷彎後鍍冷軋鋼管', '', 3, 5, '3', ' ', ' ', '3', '3', '1', '12', '', ' ', ' ', 21, 8, 7, 9),
+(5, '管材', '冷彎預鍍熱軋鋼管', '', 3, 5, ' ', '3', ' ', '5', '3', '1', ' ', '1', ' ', ' ', 6, 6, 5, 8),
+(6, '管材', '冷彎預鍍冷軋鋼管', '', 3, 5, '3', '3', ' ', '5', '', '1', ' ', '1', ' ', ' ', 6, 6, 5, 8),
+(7, '管材', '冷彎預鍍熱軋鋼管+鎂鋁', '', 3, 6, ' ', '3', ' ', '5', '', '1', ' ', '', '3', '', 6, 4, 2, 6),
+(8, '管材', '冷彎預鍍冷軋鋼管+鎂鋁', '', 3, 6, '3', '3', ' ', '5', '', '1', ' ', '', '3', '', 6, 4, 2, 6),
+(9, '管材', '冷彎預鍍高強熱軋型鋼+鎂鋁', '1', 3, 6, ' ', '3', ' ', '3', '', '2', ' ', '', '3', '', 6, 3, 1, 5),
+(10, '管材', '冷彎預鍍高強冷軋型鋼+鎂鋁', '1', 3, 6, '3', '3', ' ', '3', '', '2', ' ', '', '3', '', 6, 3, 1, 5),
+(11, '型材', '熱軋型鋼', '', 3, 5, ' ', ' ', ' ', ' ', '5', '5', '10', '', ' ', ' ', 21, 12, 6, 20),
+(12, '型材', '冷彎熱軋型鋼', '', 3, 5, ' ', ' ', ' ', '3', '5', '5', '10', '', ' ', ' ', 6, 10, 1, 20),
+(13, '型材', '冷彎後鍍熱軋型鋼', '', 3, 5, ' ', ' ', ' ', '3', '', '', '10', '', ' ', ' ', 21, 12, 6, 20),
+(14, '型材', '冷彎後鍍冷軋型鋼', '', 3, 5, '3', ' ', ' ', '3', '', '', '12', '', ' ', ' ', 21, 13, 8, 18),
+(15, '型材', '冷彎預鍍熱軋型鋼', '', 3, 5, ' ', '3', ' ', '5', '', '', ' ', '1', ' ', ' ', 6, 15, 10, 20),
+(16, '型材', '冷彎預鍍冷軋型鋼', '', 3, 5, '3', '3', ' ', '5', '', '', ' ', '1', ' ', ' ', 6, 16, 12, 18),
+(17, '型材', '冷彎預鍍熱軋型鋼+鎂鋁', '', 3, 6, ' ', '3', ' ', '5', '', '', ' ', '', '3', '', 6, 18, 18, 16),
+(18, '型材', '冷彎預鍍冷軋型鋼+鎂鋁', '', 3, 6, '3', '3', ' ', '5', '', '', ' ', '', '3', '', 6, 20, 20, 16),
+(19, '型材', '冷彎預鍍熱軋高強型鋼+鎂鋁', '1', 3, 6, ' ', '3', ' ', '3', '', '2', ' ', '', '3', '', 6, 23, 20, 14),
+(20, '型材', '冷彎預鍍冷軋高強型鋼+鎂鋁', '1', 3, 6, '3', '3', ' ', '3', '', '2', ' ', '', '3', '', 6, 23, 20, 14);
 
 -- --------------------------------------------------------
 
@@ -1299,6 +1295,24 @@ INSERT INTO `trussroofcombinationchanges` (`item`, `StructureForm`, `StructureAn
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `usdollars`
+--
+
+CREATE TABLE `usdollars` (
+  `id` int(1) NOT NULL,
+  `USD` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `usdollars`
+--
+
+INSERT INTO `usdollars` (`id`, `USD`) VALUES
+(1, '28.025');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `users`
 --
 
@@ -1536,9 +1550,9 @@ ALTER TABLE `lme_metal_prices`
   ADD PRIMARY KEY (`MetalName`);
 
 --
--- 資料表索引 `materialcostanalysis`
+-- 資料表索引 `materialcosts`
 --
-ALTER TABLE `materialcostanalysis`
+ALTER TABLE `materialcosts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1609,6 +1623,12 @@ ALTER TABLE `trussroofcombinationchanges`
   ADD PRIMARY KEY (`item`);
 
 --
+-- 資料表索引 `usdollars`
+--
+ALTER TABLE `usdollars`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `users`
 --
 ALTER TABLE `users`
@@ -1656,12 +1676,6 @@ ALTER TABLE `knowledgeeditors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `materialcostanalysis`
---
-ALTER TABLE `materialcostanalysis`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
 -- 使用資料表自動遞增(AUTO_INCREMENT) `materialformats`
 --
 ALTER TABLE `materialformats`
@@ -1678,6 +1692,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `structuralanalysis`
   MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `usdollars`
+--
+ALTER TABLE `usdollars`
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`

@@ -1,4 +1,4 @@
- id,Type,MaterialName,Steel,High-strengthMaterial,SteelBillet,HotRolledSteelSheet,ColdRolledSteelSheet,ContinuousHotDipGalvanizing,ContinuousPaint,ColdForming,Welding,Processing,AfterHotDipGalvanizing,Galvalume,MagnesiumAluminumZincPlating,AfterBaking,Cost,Speed,StructuralRisk,Corrosive,Weight
+id,Type,MaterialName,Steel,High-strengthMaterial,SteelBillet,HotRolledSteelSheet,ColdRolledSteelSheet,ContinuousHotDipGalvanizing,ContinuousPaint,ColdForming,Welding,Processing,AfterHotDipGalvanizing,Galvalume,MagnesiumAluminumZincPlating,AfterBaking,Cost,Speed,StructuralRisk,Corrosive,Weight
 1,,成本,12,1,3,5,3,3,2,3,3,1,10,1,2,5,54,,,,
 2,,工期, ,, ,1,1,1,1,5, ,1,15,, , , ,,,,
 3,管材,冷彎熱軋鋼管,12, ,3,5, , , ,3,3,1, ,, , ,27,7,10,10,10

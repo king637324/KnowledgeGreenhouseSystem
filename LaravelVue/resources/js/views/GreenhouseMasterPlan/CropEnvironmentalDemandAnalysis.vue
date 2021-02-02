@@ -8,7 +8,11 @@
         <div class="d-flex justify-content-around">
             <div class="p-2 w-100 bd-highlight">
                 <b-card-group deck>
-                    <b-card header-tag="header">
+                    <b-card
+                        header-tag="header"
+                        header-text-variant="white"
+                        header-bg-variant="info"
+                    >
                         <template #header>
                             <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長環境需求</h6>
                         </template>
@@ -83,11 +87,16 @@
                                     <td id="CO2IncreasedProductionRate" colspan="6"> {{CO2IncreasedProductionRate}} </td>
                                 </tr>
                             </table>
+                            <h6>備註： - 為尚無資料</h6>
                         </b-card-text>
                     </b-card>
 
                     <!-- 栽種面積 -->
-                    <b-card header-tag="header">
+                    <b-card
+                        header-tag="header"
+                        header-text-variant="white"
+                        header-bg-variant="info"
+                    >
                         <template #header>
                             <h6 class="mb-0"><b-icon icon="brightness-alt-high"></b-icon> 栽種面積(單位：公尺)</h6>
                         </template>
@@ -139,9 +148,15 @@
                     </b-card>
                 </b-card-group>
 
+                <br><br>
+
                 <b-card-group deck>
                     <!-- 種植地區環境分析 -->
-                    <b-card header-tag="header">
+                    <b-card
+                        header-tag="header"
+                        header-text-variant="white"
+                        header-bg-variant="info"
+                    >
                         <template #header>
                             <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 種植地區環境分析</h6>
                         </template>
@@ -226,8 +241,14 @@
 
                     </b-card>
 
+                    <br>
+
                     <!-- 作物與地區溫度比較 -->
-                    <b-card header-tag="header">
+                    <b-card
+                        header-tag="header"
+                        header-text-variant="white"
+                        header-bg-variant="info"
+                    >
                         <template #header>
                             <h6 class="mb-0"><i class="fas fa-chart-area"></i> 作物與地區溫度比較</h6>
                         </template>
@@ -284,6 +305,8 @@
                                     </td>
                                 </tr>
                             </table>
+                            <h6>備註： - 為不須動作</h6>
+
                         </b-card-text>
 
                     </b-card>
@@ -317,7 +340,10 @@
                         </table>
 
                         <p style = "font-size: 1.5vmin;"><br>備註：<br>金屬價格走勢圖請點選金屬材料</p>
-                        <p style = "font-size: 1.5vmin;">資料來源：<a href="https://www.lme.com/" target="_blank" style="color:gray;">倫敦金屬交易所</a></p>
+                        <p style = "font-size: 1.5vmin;">
+                            資料來源：
+                            <a href="https://www.lme.com/" target="_blank" style="color:gray;">倫敦金屬交易所</a>
+                        </p>
                     </div>
                     <div class="p-2"></div>
                 </div>
@@ -325,7 +351,11 @@
         </div>
 
         <!-- <b-card-group deck>
-            <b-card header-tag="header">
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
                 <template #header>
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 分 析</h6>
                 </template>
@@ -335,7 +365,11 @@
 
             </b-card>
 
-            <b-card header-tag="header">
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
                 <template #header>
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 分 析</h6>
                 </template>

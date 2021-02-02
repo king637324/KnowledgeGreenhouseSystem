@@ -54,11 +54,16 @@ use App\Http\Controllers\GreenhouseMasterPlan\CropController;
 Route::get('/VegetableJSON',[CropController::class, 'getJSON_Vegetable']);
 Route::get('/LMEMetalPriceJSON',[CropController::class, 'LME']);  // 倫敦金屬交易所的金屬價格
 
+
+
 use App\Http\Controllers\GreenhouseMasterPlan\CostAnalysisController;
 // 溫室總體規劃設計－成本分析
+Route::get('/USDPriceJSON',[CostAnalysisController::class, 'getJSON_USD']);  // 台灣銀行美金即期賣出價格
 Route::get('/GreenhouseCostJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCost']);    // 溫室構造成本分析
 Route::get('/GreenhouseCostRatioJSON',[CostAnalysisController::class, 'getJSON_GreenhouseCostRatio']);
 Route::get('/MaterialCostJSON',[CostAnalysisController::class, 'getJSON_MaterialCost']);    // 溫室材料成本分析
+
+
 
 use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
 Route::get('/KnowledgeJSON',[KnowledgeEditorController::class, 'getJSON_Knowledge']);    // 知識庫的資料
