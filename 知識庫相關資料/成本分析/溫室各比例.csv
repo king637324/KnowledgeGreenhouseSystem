@@ -1,4 +1,4 @@
-id,GreenhouseType,BuildBranch,Cost,StructuralRisk,JobDifficulty
+﻿id,GreenhouseType,BuildBranch,Cost,StructuralRisk,JobDifficulty
 1,簡易型溫室,溫室管材,20%,15%,10%
 2,簡易型溫室,圓頂形式,10%,15%,10%
 3,簡易型溫室,圓拱距,10%,10%,10%

@@ -4,6 +4,10 @@
         <h2>溫室構造成本分析</h2>
         <hr>
 
+        <b-form-select v-model="ExpertParameterSelected" :options="options" v-on:change="check">
+
+        </b-form-select>
+
         <!-- 簡易型溫室 -->
         <b-card-group deck>
             <!-- 簡 易 型 溫 室 成 本 選 擇 -->
@@ -729,6 +733,14 @@ export default {
             RobustStructuralRiskAdd:0,
             RobustJobDifficultyAdd:0,
 
+            ExpertParameterSelected: null,
+            options: [
+                { value: null, text: '請選擇身分' ,disabled:true },
+                { value: '農民', text: '農民' },
+                { value: '業者', text: '業者' },
+                { value: '專家', text: '專家' },
+            ],
+
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -822,6 +834,8 @@ export default {
             this.RobustStructuralRiskAdd =  this.RobustStructuralRiskAdd.toFixed(2);
             this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
 
+        },check(){
+            console.log(this.ExpertParameterSelected);
         }
     }
 }

@@ -36,8 +36,8 @@
                         <td> 最適溫 </td>
                         <td> 最高溫 </td>
                         <td> 最低溫 </td>
-                        <td> 最高溫 </td>
                         <td> 最適溫 </td>
+                        <td> 最高溫 </td>
                     </tr>
                 </thead>
 
@@ -55,8 +55,8 @@
                     <td> {{crop.OptimalGrowthTemperature}} </td>
                     <td> {{crop.HighestGrowthTemperature}} </td>
                     <td> {{crop.LowestGerminationTemperature}} </td>
-                    <td> {{crop.HighestGerminationTemperature}} </td>
                     <td> {{crop.OptimumGerminationTemperature}} </td>
+                    <td> {{crop.HighestGerminationTemperature}} </td>
                     <td> {{crop.CO2IncreasedProductionRate}} </td>
                 </tr>
             </table>

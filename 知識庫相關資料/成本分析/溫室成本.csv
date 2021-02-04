@@ -1,4 +1,4 @@
-id,GreenhouseType,BuildBranch,BuildItem,Cost,StructuralRisk,JobDifficulty
+﻿id,GreenhouseType,BuildBranch,BuildItem,Cost,StructuralRisk,JobDifficulty
 1,簡易型溫室,溫室管材,標準管材,1,1,1
 2,簡易型溫室,溫室管材,高強管材,1.1,0.9,0.95
 3,簡易型溫室,溫室管材,耐蝕管材,1.05,0.95,0.95

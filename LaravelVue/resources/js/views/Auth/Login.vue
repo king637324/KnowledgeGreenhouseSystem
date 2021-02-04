@@ -83,7 +83,7 @@ export default {
                 {name:"Register", icon:"mdi-account-outline"}
             ],
             valid: true,
-            
+
             Name: "",
             phone: "",
             email: "",
@@ -104,13 +104,14 @@ export default {
             rules: {
             required: value => !!value || "錯誤",
             min: v => (v && v.length >= 8) || "最少八個字"
-            },selected: null,
+            },
+            selected: null,
             options: [
-          { value: null, text: '請選擇身分' ,disabled:true },
-          { value: '農民', text: '農民' },
-          { value: '業者', text: '業者' },
-          { value: '專家', text: '專家' },
-        ],
+                { value: null, text: '請選擇身分' ,disabled:true },
+                { value: '農民', text: '農民' },
+                { value: '業者', text: '業者' },
+                { value: '專家', text: '專家' },
+            ],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入

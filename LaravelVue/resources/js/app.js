@@ -18,6 +18,9 @@ import vSelect from 'vue-select'
 import VJstree from 'vue-jstree'
 import VueTreeNavigation from 'vue-tree-navigation';
 import CKEditor from 'ckeditor4-vue';
+
+import bearer from 'bearer'
+
 var VueScrollTo = require('vue-scrollto');
 
 
@@ -43,8 +46,26 @@ new Vue({
     axios,
     render: h => h(App)
 });
-export default new Vuetify({
+new Vuetify({
     icons: {
         iconfont: 'md', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
     },
 })
+
+
+// Auth base configuration some of this options
+// can be override in method calls
+const config = {
+    auth: bearer,
+    http: axios,
+    router: router,
+    tokenDefaultName: 'laravel-vue-spa',
+    tokenStore: ['localStorage'],
+    rolesVar: 'role',
+    registerData: { url: 'auth/register', method: 'POST', redirect: '/login' },
+    loginData: { url: 'auth/login', method: 'POST', redirect: '', fetchUser: true },
+    logoutData: { url: 'auth/logout', method: 'POST', redirect: '/', makeRequest: true },
+    fetchData: { url: 'auth/user', method: 'GET', enabled: true },
+    refreshData: { url: 'auth/refresh', method: 'GET', enabled: true, interval: 30 }
+}
+export default config
