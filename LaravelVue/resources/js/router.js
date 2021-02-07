@@ -47,101 +47,174 @@ Vue.use(VueRouter);
 const routes = [{
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    meta: {
+        auth: false
+      }
+    
         // name: 'welcome',
         // component: Welcome
 }, {
     path: '/Auth/Login',
     name: '使用者登入',
     component: Auth_Login,
+    meta: {
+        auth: false
+      }
 }, {
     path: '/MaterialsAndDesignKnowledgeBase/Article',
     name: '材料與設計知識庫',
     component: GreenhouseTechnologyKnowledgeBase_MaterialsAndDesignKnowledgeBase,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/MaterialsAndDesignKnowledgeBase/AddArticle',
     name: '材料與設計知識庫新增',
-    component: GreenhouseTechnologyKnowledgeBase_AddKnowledgeBase
+    component: GreenhouseTechnologyKnowledgeBase_AddKnowledgeBase,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/MaterialsAndDesignKnowledgeBase/EditArticle/:id',
     name: '材料與設計知識庫編輯',
-    component: GreenhouseTechnologyKnowledgeBase_EditKnowledgeBase
+    component: GreenhouseTechnologyKnowledgeBase_EditKnowledgeBase,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseFluidAnalysis/SimpleGreenhouse',
     name: '溫室流體分析-簡易溫室',
-    component: GreenhouseFluidAnalysis_SimpleGreenhouse
+    component: GreenhouseFluidAnalysis_SimpleGreenhouse,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseFluidAnalysis/DomeGreenhouse',
     name: '溫室流體分析-圓頂溫室',
-    component: GreenhouseFluidAnalysis_DomeGreenhouse
+    component: GreenhouseFluidAnalysis_DomeGreenhouse,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseFluidAnalysis/MountainGreenhouse',
     name: '溫室流體分析-山型溫室',
-    component: GreenhouseFluidAnalysis_MountainGreenhouse
+    component: GreenhouseFluidAnalysis_MountainGreenhouse,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseFluidAnalysis/InclinedRoofGreenhouse',
     name: '溫室流體分析-斜頂溫室',
-    component: GreenhouseFluidAnalysis_InclinedRoofGreenhouse
+    component: GreenhouseFluidAnalysis_InclinedRoofGreenhouse,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseFluidAnalysis/GreenhouseWindPressureChart',
     name: '溫室流體分析-風壓型式比較',
-    component: GreenhouseFluidAnalysis_GreenhouseWindPressureChart
+    component: GreenhouseFluidAnalysis_GreenhouseWindPressureChart,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/MaterialStructureAnalysis/RoundPipe',
     name: '材料結構分析-圓管材',
-    component: MaterialStructureAnalysis_RoundPipe
+    component: MaterialStructureAnalysis_RoundPipe,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/MaterialStructureAnalysis/ProfilePipe',
     name: '材料結構分析-型管材',
-    component: MaterialStructureAnalysis_ProfilePipe
+    component: MaterialStructureAnalysis_ProfilePipe,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/MaterialStructureAnalysis/Truss',
     name: '材料結構分析-桁架',
-    component: MaterialStructureAnalysis_Truss
+    component: MaterialStructureAnalysis_Truss,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseStructureAnalysis/RobustGreenhouse',
     name: '溫室結構分析-強固型溫室',
-    component: GreenhouseStructureAnalysis_RobustGreenhouse
+    component: GreenhouseStructureAnalysis_RobustGreenhouse,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseStructureAnalysis/SimpleGreenhouse',
     name: '溫室結構分析-簡易型溫室',
-    component: GreenhouseStructureAnalysis_SimpleGreenhouse
+    component: GreenhouseStructureAnalysis_SimpleGreenhouse,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseMasterPlan/GeographicalEnvironmentAnalysis',
     name: '地理環境分析',
-    component: GreenhouseMasterPlan_GeographicalEnvironmentAnalysis
+    component: GreenhouseMasterPlan_GeographicalEnvironmentAnalysis,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseMasterPlan/CropSelection',
     name: '溫室作物選擇',
-    component: GreenhouseMasterPlan_CropSelection
+    component: GreenhouseMasterPlan_CropSelection,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis',
     name: '作物環境分析',
-    component: GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis
+    component: GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis',
     name: '溫室構造成本分析',
-    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis
+    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis',
     name: '溫室材料成本分析',
-    component: GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis
+    component: GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/Q&A',
     name: '常見問題Q&A',
     component: QandA,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/UnitConversion',
     name: '各單位換算',
-    component: UnitConversion
+    component: UnitConversion,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/categories',
     name: 'categories',
-    component: Categories
+    component: Categories,
+    meta: {
+        auth: undefined
+      }
 }, {
     path: '/123',
     name: 'welcome',
-    component: Welcome
+    component: Welcome,
+    meta: {
+        auth: undefined
+      }
 }];
 
 const router = new VueRouter({
