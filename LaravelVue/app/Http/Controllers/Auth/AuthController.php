@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,7 @@ class AuthController extends Controller
     {
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
-            'password'  => 'required|min:3|confirmed',
+            'password'  => 'required|min:3|',
         ]);
         if ($v->fails())
         {
@@ -24,7 +25,13 @@ class AuthController extends Controller
             ], 422);
         }
         $user = new User;
+        $user->name = $request->name;
         $user->email = $request->email;
+        $user->phoneNumber=$request->phoneNumber;
+        $user->identity=$request->identity;
+        $user->isadmin=1;
+        $user->status=1;
+
         $user->password = bcrypt($request->password);
         $user->save();
         return response()->json(['status' => 'success'], 200);

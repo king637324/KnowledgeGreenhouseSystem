@@ -49,13 +49,13 @@ const routes = [{
     name: 'home',
     component: Home,
     meta: {
-        auth: undefined
+        auth: true
       }
     
         // name: 'welcome',
         // component: Welcome
 }, {
-    path: '/Auth/Login',
+    path: '/login',
     name: '使用者登入',
     component: Auth_Login,
     meta: {

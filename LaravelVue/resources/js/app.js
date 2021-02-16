@@ -32,17 +32,17 @@ import VJstree from 'vue-jstree'
 import VueTreeNavigation from 'vue-tree-navigation';
 import CKEditor from 'ckeditor4-vue';
 import bearer from 'bearer'
-import Auth from './auth'
+import auth from './auth'
 var VueScrollTo = require('vue-scrollto');
 
 
 Vue.component('v-select', vSelect)
 
 Vue.use(VueAxios, axios)
-axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api`
+axios.defaults.baseURL = `/api`
 Vue.use(VueAuth,{
     plugins: {
-        http: Vue.axios, // Axios
+        http: axios, // Axios
         // http: Vue.http, // Vue Resource
         router: router,
     },
@@ -50,13 +50,24 @@ Vue.use(VueAuth,{
         auth: driverAuthBearer,
         http: driverHttpAxios,
         router: driverRouterVueRouter,
+        
 
     },
     options: {
         rolesKey: 'type',
         notFoundRedirect: {name: 'user-account'},
+        tokenDefaultName: 'laravel-vue-spa',
+        tokenStore: ['localStorage'],
+        rolesVar: 'role',
+        registerData: {url: 'auth/register', method: 'POST', redirect: '/Auth/login'},
+        loginData: {url: 'auth/login', method: 'POST', redirect: '', fetchUser: true},
+        logoutData: {url: 'auth/logout', method: 'POST', redirect: '/', makeRequest: true},
+        fetchData: {url: 'auth/user', method: 'GET', enabled: true},
+        refreshData: {url: 'auth/refresh', method: 'GET', enabled: true, interval: 30}
     }
 });
+Vue.use(VueAuth, auth)
+
 Vue.use(VJstree);
 Vue.use(VueTreeNavigation);
 Vue.use(Vuetify)

@@ -23,7 +23,7 @@
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
-                                            <v-btn x-large block :disabled="!valid" color="green" @click="validate"> Login </v-btn>
+                                            <v-btn x-large block :disabled="!valid" color="green" @click="Login"> Login </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -45,7 +45,7 @@
                                             <v-text-field v-model="email" :rules="emailRules" label="信箱帳號" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                        <b-form-select :required='selected==null' v-model="selected" :options="options" >
+                                        <b-form-select :required='identity==null' v-model="identity" :options="options" >
 
                                         </b-form-select>
                                         </v-col>
@@ -59,7 +59,7 @@
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
-                                            <v-btn x-large block :disabled="!valid" color="green" @click="validate">Register</v-btn>
+                                            <v-btn x-large block :disabled="!valid" color="green" @click="Register">Register</v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -83,10 +83,12 @@ export default {
                 {name:"Register", icon:"mdi-account-outline"}
             ],
             valid: true,
-
+            errors: {},
+            success: false,
             Name: "",
             phone: "",
             email: "",
+            phone:"",
             password: "",
             verify: "",
             loginPassword: "",
@@ -105,7 +107,7 @@ export default {
             required: value => !!value || "錯誤",
             min: v => (v && v.length >= 8) || "最少八個字"
             },
-            selected: null,
+            identity: null,
             options: [
                 { value: null, text: '請選擇身分' ,disabled:true },
                 { value: '農民', text: '農民' },
@@ -123,11 +125,36 @@ export default {
     }
   },
     methods:{
+        
+        Login(){
 
-        validate() {
-            if (this.$refs.loginForm.validate()) {
+
+        },
+        Register() {
+            if (this.$refs.registerForm.validate()) {
                 // submit form to server/API here...
+        var app = this
+        this.$auth.register({
+          data: {
+            name:app.Name,
+            phoneNumber:app.phone,
+            email: app.email,
+            password: app.password,
+            identity: app.identity,
+            password_confirmation: app.password_confirmation
 
+          },
+          success: function () {
+            app.success = true
+            this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
+          },
+          error: function (res) {
+            console.log(res.response)
+            app.has_error = true
+            app.error = res.response.data.error
+            app.errors = res.response.data.errors || {}
+          }
+        })
             }
         },
         reset() {
