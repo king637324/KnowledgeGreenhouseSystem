@@ -133,8 +133,8 @@ export default {
             var app = this
             this.$auth.login({
                 params: {
-                    email: app.email,
-                    password: app.password
+                    email: app.loginEmail,
+                    password: app.loginPassword
                 },
                 success: function() {
                     // handle redirection
