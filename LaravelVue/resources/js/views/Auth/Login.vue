@@ -8,6 +8,7 @@
                         <v-icon large>{{ i.icon }}</v-icon>
                         <div class="caption py-1">{{ i.name }}</div>
                     </v-tab>
+                    <!-- 登入 -->
                     <v-tab-item>
                         <v-card class="px-4">
                             <v-card-text>
@@ -30,24 +31,29 @@
                             </v-card-text>
                         </v-card>
                     </v-tab-item>
+
+                    <!-- 註冊 -->
                     <v-tab-item>
                         <v-card class="px-4">
                             <v-card-text>
                                 <v-form ref="registerForm" v-model="valid" lazy-validation>
                                     <v-row>
-                                        <v-col cols="12" sm="6" md="6">
+                                        <v-col cols="12">
+                                            <b-form-select :required='identity==null' v-model="identity" :options="options" >
+
+                                            </b-form-select>
+                                        </v-col>
+                                        <v-col cols="12">
                                             <v-text-field v-model="Name" :rules="[rules.required]" label="姓名" maxlength="20" required></v-text-field>
                                         </v-col>
-                                        <v-col cols="12" sm="6" md="6">
+                                        <v-col cols="12">
                                             <v-text-field v-model="phone" :rules="[rules.required]" label="手機" maxlength="20" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field v-model="email" :rules="emailRules" label="信箱帳號" required></v-text-field>
+                                            <v-text-field v-model="companyname" :rules="[rules.required]" label="所屬公司" maxlength="20" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                        <b-form-select :required='identity==null' v-model="identity" :options="options" >
-
-                                        </b-form-select>
+                                            <v-text-field v-model="email" :rules="emailRules" label="信箱帳號" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
                                             <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="密碼" hint="至少八個字" counter @click:append="show1 = !show1"></v-text-field>
@@ -89,6 +95,7 @@ export default {
             phone: "",
             email: "",
             phone:"",
+            companyname:"",
             password: "",
             verify: "",
             loginPassword: "",
@@ -104,8 +111,8 @@ export default {
 
             show1: false,
             rules: {
-            required: value => !!value || "錯誤",
-            min: v => (v && v.length >= 8) || "最少八個字"
+                required: value => !!value || "錯誤",
+                min: v => (v && v.length >= 8) || "最少八個字"
             },
             identity: null,
             options: [
@@ -119,11 +126,11 @@ export default {
     created:function(){  // 網頁載入時，一開始就載入
 
     },
-      computed: {
-    passwordMatch() {
-      return () => this.password === this.verify || "Password must match";
-    }
-  },
+    computed: {
+        passwordMatch() {
+            return () => this.password === this.verify || "Password must match";
+        }
+    },
     methods:{
 
         Login(){
@@ -136,44 +143,63 @@ export default {
                     email: app.loginEmail,
                     password: app.loginPassword
                 },
-                success: function() {
-                    // handle redirection
-                    const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
-                    this.$router.push({name: redirectTo})
+
+                // success: function() {
+                //     // handle redirection
+                //     console.log("登入成功");
+                //     const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
+                //     this.$router.push({name: redirectTo})
+                // },
+                // error: function() {
+                //     console.log("登入失敗");
+                //     app.has_error = true
+                // },
+
+                success: (rsp) => {
+                    console.log("登入成功");
+                    console.log(rsp);
                 },
-                error: function() {
-                    app.has_error = true
+                error: (rsp) => {
+                    console.log("登入失敗");
+                    console.log(rsp);
                 },
+
+
+                redirect: {name: 'home'},   // 註冊路徑時的name
                 rememberMe: true,
                 fetchUser: true
             })
-
         },
         Register() {
+            console.log("Register裡面");
             if (this.$refs.registerForm.validate()) {
                 // submit form to server/API here...
-        var app = this
-        this.$auth.register({
-          data: {
-            name:app.Name,
-            phoneNumber:app.phone,
-            email: app.email,
-            password: app.password,
-            identity: app.identity,
-            password_confirmation: app.password_confirmation
+                var app = this
+                this.$auth.register({
+                    data: {
+                        name:app.Name,
+                        phoneNumber:app.phone,
+                        email: app.email,
+                        password: app.password,
+                        companyname: app.companyname,
+                        identity: app.identity,
+                        password_confirmation: app.password_confirmation
 
-          },
-          success: function () {
-            app.success = true
-            this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
-          },
-          error: function (res) {
-            console.log(res.response)
-            app.has_error = true
-            app.error = res.response.data.error
-            app.errors = res.response.data.errors || {}
-          }
-        })
+                    },
+                    redirect: {name: 'home'},   // 註冊路徑時的name
+                    autoLogin: true,
+
+                    // success: function () {
+                    //     app.success = true
+                    //     this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
+                    // },
+                    // error: function (res) {
+                    //     console.log(res.response)
+                    //     app.has_error = true
+                    //     app.error = res.response.data.error
+                    //     app.errors = res.response.data.errors || {}
+                    // }
+                })
             }
         },
         reset() {

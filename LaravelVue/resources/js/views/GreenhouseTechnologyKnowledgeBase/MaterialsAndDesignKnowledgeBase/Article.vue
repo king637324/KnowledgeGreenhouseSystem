@@ -17,8 +17,11 @@
                         {{data[1]}}
                     </option>
                 </b-select>
-
-                <a class="btn btn-primary" href = "/#/MaterialsAndDesignKnowledgeBase/AddArticle"><span class="fa fa-plus"></span> 新 增 知 識</a>
+                <div v-if="$auth.check()">
+                    <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                        <a class="btn btn-primary" href = "/#/MaterialsAndDesignKnowledgeBase/AddArticle"><span class="fa fa-plus"></span> 新 增 知 識</a>
+                    </div>
+                </div>
 
                 <v-treeview
                     activatable
@@ -51,11 +54,15 @@
                             最後修改日：{{KnowledgeContent[4]}}
                         </h6>
                     </div>
-                    <div class="p-2 bd-highlight">
+
+                    <div v-if="$auth.check()">
+                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+
                         <!-- 修改 -->
                         <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a>
                         <!-- 刪除 -->
-                        <button class="btn btn-danger btn-sm"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
+                        <button class="btn btn-danger"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -86,6 +93,7 @@ export default {
     },
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
+        // console.log(this.$auth.user());
     },
     methods: {
         async getJson(){

@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    // 將資料庫的User資料表  轉成JSON
+    public function getJSON_User(){
+        $user = User::get();
+        return $user;
+    }
+
     // 註冊
-    public function register(Request $request)
-    {
+    public function register(Request $request){
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'password'  => 'required|min:3|',
@@ -27,10 +32,11 @@ class AuthController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->phoneNumber=$request->phoneNumber;
-        $user->identity=$request->identity;
-        $user->isadmin=1;
-        $user->status=1;
+        $user->companyname = $request->companyname;
+        $user->phoneNumber = $request->phoneNumber;
+        $user->identity = $request->identity;
+        $user->isadmin = 0;
+        $user->status = '正常';
 
         $user->password = bcrypt($request->password);
         $user->save();
@@ -38,8 +44,7 @@ class AuthController extends Controller
     }
 
     // 登入
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $credentials = $request->only('email', 'password');
         if ($token = $this->guard()->attempt($credentials)) {
             return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
@@ -48,8 +53,7 @@ class AuthController extends Controller
     }
 
     // 登出
-    public function logout()
-    {
+    public function logout(){
         $this->guard()->logout();
         return response()->json([
             'status' => 'success',
@@ -59,8 +63,7 @@ class AuthController extends Controller
 
 
     // 使用者
-    public function user(Request $request)
-    {
+    public function user(Request $request){
         $user = User::find(Auth::user()->id);
         return response()->json([
             'status' => 'success',
@@ -69,8 +72,7 @@ class AuthController extends Controller
     }
 
     // 刷新令牌
-    public function refresh()
-    {
+    public function refresh(){
         if ($token = $this->guard()->refresh()) {
             return response()
                 ->json(['status' => 'successs'], 200)
@@ -80,8 +82,9 @@ class AuthController extends Controller
     }
 
     // 認證
-    private function guard()
-    {
+    private function guard(){
         return Auth::guard();
     }
+
+
 }

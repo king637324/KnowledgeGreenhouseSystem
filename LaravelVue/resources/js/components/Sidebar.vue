@@ -4,23 +4,46 @@
         <v-app-bar color="deep-purple accent-4" app dark >
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
+            <router-link to="/" class="nav-link" exact style="color:white;">
+                <b-icon icon="house-door"></b-icon>
+            </router-link>
+
             <v-toolbar-title>溫室設計專家知識系統</v-toolbar-title>
 
             <v-spacer></v-spacer>
 
-            <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
-            </v-btn>
+            <!-- 尚未登入會員 -->
+            <div v-if="!$auth.check()">
+                <v-btn icon>
+                    <router-link to="/login" style="color:white;">
+                        登入
+                    </router-link>
+                </v-btn>
+            </div>
+            <div v-else>
+                <div class="dropdown d-flex justify-content-end" >
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
+                        Hi! {{$auth.user().name}}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <!-- 是管理員才能編輯資料庫 -->
+                        <div v-if="$auth.user().identity === '管理者'">
+                            <!-- <a class="dropdown-item" href="/managerUser">會員管理</a> -->
+                            <router-link to="/Auth_managerUser" class="nav-link" exact style="color:black;">
+                                會員管理
+                            </router-link>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                        <!-- 登出函式 -->
+                        <a class="dropdown-item" href="#" @click.prevent="$auth.logout()">登出</a>
+                    </div>
+                </div>
 
-            <v-btn icon>
-                <v-icon>mdi-filter</v-icon>
-            </v-btn>
+            </div>
 
-            <v-btn icon>
-                <router-link to="/Auth/Login">
-                    <b-icon icon="person-fill"></b-icon>
-                </router-link>
-            </v-btn>
+
+
+
         </v-app-bar>
 
         <v-navigation-drawer v-model="drawer" app dark>
@@ -29,16 +52,10 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
 
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <router-link to="/" class="nav-link" exact>
-                            <b-icon icon="house-door"></b-icon> 首頁
-                        </router-link>
-
-                        <router-link to="/test" class="nav-link" exact>
+                        <div class="sb-sidenav-menu-heading">測試</div>
+                            <router-link to="/test" class="nav-link" exact>
                             <b-icon icon="hammer"></b-icon> 頁面測試
                         </router-link>
-
-                        <div class="sb-sidenav-menu-heading">測試</div>
                         <router-link to="/categories" class="nav-link" exact>
                             Categories
                         </router-link>

@@ -21,6 +21,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+use App\Http\Controllers\Auth\AuthController;
+Route::get('/UserJSON',[AuthController::class,'getJSON_User']);    // 會員資料
+
 use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\FluidController;
 // 溫室流體分析使用的JSON
 Route::get('/FluidAnalysisJSON',[FluidController::class, 'ToJSON']);
