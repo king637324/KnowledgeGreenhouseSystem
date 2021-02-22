@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class AuthController extends Controller
 {
@@ -21,6 +23,7 @@ class AuthController extends Controller
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'password'  => 'required|min:3|',
+            'identitiy' => 'required',
         ]);
         if ($v->fails())
         {
@@ -84,6 +87,15 @@ class AuthController extends Controller
     // 認證
     private function guard(){
         return Auth::guard();
+    }
+
+    /**
+     * Send password reset link.
+     */
+    // 忘記密碼
+    public function sendPasswordResetLink(Request $request)
+    {
+        return $this->sendResetLinkEmail($request);
     }
 
 

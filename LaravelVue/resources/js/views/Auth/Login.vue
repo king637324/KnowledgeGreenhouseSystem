@@ -104,12 +104,12 @@ export default {
             loginPassword: "",
             loginEmail: "",
             loginEmailRules: [
-            v => !!v || "Required",
-            v => /.+@.+\..+/.test(v) || "信箱格式錯誤"
+                v => !!v || "Required",
+                v => /.+@.+\..+/.test(v) || "信箱格式錯誤"
             ],
             emailRules: [
-            v => !!v || "Required",
-            v => /.+@.+\..+/.test(v) || "信箱格式錯誤"
+                v => !!v || "Required",
+                v => /.+@.+\..+/.test(v) || "信箱格式錯誤"
             ],
 
             show1: false,
@@ -155,8 +155,9 @@ export default {
                 // error
 
                 this.flashMessage.error({
+                    clickable: true,
+                    time: 0,
                     message: 'Email帳號、或密碼錯誤，請檢查後再次輸入!!',
-                    time: 5000
                 });
             })
         },
@@ -180,21 +181,33 @@ export default {
                     autoLogin: true,
                 }).then(() =>{
                     // success
-                    }, res => {
+                }, res => {
                     // error
                     // console.log("1")
 
                     // console.log(res.response.data.errors)
                     this.errors=res.response.data.errors
 
-
-                    if(res.response.data.errors.email[0]){
+                    if(Object.keys(this.errors).includes('identitiy') && Object.keys(this.errors).includes('email')){
                         this.flashMessage.error({
+                            clickable: true,
+                            time: 0,
+                            message: '請選擇身分別，且此信箱已註冊過',
+                        });
+                    }else if(Object.keys(this.errors).includes('identitiy')){
+                        this.flashMessage.error({
+                            clickable: true,
+                            time: 0,
+                            message: '請選擇身分別',
+                        });
+                    }else if(Object.keys(this.errors).includes('email')){
+
+                        this.flashMessage.error({
+                            clickable: true,
+                            time: 0,
                             message: '此信箱已註冊過',
-                            time: 5000
                         });
                     }
-
 
                 })
             }
