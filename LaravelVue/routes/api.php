@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
 
@@ -30,20 +31,21 @@ Route::prefix('auth')-> group(function(){
     Route::post('/register',[AuthController::class,'register']);
 
     Route::post('/login',[AuthController::class,'login']);
-
+    Route::get('email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify');
+    Route::get('email/resend', [VerificationController::class,'resend'])->name('verification.resend');
     Route::get('refresh',[AuthController::class,'refresh']);
 
     Route::group(['middleware'=>'auth:api'],function(){
         Route::get('user',[AuthController::class,'user']);
         Route::post('logout',[AuthController::class,'logout']);
 
-        // Send reset password mail
-        Route::post('/reset-password', [AuthController::class,'sendPasswordResetLink']);
-        // 處理重置密碼
-        Route::post('/reset/password', [AuthController::class,'callResetPassword']);
 
     });
 
+        // Send reset password mail
+        Route::post('/reset-password', [AuthController::class,'sendPasswordResetLink']);
+        // 處理重置密碼
+        // Route::post('/reset/password', [AuthController::class,'callResetPassword']);
 
 });
 

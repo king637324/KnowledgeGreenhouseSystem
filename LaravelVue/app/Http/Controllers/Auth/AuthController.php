@@ -7,11 +7,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\Foundation\Auth\ResetsPasswords;
-use Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Auth\Events\PasswordReset;
-
+use Illuminate\Support\Facades\Password; 
 class AuthController extends Controller
 {
     // 將資料庫的User資料表  轉成JSON
@@ -25,7 +25,7 @@ class AuthController extends Controller
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'password'  => 'required|min:3|',
-            'identitiy' => 'required',
+            'identity' => 'required',
         ]);
         if ($v->fails())
         {
@@ -45,9 +45,15 @@ class AuthController extends Controller
 
         $user->password = bcrypt($request->password);
         $user->save();
+        $user->sendEmailVerificationNotification();
         return response()->json(['status' => 'success'], 200);
     }
-
+    protected function resetPassword($user, $password)
+    {
+        $user->password = bcrypt($password);
+        $user->save();
+        event(new PasswordReset($user));
+    }
     // 登入
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
@@ -97,8 +103,10 @@ class AuthController extends Controller
     // 忘記密碼
     public function sendPasswordResetLink(Request $request)
     {
-        dd(123456789123456789);
-        return $this->sendResetLinkEmail($request);
+        $credentials = request()->validate(['email' => 'required|email']);
+
+        Password::sendResetLink($credentials);
+        return response()->json(["msg" => 'Reset password link sent on your email id.']);
     }
     /**
      * Handle reset password
