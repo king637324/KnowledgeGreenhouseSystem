@@ -36,7 +36,14 @@ Route::prefix('auth')-> group(function(){
     Route::group(['middleware'=>'auth:api'],function(){
         Route::get('user',[AuthController::class,'user']);
         Route::post('logout',[AuthController::class,'logout']);
+
+        // Send reset password mail
+        Route::post('/reset-password', [AuthController::class,'sendPasswordResetLink']);
+        // 處理重置密碼
+        Route::post('/reset/password', [AuthController::class,'callResetPassword']);
+
     });
+
 
 });
 
