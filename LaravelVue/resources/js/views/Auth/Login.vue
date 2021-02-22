@@ -2,29 +2,18 @@
 <div style='height:800px;'>
     <div style="margin-top: 100px;">
             <v-card  class="mx-auto my-12" max-width="600px">
-                                                <v-snackbar v-model="snackbar">
-                                    {{ loginerrors }}
-                                    <template v-slot:action="{ attrs }">
-                                    <v-btn
-                                        color="pink"
-                                        text
-                                        v-bind="attrs"
-                                        @click="snackbar = false"
-                                    > 關閉
-                                    </v-btn>
-                                    </template>
-                                </v-snackbar>
                 <v-tabs v-model="tab" show-arrows background-color="deep-purple accent-4"  persistent max-width="600px" min-width="360px" icons-and-text dark grow>
                     <v-tabs-slider color="purple darken-4"></v-tabs-slider>
                     <v-tab v-for="i in tabs" :key="i.id">
                         <v-icon large>{{ i.icon }}</v-icon>
-                        <div class="caption py-1">{{ i.name }}</div>
+                        <div class="caption py-1">
+                            {{ i.name }}
+                        </div>
                     </v-tab>
                     <!-- 登入 -->
                     <v-tab-item>
                         <v-card class="px-4">
                             <v-card-text>
-
                                 <v-form ref="loginForm" v-model="valid" lazy-validation>
                                     <v-row>
                                         <v-col cols="12">
@@ -102,8 +91,6 @@ export default {
                 {name:"Login", icon:"mdi-account"},
                 {name:"Register", icon:"mdi-account-outline"}
             ],
-            loginerrors:"",
-            snackbar: false,
             valid: true,
             errors: {},
             success: false,
@@ -163,12 +150,15 @@ export default {
                 rememberMe: true,
                 fetchUser: true
             }).then(() =>{
-            // success
-            }, () => {
-            // error
-            this.snackbar=true
-            this.loginerrors="Email帳號、或密碼錯誤，請檢查後再次輸入。"
-         })
+                // success
+                }, () => {
+                // error
+
+                this.flashMessage.error({
+                    message: 'Email帳號、或密碼錯誤，請檢查後再次輸入!!',
+                    time: 5000
+                });
+            })
         },
         Register() {
             console.log("Register裡面");
@@ -189,14 +179,24 @@ export default {
                     redirect: {name: 'home'},   // 註冊路徑時的name
                     autoLogin: true,
                 }).then(() =>{
-            // success
-            }, res => {
-            // error
-            console.log("1")
+                    // success
+                    }, res => {
+                    // error
+                    // console.log("1")
 
-            console.log(res.response.data.errors)
-            this.errors=res.response.data.errors
-         })
+                    // console.log(res.response.data.errors)
+                    this.errors=res.response.data.errors
+
+
+                    if(res.response.data.errors.email[0]){
+                        this.flashMessage.error({
+                            message: '此信箱已註冊過',
+                            time: 5000
+                        });
+                    }
+
+
+                })
             }
         },
         reset() {
