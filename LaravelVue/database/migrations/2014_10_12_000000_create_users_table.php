@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('identity');
             $table->string('companyname')->nullable();
             $table->integer('isadmin');
-            $table->integer('status');
+            $table->string('status');
 
             $table->rememberToken();
             $table->timestamps();

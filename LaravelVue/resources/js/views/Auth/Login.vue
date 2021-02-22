@@ -2,6 +2,18 @@
 <div style='height:800px;'>
     <div style="margin-top: 100px;">
             <v-card  class="mx-auto my-12" max-width="600px">
+                                                <v-snackbar v-model="snackbar">
+                                    {{ loginerrors }}
+                                    <template v-slot:action="{ attrs }">
+                                    <v-btn
+                                        color="pink"
+                                        text
+                                        v-bind="attrs"
+                                        @click="snackbar = false"
+                                    > 關閉
+                                    </v-btn>
+                                    </template>
+                                </v-snackbar>
                 <v-tabs v-model="tab" show-arrows background-color="deep-purple accent-4"  persistent max-width="600px" min-width="360px" icons-and-text dark grow>
                     <v-tabs-slider color="purple darken-4"></v-tabs-slider>
                     <v-tab v-for="i in tabs" :key="i.id">
@@ -12,6 +24,7 @@
                     <v-tab-item>
                         <v-card class="px-4">
                             <v-card-text>
+
                                 <v-form ref="loginForm" v-model="valid" lazy-validation>
                                     <v-row>
                                         <v-col cols="12">
@@ -36,6 +49,7 @@
                     <v-tab-item>
                         <v-card class="px-4">
                             <v-card-text>
+                                <li v-for="error in errors">{{error[0]}}</li>
                                 <v-form ref="registerForm" v-model="valid" lazy-validation>
                                     <v-row>
                                         <v-col cols="12">
@@ -88,6 +102,8 @@ export default {
                 {name:"Login", icon:"mdi-account"},
                 {name:"Register", icon:"mdi-account-outline"}
             ],
+            loginerrors:"",
+            snackbar: false,
             valid: true,
             errors: {},
             success: false,
@@ -143,32 +159,16 @@ export default {
                     email: app.loginEmail,
                     password: app.loginPassword
                 },
-
-                // success: function() {
-                //     // handle redirection
-                //     console.log("登入成功");
-                //     const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
-                //     this.$router.push({name: redirectTo})
-                // },
-                // error: function() {
-                //     console.log("登入失敗");
-                //     app.has_error = true
-                // },
-
-                success: (rsp) => {
-                    console.log("登入成功");
-                    console.log(rsp);
-                },
-                error: (rsp) => {
-                    console.log("登入失敗");
-                    console.log(rsp);
-                },
-
-
                 redirect: {name: 'home'},   // 註冊路徑時的name
                 rememberMe: true,
                 fetchUser: true
-            })
+            }).then(() =>{
+            // success
+            }, () => {
+            // error
+            this.snackbar=true
+            this.loginerrors="Email帳號、或密碼錯誤，請檢查後再次輸入。"
+         })
         },
         Register() {
             console.log("Register裡面");
@@ -188,18 +188,15 @@ export default {
                     },
                     redirect: {name: 'home'},   // 註冊路徑時的name
                     autoLogin: true,
+                }).then(() =>{
+            // success
+            }, res => {
+            // error
+            console.log("1")
 
-                    // success: function () {
-                    //     app.success = true
-                    //     this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
-                    // },
-                    // error: function (res) {
-                    //     console.log(res.response)
-                    //     app.has_error = true
-                    //     app.error = res.response.data.error
-                    //     app.errors = res.response.data.errors || {}
-                    // }
-                })
+            console.log(res.response.data.errors)
+            this.errors=res.response.data.errors
+         })
             }
         },
         reset() {
