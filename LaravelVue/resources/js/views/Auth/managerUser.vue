@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(user, index) in UserDatajson" :key="index">
+                            <tr v-for="(user, index) in UserDatajson" :key="index" v-if="user.identity != '管理者'">
                                 <td>{{user.name}}</td>
                                 <td>{{user.phoneNumber}}</td>
                                 <td>{{user.email}}</td>
@@ -67,7 +67,7 @@ export default {
             });
             this.UserDatajson = await UserData.json();
 
-            console.log(this.UserDatajson);
+            // console.log(this.UserDatajson);
         }
     },
 }
