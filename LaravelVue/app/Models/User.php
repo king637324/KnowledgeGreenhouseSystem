@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Facades\Hash;
+
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -63,7 +65,7 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = Hash::make($value);
     }
-    
+
 
 
 }

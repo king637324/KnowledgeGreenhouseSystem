@@ -186,15 +186,15 @@ export default {
                     // console.log("1")
 
                     // console.log(res.response.data.errors)
-                    this.errors=res.response.data.errors
+                    this.errors = res.response.data.errors;
 
-                    if(Object.keys(this.errors).includes('identitiy') && Object.keys(this.errors).includes('email')){
+                    if(Object.keys(this.errors).includes('identity') && Object.keys(this.errors).includes('email')){
                         this.flashMessage.error({
                             clickable: true,
                             time: 0,
                             message: '請選擇身分別，且此信箱已註冊過',
                         });
-                    }else if(Object.keys(this.errors).includes('identitiy')){
+                    }else if(Object.keys(this.errors).includes('identity')){
                         this.flashMessage.error({
                             clickable: true,
                             time: 0,
