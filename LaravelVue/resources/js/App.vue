@@ -19,14 +19,12 @@
     import Header from './components/Header.vue';
     import Sidebar from './components/Sidebar.vue';
     import Foot from './components/Foot.vue';
-    import Navbar from './components/Navbar.vue';
 
     export default {
         components:{
             Header,
             Sidebar,
             Foot,
-            Navbar,
             BootstrapSideBar
         },
 

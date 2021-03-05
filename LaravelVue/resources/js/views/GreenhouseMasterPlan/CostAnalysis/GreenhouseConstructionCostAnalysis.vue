@@ -760,6 +760,9 @@ export default {
             });
             this.greenhouseCostRatiojson = await GreenhouseCostRatio.json();
 
+            // console.log(this.greenhouseCostjson);
+            // console.log(this.greenhouseCostRatiojson);
+
             for (var i = 0; i < this.greenhouseCostjson.length; i++) {
                 if(this.greenhouseCostjson[i].GreenhouseType == "簡易型溫室"){
                     this.SimpleGreenhouse.push(this.greenhouseCostjson[i]);

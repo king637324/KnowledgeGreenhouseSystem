@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-02-24 08:26:27
+-- 產生時間： 2021-03-04 07:05:01
 -- 伺服器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -345,7 +345,7 @@ CREATE TABLE `knowledgeeditors` (
 --
 
 INSERT INTO `knowledgeeditors` (`id`, `parent_id`, `name`, `content`, `editor`, `created_at`, `updated_at`) VALUES
-(1, 0, '材料技術知識庫', '<p><strong>目的</strong></p>\r\n\r\n<p>材料選擇的要素在於安全性、加工性及經濟性的綜合考量。<br />\r\n基於溫室構造安全，正確的材料規格與性能參數，需被溫室設計者、製造者(包含鋼鐵廠、軋鋼廠、鍍面鋼廠、管型材成形廠、熱鍍鋅廠、加工廠)、溫室工程業者及使用者(農民、農企業)得以共同重視、應用與遵守，才能形成農業設施產業的重要技術基礎，讓各相關產業有技術性的共識。<br />\r\n有共通的技術知識才得以建立溫室契約及設計圖說的材料相關規定，訂定相關材料所應揭示的基本參數、材質成分、形狀尺寸精度、表面處理、機械性能、化學性能及加工性能，等攸關結構安全的共同指標，也基於安全性的根本要求下的加工性與經濟性考量才能有共同的比較基礎。</p>\r\n\r\n<p>此除能強化國內溫室構造的安全基礎，並將有利於國內溫室的整廠輸出。<br />\r\n分類材料，將包含以下主要材料<br />\r\n(1)結構材料:鋼材、鋁材、基材、型材、管材<br />\r\n(2)被覆材料:玻璃、軟質塑膠薄膜、硬質塑膠板材<br />\r\n(3)基礎材料:固定型基礎材料、簡易型基礎材料<br />\r\n(4)連接材料:</p>\r\n\r\n<p><strong>規範</strong></p>\r\n\r\n<p>材料的規格包含組成化學元素的比例組合及相關的基本性能規定，世界主要工業國家已訂出其國家標準材料規範，如日本的IS、德國的DIN、美國的ASTM等材料試驗規格、中國的GB，而我國的CNS亦有明細的規格定義。<br />\r\n本手冊材料基本原則須遵照中華民國國家標準CNS，但因世界各國的鋼材不斷進步與創新，故經國際通行檢驗標準檢驗合格且達設計所需標准者亦可參照。<br />\r\n部分相關國家之國際標準如下:</p>\r\n\r\n<p>(1)中華民國國家標準(CNS)<br />\r\n(2)美國材料試驗協會(ASTM)<br />\r\n(3)美國鋼結構學會(AISC)<br />\r\n(4)美國焊接工程協會(AWS)<br />\r\n(5)日本建築學會(JASS)<br />\r\n(6)美國鋼結構油漆協會(SSPC)<br />\r\n(7)瑞典銹蝕研究院(SCI)</p>\r\n\r\n<p>&nbsp;</p>', 'MIRDC UC', '2020-12-10 03:39:20', '2020-12-09 19:39:20'),
+(1, 0, '材料技術知識庫', '<p><strong>目的</strong></p>\n\n<p>材料選擇的要素在於安全性、加工性及經濟性的綜合考量。<br />\n基於溫室構造安全，正確的材料規格與性能參數，需被溫室設計者、製造者(包含鋼鐵廠、軋鋼廠、鍍面鋼廠、管型材成形廠、熱鍍鋅廠、加工廠)、溫室工程業者及使用者(農民、農企業)得以共同重視、應用與遵守，才能形成農業設施產業的重要技術基礎，讓各相關產業有技術性的共識。<br />\n有共通的技術知識才得以建立溫室契約及設計圖說的材料相關規定，訂定相關材料所應揭示的基本參數、材質成分、形狀尺寸精度、表面處理、機械性能、化學性能及加工性能，等攸關結構安全的共同指標，也基於安全性的根本要求下的加工性與經濟性考量才能有共同的比較基礎。</p>\n\n<p>此除能強化國內溫室構造的安全基礎，並將有利於國內溫室的整廠輸出。<br />\n分類材料，將包含以下主要材料<br />\n(1)結構材料:鋼材、鋁材、基材、型材、管材<br />\n(2)被覆材料:玻璃、軟質塑膠薄膜、硬質塑膠板材<br />\n(3)基礎材料:固定型基礎材料、簡易型基礎材料<br />\n(4)連接材料:</p>\n\n<p><strong>規範</strong></p>\n\n<p>材料的規格包含組成化學元素的比例組合及相關的基本性能規定，世界主要工業國家已訂出其國家標準材料規範，如日本的IS、德國的DIN、美國的ASTM等材料試驗規格、中國的GB，而我國的CNS亦有明細的規格定義。<br />\n本手冊材料基本原則須遵照中華民國國家標準CNS，但因世界各國的鋼材不斷進步與創新，故經國際通行檢驗標準檢驗合格且達設計所需標准者亦可參照。<br />\n部分相關國家之國際標準如下:</p>\n\n<p>(1)中華民國國家標準(CNS)&nbsp;<br />\n(2)美國材料試驗協會(ASTM)<br />\n(3)美國鋼結構學會(AISC)<br />\n(4)美國焊接工程協會(AWS)<br />\n(5)日本建築學會(JASS)<br />\n(6)美國鋼結構油漆協會(SSPC)<br />\n(7)瑞典銹蝕研究院(SCI)</p>', 'MIRDC UC', '2021-03-03 08:43:00', '2021-03-03 00:43:00'),
 (2, 1, '結構材料', '<p><strong>介紹</strong></p>\r\n\r\n<p>溫室結構材料中的金屬材料具有高度的工業化、高剛性、高強度且具環保型的回收性,其估溫室材料總重90%以上,是現代溫室最主要的結構材料。<br />\r\n結構所使用的金屬材料包括結構用基本金屬材料(如鋼材、鋁材)、型管材(型材、管材)及接合物(如螺絲、鉚釘、螺栓、螺帽、墊片與焊接材料等)。材料應符合所列CNS中國國家標準,接合物亦須符合規定。結構用金屬材(如板、片、棒、線、連接材)所使用的材料,其化學成份、機械性質均須符合CNS或相關國際標準的規定,若未能符合規定需求的鋼材,需設計者再審查,否則不應使用。<br />\r\n品質的認定方法,通常先依原生產工廠經合格標準測試實驗室所出具的品質證明書。但對各項材料如有安全考量或有爭議之虞,應共同取樣,經合格的第三方公證單位檢測。</p>\r\n\r\n<p><strong>規格定義</strong></p>\r\n\r\n<p>於農業溫室,對材料專有名詞常被簡化成簡易的說法,但實際的管材材質、管徑、厚度、精度將直接影響到管的機械性能,而鍍膜的材料組合、鍍層厚度、鍍膜方法、亦將影響到鍍膜結合強度、鍍層耐腐蝕能力、管材壽命等。<br />\r\n故溫室的構造安全需確實掌握所設計構件材料的質(材質與性質)、形沢尺寸與形狀精度)、貌(表面處理)、能(物理性能、機械性能、化學性能)等重要參數與標準規格。本節將分三大部分說明,分別為基本金屬、型材、管材,將各別討論其對應的質、形、貌、能等設計參數。</p>\r\n\r\n<p>&nbsp;</p>', 'MIRDC UC', '2020-11-03 10:24:03', '2020-11-03 02:24:03'),
 (3, 2, '鋼材', '<p><span style=\"font-family:標楷體\">溫室常用鋼材有碳鋼、不銹鋼、鑄鐵。</span></p>\r\n\r\n<p><span style=\"font-family:標楷體\">溫室結構鋼材的標準規格表示應包含下列項目:</span></p>\r\n\r\n<p><span style=\"font-family:標楷體\">・材質(材料來源及化學組成)</span></p>\r\n\r\n<p><span style=\"font-family:標楷體\">・形狀尺寸精度)</span></p>\r\n\r\n<p><span style=\"font-family:標楷體\">・表面處理</span></p>\r\n\r\n<p><span style=\"font-family:標楷體\">・材料性能</span></p>', 'MIRDC UC', '2020-11-03 10:19:43', '2020-11-03 02:19:43'),
 (4, 3, '鋼材-材質', '<p>鋼胚的來源則有一貫作業的高爐廠或電爐廠，各種型號材料其組成及比例均有規範限制，性能表現亦將不同。</p>\r\n\r\n<p>故基材來源應由供應商提供原產鋼廠的出廠證明，以代表明確的材料來源及成分組成的保證。標準化的鋼廠出廠的出廠證明，須至少明確標示鋼廠名稱、化學成分、機械性能及依據的國際標準。</p>\r\n\r\n<p>(1)基材名稱: (功能性名稱十材料名稱)，如(構造用熱軋鋼)</p>\r\n\r\n<p>(2)基材編號: (材料標準 + 材料編號)，如(SUS304)應記載其CNS編號或對應之國際標準材料編號</p>\r\n\r\n<p>(3)基材化學成分組成: (化學元素 +%)，如(Ni8 % Cr16 %)完整的化學成分組成可以成分表顯示。</p>', 'MIRDC UC', '2020-11-03 10:24:28', '2020-11-03 02:24:28'),
@@ -557,19 +557,19 @@ CREATE TABLE `lme_metal_prices` (
 --
 
 INSERT INTO `lme_metal_prices` (`MetalName`, `MetalPrice`, `MetalDate`, `MetalLink`) VALUES
-('廢鋼', 468.000, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
-('特種鋁合金', 2183.000, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
-('金', 1806.600, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
-('鈷', 51965.000, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
-('鉛', 2129.000, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
-('銀', 27.630, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
-('銅', 9158.000, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
-('鋁', 2136.500, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
-('鋁合金', 2201.500, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
-('鋅', 2859.500, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
-('鋼筋', 640.000, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
-('錫', 29485.000, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
-('鎳', 19226.000, 'US$:  23 February 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
+('廢鋼', 483.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
+('特種鋁合金', 2185.500, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
+('金', 1717.300, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
+('鈷', 52790.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
+('鉛', 2039.500, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
+('銀', 26.300, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
+('銅', 9266.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
+('鋁', 2203.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
+('鋁合金', 2211.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
+('鋅', 2786.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
+('鋼筋', 657.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
+('錫', 25880.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
+('鎳', 17802.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
 
 -- --------------------------------------------------------
 
@@ -747,7 +747,91 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2014_10_12_000000_create_users_table', 1),
 (17, '2014_10_12_100000_create_password_resets_table', 1),
-(18, '2019_08_19_000000_create_failed_jobs_table', 1);
+(18, '2019_08_19_000000_create_failed_jobs_table', 1),
+(19, '2016_06_01_000001_create_oauth_auth_codes_table', 2),
+(20, '2016_06_01_000002_create_oauth_access_tokens_table', 2),
+(21, '2016_06_01_000003_create_oauth_refresh_tokens_table', 2),
+(22, '2016_06_01_000004_create_oauth_clients_table', 2),
+(23, '2016_06_01_000005_create_oauth_personal_access_clients_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `oauth_access_tokens`
+--
+
+CREATE TABLE `oauth_access_tokens` (
+  `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `scopes` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `oauth_auth_codes`
+--
+
+CREATE TABLE `oauth_auth_codes` (
+  `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `scopes` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `oauth_clients`
+--
+
+CREATE TABLE `oauth_clients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `secret` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `provider` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `redirect` text COLLATE utf8_unicode_ci NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `oauth_personal_access_clients`
+--
+
+CREATE TABLE `oauth_personal_access_clients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `oauth_refresh_tokens`
+--
+
+CREATE TABLE `oauth_refresh_tokens` (
+  `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1308,7 +1392,7 @@ CREATE TABLE `usdollars` (
 --
 
 INSERT INTO `usdollars` (`id`, `USD`) VALUES
-(1, '28.32');
+(1, '28.28');
 
 -- --------------------------------------------------------
 
@@ -1341,7 +1425,8 @@ INSERT INTO `users` (`id`, `name`, `phoneNumber`, `email`, `email_verified_at`, 
 (2, 'YICHING', '0912345678', 'king637324@gmail.com', NULL, '$2y$10$LjVuhYmzXbTl6OHjq4Gn0unDxNSIYIsHVv6DQ99THZW..xPVjA596', '設計者', 'MIRDC-UC', 0, '正常', 'l3K5FFYZW9BQhsl0kgrRQvZQ18bCtTnMRkKxynba1I5pJZII36AAoDIXbqVn', '2020-09-06 22:22:35', '2020-12-07 00:30:26'),
 (3, 'admin', '0900000000', 'admin@gmail.com', NULL, '$2y$10$29xnJ7tmNAch56xdqdydeuz4kqtaanoqOZP0dJpzqa41aOe1/jC4u', '管理者', 'MIRDC-UC', 1, '正常', NULL, '2020-09-11 01:34:35', '2020-09-11 01:34:35'),
 (8, 'MIRDC-UC', '0900000000', '123@gmail.com', NULL, '$2y$10$kv7rIM4GpVDl0Ji239FeFe8RpeOddisVppdbAYYpjAyrrn9rHmMB.', '專家', 'MIRDC', 1, '正常', NULL, '2020-10-29 00:02:36', '2020-10-29 00:02:36'),
-(9, 'hcc', '0910861175', 'huangcc@mail.mirdc.org.tw', NULL, '$2y$10$3G5frtZU3dmCGYiPQQ0hnu.JJbV7SXzQBY9Vl/BD8hsDBvdWrI8ze', '農民', 'mirdc', 0, '正常', NULL, '2020-11-17 14:28:15', '2020-11-17 14:28:15');
+(9, 'hcc', '0910861175', 'huangcc@mail.mirdc.org.tw', NULL, '$2y$10$3G5frtZU3dmCGYiPQQ0hnu.JJbV7SXzQBY9Vl/BD8hsDBvdWrI8ze', '農民', 'mirdc', 0, '正常', NULL, '2020-11-17 14:28:15', '2020-11-17 14:28:15'),
+(10, 'qaz', 'qaz', '0451024@nkust.edu.tw', NULL, '$2y$10$guNkFbhNaHryJzrMEOF63O12rj2F2KMa1aGxaRIdadMDc9xfy9s/C', '農民', 'qaz', 0, '正常', NULL, '2021-02-24 06:21:48', '2021-02-24 06:21:48');
 
 -- --------------------------------------------------------
 
@@ -1577,6 +1662,40 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `oauth_access_tokens`
+--
+ALTER TABLE `oauth_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
+
+--
+-- 資料表索引 `oauth_auth_codes`
+--
+ALTER TABLE `oauth_auth_codes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_auth_codes_user_id_index` (`user_id`);
+
+--
+-- 資料表索引 `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_clients_user_id_index` (`user_id`);
+
+--
+-- 資料表索引 `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `oauth_refresh_tokens`
+--
+ALTER TABLE `oauth_refresh_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`);
+
+--
 -- 資料表索引 `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -1687,7 +1806,19 @@ ALTER TABLE `materialformats`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `structuralanalysis`
@@ -1705,7 +1836,7 @@ ALTER TABLE `usdollars`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `vegetables`

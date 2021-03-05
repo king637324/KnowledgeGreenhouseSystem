@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Welcome from './views/Welcome.vue';
 import Home from './views/Home.vue';
+import Development from './views/Development.vue';
 
 // Auth
 import Auth_Login from './views/Auth/Login.vue';
@@ -59,6 +60,13 @@ const routes = [{
 
     // name: 'welcome',
     // component: Welcome
+}, {
+    path: '/Development',
+    name: 'Development',
+    component: Development,
+    meta: {
+        auth: undefined
+    }
 }, {
     path: '/login',
     name: '使用者登入',

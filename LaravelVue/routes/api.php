@@ -4,8 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\VerificationController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +21,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+use App\Http\Controllers\TestController;
 Route::resource('/categories',TestController::class);
 
+use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
 Route::resource('/MaterialsAndDesignKnowledgeBase/Article',KnowledgeEditorController::class);
+
+use App\Http\Controllers\GreenhouseMasterPlan\CropController;
+Route::resource('/GreenhouseMasterPlan/CropSelection',CropController::class);
 
 Route::prefix('auth')-> group(function(){
     Route::post('/register',[AuthController::class,'register']);
@@ -38,8 +41,6 @@ Route::prefix('auth')-> group(function(){
     Route::group(['middleware'=>'auth:api'],function(){
         Route::get('user',[AuthController::class,'user']);
         Route::post('logout',[AuthController::class,'logout']);
-
-
     });
 
         // Send reset password mail
@@ -59,10 +60,10 @@ api/auth/logout  路由將用於登出。
 
 */
 
-Route::group(['middleware' => 'auth:api'], function(){
-    // Users
-    Route::get('users', 'UserController@index')->middleware('isAdmin');
-    Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
-});
+// Route::group(['middleware' => 'auth:api'], function(){
+//     // Users
+//     Route::get('users', 'UserController@index')->middleware('isAdmin');
+//     Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
+// });
 
 

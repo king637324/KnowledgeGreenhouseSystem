@@ -38,7 +38,57 @@ class CropController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        // 設定必填欄位 & 必填欄位的的條件
+        $request -> validate([
+            'Expert' => 'required',
+            'classification' => 'required',
+            'VegetableTypes' => 'required',
+            'Goodlight' => 'required',
+            'Photoperiod' => 'required',
+            'Illuminance' => 'required',
+            'PPFD' => 'required',
+            'LightSaturationPoint' => 'required',
+            'LightCompensationPoint' => 'required',
+            'Temperatureadaptability' => 'required',
+            'LowestGrowthTemperature' => 'required',
+            'OptimalGrowthTemperature' => 'required',
+            'HighestGrowthTemperature' => 'required',
+            'LowestGerminationTemperature' => 'required',
+            'OptimumGerminationTemperature' => 'required',
+            'HighestGerminationTemperature' => 'required',
+            'CO2IncreasedProductionRate' => 'required',
+        ]);
+
+        $CropData = new vegetable();
+        $CropData->Expert = $request->Expert;
+        $CropData->classification =$request->classification;
+        $CropData->VegetableTypes = $request->VegetableTypes;
+        $CropData->Goodlight = $request->Goodlight;
+        $CropData->Photoperiod = $request->Photoperiod;
+        $CropData->Illuminance = $request->Illuminance;
+        $CropData->PPFD = $request->PPFD;
+        $CropData->LightSaturationPoint = $request->LightSaturationPoint;
+        $CropData->LightCompensationPoint = $request->LightCompensationPoint;
+        $CropData->Temperatureadaptability = $request->Temperatureadaptability;
+        $CropData->LowestGrowthTemperature = $request->LowestGrowthTemperature;
+        $CropData->OptimalGrowthTemperature = $request->OptimalGrowthTemperature;
+        $CropData->HighestGrowthTemperature = $request->HighestGrowthTemperature;
+        $CropData->LowestGerminationTemperature = $request->LowestGerminationTemperature;
+        $CropData->OptimumGerminationTemperature = $request->OptimumGerminationTemperature;
+        $CropData->HighestGerminationTemperature = $request->HighestGerminationTemperature;
+        $CropData->CO2IncreasedProductionRate = $request->CO2IncreasedProductionRate;
+
+        // dd($CropData);
+        if($CropData->save()){
+            return response()->json($CropData,200);
+        }else{
+            return response()->json([
+                'message' => '!!創建(store)作物資訊時發生錯誤!!',
+                'status_code' => 500
+            ],500);
+        }
     }
 
     /**
@@ -83,7 +133,21 @@ class CropController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $deleteCrop = vegetable::where('id', $id);
+
+        if($deleteCrop->delete()){
+            return response()->json([
+                'message' => '刪除已完成!!',
+                'status_code' => 200
+            ],200);
+        }else{
+            return response()->json([
+                'message' => '!!刪除發生錯誤!!',
+                'status_code' => 500
+            ],500);
+        }
+
     }
 
     // 將資料庫的Vegetable資料表  轉成JSON

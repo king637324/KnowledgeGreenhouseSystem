@@ -1,16 +1,17 @@
 import { http, httpFile } from './http_service';
 
 export function createCrop(data) {
-    // console.log("------createCropData-------");
-    // console.log(data);
+    console.log("------createCropData-------");
+    console.log(data);
+    console.log("返回前端");
 
-    return httpFile().post('/MaterialsAndDesignCropBase/Article', data);
+    return httpFile().post('/GreenhouseMasterPlan/CropSelection', data);
 }
 
 export function deleteCrop(data) {
-    // console.log("------deleteCrop-------");
-    // console.log(data);
-    return http().delete(`/MaterialsAndDesignCropBase/Article/${data[0]}`);
+    console.log("------deleteCrop-------");
+    console.log(data);
+    return http().delete(`/GreenhouseMasterPlan/CropSelection/${data}`);
 }
 
 export function UpdateCrop(EditCropData, data) {
@@ -23,5 +24,5 @@ export function UpdateCrop(EditCropData, data) {
     // console.log(data);
 
 
-    return httpFile().post(`/MaterialsAndDesignCropBase/Article/${EditCropData.id}`, data);
+    return httpFile().post(`/GreenhouseMasterPlan/CropSelection/${EditCropData.id}`, data);
 }

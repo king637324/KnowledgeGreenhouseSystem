@@ -122,8 +122,8 @@ export default {
             Landing: null,    // 風力登陸分析
             Path: null,   // 風力路徑分析
 
-            LandingProbability: null, // 進行颱風登陸分析機率加總
-            PathProbability: null, // 進行颱風路徑分析機率加總
+            LandingProbability: 0, // 進行颱風登陸分析機率加總
+            PathProbability: 0, // 進行颱風路徑分析機率加總
         }
     },
     created:function(){  // 網頁載入時，一開始就載入

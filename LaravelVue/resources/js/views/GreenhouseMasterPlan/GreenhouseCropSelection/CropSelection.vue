@@ -7,18 +7,14 @@
         <div class="p-1 bd-highlight"></div>
         <div class="p-4 bd-highlight">
             <h6>新增農業作物資料請新增在此</h6>
-            <v-form v-on:submit.prevent="createCrop" v-model="valid">
-                <v-container
-                    fluid
-                >
+            <v-form v-on:submit.prevent="createCrop" v-model="valid" lazy-validation>
+                <v-container-fluid>
                     <v-row>
                         <v-col>
-                            <v-text-field
-                                v-model="CropData.classification"
-                                :rules="CropRules"
-                                label="作物分類"
-                                required
-                            ></v-text-field>
+                            <b-form-select v-model="CropData.classification" :options="classificationOptions" >
+
+                            </b-form-select>
+                            <div class="invalid-feedback" v-if="errors.classification">{{ errors.classification[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -27,38 +23,31 @@
                                 label="作物種類"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.VegetableTypes">{{ errors.VegetableTypes[0] }}</div>
                         </v-col>
                         <v-col>
-                            <v-text-field
-                                v-model="CropData.Goodlight"
-                                :rules="CropRules"
-                                label="好光性"
-                                required
-                            ></v-text-field>
+                            <b-form-select v-model="CropData.Goodlight" :options="GoodlightOptions" >
+
+                            </b-form-select>
+                            <div class="invalid-feedback" v-if="errors.Goodlight">{{ errors.Goodlight[0] }}</div>
                         </v-col>
                         <v-col>
-                            <v-text-field
-                                v-model="CropData.Photoperiod"
-                                :rules="CropRules"
-                                label="光週期"
-                                required
-                            ></v-text-field>
+                            <b-form-select v-model="CropData.Photoperiod" :options="PhotoperiodOptions" >
+
+                            </b-form-select>
+                            <div class="invalid-feedback" v-if="errors.Photoperiod">{{ errors.Photoperiod[0] }}</div>
                         </v-col>
                         <v-col>
-                            <v-text-field
-                                v-model="CropData.Illuminance"
-                                :rules="CropRules"
-                                label="光照度"
-                                required
-                            ></v-text-field>
+                            <b-form-select v-model="CropData.Illuminance" :options="IlluminanceOptions" >
+
+                            </b-form-select>
+                            <div class="invalid-feedback" v-if="errors.Illuminance">{{ errors.Illuminance[0] }}</div>
                         </v-col>
                         <v-col>
-                            <v-text-field
-                                v-model="CropData.PPFD"
-                                :rules="CropRules"
-                                label="PPFD"
-                                required
-                            ></v-text-field>
+                            <b-form-select v-model="CropData.PPFD" :options="PPFDOptions" >
+
+                            </b-form-select>
+                            <div class="invalid-feedback" v-if="errors.PPFD">{{ errors.PPFD[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -67,6 +56,7 @@
                                 label="光飽和點(klx)"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.LightSaturationPoint">{{ errors.LightSaturationPoint[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -75,14 +65,13 @@
                                 label="光補償點(klx)"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.LightCompensationPoint">{{ errors.LightCompensationPoint[0] }}</div>
                         </v-col>
                         <v-col>
-                            <v-text-field
-                                v-model="CropData.Temperatureadaptability"
-                                :rules="CropRules"
-                                label="溫度適應性"
-                                required
-                            ></v-text-field>
+                            <b-form-select v-model="CropData.Temperatureadaptability" :options="TemperatureadaptabilityOptions" >
+
+                            </b-form-select>
+                            <div class="invalid-feedback" v-if="errors.Temperatureadaptability">{{ errors.Temperatureadaptability[0] }}</div>
                         </v-col>
                     </v-row>
                     <v-row>
@@ -93,6 +82,7 @@
                                 label="生長溫度最低溫"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.LowestGrowthTemperature">{{ errors.LowestGrowthTemperature[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -101,6 +91,7 @@
                                 label="生長溫度最適溫"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.OptimalGrowthTemperature">{{ errors.OptimalGrowthTemperature[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -109,6 +100,7 @@
                                 label="生長溫度最高溫"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.HighestGrowthTemperature">{{ errors.HighestGrowthTemperature[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -117,6 +109,7 @@
                                 label="發芽溫度最低溫"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.LowestGerminationTemperature">{{ errors.LowestGerminationTemperature[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -125,6 +118,7 @@
                                 label="發芽溫度最適溫"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.OptimumGerminationTemperature">{{ errors.OptimumGerminationTemperature[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -133,6 +127,7 @@
                                 label="發芽溫度最高溫"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.HighestGerminationTemperature">{{ errors.HighestGerminationTemperature[0] }}</div>
                         </v-col>
                         <v-col>
                             <v-text-field
@@ -141,14 +136,22 @@
                                 label="CO₂增產率"
                                 required
                             ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.CO2IncreasedProductionRate">{{ errors.CO2IncreasedProductionRate[0] }}</div>
                         </v-col>
                         <v-col>
+                            <v-text-field
+                                v-model="CropData.Expert"
+                                :rules="CropRules"
+                                label="您的暱稱"
+                                required
+                            ></v-text-field>
+                            <div class="invalid-feedback" v-if="errors.Expert">{{ errors.Expert[0] }}</div>
                         </v-col>
                         <v-col>
-                            <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>新增 </button>
+                            <button type="submit" class="btn btn-primary"><span class="fa fa-check" :disabled="!valid"></span>新增</button>
                         </v-col>
                     </v-row>
-                </v-container>
+                </v-container-fluid>
             </v-form>
 
             <br>
@@ -183,6 +186,8 @@
                         <td colspan="3" style='width:16vmin'> 生長溫度</td>
                         <td colspan="3" style='width:16vmin'> 發芽溫度 </td>
                         <td rowspan="2" style='width:13vmin'> CO₂增產率 </td>
+                        <td rowspan="2" style='width:13vmin'> 編輯 </td>
+                        <td rowspan="2" style='width:13vmin'> 刪除 </td>
                     </tr>
                     <tr align="center">
                         <td> 最低溫 </td>
@@ -191,6 +196,7 @@
                         <td> 最低溫 </td>
                         <td> 最適溫 </td>
                         <td> 最高溫 </td>
+
                     </tr>
                 </thead>
 
@@ -211,6 +217,22 @@
                     <td> {{crop.OptimumGerminationTemperature}} </td>
                     <td> {{crop.HighestGerminationTemperature}} </td>
                     <td> {{crop.CO2IncreasedProductionRate}} </td>
+                    <!-- <td v-if="$auth.check()"> -->
+                    <td>
+                        <!-- <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
+                        <div>
+                            <!-- 修改 -->
+                            <button class="btn btn-primary btn-sm" v-on:click="EditCrop(test)"><span class="fa fa-edit"></span></button>
+                        </div>
+                    </td>
+                    <!-- <td v-if="$auth.check()"> -->
+                    <td>
+                        <!-- <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
+                        <div>
+                            <!-- 刪除 -->
+                            <button class="btn btn-danger btn-sm"  v-on:click="deleteCrop(crop.id)"><span class="fa fa-trash"></span></button>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -245,18 +267,17 @@ export default {
                 v => !!v || '必填',
             ],
 
-
-
             CropData:{
-                classification: '',
+                Expert:'',
+                classification: null,
                 VegetableTypes: '',
-                Goodlight: '',
-                Photoperiod: '',
-                Illuminance: '',
-                PPFD: '',
+                Goodlight: null,
+                Photoperiod: null,
+                Illuminance: null,
+                PPFD: null,
                 LightSaturationPoint: '',
                 LightCompensationPoint: '',
-                Temperatureadaptability: '',
+                Temperatureadaptability: null,
                 LowestGrowthTemperature: '',
                 OptimalGrowthTemperature: '',
                 HighestGrowthTemperature: '',
@@ -265,7 +286,50 @@ export default {
                 HighestGerminationTemperature: '',
                 CO2IncreasedProductionRate: '',
             },
+            errors:{
 
+            },
+            classificationOptions: [
+                { value: null, text: '作物分類選擇' ,disabled:true },
+                { value: '根菜', text: '根菜' },
+                { value: '莖菜', text: '莖菜' },
+                { value: '葉菜', text: '葉菜' },
+                { value: '花菜', text: '花菜' },
+                { value: '果菜', text: '果菜' },
+                { value: '糧食', text: '糧食' },
+                { value: '水果', text: '水果' },
+                { value: '花', text: '花' },
+            ],
+            GoodlightOptions: [
+                { value: null, text: '好光性選擇' ,disabled:true },
+                { value: '好光型作物', text: '好光型作物' },
+                { value: '中間型作物', text: '中間型作物' },
+                { value: '弱光型作物', text: '弱光型作物' },
+            ],
+            PhotoperiodOptions: [
+                { value: null, text: '光週期選擇' ,disabled:true },
+                { value: '長日植物', text: '長日植物' },
+                { value: '中日植物', text: '中日植物' },
+                { value: '短日植物', text: '短日植物' },
+            ],
+            IlluminanceOptions: [
+                { value: null, text: '光照度選擇' ,disabled:true },
+                { value: '25000~40000', text: '25000~40000' },
+                { value: '40000~60000', text: '40000~60000' },
+                { value: '60000~90000', text: '60000~90000' },
+            ],
+            PPFDOptions: [
+                { value: null, text: 'PPFD選擇' ,disabled:true },
+                { value: '450~725以下', text: '450~725以下' },
+                { value: '725~1090之間', text: '725~1090之間' },
+                { value: '1090~1650以上', text: '1090~1650以上' },
+            ],
+            TemperatureadaptabilityOptions: [
+                { value: null, text: '溫度適應性選擇' ,disabled:true },
+                { value: '涼季蔬菜', text: '涼季蔬菜' },
+                { value: '中間型蔬菜', text: '中間型蔬菜' },
+                { value: '暖季蔬菜', text: '暖季蔬菜' },
+            ],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -325,43 +389,128 @@ export default {
 
             this.ExpertSelect = this.CropSelect;
         },
-        createCrop(){
-            console.log("在createCrop裡面");
-            // let formData = new FormData();
-            // formData.append('name',this.categoryData.name);
-            // formData.append('mail',this.categoryData.mail);
-            // formData.append('password',this.categoryData.password);
-            // formData.append('abc',this.categoryData.abc);
-            // formData.append('image',this.categoryData.image);
-            // try{
-            //     const response = await categoryService.createCategory(formData);
-            //     this.categories.unshift(response.data); // 將新增的資料馬上顯示
-            //     this.hideNewCategoryModal(); // 讓按下儲存時，隱藏表單
-            //     this.flashMessage.success({
-            //         message: 'test 資料寫入成功!!',
-            //         time: 3000
-            //     });
-            //     this.categoryData = {
-            //         name:'',
-            //         mail:'',
-            //         password:'',
-            //         abc:'',
-            //         image:''
-            //     };
-            // } catch (error){
+        createCrop: async function(){
+            let formData = new FormData();
 
-            //     switch (error.response.status) {
-            //         case 422:
-            //             this.errors = error.response.data.errors;
-            //             break;
-            //         default:
-            //             this.flashMessage.error({
-            //                 message: 'test 資料寫入有錯誤發生!!',
-            //                 time: 5000
-            //             });
-            //             break;
-            //     }
-            // }
+            formData.append('Expert',this.CropData.Expert);
+            formData.append('classification',this.CropData.classification);
+            formData.append('VegetableTypes',this.CropData.VegetableTypes);
+            formData.append('Goodlight',this.CropData.Goodlight);
+            formData.append('Photoperiod',this.CropData.Photoperiod);
+            formData.append('Illuminance',this.CropData.Illuminance);
+            formData.append('PPFD',this.CropData.PPFD);
+            formData.append('LightSaturationPoint',this.CropData.LightSaturationPoint);
+            formData.append('LightCompensationPoint',this.CropData.LightCompensationPoint);
+            formData.append('Temperatureadaptability',this.CropData.Temperatureadaptability);
+            formData.append('LowestGrowthTemperature',this.CropData.LowestGrowthTemperature);
+            formData.append('OptimalGrowthTemperature',this.CropData.OptimalGrowthTemperature);
+            formData.append('HighestGrowthTemperature',this.CropData.HighestGrowthTemperature);
+            formData.append('LowestGerminationTemperature',this.CropData.LowestGerminationTemperature);
+            formData.append('OptimumGerminationTemperature',this.CropData.OptimumGerminationTemperature);
+            formData.append('HighestGerminationTemperature',this.CropData.HighestGerminationTemperature);
+            formData.append('CO2IncreasedProductionRate',this.CropData.CO2IncreasedProductionRate);
+
+            try{
+                const response = await CropService.createCrop(formData);
+                this.CropSelect.unshift(response.data); // 將新增的資料馬上顯示
+                this.flashMessage.success({
+                    message: '作物資訊 寫入成功!!',
+                    time: 3000
+                });
+                this.CropData = {
+                    Expert:'',
+                    classification: null,
+                    VegetableTypes: '',
+                    Goodlight: null,
+                    Photoperiod: null,
+                    Illuminance: null,
+                    PPFD: null,
+                    LightSaturationPoint: '',
+                    LightCompensationPoint: '',
+                    Temperatureadaptability: null,
+                    LowestGrowthTemperature: '',
+                    OptimalGrowthTemperature: '',
+                    HighestGrowthTemperature: '',
+                    LowestGerminationTemperature: '',
+                    OptimumGerminationTemperature: '',
+                    HighestGerminationTemperature: '',
+                    CO2IncreasedProductionRate: '',
+                };
+
+                // 更新"專家"選擇
+                var filterfalg = false;
+                this.ExpertOrder = [];
+                for(var i = 0 ; i < this.vegetablejson.length ; i++){
+                    if(this.vegetablejson[i].Expert == "System"){
+                        this.ExpertSelect.push(this.vegetablejson[i]);
+                    }
+
+                    filterfalg = false;
+                    // 篩選重複出現的專家
+                    for(var j = 0 ; j < this.ExpertOrder.length ; j++){
+                        if(this.ExpertOrder[j] == this.vegetablejson[i].Expert){
+                            filterfalg = true;
+                            break;
+                        }
+                    }
+                    if(!filterfalg) this.ExpertOrder.push(this.vegetablejson[i].Expert);
+                }
+
+            } catch (error){
+
+                switch (error.response.status) {
+                    case 422:
+                        this.errors = error.response.data.errors;
+                        break;
+                    default:
+                        this.flashMessage.error({
+                            message: '作物資訊 寫入有錯誤發生!!',
+                            time: 5000
+                        });
+                        break;
+                }
+            }
+        },
+        EditCrop: async function(DeleteId){    // 編輯作物資料 函式呼叫
+
+        },
+        deleteCrop: async function(DeleteId){    // 刪除作物資料 函式呼叫
+            console.log("-------刪除函式------");
+            console.log(DeleteId);
+
+            var DeleteData = [];
+
+            for(var i = 0 ; i < this.vegetablejson.length ; i++){
+                if(this.vegetablejson[i].id == DeleteId){
+                    DeleteData = this.vegetablejson[i];
+                }
+            }
+
+            if(!window.confirm(`你確定要刪除 ${DeleteData.Expert} 的 ${DeleteData.VegetableTypes} 嗎?`)){
+                return;
+            }
+
+            try {
+                // 呼叫 crop_service.js 的 deleteCrop
+                await CropService.deleteCrop(DeleteId);
+                this.getJson(); // 刪除資料後，馬上更新顯示的資料
+
+                // 刪除成功的提示視窗
+                this.flashMessage.success({
+                    message: '作物 資料刪除成功!!',
+                    time: 3000
+                });
+
+            } catch (error) {
+                // 刪除失敗的提示視窗
+                this.flashMessage.error({
+                    message: error.response.data.message,
+                    time: 5000
+                });
+            }
+        },
+        check(){
+            console.log("----------檢查裡----------");
         },
     },
 }

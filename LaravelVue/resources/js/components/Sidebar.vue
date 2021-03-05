@@ -170,11 +170,11 @@
                                     地理環境分析
                                 </router-link>
 
-                                <router-link to="#" class="nav-link" exact>
+                                <router-link to="/Development" class="nav-link" exact>
                                     溫室設計
                                 </router-link>
 
-                                <router-link to="#" class="nav-link" exact>
+                                <router-link to="/Development" class="nav-link" exact>
                                     環控設計
                                 </router-link>
 
@@ -190,27 +190,27 @@
                                         <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis" class="nav-link" exact>
                                             溫室構造成本分析
                                         </router-link>
-                                        <router-link to="#" class="nav-link" exact>
+                                        <router-link to="/Development" class="nav-link" exact>
                                             生產設備成本分析
                                         </router-link>
-                                        <router-link to="#" class="nav-link" exact>
+                                        <router-link to="/Development" class="nav-link" exact>
                                             環控設備成本分析
                                         </router-link>
-                                        <router-link to="#" class="nav-link" exact>
+                                        <router-link to="/Development" class="nav-link" exact>
                                             生產營運成本分析
                                         </router-link>
                                     </nav>
                                 </div>
 
-                                <router-link to="#" class="nav-link" exact>
+                                <router-link to="/Development" class="nav-link" exact>
                                     風險分析
                                 </router-link>
 
-                                <router-link to="#" class="nav-link" exact>
+                                <router-link to="/Development" class="nav-link" exact>
                                     決策分析
                                 </router-link>
 
-                                <router-link to="#" class="nav-link" exact>
+                                <router-link to="/Development" class="nav-link" exact>
                                     優化分析
                                 </router-link>
                             </nav>
