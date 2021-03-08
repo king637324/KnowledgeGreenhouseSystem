@@ -16,13 +16,14 @@ export function deleteCrop(data) {
 
 export function UpdateCrop(EditCropData, data) {
 
+    // console.log("-----------crop.service.js-------------");
     // console.log("-----------EditCropData-------------");
     // console.log(EditCropData);
     // console.log("-----------EditCropData.id-------------");
     // console.log(EditCropData.id);
     // console.log("-----------data-------------");
     // console.log(data);
-
+    // console.log("-----------!!!over!!! crop.service.js-------------");
 
     return httpFile().post(`/GreenhouseMasterPlan/CropSelection/${EditCropData.id}`, data);
 }

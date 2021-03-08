@@ -36,10 +36,8 @@ class CropController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) // 創建作物資訊
     {
-        // dd($request);
-
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
             'Expert' => 'required',
@@ -80,7 +78,6 @@ class CropController extends Controller
         $CropData->HighestGerminationTemperature = $request->HighestGerminationTemperature;
         $CropData->CO2IncreasedProductionRate = $request->CO2IncreasedProductionRate;
 
-        // dd($CropData);
         if($CropData->save()){
             return response()->json($CropData,200);
         }else{
@@ -120,9 +117,40 @@ class CropController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)   // 修改作物資訊
     {
-        //
+
+        $request -> validate([
+            'Expert' => 'required',
+            'classification' => 'required',
+            'VegetableTypes' => 'required',
+            'Goodlight' => 'required',
+            'Photoperiod' => 'required',
+            'Illuminance' => 'required',
+            'PPFD' => 'required',
+            'LightSaturationPoint' => 'required',
+            'LightCompensationPoint' => 'required',
+            'Temperatureadaptability' => 'required',
+            'LowestGrowthTemperature' => 'required',
+            'OptimalGrowthTemperature' => 'required',
+            'HighestGrowthTemperature' => 'required',
+            'LowestGerminationTemperature' => 'required',
+            'OptimumGerminationTemperature' => 'required',
+            'HighestGerminationTemperature' => 'required',
+            'CO2IncreasedProductionRate' => 'required',
+        ]);
+
+        $data = $request->only(['id','Expert','classification','VegetableTypes','Goodlight','Photoperiod','Illuminance','PPFD','LightSaturationPoint','LightCompensationPoint','Temperatureadaptability','LowestGrowthTemperature','OptimalGrowthTemperature','HighestGrowthTemperature','LowestGerminationTemperature','OptimumGerminationTemperature','HighestGerminationTemperature','CO2IncreasedProductionRate']);
+        $EditCropData  = vegetable::where('id',$id);
+
+        if($EditCropData->update($data)){
+            return response()->json($data,200);
+        }else{
+            return response()->json([
+                'message' => '!!作物資訊 更新(update)發生錯誤!!',
+                'status_code' => 500
+            ],500);
+        }
     }
 
     /**
@@ -131,7 +159,7 @@ class CropController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id)    // 刪除作物資訊
     {
 
         $deleteCrop = vegetable::where('id', $id);

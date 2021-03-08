@@ -291,6 +291,7 @@
                     formData.append('_method','put');
                     const response = await categoryService.UpdateCategory(this.editData, formData);
 
+                    // 讓在完成更新後，可以即時更改顯示
                     this.categories.map(test => {
                         console.log("-----test-----");
                         console.log(test);
@@ -299,7 +300,6 @@
 
 
                         if(test.name == response.data.name){
-                            console.log("e04");
                             // test = response.data;
                             for(let key in response.data){
                                 test[key] = response.data[key];

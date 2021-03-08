@@ -98,8 +98,6 @@ class TestController extends Controller
      */
     public function update(Request $request, test $test)
     {
-
-
         $request -> validate([
             'name' => 'required|min:3',
             'mail' => 'required',

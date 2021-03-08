@@ -137,7 +137,7 @@ export default {
     methods:{
 
         Login(){
-            console.log("Login裡面");
+            // console.log("Login裡面");
             // get the redirect object
             var redirect = this.$auth.redirect()
             var app = this
@@ -155,14 +155,14 @@ export default {
                 // error
 
                 this.flashMessage.error({
-                    clickable: true,
-                    time: 0,
+                    // clickable: true,
+                    time: 10000,
                     message: 'Email帳號、或密碼錯誤，請檢查後再次輸入!!',
                 });
             })
         },
         Register() {
-            console.log("Register裡面");
+            // console.log("Register裡面");
             if (this.$refs.registerForm.validate()) {
                 // submit form to server/API here...
                 var app = this
@@ -190,21 +190,21 @@ export default {
 
                     if(Object.keys(this.errors).includes('identity') && Object.keys(this.errors).includes('email')){
                         this.flashMessage.error({
-                            clickable: true,
-                            time: 0,
+                            // clickable: true,
+                            time: 10000,
                             message: '請選擇身分別，且此信箱已註冊過',
                         });
                     }else if(Object.keys(this.errors).includes('identity')){
                         this.flashMessage.error({
-                            clickable: true,
-                            time: 0,
+                            // clickable: true,
+                            time: 10000,
                             message: '請選擇身分別',
                         });
                     }else if(Object.keys(this.errors).includes('email')){
 
                         this.flashMessage.error({
-                            clickable: true,
-                            time: 0,
+                            // clickable: true,
+                            time: 10000,
                             message: '此信箱已註冊過',
                         });
                     }

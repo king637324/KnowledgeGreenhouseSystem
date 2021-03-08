@@ -6,155 +6,169 @@
         <div class="d-flex justify-content-center">
         <div class="p-1 bd-highlight"></div>
         <div class="p-4 bd-highlight">
-            <h6>新增農業作物資料請新增在此</h6>
-            <v-form v-on:submit.prevent="createCrop" v-model="valid" lazy-validation>
-                <v-container-fluid>
-                    <v-row>
-                        <v-col>
-                            <b-form-select v-model="CropData.classification" :options="classificationOptions" >
+            <div v-if="$auth.check()">
+                <h4 style="color:red; font-weight:bold;" v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                    新增農業作物資料請新增在此
+                </h4>
+                <v-form v-on:submit.prevent="createCrop" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                    <v-container-fluid>
+                        <v-row>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.Expert"
+                                    :rules="CropRules"
+                                    label="您的暱稱"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.Expert">{{ errors.Expert[0] }}</div>
+                            </v-col>
+                            <v-col></v-col>
+                            <v-col></v-col>
+                            <v-col></v-col>
+                            <v-col></v-col>
+                            <v-col></v-col>
+                            <v-col></v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <b-form-select v-model="CropData.classification" :options="classificationOptions" >
 
-                            </b-form-select>
-                            <div class="invalid-feedback" v-if="errors.classification">{{ errors.classification[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.VegetableTypes"
-                                :rules="CropRules"
-                                label="作物種類"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.VegetableTypes">{{ errors.VegetableTypes[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <b-form-select v-model="CropData.Goodlight" :options="GoodlightOptions" >
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.classification">{{ errors.classification[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.VegetableTypes"
+                                    :rules="CropRules"
+                                    label="作物種類"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.VegetableTypes">{{ errors.VegetableTypes[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <b-form-select v-model="CropData.Goodlight" :options="GoodlightOptions" >
 
-                            </b-form-select>
-                            <div class="invalid-feedback" v-if="errors.Goodlight">{{ errors.Goodlight[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <b-form-select v-model="CropData.Photoperiod" :options="PhotoperiodOptions" >
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.Goodlight">{{ errors.Goodlight[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <b-form-select v-model="CropData.Photoperiod" :options="PhotoperiodOptions" >
 
-                            </b-form-select>
-                            <div class="invalid-feedback" v-if="errors.Photoperiod">{{ errors.Photoperiod[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <b-form-select v-model="CropData.Illuminance" :options="IlluminanceOptions" >
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.Photoperiod">{{ errors.Photoperiod[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <b-form-select v-model="CropData.Illuminance" :options="IlluminanceOptions" >
 
-                            </b-form-select>
-                            <div class="invalid-feedback" v-if="errors.Illuminance">{{ errors.Illuminance[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <b-form-select v-model="CropData.PPFD" :options="PPFDOptions" >
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.Illuminance">{{ errors.Illuminance[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <b-form-select v-model="CropData.PPFD" :options="PPFDOptions" >
 
-                            </b-form-select>
-                            <div class="invalid-feedback" v-if="errors.PPFD">{{ errors.PPFD[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.LightSaturationPoint"
-                                :rules="CropRules"
-                                label="光飽和點(klx)"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.LightSaturationPoint">{{ errors.LightSaturationPoint[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.LightCompensationPoint"
-                                :rules="CropRules"
-                                label="光補償點(klx)"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.LightCompensationPoint">{{ errors.LightCompensationPoint[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <b-form-select v-model="CropData.Temperatureadaptability" :options="TemperatureadaptabilityOptions" >
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.PPFD">{{ errors.PPFD[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.LightSaturationPoint"
+                                    :rules="CropRules"
+                                    label="光飽和點(klx)"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LightSaturationPoint">{{ errors.LightSaturationPoint[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.LightCompensationPoint"
+                                    :rules="CropRules"
+                                    label="光補償點(klx)"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LightCompensationPoint">{{ errors.LightCompensationPoint[0] }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <b-form-select v-model="CropData.Temperatureadaptability" :options="TemperatureadaptabilityOptions" >
 
-                            </b-form-select>
-                            <div class="invalid-feedback" v-if="errors.Temperatureadaptability">{{ errors.Temperatureadaptability[0] }}</div>
-                        </v-col>
-                    </v-row>
-                    <v-row>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.LowestGrowthTemperature"
-                                :rules="CropRules"
-                                label="生長溫度最低溫"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.LowestGrowthTemperature">{{ errors.LowestGrowthTemperature[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.OptimalGrowthTemperature"
-                                :rules="CropRules"
-                                label="生長溫度最適溫"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.OptimalGrowthTemperature">{{ errors.OptimalGrowthTemperature[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.HighestGrowthTemperature"
-                                :rules="CropRules"
-                                label="生長溫度最高溫"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.HighestGrowthTemperature">{{ errors.HighestGrowthTemperature[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.LowestGerminationTemperature"
-                                :rules="CropRules"
-                                label="發芽溫度最低溫"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.LowestGerminationTemperature">{{ errors.LowestGerminationTemperature[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.OptimumGerminationTemperature"
-                                :rules="CropRules"
-                                label="發芽溫度最適溫"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.OptimumGerminationTemperature">{{ errors.OptimumGerminationTemperature[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.HighestGerminationTemperature"
-                                :rules="CropRules"
-                                label="發芽溫度最高溫"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.HighestGerminationTemperature">{{ errors.HighestGerminationTemperature[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.CO2IncreasedProductionRate"
-                                :rules="CropRules"
-                                label="CO₂增產率"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.CO2IncreasedProductionRate">{{ errors.CO2IncreasedProductionRate[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                v-model="CropData.Expert"
-                                :rules="CropRules"
-                                label="您的暱稱"
-                                required
-                            ></v-text-field>
-                            <div class="invalid-feedback" v-if="errors.Expert">{{ errors.Expert[0] }}</div>
-                        </v-col>
-                        <v-col>
-                            <button type="submit" class="btn btn-primary"><span class="fa fa-check" :disabled="!valid"></span>新增</button>
-                        </v-col>
-                    </v-row>
-                </v-container-fluid>
-            </v-form>
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.Temperatureadaptability">{{ errors.Temperatureadaptability[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.LowestGrowthTemperature"
+                                    :rules="CropRules"
+                                    label="生長溫度最低溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LowestGrowthTemperature">{{ errors.LowestGrowthTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.OptimalGrowthTemperature"
+                                    :rules="CropRules"
+                                    label="生長溫度最適溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.OptimalGrowthTemperature">{{ errors.OptimalGrowthTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.HighestGrowthTemperature"
+                                    :rules="CropRules"
+                                    label="生長溫度最高溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighestGrowthTemperature">{{ errors.HighestGrowthTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.LowestGerminationTemperature"
+                                    :rules="CropRules"
+                                    label="發芽溫度最低溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LowestGerminationTemperature">{{ errors.LowestGerminationTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.OptimumGerminationTemperature"
+                                    :rules="CropRules"
+                                    label="發芽溫度最適溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.OptimumGerminationTemperature">{{ errors.OptimumGerminationTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.HighestGerminationTemperature"
+                                    :rules="CropRules"
+                                    label="發芽溫度最高溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighestGerminationTemperature">{{ errors.HighestGerminationTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="CropData.CO2IncreasedProductionRate"
+                                    :rules="CropRules"
+                                    label="CO₂增產率"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.CO2IncreasedProductionRate">{{ errors.CO2IncreasedProductionRate[0] }}</div>
+                            </v-col>
+                        </v-row>
+                    </v-container-fluid>
+                    <hr>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary"><span class="fa fa-check" :disabled="!valid"></span>新增</button>
+                    </div>
+                </v-form>
 
-            <br>
+                <br>
+            </div>
+
 
 
             <b-select v-model="ExpertIdx" v-on:change="updateExpertTable" style="font-size: 2vmin; width:25vmin" >
@@ -186,8 +200,8 @@
                         <td colspan="3" style='width:16vmin'> 生長溫度</td>
                         <td colspan="3" style='width:16vmin'> 發芽溫度 </td>
                         <td rowspan="2" style='width:13vmin'> CO₂增產率 </td>
-                        <td rowspan="2" style='width:13vmin'> 編輯 </td>
-                        <td rowspan="2" style='width:13vmin'> 刪除 </td>
+                        <td rowspan="2" style='width:13vmin' v-if="$auth.check()"> <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">編輯 </div></td>
+                        <td rowspan="2" style='width:13vmin' v-if="$auth.check()"> <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">刪除 </div> </td>
                     </tr>
                     <tr align="center">
                         <td> 最低溫 </td>
@@ -217,18 +231,14 @@
                     <td> {{crop.OptimumGerminationTemperature}} </td>
                     <td> {{crop.HighestGerminationTemperature}} </td>
                     <td> {{crop.CO2IncreasedProductionRate}} </td>
-                    <!-- <td v-if="$auth.check()"> -->
-                    <td>
-                        <!-- <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-                        <div>
+                    <td v-if="$auth.check()">
+                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
                             <!-- 修改 -->
-                            <button class="btn btn-primary btn-sm" v-on:click="EditCrop(test)"><span class="fa fa-edit"></span></button>
+                            <button class="btn btn-primary btn-sm" v-on:click="EditCrop(crop)"><span class="fa fa-edit"></span></button>
                         </div>
                     </td>
-                    <!-- <td v-if="$auth.check()"> -->
-                    <td>
-                        <!-- <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-                        <div>
+                    <td v-if="$auth.check()">
+                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
                             <!-- 刪除 -->
                             <button class="btn btn-danger btn-sm"  v-on:click="deleteCrop(crop.id)"><span class="fa fa-trash"></span></button>
                         </div>
@@ -237,6 +247,186 @@
             </table>
         </div>
         <div class="p-1 bd-highlight"></div>
+
+        <b-modal ref="EditCropModal" hide-footer title="編輯資料" centered size="xl">
+            <div class="d-block">
+                <v-form v-on:submit.prevent="UpdateCrop">
+                    <v-container-fluid>
+                        <v-row>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.Expert"
+                                    :rules="CropRules"
+                                    label="您的暱稱"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.Expert">{{ errors.Expert[0] }}</div>
+                            </v-col>
+                            <v-col>
+
+                            </v-col>
+                            <v-col>
+
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <b-form-select v-model="EditCropData.classification" :options="classificationOptions" >
+
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.classification">{{ errors.classification[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.VegetableTypes"
+                                    :rules="CropRules"
+                                    label="作物種類"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.VegetableTypes">{{ errors.VegetableTypes[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <b-form-select v-model="EditCropData.Goodlight" :options="GoodlightOptions" >
+
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.Goodlight">{{ errors.Goodlight[0] }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <b-form-select v-model="EditCropData.Photoperiod" :options="PhotoperiodOptions" >
+
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.Photoperiod">{{ errors.Photoperiod[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <b-form-select v-model="EditCropData.Illuminance" :options="IlluminanceOptions" >
+
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.Illuminance">{{ errors.Illuminance[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <b-form-select v-model="EditCropData.PPFD" :options="PPFDOptions" >
+
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.PPFD">{{ errors.PPFD[0] }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.LightSaturationPoint"
+                                    :rules="CropRules"
+                                    label="光飽和點(klx)"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LightSaturationPoint">{{ errors.LightSaturationPoint[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.LightCompensationPoint"
+                                    :rules="CropRules"
+                                    label="光補償點(klx)"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LightCompensationPoint">{{ errors.LightCompensationPoint[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <b-form-select v-model="EditCropData.Temperatureadaptability" :options="TemperatureadaptabilityOptions" >
+
+                                </b-form-select>
+                                <div class="invalid-feedback" v-if="errors.Temperatureadaptability">{{ errors.Temperatureadaptability[0] }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.LowestGrowthTemperature"
+                                    :rules="CropRules"
+                                    label="生長溫度最低溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LowestGrowthTemperature">{{ errors.LowestGrowthTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.OptimalGrowthTemperature"
+                                    :rules="CropRules"
+                                    label="生長溫度最適溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.OptimalGrowthTemperature">{{ errors.OptimalGrowthTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.HighestGrowthTemperature"
+                                    :rules="CropRules"
+                                    label="生長溫度最高溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighestGrowthTemperature">{{ errors.HighestGrowthTemperature[0] }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.LowestGerminationTemperature"
+                                    :rules="CropRules"
+                                    label="發芽溫度最低溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LowestGerminationTemperature">{{ errors.LowestGerminationTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.OptimumGerminationTemperature"
+                                    :rules="CropRules"
+                                    label="發芽溫度最適溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.OptimumGerminationTemperature">{{ errors.OptimumGerminationTemperature[0] }}</div>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.HighestGerminationTemperature"
+                                    :rules="CropRules"
+                                    label="發芽溫度最高溫"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighestGerminationTemperature">{{ errors.HighestGerminationTemperature[0] }}</div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <v-text-field
+                                    v-model="EditCropData.CO2IncreasedProductionRate"
+                                    :rules="CropRules"
+                                    label="CO₂增產率"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.CO2IncreasedProductionRate">{{ errors.CO2IncreasedProductionRate[0] }}</div>
+                            </v-col>
+                            <v-col>
+
+                            </v-col>
+                            <v-col>
+
+                            </v-col>
+                        </v-row>
+                    </v-container-fluid>
+                    <hr>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-default" v-on:click="hideEditCropModal">取消</button>
+                        <button type="submit" class="btn btn-primary"><span class="fa fa-check" :disabled="!valid"></span>儲存</button>
+                    </div>
+                </v-form>
+
+
+
+
+                <hr>
+            </div>
+        </b-modal>
     </div>
 
 
@@ -268,6 +458,7 @@ export default {
             ],
 
             CropData:{
+                id: null,
                 Expert:'',
                 classification: null,
                 VegetableTypes: '',
@@ -285,6 +476,9 @@ export default {
                 OptimumGerminationTemperature: '',
                 HighestGerminationTemperature: '',
                 CO2IncreasedProductionRate: '',
+            },
+            EditCropData:{
+
             },
             errors:{
 
@@ -418,6 +612,7 @@ export default {
                     time: 3000
                 });
                 this.CropData = {
+                    id: null,
                     Expert:'',
                     classification: null,
                     VegetableTypes: '',
@@ -471,13 +666,7 @@ export default {
                 }
             }
         },
-        EditCrop: async function(DeleteId){    // 編輯作物資料 函式呼叫
-
-        },
         deleteCrop: async function(DeleteId){    // 刪除作物資料 函式呼叫
-            console.log("-------刪除函式------");
-            console.log(DeleteId);
-
             var DeleteData = [];
 
             for(var i = 0 ; i < this.vegetablejson.length ; i++){
@@ -509,8 +698,85 @@ export default {
                 });
             }
         },
-        check(){
-            console.log("----------檢查裡----------");
+        hideEditCropModal(){    // 隱藏編輯表單
+            this.$refs.EditCropModal.hide();
+        },
+        showEditCropModal(){    // 顯示編輯表單
+            this.$refs.EditCropModal.show();
+        },
+        EditCrop(CropData){     // 複製所選要編輯的作物資料
+            this.EditCropData = {...CropData};
+            this.showEditCropModal();
+        },
+        UpdateCrop:async function(){    // 編輯作物資料 函式呼叫
+            try {
+                let formData = new FormData();
+                console.log("this.EditCropData");
+                console.log(this.EditCropData);
+
+                formData.append('id',this.EditCropData.id);
+                formData.append('Expert',this.EditCropData.Expert);
+                formData.append('classification',this.EditCropData.classification);
+                formData.append('VegetableTypes',this.EditCropData.VegetableTypes);
+                formData.append('Goodlight',this.EditCropData.Goodlight);
+                formData.append('Photoperiod',this.EditCropData.Photoperiod);
+                formData.append('Illuminance',this.EditCropData.Illuminance);
+                formData.append('PPFD',this.EditCropData.PPFD);
+                formData.append('LightSaturationPoint',this.EditCropData.LightSaturationPoint);
+                formData.append('LightCompensationPoint',this.EditCropData.LightCompensationPoint);
+                formData.append('Temperatureadaptability',this.EditCropData.Temperatureadaptability);
+                formData.append('LowestGrowthTemperature',this.EditCropData.LowestGrowthTemperature);
+                formData.append('OptimalGrowthTemperature',this.EditCropData.OptimalGrowthTemperature);
+                formData.append('HighestGrowthTemperature',this.EditCropData.HighestGrowthTemperature);
+                formData.append('LowestGerminationTemperature',this.EditCropData.LowestGerminationTemperature);
+                formData.append('OptimumGerminationTemperature',this.EditCropData.OptimumGerminationTemperature);
+                formData.append('HighestGerminationTemperature',this.EditCropData.HighestGerminationTemperature);
+                formData.append('CO2IncreasedProductionRate',this.EditCropData.CO2IncreasedProductionRate);
+                formData.append('_method','put');
+                // 呼叫 crop_service.js 的 UpdateCrop
+                const response = await CropService.UpdateCrop(this.EditCropData, formData);
+
+                // 讓在完成更新後，可以即時更改顯示
+                this.CropSelect.map(Cropdata => {
+                    // console.log("-----Cropdata-----");
+                    // console.log(Cropdata);
+                    // console.log("-----response.data-----");
+                    // console.log(response.data);
+
+                    if(Cropdata.id == response.data.id){
+                        Cropdata.Expert = response.data.Expert;
+                        Cropdata.classification = response.data.classification;
+                        Cropdata.VegetableTypes = response.data.VegetableTypes;
+                        Cropdata.Goodlight = response.data.Goodlight;
+                        Cropdata.Photoperiod = response.data.Photoperiod;
+                        Cropdata.Illuminance = response.data.Illuminance;
+                        Cropdata.PPFD = response.data.PPFD;
+                        Cropdata.LightSaturationPoint = response.data.LightSaturationPoint;
+                        Cropdata.LightCompensationPoint = response.data.LightCompensationPoint;
+                        Cropdata.Temperatureadaptability = response.data.Temperatureadaptability;
+                        Cropdata.LowestGrowthTemperature = response.data.LowestGrowthTemperature;
+                        Cropdata.OptimalGrowthTemperature = response.data.OptimalGrowthTemperature;
+                        Cropdata.HighestGrowthTemperature = response.data.HighestGrowthTemperature;
+                        Cropdata.LowestGerminationTemperature = response.data.LowestGerminationTemperature;
+                        Cropdata.OptimumGerminationTemperature = response.data.OptimumGerminationTemperature;
+                        Cropdata.HighestGerminationTemperature = response.data.HighestGerminationTemperature;
+                        Cropdata.CO2IncreasedProductionRate = response.data.CO2IncreasedProductionRate;
+                    }
+                });
+                this.hideEditCropModal(); // 讓按下儲存時，隱藏表單
+
+
+                this.flashMessage.success({
+                    message: '作物 資料更新成功!!',
+                    time: 3000
+                });
+
+            } catch (error) {
+                this.flashMessage.error({
+                    message: error.response.data.message,
+                    time: 5000
+                });
+            }
         },
     },
 }
