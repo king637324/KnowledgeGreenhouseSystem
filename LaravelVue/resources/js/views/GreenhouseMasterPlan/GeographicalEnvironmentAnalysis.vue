@@ -181,8 +181,8 @@ export default {
             this.Series = null;
             this.Wind = null;
             this.regionIdx = 0;
-            this.LandingProbability = null,
-            this.PathProbability = null,
+            this.LandingProbability = 0,
+            this.PathProbability = 0,
             this.Landing = null,
             this.Path = null,
             this.Region = ['==請選擇地區=='];
@@ -196,6 +196,12 @@ export default {
             }
 
         },updateRegion(){
+            // 將地區資料初始化
+            this.LandingProbability = 0,
+            this.PathProbability = 0,
+            this.Landing = null,
+            this.Path = null;
+
             // 從所選的地區id 找到 所選的地區名稱
             for(var i = 0 ; i < this.Region.length ; i++){
                 if(i == this.regionIdx)    this.selectRegion = this.Region[i];

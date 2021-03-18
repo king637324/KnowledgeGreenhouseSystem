@@ -53,7 +53,11 @@
                     <div class="nav">
 
                         <div class="sb-sidenav-menu-heading">測試</div>
-                            <router-link to="/test" class="nav-link" exact>
+                        <router-link to="/DevelopConstructionCostAnalysisTestment" class="nav-link" exact>
+                            <b-icon icon="hammer"></b-icon> 構造成本測試
+                        </router-link>
+
+                        <router-link to="/test" class="nav-link" exact>
                             <b-icon icon="hammer"></b-icon> 頁面測試
                         </router-link>
                         <router-link to="/categories" class="nav-link" exact>

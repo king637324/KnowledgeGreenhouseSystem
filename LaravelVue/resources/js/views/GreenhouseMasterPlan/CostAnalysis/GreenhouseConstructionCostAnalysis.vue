@@ -120,6 +120,7 @@
                         <h5 style="color:red;">請完成簡易型溫室規格選擇 還有 {{9-SelectSimple.length}}個未完成選擇</h5>
                         <br>
                         <!-- 標準簡易型溫室成本價格 -->
+                        <h5>標準簡易型溫室成本</h5>
                         <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
                             <thead class="table-active">
                                 <tr align="center">
@@ -459,7 +460,7 @@
                 <div v-if="SelectRobust.length != 9">
                     <h5 style="color:red;">請完成強固型溫室規格選擇 還有 {{9-SelectRobust.length}}個未完成選擇</h5>
                     <br>
-                    標準強固型溫室成本價格
+                    <h5>標準強固型溫室成本價格</h5>
                     <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
                         <thead class="table-active">
                             <tr align="center">
@@ -695,6 +696,14 @@ export default {
             greenhouseCostjson: [],
             greenhouseCostRatiojson: [],
 
+            ExpertParameterSelected: null,
+            options: [
+                { value: null, text: '請選擇身分' ,disabled:true },
+                { value: '農民', text: '農民' },
+                { value: '業者', text: '業者' },
+                { value: '專家', text: '專家' },
+            ],
+
             /* 簡易型溫室 */
             SimpleGreenhouse:[],
             SimpleGreenhouseRatio:[],
@@ -733,13 +742,7 @@ export default {
             RobustStructuralRiskAdd:0,
             RobustJobDifficultyAdd:0,
 
-            ExpertParameterSelected: null,
-            options: [
-                { value: null, text: '請選擇身分' ,disabled:true },
-                { value: '農民', text: '農民' },
-                { value: '業者', text: '業者' },
-                { value: '專家', text: '專家' },
-            ],
+
 
         }
     },

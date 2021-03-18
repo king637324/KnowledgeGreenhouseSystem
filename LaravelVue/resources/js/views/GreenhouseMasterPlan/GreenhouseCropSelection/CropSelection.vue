@@ -17,7 +17,8 @@
                                 <v-text-field
                                     v-model="CropData.Expert"
                                     :rules="CropRules"
-                                    label="您的暱稱"
+                                    label="您的編號"
+                                    disabled
                                     required
                                 ></v-text-field>
                                 <div class="invalid-feedback" v-if="errors.Expert">{{ errors.Expert[0] }}</div>
@@ -257,7 +258,8 @@
                                 <v-text-field
                                     v-model="EditCropData.Expert"
                                     :rules="CropRules"
-                                    label="您的暱稱"
+                                    label="您的編號"
+                                    disabled
                                     required
                                 ></v-text-field>
                                 <div class="invalid-feedback" v-if="errors.Expert">{{ errors.Expert[0] }}</div>
@@ -420,10 +422,6 @@
                         <button type="submit" class="btn btn-primary"><span class="fa fa-check" :disabled="!valid"></span>儲存</button>
                     </div>
                 </v-form>
-
-
-
-
                 <hr>
             </div>
         </b-modal>
@@ -452,6 +450,7 @@ export default {
             CropOrder:["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"], // 作物分類的選單陣列表
             cropIdx: 0, // 所選作物的id
             selectCrop: null, // 所選作物的名稱
+            
 
             CropRules: [
                 v => !!v || '必填',
@@ -459,7 +458,7 @@ export default {
 
             CropData:{
                 id: null,
-                Expert:'',
+                Expert:this.$auth.user().id,
                 classification: null,
                 VegetableTypes: '',
                 Goodlight: null,
@@ -531,6 +530,10 @@ export default {
     },
     methods: {
         async getJson(){
+
+            // console.log(this.$auth.user()); // 可以取得使用者資料
+            // console.log(this.$auth.user().id); // 可以取得使用者資料
+
             // 作物資訊資料表
             const Vegetable = await fetch('/VegetableJSON',  {
                 method: 'GET',
@@ -613,7 +616,7 @@ export default {
                 });
                 this.CropData = {
                     id: null,
-                    Expert:'',
+                    Expert:this.$auth.user().id,
                     classification: null,
                     VegetableTypes: '',
                     Goodlight: null,
@@ -632,24 +635,10 @@ export default {
                     CO2IncreasedProductionRate: '',
                 };
 
-                // 更新"專家"選擇
-                var filterfalg = false;
-                this.ExpertOrder = [];
-                for(var i = 0 ; i < this.vegetablejson.length ; i++){
-                    if(this.vegetablejson[i].Expert == "System"){
-                        this.ExpertSelect.push(this.vegetablejson[i]);
-                    }
-
-                    filterfalg = false;
-                    // 篩選重複出現的專家
-                    for(var j = 0 ; j < this.ExpertOrder.length ; j++){
-                        if(this.ExpertOrder[j] == this.vegetablejson[i].Expert){
-                            filterfalg = true;
-                            break;
-                        }
-                    }
-                    if(!filterfalg) this.ExpertOrder.push(this.vegetablejson[i].Expert);
-                }
+                const Vegetable = await fetch('/VegetableJSON',  {
+                    method: 'GET',
+                });
+                this.vegetablejson = await Vegetable.json();
 
             } catch (error){
 
@@ -682,7 +671,17 @@ export default {
             try {
                 // 呼叫 crop_service.js 的 deleteCrop
                 await CropService.deleteCrop(DeleteId);
-                this.getJson(); // 刪除資料後，馬上更新顯示的資料
+                // this.getJson(); // 刪除資料後，馬上更新顯示的資料
+                // 刪除資料後，馬上更新顯示的資料
+                this.CropSelect = this.CropSelect.filter(obj =>{
+                    return obj.id != DeleteData.id;
+                });
+
+                // 作物資訊資料表
+                const Vegetable = await fetch('/VegetableJSON',  {
+                    method: 'GET',
+                });
+                this.vegetablejson = await Vegetable.json();
 
                 // 刪除成功的提示視窗
                 this.flashMessage.success({
@@ -711,8 +710,8 @@ export default {
         UpdateCrop:async function(){    // 編輯作物資料 函式呼叫
             try {
                 let formData = new FormData();
-                console.log("this.EditCropData");
-                console.log(this.EditCropData);
+                // console.log("this.EditCropData");
+                // console.log(this.EditCropData);
 
                 formData.append('id',this.EditCropData.id);
                 formData.append('Expert',this.EditCropData.Expert);
@@ -770,6 +769,11 @@ export default {
                     message: '作物 資料更新成功!!',
                     time: 3000
                 });
+
+                const Vegetable = await fetch('/VegetableJSON',  {
+                    method: 'GET',
+                });
+                this.vegetablejson = await Vegetable.json();
 
             } catch (error) {
                 this.flashMessage.error({

@@ -31,6 +31,8 @@ class KnowledgeEditorController extends Controller
                     ->orderBy('id', 'ASC')
                     ->get();
 
+        dd($articles);
+
         return $articles;
     }
 

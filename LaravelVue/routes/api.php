@@ -20,16 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-use App\Http\Controllers\TestController;
-Route::resource('/categories',TestController::class);
-
-use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
-Route::resource('/MaterialsAndDesignKnowledgeBase/Article',KnowledgeEditorController::class);
-
-use App\Http\Controllers\GreenhouseMasterPlan\CropController;
-Route::resource('/GreenhouseMasterPlan/CropSelection',CropController::class);
-
 Route::prefix('auth')-> group(function(){
     Route::post('/register',[AuthController::class,'register']);
 
@@ -65,5 +55,25 @@ api/auth/logout  路由將用於登出。
 //     Route::get('users', 'UserController@index')->middleware('isAdmin');
 //     Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
 // });
+
+// 測試
+use App\Http\Controllers\TestController;
+Route::resource('/categories',TestController::class);
+
+// 材料與設計知識庫
+use App\Http\Controllers\GreenhouseTechnologyKnowledgeBase\KnowledgeEditorController;
+Route::resource('/MaterialsAndDesignKnowledgeBase/Article',KnowledgeEditorController::class);
+
+// 溫室作物選擇
+use App\Http\Controllers\GreenhouseMasterPlan\CropController;
+Route::resource('/GreenhouseMasterPlan/CropSelection',CropController::class);
+
+// 簡易型溫室成本
+use App\Http\Controllers\GreenhouseMasterPlan\CostAnalysis\SimpleController;
+Route::resource('/GreenhouseMasterPlan/CostAnalysis/SimpleCost',SimpleController::class);
+
+// 強固型溫室成本
+use App\Http\Controllers\GreenhouseMasterPlan\CostAnalysis\StrongController;
+Route::resource('/GreenhouseMasterPlan/CostAnalysis/StrongCost',StrongController::class);
 
 

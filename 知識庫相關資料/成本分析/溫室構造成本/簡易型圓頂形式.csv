@@ -1,0 +1,10 @@
+id,Expert,BuildItem,Cost,StructuralRisk,JobDifficulty
+1,System,單一圓拱,1,1,1
+2,System,下橫樑,1.1,0.98,0.95
+3,System,上1/3橫梁,1.05,0.95,0.95
+4,System,上二橫梁,1.1,0.9,0.95
+5,System,T型樑,1.15,0.98,0.95
+6,System,三支集中樑,1.2,0.95,0.95
+7,System,三支垂支梁,1.2,0.99,0.95
+8,System,V型樑,1.1,0.93,0.95
+9,System,W型樑,1.2,0.88,0.95

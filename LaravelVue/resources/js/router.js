@@ -37,6 +37,11 @@ import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/Greenh
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 
+import GreenhouseMasterPlan_ConstructionCostAnalysisTest from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCostAnalysisTest.vue';
+import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_Simple from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisAdd.vue';
+import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_Robust from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/RobustCostAnalysisAdd.vue';
+
+
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
@@ -64,6 +69,27 @@ const routes = [{
     path: '/Development',
     name: 'Development',
     component: Development,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/DevelopConstructionCostAnalysisTestment',
+    name: '構造成本分析測試',
+    component: GreenhouseMasterPlan_ConstructionCostAnalysisTest,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/ConstructionCost/RobustCostAnalysis/Add',
+    name: '強固型溫室參數新增測試',
+    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_Robust,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/ConstructionCost/SimpleCostAnalysis/Add',
+    name: '簡易型溫室參數新增測試',
+    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_Simple,
     meta: {
         auth: undefined
     }
