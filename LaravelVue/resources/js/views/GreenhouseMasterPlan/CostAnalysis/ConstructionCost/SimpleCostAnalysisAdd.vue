@@ -105,27 +105,27 @@
                     <td>高強高耐蝕管材</td>
                     <td style="width: 20vmin">
                         <v-text-field
-                            v-model="SimpleData.CorrosionResistantPipeCostCost"
+                            v-model="SimpleData.HighStrengthCorrosionResistantPipeCost"
                             label="請輸入成本性參數"
                             required
                         ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeCostCost">{{ errors.CorrosionResistantPipeCostCost[0] }}</div>
+                        <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeCost">{{ errors.HighStrengthCorrosionResistantPipeCost[0] }}</div>
                     </td>
                     <td style="width: 20vmin">
                         <v-text-field
-                            v-model="SimpleData.CorrosionResistantPipeStructureRisk"
+                            v-model="SimpleData.HighStrengthCorrosionResistantPipeStructureRisk"
                             label="請輸入結構風險參數"
                             required
                         ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeStructureRisk">{{ errors.CorrosionResistantPipeStructureRisk[0] }}</div>
+                        <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeStructureRisk">{{ errors.HighStrengthCorrosionResistantPipeStructureRisk[0] }}</div>
                     </td>
                     <td style="width: 20vmin">
                         <v-text-field
-                            v-model="SimpleData.CorrosionResistantPipeWorkDifficulty"
+                            v-model="SimpleData.HighStrengthCorrosionResistantPipeWorkDifficulty"
                             label="請輸入作業難度參數"
                             required
                         ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeWorkDifficulty">{{ errors.CorrosionResistantPipeWorkDifficulty[0] }}</div>
+                        <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeWorkDifficulty">{{ errors.HighStrengthCorrosionResistantPipeWorkDifficulty[0] }}</div>
                     </td>
                 </tr>
             </table>
@@ -146,15 +146,57 @@
                 </tr> -->
                 <tr align="center">
                     <td>單一圓拱</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td style="width: 20vmin">
+                        <v-text-field
+                            v-model="SimpleData.SingleRoundArchCost"
+                            label="請輸入成本性參數"
+                            required
+                        ></v-text-field>
+                        <div class="invalid-feedback" v-if="errors.SingleRoundArchCost">{{ errors.SingleRoundArchCost[0] }}</div>
+                    </td>
+                    <td style="width: 20vmin">
+                        <v-text-field
+                            v-model="SimpleData.SingleRoundArchStructureRisk"
+                            label="請輸入結構風險參數"
+                            required
+                        ></v-text-field>
+                        <div class="invalid-feedback" v-if="errors.SingleRoundArchStructureRisk">{{ errors.SingleRoundArchStructureRisk[0] }}</div>
+                    </td>
+                    <td style="width: 20vmin">
+                        <v-text-field
+                            v-model="SimpleData.SingleRoundArchWorkDifficulty"
+                            label="請輸入作業難度參數"
+                            required
+                        ></v-text-field>
+                        <div class="invalid-feedback" v-if="errors.SingleRoundArchWorkDifficulty">{{ errors.SingleRoundArchWorkDifficulty[0] }}</div>
+                    </td>
                 </tr>
                 <tr align="center">
                     <td>下橫樑</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td style="width: 20vmin">
+                        <v-text-field
+                            v-model="SimpleData.LowerBeamCost"
+                            label="請輸入成本性參數"
+                            required
+                        ></v-text-field>
+                        <div class="invalid-feedback" v-if="errors.LowerBeamCost">{{ errors.LowerBeamCost[0] }}</div>
+                    </td>
+                    <td style="width: 20vmin">
+                        <v-text-field
+                            v-model="SimpleData.LowerBeamStructureRisk"
+                            label="請輸入結構風險參數"
+                            required
+                        ></v-text-field>
+                        <div class="invalid-feedback" v-if="errors.LowerBeamStructureRisk">{{ errors.LowerBeamStructureRisk[0] }}</div>
+                    </td>
+                    <td style="width: 20vmin">
+                        <v-text-field
+                            v-model="SimpleData.LowerBeamWorkDifficulty"
+                            label="請輸入作業難度參數"
+                            required
+                        ></v-text-field>
+                        <div class="invalid-feedback" v-if="errors.LowerBeamWorkDifficulty">{{ errors.LowerBeamWorkDifficulty[0] }}</div>
+                    </td>
                 </tr>
                 <tr align="center">
                     <td>上1/3橫梁</td>

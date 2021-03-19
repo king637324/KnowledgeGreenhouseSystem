@@ -177,10 +177,10 @@ export default {
             });
             this.Structurejson = await GreenhouseStructure.json();
 
-            console.log("------Structurejson------");
-            console.log(this.Structurejson);
-            console.log("------Structurejson[0]------");
-            console.log(this.Structurejson[0].GreenhouseType);
+            // console.log("------Structurejson------");
+            // console.log(this.Structurejson);
+            // console.log("------Structurejson[0]------");
+            // console.log(this.Structurejson[0].GreenhouseType);
 
             for(var i=0; i<this.Structurejson.length ; i++){
                 if(this.Structurejson[i].GreenhouseType == "強固型"){
