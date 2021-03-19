@@ -136,7 +136,7 @@ export default {
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
-        console.log(this.$auth.user());
+        // console.log(this.$auth.user());
     },
     methods:{
     }

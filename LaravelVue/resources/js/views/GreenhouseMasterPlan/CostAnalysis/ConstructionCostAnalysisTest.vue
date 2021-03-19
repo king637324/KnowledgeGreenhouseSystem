@@ -444,7 +444,7 @@
                             </td>
                         </tr>
                         <tr align="center" id="連續性">
-                            <td>溫室型材</td>
+                            <td>連續性</td>
                             <td align="left">
                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitysJSON" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustContinuity" v-on:change="updateRobustRadio">
