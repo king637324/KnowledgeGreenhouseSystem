@@ -458,7 +458,7 @@ export default {
 
             CropData:{
                 id: null,
-                Expert:this.$auth.user().id,
+                Expert: null,
                 classification: null,
                 VegetableTypes: '',
                 Goodlight: null,
@@ -558,6 +558,11 @@ export default {
             }
 
             this.CropSelect = this.ExpertSelect;   // 之後選擇分類會使用到
+
+            // 如果帳號有登入，才能顯示他的id帳號
+            if(this.$auth.check()){
+                this.CropData.Expert = this.$auth.user().id;
+            }
 
         },
         updateCropTable(){
