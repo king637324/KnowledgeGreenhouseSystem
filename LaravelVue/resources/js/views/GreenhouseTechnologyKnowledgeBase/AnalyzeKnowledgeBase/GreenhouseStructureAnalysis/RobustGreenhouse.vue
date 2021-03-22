@@ -13,7 +13,7 @@
         <hr>
         
         <h4>強固型溫室類型示意圖</h4>
-        <p> p.s:可直接點擊 類型示意圖 前往應力應變分析</p>
+        <p> ps.可直接點擊 類型示意圖 前往應力應變分析</p>
         <table id="RobustGreenhouse_Unsorted" style="border:1px solid black;" border='1'>
             <tr align = "center">
                 <td v-for="(Robust, index) in RobustGreenhouse1" :key="index">
@@ -43,27 +43,48 @@
         </table>
         <br>
 
-        <h3>強固型統計分析</h3>
-        <table style="border:1px solid black;" border='1'>
-            <thead class="table-active">
-                <tr align = "center">
-                    <td> 類 型 </td>
-                    <td> 結構最大應力(MPa) </td>
-                    <td> 最大應力位置 </td>
-                    <td> 結構最大變形量(mm) </td>
-                    <td> 最大變形量位置 </td>
-                </tr >
-            </thead>
+        <div class="d-flex bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <h4>強固型統計分析表</h4>
+                <table style="border:1px solid black;" border='1'>
+                    <thead class="table-active">
+                        <tr align = "center">
+                            <td> 類 型 </td>
+                            <td> 結構最大應力(MPa) </td>
+                            <td> 最大應力位置 </td>
+                            <td> 結構最大變形量(mm) </td>
+                            <td> 最大變形量位置 </td>
+                        </tr >
+                    </thead>
 
-            <tr align = "center" v-for="(Robust, index) in RobustGreenhouse" :key="index">
-                <td> {{Robust.Type }} </td>
-                <td> {{Robust.StructureStressMax }} </td>
-                <td> {{Robust.MaximumStressPosition }} </td>
-                <td> {{Robust.MaximumStructuralChange }} </td>
-                <td> {{Robust.MaximumChangePosition }} </td>
-            </tr >
-        </table>
-        <br>
+                    <tr align = "center" v-for="(Robust, index) in RobustGreenhouse" :key="index">
+                        <td> {{Robust.Type }} </td>
+                        <td> {{Robust.StructureStressMax }} </td>
+                        <td> {{Robust.MaximumStressPosition }} </td>
+                        <td> {{Robust.MaximumStructuralChange }} </td>
+                        <td> {{Robust.MaximumChangePosition }} </td>
+                    </tr >
+                </table>
+                <br>
+            </div>
+            <div class="p-2 bd-highlight"></div>
+            <div class="p-2 bd-highlight">
+                <div id="綜合分析"></div>
+                <br>
+                <h4>
+                    綜合分析
+                    <button  class="btn btn-primary" v-scroll-to="{ el: '#強固型溫室' }">
+                        回頂部
+                    </button>
+                </h4>
+                <p>1. <strong>A Type</strong>圓頂支撐結構應力值較大，應力主要由力霸梁支撐，</p>
+                <p>2. <strong>E Type</strong>具有較低應力值，<strong>H Type</strong>圓頂桁梁之應力值較大。</p>
+                <p>3. 當圓頂支撐設計能將圓頂受力傳遞至力霸梁，則由力霸梁承受主要應力，<br>反之則由圓頂鋼管承受較大應力，會導致圓頂鋼管長期處於高應力狀態，減少使用壽命。</p>
+                <br><br>
+            </div>
+        </div>
+
+        
 
         <div id="結構最大應力優劣排序"></div>
         <br>
@@ -73,7 +94,7 @@
                 回頂部
             </button>
         </h4>
-        <p> p.s:可直接點擊 類型示意圖 前往應力應變分析</p>
+        <p> ps.可直接點擊 類型示意圖 前往應力應變分析</p>
         <table style="border:1px solid black;" border='1'>
             <tr align = "center">
                 <td v-for="(Robust, index) in RobustGreenhouseSort1" :key="index">
@@ -161,19 +182,6 @@
 
             </div>
         </div>
-
-        <div id="綜合分析"></div>
-        <br>
-        <h4>
-            &nbsp;&nbsp;綜合分析
-            <button  class="btn btn-primary" v-scroll-to="{ el: '#強固型溫室' }">
-                回頂部
-            </button>
-        </h4>
-        <p>&nbsp;&nbsp; 1. <strong>A Type</strong>圓頂支撐結構應力值較大，應力主要由力霸梁支撐，</p>
-        <p>&nbsp;&nbsp; 2. <strong>E Type</strong>具有較低應力值，<strong>H Type</strong>圓頂桁梁之應力值較大。</p>
-        <p>&nbsp;&nbsp; 3. 當圓頂支撐設計能將圓頂受力傳遞至力霸梁，則由力霸梁承受主要應力，反之則由圓頂鋼管承受較大應力，會導致圓頂鋼管長期處於高應力狀態，減少使用壽命。</p>
-        <br><br>
     </div>
 </template>
 

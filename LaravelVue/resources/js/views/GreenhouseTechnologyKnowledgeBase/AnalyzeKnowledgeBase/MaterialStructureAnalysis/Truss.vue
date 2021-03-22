@@ -14,7 +14,7 @@
                 <br><br>
 
                 <h4> 高度分析類型樣式 </h4>
-                <h6>p.s: 可直接點擊 編號內容 前往該編號的桁架高度變化性能分析</h6>
+                <h6>ps. 可直接點擊 編號內容 前往該編號的桁架高度變化性能分析</h6>
                 <table style="border:1px solid black;" border='1'>
                     <tr align="center">
                         <td> 編號 </td>
@@ -231,7 +231,7 @@
                 <br><br>
 
                 <h4> 桁架上下弦與腹桿尺寸變化控制 </h4>
-                <h6> p.s: 可直接點擊 CASE內容 前往該CASE的桁架上下弦與腹桿尺寸變化之工程分析</h6>
+                <h6> ps. 可直接點擊 CASE內容 前往該CASE的桁架上下弦與腹桿尺寸變化之工程分析</h6>
 
                 <table id="桁架上下弦與腹桿尺寸變化控制" style="border:1px solid black;" border='1'>
                     <tr align="center">
@@ -369,7 +369,7 @@
                 <br><br>
 
                 <h4> 屋頂桁架的優化組合設計 </h4>
-                <p> 可直接點擊 項目內容 前往該項目的屋頂桁架的優化組合設計</p>
+                <p> ps. 可直接點擊 項目內容 前往該項目的屋頂桁架的優化組合設計</p>
                 <table id="RoofTrussCombinationChanges"  style="border:1px solid black;" border='1'>
                     <tr align="center">
                         <td> 項目 </td>
@@ -495,6 +495,7 @@
                     </div>
                 </div>
 
+                <h4> 桁架優化綜合分析比較表 </h4>
                 <table id="桁架優化綜合分析" style="border:1px solid black;" border='1'>
                     <tr align="center">
                         <td style='width:10vmin'> 項目 </td>
@@ -526,6 +527,11 @@
                         回頂部
                     </button>
                 </h4>
+                <p>● 單斜屋架與桁架優化組合分析比較：</p>
+                <p>1. 屋頂桁架分為A. 單斜屋架下方加桁架、B. 單斜屋架上方加桁架、C. 單斜屋架內化為桁架，3類。</p>
+                <p>2. 以影響線分析，A.單斜屋架下方加桁架離作用力線最近，有較佳的負荷抵抗能力，C.單斜屋架內化為桁架次之。</p>
+                <p>3. 以結構分析可知 C.單斜屋架內化為桁架 之最大應力與結構總重值最小。</p>
+                <br><br>
             </b-tab>
 
         </b-tabs>

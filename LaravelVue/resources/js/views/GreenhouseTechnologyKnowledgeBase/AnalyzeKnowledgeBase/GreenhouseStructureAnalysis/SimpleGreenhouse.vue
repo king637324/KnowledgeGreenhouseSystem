@@ -12,41 +12,63 @@
         <img src = "/images/greenhousestructure/SimpleGreenhouse/SimpleGreenhouseIntroduction.png" style='width:100vmin'>
         <br><br>
 
-        <h4 id="統計分析">簡易型統計分析</h4>
-        <p> 可直接點擊 類型 前往類型的應力應變分析</p>
+        <div class="d-flex bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <h4 id="統計分析">簡易型統計分析</h4>
+                <p> ps. 可直接點擊 類型 前往類型的應力應變分析</p>
 
-        <table style="border:1px solid black;" border='1'>
-            <thead class="table-active">
-                <tr align="center">
-                    <td> 類 型 </td>
-                    <td> 桁架間距 (m)</td>
-                    <td> 錏管規格 </td>
-                    <td> 尺寸 (mm) </td>
-                    <td> 圓管厚度 (mm) </td>
-                    <td> 連接管厚度 (mm) </td>
-                    <td> 重量(kg/m) </td>
-                    <td> 結構最大應力 (MPa)</td>
-                    <td> 結構最大變形量 (mm) </td>
-                </tr>
-            </thead>
+                <table style="border:1px solid black;" border='1'>
+                    <thead class="table-active">
+                        <tr align="center">
+                            <td> 類 型 </td>
+                            <td> 桁架間距<br>(m)</td>
+                            <td> 錏管規格 </td>
+                            <td> 尺寸<br>(mm) </td>
+                            <td> 圓管厚度<br>(mm) </td>
+                            <td> 連接管厚度<br>(mm) </td>
+                            <td> 重量<br>(kg/m)</td>
+                            <td> 結構最大應力<br>(MPa)</td>
+                            <td> 結構最大變形量<br>(mm) </td>
+                        </tr>
+                    </thead>
 
-            <tr align="center" v-for="(Simple, index) in SimpleGreenhouse" :key="index">
-                <td>
-                    <button  class="btn" v-scroll-to="{ el: '#StructuralSimple'+Simple.Type }">
-                        {{Simple.Type}}
+                    <tr align="center" v-for="(Simple, index) in SimpleGreenhouse" :key="index">
+                        <td>
+                            <button  class="btn" v-scroll-to="{ el: '#StructuralSimple'+Simple.Type }">
+                                {{Simple.Type}}
+                            </button>
+                        </td>
+                        <td> {{Simple.TrussSpacing}}</td>
+                        <td> {{Simple.TubeSpecifications}}</td>
+                        <td> {{Simple.Size}}</td>
+                        <td> {{Simple.TubeThickness}} </td>
+                        <td> {{Simple.ConnectingThickness}} </td>
+                        <td> {{Simple.Weight}} </td>
+                        <td> {{Simple.StructureStressMax}} </td>
+                        <td> {{Simple.MaximumStructuralChange}} </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+            <div class="p-2 bd-highlight"></div>
+            <div class="p-2 bd-highlight">
+                <div id="綜合分析"></div>
+                <br>
+                <h4>
+                    &nbsp;&nbsp;綜合分析
+                    <button  class="btn btn-primary" v-scroll-to="{ el: '#簡易型溫室' }">
+                        回頂部
                     </button>
-                </td>
-                <td> {{Simple.TrussSpacing}}</td>
-                <td> {{Simple.TubeSpecifications}}</td>
-                <td> {{Simple.Size}}</td>
-                <td> {{Simple.TubeThickness}} </td>
-                <td> {{Simple.ConnectingThickness}} </td>
-                <td> {{Simple.Weight}} </td>
-                <td> {{Simple.StructureStressMax}} </td>
-                <td> {{Simple.MaximumStructuralChange}} </td>
-            </tr>
-        </table>
-        <br>
+                </h4>
+                <p>1. 目前簡易型溫室之桁架間距以1m為主，設計分析桁架間距之影響，將桁架間距減為0.5m，<br>可增加溫室結構強度，使溫室結構性能提升。</p>
+                <p>2. 簡易型溫室之桁架間距1m，錏管外徑1&rdquo;(34mm)，厚度1.5mm時，最大應力值為 352MPa，接近鍍鋅鋼管降伏強度。</p>
+                <p>3. 簡易型溫室之桁架間距0.5m，錏管外徑1/2&rdquo;(22mm)，厚度1.5mm時， 最大應力值為 186MPa，鍍鋅鋼管承受應力值較低。</p>
+                <p>4. 簡易型溫室修改屋頂連接管厚度為2mm，桁架間距0.5m，錏管外徑3/4&rdquo;(27mm)，厚度1.5mm時，最大應力值為 165MPa。</p>
+                <p>5. 簡易型溫室修改屋頂連接管厚度為2mm，桁架間距0.5m，錏管外徑1/2&rdquo;(22mm)，厚度1.5mm時，最大應力值為 227MPa。</p>
+            </div>
+        </div>
+
+        
 
         <div class="d-flex flex-row bd-highlight mb-3">
             <div class="p-2 bd-highlight">
@@ -107,20 +129,6 @@
 
             </div>
         </div>
-
-        <div id="綜合分析"></div>
-        <br>
-        <h4>
-            &nbsp;&nbsp;綜合分析
-            <button  class="btn btn-primary" v-scroll-to="{ el: '#簡易型溫室' }">
-                回頂部
-            </button>
-        </h4>
-        <p>1. 目前簡易型溫室之桁架間距以1m為主，設計分析桁架間距之影響，將桁架間距減為0.5m，可增加溫室結構強度，使溫室結構性能提升。</p>
-        <p>2. 簡易型溫室之桁架間距1m，錏管外徑1&rdquo;(34mm)，厚度1.5mm時，最大應力值為 352MPa，接近鍍鋅鋼管降伏強度。</p>
-        <p>3. 簡易型溫室之桁架間距0.5m，錏管外徑1/2&rdquo;(22mm)，厚度1.5mm時， 最大應力值為 186MPa，鍍鋅鋼管承受應力值較低。</p>
-        <p>4. 簡易型溫室修改屋頂連接管厚度為2mm，桁架間距0.5m，錏管外徑3/4&rdquo;(27mm)，厚度1.5mm時，最大應力值為 165MPa。</p>
-        <p>5. 簡易型溫室修改屋頂連接管厚度為2mm，桁架間距0.5m，錏管外徑1/2&rdquo;(22mm)，厚度1.5mm時，最大應力值為 227MPa。</p>
 
     </div>
 </template>
