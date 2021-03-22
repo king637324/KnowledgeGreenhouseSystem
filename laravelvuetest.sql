@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-03-04 07:05:01
+-- 產生時間： 2021-03-22 10:27:19
 -- 伺服器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -557,19 +557,19 @@ CREATE TABLE `lme_metal_prices` (
 --
 
 INSERT INTO `lme_metal_prices` (`MetalName`, `MetalPrice`, `MetalDate`, `MetalLink`) VALUES
-('廢鋼', 483.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
-('特種鋁合金', 2185.500, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
-('金', 1717.300, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
-('鈷', 52790.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
-('鉛', 2039.500, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
-('銀', 26.300, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
-('銅', 9266.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
-('鋁', 2203.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
-('鋁合金', 2211.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
-('鋅', 2786.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
-('鋼筋', 657.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
-('錫', 25880.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
-('鎳', 17802.000, 'US$:  3 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
+('廢鋼', 458.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
+('特種鋁合金', 2271.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
+('金', 1743.200, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
+('鈷', 52750.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
+('鉛', 1917.500, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
+('銀', 26.190, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
+('銅', 9036.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
+('鋁', 2188.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
+('鋁合金', 2204.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
+('鋅', 2787.500, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
+('鋼筋', 623.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
+('錫', 27750.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
+('鎳', 16121.000, 'US$:  19 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
 
 -- --------------------------------------------------------
 
@@ -1251,7 +1251,7 @@ CREATE TABLE `tests` (
 --
 
 INSERT INTO `tests` (`name`, `mail`, `password`, `abc`, `image`) VALUES
-('fffffffff', 'fffffffffffffff@gmail.com', 'qqqqqqqqqqqq', 'ggggggggggggggggg', 'test_image/DRoOY6EQZ6pNgRU3KxGWM641V1Xrh278T9mNnCXh.png'),
+('fffffffff', 'fffffffffffffff@gmail.com', 'qqqqqqqqqqqq', '888', 'test_image/DRoOY6EQZ6pNgRU3KxGWM641V1Xrh278T9mNnCXh.png'),
 ('fffffffffkkkk', '45kkkkk6@gmail.com', 'ffffffff', 'fffff123456', 'test_image/CwzlMU3UR2F7IAgKuAz3HNwKgM1AAa8cJgu4c78F.png'),
 ('qqqqqq', '456@gmail.com', 'qqqqqqqqqqq', 'qqqqqq123', 'test_image/c3KzKLgzSskChE8XKDCZ0zimgZ3gyuHrsNHzdtzb.png'),
 ('vvvvvv', '123@gmail.com', 'vvvvvvvv', 'vvvvvvvv', 'test_image/M709mlXYuMiwizqhmlXUi7hIr9rn8m8zRxfUAs5t.png'),
@@ -1392,7 +1392,7 @@ CREATE TABLE `usdollars` (
 --
 
 INSERT INTO `usdollars` (`id`, `USD`) VALUES
-(1, '28.28');
+(1, '28.535');
 
 -- --------------------------------------------------------
 
@@ -1508,7 +1508,10 @@ INSERT INTO `vegetables` (`id`, `Expert`, `classification`, `VegetableTypes`, `G
 (46, 'System', '果菜', '西瓜', '好光型作物', '-', '60000~90000', '1090~1650以上', '-', '-', '-', '8~12', '22~35', '38~40', '15', '25~30', '35', '-'),
 (47, 'System', '果菜', '豇豆', '-', '短日植物', '-', '-', '55~65', '2.5~3.0', '暖季蔬菜', '9~11', '25~30', '32~35', '10', '25~30', '-', '86%'),
 (48, 'System', '花菜', '青花菜', '-', '-', '-', '-', '30~40', '2.0~2.5', '涼季蔬菜', '3~5', '15~23', '25~28', '-', '-', '-', '-'),
-(49, 'System', '莖菜', '韭菜', '弱光型作物', '-', '25000~40000', '450~725以下', '50~60', '1.5~2.0', '-', '2~5', '18~25', '32~35', '-', '-', '-', '53%');
+(49, 'System', '莖菜', '韭菜', '弱光型作物', '-', '25000~40000', '450~725以下', '50~60', '1.5~2.0', '-', '2~5', '18~25', '32~35', '-', '-', '-', '53%'),
+(50, 'MIRDC', '葉菜', 'test', '好光型作物', '長日植物', '25000~40000', '450~725以下', 'test', 'test', '涼季蔬菜', 'test', 'test', 'test', 'test', 'test', 'rrrr', 'test'),
+(51, 'MIRDC', '花菜', 'qqq', '好光型作物', '長日植物', '25000~40000', '450~725以下', 'qqq', 'qqq', '涼季蔬菜', 'qqq', 'qqq', 'qqq', 'qqq', 'qqq', 'qqq', 'qqq'),
+(59, '3', '葉菜', 'jjjj', '弱光型作物', '中日植物', '40000~60000', '450~725以下', 'j', 'jjj', '涼季蔬菜', 'jj', 'j', 'j', 'jj', 'j', 'j', 'j');
 
 -- --------------------------------------------------------
 
@@ -1842,7 +1845,7 @@ ALTER TABLE `users`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `vegetables`
 --
 ALTER TABLE `vegetables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `windlandingandpaths`

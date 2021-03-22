@@ -1,10 +1,13 @@
 <template>
     <div>
         <!-- <button type="button" class="btn btn-danger"  v-on:click="check">檢查</button> -->
-        <br>
-        <h3>
+        <br id="型材">
+        <h2>
             型材
-        </h3>
+            <button  class="btn btn-primary" v-scroll-to="{ el: '#綜合分析' }">
+                綜合分析
+            </button>
+        </h2>
         <hr>
 
         <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
@@ -59,10 +62,18 @@
                 </tr>
             </tbody>
         </table>
-        <h5>綜合分析</h5>
-        <p>1. 非封閉型材，如：C型鋼，最大應力會發生在懸臂端點，宜形成組合結構，以提升其輕量化的貢獻。</p>
-        <p>2. H型鋼，應注意其受力方向，(&rarr;H)為較強的負載方向、(&rarr;工)則為較弱的負載方向。</p>
-        <p>3. 方型鋼之負載方向對稱，矩形鋼則如同H型鋼，有其強弱的方向性。(&rarr;&#9645;)為較強的負載方向、(&rarr;&#9647;)則為較弱的負載方向。</p>
+        
+        <div id="綜合分析"></div>
+        <h4>
+            &nbsp;&nbsp;綜合分析
+            <button  class="btn btn-primary" v-scroll-to="{ el: '#型材' }">
+                回頂部
+            </button>
+        </h4>
+        <p>&nbsp;&nbsp; ● 材料型式與材料受力方向之影響性比較</p>
+        <p>&nbsp;&nbsp; 1. 非封閉型材，如：C型鋼，最大應力會發生在懸臂端點，宜形成組合結構，以提升其輕量化的貢獻。</p>
+        <p>&nbsp;&nbsp; 2. H型鋼，應注意其受力方向，(&rarr;H)為較強的負載方向、(&rarr;工)則為較弱的負載方向。</p>
+        <p>&nbsp;&nbsp; 3. 方型鋼之負載方向對稱，矩形鋼則如同H型鋼，有其強弱的方向性。(&rarr;&#9645;)為較強的負載方向、(&rarr;&#9647;)則為較弱的負載方向。</p>
 
     </div>
 </template>

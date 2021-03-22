@@ -1,10 +1,13 @@
 <template>
     <div>
         <!-- <button type="button" class="btn btn-danger"  v-on:click="check">檢查</button> -->
-        <br>
-        <h3>
+        <br id="圓管材">
+        <h2>
             圓管材
-        </h3>
+            <button  class="btn btn-primary" v-scroll-to="{ el: '#綜合分析' }">
+                綜合分析
+            </button>
+        </h2>
         <hr>
 
         <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
@@ -58,9 +61,17 @@
             </tbody>
         </table>
 
-        <h5>綜合分析</h5>
-        <p>1. 較大直徑的圓管，有較大的負載能力，且其單位重量對最大應力的降低貢獻大於小管徑。</p>
-        <p>2. 針對負載能力的提升，增加直徑的貢獻，較大於增加厚度的貢獻。</p>
+        <div id="綜合分析"></div>
+        <h4>
+            &nbsp;&nbsp;綜合分析
+            <button  class="btn btn-primary" v-scroll-to="{ el: '#圓管材' }">
+                回頂部
+            </button>
+        </h4>
+        <p>&nbsp;&nbsp;● 等重量但不等厚的材料比較：</p>
+        <p>&nbsp;&nbsp;1. 較大直徑的圓管，有較大的負載能力。</p>
+        <p>&nbsp;&nbsp;2. 大管徑產生的應力低於小管徑。</p>
+        <p>&nbsp;&nbsp;3. 減薄增加直徑有助於負載正面貢獻，但須注意此厚度不可導致局部破壞的破口。</p>
 
     </div>
 </template>

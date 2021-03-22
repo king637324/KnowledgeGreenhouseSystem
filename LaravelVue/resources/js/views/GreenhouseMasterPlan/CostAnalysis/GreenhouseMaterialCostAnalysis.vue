@@ -21,23 +21,23 @@
                             <thead class="table-active">
                                 <tr align="center">
                                     <td style='width:5vmin'> 勾選 </td>
-                                    <td> 材料名稱 </td>
+                                    <td style='width:23vmin'> 材料<br>名稱 </td>
                                     <td style='width:8vmin'> 鋼料 </td>
                                     <td style='width:8vmin'> 高強材 </td>
                                     <td style='width:8vmin'> 鋼胚 </td>
-                                    <td style='width:8vmin'> 熱軋鋼板 </td>
-                                    <td style='width:8vmin'> 冷軋鋼板 </td>
-                                    <td style='width:8vmin'> 連續熱浸鍍鋅 </td>
-                                    <td style='width:8vmin'> 連續烤漆 </td>
-                                    <td style='width:8vmin'> 冷彎成形</td>
+                                    <td style='width:8vmin'> 熱軋<br>鋼板 </td>
+                                    <td style='width:8vmin'> 冷軋<br>鋼板 </td>
+                                    <td style='width:8vmin'> 連續<br>熱浸<br>鍍鋅 </td>
+                                    <td style='width:8vmin'> 連續<br>烤漆 </td>
+                                    <td style='width:8vmin'> 冷彎<br>成形</td>
                                     <td style='width:8vmin'> 銲接</td>
                                     <td style='width:8vmin'> 加工 </td>
-                                    <td style='width:8vmin'> 後熱浸鍍鋅 </td>
+                                    <td style='width:8vmin'> 後熱浸<br>鍍鋅 </td>
                                     <td style='width:8vmin'> 鍍鋁鋅 </td>
-                                    <td style='width:8vmin'> 鍍鎂鋁鋅 </td>
+                                    <td style='width:8vmin'> 鍍鎂<br>鋁鋅 </td>
                                     <td style='width:8vmin'> 後烤漆 </td>
                                     <td style='width:8vmin'> 速度性 </td>
-                                    <td style='width:8vmin'> 結構風險 </td>
+                                    <td style='width:8vmin'> 結構<br>風險 </td>
                                     <td style='width:8vmin'> 腐蝕性 </td>
                                     <td style='width:8vmin'> 重量性 </td>
                                     <td style='width:8vmin'> 成本性 </td>
@@ -79,23 +79,23 @@
                             <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                 <thead class="table-active">
                                     <tr align="center">
-                                        <td> 材料名稱 </td>
+                                        <td style='width:23vmin'> 材料<br>名稱 </td>
                                         <td style='width:6.5vmin'> 鋼料 </td>
                                         <td style='width:6.5vmin'> 高強材 </td>
                                         <td style='width:6.5vmin'> 鋼胚 </td>
-                                        <td style='width:6.5vmin'> 熱軋鋼板 </td>
-                                        <td style='width:6.5vmin'> 冷軋鋼板 </td>
-                                        <td style='width:6.5vmin'> 連續熱浸鍍鋅 </td>
-                                        <td style='width:6.5vmin'> 連續烤漆 </td>
-                                        <td style='width:6.5vmin'> 冷彎成形</td>
+                                        <td style='width:6.5vmin'> 熱軋<br>鋼板 </td>
+                                        <td style='width:6.5vmin'> 冷軋<br>鋼板 </td>
+                                        <td style='width:6.5vmin'> 連續<br>熱浸<br>鍍鋅 </td>
+                                        <td style='width:6.5vmin'> 連續<br>烤漆 </td>
+                                        <td style='width:6.5vmin'> 冷彎<br>成形</td>
                                         <td style='width:6.5vmin'> 銲接</td>
                                         <td style='width:6.5vmin'> 加工 </td>
-                                        <td style='width:6.5vmin'> 後熱浸鍍鋅 </td>
+                                        <td style='width:6.5vmin'> 後熱浸<br>鍍鋅 </td>
                                         <td style='width:6.5vmin'> 鍍鋁鋅 </td>
-                                        <td style='width:6.5vmin'> 鍍鎂鋁鋅 </td>
+                                        <td style='width:6.5vmin'> 鍍鎂<br>鋁鋅 </td>
                                         <td style='width:6.5vmin'> 後烤漆 </td>
                                         <td style='width:6.5vmin'> 速度性 </td>
-                                        <td style='width:6.5vmin'> 結構風險 </td>
+                                        <td style='width:6.5vmin'> 結構<br>風險 </td>
                                         <td style='width:6.5vmin'> 腐蝕性 </td>
                                         <td style='width:6.5vmin'> 重量性 </td>
                                         <td style='width:6.5vmin'> 成本性 </td>
@@ -140,7 +140,7 @@
                                     </tr>
                                     <tr align="center">
                                         <td> 速度性 </td>
-                                        <td> 結構風險 </td>
+                                        <td> 結構<br>風險 </td>
                                         <td> 腐蝕性 </td>
                                         <td> 重量性 </td>
                                         <td> 成本性 </td>
@@ -155,7 +155,7 @@
                                     </td>
                                     <td>
                                         <v-text-field
-                                            label="請輸入結構風險"
+                                            label="請輸入結構<br>風險"
                                             v-model="PipeStructuralRisk"
                                         ></v-text-field>
                                     </td>
@@ -205,23 +205,23 @@
                             <thead class="table-active">
                                 <tr align="center">
                                     <td style='width:5vmin'> 勾選 </td>
-                                    <td> 材料名稱 </td>
+                                    <td style='width:23vmin'> 材料<br>名稱 </td>
                                     <td style='width:8vmin'> 鋼料 </td>
                                     <td style='width:8vmin'> 高強材 </td>
                                     <td style='width:8vmin'> 鋼胚 </td>
-                                    <td style='width:8vmin'> 熱軋鋼板 </td>
-                                    <td style='width:8vmin'> 冷軋鋼板 </td>
-                                    <td style='width:8vmin'> 連續熱浸鍍鋅 </td>
-                                    <td style='width:8vmin'> 連續烤漆 </td>
-                                    <td style='width:8vmin'> 冷彎成形</td>
+                                    <td style='width:8vmin'> 熱軋<br>鋼板 </td>
+                                    <td style='width:8vmin'> 冷軋<br>鋼板 </td>
+                                    <td style='width:8vmin'> 連續<br>熱浸<br>鍍鋅 </td>
+                                    <td style='width:8vmin'> 連續<br>烤漆 </td>
+                                    <td style='width:8vmin'> 冷彎<br>成形</td>
                                     <td style='width:8vmin'> 銲接</td>
                                     <td style='width:8vmin'> 加工 </td>
-                                    <td style='width:8vmin'> 後熱浸鍍鋅 </td>
+                                    <td style='width:8vmin'> 後熱浸<br>鍍鋅 </td>
                                     <td style='width:8vmin'> 鍍鋁鋅 </td>
-                                    <td style='width:8vmin'> 鍍鎂鋁鋅 </td>
+                                    <td style='width:8vmin'> 鍍鎂<br>鋁鋅 </td>
                                     <td style='width:8vmin'> 後烤漆 </td>
                                     <td style='width:8vmin'> 速度性 </td>
-                                    <td style='width:8vmin'> 結構風險 </td>
+                                    <td style='width:8vmin'> 結構<br>風險 </td>
                                     <td style='width:8vmin'> 腐蝕性 </td>
                                     <td style='width:8vmin'> 重量性 </td>
                                     <td style='width:8vmin'> 成本性 </td>
@@ -263,23 +263,23 @@
                             <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                 <thead class="table-active">
                                     <tr align="center">
-                                        <td> 材料名稱 </td>
+                                        <td style='width:23vmin'> 材料<br>名稱 </td>
                                         <td style='width:6.5vmin'> 鋼料 </td>
                                         <td style='width:6.5vmin'> 高強材 </td>
                                         <td style='width:6.5vmin'> 鋼胚 </td>
-                                        <td style='width:6.5vmin'> 熱軋鋼板 </td>
-                                        <td style='width:6.5vmin'> 冷軋鋼板 </td>
-                                        <td style='width:6.5vmin'> 連續熱浸鍍鋅 </td>
-                                        <td style='width:6.5vmin'> 連續烤漆 </td>
-                                        <td style='width:6.5vmin'> 冷彎成形</td>
+                                        <td style='width:6.5vmin'> 熱軋<br>鋼板 </td>
+                                        <td style='width:6.5vmin'> 冷軋<br>鋼板 </td>
+                                        <td style='width:6.5vmin'> 連續<br>熱浸<br>鍍鋅 </td>
+                                        <td style='width:6.5vmin'> 連續<br>烤漆 </td>
+                                        <td style='width:6.5vmin'> 冷彎<br>成形</td>
                                         <td style='width:6.5vmin'> 銲接</td>
                                         <td style='width:6.5vmin'> 加工 </td>
-                                        <td style='width:6.5vmin'> 後熱浸鍍鋅 </td>
+                                        <td style='width:6.5vmin'> 後熱浸<br>鍍鋅 </td>
                                         <td style='width:6.5vmin'> 鍍鋁鋅 </td>
-                                        <td style='width:6.5vmin'> 鍍鎂鋁鋅 </td>
+                                        <td style='width:6.5vmin'> 鍍鎂<br>鋁鋅 </td>
                                         <td style='width:6.5vmin'> 後烤漆 </td>
                                         <td style='width:6.5vmin'> 速度性 </td>
-                                        <td style='width:6.5vmin'> 結構風險 </td>
+                                        <td style='width:6.5vmin'> 結構<br>風險 </td>
                                         <td style='width:6.5vmin'> 腐蝕性 </td>
                                         <td style='width:6.5vmin'> 重量性 </td>
                                         <td style='width:6.5vmin'> 成本性 </td>
@@ -324,7 +324,7 @@
                                     </tr>
                                     <tr align="center">
                                         <td> 速度性 </td>
-                                        <td> 結構風險 </td>
+                                        <td> 結構<br>風險 </td>
                                         <td> 腐蝕性 </td>
                                         <td> 重量性 </td>
                                         <td> 成本性 </td>
@@ -339,7 +339,7 @@
                                     </td>
                                     <td>
                                         <v-text-field
-                                            label="請輸入結構風險"
+                                            label="請輸入結構<br>風險"
                                             v-model="ProfileStructuralRisk"
                                         ></v-text-field>
                                     </td>

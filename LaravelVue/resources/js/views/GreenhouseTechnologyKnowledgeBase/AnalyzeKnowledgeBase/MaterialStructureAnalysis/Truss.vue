@@ -8,8 +8,13 @@
             </b-tab>
 
             <b-tab title="高度分析" :title-link-class="linkClass(1)" id="高度分析">
+                <button  class="btn btn-primary" v-scroll-to="{ el: '#高度分析綜合分析' }">
+                    綜合分析
+                </button>
+                <br><br>
 
-                <h5> 可直接點擊 編號內容 前往該編號的桁架高度變化性能分析</h5>
+                <h4> 高度分析類型樣式 </h4>
+                <h6>p.s: 可直接點擊 編號內容 前往該編號的桁架高度變化性能分析</h6>
                 <table style="border:1px solid black;" border='1'>
                     <tr align="center">
                         <td> 編號 </td>
@@ -48,7 +53,7 @@
                 <br><br>
 
                 <h4> 桁架高度－最大應力分析 </h4>
-                <p> 水平桁架高度越高上弦結構最大應力越小 </p>
+                <p> 水平桁架高度越高，上弦結構最大應力越小 </p>
                 <table style="border:1px solid black;" border='1'>
                     <tr align="center">
                         <td> 編號 </td>
@@ -68,7 +73,7 @@
                 <br><br>
 
                 <h4> 桁架高度－最大載重量分析 </h4>
-                <p> 水平桁架高度越高可承受最大載重越大 </p>
+                <p> 水平桁架高度越高，可承受最大載重越大 </p>
                 <table style="border:1px solid black;" border='1'>
                     <tr align="center">
                         <td> 編號 </td>
@@ -85,7 +90,9 @@
 
                 <br><br>
                 <div id="桁架高度類型"  v-for="(Height, index) in TrussHeight" :key="index">
-                    <h5 :id="'TrussHeight'+Height.TrussType">
+                    <div :id="'TrussHeight'+Height.TrussType"></div>
+                    <br><br><br>
+                    <h5>
                         編號 {{Height.TrussType}} 桁架高度變化性能分析
                         <button  class="btn btn-primary" v-scroll-to="{ el: '#高度分析' }">
                             回頂部
@@ -106,11 +113,11 @@
                                 <td><img :src = Height.MaxLoadAnalysisDiagram style='width:80vmin'></td>
                             </tr>
                         </table>
-                    <br><br>
+                    <br>
                 </div>
 
                 <br>
-                <h4> 桁架高度變化綜合分析 </h4>
+                <h4> 桁架高度變化綜合分析比較表 </h4>
                 <table style="border:1px solid black;" border='1'>
                     <tr align="center">
                         <td> 編號 </td>
@@ -133,9 +140,24 @@
                     </tr>
                 </table>
                 <br><br>
+
+                <div id="高度分析綜合分析"></div>
+                <h4>
+                    綜合分析
+                    <button  class="btn btn-primary" v-scroll-to="{ el: '#高度分析' }">
+                        回頂部
+                    </button>
+                </h4>
+                <p> 1. 水平桁架高度越高，上弦結構最大應力越小 </p>
+                <p> 2. 水平桁架高度越高，可承受最大載重越大 </p>
             </b-tab>
 
-            <b-tab title="腹桿角度分析" :title-link-class="linkClass(2)">
+            <b-tab title="腹桿角度分析" :title-link-class="linkClass(2)" id="腹桿角度分析">
+                <button  class="btn btn-primary" v-scroll-to="{ el: '#腹桿角度分析綜合分析' }">
+                    綜合分析
+                </button>
+                <br><br>
+
                 <h4> 桁架腹桿角度控制分析圖樣 </h4>
                 <table style="border:1px solid black;" border='1'>
                     <tr align="center">
@@ -165,11 +187,12 @@
                         <td> <img :src ="BellyRod.BellyRodAngleController" style='width:90vmin'>  </td>
                         <td> {{BellyRod.count}} </td>
                         <td> {{BellyRod.Weight}} </td>
-                        <td> {{BellyRodStressRatio}} </td>
+                        <td> {{BellyRod.StressRatio}} </td>
                     </tr>
                 </table>
                 <br><br>
 
+                <h4> 桁架腹桿角度綜合分析比較表 </h4>
                 <table style="border:1px solid black;" border='1'>
                     <tr align="center">
                         <td style='width:10vmin'> 項目 </td>
@@ -187,11 +210,28 @@
                     </tr>
                 </table>
                 <br><br>
+
+                <div id="腹桿角度分析綜合分析"></div>
+                <h4>
+                    綜合分析
+                    <button  class="btn btn-primary" v-scroll-to="{ el: '#腹桿角度分析' }">
+                        回頂部
+                    </button>
+                </h4>
+                <p>● 上下弦及腹桿的組合設計對桁架負荷比較：</p>
+                <p>1. 桁架的上下弦受力不同，可依受力負荷改變上下弦材質或形狀。</p>
+                <p>2. 桁架的腹桿因其位置或角度不同，也會改變其負荷，可改變角度、形狀、材質因應</p>
+                <p>3. 桁架對大跨距的樑有很好的貢獻，相較於H型鋼重量輕且結構穩定。<br>善用桁架的上下弦及腹桿的組合，可設計成最適當的桁架。</p>
             </b-tab>
 
             <b-tab title="上下弦與腹桿尺寸變化控制" :title-link-class="linkClass(3)" id="上下弦與腹桿尺寸變化控制">
+                <button  class="btn btn-primary" v-scroll-to="{ el: '#上下弦與腹桿尺寸變化控制綜合分析' }">
+                    綜合分析
+                </button>
+                <br><br>
+
                 <h4> 桁架上下弦與腹桿尺寸變化控制 </h4>
-                <p> 可直接點擊 CASE內容 前往該CASE的桁架上下弦與腹桿尺寸變化之工程分析</p>
+                <h6> p.s: 可直接點擊 CASE內容 前往該CASE的桁架上下弦與腹桿尺寸變化之工程分析</h6>
 
                 <table id="桁架上下弦與腹桿尺寸變化控制" style="border:1px solid black;" border='1'>
                     <tr align="center">
@@ -220,7 +260,9 @@
                 <br><br>
 
                 <div id="桁架上下弦類型" v-for="(UpperLower, index) in TrussBellyRodSizeUpperLower" :key="index">
-                    <h5 :id="'TrussBellyRodSizeChange'+UpperLower.id">
+                    <div :id="'TrussBellyRodSizeChange'+UpperLower.id"></div>
+                    <br><br><br>
+                    <h5>
                         CASE {{UpperLower.id}} 桁架上下弦與腹桿尺寸變化之工程分析
                         <button  class="btn btn-primary" v-scroll-to="{ el: '#上下弦與腹桿尺寸變化控制' }">
                             回頂部
@@ -305,20 +347,27 @@
                 </table>
                 <br><br>
 
-                <h4>綜合分析</h4>
-                <p>1.通常上弦是最大應力之所在，增加腹桿角度也有讓上弦受力變小的優點，</p>
-                <p>因為整個桁架受力最大的部分在上弦，所以能讓上弦受力變小，</p>
-                <p>對整體而言可以承受的力量也能越大。</p>
-                <p>2.下弦的部分受力不像上弦受力那麼大，因此可以使用稍微薄一點的C型鋼，</p>
-                <p>使材料發揮最大的效用。</p>
-                <p>3.要改變腹桿受力大小，最直接的方法為改變腹桿頂角角度，</p>
-                <p>改變斷面大小雖然也可以提高腹桿受力，但效果沒有改變角度來得顯著。</p>
-                <p>4.腹桿頂角採用桁架兩側較小角度，其餘角度較大，下弦使用與上弦不同厚度的材料，</p>
-                <p>不僅可讓所有桿件受力大小差異變小，亦能降低材料使用成本。</p>
+                <div id="上下弦與腹桿尺寸變化控制綜合分析"></div>
+                <h4>
+                    綜合分析
+                    <button  class="btn btn-primary" v-scroll-to="{ el: '#上下弦與腹桿尺寸變化控制' }">
+                        回頂部
+                    </button>
+                </h4>
+                <p>● 適當的結構強度下，上下弦及負趕的材料設計比較：</p>
+                <p>1.因為整體桁架受力最大的部分在上弦，增加腹桿角度可讓上弦受力變小，對整體可承受力量也能愈大。</p>
+                <p>2.下弦的部分受力不像上弦受力那麼大，可以腦樑使用厚度較薄的C型鋼，<br>使材料發揮最大的效用。</p>
+                <p>3.要改變腹桿受力大小，最直接的方法為改變腹桿頂角角度，<br>改變斷面大小也可以提高腹桿受力，但效果沒有改變角度來得顯著。</p>
+                <p>4.腹桿頂角採用桁架兩側較小角度，其餘角度較大，下弦使用與上弦不同厚度的材料，<br>不僅可讓所有桿件受力大小差異變小，亦能降低材料使用成本。</p>
                 <br><br>
             </b-tab>
 
             <b-tab title="屋頂桁架的優化組合設計" :title-link-class="linkClass(4)" id="屋頂桁架的優化組合設計">
+                <button  class="btn btn-primary" v-scroll-to="{ el: '#屋頂桁架的優化組合設計綜合分析' }">
+                    綜合分析
+                </button>
+                <br><br>
+
                 <h4> 屋頂桁架的優化組合設計 </h4>
                 <p> 可直接點擊 項目內容 前往該項目的屋頂桁架的優化組合設計</p>
                 <table id="RoofTrussCombinationChanges"  style="border:1px solid black;" border='1'>
@@ -344,7 +393,10 @@
 
                 <div id="優化組合類型" v-for="(RoofCombination, index) in TrussRoofCombination" :key="index">
                     <div v-if="RoofCombination.item === 'A'">
-                        <h5 :id="'TrussRoofCombinationChange'+RoofCombination.item">
+                        <div :id="'TrussRoofCombinationChange'+RoofCombination.item"></div>
+                        <br><br><br>
+                        
+                        <h5>
                             項目 {{RoofCombination.item}} 屋頂桁架的優化組合設計
                             <button  class="btn btn-primary" v-scroll-to="{ el: '#屋頂桁架的優化組合設計' }">
                                 回頂部
@@ -376,7 +428,10 @@
                         <br><br>
                     </div>
                     <div v-else-if="RoofCombination.item === 'B'">
-                        <h5 :id="'TrussRoofCombinationChange'+RoofCombination.item">
+                        <div :id="'TrussRoofCombinationChange'+RoofCombination.item"></div>
+                        <br><br><br>
+                        
+                        <h5>
                             項目 {{RoofCombination.item}} 屋頂桁架的優化組合設計
                             <button  class="btn btn-primary" v-scroll-to="{ el: '#屋頂桁架的優化組合設計' }">
                                 回頂部
@@ -408,7 +463,10 @@
                         <br><br>
                     </div>
                     <div v-else-if="RoofCombination.item === 'C'">
-                        <h5 :id="'TrussRoofCombinationChange'+RoofCombination.item">
+                        <div :id="'TrussRoofCombinationChange'+RoofCombination.item"></div>
+                        <br><br><br>
+
+                        <h5>
                             項目 {{RoofCombination.item}} 屋頂桁架的優化組合設計
                             <button  class="btn btn-primary" v-scroll-to="{ el: '#屋頂桁架的優化組合設計' }">
                                 回頂部
@@ -451,7 +509,7 @@
                     <tr align="center" v-for="(RoofCombination, index) in TrussRoofCombination" :key="index">
                         <td> {{RoofCombination.item}}</td>
                         <td> {{RoofCombination.StructureForm}}</td>
-                        <td> <img :src="RoofCombination.StructureAnalysisDiagram" style='width:50vmin'>  </td>
+                        <td> <img :src="RoofCombination.StructureAnalysisDiagram" style='width:46vmin'>  </td>
                         <td> {{RoofCombination.MaxForcePosition}}</td>
                         <td> {{RoofCombination.MaxStress}}</td>
                         <td> {{RoofCombination.MaxStressRatio}}</td>
@@ -460,6 +518,14 @@
                     </tr>
                 </table>
                 <br><br>
+
+                <div id="屋頂桁架的優化組合設計綜合分析"></div>
+                <h4>
+                    綜合分析
+                    <button  class="btn btn-primary" v-scroll-to="{ el: '#屋頂桁架的優化組合設計' }">
+                        回頂部
+                    </button>
+                </h4>
             </b-tab>
 
         </b-tabs>
