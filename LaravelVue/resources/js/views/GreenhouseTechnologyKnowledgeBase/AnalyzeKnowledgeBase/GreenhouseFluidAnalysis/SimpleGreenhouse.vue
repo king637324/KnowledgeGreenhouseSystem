@@ -13,6 +13,7 @@
                     <td>風速(m/s)</td>
                     <td>寬度w(m)</td>
                     <td>棟高h(m)</td>
+                    <td>柱高t(m)</td>
                     <td>平均風壓a(Pa)</td>
                     <td>平均風壓b(Pa)</td>
                     <td>平均風壓c(Pa)</td>
@@ -47,6 +48,9 @@
                     <img :src ="simple[1][0].WindPressureChart_3 " class="table-image"/>
                 </td>
                 <td>
+                    <img :src ="simple[1][0].WindPressureChart_4 " class="table-image"/>
+                </td>
+                <td>
                     <img :src ="simple[1][0].WindFieldMap " class="table-image"/>
                 </td>
             </tr>
@@ -57,6 +61,7 @@
 </template>
 
 <script>
+import LoginVue from '../../../Auth/Login.vue';
 export default {
     data(){
         return{
@@ -80,6 +85,7 @@ export default {
                     this.SimpleData.push(this.Fluidjson[i]);
                 }
             }
+            console.log(this.SimpleData);
 
         }
     }

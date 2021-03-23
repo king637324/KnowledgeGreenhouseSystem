@@ -3,1477 +3,1489 @@
         <br>
         <h2>簡易型溫室</h2>
         <hr>
+        
 
         <!-- <v-form v-on:submit.prevent="createSimple" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
         <v-form v-on:submit.prevent="createSimple">
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">溫室管材</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td style="width: 15vmin">標準管材</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.StandardPipeCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.StandardPipeCost">{{ errors.StandardPipeCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.StandardPipeStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.StandardPipeStructureRisk">{{ errors.StandardPipeStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.StandardPipeWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.StandardPipeWorkDifficulty">{{ errors.StandardPipeWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td>高強管材</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.HighStrengthPipeCostCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.HighStrengthPipeCostCost">{{ errors.HighStrengthPipeCostCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.HighStrengthPipeStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.HighStrengthPipeStructureRisk">{{ errors.HighStrengthPipeStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.HighStrengthPipeWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.HighStrengthPipeWorkDifficulty">{{ errors.HighStrengthPipeWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td>耐蝕管材</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.CorrosionResistantPipeCostCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeCostCost">{{ errors.CorrosionResistantPipeCostCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.CorrosionResistantPipeStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeStructureRisk">{{ errors.CorrosionResistantPipeStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.CorrosionResistantPipeWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeWorkDifficulty">{{ errors.CorrosionResistantPipeWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td>高強高耐蝕管材</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.HighStrengthCorrosionResistantPipeCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeCost">{{ errors.HighStrengthCorrosionResistantPipeCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.HighStrengthCorrosionResistantPipeStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeStructureRisk">{{ errors.HighStrengthCorrosionResistantPipeStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.HighStrengthCorrosionResistantPipeWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeWorkDifficulty">{{ errors.HighStrengthCorrosionResistantPipeWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">圓頂形式</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td  style="width: 15vmin">單一圓拱</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SingleRoundArchCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SingleRoundArchCost">{{ errors.SingleRoundArchCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SingleRoundArchStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SingleRoundArchStructureRisk">{{ errors.SingleRoundArchStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SingleRoundArchWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SingleRoundArchWorkDifficulty">{{ errors.SingleRoundArchWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td  style="width: 15vmin">下橫樑</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.LowerBeamCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.LowerBeamCost">{{ errors.LowerBeamCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.LowerBeamStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.LowerBeamStructureRisk">{{ errors.LowerBeamStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.LowerBeamWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.LowerBeamWorkDifficulty">{{ errors.LowerBeamWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">上1/3橫梁</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.UpperOneThreeBeamCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.UpperOneThreeBeamCost">{{ errors.UpperOneThreeBeamCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.UpperOneThreeBeamStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.UpperOneThreeBeamStructureRisk">{{ errors.UpperOneThreeBeamStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.UpperOneThreeBeamWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.UpperOneThreeBeamWorkDifficulty">{{ errors.UpperOneThreeBeamWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">上二橫梁</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.UpperSecondBeamCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.UpperSecondBeamCost">{{ errors.UpperSecondBeamCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.UpperSecondBeamStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.UpperSecondBeamStructureRisk">{{ errors.UpperSecondBeamStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.UpperSecondBeamWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.UpperSecondBeamWorkDifficulty">{{ errors.UpperSecondBeamWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">T型樑</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TBeamCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TBeamCost">{{ errors.TBeamCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TBeamStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TBeamStructureRisk">{{ errors.TBeamStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TBeamWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TBeamWorkDifficulty">{{ errors.TBeamWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">三支集中樑</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeConcentratedBeamsCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeConcentratedBeamsCost">{{ errors.ThreeConcentratedBeamsCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeConcentratedBeamsStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeConcentratedBeamsStructureRisk">{{ errors.ThreeConcentratedBeamsStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeConcentratedBeamsWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeConcentratedBeamsWorkDifficulty">{{ errors.ThreeConcentratedBeamsWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">三支垂支梁</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeVerticalBeamsCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeVerticalBeamsCost">{{ errors.ThreeVerticalBeamsCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeVerticalBeamsStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeVerticalBeamsStructureRisk">{{ errors.ThreeVerticalBeamsStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeVerticalBeamsWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeVerticalBeamsWorkDifficulty">{{ errors.ThreeVerticalBeamsWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">V型樑</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.VBeamCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.VBeamCost">{{ errors.VBeamCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.VBeamStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.VBeamStructureRisk">{{ errors.VBeamStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.VBeamWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.VBeamWorkDifficulty">{{ errors.VBeamWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">W型樑</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.WBeamCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.WBeamCost">{{ errors.WBeamCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.WBeamStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.WBeamStructureRisk">{{ errors.WBeamStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.WBeamWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.WBeamWorkDifficulty">{{ errors.WBeamWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">圓拱距</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td style="width: 15vmin">1M-1"</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMoneCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMoneCost">{{ errors.oneMoneCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMoneStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMoneStructureRisk">{{ errors.oneMoneStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMoneWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMoneWorkDifficulty">{{ errors.oneMoneWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">1M-1-1/4"</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMone_OneFourCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMone_OneFourCost">{{ errors.oneMone_OneFourCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMone_OneFourStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMone_OneFourStructureRisk">{{ errors.oneMone_OneFourStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMone_OneFourWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMone_OneFourWorkDifficulty">{{ errors.oneMone_OneFourWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">1M-1-1/2"</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMone_OneTwoCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMone_OneTwoCost">{{ errors.oneMone_OneTwoCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMone_OneTwoStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMone_OneTwoStructureRisk">{{ errors.oneMone_OneTwoStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.oneMone_OneTwoWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.oneMone_OneTwoWorkDifficulty">{{ errors.oneMone_OneTwoWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">1.5M-1-1/2"</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.onefiveMone_OneTwoCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.onefiveMone_OneTwoCost">{{ errors.onefiveMone_OneTwoCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.onefiveMone_OneTwoStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.onefiveMone_OneTwoStructureRisk">{{ errors.onefiveMone_OneTwoStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.onefiveMone_OneTwoWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.onefiveMone_OneTwoWorkDifficulty">{{ errors.onefiveMone_OneTwoWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">2M-2"</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.twoMtwoCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.twoMtwoCost">{{ errors.twoMtwoCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.twoMtwoStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.twoMtwoStructureRisk">{{ errors.twoMtwoStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.twoMtwoWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.twoMtwoWorkDifficulty">{{ errors.twoMtwoWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">0.5M-1"</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMoneCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMoneCost">{{ errors.zerofiveMoneCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMoneStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMoneStructureRisk">{{ errors.zerofiveMoneStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMoneWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMoneWorkDifficulty">{{ errors.zerofiveMoneWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">0.5-3/4"</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMthreefourCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMthreefourCost">{{ errors.zerofiveMthreefourCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMthreefourStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMthreefourStructureRisk">{{ errors.zerofiveMthreefourStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMthreefourWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMthreefourWorkDifficulty">{{ errors.zerofiveMthreefourWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">0.5-1/2"</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMonetwoCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMonetwoCost">{{ errors.zerofiveMonetwoCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMonetwoStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMonetwoStructureRisk">{{ errors.zerofiveMonetwoStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.zerofiveMonetwoWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.zerofiveMonetwoWorkDifficulty">{{ errors.zerofiveMonetwoWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">基礎</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td style="width: 15vmin">直插30cm</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.thirtycmCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.thirtycmCost">{{ errors.thirtycmCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.thirtycmStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.thirtycmStructureRisk">{{ errors.thirtycmStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.thirtycmWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.thirtycmWorkDifficulty">{{ errors.thirtycmWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">直插40cm</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fourtycmCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fourtycmCost">{{ errors.fourtycmCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fourtycmStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fourtycmStructureRisk">{{ errors.fourtycmStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fourtycmWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fourtycmWorkDifficulty">{{ errors.fourtycmWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">直插50cm</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fiftycmCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fiftycmCost">{{ errors.fiftycmCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fiftycmStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fiftycmStructureRisk">{{ errors.fiftycmStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fiftycmWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fiftycmWorkDifficulty">{{ errors.fiftycmWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">直插30cm+地錨</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.thirtycmPlusCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.thirtycmPlusCost">{{ errors.thirtycmPlusCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.thirtycmPlusStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.thirtycmPlusStructureRisk">{{ errors.thirtycmPlusStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.thirtycmPlusWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.thirtycmPlusWorkDifficulty">{{ errors.thirtycmPlusWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">直插40cm+地錨</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fourtycmPlusCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fourtycmPlusCost">{{ errors.fourtycmPlusCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fourtycmPlusStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fourtycmPlusStructureRisk">{{ errors.fourtycmPlusStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fourtycmPlusWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fourtycmPlusWorkDifficulty">{{ errors.fourtycmPlusWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">直插50cm+地錨</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fiftycmPlusCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fiftycmPlusCost">{{ errors.fiftycmPlusCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fiftycmPlusStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fiftycmPlusStructureRisk">{{ errors.fiftycmPlusStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.fiftycmPlusWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.fiftycmPlusWorkDifficulty">{{ errors.fiftycmPlusWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">跨距</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td style="width: 15vmin">5.4m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FiveFourmCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FiveFourmCost">{{ errors.FiveFourmCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FiveFourmStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FiveFourmStructureRisk">{{ errors.FiveFourmStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FiveFourmWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FiveFourmWorkDifficulty">{{ errors.FiveFourmWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">6m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SixmCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SixmCost">{{ errors.SixmCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SixmStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SixmStructureRisk">{{ errors.SixmStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SixmWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SixmWorkDifficulty">{{ errors.SixmWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">7.2m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SevenmCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SevenmCost">{{ errors.SevenmCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SevenmStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SevenmStructureRisk">{{ errors.SevenmStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SevenmWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SevenmWorkDifficulty">{{ errors.SevenmWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">8m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.eightmCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.eightmCost">{{ errors.eightmCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.eightmStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.eightmStructureRisk">{{ errors.eightmStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.eightmWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.eightmWorkDifficulty">{{ errors.eightmWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">肩高</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td style="width: 15vmin">2m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwomCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwomCost">{{ errors.TwomCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwomStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwomStructureRisk">{{ errors.TwomStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwomWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwomWorkDifficulty">{{ errors.TwomWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">2.5m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwoFivemCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwoFivemCost">{{ errors.TwoFivemCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwoFivemStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwoFivemStructureRisk">{{ errors.TwoFivemStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwoFivemWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwoFivemWorkDifficulty">{{ errors.TwoFivemWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">3m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreemCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreemCost">{{ errors.ThreemCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreemStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreemStructureRisk">{{ errors.ThreemStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreemWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreemWorkDifficulty">{{ errors.ThreemWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">3.5m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeFivemCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeFivemCost">{{ errors.ThreeFivemCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeFivemStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeFivemStructureRisk">{{ errors.ThreeFivemStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeFivemWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeFivemWorkDifficulty">{{ errors.ThreeFivemWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">4m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FourmCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FourmCost">{{ errors.FourmCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FourmStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FourmStructureRisk">{{ errors.FourmStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FourmWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FourmWorkDifficulty">{{ errors.FourmWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">長度</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td style="width: 15vmin">30m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThirtymCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThirtymCost">{{ errors.ThirtymCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThirtymStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThirtymStructureRisk">{{ errors.ThirtymStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThirtymWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThirtymWorkDifficulty">{{ errors.ThirtymWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">60m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SixtymCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SixtymCost">{{ errors.SixtymCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SixtymStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SixtymStructureRisk">{{ errors.SixtymStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.SixtymWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.SixtymWorkDifficulty">{{ errors.SixtymWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">90m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.NinetymCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.NinetymCost">{{ errors.NinetymCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.NinetymStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.NinetymStructureRisk">{{ errors.NinetymStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.NinetymWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.NinetymWorkDifficulty">{{ errors.NinetymWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">120m</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.OneHundredTwentymCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.OneHundredTwentymCost">{{ errors.OneHundredTwentymCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.OneHundredTwentymStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.OneHundredTwentymStructureRisk">{{ errors.OneHundredTwentymStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.OneHundredTwentymWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.OneHundredTwentymWorkDifficulty">{{ errors.OneHundredTwentymWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">連續性</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td style="width: 15vmin">獨棟</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.DetachedHouseCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.DetachedHouseCost">{{ errors.DetachedHouseCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.DetachedHouseStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.DetachedHouseStructureRisk">{{ errors.DetachedHouseStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.DetachedHouseWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.DetachedHouseWorkDifficulty">{{ errors.DetachedHouseWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">二連棟</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwoStoryBuildingCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwoStoryBuildingCost">{{ errors.TwoStoryBuildingCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwoStoryBuildingStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwoStoryBuildingStructureRisk">{{ errors.TwoStoryBuildingStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.TwoStoryBuildingWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.TwoStoryBuildingWorkDifficulty">{{ errors.TwoStoryBuildingWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">三連棟</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeStoryCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeStoryCost">{{ errors.ThreeStoryCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeStoryStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeStoryStructureRisk">{{ errors.ThreeStoryStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ThreeStoryWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ThreeStoryWorkDifficulty">{{ errors.ThreeStoryWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">四連棟</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FourStoryCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FourStoryCost">{{ errors.FourStoryCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FourStoryStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FourStoryStructureRisk">{{ errors.FourStoryStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.FourStoryWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.FourStoryWorkDifficulty">{{ errors.FourStoryWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-            <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">披覆膜</span></p>
-            <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
-                <thead align="center" class="table-active">
-                    <tr>
-                        <td>項目</td>
-                        <td>成本性</td>
-                        <td>結構風險</td>
-                        <td>作業難度</td>
-                    </tr>
-                </thead>
-                <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                    <td>{{simple[1][0].GreenhouseId}}</td>
-                    <td>{{simple[1][0].WindDirection}}</td>
-                </tr> -->
-                <tr align="center">
-                    <td style="width: 15vmin">PE</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.PECost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.PECost">{{ errors.PECost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.PEStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.PEStructureRisk">{{ errors.PEStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.PEWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.PEWorkDifficulty">{{ errors.PEWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">PO</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.POCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.POCost">{{ errors.POCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.POStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.POStructureRisk">{{ errors.POStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.POWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.POWorkDifficulty">{{ errors.POWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">硬質塑材</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.RigidPlasticCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.RigidPlasticCost">{{ errors.RigidPlasticCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.RigidPlasticStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.RigidPlasticStructureRisk">{{ errors.RigidPlasticStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.RigidPlasticWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.RigidPlasticWorkDifficulty">{{ errors.RigidPlasticWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">ETFE</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ETFECost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ETFECost">{{ errors.ETFECost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ETFEStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ETFEStructureRisk">{{ errors.ETFEStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.ETFEWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.ETFEWorkDifficulty">{{ errors.ETFEWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="width: 15vmin">玻璃</td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.GlassCost"
-                            label="請輸入成本性參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.GlassCost">{{ errors.GlassCost[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.GlassStructureRisk"
-                            label="請輸入結構風險參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.GlassStructureRisk">{{ errors.GlassStructureRisk[0] }}</div>
-                    </td>
-                    <td style="width: 15vmin">
-                        <v-text-field
-                            v-model="SimpleData.GlassWorkDifficulty"
-                            label="請輸入作業難度參數"
-                            required
-                        ></v-text-field>
-                        <div class="invalid-feedback" v-if="errors.GlassWorkDifficulty">{{ errors.GlassWorkDifficulty[0] }}</div>
-                    </td>
-                </tr>
-            </table>
-            <hr>
-
+            <div class="d-flex justify-content-around">
+                <div class="p-2 bd-highlight">
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">溫室管材</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td style="width: 15vmin">標準管材</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.StandardPipeCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.StandardPipeCost">{{ errors.StandardPipeCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.StandardPipeStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.StandardPipeStructureRisk">{{ errors.StandardPipeStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.StandardPipeWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.StandardPipeWorkDifficulty">{{ errors.StandardPipeWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td>高強管材</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.HighStrengthPipeCostCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighStrengthPipeCostCost">{{ errors.HighStrengthPipeCostCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.HighStrengthPipeStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighStrengthPipeStructureRisk">{{ errors.HighStrengthPipeStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.HighStrengthPipeWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighStrengthPipeWorkDifficulty">{{ errors.HighStrengthPipeWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td>耐蝕管材</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.CorrosionResistantPipeCostCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeCostCost">{{ errors.CorrosionResistantPipeCostCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.CorrosionResistantPipeStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeStructureRisk">{{ errors.CorrosionResistantPipeStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.CorrosionResistantPipeWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.CorrosionResistantPipeWorkDifficulty">{{ errors.CorrosionResistantPipeWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td>高強高耐蝕管材</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.HighStrengthCorrosionResistantPipeCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeCost">{{ errors.HighStrengthCorrosionResistantPipeCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.HighStrengthCorrosionResistantPipeStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeStructureRisk">{{ errors.HighStrengthCorrosionResistantPipeStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.HighStrengthCorrosionResistantPipeWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.HighStrengthCorrosionResistantPipeWorkDifficulty">{{ errors.HighStrengthCorrosionResistantPipeWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">圓頂形式</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td  style="width: 15vmin">單一圓拱</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SingleRoundArchCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SingleRoundArchCost">{{ errors.SingleRoundArchCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SingleRoundArchStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SingleRoundArchStructureRisk">{{ errors.SingleRoundArchStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SingleRoundArchWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SingleRoundArchWorkDifficulty">{{ errors.SingleRoundArchWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td  style="width: 15vmin">下橫樑</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.LowerBeamCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LowerBeamCost">{{ errors.LowerBeamCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.LowerBeamStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LowerBeamStructureRisk">{{ errors.LowerBeamStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.LowerBeamWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.LowerBeamWorkDifficulty">{{ errors.LowerBeamWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">上1/3橫梁</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.UpperOneThreeBeamCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.UpperOneThreeBeamCost">{{ errors.UpperOneThreeBeamCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.UpperOneThreeBeamStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.UpperOneThreeBeamStructureRisk">{{ errors.UpperOneThreeBeamStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.UpperOneThreeBeamWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.UpperOneThreeBeamWorkDifficulty">{{ errors.UpperOneThreeBeamWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">上二橫梁</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.UpperSecondBeamCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.UpperSecondBeamCost">{{ errors.UpperSecondBeamCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.UpperSecondBeamStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.UpperSecondBeamStructureRisk">{{ errors.UpperSecondBeamStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.UpperSecondBeamWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.UpperSecondBeamWorkDifficulty">{{ errors.UpperSecondBeamWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">T型樑</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TBeamCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TBeamCost">{{ errors.TBeamCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TBeamStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TBeamStructureRisk">{{ errors.TBeamStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TBeamWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TBeamWorkDifficulty">{{ errors.TBeamWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">三支集中樑</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeConcentratedBeamsCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeConcentratedBeamsCost">{{ errors.ThreeConcentratedBeamsCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeConcentratedBeamsStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeConcentratedBeamsStructureRisk">{{ errors.ThreeConcentratedBeamsStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeConcentratedBeamsWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeConcentratedBeamsWorkDifficulty">{{ errors.ThreeConcentratedBeamsWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">三支垂支梁</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeVerticalBeamsCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeVerticalBeamsCost">{{ errors.ThreeVerticalBeamsCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeVerticalBeamsStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeVerticalBeamsStructureRisk">{{ errors.ThreeVerticalBeamsStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeVerticalBeamsWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeVerticalBeamsWorkDifficulty">{{ errors.ThreeVerticalBeamsWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">V型樑</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.VBeamCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.VBeamCost">{{ errors.VBeamCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.VBeamStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.VBeamStructureRisk">{{ errors.VBeamStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.VBeamWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.VBeamWorkDifficulty">{{ errors.VBeamWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">W型樑</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.WBeamCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.WBeamCost">{{ errors.WBeamCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.WBeamStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.WBeamStructureRisk">{{ errors.WBeamStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.WBeamWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.WBeamWorkDifficulty">{{ errors.WBeamWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">圓拱距</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td style="width: 15vmin">1M-1"</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMoneCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMoneCost">{{ errors.oneMoneCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMoneStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMoneStructureRisk">{{ errors.oneMoneStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMoneWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMoneWorkDifficulty">{{ errors.oneMoneWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">1M-1-1/4"</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMone_OneFourCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMone_OneFourCost">{{ errors.oneMone_OneFourCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMone_OneFourStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMone_OneFourStructureRisk">{{ errors.oneMone_OneFourStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMone_OneFourWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMone_OneFourWorkDifficulty">{{ errors.oneMone_OneFourWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">1M-1-1/2"</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMone_OneTwoCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMone_OneTwoCost">{{ errors.oneMone_OneTwoCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMone_OneTwoStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMone_OneTwoStructureRisk">{{ errors.oneMone_OneTwoStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.oneMone_OneTwoWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.oneMone_OneTwoWorkDifficulty">{{ errors.oneMone_OneTwoWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">1.5M-1-1/2"</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.onefiveMone_OneTwoCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.onefiveMone_OneTwoCost">{{ errors.onefiveMone_OneTwoCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.onefiveMone_OneTwoStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.onefiveMone_OneTwoStructureRisk">{{ errors.onefiveMone_OneTwoStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.onefiveMone_OneTwoWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.onefiveMone_OneTwoWorkDifficulty">{{ errors.onefiveMone_OneTwoWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">2M-2"</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.twoMtwoCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.twoMtwoCost">{{ errors.twoMtwoCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.twoMtwoStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.twoMtwoStructureRisk">{{ errors.twoMtwoStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.twoMtwoWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.twoMtwoWorkDifficulty">{{ errors.twoMtwoWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">0.5M-1"</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMoneCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMoneCost">{{ errors.zerofiveMoneCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMoneStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMoneStructureRisk">{{ errors.zerofiveMoneStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMoneWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMoneWorkDifficulty">{{ errors.zerofiveMoneWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">0.5-3/4"</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMthreefourCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMthreefourCost">{{ errors.zerofiveMthreefourCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMthreefourStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMthreefourStructureRisk">{{ errors.zerofiveMthreefourStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMthreefourWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMthreefourWorkDifficulty">{{ errors.zerofiveMthreefourWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">0.5-1/2"</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMonetwoCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMonetwoCost">{{ errors.zerofiveMonetwoCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMonetwoStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMonetwoStructureRisk">{{ errors.zerofiveMonetwoStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.zerofiveMonetwoWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.zerofiveMonetwoWorkDifficulty">{{ errors.zerofiveMonetwoWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                </div>
+                <div class="p-2 bd-highlight">
+                    
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">跨距</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td style="width: 15vmin">5.4m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FiveFourmCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FiveFourmCost">{{ errors.FiveFourmCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FiveFourmStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FiveFourmStructureRisk">{{ errors.FiveFourmStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FiveFourmWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FiveFourmWorkDifficulty">{{ errors.FiveFourmWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">6m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SixmCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SixmCost">{{ errors.SixmCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SixmStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SixmStructureRisk">{{ errors.SixmStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SixmWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SixmWorkDifficulty">{{ errors.SixmWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">7.2m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SevenmCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SevenmCost">{{ errors.SevenmCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SevenmStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SevenmStructureRisk">{{ errors.SevenmStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SevenmWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SevenmWorkDifficulty">{{ errors.SevenmWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">8m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.eightmCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.eightmCost">{{ errors.eightmCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.eightmStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.eightmStructureRisk">{{ errors.eightmStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.eightmWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.eightmWorkDifficulty">{{ errors.eightmWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">肩高</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td style="width: 15vmin">2m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwomCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwomCost">{{ errors.TwomCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwomStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwomStructureRisk">{{ errors.TwomStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwomWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwomWorkDifficulty">{{ errors.TwomWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">2.5m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwoFivemCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwoFivemCost">{{ errors.TwoFivemCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwoFivemStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwoFivemStructureRisk">{{ errors.TwoFivemStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwoFivemWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwoFivemWorkDifficulty">{{ errors.TwoFivemWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">3m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreemCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreemCost">{{ errors.ThreemCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreemStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreemStructureRisk">{{ errors.ThreemStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreemWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreemWorkDifficulty">{{ errors.ThreemWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">3.5m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeFivemCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeFivemCost">{{ errors.ThreeFivemCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeFivemStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeFivemStructureRisk">{{ errors.ThreeFivemStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeFivemWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeFivemWorkDifficulty">{{ errors.ThreeFivemWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">4m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FourmCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FourmCost">{{ errors.FourmCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FourmStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FourmStructureRisk">{{ errors.FourmStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FourmWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FourmWorkDifficulty">{{ errors.FourmWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">基礎</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td style="width: 15vmin">直插30cm</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.thirtycmCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.thirtycmCost">{{ errors.thirtycmCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.thirtycmStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.thirtycmStructureRisk">{{ errors.thirtycmStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.thirtycmWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.thirtycmWorkDifficulty">{{ errors.thirtycmWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">直插40cm</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fourtycmCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fourtycmCost">{{ errors.fourtycmCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fourtycmStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fourtycmStructureRisk">{{ errors.fourtycmStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fourtycmWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fourtycmWorkDifficulty">{{ errors.fourtycmWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">直插50cm</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fiftycmCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fiftycmCost">{{ errors.fiftycmCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fiftycmStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fiftycmStructureRisk">{{ errors.fiftycmStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fiftycmWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fiftycmWorkDifficulty">{{ errors.fiftycmWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">直插30cm+地錨</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.thirtycmPlusCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.thirtycmPlusCost">{{ errors.thirtycmPlusCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.thirtycmPlusStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.thirtycmPlusStructureRisk">{{ errors.thirtycmPlusStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.thirtycmPlusWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.thirtycmPlusWorkDifficulty">{{ errors.thirtycmPlusWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">直插40cm+地錨</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fourtycmPlusCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fourtycmPlusCost">{{ errors.fourtycmPlusCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fourtycmPlusStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fourtycmPlusStructureRisk">{{ errors.fourtycmPlusStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fourtycmPlusWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fourtycmPlusWorkDifficulty">{{ errors.fourtycmPlusWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">直插50cm+地錨</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fiftycmPlusCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fiftycmPlusCost">{{ errors.fiftycmPlusCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fiftycmPlusStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fiftycmPlusStructureRisk">{{ errors.fiftycmPlusStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.fiftycmPlusWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.fiftycmPlusWorkDifficulty">{{ errors.fiftycmPlusWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    
+                </div>
+                <div class="p-2 bd-highlight">
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">長度</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td style="width: 15vmin">30m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThirtymCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThirtymCost">{{ errors.ThirtymCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThirtymStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThirtymStructureRisk">{{ errors.ThirtymStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThirtymWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThirtymWorkDifficulty">{{ errors.ThirtymWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">60m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SixtymCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SixtymCost">{{ errors.SixtymCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SixtymStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SixtymStructureRisk">{{ errors.SixtymStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.SixtymWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.SixtymWorkDifficulty">{{ errors.SixtymWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">90m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.NinetymCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.NinetymCost">{{ errors.NinetymCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.NinetymStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.NinetymStructureRisk">{{ errors.NinetymStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.NinetymWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.NinetymWorkDifficulty">{{ errors.NinetymWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">120m</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.OneHundredTwentymCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.OneHundredTwentymCost">{{ errors.OneHundredTwentymCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.OneHundredTwentymStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.OneHundredTwentymStructureRisk">{{ errors.OneHundredTwentymStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.OneHundredTwentymWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.OneHundredTwentymWorkDifficulty">{{ errors.OneHundredTwentymWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">披覆膜</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td style="width: 15vmin">PE</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.PECost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.PECost">{{ errors.PECost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.PEStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.PEStructureRisk">{{ errors.PEStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.PEWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.PEWorkDifficulty">{{ errors.PEWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">PO</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.POCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.POCost">{{ errors.POCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.POStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.POStructureRisk">{{ errors.POStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.POWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.POWorkDifficulty">{{ errors.POWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">硬質塑材</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.RigidPlasticCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.RigidPlasticCost">{{ errors.RigidPlasticCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.RigidPlasticStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.RigidPlasticStructureRisk">{{ errors.RigidPlasticStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.RigidPlasticWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.RigidPlasticWorkDifficulty">{{ errors.RigidPlasticWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">ETFE</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ETFECost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ETFECost">{{ errors.ETFECost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ETFEStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ETFEStructureRisk">{{ errors.ETFEStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ETFEWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ETFEWorkDifficulty">{{ errors.ETFEWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">玻璃</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.GlassCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.GlassCost">{{ errors.GlassCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.GlassStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.GlassStructureRisk">{{ errors.GlassStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.GlassWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.GlassWorkDifficulty">{{ errors.GlassWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">連續性</span></p>
+                    <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
+                        <thead align="center" class="table-active">
+                            <tr>
+                                <td>項目</td>
+                                <td>成本性</td>
+                                <td>結構風險</td>
+                                <td>作業難度</td>
+                            </tr>
+                        </thead>
+                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
+                            <td>{{simple[1][0].GreenhouseId}}</td>
+                            <td>{{simple[1][0].WindDirection}}</td>
+                        </tr> -->
+                        <tr align="center">
+                            <td style="width: 15vmin">獨棟</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.DetachedHouseCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.DetachedHouseCost">{{ errors.DetachedHouseCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.DetachedHouseStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.DetachedHouseStructureRisk">{{ errors.DetachedHouseStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.DetachedHouseWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.DetachedHouseWorkDifficulty">{{ errors.DetachedHouseWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">二連棟</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwoStoryBuildingCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwoStoryBuildingCost">{{ errors.TwoStoryBuildingCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwoStoryBuildingStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwoStoryBuildingStructureRisk">{{ errors.TwoStoryBuildingStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.TwoStoryBuildingWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.TwoStoryBuildingWorkDifficulty">{{ errors.TwoStoryBuildingWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">三連棟</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeStoryCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeStoryCost">{{ errors.ThreeStoryCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeStoryStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeStoryStructureRisk">{{ errors.ThreeStoryStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.ThreeStoryWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.ThreeStoryWorkDifficulty">{{ errors.ThreeStoryWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td style="width: 15vmin">四連棟</td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FourStoryCost"
+                                    label="請輸入成本性參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FourStoryCost">{{ errors.FourStoryCost[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FourStoryStructureRisk"
+                                    label="請輸入結構風險參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FourStoryStructureRisk">{{ errors.FourStoryStructureRisk[0] }}</div>
+                            </td>
+                            <td style="width: 15vmin">
+                                <v-text-field
+                                    v-model="SimpleData.FourStoryWorkDifficulty"
+                                    label="請輸入作業難度參數"
+                                    required
+                                ></v-text-field>
+                                <div class="invalid-feedback" v-if="errors.FourStoryWorkDifficulty">{{ errors.FourStoryWorkDifficulty[0] }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    
+                </div>
+            </div>
+            
             <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">各結構材料成本比例</span></p>
             <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
                 <thead align="center" class="table-active">
