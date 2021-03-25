@@ -12,4 +12,5 @@ class simplecoatingfilm extends Model
     protected $fillable = [
         'id','Expert','BuildItem','Cost','StructuralRisk','JobDifficulty'
     ];
+    public $timestamps = false;
 }

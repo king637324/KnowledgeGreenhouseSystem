@@ -49,6 +49,7 @@ class SimpleController extends Controller
     {
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
+            'Expert' => 'required',
             /******** 溫室管材  ********/
             // 標準管材
             'StandardPipeCost' => 'required',
@@ -255,260 +256,529 @@ class SimpleController extends Controller
             'GlassStructureRisk' => 'required',
             'GlassWorkDifficulty' => 'required',
             /******** 各成本比例  ********/
-            'GreenhousePipe' => 'required',   // 溫室管材
-            'DomeForm' => 'required',   // 圓頂形式
-            'ArcDistance' => 'required',   // 圓拱距
-            'Basis' => 'required',   // 基礎
-            'Span' => 'required',   // 跨距
-            'ShoulderHeight' => 'required',   // 肩高
-            'Length' => 'required',   // 長度
-            'Continuity' => 'required',   // 連續性
-            'CoatedFilm' => 'required',   // 披覆膜
+            // 溫室管材
+            'GreenhousePipeCost' => 'required',
+            'GreenhousePipeStructuralRisk' => 'required',
+            'GreenhousePipeJobDifficulty' => 'required',
+            // 圓頂形式
+            'DomeFormCost' => 'required',
+            'DomeFormStructuralRisk' => 'required',
+            'DomeFormJobDifficulty' => 'required',
+            // 圓拱距
+            'ArcDistanceCost' => 'required',
+            'ArcDistanceStructuralRisk' => 'required',
+            'ArcDistanceJobDifficulty' => 'required',
+            // 基礎
+            'BasisCost' => 'required',
+            'BasisStructuralRisk' => 'required',
+            'BasisJobDifficulty' => 'required',
+            // 跨距
+            'SpanCost' => 'required',
+            'SpanStructuralRisk' => 'required',
+            'SpanJobDifficulty' => 'required',
+            // 肩高
+            'ShoulderHeightCost' => 'required',
+            'ShoulderHeightStructuralRisk' => 'required',
+            'ShoulderHeightJobDifficulty' => 'required',
+            // 長度
+            'LengthCost' => 'required',
+            'LengthStructuralRisk' => 'required',
+            'LengthJobDifficulty' => 'required',
+            // 連續性
+            'ContinuityCost' => 'required',
+            'ContinuityStructuralRisk' => 'required',
+            'ContinuityJobDifficulty' => 'required',
+            // 披覆膜
+            'CoatedFilmCost' => 'required',
+            'CoatedFilmStructuralRisk' => 'required',
+            'CoatedFilmJobDifficulty' => 'required',
         ]);
 
-        $GreenhousePipe = new simplegreenhousepipe(); // 溫室管材
         /******** 溫室管材  ********/
         // 標準管材
-        $GreenhousePipe->StandardPipeCost = $request->StandardPipeCost;
-        $GreenhousePipe->StandardPipeStructureRisk = $request->StandardPipeStructureRisk;
-        $GreenhousePipe->StandardPipeWorkDifficulty = $request->StandardPipeWorkDifficulty;
-        // 高強管材
-        $GreenhousePipe->HighStrengthPipeCostCost = $request->HighStrengthPipeCostCost;
-        $GreenhousePipe->HighStrengthPipeStructureRisk = $request->HighStrengthPipeStructureRisk;
-        $GreenhousePipe->HighStrengthPipeWorkDifficulty = $request->HighStrengthPipeWorkDifficulty;
-        // 耐蝕管材
-        $GreenhousePipe->CorrosionResistantPipeCostCost = $request->CorrosionResistantPipeCostCost;
-        $GreenhousePipe->CorrosionResistantPipeStructureRisk = $request->CorrosionResistantPipeStructureRisk;
-        $GreenhousePipe->CorrosionResistantPipeWorkDifficulty = $request->CorrosionResistantPipeWorkDifficulty;
-        // 高強高耐蝕管材
-        $GreenhousePipe->HighStrengthCorrosionResistantPipeCost = $request->HighStrengthCorrosionResistantPipeCost;
-        $GreenhousePipe->HighStrengthCorrosionResistantPipeStructureRisk = $request->HighStrengthCorrosionResistantPipeStructureRisk;
-        $GreenhousePipe->HighStrengthCorrosionResistantPipeWorkDifficulty = $request->HighStrengthCorrosionResistantPipeWorkDifficulty;
+        $GreenhousePipe = new simplegreenhousepipe(); // 溫室管材
+        $GreenhousePipe->Expert = $request->Expert;
+        $GreenhousePipe->BuildItem = '標準管材';
+        $GreenhousePipe->Cost = $request->StandardPipeCost;
+        $GreenhousePipe->StructuralRisk = $request->StandardPipeStructureRisk;
+        $GreenhousePipe->JobDifficulty = $request->StandardPipeWorkDifficulty;
+        $GreenhousePipe->save();
 
-        $Domeform = new simpledomeform();  // 圓頂形式
+        // 高強管材
+        $GreenhousePipe = new simplegreenhousepipe(); // 溫室管材
+        $GreenhousePipe->Expert = $request->Expert;
+        $GreenhousePipe->BuildItem = '高強管材';
+        $GreenhousePipe->Cost = $request->HighStrengthPipeCostCost;
+        $GreenhousePipe->StructuralRisk = $request->HighStrengthPipeStructureRisk;
+        $GreenhousePipe->JobDifficulty = $request->HighStrengthPipeWorkDifficulty;
+        $GreenhousePipe->save();
+
+        // 耐蝕管材
+        $GreenhousePipe = new simplegreenhousepipe(); // 溫室管材
+        $GreenhousePipe->Expert = $request->Expert;
+        $GreenhousePipe->BuildItem = '耐蝕管材';
+        $GreenhousePipe->Cost = $request->CorrosionResistantPipeCostCost;
+        $GreenhousePipe->StructuralRisk = $request->CorrosionResistantPipeStructureRisk;
+        $GreenhousePipe->JobDifficulty = $request->CorrosionResistantPipeWorkDifficulty;
+        $GreenhousePipe->save();
+
+        // 高強高耐蝕管材
+        $GreenhousePipe = new simplegreenhousepipe(); // 溫室管材
+        $GreenhousePipe->Expert = $request->Expert;
+        $GreenhousePipe->BuildItem = '高強高耐蝕管材';
+        $GreenhousePipe->Cost = $request->HighStrengthCorrosionResistantPipeCost;
+        $GreenhousePipe->StructuralRisk = $request->HighStrengthCorrosionResistantPipeStructureRisk;
+        $GreenhousePipe->JobDifficulty = $request->HighStrengthCorrosionResistantPipeWorkDifficulty;
+        $GreenhousePipe->save();
+
         /******** 圓頂形式  ********/
         // 單一圓拱
-        $GreenhousePipe->SingleRoundArchCost = $request->SingleRoundArchCost;
-        $GreenhousePipe->SingleRoundArchStructureRisk = $request->SingleRoundArchStructureRisk;
-        $GreenhousePipe->SingleRoundArchWorkDifficulty = $request->SingleRoundArchWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = '單一圓拱';
+        $Domeform->Cost = $request->SingleRoundArchCost;
+        $Domeform->StructuralRisk = $request->SingleRoundArchStructureRisk;
+        $Domeform->JobDifficulty = $request->SingleRoundArchWorkDifficulty;
+        $Domeform->save();
         // 下橫樑
-        $GreenhousePipe->LowerBeamCost = $request->LowerBeamCost;
-        $GreenhousePipe->LowerBeamStructureRisk = $request->LowerBeamStructureRisk;
-        $GreenhousePipe->LowerBeamWorkDifficulty = $request->LowerBeamWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = '下橫樑';
+        $Domeform->Cost = $request->LowerBeamCost;
+        $Domeform->StructuralRisk = $request->LowerBeamStructureRisk;
+        $Domeform->JobDifficulty = $request->LowerBeamWorkDifficulty;
+        $Domeform->save();
         // 上1/3橫梁
-        $GreenhousePipe->UpperOneThreeBeamCost = $request->UpperOneThreeBeamCost;
-        $GreenhousePipe->UpperOneThreeBeamStructureRisk = $request->UpperOneThreeBeamStructureRisk;
-        $GreenhousePipe->UpperOneThreeBeamWorkDifficulty = $request->UpperOneThreeBeamWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = '上1/3橫梁';
+        $Domeform->Cost = $request->UpperOneThreeBeamCost;
+        $Domeform->StructuralRisk = $request->UpperOneThreeBeamStructureRisk;
+        $Domeform->JobDifficulty = $request->UpperOneThreeBeamWorkDifficulty;
+        $Domeform->save();
         // 上二橫梁
-        $GreenhousePipe->UpperSecondBeamCost = $request->UpperSecondBeamCost;
-        $GreenhousePipe->UpperSecondBeamStructureRisk = $request->UpperSecondBeamStructureRisk;
-        $GreenhousePipe->UpperSecondBeamWorkDifficulty = $request->UpperSecondBeamWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = '上二橫梁';
+        $Domeform->Cost = $request->UpperSecondBeamCost;
+        $Domeform->StructuralRisk = $request->UpperSecondBeamStructureRisk;
+        $Domeform->JobDifficulty = $request->UpperSecondBeamWorkDifficulty;
+        $Domeform->save();
         // T型樑
-        $GreenhousePipe->TBeamCost = $request->TBeamCost;
-        $GreenhousePipe->TBeamStructureRisk = $request->TBeamStructureRisk;
-        $GreenhousePipe->TBeamWorkDifficulty = $request->TBeamWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = 'T型樑';
+        $Domeform->Cost = $request->TBeamCost;
+        $Domeform->StructuralRisk = $request->TBeamStructureRisk;
+        $Domeform->JobDifficulty = $request->TBeamWorkDifficulty;
+        $Domeform->save();
         // 三支集中樑
-        $GreenhousePipe->ThreeConcentratedBeamsCost = $request->ThreeConcentratedBeamsCost;
-        $GreenhousePipe->ThreeConcentratedBeamsStructureRisk = $request->ThreeConcentratedBeamsStructureRisk;
-        $GreenhousePipe->ThreeConcentratedBeamsWorkDifficulty = $request->ThreeConcentratedBeamsWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = '三支集中樑';
+        $Domeform->Cost = $request->ThreeConcentratedBeamsCost;
+        $Domeform->StructuralRisk = $request->ThreeConcentratedBeamsStructureRisk;
+        $Domeform->JobDifficulty = $request->ThreeConcentratedBeamsWorkDifficulty;
+        $Domeform->save();
         // 三支垂支梁
-        $GreenhousePipe->ThreeVerticalBeamsCost = $request->ThreeVerticalBeamsCost;
-        $GreenhousePipe->ThreeVerticalBeamsStructureRisk = $request->ThreeVerticalBeamsStructureRisk;
-        $GreenhousePipe->ThreeVerticalBeamsWorkDifficulty = $request->ThreeVerticalBeamsWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = '三支垂支梁';
+        $Domeform->Cost = $request->ThreeVerticalBeamsCost;
+        $Domeform->StructuralRisk = $request->ThreeVerticalBeamsStructureRisk;
+        $Domeform->JobDifficulty = $request->ThreeVerticalBeamsWorkDifficulty;
+        $Domeform->save();
         // V型樑
-        $GreenhousePipe->VBeamCost = $request->VBeamCost;
-        $GreenhousePipe->VBeamStructureRisk = $request->VBeamStructureRisk;
-        $GreenhousePipe->VBeamWorkDifficulty = $request->VBeamWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = 'V型樑';
+        $Domeform->Cost = $request->VBeamCost;
+        $Domeform->StructuralRisk = $request->VBeamStructureRisk;
+        $Domeform->JobDifficulty = $request->VBeamWorkDifficulty;
+        $Domeform->save();
         // W型樑
-        $GreenhousePipe->WBeamCost = $request->WBeamCost;
-        $GreenhousePipe->WBeamStructureRisk = $request->WBeamStructureRisk;
-        $GreenhousePipe->WBeamWorkDifficulty = $request->WBeamWorkDifficulty;
+        $Domeform = new simpledomeform();  // 圓頂形式
+        $Domeform->Expert = $request->Expert;
+        $Domeform->BuildItem = 'W型樑';
+        $Domeform->Cost = $request->WBeamCost;
+        $Domeform->StructuralRisk = $request->WBeamStructureRisk;
+        $Domeform->JobDifficulty = $request->WBeamWorkDifficulty;
+        $Domeform->save();
 
-        $CircularArchDistance = new simplecirculararchdistance();       // 圓拱距
         /******** 圓拱距  ********/
         // 1M-1"
-        $GreenhousePipe->oneMoneCost = $request->oneMoneCost;
-        $GreenhousePipe->oneMoneStructureRisk = $request->oneMoneStructureRisk;
-        $GreenhousePipe->oneMoneWorkDifficulty = $request->oneMoneWorkDifficulty;
+        $CircularArchDistance = new simplecirculararchdistance();   // 圓拱距
+        $CircularArchDistance->Expert = $request->Expert;
+        $CircularArchDistance->BuildItem = '1M-1"';
+        $CircularArchDistance->Cost = $request->oneMoneCost;
+        $CircularArchDistance->StructuralRisk = $request->oneMoneStructureRisk;
+        $CircularArchDistance->JobDifficulty = $request->oneMoneWorkDifficulty;
+        $CircularArchDistance->save();
         // 1M-1-1/4"
-        $GreenhousePipe->oneMone_OneFourCost = $request->oneMone_OneFourCost;
-        $GreenhousePipe->oneMone_OneFourStructureRisk = $request->oneMone_OneFourStructureRisk;
-        $GreenhousePipe->oneMone_OneFourWorkDifficulty = $request->oneMone_OneFourWorkDifficulty;
+        $CircularArchDistance = new simplecirculararchdistance();   // 圓拱距
+        $CircularArchDistance->Expert = $request->Expert;
+        $CircularArchDistance->BuildItem = '1M-1-1/4"';
+        $CircularArchDistance->Cost = $request->oneMone_OneFourCost;
+        $CircularArchDistance->StructuralRisk = $request->oneMone_OneFourStructureRisk;
+        $CircularArchDistance->JobDifficulty = $request->oneMone_OneFourWorkDifficulty;
+        $CircularArchDistance->save();
         // 1M-1-1/2"
-        $GreenhousePipe->oneMone_OneTwoCost = $request->oneMone_OneTwoCost;
-        $GreenhousePipe->oneMone_OneTwoStructureRisk = $request->oneMone_OneTwoStructureRisk;
-        $GreenhousePipe->oneMone_OneTwoWorkDifficulty = $request->oneMone_OneTwoWorkDifficulty;
+        $CircularArchDistance = new simplecirculararchdistance();   // 圓拱距
+        $CircularArchDistance->Expert = $request->Expert;
+        $CircularArchDistance->BuildItem = '1M-1-1/2"';
+        $CircularArchDistance->Cost = $request->oneMone_OneTwoCost;
+        $CircularArchDistance->StructuralRisk = $request->oneMone_OneTwoStructureRisk;
+        $CircularArchDistance->JobDifficulty = $request->oneMone_OneTwoWorkDifficulty;
+        $CircularArchDistance->save();
         // 1.5M-1-1/2"
-        $GreenhousePipe->onefiveMone_OneTwoCost = $request->VonefiveMone_OneTwoCost;
-        $GreenhousePipe->onefiveMone_OneTwoStructureRisk = $request->onefiveMone_OneTwoStructureRisk;
-        $GreenhousePipe->onefiveMone_OneTwoWorkDifficulty = $request->onefiveMone_OneTwoWorkDifficulty;
+        $CircularArchDistance = new simplecirculararchdistance();   // 圓拱距
+        $CircularArchDistance->Expert = $request->Expert;
+        $CircularArchDistance->BuildItem = '1.5M-1-1/2"';
+        $CircularArchDistance->Cost = $request->onefiveMone_OneTwoCost;
+        $CircularArchDistance->StructuralRisk = $request->onefiveMone_OneTwoStructureRisk;
+        $CircularArchDistance->JobDifficulty = $request->onefiveMone_OneTwoWorkDifficulty;
+        $CircularArchDistance->save();
         // 2M-2"
-        $GreenhousePipe->twoMtwoCost = $request->twoMtwoCost;
-        $GreenhousePipe->twoMtwoStructureRisk = $request->twoMtwoStructureRisk;
-        $GreenhousePipe->twoMtwoWorkDifficulty = $request->twoMtwoWorkDifficulty;
+        $CircularArchDistance = new simplecirculararchdistance();   // 圓拱距
+        $CircularArchDistance->Expert = $request->Expert;
+        $CircularArchDistance->BuildItem = '2M-2"';
+        $CircularArchDistance->Cost = $request->twoMtwoCost;
+        $CircularArchDistance->StructuralRisk = $request->twoMtwoStructureRisk;
+        $CircularArchDistance->JobDifficulty = $request->twoMtwoWorkDifficulty;
+        $CircularArchDistance->save();
         // 0.5M-1"
-        $GreenhousePipe->zerofiveMoneCost = $request->zerofiveMoneCost;
-        $GreenhousePipe->zerofiveMoneStructureRisk = $request->zerofiveMoneStructureRisk;
-        $GreenhousePipe->zerofiveMoneWorkDifficulty = $request->zerofiveMoneWorkDifficulty;
+        $CircularArchDistance = new simplecirculararchdistance();   // 圓拱距
+        $CircularArchDistance->Expert = $request->Expert;
+        $CircularArchDistance->BuildItem = '0.5M-1"';
+        $CircularArchDistance->Cost = $request->zerofiveMoneCost;
+        $CircularArchDistance->StructuralRisk = $request->zerofiveMoneStructureRisk;
+        $CircularArchDistance->JobDifficulty = $request->zerofiveMoneWorkDifficulty;
+        $CircularArchDistance->save();
         // 0.5-3/4"
-        $GreenhousePipe->zerofiveMthreefourCost = $request->zerofiveMthreefourCost;
-        $GreenhousePipe->zerofiveMthreefourStructureRisk = $request->zerofiveMthreefourStructureRisk;
-        $GreenhousePipe->zerofiveMthreefourWorkDifficulty = $request->zerofiveMthreefourWorkDifficulty;
+        $CircularArchDistance = new simplecirculararchdistance();   // 圓拱距
+        $CircularArchDistance->Expert = $request->Expert;
+        $CircularArchDistance->BuildItem = '0.5-3/4"';
+        $CircularArchDistance->Cost = $request->zerofiveMthreefourCost;
+        $CircularArchDistance->StructuralRisk = $request->zerofiveMthreefourStructureRisk;
+        $CircularArchDistance->JobDifficulty = $request->zerofiveMthreefourWorkDifficulty;
+        $CircularArchDistance->save();
         // 0.5-1/2"
-        $GreenhousePipe->zerofiveMonetwoCost = $request->zerofiveMonetwoCost;
-        $GreenhousePipe->zerofiveMonetwoStructureRisk = $request->zerofiveMonetwoStructureRisk;
-        $GreenhousePipe->zerofiveMonetwoWorkDifficulty = $request->zerofiveMonetwoWorkDifficulty;
+        $CircularArchDistance = new simplecirculararchdistance();   // 圓拱距
+        $CircularArchDistance->Expert = $request->Expert;
+        $CircularArchDistance->BuildItem = '0.5-1/2"';
+        $CircularArchDistance->Cost = $request->zerofiveMonetwoCost;
+        $CircularArchDistance->StructuralRisk = $request->zerofiveMonetwoStructureRisk;
+        $CircularArchDistance->JobDifficulty = $request->zerofiveMonetwoWorkDifficulty;
+        $CircularArchDistance->save();
 
-        $Foundation = new simplefoundation();                           // 基礎
         /******** 基礎  ********/
-        // 直插30cm
-        $GreenhousePipe->thirtycmCost = $request->thirtycmCost;
-        $GreenhousePipe->thirtycmStructureRisk = $request->thirtycmStructureRisk;
-        $GreenhousePipe->thirtycmWorkDifficulty = $request->thirtycmWorkDifficulty;
         // 直插40cm
-        $GreenhousePipe->fourtycmCost = $request->fourtycmCost;
-        $GreenhousePipe->fourtycmStructureRisk = $request->fourtycmStructureRisk;
-        $GreenhousePipe->fourtycmWorkDifficulty = $request->fourtycmWorkDifficulty;
+        $Foundation = new simplefoundation();   // 基礎
+        $Foundation->Expert = $request->Expert;
+        $Foundation->BuildItem = '直插40cm';
+        $Foundation->Cost = $request->fourtycmCost;
+        $Foundation->StructuralRisk = $request->fourtycmStructureRisk;
+        $Foundation->JobDifficulty = $request->fourtycmWorkDifficulty;
+        $Foundation->save();
         // 直插50cm
-        $GreenhousePipe->fiftycmCost = $request->fiftycmCost;
-        $GreenhousePipe->fiftycmStructureRisk = $request->fiftycmStructureRisk;
-        $GreenhousePipe->fiftycmWorkDifficulty = $request->fiftycmWorkDifficulty;
-        // 直插30cm+地錨
-        $GreenhousePipe->thirtycmPlusCost = $request->thirtycmPlusCost;
-        $GreenhousePipe->thirtycmPlusStructureRisk = $request->thirtycmPlusStructureRisk;
-        $GreenhousePipe->thirtycmPlusWorkDifficulty = $request->thirtycmPlusWorkDifficulty;
+        $Foundation = new simplefoundation();   // 基礎
+        $Foundation->Expert = $request->Expert;
+        $Foundation->BuildItem = '直插50cm';
+        $Foundation->Cost = $request->fiftycmCost;
+        $Foundation->StructuralRisk = $request->fiftycmStructureRisk;
+        $Foundation->JobDifficulty = $request->fiftycmWorkDifficulty;
+        $Foundation->save();
+        // 直插30cm
+        $Foundation = new simplefoundation();   // 基礎
+        $Foundation->Expert = $request->Expert;
+        $Foundation->BuildItem = '直插30cm';
+        $Foundation->Cost = $request->thirtycmCost;
+        $Foundation->StructuralRisk = $request->thirtycmStructureRisk;
+        $Foundation->JobDifficulty = $request->thirtycmWorkDifficulty;
+        $Foundation->save();
         // 直插40cm+地錨
-        $GreenhousePipe->fourtycmPlusCost = $request->fourtycmPlusCost;
-        $GreenhousePipe->fourtycmPlusStructureRisk = $request->fourtycmPlusStructureRisk;
-        $GreenhousePipe->fourtycmPlusWorkDifficulty = $request->fourtycmPlusWorkDifficulty;
+        $Foundation = new simplefoundation();   // 基礎
+        $Foundation->Expert = $request->Expert;
+        $Foundation->BuildItem = '直插40cm+地錨';
+        $Foundation->Cost = $request->fourtycmPlusCost;
+        $Foundation->StructuralRisk = $request->fourtycmPlusStructureRisk;
+        $Foundation->JobDifficulty = $request->fourtycmPlusWorkDifficulty;
+        $Foundation->save();
         // 直插50cm+地錨
-        $GreenhousePipe->fiftycmPlusCost = $request->fiftycmPlusCost;
-        $GreenhousePipe->fiftycmPlusStructureRisk = $request->fiftycmPlusStructureRisk;
-        $GreenhousePipe->fiftycmPlusWorkDifficulty = $request->fiftycmPlusWorkDifficulty;
+        $Foundation = new simplefoundation();   // 基礎
+        $Foundation->Expert = $request->Expert;
+        $Foundation->BuildItem = '直插50cm+地錨';
+        $Foundation->Cost = $request->fiftycmPlusCost;
+        $Foundation->StructuralRisk = $request->fiftycmPlusStructureRisk;
+        $Foundation->JobDifficulty = $request->fiftycmPlusWorkDifficulty;
+        $Foundation->save();
+        // 直插30cm+地錨
+        $Foundation = new simplefoundation();   // 基礎
+        $Foundation->Expert = $request->Expert;
+        $Foundation->BuildItem = '直插30cm+地錨';
+        $Foundation->Cost = $request->thirtycmPlusCost;
+        $Foundation->StructuralRisk = $request->thirtycmPlusStructureRisk;
+        $Foundation->JobDifficulty = $request->thirtycmPlusWorkDifficulty;
+        $Foundation->save();
 
-        $Span = new simplespan();                                       // 跨距
         /******** 跨距  ********/
         // 5.4m
-        $GreenhousePipe->FiveFourmCost = $request->FiveFourmCost;
-        $GreenhousePipe->FiveFourmStructureRisk = $request->FiveFourmStructureRisk;
-        $GreenhousePipe->FiveFourmWorkDifficulty = $request->FiveFourmWorkDifficulty;
+        $Span = new simplespan();   // 跨距
+        $Span->Expert = $request->Expert;
+        $Span->BuildItem = '5.4m';
+        $Span->Cost = $request->FiveFourmCost;
+        $Span->StructuralRisk = $request->FiveFourmStructureRisk;
+        $Span->JobDifficulty = $request->FiveFourmWorkDifficulty;
+        $Span->save();
         // 6m
-        $GreenhousePipe->SixmCost = $request->SixmCost;
-        $GreenhousePipe->SixmStructureRisk = $request->SixmStructureRisk;
-        $GreenhousePipe->SixmWorkDifficulty = $request->SixmWorkDifficulty;
+        $Span = new simplespan();   // 跨距
+        $Span->Expert = $request->Expert;
+        $Span->BuildItem = '6m';
+        $Span->Cost = $request->SixmCost;
+        $Span->StructuralRisk = $request->SixmStructureRisk;
+        $Span->JobDifficulty = $request->SixmWorkDifficulty;
+        $Span->save();
         // 7.2m
-        $GreenhousePipe->SevenmCost = $request->SevenmCost;
-        $GreenhousePipe->SevenmStructureRisk = $request->SevenmStructureRisk;
-        $GreenhousePipe->SevenmWorkDifficulty = $request->SevenmWorkDifficulty;
+        $Span = new simplespan();   // 跨距
+        $Span->Expert = $request->Expert;
+        $Span->BuildItem = '7.2m';
+        $Span->Cost = $request->SevenmCost;
+        $Span->StructuralRisk = $request->SevenmStructureRisk;
+        $Span->JobDifficulty = $request->SevenmWorkDifficulty;
+        $Span->save();
         // 8m
-        $GreenhousePipe->eightmCost = $request->eightmCost;
-        $GreenhousePipe->eightmStructureRisk = $request->eightmStructureRisk;
-        $GreenhousePipe->eightmWorkDifficulty = $request->eightmWorkDifficulty;
+        $Span = new simplespan();   // 跨距
+        $Span->Expert = $request->Expert;
+        $Span->BuildItem = '8m';
+        $Span->Cost = $request->eightmCost;
+        $Span->StructuralRisk = $request->eightmStructureRisk;
+        $Span->JobDifficulty = $request->eightmWorkDifficulty;
+        $Span->save();
 
-        $ShoulderHeight = new simpleshoulderheight();                   // 肩高
         /******** 肩高  ********/
         // 2m
-        $GreenhousePipe->TwomCost = $request->TwomCost;
-        $GreenhousePipe->TwomStructureRisk = $request->TwomStructureRisk;
-        $GreenhousePipe->TwomWorkDifficulty = $request->TwomWorkDifficulty;
+        $ShoulderHeight = new simpleshoulderheight();   // 肩高
+        $ShoulderHeight->Expert = $request->Expert;
+        $ShoulderHeight->BuildItem = '2m';
+        $ShoulderHeight->Cost = $request->TwomCost;
+        $ShoulderHeight->StructuralRisk = $request->TwomStructureRisk;
+        $ShoulderHeight->JobDifficulty = $request->TwomWorkDifficulty;
+        $ShoulderHeight->save();
         // 2.5m
-        $GreenhousePipe->TwoFivemCost = $request->TwoFivemCost;
-        $GreenhousePipe->TwoFivemStructureRisk = $request->TwoFivemStructureRisk;
-        $GreenhousePipe->TwoFivemWorkDifficulty = $request->TwoFivemWorkDifficulty;
+        $ShoulderHeight = new simpleshoulderheight();   // 肩高
+        $ShoulderHeight->Expert = $request->Expert;
+        $ShoulderHeight->BuildItem = '2.5m';
+        $ShoulderHeight->Cost = $request->TwoFivemCost;
+        $ShoulderHeight->StructuralRisk = $request->TwoFivemStructureRisk;
+        $ShoulderHeight->JobDifficulty = $request->TwoFivemWorkDifficulty;
+        $ShoulderHeight->save();
         // 3m
-        $GreenhousePipe->ThreemCost = $request->ThreemCost;
-        $GreenhousePipe->ThreemStructureRisk = $request->ThreemStructureRisk;
-        $GreenhousePipe->ThreemWorkDifficulty = $request->ThreemWorkDifficulty;
+        $ShoulderHeight = new simpleshoulderheight();   // 肩高
+        $ShoulderHeight->Expert = $request->Expert;
+        $ShoulderHeight->BuildItem = '3m';
+        $ShoulderHeight->Cost = $request->ThreemCost;
+        $ShoulderHeight->StructuralRisk = $request->ThreemStructureRisk;
+        $ShoulderHeight->JobDifficulty = $request->ThreemWorkDifficulty;
+        $ShoulderHeight->save();
         // 3.5m
-        $GreenhousePipe->ThreeFivemCost = $request->ThreeFivemCost;
-        $GreenhousePipe->ThreeFivemStructureRisk = $request->ThreeFivemStructureRisk;
-        $GreenhousePipe->ThreeFivemWorkDifficulty = $request->ThreeFivemWorkDifficulty;
+        $ShoulderHeight = new simpleshoulderheight();   // 肩高
+        $ShoulderHeight->Expert = $request->Expert;
+        $ShoulderHeight->BuildItem = '3.5m';
+        $ShoulderHeight->Cost = $request->ThreeFivemCost;
+        $ShoulderHeight->StructuralRisk = $request->ThreeFivemStructureRisk;
+        $ShoulderHeight->JobDifficulty = $request->ThreeFivemWorkDifficulty;
+        $ShoulderHeight->save();
         // 4m
-        $GreenhousePipe->FourmCost = $request->FourmCost;
-        $GreenhousePipe->FourmStructureRisk = $request->FourmStructureRisk;
-        $GreenhousePipe->FourmWorkDifficulty = $request->FourmWorkDifficulty;
+        $ShoulderHeight = new simpleshoulderheight();   // 肩高
+        $ShoulderHeight->Expert = $request->Expert;
+        $ShoulderHeight->BuildItem = '4m';
+        $ShoulderHeight->Cost = $request->FourmCost;
+        $ShoulderHeight->StructuralRisk = $request->FourmStructureRisk;
+        $ShoulderHeight->JobDifficulty = $request->FourmWorkDifficulty;
+        $ShoulderHeight->save();
 
-        $Length = new simplelength();                                   // 長度
         /******** 長度  ********/
         // 30m
-        $GreenhousePipe->ThirtymCost = $request->ThirtymCost;
-        $GreenhousePipe->ThirtymStructureRisk = $request->ThirtymStructureRisk;
-        $GreenhousePipe->ThirtymWorkDifficulty = $request->ThirtymWorkDifficulty;
+        $Length = new simplelength();   // 長度
+        $Length->Expert = $request->Expert;
+        $Length->BuildItem = '30m';
+        $Length->Cost = $request->ThirtymCost;
+        $Length->StructuralRisk = $request->ThirtymStructureRisk;
+        $Length->JobDifficulty = $request->ThirtymWorkDifficulty;
+        $Length->save();
         // 60m
-        $GreenhousePipe->SixtymCost = $request->SixtymCost;
-        $GreenhousePipe->SixtymStructureRisk = $request->SixtymStructureRisk;
-        $GreenhousePipe->SixtymWorkDifficulty = $request->SixtymWorkDifficulty;
+        $Length = new simplelength();   // 長度
+        $Length->Expert = $request->Expert;
+        $Length->BuildItem = '60m';
+        $Length->Cost = $request->SixtymCost;
+        $Length->StructuralRisk = $request->SixtymStructureRisk;
+        $Length->JobDifficulty = $request->SixtymWorkDifficulty;
+        $Length->save();
         // 90m
-        $GreenhousePipe->NinetymCost = $request->NinetymCost;
-        $GreenhousePipe->NinetymStructureRisk = $request->NinetymStructureRisk;
-        $GreenhousePipe->NinetymWorkDifficulty = $request->NinetymWorkDifficulty;
+        $Length = new simplelength();   // 長度
+        $Length->Expert = $request->Expert;
+        $Length->BuildItem = '90m';
+        $Length->Cost = $request->NinetymCost;
+        $Length->StructuralRisk = $request->NinetymStructureRisk;
+        $Length->JobDifficulty = $request->NinetymWorkDifficulty;
+        $Length->save();
         // 120m
-        $GreenhousePipe->OneHundredTwentymCost = $request->OneHundredTwentymCost;
-        $GreenhousePipe->OneHundredTwentymStructureRisk = $request->OneHundredTwentymStructureRisk;
-        $GreenhousePipe->OneHundredTwentymWorkDifficulty = $request->OneHundredTwentymWorkDifficulty;
+        $Length = new simplelength();   // 長度
+        $Length->Expert = $request->Expert;
+        $Length->BuildItem = '120m';
+        $Length->Cost = $request->OneHundredTwentymCost;
+        $Length->StructuralRisk = $request->OneHundredTwentymStructureRisk;
+        $Length->JobDifficulty = $request->OneHundredTwentymWorkDifficulty;
+        $Length->save();
 
-        $Continuity = new simplecontinuity();                           // 連續性
         /******** 連續性  ********/
         // 獨棟
-        $GreenhousePipe->DetachedHouseCost = $request->DetachedHouseCost;
-        $GreenhousePipe->DetachedHouseStructureRisk = $request->DetachedHouseStructureRisk;
-        $GreenhousePipe->DetachedHouseWorkDifficulty = $request->DetachedHouseWorkDifficulty;
+        $Continuity = new simplecontinuity();   // 連續性
+        $Continuity->Expert = $request->Expert;
+        $Continuity->BuildItem = '獨棟';
+        $Continuity->Cost = $request->DetachedHouseCost;
+        $Continuity->StructuralRisk = $request->DetachedHouseStructureRisk;
+        $Continuity->JobDifficulty = $request->DetachedHouseWorkDifficulty;
+        $Continuity->save();
         // 二連棟
-        $GreenhousePipe->TwoStoryBuildingCost = $request->TwoStoryBuildingCost;
-        $GreenhousePipe->TwoStoryBuildingStructureRisk = $request->TwoStoryBuildingStructureRisk;
-        $GreenhousePipe->TwoStoryBuildingWorkDifficulty = $request->TwoStoryBuildingWorkDifficulty;
+        $Continuity = new simplecontinuity();   // 連續性
+        $Continuity->Expert = $request->Expert;
+        $Continuity->BuildItem = '二連棟';
+        $Continuity->Cost = $request->TwoStoryBuildingCost;
+        $Continuity->StructuralRisk = $request->TwoStoryBuildingStructureRisk;
+        $Continuity->JobDifficulty = $request->TwoStoryBuildingWorkDifficulty;
+        $Continuity->save();
         // 三連棟
-        $GreenhousePipe->ThreeStoryCost = $request->ThreeStoryCost;
-        $GreenhousePipe->ThreeStoryStructureRisk = $request->ThreeStoryStructureRisk;
-        $GreenhousePipe->ThreeStoryWorkDifficulty = $request->ThreeStoryWorkDifficulty;
+        $Continuity = new simplecontinuity();   // 連續性
+        $Continuity->Expert = $request->Expert;
+        $Continuity->BuildItem = '三連棟';
+        $Continuity->Cost = $request->ThreeStoryCost;
+        $Continuity->StructuralRisk = $request->ThreeStoryStructureRisk;
+        $Continuity->JobDifficulty = $request->ThreeStoryWorkDifficulty;
+        $Continuity->save();
         // 四連棟
-        $GreenhousePipe->FourStoryCost = $request->FourStoryCost;
-        $GreenhousePipe->FourStoryStructureRisk = $request->FourStoryStructureRisk;
-        $GreenhousePipe->FourStoryWorkDifficulty = $request->FourStoryWorkDifficulty;
+        $Continuity = new simplecontinuity();   // 連續性
+        $Continuity->Expert = $request->Expert;
+        $Continuity->BuildItem = '四連棟';
+        $Continuity->Cost = $request->FourStoryCost;
+        $Continuity->StructuralRisk = $request->FourStoryStructureRisk;
+        $Continuity->JobDifficulty = $request->FourStoryWorkDifficulty;
+        $Continuity->save();
 
-        $CoatingFilm = new simplecoatingfilm();                         // 披覆膜
         /******** 披覆膜  ********/
         // PE
-        $GreenhousePipe->PECost = $request->PECost;
-        $GreenhousePipe->PEStructureRisk = $request->PEStructureRisk;
-        $GreenhousePipe->PEWorkDifficulty = $request->PEWorkDifficulty;
+        $CoatingFilm = new simplecoatingfilm(); // 披覆膜
+        $CoatingFilm->Expert = $request->Expert;
+        $CoatingFilm->BuildItem = 'PE';
+        $CoatingFilm->Cost = $request->PECost;
+        $CoatingFilm->StructuralRisk = $request->PEStructureRisk;
+        $CoatingFilm->JobDifficulty = $request->PEWorkDifficulty;
+        $CoatingFilm->save();
         // PO
-        $GreenhousePipe->POCost = $request->POCost;
-        $GreenhousePipe->POStructureRisk = $request->POStructureRisk;
-        $GreenhousePipe->POWorkDifficulty = $request->POWorkDifficulty;        
+        $CoatingFilm = new simplecoatingfilm(); // 披覆膜
+        $CoatingFilm->Expert = $request->Expert;
+        $CoatingFilm->BuildItem = 'PO';
+        $CoatingFilm->Cost = $request->POCost;
+        $CoatingFilm->StructuralRisk = $request->POStructureRisk;
+        $CoatingFilm->JobDifficulty = $request->POWorkDifficulty;        
+        $CoatingFilm->save();
         // 硬質塑材
-        $GreenhousePipe->RigidPlasticCost = $request->RigidPlasticCost;
-        $GreenhousePipe->RigidPlasticStructureRisk = $request->RigidPlasticStructureRisk;
-        $GreenhousePipe->RigidPlasticWorkDifficulty = $request->RigidPlasticWorkDifficulty;        
+        $CoatingFilm = new simplecoatingfilm(); // 披覆膜
+        $CoatingFilm->Expert = $request->Expert;
+        $CoatingFilm->BuildItem = '硬質塑材';
+        $CoatingFilm->Cost = $request->RigidPlasticCost;
+        $CoatingFilm->StructuralRisk = $request->RigidPlasticStructureRisk;
+        $CoatingFilm->JobDifficulty = $request->RigidPlasticWorkDifficulty;        
+        $CoatingFilm->save();
         // ETFE
-        $GreenhousePipe->ETFECost = $request->ETFECost;
-        $GreenhousePipe->ETFEStructureRisk = $request->ETFEStructureRisk;
-        $GreenhousePipe->ETFEWorkDifficulty = $request->ETFEWorkDifficulty;
+        $CoatingFilm = new simplecoatingfilm(); // 披覆膜
+        $CoatingFilm->Expert = $request->Expert;
+        $CoatingFilm->BuildItem = 'ETFE';
+        $CoatingFilm->Cost = $request->ETFECost;
+        $CoatingFilm->StructuralRisk = $request->ETFEStructureRisk;
+        $CoatingFilm->JobDifficulty = $request->ETFEWorkDifficulty;
+        $CoatingFilm->save();
         // 玻璃
-        $GreenhousePipe->GlassCost = $request->GlassCost;
-        $GreenhousePipe->GlassStructureRisk = $request->GlassStructureRisk;
-        $GreenhousePipe->GlassWorkDifficulty = $request->GlassWorkDifficulty;
+        $CoatingFilm = new simplecoatingfilm(); // 披覆膜
+        $CoatingFilm->Expert = $request->Expert;
+        $CoatingFilm->BuildItem = '玻璃';
+        $CoatingFilm->Cost = $request->GlassCost;
+        $CoatingFilm->StructuralRisk = $request->GlassStructureRisk;
+        $CoatingFilm->JobDifficulty = $request->GlassWorkDifficulty;
+        $CoatingFilm->save();
 
-        $CcostRatio = new simplecostratio();                            // 各建構項目比例
         /******** 各成本比例  ********/
-        $GreenhousePipe->GreenhousePipe = $request->GreenhousePipe; // 溫室管材
-        $GreenhousePipe->DomeForm = $request->DomeForm;             // 圓頂形式
-        $GreenhousePipe->ArcDistance = $request->ArcDistance;       // 圓拱距
-        $GreenhousePipe->Basis = $request->Basis;                   // 基礎
-        $GreenhousePipe->Span = $request->Span;                     // 跨距
-        $GreenhousePipe->ShoulderHeight = $request->ShoulderHeight; // 肩高
-        $GreenhousePipe->Length = $request->Length;                 // 長度
-        $GreenhousePipe->Continuity = $request->Continuity;         // 連續性
-        $GreenhousePipe->CoatedFilm = $request->CoatedFilm;         // 披覆膜
+        // 溫室管材
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '溫室管材';
+        $CcostRatio->Cost = $request->GreenhousePipeCost;
+        $CcostRatio->StructuralRisk = $request->GreenhousePipeStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->GreenhousePipeJobDifficulty;
+        $CcostRatio->save();
 
-        // if($CropData->save()){
-        //     return response()->json($CropData,200);
-        // }else{
-        //     return response()->json([
-        //         'message' => '!!創建(store)作物資訊時發生錯誤!!',
-        //         'status_code' => 500
-        //     ],500);
-        // }
+        // 圓頂形式
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '圓頂形式';
+        $CcostRatio->Cost = $request->DomeFormCost;
+        $CcostRatio->StructuralRisk = $request->DomeFormStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->DomeFormJobDifficulty;
+        $CcostRatio->save();
+
+        // 圓拱距
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '圓拱距';
+        $CcostRatio->Cost = $request->ArcDistanceCost;
+        $CcostRatio->StructuralRisk = $request->ArcDistanceStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->ArcDistanceJobDifficulty;
+        $CcostRatio->save();
+
+        // 基礎
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '基礎';
+        $CcostRatio->Cost = $request->BasisCost;
+        $CcostRatio->StructuralRisk = $request->BasisStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->BasisJobDifficulty;
+        $CcostRatio->save();
+
+        // 跨距
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '跨距';
+        $CcostRatio->Cost = $request->SpanCost;
+        $CcostRatio->StructuralRisk = $request->SpanStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->SpanJobDifficulty;
+        $CcostRatio->save();
+
+        // 肩高
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '肩高';
+        $CcostRatio->Cost = $request->ShoulderHeightCost;
+        $CcostRatio->StructuralRisk = $request->ShoulderHeightStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->ShoulderHeightJobDifficulty;
+        $CcostRatio->save();
+
+        // 長度
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '長度';
+        $CcostRatio->Cost = $request->LengthCost;
+        $CcostRatio->StructuralRisk = $request->LengthStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->LengthJobDifficulty;
+        $CcostRatio->save();
+
+        // 連續性
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '連續性';
+        $CcostRatio->Cost = $request->ContinuityCost;
+        $CcostRatio->StructuralRisk = $request->ContinuityStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->ContinuityJobDifficulty;
+        $CcostRatio->save();
+
+        // 披覆膜
+        $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->BuildItem = '披覆膜';
+        $CcostRatio->Cost = $request->CoatedFilmCost;
+        $CcostRatio->StructuralRisk = $request->CoatedFilmStructuralRisk;
+        $CcostRatio->JobDifficulty = $request->CoatedFilmJobDifficulty;
+        $CcostRatio->save();
 
     }
 

@@ -78,11 +78,10 @@ export default {
             },
 
             KnowledgeData:{
-                    parent_id:0,
-                    name:'',
-                    editor:'',
-                    content:'',
-
+                parent_id:0,
+                name:'',
+                editor:'',
+                content:'',
             },
             EditKnowledgeData:{
 

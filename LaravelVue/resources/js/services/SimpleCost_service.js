@@ -1,8 +1,8 @@
 import { http, httpFile } from './http_service';
 
 export function createSimpleCost(data) {
-    console.log("------createSimpleCost的service裡-------");
-    console.log(data);
+    // console.log("------createSimpleCost的service裡-------");
+    // console.log(data);
 
     return httpFile().post('/GreenhouseMasterPlan/CostAnalysis/SimpleCost', data);
 }

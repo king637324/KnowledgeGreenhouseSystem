@@ -38,8 +38,9 @@ import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/Gre
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 
 import GreenhouseMasterPlan_ConstructionCostAnalysisTest from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCostAnalysisTest.vue';
-import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_Simple from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisAdd.vue';
-import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_Robust from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/RobustCostAnalysisAdd.vue';
+import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleAdd from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisAdd.vue';
+import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleEdit from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisEdit.vue';
+import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustAdd from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/RobustCostAnalysisAdd.vue';
 
 
 import UnitConversion from './views/UnitConversion.vue';
@@ -80,16 +81,23 @@ const routes = [{
         auth: undefined
     }
 }, {
-    path: '/ConstructionCost/RobustCostAnalysis/Add',
-    name: '強固型溫室參數新增測試',
-    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_Robust,
+    path: '/ConstructionCost/SimpleCostAnalysis/Add',
+    name: '簡易型溫室參數新增測試',
+    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleAdd,
     meta: {
         auth: undefined
     }
 }, {
-    path: '/ConstructionCost/SimpleCostAnalysis/Add',
+    path: '/ConstructionCost/SimpleCostAnalysis/Edit/:id',
     name: '簡易型溫室參數新增測試',
-    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_Simple,
+    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleEdit,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/ConstructionCost/RobustCostAnalysis/Add',
+    name: '強固型溫室參數新增測試',
+    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustAdd,
     meta: {
         auth: undefined
     }

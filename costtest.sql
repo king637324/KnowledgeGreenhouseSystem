@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-03-11 09:21:55
+-- 產生時間： 2021-03-23 10:44:07
 -- 伺服器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -41,14 +41,14 @@ CREATE TABLE `simplecirculararchdistances` (
 --
 
 INSERT INTO `simplecirculararchdistances` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', '1M-1\"', '1.0', '1.00', '1'),
-(2, 'System', '1M-1-1/4\"', '1.2', '1.10', '1'),
-(3, 'System', '1M-1-1/2\"', '1.3', '1.20', '1'),
-(4, 'System', '1.5M-1-1/2\"', '1.2', '0.95', '1'),
-(5, 'System', '2M-2\"', '1.0', '0.90', '1'),
-(6, 'System', '0.5M-1\"', '1.8', '0.60', '1'),
-(7, 'System', '0.5-3/4\"', '1.5', '0.70', '1'),
-(8, 'System', '0.5-1/2\"', '1.2', '0.80', '1');
+(1, 'System', '1M-1\"', '1.00', '1.00', '1.00'),
+(2, 'System', '1M-1-1/4\"', '1.20', '1.10', '1.00'),
+(3, 'System', '1M-1-1/2\"', '1.30', '1.20', '1.00'),
+(4, 'System', '1.5M-1-1/2\"', '1.20', '0.95', '1.00'),
+(5, 'System', '2M-2\"', '1.00', '0.90', '1.00'),
+(6, 'System', '0.5M-1\"', '1.80', '0.60', '1.00'),
+(7, 'System', '0.5-3/4\"', '1.50', '0.70', '1.00'),
+(8, 'System', '0.5-1/2\"', '1.20', '0.80', '1.00');
 
 -- --------------------------------------------------------
 
@@ -70,19 +70,19 @@ CREATE TABLE `simplecoatingfilms` (
 --
 
 INSERT INTO `simplecoatingfilms` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', 'PE', '1', '1.00', '1.0'),
-(2, 'System', 'PO', '2', '0.95', '1.0'),
-(3, 'System', '硬質塑材', '3', '0.90', '0.9'),
-(4, 'System', 'ETFE', '10', '0.60', '0.7'),
-(5, 'System', '玻璃', '5', '0.80', '0.8');
+(1, 'System', 'PE', '1', '1.00', '1.00'),
+(2, 'System', 'PO', '2', '0.95', '1.00'),
+(3, 'System', '硬質塑材', '3', '0.90', '0.90'),
+(4, 'System', 'ETFE', '10', '0.60', '0.70'),
+(5, 'System', '玻璃', '5', '0.80', '0.80');
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `simplecontinuitys`
+-- 資料表結構 `simplecontinuities`
 --
 
-CREATE TABLE `simplecontinuitys` (
+CREATE TABLE `simplecontinuities` (
   `id` int(11) NOT NULL,
   `Expert` varchar(256) DEFAULT NULL,
   `BuildItem` varchar(256) DEFAULT NULL,
@@ -92,10 +92,10 @@ CREATE TABLE `simplecontinuitys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `simplecontinuitys`
+-- 傾印資料表的資料 `simplecontinuities`
 --
 
-INSERT INTO `simplecontinuitys` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
+INSERT INTO `simplecontinuities` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
 (1, 'System', '獨棟', '1.00', '1.00', '1.00'),
 (2, 'System', '二連棟', '0.95', '0.95', '0.95'),
 (3, 'System', '三連棟', '0.90', '0.90', '0.93'),
@@ -121,15 +121,15 @@ CREATE TABLE `simplecostratios` (
 --
 
 INSERT INTO `simplecostratios` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', '溫室管材', '20%', '15%', '10%'),
-(2, 'System', '圓頂形式', '10%', '15%', '10%'),
-(3, 'System', '圓拱距', '10%', '10%', '10%'),
-(4, 'System', '基礎', '10%', '10%', '10%'),
-(5, 'System', '跨距', '10%', '15%', '15%'),
-(6, 'System', '肩高', '10%', '10%', '15%'),
-(7, 'System', '長度', '10%', '5%', '10%'),
-(8, 'System', '連續性', '10%', '10%', '10%'),
-(9, 'System', '披覆膜', '10%', '10%', '10%');
+(1, 'System', '溫室管材', '20', '15', '10'),
+(2, 'System', '圓頂形式', '10', '15', '10'),
+(3, 'System', '圓拱距', '10', '10', '10'),
+(4, 'System', '基礎', '10', '10', '10'),
+(5, 'System', '跨距', '10', '15', '15'),
+(6, 'System', '肩高', '10', '10', '15'),
+(7, 'System', '長度', '10', '5', '10'),
+(8, 'System', '連續性', '10', '10', '10'),
+(9, 'System', '披覆膜', '10', '10', '10');
 
 -- --------------------------------------------------------
 
@@ -181,12 +181,12 @@ CREATE TABLE `simplefoundations` (
 --
 
 INSERT INTO `simplefoundations` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', '直插40cm', '1.0', '1.00', '1'),
-(2, 'System', '直插50cm', '1.1', '0.90', '1'),
-(3, 'System', '直插30cm', '0.9', '1.10', '1'),
-(4, 'System', '直插40cm+地錨', '1.2', '0.80', '1'),
-(5, 'System', '直插50cm+地錨', '1.3', '0.70', '1'),
-(6, 'System', '直插30cm+地錨', '1.1', '0.85', '1');
+(1, 'System', '直插40cm', '1.00', '1.00', '1.00'),
+(2, 'System', '直插50cm', '1.10', '0.90', '1.00'),
+(3, 'System', '直插30cm', '0.90', '1.10', '1.00'),
+(4, 'System', '直插40cm+地錨', '1.20', '0.80', '1.00'),
+(5, 'System', '直插50cm+地錨', '1.30', '0.70', '1.00'),
+(6, 'System', '直插30cm+地錨', '1.10', '0.85', '1.00');
 
 -- --------------------------------------------------------
 
@@ -284,10 +284,10 @@ CREATE TABLE `simplespans` (
 --
 
 INSERT INTO `simplespans` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', '5.4m', '1.00', '1.0', '1.00'),
-(2, 'System', '6m', '1.10', '1.1', '0.95'),
-(3, 'System', '7.2m', '1.20', '1.2', '0.90'),
-(4, 'System', '8m', '1.25', '1.3', '0.85');
+(1, 'System', '5.4m', '1.00', '1.00', '1.00'),
+(2, 'System', '6m', '1.10', '1.10', '0.95'),
+(3, 'System', '7.2m', '1.20', '1.20', '0.90'),
+(4, 'System', '8m', '1.25', '1.30', '0.85');
 
 -- --------------------------------------------------------
 
@@ -309,19 +309,19 @@ CREATE TABLE `strongcoatingfilms` (
 --
 
 INSERT INTO `strongcoatingfilms` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', 'PE', '1', '1.00', '1.0'),
-(2, 'System', 'PO', '2', '0.95', '1.0'),
-(3, 'System', '硬質塑材', '3', '0.90', '0.9'),
-(4, 'System', 'ETFE', '10', '0.60', '0.7'),
-(5, 'System', '玻璃', '5', '0.80', '0.8');
+(1, 'System', 'PE', '1', '1.00', '1.00'),
+(2, 'System', 'PO', '2', '0.95', '1.00'),
+(3, 'System', '硬質塑材', '3', '0.90', '0.90'),
+(4, 'System', 'ETFE', '10', '0.60', '0.70'),
+(5, 'System', '玻璃', '5', '0.80', '0.80');
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `strongcontinuitys`
+-- 資料表結構 `strongcontinuities`
 --
 
-CREATE TABLE `strongcontinuitys` (
+CREATE TABLE `strongcontinuities` (
   `id` int(11) NOT NULL,
   `Expert` varchar(256) DEFAULT NULL,
   `BuildItem` varchar(256) DEFAULT NULL,
@@ -331,10 +331,10 @@ CREATE TABLE `strongcontinuitys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `strongcontinuitys`
+-- 傾印資料表的資料 `strongcontinuities`
 --
 
-INSERT INTO `strongcontinuitys` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
+INSERT INTO `strongcontinuities` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
 (1, 'System', '獨棟', '1.00', '1.00', '1.00'),
 (2, 'System', '二連棟', '0.95', '0.95', '0.95'),
 (3, 'System', '三連棟', '0.90', '0.90', '0.93'),
@@ -360,15 +360,15 @@ CREATE TABLE `strongcostratios` (
 --
 
 INSERT INTO `strongcostratios` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', '溫室型材', '20%', '15%', '10%'),
-(2, 'System', '屋頂形式', '10%', '15%', '10%'),
-(3, 'System', '上拱距', '10%', '10%', '10%'),
-(4, 'System', '基礎', '10%', '10%', '10%'),
-(5, 'System', '跨距', '10%', '15%', '15%'),
-(6, 'System', '肩高', '10%', '10%', '15%'),
-(7, 'System', '長度', '10%', '5%', '10%'),
-(8, 'System', '連續性', '10%', '10%', '10%'),
-(9, 'System', '披覆膜', '10%', '10%', '10%');
+(1, 'System', '溫室型材', '20', '15', '10'),
+(2, 'System', '屋頂形式', '10', '15', '10'),
+(3, 'System', '上拱距', '10', '10', '10'),
+(4, 'System', '基礎', '10', '10', '10'),
+(5, 'System', '跨距', '10', '15', '15'),
+(6, 'System', '肩高', '10', '10', '15'),
+(7, 'System', '長度', '10', '5', '10'),
+(8, 'System', '連續性', '10', '10', '10'),
+(9, 'System', '披覆膜', '10', '10', '10');
 
 -- --------------------------------------------------------
 
@@ -390,9 +390,9 @@ CREATE TABLE `strongfoundations` (
 --
 
 INSERT INTO `strongfoundations` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', '獨立基礎', '1', '1', '1'),
-(2, 'System', '連續樑', '1.', '0.', '1'),
-(3, 'System', '快速基礎', '0.', '1.', '1');
+(1, 'System', '獨立基礎', '1.00', '1.00', '1.00'),
+(2, 'System', '連續樑', '1.20', '0.90', '1.00'),
+(3, 'System', '快速基礎', '0.90', '1.10', '1.00');
 
 -- --------------------------------------------------------
 
@@ -464,12 +464,12 @@ CREATE TABLE `strongroofforms` (
 --
 
 INSERT INTO `strongroofforms` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', '圓頂UBP', '1.0', '1.00', '1'),
-(2, 'System', '圓力霸UTP', '1.1', '0.95', '1'),
-(3, 'System', '山型VBP', '1.1', '0.98', '1'),
-(4, 'System', '山力霸VTP', '1.2', '0.90', '1'),
-(5, 'System', 'W型力霸', '1.3', '0.90', '1'),
-(6, 'System', '單斜SP', '1.0', '0.92', '1');
+(1, 'System', '圓頂UBP', '1.00', '1.00', '1.00'),
+(2, 'System', '圓力霸UTP', '1.10', '0.95', '1.00'),
+(3, 'System', '山型VBP', '1.10', '0.98', '1.00'),
+(4, 'System', '山力霸VTP', '1.20', '0.90', '1.00'),
+(5, 'System', 'W型力霸', '1.30', '0.90', '1.00'),
+(6, 'System', '單斜SP', '1.00', '0.92', '1.00');
 
 -- --------------------------------------------------------
 
@@ -543,9 +543,9 @@ CREATE TABLE `strongupperarchdistances` (
 --
 
 INSERT INTO `strongupperarchdistances` (`id`, `Expert`, `BuildItem`, `Cost`, `StructuralRisk`, `JobDifficulty`) VALUES
-(1, 'System', '2M', '1', '1', '1'),
-(2, 'System', '1.33M', '1.', '0.9', '1'),
-(3, 'System', '1M', '1.', '0.9', '1');
+(1, 'System', '2M', '1.00', '1.00', '1.00'),
+(2, 'System', '1.33M', '1.10', '0.95', '1.00'),
+(3, 'System', '1M', '1.20', '0.90', '1.00');
 
 --
 -- 已傾印資料表的索引
@@ -564,9 +564,9 @@ ALTER TABLE `simplecoatingfilms`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `simplecontinuitys`
+-- 資料表索引 `simplecontinuities`
 --
-ALTER TABLE `simplecontinuitys`
+ALTER TABLE `simplecontinuities`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -618,9 +618,9 @@ ALTER TABLE `strongcoatingfilms`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `strongcontinuitys`
+-- 資料表索引 `strongcontinuities`
 --
-ALTER TABLE `strongcontinuitys`
+ALTER TABLE `strongcontinuities`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -688,9 +688,9 @@ ALTER TABLE `simplecoatingfilms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `simplecontinuitys`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `simplecontinuities`
 --
-ALTER TABLE `simplecontinuitys`
+ALTER TABLE `simplecontinuities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -742,9 +742,9 @@ ALTER TABLE `strongcoatingfilms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `strongcontinuitys`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `strongcontinuities`
 --
-ALTER TABLE `strongcontinuitys`
+ALTER TABLE `strongcontinuities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --

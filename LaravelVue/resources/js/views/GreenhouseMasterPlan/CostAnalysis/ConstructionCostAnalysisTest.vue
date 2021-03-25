@@ -12,8 +12,8 @@
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 選 擇</h6>
                 </template>
                 <b-card-text>
-                    <b-form-select v-model="SimpleIdx" v-on:change="check" style="font-size: 2vmin; width:30vmin">
-                        <option v-for="(data, index) in ExpertParameterSelected_Simple" :value="index">
+                    <b-form-select v-model="SimpleIdx" v-on:change="updateSimpleData" style="font-size: 2vmin; width:30vmin">
+                        <option v-for="(data, index) in SimpleExpertOrder" :value="index">
                             {{data}}
                         </option>
                     </b-form-select>
@@ -28,7 +28,7 @@
                         <tr align="center" id="溫室管材">
                             <td>溫室管材</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleGreenhousePipesJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleGreenhousePipes" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -37,7 +37,7 @@
                         <tr align="center" id="圓頂形式">
                             <td>圓頂形式</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleDomeFormsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleDomeForms" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -46,7 +46,7 @@
                         <tr align="center" id="圓拱距">
                             <td>圓拱距</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCircularArchDistancesJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCircularArchDistances" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -55,7 +55,7 @@
                         <tr align="center" id="簡易基礎">
                             <td>基礎</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleFoundationsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleFoundations" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleFoundation" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -64,7 +64,7 @@
                         <tr align="center" id="簡易跨距">
                             <td>跨距</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleSpansJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleSpans" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleSpan" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -73,7 +73,7 @@
                         <tr align="center" id="簡易肩高">
                             <td>肩高</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleShoulderHeightsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleShoulderHeights" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -82,7 +82,7 @@
                         <tr align="center" id="簡易長度">
                             <td>長度</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleLengthsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleLengths" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleLength" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -91,7 +91,7 @@
                         <tr align="center" id="簡易連續性">
                             <td>連續性</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleContinuitysJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleContinuitys" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleContinuity" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -100,7 +100,7 @@
                         <tr align="center" id="簡易披覆膜">
                             <td>披覆膜</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilmsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilms" :key="index">
                                     <input type="radio" :value="simple" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio">
                                     <label>{{simple.BuildItem}}</label>
                                 </div>
@@ -113,6 +113,15 @@
                         <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
                         <div class="text-right">
                             <a class="btn btn-primary" href = "/#/ConstructionCost/SimpleCostAnalysis/Add"><span class="fa fa-plus"></span> 新 增 簡 易 型 溫 室 參 數</a>
+                            <!-- <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a> -->
+                        </div>
+                        <!-- </div>
+                    </div> -->
+                    <!-- <div v-if="$auth.check()">
+                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
+                        <div class="text-right">
+                            <a class="btn btn-warning" :href="'/#/ConstructionCost/SimpleCostAnalysis/Edit/'+'123'"><span class="fa fa-edit"></span>修 改 簡 易 型 溫 室 參 數</a>
+                            <!-- <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a> -->
                         </div>
                         <!-- </div>
                     </div> -->
@@ -368,7 +377,7 @@
                 <b-card-text>
                     <!-- 專家選擇 -->
                     <b-form-select v-model="StrongIdx" v-on:change="check" style="font-size: 2vmin; width:30vmin">
-                        <option v-for="(data, index) in ExpertParameterSelected_Strong" :value="index">
+                        <option v-for="(data, index) in StrongExpertOrder" :value="index">
                             {{data}}
                         </option>
                     </b-form-select>
@@ -716,16 +725,37 @@
 export default {
     data(){
         return{
+            SelectSimple:[],
+            SimpleExpertOrder :["==請選擇專家=="],    // 簡易型溫室專家清單
+            SimpleIdx: 0, // 所選簡易型溫室專家的id
+            SimpleSelectExpert: null, // 所選專家
+
+            SelectRobust:[],
+            StrongExpertSelect:[], // 顯示 強固型溫室此專家的參數
+            StrongExpertOrder :["==請選擇專家=="],    // 強固型溫室專家清單
+            StrongIdx: 0, // 所選強固型溫室專家的id
+            StrongSelectExpert: 0, // 所選強固型溫室專家
+
             SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
+            SimpleCostratios: [],               // 簡易型各建構項目比例
             SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
+            SimpleCircularArchDistances: [],    // 簡易型圓拱距
             SimpleCoatingFilmsJSON: [],             // 簡易型披覆膜
+            SimpleCoatingFilms: [],             // 簡易型披覆膜
             SimpleContinuitysJSON: [],              // 簡易型連續性
+            SimpleContinuitys: [],              // 簡易型連續性
             SimpleDomeFormsJSON: [],                // 簡易型圓頂形式
+            SimpleDomeForms: [],                // 簡易型圓頂形式
             SimpleFoundationsJSON: [],              // 簡易型基礎
+            SimpleFoundations: [],              // 簡易型基礎
             SimpleGreenhousePipesJSON: [],          // 簡易型溫室管材
+            SimpleGreenhousePipes: [],          // 簡易型溫室管材
             SimpleLengthsJSON: [],                  // 簡易型長度
+            SimpleLengths: [],                  // 簡易型長度
             SimpleShoulderHeightsJSON: [],          // 簡易型肩高
+            SimpleShoulderHeights: [],          // 簡易型肩高
             SimpleSpansJSON: [],                    // 簡易型跨距
+            SimpleSpans: [],                    // 簡易型跨距
 
             StrongCostRatiosJSON: [],               // 強固型各建構項目比例
             StrongCoatingFilmsJSON: [],             // 強固型披覆膜
@@ -737,22 +767,6 @@ export default {
             StrongShoulderHeightsJSON: [],          // 強固型肩高
             StrongSpansJSON: [],                    // 強固型跨距
             StrongUpperArchDistancesJSON: [],       // 強固型上拱距
-
-            ExpertParameterSelected: null,
-            SimpleIdx: 0,
-            ExpertParameterSelected_Simple: [    // 簡易型專家參數選擇
-                { value: null, text: '請選擇身分' ,disabled:true },
-                { value: '農民', text: '農民' },
-                { value: '業者', text: '業者' },
-                { value: '專家', text: '專家' },
-            ],
-            StrongIdx: 0,
-            ExpertParameterSelected_Strong: [    // 強固型專家參數選擇
-                { value: null, text: '請選擇身分' ,disabled:true },
-                { value: '農民', text: '農民' },
-                { value: '業者', text: '業者' },
-                { value: '專家', text: '專家' },
-            ],
 
             /* 簡易型溫室 */
             SimpleGreenhouse:[],
@@ -766,7 +780,6 @@ export default {
             SimpleLength:null,  // 簡易型長度
             SimpleContinuity:null,  // 簡易型連續性
             SimpleCoatingFilm:null,  // 簡易型披覆膜
-            SelectSimple:[],
             SimpleHousrBasePrice:500000, // 簡易型溫室基本價格
             SimpleTotalSimpleCost:0,
             SimpleCostAdd:0,
@@ -787,7 +800,6 @@ export default {
             RobustLength:null,   // 強固型長度
             RobustContinuity:null,   // 強固型連續性
             RobustCoatingFilm:null,   // 強固型披覆膜
-            SelectRobust:[],
             RuggedHousrBasePrice :1500000,  // 強固型溫室基本價格
             RobustTotalCost:0,
             RobustCostAdd:0,
@@ -801,95 +813,131 @@ export default {
     },
     methods:{
         async getJson(){
+            
+
             // 簡易型各建構項目比例
             const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
                 method: 'GET',
             });
             this.SimpleCostratiosJSON = await SimpleCostratios.json();
-            // console.log("------簡易型各建構項目比例------");
-            // console.log("------this.SimpleCostratiosJSON-----");
-            // console.log(this.SimpleCostratiosJSON);
+            for(var i = 0 ; i < this.SimpleCostratiosJSON.length ; i++){
+                if(this.SimpleCostratiosJSON[i].Expert == "System"){
+                    this.SimpleCostratios.push(this.SimpleCostratiosJSON[i]);
+                }
+            }
 
             // 簡易型圓拱距
             const SimpleCircularArchDistances = await fetch('/SimpleCircularArchDistanceJSON',  {
                 method: 'GET',
             });
             this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
-            // console.log("------簡易型圓拱距------");
-            // console.log("------this.SimpleCircularArchDistancesJSON-----");
-            // console.log(this.SimpleCircularArchDistancesJSON);
+            for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
+                if(this.SimpleCircularArchDistancesJSON[i].Expert == "System"){
+                    this.SimpleCircularArchDistances.push(this.SimpleCircularArchDistancesJSON[i]);
+                }
+            }
 
             // 簡易型披覆膜
             const SimpleCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
                 method: 'GET',
             });
             this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
-            // console.log("------簡易型披覆膜------");
-            // console.log("------this.SimpleCoatingFilmsJSON-----");
-            // console.log(this.SimpleCoatingFilmsJSON);
+            for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
+                if(this.SimpleCoatingFilmsJSON[i].Expert == "System"){
+                    this.SimpleCoatingFilms.push(this.SimpleCoatingFilmsJSON[i]);
+                }
+            }
 
             // 簡易型連續性
             const SimpleContinuitys = await fetch('/SimpleContinuityJSON',  {
                 method: 'GET',
             });
             this.SimpleContinuitysJSON = await SimpleContinuitys.json();
-            // console.log("------簡易型連續性------");
-            // console.log("------this.SimpleContinuitysJSON-----");
-            // console.log(this.SimpleContinuitysJSON);
+            for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
+                if(this.SimpleContinuitysJSON[i].Expert == "System"){
+                    this.SimpleContinuitys.push(this.SimpleContinuitysJSON[i]);
+                }
+            }
 
             // 簡易型圓頂形式
             const SimpleDomeForms = await fetch('/SimpleDomeFormJSON',  {
                 method: 'GET',
             });
             this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
-            // console.log("------簡易型圓頂形式------");
-            // console.log("------this.SimpleDomeFormsJSON-----");
-            // console.log(this.SimpleDomeFormsJSON);
+            for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
+                if(this.SimpleDomeFormsJSON[i].Expert == "System"){
+                    this.SimpleDomeForms.push(this.SimpleDomeFormsJSON[i]);
+                }
+            }
 
             // 簡易型基礎
             const SimpleFoundations = await fetch('/SimpleFoundationJSON',  {
                 method: 'GET',
             });
             this.SimpleFoundationsJSON = await SimpleFoundations.json();
-            // console.log("------簡易型基礎------");
-            // console.log("------this.SimpleFoundationsJSON-----");
-            // console.log(this.SimpleFoundationsJSON);
+            for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
+                if(this.SimpleFoundationsJSON[i].Expert == "System"){
+                    this.SimpleFoundations.push(this.SimpleFoundationsJSON[i]);
+                }
+            }
 
             // 簡易型溫室管材
             const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
                 method: 'GET',
             });
             this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
-            // console.log("------簡易型溫室管材------");
-            // console.log("------this.SimpleGreenhousePipesJSON-----");
-            // console.log(this.SimpleGreenhousePipesJSON);
+            for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
+                if(this.SimpleGreenhousePipesJSON[i].Expert == "System"){
+                    this.SimpleGreenhousePipes.push(this.SimpleGreenhousePipesJSON[i]);
+                }
+            }
 
             // 簡易型長度
             const SimpleLengths = await fetch('/SimpleLengthJSON',  {
                 method: 'GET',
             });
             this.SimpleLengthsJSON = await SimpleLengths.json();
-            // console.log("------簡易型長度------");
-            // console.log("------this.SimpleLengthsJSON-----");
-            // console.log(this.SimpleLengthsJSON);
+            for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
+                if(this.SimpleLengthsJSON[i].Expert == "System"){
+                    this.SimpleLengths.push(this.SimpleLengthsJSON[i]);
+                }
+            }
 
             // 簡易型肩高
             const SimpleShoulderHeights = await fetch('/SimpleShoulderHeightJSON',  {
                 method: 'GET',
             });
             this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
-            // console.log("------簡易型肩高------");
-            // console.log("------this.SimpleShoulderHeightsJSON-----");
-            // console.log(this.SimpleShoulderHeightsJSON);
+            for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
+                if(this.SimpleShoulderHeightsJSON[i].Expert == "System"){
+                    this.SimpleShoulderHeights.push(this.SimpleShoulderHeightsJSON[i]);
+                }
+            }
 
             // 簡易型跨距
             const SimpleSpans = await fetch('/SimpleSpanJSON',  {
                 method: 'GET',
             });
             this.SimpleSpansJSON = await SimpleSpans.json();
-            // console.log("------簡易型跨距------");
-            // console.log("------this.SimpleSpansJSON-----");
-            // console.log(this.SimpleSpansJSON);
+            for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
+                if(this.SimpleSpansJSON[i].Expert == "System"){
+                    this.SimpleSpans.push(this.SimpleSpansJSON[i]);
+                }
+            }
+
+            /* 簡易型溫室專家選擇過濾 */
+            var filterfalg = false;
+            for(var i = 0 ; i < this.SimpleCostratiosJSON.length ; i++){
+                filterfalg = false;
+                // 篩選重複出現的專家
+                for(var j = 0 ; j < this.SimpleExpertOrder.length ; j++){
+                    if(this.SimpleExpertOrder[j] == this.SimpleCostratiosJSON[i].Expert){
+                        filterfalg = true;
+                        break;
+                    }
+                }
+                if(!filterfalg) this.SimpleExpertOrder.push(this.SimpleCostratiosJSON[i].Expert);
+            }
 
             // 強固型各建構項目比例
             const StrongCostRatios = await fetch('/StrongCostRatioJSON',  {
@@ -980,7 +1028,6 @@ export default {
             // console.log("------強固型上拱距------");
             // console.log("------this.StrongUpperArchDistancesJSON-----");
             // console.log(this.StrongUpperArchDistancesJSON);
-
 
         },updateSimpleRadio(){
             this.SelectSimple = [];
@@ -1116,7 +1163,6 @@ export default {
                 temp = [];
                 temp.push('披覆膜');
                 temp.push(this.RobustCoatingFilm);
-                this.SelectRobust.push(temp); // 強固型披覆膜
             }
 
             if(this.SelectRobust.length == 9 ){
@@ -1138,10 +1184,107 @@ export default {
                 this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
             }
 
-            
+        },updateSimpleData(){
+            console.log("---------updateSimpleData-----------");
+            this.SimpleGreenhousePipe = null,  // 簡易型溫室管材
+            this.SimpleDomeForm = null,  // 簡易型圓頂形式
+            this.SimpleCircularArchDistance = null,  // 簡易型圓拱距
+            this.SimpleFoundation = null,  // 簡易型基礎
+            this.SimpleSpan = null,  // 簡易型跨距
+            this.SimpleShoulderHeight = null,  // 簡易型肩高
+            this.SimpleLength = null,  // 簡易型長度
+            this.SimpleContinuity = null,  // 簡易型連續性
+            this.SimpleCoatingFilm = null;  // 簡易型披覆膜
 
+            // 設置所選的專家
+            if(this.SimpleIdx == 0){ // SimpleIdx = 0 相當於沒有選，所以要預設為 System
+                this.SimpleSelectExpert = "System";
+            }else{
+                this.SimpleSelectExpert = this.SimpleExpertOrder[this.SimpleIdx];
+            }
+
+            // 簡易型各建構項目比例
+            this.SimpleCostratios = [];
+            for(var i = 0 ; i < this.SimpleCostratiosJSON.length ; i++){
+                if(this.SimpleCostratiosJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleCostratios.push(this.SimpleCostratiosJSON[i]);
+                }
+            }
+
+            // 簡易型圓拱距
+            this.SimpleCircularArchDistances = [];
+            for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
+                if(this.SimpleCircularArchDistancesJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleCircularArchDistances.push(this.SimpleCircularArchDistancesJSON[i]);
+                }
+            }
+
+            // 簡易型披覆膜
+            this.SimpleCoatingFilms = [];
+            for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
+                if(this.SimpleCoatingFilmsJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleCoatingFilms.push(this.SimpleCoatingFilmsJSON[i]);
+                }
+            }
+
+            // 簡易型連續性
+            this.SimpleContinuitys = [];
+            for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
+                if(this.SimpleContinuitysJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleContinuitys.push(this.SimpleContinuitysJSON[i]);
+                }
+            }
+
+            // 簡易型圓頂形式
+            this.SimpleDomeForms = [];
+            for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
+                if(this.SimpleDomeFormsJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleDomeForms.push(this.SimpleDomeFormsJSON[i]);
+                }
+            }
+
+            // 簡易型基礎
+            this.SimpleFoundations = [];
+            for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
+                if(this.SimpleFoundationsJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleFoundations.push(this.SimpleFoundationsJSON[i]);
+                }
+            }
+
+            // 簡易型溫室管材
+            this.SimpleGreenhousePipes = [];
+            for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
+                if(this.SimpleGreenhousePipesJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleGreenhousePipes.push(this.SimpleGreenhousePipesJSON[i]);
+                }
+            }
+
+            // 簡易型長度
+            this.SimpleLengths = [];
+            for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
+                if(this.SimpleLengthsJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleLengths.push(this.SimpleLengthsJSON[i]);
+                }
+            }
+
+            // 簡易型肩高
+            this.SimpleShoulderHeights = [];
+            for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
+                if(this.SimpleShoulderHeightsJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleShoulderHeights.push(this.SimpleShoulderHeightsJSON[i]);
+                }
+            }
+
+            // 簡易型跨距
+            this.SimpleSpans = [];
+            for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
+                if(this.SimpleSpansJSON[i].Expert == this.SimpleSelectExpert){
+                    this.SimpleSpans.push(this.SimpleSpansJSON[i]);
+                }
+            }
         },check(){
             console.log("---------檢查裡-----------");
+
         }
     }
 }

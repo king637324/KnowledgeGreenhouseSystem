@@ -14,7 +14,7 @@
 
         <div class="d-flex bd-highlight mb-3">
             <div class="p-2 bd-highlight">
-                <h4 id="統計分析">簡易型統計分析</h4>
+                <h4 id="統計分析">簡易型統計分析表</h4>
                 <p> ps. 可直接點擊 類型 前往類型的應力應變分析</p>
 
                 <table style="border:1px solid black;" border='1'>

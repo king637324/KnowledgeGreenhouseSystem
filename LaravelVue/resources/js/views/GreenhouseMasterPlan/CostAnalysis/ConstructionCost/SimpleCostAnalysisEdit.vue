@@ -5,8 +5,8 @@
         <hr>
         
 
-        <!-- <v-form v-on:submit.prevent="createSimple" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-        <v-form v-on:submit.prevent="createSimple">
+        <!-- <v-form v-on:submit.prevent="UpdateSimple" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
+        <v-form v-on:submit.prevent="UpdateSimple">
             <div class="d-flex justify-content-around">
                 <div class="p-2 bd-highlight">
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">溫室管材</span></p>
@@ -1979,6 +1979,9 @@ export default {
             SimpleRules: [
                 v => !!v || '必填',
             ],
+            EditSimpleData:{
+
+            },
             SimpleData:{
                 id: null,
                 Expert: null,
@@ -2241,16 +2244,20 @@ export default {
             proportiontotoalStructuralRisk: 100,
             proportiontotoalJobDifficulty: 100,
 
+
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
         // this.$auth.user();
         // console.log(this.$auth.user()); // 可以取得使用者資料
-
         // 如果帳號有登入，才能顯示他的id帳號
         if(this.$auth.check()){
             this.SimpleData.Expert = this.$auth.user().id;
         }
+
+        // this.$route.params.id
+        console.log("-----this.$route.params.id-----");
+        console.log(this.$route.params.id);
     },
     methods: {
         calculator(){
@@ -2258,7 +2265,7 @@ export default {
             this.proportiontotoalStructuralRisk = parseInt(this.SimpleData.GreenhousePipeStructuralRisk) + parseInt(this.SimpleData.DomeFormStructuralRisk) + parseInt(this.SimpleData.ArcDistanceStructuralRisk) + parseInt(this.SimpleData.BasisStructuralRisk) + parseInt(this.SimpleData.SpanStructuralRisk) + parseInt(this.SimpleData.ShoulderHeightStructuralRisk) + parseInt(this.SimpleData.LengthStructuralRisk) + parseInt(this.SimpleData.ContinuityStructuralRisk) + parseInt(this.SimpleData.CoatedFilmStructuralRisk);
             this.proportiontotoalJobDifficulty = parseInt(this.SimpleData.GreenhousePipeJobDifficulty) + parseInt(this.SimpleData.DomeFormJobDifficulty) + parseInt(this.SimpleData.ArcDistanceJobDifficulty) + parseInt(this.SimpleData.BasisJobDifficulty) + parseInt(this.SimpleData.SpanJobDifficulty) + parseInt(this.SimpleData.ShoulderHeightJobDifficulty) + parseInt(this.SimpleData.LengthJobDifficulty) + parseInt(this.SimpleData.ContinuityJobDifficulty) + parseInt(this.SimpleData.CoatedFilmJobDifficulty);
         },
-        createSimple: async function(){
+        UpdateSimple: async function(){
             let formData = new FormData();
             formData.append('Expert',this.SimpleData.Expert);
             /******** 溫室管材  ********/
@@ -2505,12 +2512,12 @@ export default {
             formData.append('CoatedFilmJobDifficulty',this.SimpleData.CoatedFilmJobDifficulty);
 
             try{
-                const response = await SimpleCostAddService.createSimpleCost(formData);
+                const response = await SimpleCostAddService.UpdateSimpleCost(formData);
                 // 創建成功後，頁面跳轉回 文章知識頁面
                 window.location = '/#/DevelopConstructionCostAnalysisTestment';
                 // 創建成功的提示視窗
                 this.flashMessage.success({
-                    message: '簡易型溫室構造成本參數 資料寫入成功!!',
+                    message: '簡易型溫室構造成本參數 資料編輯成功!!',
                     time: 3000
                 });
 
@@ -2522,7 +2529,7 @@ export default {
                         break;
                     default:
                         this.flashMessage.error({
-                            message: '簡易型溫室構造成本參數 寫入有錯誤發生!!',
+                            message: '簡易型溫室構造成本參數 編輯有錯誤發生!!',
                             time: 5000
                         });
                         break;

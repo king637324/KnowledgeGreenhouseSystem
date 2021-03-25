@@ -13,4 +13,5 @@ class simplecontinuity extends Model
         'id','Expert','BuildItem','Cost','StructuralRisk','JobDifficulty'
     ];
 
+    public $timestamps = false;
 }

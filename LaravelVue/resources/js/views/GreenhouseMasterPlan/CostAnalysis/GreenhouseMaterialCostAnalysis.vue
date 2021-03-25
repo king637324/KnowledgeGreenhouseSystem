@@ -140,7 +140,7 @@
                                     </tr>
                                     <tr align="center">
                                         <td> 速度性 </td>
-                                        <td> 結構<br>風險 </td>
+                                        <td> 結構風險 </td>
                                         <td> 腐蝕性 </td>
                                         <td> 重量性 </td>
                                         <td> 成本性 </td>
@@ -155,7 +155,7 @@
                                     </td>
                                     <td>
                                         <v-text-field
-                                            label="請輸入結構<br>風險"
+                                            label="請輸入結構風險"
                                             v-model="PipeStructuralRisk"
                                         ></v-text-field>
                                     </td>
@@ -324,7 +324,7 @@
                                     </tr>
                                     <tr align="center">
                                         <td> 速度性 </td>
-                                        <td> 結構<br>風險 </td>
+                                        <td> 結構風險 </td>
                                         <td> 腐蝕性 </td>
                                         <td> 重量性 </td>
                                         <td> 成本性 </td>
@@ -339,7 +339,7 @@
                                     </td>
                                     <td>
                                         <v-text-field
-                                            label="請輸入結構<br>風險"
+                                            label="請輸入結構風險"
                                             v-model="ProfileStructuralRisk"
                                         ></v-text-field>
                                     </td>
