@@ -1632,18 +1632,6 @@
                     
                 </div>
             </div>
-
-            <div class="d-flex justify-content-around">
-                <div class="p-2 bd-highlight">
-                    
-                </div>
-                <div class="p-2 bd-highlight">
-
-                </div>
-                <div class="p-2 bd-highlight">
-
-                </div>
-            </div>
             
             <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">各結構材料成本比例</span></p>
             <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
@@ -2243,8 +2231,6 @@ export default {
             proportiontotoalCost: 100,
             proportiontotoalStructuralRisk: 100,
             proportiontotoalJobDifficulty: 100,
-
-
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -2258,8 +2244,182 @@ export default {
         // this.$route.params.id
         console.log("-----this.$route.params.id-----");
         console.log(this.$route.params.id);
+        this.getJson();
+
     },
     methods: {
+        async getJson(){
+            var TotalTemp = [], temp = [],tempArray = [];
+            // 簡易型各建構項目比例
+            const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
+                method: 'GET',
+            });
+            this.SimpleCostratiosJSON = await SimpleCostratios.json();
+            temp.push('建構項目比例');
+            for(var i = 0 ; i < this.SimpleCostratiosJSON.length ; i++){
+                if(this.SimpleCostratiosJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleCostratiosJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // 簡易型圓拱距
+            const SimpleCircularArchDistances = await fetch('/SimpleCircularArchDistanceJSON',  {
+                method: 'GET',
+            });
+            this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
+            temp.push('圓拱距');
+            for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
+                if(this.SimpleCircularArchDistancesJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleCircularArchDistancesJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+            
+
+            // 簡易型披覆膜
+            const SimpleCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
+                method: 'GET',
+            });
+            this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
+            temp.push('披覆膜');
+            for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
+                if(this.SimpleCoatingFilmsJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleCoatingFilmsJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // 簡易型連續性
+            const SimpleContinuitys = await fetch('/SimpleContinuityJSON',  {
+                method: 'GET',
+            });
+            this.SimpleContinuitysJSON = await SimpleContinuitys.json();
+            temp.push('連續性');
+            for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
+                if(this.SimpleContinuitysJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleContinuitysJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // 簡易型圓頂形式
+            const SimpleDomeForms = await fetch('/SimpleDomeFormJSON',  {
+                method: 'GET',
+            });
+            this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
+            temp.push('圓頂形式');
+            for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
+                if(this.SimpleDomeFormsJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleDomeFormsJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // 簡易型基礎
+            const SimpleFoundations = await fetch('/SimpleFoundationJSON',  {
+                method: 'GET',
+            });
+            this.SimpleFoundationsJSON = await SimpleFoundations.json();
+            temp.push('基礎');
+            for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
+                if(this.SimpleFoundationsJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleFoundationsJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // 簡易型溫室管材
+            const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
+                method: 'GET',
+            });
+            this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
+            temp.push('溫室管材');
+            for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
+                if(this.SimpleGreenhousePipesJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleGreenhousePipesJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // 簡易型長度
+            const SimpleLengths = await fetch('/SimpleLengthJSON',  {
+                method: 'GET',
+            });
+            this.SimpleLengthsJSON = await SimpleLengths.json();
+            temp.push('長度');
+            for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
+                if(this.SimpleLengthsJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleLengthsJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // 簡易型肩高
+            const SimpleShoulderHeights = await fetch('/SimpleShoulderHeightJSON',  {
+                method: 'GET',
+            });
+            this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
+            temp.push('肩高');
+            for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
+                if(this.SimpleShoulderHeightsJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleShoulderHeightsJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // 簡易型跨距
+            const SimpleSpans = await fetch('/SimpleSpanJSON',  {
+                method: 'GET',
+            });
+            this.SimpleSpansJSON = await SimpleSpans.json();
+            temp.push('跨距');
+            for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
+                if(this.SimpleSpansJSON[i].Expert == this.$route.params.id){
+                    tempArray.push(this.SimpleSpansJSON[i]);
+                }
+            }
+            temp.push(tempArray);
+            TotalTemp.push(temp);
+            temp = [],
+            tempArray = [];
+
+            // this.EditSimpleData = {...TotalTemp};
+
+            // console.log("-----this.EditSimpleData-----");
+            // console.log(this.EditSimpleData);
+
+            console.log("-----TotalTemp-----");
+            console.log(TotalTemp);
+
+        },
         calculator(){
             this.proportiontotoalCost = parseInt(this.SimpleData.GreenhousePipeCost) + parseInt(this.SimpleData.DomeFormCost) + parseInt(this.SimpleData.ArcDistanceCost) + parseInt(this.SimpleData.BasisCost) + parseInt(this.SimpleData.SpanCost) + parseInt(this.SimpleData.ShoulderHeightCost) + parseInt(this.SimpleData.LengthCost) + parseInt(this.SimpleData.ContinuityCost) + parseInt(this.SimpleData.CoatedFilmCost);
             this.proportiontotoalStructuralRisk = parseInt(this.SimpleData.GreenhousePipeStructuralRisk) + parseInt(this.SimpleData.DomeFormStructuralRisk) + parseInt(this.SimpleData.ArcDistanceStructuralRisk) + parseInt(this.SimpleData.BasisStructuralRisk) + parseInt(this.SimpleData.SpanStructuralRisk) + parseInt(this.SimpleData.ShoulderHeightStructuralRisk) + parseInt(this.SimpleData.LengthStructuralRisk) + parseInt(this.SimpleData.ContinuityStructuralRisk) + parseInt(this.SimpleData.CoatedFilmStructuralRisk);

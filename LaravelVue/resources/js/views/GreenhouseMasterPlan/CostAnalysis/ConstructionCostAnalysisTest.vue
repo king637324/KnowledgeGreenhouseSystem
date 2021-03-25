@@ -813,8 +813,6 @@ export default {
     },
     methods:{
         async getJson(){
-            
-
             // 簡易型各建構項目比例
             const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
                 method: 'GET',
