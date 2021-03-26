@@ -813,7 +813,257 @@ class SimpleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 設定必填欄位 & 必填欄位的的條件
+        $request -> validate([
+                'Expert' => 'required',
+                /******** 溫室管材  ********/
+                // 標準管材
+                'StandardPipeCost' => 'required',
+                'StandardPipeStructureRisk' => 'required',
+                'StandardPipeWorkDifficulty' => 'required',
+                // 高強管材
+                'HighStrengthPipeCostCost' => 'required',
+                'HighStrengthPipeStructureRisk' => 'required',
+                'HighStrengthPipeWorkDifficulty' => 'required',
+                // 耐蝕管材
+                'CorrosionResistantPipeCostCost' => 'required',
+                'CorrosionResistantPipeStructureRisk' => 'required',
+                'CorrosionResistantPipeWorkDifficulty' => 'required',
+                // 高強高耐蝕管材
+                'HighStrengthCorrosionResistantPipeCost' => 'required',
+                'HighStrengthCorrosionResistantPipeStructureRisk' => 'required',
+                'HighStrengthCorrosionResistantPipeWorkDifficulty' => 'required',
+                /******** 圓頂形式  ********/
+                // 單一圓拱
+                'SingleRoundArchCost' => 'required',
+                'SingleRoundArchStructureRisk' => 'required',
+                'SingleRoundArchWorkDifficulty' => 'required',
+                // 下橫樑
+                'LowerBeamCost' => 'required',
+                'LowerBeamStructureRisk' => 'required',
+                'LowerBeamWorkDifficulty' => 'required',
+                // 上1/3橫梁
+                'UpperOneThreeBeamCost' => 'required',
+                'UpperOneThreeBeamStructureRisk' => 'required',
+                'UpperOneThreeBeamWorkDifficulty' => 'required',
+                // 上二橫梁
+                'UpperSecondBeamCost' => 'required',
+                'UpperSecondBeamStructureRisk' => 'required',
+                'UpperSecondBeamWorkDifficulty' => 'required',
+                // T型樑
+                'TBeamCost' => 'required',
+                'TBeamStructureRisk' => 'required',
+                'TBeamWorkDifficulty' => 'required',
+                // 三支集中樑
+                'ThreeConcentratedBeamsCost' => 'required',
+                'ThreeConcentratedBeamsStructureRisk' => 'required',
+                'ThreeConcentratedBeamsWorkDifficulty' => 'required',
+                // 三支垂支梁
+                'ThreeVerticalBeamsCost' => 'required',
+                'ThreeVerticalBeamsStructureRisk' => 'required',
+                'ThreeVerticalBeamsWorkDifficulty' => 'required',
+                // V型樑
+                'VBeamCost' => 'required',
+                'VBeamStructureRisk' => 'required',
+                'VBeamWorkDifficulty' => 'required',
+                // W型樑
+                'WBeamCost' => 'required',
+                'WBeamStructureRisk' => 'required',
+                'WBeamWorkDifficulty' => 'required',
+                /******** 圓拱距  ********/
+                // 1M-1"
+                'oneMoneCost' => 'required',
+                'oneMoneStructureRisk' => 'required',
+                'oneMoneWorkDifficulty' => 'required',
+                // 1M-1-1/4"
+                'oneMone_OneFourCost' => 'required',
+                'oneMone_OneFourStructureRisk' => 'required',
+                'oneMone_OneFourWorkDifficulty' => 'required',
+                // 1M-1-1/2"
+                'oneMone_OneTwoCost' => 'required',
+                'oneMone_OneTwoStructureRisk' => 'required',
+                'oneMone_OneTwoWorkDifficulty' => 'required',
+                // 1.5M-1-1/2"
+                'onefiveMone_OneTwoCost' => 'required',
+                'onefiveMone_OneTwoStructureRisk' => 'required',
+                'onefiveMone_OneTwoWorkDifficulty' => 'required',
+                // 2M-2"
+                'twoMtwoCost' => 'required',
+                'twoMtwoStructureRisk' => 'required',
+                'twoMtwoWorkDifficulty' => 'required',
+                // 0.5M-1"
+                'zerofiveMoneCost' => 'required',
+                'zerofiveMoneStructureRisk' => 'required',
+                'zerofiveMoneWorkDifficulty' => 'required',
+                // 0.5-3/4"
+                'zerofiveMthreefourCost' => 'required',
+                'zerofiveMthreefourStructureRisk' => 'required',
+                'zerofiveMthreefourWorkDifficulty' => 'required',
+                // 0.5-1/2"
+                'zerofiveMonetwoCost' => 'required',
+                'zerofiveMonetwoStructureRisk' => 'required',
+                'zerofiveMonetwoWorkDifficulty' => 'required',
+                /******** 基礎  ********/
+                // 直插30cm
+                'thirtycmCost' => 'required',
+                'thirtycmStructureRisk' => 'required',
+                'thirtycmWorkDifficulty' => 'required',
+                // 直插40cm
+                'fourtycmCost' => 'required',
+                'fourtycmStructureRisk' => 'required',
+                'fourtycmWorkDifficulty' => 'required',
+                // 直插50cm
+                'fiftycmCost' => 'required',
+                'fiftycmStructureRisk' => 'required',
+                'fiftycmWorkDifficulty' => 'required',
+                // 直插30cm+地錨
+                'thirtycmPlusCost' => 'required',
+                'thirtycmPlusStructureRisk' => 'required',
+                'thirtycmPlusWorkDifficulty' => 'required',
+                // 直插40cm+地錨
+                'fourtycmPlusCost' => 'required',
+                'fourtycmPlusStructureRisk' => 'required',
+                'fourtycmPlusWorkDifficulty' => 'required',
+                // 直插50cm+地錨
+                'fiftycmPlusCost' => 'required',
+                'fiftycmPlusStructureRisk' => 'required',
+                'fiftycmPlusWorkDifficulty' => 'required',
+                /******** 跨距  ********/
+                // 5.4m
+                'FiveFourmCost' => 'required',
+                'FiveFourmStructureRisk' => 'required',
+                'FiveFourmWorkDifficulty' => 'required',
+                // 6m
+                'SixmCost' => 'required',
+                'SixmStructureRisk' => 'required',
+                'SixmWorkDifficulty' => 'required',
+                // 7.2m
+                'SevenmCost' => 'required',
+                'SevenmStructureRisk' => 'required',
+                'SevenmStructureRisk' => 'required',
+                // 8m
+                'eightmCost' => 'required',
+                'eightmStructureRisk' => 'required',
+                'eightmWorkDifficulty' => 'required',
+                /******** 肩高  ********/
+                // 2m
+                'TwomCost' => 'required',
+                'TwomStructureRisk' => 'required',
+                'TwomWorkDifficulty' => 'required',
+                // 2.5m
+                'TwoFivemCost' => 'required',
+                'TwoFivemStructureRisk' => 'required',
+                'TwoFivemWorkDifficulty' => 'required',
+                // 3m
+                'ThreemCost' => 'required',
+                'ThreemStructureRisk' => 'required',
+                'ThreemWorkDifficulty' => 'required',
+                // 3.5m
+                'ThreeFivemCost' => 'required',
+                'ThreeFivemStructureRisk' => 'required',
+                'ThreeFivemWorkDifficulty' => 'required',
+                // 4m
+                'FourmCost' => 'required',
+                'FourmStructureRisk' => 'required',
+                'FourmWorkDifficulty' => 'required',
+                /******** 長度  ********/
+                // 30m
+                'ThirtymCost' => 'required',
+                'ThirtymStructureRisk' => 'required',
+                'ThirtymWorkDifficulty' => 'required',
+                // 60m
+                'SixtymCost' => 'required',
+                'SixtymStructureRisk' => 'required',
+                'SixtymWorkDifficulty' => 'required',
+                // 90m
+                'NinetymCost' => 'required',
+                'NinetymStructureRisk' => 'required',
+                'NinetymWorkDifficulty' => 'required',
+                // 120m
+                'OneHundredTwentymCost' => 'required',
+                'OneHundredTwentymStructureRisk' => 'required',
+                'OneHundredTwentymWorkDifficulty' => 'required',
+                /******** 連續性  ********/
+                // 獨棟
+                'DetachedHouseCost' => 'required',
+                'DetachedHouseStructureRisk' => 'required',
+                'DetachedHouseWorkDifficulty' => 'required',
+                // 二連棟
+                'TwoStoryBuildingCost' => 'required',
+                'TwoStoryBuildingStructureRisk' => 'required',
+                'TwoStoryBuildingWorkDifficulty' => 'required',
+                // 三連棟
+                'ThreeStoryCost' => 'required',
+                'ThreeStoryStructureRisk' => 'required',
+                'ThreeStoryWorkDifficulty' => 'required',
+                // 四連棟
+                'FourStoryCost' => 'required',
+                'FourStoryStructureRisk' => 'required',
+                'FourStoryWorkDifficulty' => 'required',
+                /******** 披覆膜  ********/
+                // PE
+                'PECost' => 'required',
+                'PEStructureRisk' => 'required',
+                'PEWorkDifficulty' => 'required',
+                // PO
+                'POCost' => 'required',
+                'POStructureRisk' => 'required',
+                'POWorkDifficulty' => 'required',
+                // 硬質塑材
+                'RigidPlasticCost' => 'required',
+                'RigidPlasticStructureRisk' => 'required',
+                'RigidPlasticWorkDifficulty' => 'required',
+                // ETFE
+                'ETFECost' => 'required',
+                'ETFEStructureRisk' => 'required',
+                'ETFEWorkDifficulty' => 'required',
+                // 玻璃
+                'GlassCost' => 'required',
+                'GlassStructureRisk' => 'required',
+                'GlassWorkDifficulty' => 'required',
+                /******** 各成本比例  ********/
+                // 溫室管材
+                'GreenhousePipeCost' => 'required',
+                'GreenhousePipeStructuralRisk' => 'required',
+                'GreenhousePipeJobDifficulty' => 'required',
+                // 圓頂形式
+                'DomeFormCost' => 'required',
+                'DomeFormStructuralRisk' => 'required',
+                'DomeFormJobDifficulty' => 'required',
+                // 圓拱距
+                'ArcDistanceCost' => 'required',
+                'ArcDistanceStructuralRisk' => 'required',
+                'ArcDistanceJobDifficulty' => 'required',
+                // 基礎
+                'BasisCost' => 'required',
+                'BasisStructuralRisk' => 'required',
+                'BasisJobDifficulty' => 'required',
+                // 跨距
+                'SpanCost' => 'required',
+                'SpanStructuralRisk' => 'required',
+                'SpanJobDifficulty' => 'required',
+                // 肩高
+                'ShoulderHeightCost' => 'required',
+                'ShoulderHeightStructuralRisk' => 'required',
+                'ShoulderHeightJobDifficulty' => 'required',
+                // 長度
+                'LengthCost' => 'required',
+                'LengthStructuralRisk' => 'required',
+                'LengthJobDifficulty' => 'required',
+                // 連續性
+                'ContinuityCost' => 'required',
+                'ContinuityStructuralRisk' => 'required',
+                'ContinuityJobDifficulty' => 'required',
+                // 披覆膜
+                'CoatedFilmCost' => 'required',
+                'CoatedFilmStructuralRisk' => 'required',
+                'CoatedFilmJobDifficulty' => 'required',
+            ]);
+
+        $data = $request->only(['id','Expert','classification','VegetableTypes','Goodlight','Photoperiod','Illuminance','PPFD','LightSaturationPoint','LightCompensationPoint','Temperatureadaptability','LowestGrowthTemperature','OptimalGrowthTemperature','HighestGrowthTemperature','LowestGerminationTemperature','OptimumGerminationTemperature','HighestGerminationTemperature','CO2IncreasedProductionRate']);
+        $EditCropData  = vegetable::where('id',$id);
+
+        $EditCropData->update($data);
     }
 
     /**

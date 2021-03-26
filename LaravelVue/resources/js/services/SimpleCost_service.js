@@ -13,15 +13,15 @@ export function deleteSimpleCost(data) {
     return http().delete(`/GreenhouseMasterPlan/CostAnalysis/SimpleCost/${data[0]}`);
 }
 
-export function UpdateSimpleCost(EditKnowledgeData, data) {
+export function UpdateSimpleCost(SimpleCostData, data) {
 
-    // console.log("-----------EditKnowledgeData-------------");
-    // console.log(EditKnowledgeData);
-    // console.log("-----------EditKnowledgeData.id-------------");
-    // console.log(EditKnowledgeData.id);
-    // console.log("-----------data-------------");
-    // console.log(data);
+    console.log("-----------SimpleCostData-------------");
+    console.log(SimpleCostData);
+    console.log("-----------SimpleCostData.id-------------");
+    console.log(SimpleCostData.id);
+    console.log("-----------data-------------");
+    console.log(data);
 
 
-    return httpFile().post(`/GreenhouseMasterPlan/CostAnalysis/SimpleCost/${EditKnowledgeData.id}`, data);
+    // return httpFile().post(`/GreenhouseMasterPlan/CostAnalysis/SimpleCost/${SimpleCostData.id}`, data);
 }

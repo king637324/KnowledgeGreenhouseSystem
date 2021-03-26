@@ -2189,41 +2189,41 @@ export default {
                 
                 /******** 各成本比例  ********/
                 // 溫室管材
-                GreenhousePipeCost: 20,
-                GreenhousePipeStructuralRisk: 15,
-                GreenhousePipeJobDifficulty: 10,
+                GreenhousePipeCost: '',
+                GreenhousePipeStructuralRisk: '',
+                GreenhousePipeJobDifficulty: '',
                 // 圓頂形式
-                DomeFormCost: 10,
-                DomeFormStructuralRisk: 15, 
-                DomeFormJobDifficulty: 10,
+                DomeFormCost: '',
+                DomeFormStructuralRisk: '',
+                DomeFormJobDifficulty: '',
                 // 圓拱距
-                ArcDistanceCost: 10,
-                ArcDistanceStructuralRisk: 10,
-                ArcDistanceJobDifficulty: 10,
+                ArcDistanceCost: '',
+                ArcDistanceStructuralRisk: '',
+                ArcDistanceJobDifficulty: '',
                 // 基礎
-                BasisCost: 10,
-                BasisStructuralRisk: 10,
-                BasisJobDifficulty: 10,
+                BasisCost: '',
+                BasisStructuralRisk: '',
+                BasisJobDifficulty: '',
                 // 跨距
-                SpanCost: 10,
-                SpanStructuralRisk: 15,
-                SpanJobDifficulty: 15,
+                SpanCost: '',
+                SpanStructuralRisk: '',
+                SpanJobDifficulty: '',
                 // 肩高
-                ShoulderHeightCost: 10,
-                ShoulderHeightStructuralRisk: 10,
-                ShoulderHeightJobDifficulty: 15,
+                ShoulderHeightCost: '',
+                ShoulderHeightStructuralRisk: '',
+                ShoulderHeightJobDifficulty: '',
                 // 長度
-                LengthCost: 10,
-                LengthStructuralRisk: 5,
-                LengthJobDifficulty: 10,
+                LengthCost: '',
+                LengthStructuralRisk: '',
+                LengthJobDifficulty: '',
                 // 連續性
-                ContinuityCost: 10,
-                ContinuityStructuralRisk: 10,
-                ContinuityJobDifficulty: 10,
+                ContinuityCost: '',
+                ContinuityStructuralRisk: '',
+                ContinuityJobDifficulty: '',
                 // 披覆膜
-                CoatedFilmCost: 10,
-                CoatedFilmStructuralRisk: 10,
-                CoatedFilmJobDifficulty: 10,
+                CoatedFilmCost: '',
+                CoatedFilmStructuralRisk: '',
+                CoatedFilmJobDifficulty: '',
             },
             errors:{
 
@@ -2248,177 +2248,348 @@ export default {
 
     },
     methods: {
-        async getJson(){
-            var TotalTemp = [], temp = [],tempArray = [];
+        async getJson(){    // 取得所有變數的值
             // 簡易型各建構項目比例
             const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
                 method: 'GET',
             });
             this.SimpleCostratiosJSON = await SimpleCostratios.json();
-            temp.push('建構項目比例');
             for(var i = 0 ; i < this.SimpleCostratiosJSON.length ; i++){
                 if(this.SimpleCostratiosJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleCostratiosJSON[i]);
+                    if(this.SimpleCostratiosJSON[i].BuildItem == '溫室管材'){
+                        this.SimpleData.GreenhousePipeCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.GreenhousePipeStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.GreenhousePipeJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }else if(this.SimpleCostratiosJSON[i].BuildItem == '圓頂形式'){
+                        this.SimpleData.DomeFormCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.DomeFormStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.DomeFormJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }else if(this.SimpleCostratiosJSON[i].BuildItem == '圓拱距'){
+                        this.SimpleData.ArcDistanceCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.ArcDistanceStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.ArcDistanceJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }else if(this.SimpleCostratiosJSON[i].BuildItem == '基礎'){
+                        this.SimpleData.BasisCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.BasisStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.BasisJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }else if(this.SimpleCostratiosJSON[i].BuildItem == '跨距'){
+                        this.SimpleData.SpanCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.SpanStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.SpanJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }else if(this.SimpleCostratiosJSON[i].BuildItem == '肩高'){
+                        this.SimpleData.ShoulderHeightCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.ShoulderHeightStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.ShoulderHeightJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }else if(this.SimpleCostratiosJSON[i].BuildItem == '長度'){
+                        this.SimpleData.LengthCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.LengthStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.LengthJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }else if(this.SimpleCostratiosJSON[i].BuildItem == '連續性'){
+                        this.SimpleData.ContinuityCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.ContinuityStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.ContinuityJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }else if(this.SimpleCostratiosJSON[i].BuildItem == '披覆膜'){
+                        this.SimpleData.CoatedFilmCost = this.SimpleCostratiosJSON[i].Cost;
+                        this.SimpleData.CoatedFilmStructuralRisk = this.SimpleCostratiosJSON[i].StructuralRisk;
+                        this.SimpleData.CoatedFilmJobDifficulty = this.SimpleCostratiosJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
 
             // 簡易型圓拱距
             const SimpleCircularArchDistances = await fetch('/SimpleCircularArchDistanceJSON',  {
                 method: 'GET',
             });
             this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
-            temp.push('圓拱距');
             for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
                 if(this.SimpleCircularArchDistancesJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleCircularArchDistancesJSON[i]);
+                    if(this.SimpleCircularArchDistancesJSON[i].BuildItem == '1M-1"'){
+                        this.SimpleData.oneMoneCost = this.SimpleCircularArchDistancesJSON[i].Cost;
+                        this.SimpleData.oneMoneStructureRisk = this.SimpleCircularArchDistancesJSON[i].StructuralRisk;
+                        this.SimpleData.oneMoneWorkDifficulty = this.SimpleCircularArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.SimpleCircularArchDistancesJSON[i].BuildItem == '1M-1-1/4"'){
+                        this.SimpleData.oneMone_OneFourCost = this.SimpleCircularArchDistancesJSON[i].Cost;
+                        this.SimpleData.oneMone_OneFourStructureRisk = this.SimpleCircularArchDistancesJSON[i].StructuralRisk;
+                        this.SimpleData.oneMone_OneFourWorkDifficulty = this.SimpleCircularArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.SimpleCircularArchDistancesJSON[i].BuildItem == '1M-1-1/2"'){
+                        this.SimpleData.oneMone_OneTwoCost = this.SimpleCircularArchDistancesJSON[i].Cost;
+                        this.SimpleData.oneMone_OneTwoStructureRisk = this.SimpleCircularArchDistancesJSON[i].StructuralRisk;
+                        this.SimpleData.oneMone_OneTwoWorkDifficulty = this.SimpleCircularArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.SimpleCircularArchDistancesJSON[i].BuildItem == '1.5M-1-1/2"'){
+                        this.SimpleData.onefiveMone_OneTwoCost = this.SimpleCircularArchDistancesJSON[i].Cost;
+                        this.SimpleData.onefiveMone_OneTwoStructureRisk = this.SimpleCircularArchDistancesJSON[i].StructuralRisk;
+                        this.SimpleData.onefiveMone_OneTwoWorkDifficulty = this.SimpleCircularArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.SimpleCircularArchDistancesJSON[i].BuildItem == '2M-2"'){
+                        this.SimpleData.twoMtwoCost = this.SimpleCircularArchDistancesJSON[i].Cost;
+                        this.SimpleData.twoMtwoStructureRisk = this.SimpleCircularArchDistancesJSON[i].StructuralRisk;
+                        this.SimpleData.twoMtwoWorkDifficulty = this.SimpleCircularArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.SimpleCircularArchDistancesJSON[i].BuildItem == '0.5M-1"'){
+                        this.SimpleData.zerofiveMoneCost = this.SimpleCircularArchDistancesJSON[i].Cost;
+                        this.SimpleData.zerofiveMoneStructureRisk = this.SimpleCircularArchDistancesJSON[i].StructuralRisk;
+                        this.SimpleData.zerofiveMoneWorkDifficulty = this.SimpleCircularArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.SimpleCircularArchDistancesJSON[i].BuildItem == '0.5-3/4"'){
+                        this.SimpleData.zerofiveMthreefourCost = this.SimpleCircularArchDistancesJSON[i].Cost;
+                        this.SimpleData.zerofiveMthreefourStructureRisk = this.SimpleCircularArchDistancesJSON[i].StructuralRisk;
+                        this.SimpleData.zerofiveMthreefourWorkDifficulty = this.SimpleCircularArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.SimpleCircularArchDistancesJSON[i].BuildItem == '0.5-1/2"'){
+                        this.SimpleData.zerofiveMonetwoCost = this.SimpleCircularArchDistancesJSON[i].Cost;
+                        this.SimpleData.zerofiveMonetwoStructureRisk = this.SimpleCircularArchDistancesJSON[i].StructuralRisk;
+                        this.SimpleData.zerofiveMonetwoWorkDifficulty = this.SimpleCircularArchDistancesJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
             
-
             // 簡易型披覆膜
             const SimpleCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
                 method: 'GET',
             });
             this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
-            temp.push('披覆膜');
             for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
                 if(this.SimpleCoatingFilmsJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleCoatingFilmsJSON[i]);
+                    if(this.SimpleCoatingFilmsJSON[i].BuildItem == 'PE'){
+                        this.SimpleData.PECost = this.SimpleCoatingFilmsJSON[i].Cost;
+                        this.SimpleData.PEStructureRisk = this.SimpleCoatingFilmsJSON[i].StructuralRisk;
+                        this.SimpleData.PEWorkDifficulty = this.SimpleCoatingFilmsJSON[i].JobDifficulty;
+                    }else if(this.SimpleCoatingFilmsJSON[i].BuildItem == 'PO'){
+                        this.SimpleData.POCost = this.SimpleCoatingFilmsJSON[i].Cost;
+                        this.SimpleData.POStructureRisk = this.SimpleCoatingFilmsJSON[i].StructuralRisk;
+                        this.SimpleData.POWorkDifficulty = this.SimpleCoatingFilmsJSON[i].JobDifficulty;
+                    }else if(this.SimpleCoatingFilmsJSON[i].BuildItem == '硬質塑材'){
+                        this.SimpleData.RigidPlasticCost = this.SimpleCoatingFilmsJSON[i].Cost;
+                        this.SimpleData.RigidPlasticStructureRisk = this.SimpleCoatingFilmsJSON[i].StructuralRisk;
+                        this.SimpleData.RigidPlasticWorkDifficulty = this.SimpleCoatingFilmsJSON[i].JobDifficulty;
+                    }else if(this.SimpleCoatingFilmsJSON[i].BuildItem == 'ETFE'){
+                        this.SimpleData.ETFECost = this.SimpleCoatingFilmsJSON[i].Cost;
+                        this.SimpleData.ETFEStructureRisk = this.SimpleCoatingFilmsJSON[i].StructuralRisk;
+                        this.SimpleData.ETFEWorkDifficulty = this.SimpleCoatingFilmsJSON[i].JobDifficulty;
+                    }else if(this.SimpleCoatingFilmsJSON[i].BuildItem == '玻璃'){
+                        this.SimpleData.GlassCost = this.SimpleCoatingFilmsJSON[i].Cost;
+                        this.SimpleData.GlassStructureRisk = this.SimpleCoatingFilmsJSON[i].StructuralRisk;
+                        this.SimpleData.GlassWorkDifficulty = this.SimpleCoatingFilmsJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
 
             // 簡易型連續性
             const SimpleContinuitys = await fetch('/SimpleContinuityJSON',  {
                 method: 'GET',
             });
             this.SimpleContinuitysJSON = await SimpleContinuitys.json();
-            temp.push('連續性');
             for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
                 if(this.SimpleContinuitysJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleContinuitysJSON[i]);
+                    if(this.SimpleContinuitysJSON[i].BuildItem == '獨棟'){
+                        this.SimpleData.DetachedHouseCost = this.SimpleContinuitysJSON[i].Cost;
+                        this.SimpleData.DetachedHouseStructureRisk = this.SimpleContinuitysJSON[i].StructuralRisk;
+                        this.SimpleData.DetachedHouseWorkDifficulty = this.SimpleContinuitysJSON[i].JobDifficulty;
+                    }else if(this.SimpleContinuitysJSON[i].BuildItem == '二連棟'){
+                        this.SimpleData.TwoStoryBuildingCost = this.SimpleContinuitysJSON[i].Cost;
+                        this.SimpleData.TwoStoryBuildingStructureRisk = this.SimpleContinuitysJSON[i].StructuralRisk;
+                        this.SimpleData.TwoStoryBuildingWorkDifficulty = this.SimpleContinuitysJSON[i].JobDifficulty;
+                    }else if(this.SimpleContinuitysJSON[i].BuildItem == '三連棟'){
+                        this.SimpleData.ThreeStoryCost = this.SimpleContinuitysJSON[i].Cost;
+                        this.SimpleData.ThreeStoryStructureRisk = this.SimpleContinuitysJSON[i].StructuralRisk;
+                        this.SimpleData.ThreeStoryWorkDifficulty = this.SimpleContinuitysJSON[i].JobDifficulty;
+                    }else if(this.SimpleContinuitysJSON[i].BuildItem == '四連棟'){
+                        this.SimpleData.FourStoryCost = this.SimpleContinuitysJSON[i].Cost;
+                        this.SimpleData.FourStoryStructureRisk = this.SimpleContinuitysJSON[i].StructuralRisk;
+                        this.SimpleData.FourStoryWorkDifficulty = this.SimpleContinuitysJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
 
             // 簡易型圓頂形式
             const SimpleDomeForms = await fetch('/SimpleDomeFormJSON',  {
                 method: 'GET',
             });
             this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
-            temp.push('圓頂形式');
             for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
                 if(this.SimpleDomeFormsJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleDomeFormsJSON[i]);
+                    if(this.SimpleDomeFormsJSON[i].BuildItem == '單一圓拱'){
+                        this.SimpleData.SingleRoundArchCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.SingleRoundArchStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.SingleRoundArchWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }else if(this.SimpleDomeFormsJSON[i].BuildItem == '下橫樑'){
+                        this.SimpleData.LowerBeamCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.LowerBeamStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.LowerBeamWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }else if(this.SimpleDomeFormsJSON[i].BuildItem == '上1/3橫梁'){
+                        this.SimpleData.UpperOneThreeBeamCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.UpperOneThreeBeamStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.UpperOneThreeBeamWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }else if(this.SimpleDomeFormsJSON[i].BuildItem == '上二橫梁'){
+                        this.SimpleData.UpperSecondBeamCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.UpperSecondBeamStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.UpperSecondBeamWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }else if(this.SimpleDomeFormsJSON[i].BuildItem == 'T型樑'){
+                        this.SimpleData.TBeamCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.TBeamStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.TBeamWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }else if(this.SimpleDomeFormsJSON[i].BuildItem == '三支集中樑'){
+                        this.SimpleData.ThreeConcentratedBeamsCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.ThreeConcentratedBeamsStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.ThreeConcentratedBeamsWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }else if(this.SimpleDomeFormsJSON[i].BuildItem == '三支垂支梁'){
+                        this.SimpleData.ThreeVerticalBeamsCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.ThreeVerticalBeamsStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.ThreeVerticalBeamsWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }else if(this.SimpleDomeFormsJSON[i].BuildItem == 'V型樑'){
+                        this.SimpleData.VBeamCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.VBeamStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.VBeamWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }else if(this.SimpleDomeFormsJSON[i].BuildItem == 'W型樑'){
+                        this.SimpleData.WBeamCost = this.SimpleDomeFormsJSON[i].Cost;
+                        this.SimpleData.WBeamStructureRisk = this.SimpleDomeFormsJSON[i].StructuralRisk;
+                        this.SimpleData.WBeamWorkDifficulty = this.SimpleDomeFormsJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
 
             // 簡易型基礎
             const SimpleFoundations = await fetch('/SimpleFoundationJSON',  {
                 method: 'GET',
             });
             this.SimpleFoundationsJSON = await SimpleFoundations.json();
-            temp.push('基礎');
             for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
                 if(this.SimpleFoundationsJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleFoundationsJSON[i]);
+                    if(this.SimpleFoundationsJSON[i].BuildItem == '直插30cm'){
+                        this.SimpleData.thirtycmCost = this.SimpleFoundationsJSON[i].Cost;
+                        this.SimpleData.thirtycmStructureRisk = this.SimpleFoundationsJSON[i].StructuralRisk;
+                        this.SimpleData.thirtycmWorkDifficulty = this.SimpleFoundationsJSON[i].JobDifficulty;
+                    }else if(this.SimpleFoundationsJSON[i].BuildItem == '直插40cm'){
+                        this.SimpleData.fourtycmCost = this.SimpleFoundationsJSON[i].Cost;
+                        this.SimpleData.fourtycmStructureRisk = this.SimpleFoundationsJSON[i].StructuralRisk;
+                        this.SimpleData.fourtycmWorkDifficulty = this.SimpleFoundationsJSON[i].JobDifficulty;
+                    }else if(this.SimpleFoundationsJSON[i].BuildItem == '直插50cm'){
+                        this.SimpleData.fiftycmCost = this.SimpleFoundationsJSON[i].Cost;
+                        this.SimpleData.fiftycmStructureRisk = this.SimpleFoundationsJSON[i].StructuralRisk;
+                        this.SimpleData.fiftycmWorkDifficulty = this.SimpleFoundationsJSON[i].JobDifficulty;
+                    }else if(this.SimpleFoundationsJSON[i].BuildItem == '直插30cm+地錨'){
+                        this.SimpleData.thirtycmPlusCost = this.SimpleFoundationsJSON[i].Cost;
+                        this.SimpleData.thirtycmPlusStructureRisk = this.SimpleFoundationsJSON[i].StructuralRisk;
+                        this.SimpleData.thirtycmPlusWorkDifficulty = this.SimpleFoundationsJSON[i].JobDifficulty;
+                    }else if(this.SimpleFoundationsJSON[i].BuildItem == '直插40cm+地錨'){
+                        this.SimpleData.fourtycmPlusCost = this.SimpleFoundationsJSON[i].Cost;
+                        this.SimpleData.fourtycmPlusStructureRisk = this.SimpleFoundationsJSON[i].StructuralRisk;
+                        this.SimpleData.fourtycmPlusWorkDifficulty = this.SimpleFoundationsJSON[i].JobDifficulty;
+                    }else if(this.SimpleFoundationsJSON[i].BuildItem == '直插50cm+地錨'){
+                        this.SimpleData.fiftycmPlusCost = this.SimpleFoundationsJSON[i].Cost;
+                        this.SimpleData.fiftycmPlusStructureRisk = this.SimpleFoundationsJSON[i].StructuralRisk;
+                        this.SimpleData.fiftycmPlusWorkDifficulty = this.SimpleFoundationsJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
 
             // 簡易型溫室管材
             const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
                 method: 'GET',
             });
             this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
-            temp.push('溫室管材');
             for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
                 if(this.SimpleGreenhousePipesJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleGreenhousePipesJSON[i]);
+                    if(this.SimpleGreenhousePipesJSON[i].BuildItem == '標準管材'){
+                        this.SimpleData.StandardPipeCost = this.SimpleGreenhousePipesJSON[i].Cost;
+                        this.SimpleData.StandardPipeStructureRisk = this.SimpleGreenhousePipesJSON[i].StructuralRisk;
+                        this.SimpleData.StandardPipeWorkDifficulty = this.SimpleGreenhousePipesJSON[i].JobDifficulty;
+                    }else if(this.SimpleGreenhousePipesJSON[i].BuildItem == '高強管材'){
+                        this.SimpleData.HighStrengthPipeCostCost = this.SimpleGreenhousePipesJSON[i].Cost;
+                        this.SimpleData.HighStrengthPipeStructureRisk = this.SimpleGreenhousePipesJSON[i].StructuralRisk;
+                        this.SimpleData.HighStrengthPipeWorkDifficulty = this.SimpleGreenhousePipesJSON[i].JobDifficulty;
+                    }else if(this.SimpleGreenhousePipesJSON[i].BuildItem == '耐蝕管材'){
+                        this.SimpleData.CorrosionResistantPipeCostCost = this.SimpleGreenhousePipesJSON[i].Cost;
+                        this.SimpleData.CorrosionResistantPipeStructureRisk = this.SimpleGreenhousePipesJSON[i].StructuralRisk;
+                        this.SimpleData.CorrosionResistantPipeWorkDifficulty = this.SimpleGreenhousePipesJSON[i].JobDifficulty;
+                    }else if(this.SimpleGreenhousePipesJSON[i].BuildItem == '高強高耐蝕管材'){
+                        this.SimpleData.HighStrengthCorrosionResistantPipeCost = this.SimpleGreenhousePipesJSON[i].Cost;
+                        this.SimpleData.HighStrengthCorrosionResistantPipeStructureRisk = this.SimpleGreenhousePipesJSON[i].StructuralRisk;
+                        this.SimpleData.HighStrengthCorrosionResistantPipeWorkDifficulty = this.SimpleGreenhousePipesJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
 
             // 簡易型長度
             const SimpleLengths = await fetch('/SimpleLengthJSON',  {
                 method: 'GET',
             });
             this.SimpleLengthsJSON = await SimpleLengths.json();
-            temp.push('長度');
             for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
                 if(this.SimpleLengthsJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleLengthsJSON[i]);
+                    if(this.SimpleLengthsJSON[i].BuildItem == '30m'){
+                        this.SimpleData.ThirtymCost = this.SimpleLengthsJSON[i].Cost;
+                        this.SimpleData.ThirtymStructureRisk = this.SimpleLengthsJSON[i].StructuralRisk;
+                        this.SimpleData.ThirtymWorkDifficulty = this.SimpleLengthsJSON[i].JobDifficulty;
+                    }else if(this.SimpleLengthsJSON[i].BuildItem == '60m'){
+                        this.SimpleData.SixtymCost = this.SimpleLengthsJSON[i].Cost;
+                        this.SimpleData.SixtymStructureRisk = this.SimpleLengthsJSON[i].StructuralRisk;
+                        this.SimpleData.SixtymWorkDifficulty = this.SimpleLengthsJSON[i].JobDifficulty;
+                    }else if(this.SimpleLengthsJSON[i].BuildItem == '90m'){
+                        this.SimpleData.NinetymCost = this.SimpleLengthsJSON[i].Cost;
+                        this.SimpleData.NinetymStructureRisk = this.SimpleLengthsJSON[i].StructuralRisk;
+                        this.SimpleData.NinetymWorkDifficulty = this.SimpleLengthsJSON[i].JobDifficulty;
+                    }else if(this.SimpleLengthsJSON[i].BuildItem == '120m'){
+                        this.SimpleData.OneHundredTwentymCost = this.SimpleLengthsJSON[i].Cost;
+                        this.SimpleData.OneHundredTwentymStructureRisk = this.SimpleLengthsJSON[i].StructuralRisk;
+                        this.SimpleData.OneHundredTwentymWorkDifficulty = this.SimpleLengthsJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
 
             // 簡易型肩高
             const SimpleShoulderHeights = await fetch('/SimpleShoulderHeightJSON',  {
                 method: 'GET',
             });
             this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
-            temp.push('肩高');
             for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
                 if(this.SimpleShoulderHeightsJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleShoulderHeightsJSON[i]);
+                    if(this.SimpleShoulderHeightsJSON[i].BuildItem == '2m'){
+                        this.SimpleData.TwomCost = this.SimpleShoulderHeightsJSON[i].Cost;
+                        this.SimpleData.TwomStructureRisk = this.SimpleShoulderHeightsJSON[i].StructuralRisk;
+                        this.SimpleData.TwomWorkDifficulty = this.SimpleShoulderHeightsJSON[i].JobDifficulty;
+                    }else if(this.SimpleShoulderHeightsJSON[i].BuildItem == '2.5m'){
+                        this.SimpleData.TwoFivemCost = this.SimpleShoulderHeightsJSON[i].Cost;
+                        this.SimpleData.TwoFivemStructureRisk = this.SimpleShoulderHeightsJSON[i].StructuralRisk;
+                        this.SimpleData.TwoFivemWorkDifficulty = this.SimpleShoulderHeightsJSON[i].JobDifficulty;
+                    }else if(this.SimpleShoulderHeightsJSON[i].BuildItem == '3m'){
+                        this.SimpleData.ThreemCost = this.SimpleShoulderHeightsJSON[i].Cost;
+                        this.SimpleData.ThreemStructureRisk = this.SimpleShoulderHeightsJSON[i].StructuralRisk;
+                        this.SimpleData.ThreemWorkDifficulty = this.SimpleShoulderHeightsJSON[i].JobDifficulty;
+                    }else if(this.SimpleShoulderHeightsJSON[i].BuildItem == '3.5m'){
+                        this.SimpleData.ThreeFivemCost = this.SimpleShoulderHeightsJSON[i].Cost;
+                        this.SimpleData.ThreeFivemStructureRisk = this.SimpleShoulderHeightsJSON[i].StructuralRisk;
+                        this.SimpleData.ThreeFivemWorkDifficulty = this.SimpleShoulderHeightsJSON[i].JobDifficulty;
+                    }else if(this.SimpleShoulderHeightsJSON[i].BuildItem == '4m'){
+                        this.SimpleData.FourmCost = this.SimpleShoulderHeightsJSON[i].Cost;
+                        this.SimpleData.FourmStructureRisk = this.SimpleShoulderHeightsJSON[i].StructuralRisk;
+                        this.SimpleData.FourmWorkDifficulty = this.SimpleShoulderHeightsJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
 
             // 簡易型跨距
             const SimpleSpans = await fetch('/SimpleSpanJSON',  {
                 method: 'GET',
             });
             this.SimpleSpansJSON = await SimpleSpans.json();
-            temp.push('跨距');
             for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
                 if(this.SimpleSpansJSON[i].Expert == this.$route.params.id){
-                    tempArray.push(this.SimpleSpansJSON[i]);
+                    if(this.SimpleSpansJSON[i].BuildItem == '5.4m'){
+                        this.SimpleData.FiveFourmCost = this.SimpleSpansJSON[i].Cost;
+                        this.SimpleData.FiveFourmStructureRisk = this.SimpleSpansJSON[i].StructuralRisk;
+                        this.SimpleData.FiveFourmWorkDifficulty = this.SimpleSpansJSON[i].JobDifficulty;
+                    }else if(this.SimpleSpansJSON[i].BuildItem == '6m'){
+                        this.SimpleData.SixmCost = this.SimpleSpansJSON[i].Cost;
+                        this.SimpleData.SixmStructureRisk = this.SimpleSpansJSON[i].StructuralRisk;
+                        this.SimpleData.SixmWorkDifficulty = this.SimpleSpansJSON[i].JobDifficulty;
+                    }else if(this.SimpleSpansJSON[i].BuildItem == '7.2m'){
+                        this.SimpleData.SevenmCost = this.SimpleSpansJSON[i].Cost;
+                        this.SimpleData.SevenmStructureRisk = this.SimpleSpansJSON[i].StructuralRisk;
+                        this.SimpleData.SevenmWorkDifficulty = this.SimpleSpansJSON[i].JobDifficulty;
+                    }else if(this.SimpleSpansJSON[i].BuildItem == '8m'){
+                        this.SimpleData.eightmCost = this.SimpleSpansJSON[i].Cost;
+                        this.SimpleData.eightmStructureRisk = this.SimpleSpansJSON[i].StructuralRisk;
+                        this.SimpleData.eightmWorkDifficulty = this.SimpleSpansJSON[i].JobDifficulty;
+                    }
                 }
             }
-            temp.push(tempArray);
-            TotalTemp.push(temp);
-            temp = [],
-            tempArray = [];
-
-            // this.EditSimpleData = {...TotalTemp};
-
-            // console.log("-----this.EditSimpleData-----");
-            // console.log(this.EditSimpleData);
-
-            console.log("-----TotalTemp-----");
-            console.log(TotalTemp);
-
         },
         calculator(){
             this.proportiontotoalCost = parseInt(this.SimpleData.GreenhousePipeCost) + parseInt(this.SimpleData.DomeFormCost) + parseInt(this.SimpleData.ArcDistanceCost) + parseInt(this.SimpleData.BasisCost) + parseInt(this.SimpleData.SpanCost) + parseInt(this.SimpleData.ShoulderHeightCost) + parseInt(this.SimpleData.LengthCost) + parseInt(this.SimpleData.ContinuityCost) + parseInt(this.SimpleData.CoatedFilmCost);
