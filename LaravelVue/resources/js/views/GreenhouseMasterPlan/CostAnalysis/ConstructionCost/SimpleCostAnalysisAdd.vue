@@ -3,8 +3,6 @@
         <br>
         <h2>簡易型溫室</h2>
         <hr>
-        
-
         <!-- <v-form v-on:submit.prevent="createSimple" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
         <v-form v-on:submit.prevent="createSimple">
             <div class="d-flex justify-content-around">
@@ -19,10 +17,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td style="width: 15vmin">標準管材</td>
                             <td style="width: 15vmin">
@@ -155,10 +149,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td  style="width: 15vmin">單一圓拱</td>
                             <td style="width: 15vmin">
@@ -441,10 +431,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td style="width: 15vmin">1M-1"</td>
                             <td style="width: 15vmin">
@@ -700,10 +686,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td style="width: 15vmin">5.4m</td>
                             <td style="width: 15vmin">
@@ -836,10 +818,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td style="width: 15vmin">2m</td>
                             <td style="width: 15vmin">
@@ -1002,10 +980,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td style="width: 15vmin">直插30cm</td>
                             <td style="width: 15vmin">
@@ -1201,10 +1175,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td style="width: 15vmin">30m</td>
                             <td style="width: 15vmin">
@@ -1337,10 +1307,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td style="width: 15vmin">PE</td>
                             <td style="width: 15vmin">
@@ -1503,10 +1469,6 @@
                                 <td>作業難度</td>
                             </tr>
                         </thead>
-                        <!-- <tr v-for="(simple, index) in SimpleData" :key="index">
-                            <td>{{simple[1][0].GreenhouseId}}</td>
-                            <td>{{simple[1][0].WindDirection}}</td>
-                        </tr> -->
                         <tr align="center">
                             <td style="width: 15vmin">獨棟</td>
                             <td style="width: 15vmin">
