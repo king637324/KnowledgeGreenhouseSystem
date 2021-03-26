@@ -13,15 +13,13 @@ export function deleteSimpleCost(data) {
     return http().delete(`/GreenhouseMasterPlan/CostAnalysis/SimpleCost/${data[0]}`);
 }
 
-export function UpdateSimpleCost(SimpleCostData, data) {
+export function UpdateSimpleCost(id, data) {
 
-    console.log("-----------SimpleCostData-------------");
-    console.log(SimpleCostData);
-    console.log("-----------SimpleCostData.id-------------");
-    console.log(SimpleCostData.id);
+    console.log("-----------id-------------");
+    console.log(id);
     console.log("-----------data-------------");
     console.log(data);
 
 
-    // return httpFile().post(`/GreenhouseMasterPlan/CostAnalysis/SimpleCost/${SimpleCostData.id}`, data);
+    // return httpFile().post(`/GreenhouseMasterPlan/CostAnalysis/SimpleCost/${id}`, data);
 }

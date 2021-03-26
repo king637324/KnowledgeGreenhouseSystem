@@ -2843,9 +2843,9 @@ export default {
             formData.append('CoatedFilmJobDifficulty',this.SimpleData.CoatedFilmJobDifficulty);
 
             try{
-                const response = await SimpleCostAddService.UpdateSimpleCost(formData);
+                const response = await SimpleCostAddService.UpdateSimpleCost(this.$route.params.id,formData);
                 // 創建成功後，頁面跳轉回 文章知識頁面
-                window.location = '/#/DevelopConstructionCostAnalysisTestment';
+                // window.location = '/#/DevelopConstructionCostAnalysisTestment';
                 // 創建成功的提示視窗
                 this.flashMessage.success({
                     message: '簡易型溫室構造成本參數 資料編輯成功!!',
