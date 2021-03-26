@@ -1,11 +1,20 @@
 <template>
     <div>
-        <br>
-        <h2>溫室構造成本分析</h2>
+        <br id="Top">
+        <h2>
+            溫室構造成本分析
+
+            <button  class="btn btn-primary" v-scroll-to="{ el: '#簡易型溫室' }">
+                簡易型溫室
+            </button>
+            <button  class="btn btn-primary" v-scroll-to="{ el: '#強固型溫室' }">
+                強固型溫室
+            </button>
+        </h2>
         <hr>
 
         <!-- 簡易型溫室 -->
-        <b-card-group deck>
+        <b-card-group deck id="簡易型溫室">
             <!-- 簡 易 型 溫 室 成 本 選 擇 -->
             <b-card header-tag="header">
                 <template #header>
@@ -368,7 +377,7 @@
         <br>
 
         <!-- 強固型溫室 -->
-        <b-card-group deck>
+        <b-card-group deck id="強固型溫室">
             <!-- 強 固 型 溫 室 成 本 選 擇 -->
             <b-card header-tag="header">
                 <template #header>
@@ -376,7 +385,7 @@
                 </template>
                 <b-card-text>
                     <!-- 專家選擇 -->
-                    <b-form-select v-model="StrongIdx" v-on:change="check" style="font-size: 2vmin; width:30vmin">
+                    <b-form-select v-model="StrongIdx" v-on:change="updateRobustData" style="font-size: 2vmin; width:30vmin">
                         <option v-for="(data, index) in StrongExpertOrder" :value="index">
                             {{data}}
                         </option>
@@ -392,7 +401,7 @@
                         <tr align="center" id="溫室型材">
                             <td>溫室型材</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofilesJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -401,7 +410,7 @@
                         <tr align="center" id="屋頂形式">
                             <td>屋頂形式</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofFormsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -410,7 +419,7 @@
                         <tr align="center" id="上拱距">
                             <td>上拱距</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistancesJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -419,7 +428,7 @@
                         <tr align="center" id="基礎">
                             <td>基礎</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundationsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustFoundation" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -428,7 +437,7 @@
                         <tr align="center" id="跨距">
                             <td>跨距</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongSpansJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongSpans" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustSpan" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -437,7 +446,7 @@
                         <tr align="center" id="肩高">
                             <td>肩高</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeightsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -446,7 +455,7 @@
                         <tr align="center" id="長度">
                             <td>長度</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengthsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustLength" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -455,7 +464,7 @@
                         <tr align="center" id="連續性">
                             <td>連續性</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitysJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustContinuity" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -464,7 +473,7 @@
                         <tr align="center" id="披覆膜">
                             <td>披覆膜</td>
                             <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongCoatingFilmsJSON" :key="index">
+                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongCoatingFilms" :key="index">
                                     <input type="radio" :value="robust" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
                                     <label>{{robust.BuildItem}}</label>
                                 </div>
@@ -477,6 +486,14 @@
                         <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
                         <div class="text-right">
                             <a class="btn btn-primary" href = "/#/ConstructionCost/RobustCostAnalysis/Add"><span class="fa fa-plus"></span> 新 增 強 固 型 溫 室 參 數</a>
+                        </div>
+                        <!-- </div>
+                    </div> -->
+                    <!-- <div v-if="$auth.check()">
+                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
+                        <div class="text-right">
+                            <a class="btn btn-warning" :href="'/#/ConstructionCost/RobustCostAnalysis/Edit/'+'123'"><span class="fa fa-edit"></span>修 改 強 固 型 溫 室 參 數</a>
+                            <!-- <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a> -->
                         </div>
                         <!-- </div>
                     </div> -->
@@ -731,10 +748,9 @@ export default {
             SimpleSelectExpert: null, // 所選專家
 
             SelectRobust:[],
-            StrongExpertSelect:[], // 顯示 強固型溫室此專家的參數
             StrongExpertOrder :["==請選擇專家=="],    // 強固型溫室專家清單
             StrongIdx: 0, // 所選強固型溫室專家的id
-            StrongSelectExpert: 0, // 所選強固型溫室專家
+            StrongSelectExpert: null, // 所選強固型溫室專家
 
             SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
             SimpleCostratios: [],               // 簡易型各建構項目比例
@@ -758,15 +774,25 @@ export default {
             SimpleSpans: [],                    // 簡易型跨距
 
             StrongCostRatiosJSON: [],               // 強固型各建構項目比例
+            StrongCostRatios: [],               // 強固型各建構項目比例
             StrongCoatingFilmsJSON: [],             // 強固型披覆膜
+            StrongCoatingFilms: [],             // 強固型披覆膜
             StrongContinuitysJSON: [],              // 強固型連續性
+            StrongContinuitys: [],              // 強固型連續性
             StrongFoundationsJSON: [],              // 強固型基礎
+            StrongFoundations: [],              // 強固型基礎
             StrongGreenhousPprofilesJSON: [],       // 強固型溫室型材
+            StrongGreenhousPprofiles: [],       // 強固型溫室型材
             StrongLengthsJSON: [],                  // 強固型長度
+            StrongLengths: [],                  // 強固型長度
             StrongRoofFormsJSON: [],                // 強固型屋頂形式
+            StrongRoofForms: [],                // 強固型屋頂形式
             StrongShoulderHeightsJSON: [],          // 強固型肩高
+            StrongShoulderHeights: [],          // 強固型肩高
             StrongSpansJSON: [],                    // 強固型跨距
+            StrongSpans: [],                    // 強固型跨距
             StrongUpperArchDistancesJSON: [],       // 強固型上拱距
+            StrongUpperArchDistances: [],       // 強固型上拱距
 
             /* 簡易型溫室 */
             SimpleGreenhouse:[],
@@ -785,8 +811,6 @@ export default {
             SimpleCostAdd:0,
             SimpleStructuralRiskAdd:0,
             SimpleJobDifficultyAdd:0,
-
-
 
             /* 強固型溫室 */
             RobustGreenhouse:[],
@@ -942,90 +966,124 @@ export default {
                 method: 'GET',
             });
             this.StrongCostRatiosJSON = await StrongCostRatios.json();
-            // console.log("------強固型各建構項目比例------");
-            // console.log("------this.StrongCostRatiosJSON-----");
-            // console.log(this.StrongCostRatiosJSON);
+            for(var i = 0 ; i < this.StrongCostRatiosJSON.length ; i++){
+                if(this.StrongCostRatiosJSON[i].Expert == "System"){
+                    this.StrongCostRatios.push(this.StrongCostRatiosJSON[i]);
+                }
+            }
 
             // 強固型披覆膜
             const StrongCoatingFilms = await fetch('/StrongCoatingFilmJSON',  {
                 method: 'GET',
             });
             this.StrongCoatingFilmsJSON = await StrongCoatingFilms.json();
-            // console.log("------強固型披覆膜------");
-            // console.log("------this.StrongCoatingFilmsJSON-----");
-            // console.log(this.StrongCoatingFilmsJSON);
+            for(var i = 0 ; i < this.StrongCoatingFilmsJSON.length ; i++){
+                if(this.StrongCoatingFilmsJSON[i].Expert == "System"){
+                    this.StrongCoatingFilms.push(this.StrongCoatingFilmsJSON[i]);
+                }
+            }
 
             // 強固型連續性
             const StrongContinuitys = await fetch('/StrongContinuityJSON',  {
                 method: 'GET',
             });
             this.StrongContinuitysJSON = await StrongContinuitys.json();
-            // console.log("------強固型連續性------");
-            // console.log("------this.StrongContinuitysJSON-----");
-            // console.log(this.StrongContinuitysJSON);
+            for(var i = 0 ; i < this.StrongContinuitysJSON.length ; i++){
+                if(this.StrongContinuitysJSON[i].Expert == "System"){
+                    this.StrongContinuitys.push(this.StrongContinuitysJSON[i]);
+                }
+            }
 
             // 強固型基礎
             const StrongFoundations = await fetch('/StrongFoundationJSON',  {
                 method: 'GET',
             });
             this.StrongFoundationsJSON = await StrongFoundations.json();
-            // console.log("------強固型基礎------");
-            // console.log("------this.StrongFoundationsJSON-----");
-            // console.log(this.StrongFoundationsJSON);
+            for(var i = 0 ; i < this.StrongFoundationsJSON.length ; i++){
+                if(this.StrongFoundationsJSON[i].Expert == "System"){
+                    this.StrongFoundations.push(this.StrongFoundationsJSON[i]);
+                }
+            }
 
             // 強固型溫室型材
             const StrongGreenhousPprofiles = await fetch('/StrongGreenhouseProfileJSON',  {
                 method: 'GET',
             });
             this.StrongGreenhousPprofilesJSON = await StrongGreenhousPprofiles.json();
-            // console.log("------強固型溫室型材------");
-            // console.log("------this.StrongGreenhousPprofilesJSON-----");
-            // console.log(this.StrongGreenhousPprofilesJSON);
+            for(var i = 0 ; i < this.StrongGreenhousPprofilesJSON.length ; i++){
+                if(this.StrongGreenhousPprofilesJSON[i].Expert == "System"){
+                    this.StrongGreenhousPprofiles.push(this.StrongGreenhousPprofilesJSON[i]);
+                }
+            }
 
             // 強固型長度
             const StrongLengths = await fetch('/StrongLengthJSON',  {
                 method: 'GET',
             });
             this.StrongLengthsJSON = await StrongLengths.json();
-            // console.log("------強固型長度------");
-            // console.log("------this.StrongLengthsJSON-----");
-            // console.log(this.StrongLengthsJSON);
+            for(var i = 0 ; i < this.StrongLengthsJSON.length ; i++){
+                if(this.StrongLengthsJSON[i].Expert == "System"){
+                    this.StrongLengths.push(this.StrongLengthsJSON[i]);
+                }
+            }
 
             // 強固型屋頂形式
             const StrongRoofForms = await fetch('/StrongRoofFormJSON',  {
                 method: 'GET',
             });
             this.StrongRoofFormsJSON = await StrongRoofForms.json();
-            // console.log("------強固型屋頂形式------");
-            // console.log("------this.StrongRoofFormsJSON-----");
-            // console.log(this.StrongRoofFormsJSON);
+            for(var i = 0 ; i < this.StrongRoofFormsJSON.length ; i++){
+                if(this.StrongRoofFormsJSON[i].Expert == "System"){
+                    this.StrongRoofForms.push(this.StrongRoofFormsJSON[i]);
+                }
+            }
 
             // 強固型肩高
             const StrongShoulderHeights = await fetch('/StrongShoulderHeightJSON',  {
                 method: 'GET',
             });
             this.StrongShoulderHeightsJSON = await StrongShoulderHeights.json();
-            // console.log("------強固型肩高------");
-            // console.log("------this.StrongShoulderHeightsJSON-----");
-            // console.log(this.StrongShoulderHeightsJSON);
+            for(var i = 0 ; i < this.StrongShoulderHeightsJSON.length ; i++){
+                if(this.StrongShoulderHeightsJSON[i].Expert == "System"){
+                    this.StrongShoulderHeights.push(this.StrongShoulderHeightsJSON[i]);
+                }
+            }
 
             // 強固型跨距
             const StrongSpans = await fetch('/StrongSpanJSON',  {
                 method: 'GET',
             });
             this.StrongSpansJSON = await StrongSpans.json();
-            // console.log("------強固型跨距------");
-            // console.log("------this.StrongSpansJSON-----");
-            // console.log(this.StrongSpansJSON);
+            for(var i = 0 ; i < this.StrongSpansJSON.length ; i++){
+                if(this.StrongSpansJSON[i].Expert == "System"){
+                    this.StrongSpans.push(this.StrongSpansJSON[i]);
+                }
+            }
 
             // 強固型上拱距
             const StrongUpperArchDistances = await fetch('/StrongUpperArchDistanceJSON',  {
                 method: 'GET',
             });
             this.StrongUpperArchDistancesJSON = await StrongUpperArchDistances.json();
-            // console.log("------強固型上拱距------");
-            // console.log("------this.StrongUpperArchDistancesJSON-----");
-            // console.log(this.StrongUpperArchDistancesJSON);
+            for(var i = 0 ; i < this.StrongUpperArchDistancesJSON.length ; i++){
+                if(this.StrongUpperArchDistancesJSON[i].Expert == "System"){
+                    this.StrongUpperArchDistances.push(this.StrongUpperArchDistancesJSON[i]);
+                }
+            }
+
+            /* 強固型溫室專家選擇過濾 */
+            var Strongfilterfalg = false;
+            for(var i = 0 ; i < this.StrongCostRatiosJSON.length ; i++){
+                Strongfilterfalg = false;
+                // 篩選重複出現的專家
+                for(var j = 0 ; j < this.StrongExpertOrder.length ; j++){
+                    if(this.StrongExpertOrder[j] == this.StrongCostRatiosJSON[i].Expert){
+                        Strongfilterfalg = true;
+                        break;
+                    }
+                }
+                if(!Strongfilterfalg) this.StrongExpertOrder.push(this.StrongCostRatiosJSON[i].Expert);
+            }
 
         },updateSimpleRadio(){
             this.SelectSimple = [];
@@ -1183,7 +1241,6 @@ export default {
             }
 
         },updateSimpleData(){
-            console.log("---------updateSimpleData-----------");
             this.SimpleGreenhousePipe = null,  // 簡易型溫室管材
             this.SimpleDomeForm = null,  // 簡易型圓頂形式
             this.SimpleCircularArchDistance = null,  // 簡易型圓拱距
@@ -1280,9 +1337,108 @@ export default {
                     this.SimpleSpans.push(this.SimpleSpansJSON[i]);
                 }
             }
+        },updateRobustData(){
+            console.log("---------updateRobustData-----------");
+            this.RobustGreenhouseProfile = null,   // 溫室型材
+            this.RobustRoofForm = null,   // 屋頂形式
+            this.RobustUpperArch = null,   // 上拱距
+            this.RobustFoundation = null,   // 強固型基礎
+            this.RobustSpan = null,   // 強固型跨距
+            this.RobustShoulderHeight = null,   // 強固型肩高
+            this.RobustLength = null,   // 強固型長度
+            this.RobustContinuity = null,   // 強固型連續性
+            this.RobustCoatingFilm = null;   // 強固型披覆膜
+
+            // 設置所選的專家
+            if(this.StrongIdx == 0){ // StrongIdx = 0 相當於沒有選，所以要預設為 System
+                this.StrongSelectExpert = "System";
+            }else{
+                this.StrongSelectExpert = this.StrongExpertOrder[this.StrongIdx];
+            }
+
+            // 強固型各建構項目比例
+            this.StrongCostRatios = [];
+            for(var i = 0 ; i < this.StrongCostRatiosJSON.length ; i++){
+                if(this.StrongCostRatiosJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongCostRatios.push(this.StrongCostRatiosJSON[i]);
+                }
+            }
+
+            // 強固型披覆膜
+            this.StrongCoatingFilms = [];
+            for(var i = 0 ; i < this.StrongCoatingFilmsJSON.length ; i++){
+                if(this.StrongCoatingFilmsJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongCoatingFilms.push(this.StrongCoatingFilmsJSON[i]);
+                }
+            }
+
+            // 強固型連續性
+            this.StrongContinuitys = [];
+            for(var i = 0 ; i < this.StrongContinuitysJSON.length ; i++){
+                if(this.StrongContinuitysJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongContinuitys.push(this.StrongContinuitysJSON[i]);
+                }
+            }
+
+            // 強固型基礎
+            this.StrongFoundations = [];
+            for(var i = 0 ; i < this.StrongFoundationsJSON.length ; i++){
+                if(this.StrongFoundationsJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongFoundations.push(this.StrongFoundationsJSON[i]);
+                }
+            }
+
+            // 強固型溫室型材
+            this.StrongGreenhousPprofiles = [];
+            for(var i = 0 ; i < this.StrongGreenhousPprofilesJSON.length ; i++){
+                if(this.StrongGreenhousPprofilesJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongGreenhousPprofiles.push(this.StrongGreenhousPprofilesJSON[i]);
+                }
+            }
+
+            // 強固型長度
+            this.StrongLengths = [];
+            for(var i = 0 ; i < this.StrongLengthsJSON.length ; i++){
+                if(this.StrongLengthsJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongLengths.push(this.StrongLengthsJSON[i]);
+                }
+            }
+
+            // 強固型屋頂形式
+            this.StrongRoofForms = [];
+            for(var i = 0 ; i < this.StrongRoofFormsJSON.length ; i++){
+                if(this.StrongRoofFormsJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongRoofForms.push(this.StrongRoofFormsJSON[i]);
+                }
+            }
+
+            // 強固型肩高
+            this.StrongShoulderHeights = [];
+            for(var i = 0 ; i < this.StrongShoulderHeightsJSON.length ; i++){
+                if(this.StrongShoulderHeightsJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongShoulderHeights.push(this.StrongShoulderHeightsJSON[i]);
+                }
+            }
+
+            // 強固型跨距
+            this.StrongSpans = [];
+            for(var i = 0 ; i < this.StrongSpansJSON.length ; i++){
+                if(this.StrongSpansJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongSpans.push(this.StrongSpansJSON[i]);
+                }
+            }
+
+            // 強固型上拱距
+            this.StrongUpperArchDistances = [];
+            for(var i = 0 ; i < this.StrongUpperArchDistancesJSON.length ; i++){
+                if(this.StrongUpperArchDistancesJSON[i].Expert == this.StrongSelectExpert){
+                    this.StrongUpperArchDistances.push(this.StrongUpperArchDistancesJSON[i]);
+                }
+            }
+
+            
         },check(){
             console.log("---------檢查裡-----------");
-
         }
     }
 }

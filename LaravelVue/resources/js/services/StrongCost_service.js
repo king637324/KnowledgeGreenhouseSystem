@@ -4,24 +4,21 @@ export function createStrongCost(data) {
     // console.log("------createKnowledgeData-------");
     // console.log(data);
 
-    return httpFile().post('/GreenhouseMasterPlan/CostAnalysis/StrongCost', data);
+    // return httpFile().post('/GreenhouseMasterPlan/CostAnalysis/StrongCost', data);
+}
+
+export function UpdateStrongCost(id, data) {
+
+    console.log("-----------id-------------");
+    console.log(id);
+    console.log("-----------data-------------");
+    console.log(data);
+
+    // return httpFile().post(`/GreenhouseMasterPlan/CostAnalysis/StrongCost/${id}`, data);
 }
 
 export function deleteStrongCost(data) {
     // console.log("------deleteKnowledge-------");
     // console.log(data);
-    return http().delete(`/GreenhouseMasterPlan/CostAnalysis/StrongCost/${data[0]}`);
-}
-
-export function UpdateStrongCost(EditKnowledgeData, data) {
-
-    // console.log("-----------EditKnowledgeData-------------");
-    // console.log(EditKnowledgeData);
-    // console.log("-----------EditKnowledgeData.id-------------");
-    // console.log(EditKnowledgeData.id);
-    // console.log("-----------data-------------");
-    // console.log(data);
-
-
-    return httpFile().post(`/GreenhouseMasterPlan/CostAnalysis/StrongCost/${EditKnowledgeData.id}`, data);
+    // return http().delete(`/GreenhouseMasterPlan/CostAnalysis/StrongCost/${data[0]}`);
 }
