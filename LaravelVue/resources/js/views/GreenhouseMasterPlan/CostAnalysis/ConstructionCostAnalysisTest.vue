@@ -1219,6 +1219,7 @@ export default {
                 temp = [];
                 temp.push('披覆膜');
                 temp.push(this.RobustCoatingFilm);
+                this.SelectRobust.push(temp); // 披覆膜
             }
 
             if(this.SelectRobust.length == 9 ){

@@ -675,7 +675,6 @@
                     <hr>
                 </div>
                 <div class="p-2 bd-highlight">
-                    
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">跨距</span></p>
                     <table class="table" align="center" style="border:1px solid #dee2e6;" border='1'>
                         <thead align="center" class="table-active">
@@ -1162,7 +1161,6 @@
                         </tr>
                     </table>
                     <hr>
-                    
                 </div>
                 <div class="p-2 bd-highlight">
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">長度</span></p>
@@ -1591,19 +1589,6 @@
                         </tr>
                     </table>
                     <hr>
-                    
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-around">
-                <div class="p-2 bd-highlight">
-                    
-                </div>
-                <div class="p-2 bd-highlight">
-
-                </div>
-                <div class="p-2 bd-highlight">
-
                 </div>
             </div>
             

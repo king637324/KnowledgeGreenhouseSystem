@@ -45,7 +45,7 @@ class SimpleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)  // 創建作物資訊
+    public function store(Request $request)  // 創建簡易型溫室成本參數
     {
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([

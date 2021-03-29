@@ -1,10 +1,10 @@
 import { http, httpFile } from './http_service';
 
 export function createStrongCost(data) {
-    // console.log("------createKnowledgeData-------");
-    // console.log(data);
+    console.log("------createStrongCost的service裡-------");
+    console.log(data);
 
-    // return httpFile().post('/GreenhouseMasterPlan/CostAnalysis/StrongCost', data);
+    return httpFile().post('/GreenhouseMasterPlan/CostAnalysis/StrongCost', data);
 }
 
 export function UpdateStrongCost(id, data) {
