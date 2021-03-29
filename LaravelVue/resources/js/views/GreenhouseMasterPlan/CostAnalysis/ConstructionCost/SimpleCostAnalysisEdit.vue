@@ -2242,8 +2242,8 @@ export default {
         }
 
         // this.$route.params.id
-        console.log("-----this.$route.params.id-----");
-        console.log(this.$route.params.id);
+        // console.log("-----this.$route.params.id-----");
+        // console.log(this.$route.params.id);
         this.getJson();
 
     },

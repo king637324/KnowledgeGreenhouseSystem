@@ -1311,7 +1311,7 @@
                         <v-text-field
                             v-model="StrongData.GreenhouseProfileCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1321,7 +1321,7 @@
                         <v-text-field
                             v-model="StrongData.GreenhouseProfileStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1331,7 +1331,7 @@
                         <v-text-field
                             v-model="StrongData.GreenhouseProfileJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1344,7 +1344,7 @@
                         <v-text-field
                             v-model="StrongData.RoofFormCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1354,7 +1354,7 @@
                         <v-text-field
                             v-model="StrongData.RoofFormStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1364,7 +1364,7 @@
                         <v-text-field
                             v-model="StrongData.RoofFormJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1377,7 +1377,7 @@
                         <v-text-field
                             v-model="StrongData.UpperArchCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1387,7 +1387,7 @@
                         <v-text-field
                             v-model="StrongData.UpperArchStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1397,7 +1397,7 @@
                         <v-text-field
                             v-model="StrongData.UpperArchJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1410,7 +1410,7 @@
                         <v-text-field
                             v-model="StrongData.BasisCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1420,7 +1420,7 @@
                         <v-text-field
                             v-model="StrongData.BasisStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1430,7 +1430,7 @@
                         <v-text-field
                             v-model="StrongData.BasisJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1443,7 +1443,7 @@
                         <v-text-field
                             v-model="StrongData.SpanCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1453,7 +1453,7 @@
                         <v-text-field
                             v-model="StrongData.SpanStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1463,7 +1463,7 @@
                         <v-text-field
                             v-model="StrongData.SpanJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1476,7 +1476,7 @@
                         <v-text-field
                             v-model="StrongData.ShoulderHeightCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1486,7 +1486,7 @@
                         <v-text-field
                             v-model="StrongData.ShoulderHeightStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1496,7 +1496,7 @@
                         <v-text-field
                             v-model="StrongData.ShoulderHeightJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1509,7 +1509,7 @@
                         <v-text-field
                             v-model="StrongData.LengthCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1519,7 +1519,7 @@
                         <v-text-field
                             v-model="StrongData.LengthStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1529,7 +1529,7 @@
                         <v-text-field
                             v-model="StrongData.LengthJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1542,7 +1542,7 @@
                         <v-text-field
                             v-model="StrongData.ContinuityCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1552,7 +1552,7 @@
                         <v-text-field
                             v-model="StrongData.ContinuityStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1562,7 +1562,7 @@
                         <v-text-field
                             v-model="StrongData.ContinuityJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1575,7 +1575,7 @@
                         <v-text-field
                             v-model="StrongData.CoatedFilmCost"
                             :rules="StrongRules"
-                            label="請輸入成本性參數"
+                            label="請輸入成本性參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1585,7 +1585,7 @@
                         <v-text-field
                             v-model="StrongData.CoatedFilmStructuralRisk"
                             :rules="StrongRules"
-                            label="請輸入結構風險參數"
+                            label="請輸入結構風險參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
@@ -1595,7 +1595,7 @@
                         <v-text-field
                             v-model="StrongData.CoatedFilmJobDifficulty"
                             :rules="StrongRules"
-                            label="請輸入作業難度參數"
+                            label="請輸入作業難度參數(%)"
                             required
                             v-on:change="calculator"
                         ></v-text-field>
