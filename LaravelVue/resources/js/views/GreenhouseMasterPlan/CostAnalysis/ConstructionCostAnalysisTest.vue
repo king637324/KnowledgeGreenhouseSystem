@@ -738,6 +738,9 @@
 </template>
 
 <script>
+import * as SimpleCostAddService from '../../../services/SimpleCost_service';
+import * as StrongCostAddService from '../../../services/StrongCost_service';
+
 export default {
     data(){
         return{
@@ -1338,7 +1341,6 @@ export default {
                 }
             }
         },updateRobustData(){
-            console.log("---------updateRobustData-----------");
             this.RobustGreenhouseProfile = null,   // 溫室型材
             this.RobustRoofForm = null,   // 屋頂形式
             this.RobustUpperArch = null,   // 上拱距
@@ -1437,6 +1439,60 @@ export default {
             }
 
             
+        },deleteSimple: async function(DeleteExpert){    // 刪除簡易型溫室參數 函式呼叫
+            if(DeleteExpert == 'System'){
+                window.alert("此為系統參數，不可刪除");
+                return;
+            }else if(!window.confirm(`你確定要刪除 ${DeleteExpert} 的 簡易型溫室參數 嗎? 一旦刪除將無法復原`)){
+                return;
+            }
+
+            try {
+                // 呼叫 SimpleCost_service.js 的 deleteSimpleCost
+                await SimpleCostAddService.deleteSimpleCost(DeleteExpert);
+                // 創建成功後，頁面跳轉回 溫室構造成本分析
+                window.location.reload();
+                
+                // 刪除成功的提示視窗
+                this.flashMessage.success({
+                    message: '簡易型溫室參數 資料刪除成功!!',
+                    time: 3000
+                });
+
+            } catch (error) {
+                // 刪除失敗的提示視窗
+                this.flashMessage.error({
+                    message: '簡易型溫室參數 資料刪除失敗!!',
+                    time: 5000
+                });
+            }
+        },deleteRobust: async function(DeleteExpert){    // 刪除強固型溫室參數 函式呼叫
+            if(DeleteExpert == 'System'){
+                window.alert("此為系統參數，不可刪除");
+                return;
+            }else if(!window.confirm(`你確定要刪除 ${DeleteExpert} 的 強固型溫室參數 嗎? 一旦刪除將無法復原`)){
+                return;
+            }
+            // 創建成功後，頁面跳轉回 溫室構造成本分析
+            window.location.reload();
+
+            try {
+                // 呼叫 StrongCost_service.js 的 deleteStrongCost
+                await StrongCostAddService.deleteStrongCost(DeleteExpert);
+
+                // 刪除成功的提示視窗
+                this.flashMessage.success({
+                    message: '強固型溫室參數 資料刪除成功!!',
+                    time: 3000
+                });
+
+            } catch (error) {
+                // 刪除失敗的提示視窗
+                this.flashMessage.error({
+                    message: '強固型溫室參數 資料刪除失敗!!',
+                    time: 5000
+                });
+            }
         },check(){
             console.log("---------檢查裡-----------");
         }

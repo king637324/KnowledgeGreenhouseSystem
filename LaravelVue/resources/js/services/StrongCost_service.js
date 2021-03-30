@@ -18,7 +18,8 @@ export function UpdateStrongCost(id, data) {
 }
 
 export function deleteStrongCost(data) {
-    // console.log("------deleteKnowledge-------");
+    // console.log("------deleteStrongCost-------");
     // console.log(data);
-    // return http().delete(`/GreenhouseMasterPlan/CostAnalysis/StrongCost/${data[0]}`);
+
+    return http().delete(`/GreenhouseMasterPlan/CostAnalysis/StrongCost/${data}`);
 }

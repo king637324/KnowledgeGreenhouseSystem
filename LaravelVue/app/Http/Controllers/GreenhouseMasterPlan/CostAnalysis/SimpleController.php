@@ -1428,7 +1428,248 @@ class SimpleController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        /******** 溫室管材  ********/
+        // 標準管材
+        $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','標準管材');
+        $GreenhousePipe->delete();
+
+        // 高強管材
+        $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','高強管材');
+        $GreenhousePipe->delete();
+
+        // 耐蝕管材
+        $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','耐蝕管材');
+        $GreenhousePipe->delete();
+
+        // 高強高耐蝕管材
+        $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','高強高耐蝕管材');
+        $GreenhousePipe->delete();
+
+        /******** 圓頂形式  ********/
+        // 單一圓拱
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','單一圓拱');
+        $Domeform->delete();
+
+        // 下橫樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','下橫樑');
+        $Domeform->delete();
+
+        // 上1/3橫梁
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','上1/3橫梁');
+        $Domeform->delete();
+        
+        // 上二橫梁
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','上二橫梁');
+        $Domeform->delete();
+
+        // T型樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','T型樑');
+        $Domeform->delete();
+        
+        // 三支集中樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','三支集中樑');
+        $Domeform->delete();
+
+        // 三支垂支梁
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','三支垂支梁');
+        $Domeform->delete();
+
+        // V型樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','V型樑');
+        $Domeform->delete();
+
+        // W型樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','W型樑');
+        $Domeform->delete();
+
+        /******** 圓拱距  ********/
+        // 1M-1"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','1M-1"');
+        $CircularArchDistance->delete();
+
+        // 1M-1-1/4"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','1M-1-1/4"');
+        $CircularArchDistance->delete();
+
+        // 1M-1-1/2"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','1M-1-1/2"');
+        $CircularArchDistance->delete();
+
+        // 1.5M-1-1/2"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','1.5M-1-1/2"');
+        $CircularArchDistance->delete();
+
+        // 2M-2"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','2M-2"');
+        $CircularArchDistance->delete();
+
+        // 0.5M-1"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','0.5M-1"');
+        $CircularArchDistance->delete();
+
+        // 0.5-3/4"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','0.5-3/4"');
+        $CircularArchDistance->delete();
+
+        // 0.5-1/2"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','0.5-1/2"');
+        $CircularArchDistance->delete();
+
+        /******** 基礎  ********/
+        // 直插40cm
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插40cm');
+        $Foundation->delete();
+
+        // 直插50cm
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插50cm');
+        $Foundation->delete();
+
+        // 直插30cm
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插30cm');
+        $Foundation->delete();
+
+        // 直插40cm+地錨
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插40cm+地錨');
+        $Foundation->delete();
+
+        // 直插50cm+地錨
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插50cm+地錨');
+        $Foundation->delete();
+
+        // 直插30cm+地錨
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插30cm+地錨');
+        $Foundation->delete();
+
+        /******** 跨距  ********/
+        // 5.4m
+        $Span  = simplespan::where('Expert',$id)->where('BuildItem','5.4m');
+        $Span->delete();
+
+        // 6m
+        $Span  = simplespan::where('Expert',$id)->where('BuildItem','6m');
+        $Span->delete();
+
+        // 7.2m
+        $Span  = simplespan::where('Expert',$id)->where('BuildItem','7.2m');
+        $Span->delete();
+
+        // 8m
+        $Span  = simplespan::where('Expert',$id)->where('BuildItem','8m');
+        $Span->delete();
+
+        /******** 肩高  ********/
+        // 2m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','2m');
+        $ShoulderHeight->delete();
+
+        // 2.5m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','2.5m');
+        $ShoulderHeight->delete();
+
+        // 3m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','3m');
+        $ShoulderHeight->delete();
+
+        // 3.5m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','3.5m');
+        $ShoulderHeight->delete();
+
+        // 4m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','4m');
+        $ShoulderHeight->delete();
+
+        /******** 長度  ********/
+        // 30m
+        $Length  = simplelength::where('Expert',$id)->where('BuildItem','30m');
+        $Length->delete();
+
+        // 60m
+        $Length  = simplelength::where('Expert',$id)->where('BuildItem','60m');
+        $Length->delete();
+
+        // 90m
+        $Length  = simplelength::where('Expert',$id)->where('BuildItem','90m');
+        $Length->delete();
+
+        // 120m
+        $Length  = simplelength::where('Expert',$id)->where('BuildItem','120m');
+        $Length->delete();
+
+        /******** 連續性  ********/
+        // 獨棟
+        $Continuity  = simplecontinuity::where('Expert',$id)->where('BuildItem','獨棟');
+        $Continuity->delete();
+
+        // 二連棟
+        $Continuity  = simplecontinuity::where('Expert',$id)->where('BuildItem','二連棟');
+        $Continuity->delete();
+
+        // 三連棟
+        $Continuity  = simplecontinuity::where('Expert',$id)->where('BuildItem','三連棟');
+        $Continuity->delete();
+
+        // 四連棟
+        $Continuity  = simplecontinuity::where('Expert',$id)->where('BuildItem','四連棟');
+        $Continuity->delete();
+
+        /******** 披覆膜  ********/
+        // PE
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','PE');
+        $CoatingFilm->delete();
+
+        // PO
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','PO');
+        $CoatingFilm->delete();
+
+        // 硬質塑材
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','硬質塑材');
+        $CoatingFilm->delete();
+
+        // ETFE
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','ETFE');
+        $CoatingFilm->delete();
+
+        // 玻璃
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','玻璃');
+        $CoatingFilm->delete();
+
+        /******** 各成本比例  ********/
+        // 溫室管材
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','溫室管材');
+        $CostRatio->delete();
+
+        // 圓頂形式
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','圓頂形式');
+        $CostRatio->delete();
+
+        // 圓拱距
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','圓拱距');
+        $CostRatio->delete();
+
+        // 基礎
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','基礎');
+        $CostRatio->delete();
+
+        // 跨距
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','跨距');
+        $CostRatio->delete();
+
+        // 肩高
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','肩高');
+        $CostRatio->delete();
+
+        // 長度
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','長度');
+        $CostRatio->delete();
+
+        // 連續性
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','連續性');
+        $CostRatio->delete();
+
+        // 披覆膜
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','披覆膜');
+        $CostRatio->delete();
     }
 
     /* 簡易型各建構項目比例 */

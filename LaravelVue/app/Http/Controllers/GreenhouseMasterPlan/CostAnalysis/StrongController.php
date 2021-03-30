@@ -1261,7 +1261,208 @@ class StrongController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /******** 溫室型材  ********/
+        // 標準型材
+        $GreenhouseProfile  = stronggreenhouseprofile::where('Expert',$id)->where('BuildItem','標準型材');
+        $GreenhouseProfile->delete();
+        
+        // 高強型材        
+        $GreenhouseProfile  = stronggreenhouseprofile::where('Expert',$id)->where('BuildItem','高強型材');
+        $GreenhouseProfile->delete();
+        
+        // 耐蝕型材
+        $GreenhouseProfile  = stronggreenhouseprofile::where('Expert',$id)->where('BuildItem','耐蝕型材');
+        $GreenhouseProfile->delete();
+        
+        // 高強高耐蝕型材
+        $GreenhouseProfile  = stronggreenhouseprofile::where('Expert',$id)->where('BuildItem','高強高耐蝕型材');
+        $GreenhouseProfile->delete();
+
+        /******** 屋頂形式  ********/
+        // 圓頂UBP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','圓頂UBP');
+        $GroofForm->delete();
+        
+        // 圓力霸UTP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','圓力霸UTP');
+        $GroofForm->delete();
+        
+        // 山型VBP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','山型VBP');
+        $GroofForm->delete();
+        
+        // 山力霸VTP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','山力霸VTP');
+        $GroofForm->delete();
+        
+        // W型力霸
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','W型力霸');
+        $GroofForm->delete();
+        
+        // 單斜SP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','單斜SP');
+        $GroofForm->delete();
+        
+        /******** 上拱距  ********/
+        // 2M
+        $UpperArchDistance  = strongupperarchdistance::where('Expert',$id)->where('BuildItem','2M');
+        $UpperArchDistance->delete();
+        
+        // 1.33M
+        $UpperArchDistance  = strongupperarchdistance::where('Expert',$id)->where('BuildItem','1.33M');
+        $UpperArchDistance->delete();
+        
+        // 1M
+        $UpperArchDistance  = strongupperarchdistance::where('Expert',$id)->where('BuildItem','1M');
+        $UpperArchDistance->delete();
+
+        /******** 基礎  ********/
+        // 獨立基礎
+        $Foundation  = strongfoundation::where('Expert',$id)->where('BuildItem','獨立基礎');
+        $Foundation->delete();
+        
+        // 連續樑
+        $Foundation  = strongfoundation::where('Expert',$id)->where('BuildItem','連續樑');
+        $Foundation->delete();
+        
+        // 快速基礎
+        $Foundation  = strongfoundation::where('Expert',$id)->where('BuildItem','快速基礎');
+        $Foundation->delete();
+
+        /******** 跨距  ********/
+        // 6m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','6m');
+        $Span->delete();
+
+        // 7m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','7m');
+        $Span->delete();
+        
+        // 8m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','8m');
+        $Span->delete();
+        
+        // 9m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','9m');
+        $Span->delete();
+        
+        // 10m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','10m');
+        $Span->delete();
+
+        /******** 肩高  ********/
+        // 3m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','3m');
+        $ShoulderHeight->delete();
+        
+        // 3.5m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','3.5m');
+        $ShoulderHeight->delete();
+        
+        // 4m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','4m');
+        $ShoulderHeight->delete();
+        
+        // 4.5m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','4.5m');
+        $ShoulderHeight->delete();
+        
+        // 5m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','5m');
+        $ShoulderHeight->delete();
+
+        /******** 長度  ********/
+        // 30m
+        $Length  = stronglength::where('Expert',$id)->where('BuildItem','30m');
+        $Length->delete();
+        
+        // 60m
+        $Length  = stronglength::where('Expert',$id)->where('BuildItem','60m');
+        $Length->delete();
+        
+        // 90m
+        $Length  = stronglength::where('Expert',$id)->where('BuildItem','90m');
+        $Length->delete();
+        
+        // 120m
+        $Length  = stronglength::where('Expert',$id)->where('BuildItem','120m');
+        $Length->delete();
+
+        /******** 連續性  ********/
+        // 獨棟
+        $Continuity  = strongcontinuity::where('Expert',$id)->where('BuildItem','獨棟');
+        $Continuity->delete();
+        
+        // 二連棟
+        $Continuity  = strongcontinuity::where('Expert',$id)->where('BuildItem','二連棟');
+        $Continuity->delete();
+        
+        // 三連棟
+        $Continuity  = strongcontinuity::where('Expert',$id)->where('BuildItem','三連棟');
+        $Continuity->delete();
+        
+        // 四連棟
+        $Continuity  = strongcontinuity::where('Expert',$id)->where('BuildItem','四連棟');
+        $Continuity->delete();
+
+
+        /******** 披覆膜  ********/
+        // PE
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','PE');
+        $CoatingFilm->delete();
+        
+        // PO
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','PO');
+        $CoatingFilm->delete();
+        
+        // 硬質塑材
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','硬質塑材');
+        $CoatingFilm->delete();
+        
+        // ETFE
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','ETFE');
+        $CoatingFilm->delete();
+        
+        // 玻璃
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','玻璃');
+        $CoatingFilm->delete();
+
+        /******** 各成本比例  ********/
+        // 溫室型材
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','溫室型材');
+        $Costratio->delete();
+        
+        // 屋頂形式
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','屋頂形式');
+        $Costratio->delete();
+        
+        // 上拱距
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','上拱距');
+        $Costratio->delete();
+
+        // 基礎
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','基礎');
+        $Costratio->delete();
+        
+        // 跨距        
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','跨距');
+        $Costratio->delete();
+        
+        // 肩高
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','肩高');
+        $Costratio->delete();
+        
+        // 長度
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','長度');
+        $Costratio->delete();
+        
+        // 連續性
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','連續性');
+        $Costratio->delete();
+        
+        // 披覆膜
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','披覆膜');
+        $Costratio->delete();
     }
 
     /* 強固型各建構項目比例 */

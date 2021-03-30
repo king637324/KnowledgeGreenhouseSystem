@@ -2400,8 +2400,8 @@ export default {
 
             try{
                 const response = await StrongCostAddService.UpdateStrongCost(this.$route.params.id,formData);
-                // 創建成功後，頁面跳轉回 文章知識頁面
-                // window.location = '/#/DevelopConstructionCostAnalysisTestment';
+                // 創建成功後，頁面跳轉回 溫室構造成本分析
+                window.location = '/#/DevelopConstructionCostAnalysisTestment';
                 // 創建成功的提示視窗
                 this.flashMessage.success({
                     message: '強固型溫室構造成本參數 資料編輯成功!!',

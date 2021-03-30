@@ -19,7 +19,8 @@ export function UpdateSimpleCost(id, data) {
 }
 
 export function deleteSimpleCost(data) {
-    // console.log("------deleteKnowledge-------");
+    // console.log("------deleteSimpleCost-------");
     // console.log(data);
-    // return http().delete(`/GreenhouseMasterPlan/CostAnalysis/SimpleCost/${data[0]}`);
+
+    return http().delete(`/GreenhouseMasterPlan/CostAnalysis/SimpleCost/${data}`);
 }
