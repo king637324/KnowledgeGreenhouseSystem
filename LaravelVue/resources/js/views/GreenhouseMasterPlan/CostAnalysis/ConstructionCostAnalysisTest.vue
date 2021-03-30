@@ -120,17 +120,16 @@
                     <h6>備註：請選取欲建置的溫室規格</h6>
                     <!-- <div v-if="$auth.check()">
                         <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-                        <div class="text-right">
-                            <a class="btn btn-primary" href = "/#/ConstructionCost/SimpleCostAnalysis/Add"><span class="fa fa-plus"></span> 新 增 簡 易 型 溫 室 參 數</a>
-                            <!-- <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a> -->
-                        </div>
-                        <!-- </div>
-                    </div> -->
-                    <!-- <div v-if="$auth.check()">
-                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-                        <div class="text-right">
-                            <a class="btn btn-warning" :href="'/#/ConstructionCost/SimpleCostAnalysis/Edit/'+'123'"><span class="fa fa-edit"></span>修 改 簡 易 型 溫 室 參 數</a>
-                            <!-- <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a> -->
+                        <div class="d-flex justify-content-around">
+                            <div class="p-2 bd-highlight">
+                                <a class="btn btn-primary" href = "/#/ConstructionCost/SimpleCostAnalysis/Add"><span class="fa fa-plus"></span> 新 增 簡 易 型 溫 室 參 數</a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <a class="btn btn-warning" :href="'/#/ConstructionCost/SimpleCostAnalysis/Edit/'+SimpleSelectExpert"><span class="fa fa-edit"></span> 修 改 {{SimpleSelectExpert}} 溫 室 參 數</a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <button class="btn btn-danger"  v-on:click="deleteSimple(SimpleSelectExpert)"><span class="fa fa-trash"></span> 刪 除 {{SimpleSelectExpert}} 溫 室 參 數</button>
+                            </div>
                         </div>
                         <!-- </div>
                     </div> -->
@@ -484,16 +483,16 @@
                     <h6>備註：請選取欲建置的溫室規格</h6>
                     <!-- <div v-if="$auth.check()">
                         <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-                        <div class="text-right">
-                            <a class="btn btn-primary" href = "/#/ConstructionCost/RobustCostAnalysis/Add"><span class="fa fa-plus"></span> 新 增 強 固 型 溫 室 參 數</a>
-                        </div>
-                        <!-- </div>
-                    </div> -->
-                    <!-- <div v-if="$auth.check()">
-                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-                        <div class="text-right">
-                            <a class="btn btn-warning" :href="'/#/ConstructionCost/RobustCostAnalysis/Edit/'+'123'"><span class="fa fa-edit"></span>修 改 強 固 型 溫 室 參 數</a>
-                            <!-- <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a> -->
+                        <div class="d-flex justify-content-around">
+                            <div class="p-2 bd-highlight">
+                                <a class="btn btn-primary" href = "/#/ConstructionCost/RobustCostAnalysis/Add"><span class="fa fa-plus"></span> 新 增 強 固 型 溫 室 參 數</a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <a class="btn btn-warning" :href="'/#/ConstructionCost/RobustCostAnalysis/Edit/'+StrongSelectExpert"><span class="fa fa-edit"></span> 修 改 {{StrongSelectExpert}} 溫 室 參 數</a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <button class="btn btn-danger"  v-on:click="deleteRobust(StrongSelectExpert)"><span class="fa fa-trash"></span> 刪 除 {{StrongSelectExpert}} 溫 室 參 數</button>
+                            </div>
                         </div>
                         <!-- </div>
                     </div> -->
@@ -745,12 +744,12 @@ export default {
             SelectSimple:[],
             SimpleExpertOrder :["==請選擇專家=="],    // 簡易型溫室專家清單
             SimpleIdx: 0, // 所選簡易型溫室專家的id
-            SimpleSelectExpert: null, // 所選專家
+            SimpleSelectExpert: 'System', // 所選專家
 
             SelectRobust:[],
             StrongExpertOrder :["==請選擇專家=="],    // 強固型溫室專家清單
             StrongIdx: 0, // 所選強固型溫室專家的id
-            StrongSelectExpert: null, // 所選強固型溫室專家
+            StrongSelectExpert: 'System', // 所選強固型溫室專家
 
             SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
             SimpleCostratios: [],               // 簡易型各建構項目比例

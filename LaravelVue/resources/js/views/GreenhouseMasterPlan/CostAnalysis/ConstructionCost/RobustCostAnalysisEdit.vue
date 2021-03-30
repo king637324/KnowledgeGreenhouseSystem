@@ -1611,10 +1611,8 @@
             </table>
             <hr>
 
-            
-            
-
             <div class="text-right">
+                <button type="button" class="btn btn-secondary" v-on:click="returnCost">返回</button>
                 <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>確認修改</button>
             </div>
 
@@ -1866,8 +1864,8 @@ export default {
         }
 
         // this.$route.params.id
-        // console.log("-----this.$route.params.id-----");
-        // console.log(this.$route.params.id);
+        console.log("-----this.$route.params.id-----");
+        console.log(this.$route.params.id);
         this.getJson();
 
     },
@@ -1926,26 +1924,28 @@ export default {
             });
             this.StrongCoatingFilmsJSON = await StrongCoatingFilms.json();
             for(var i = 0 ; i < this.StrongCoatingFilmsJSON.length ; i++){
-                if(this.StrongCoatingFilmsJSON[i].BuildItem == 'PE'){
-                    this.StrongData.PECost = this.StrongCoatingFilmsJSON[i].Cost;
-                    this.StrongData.PEStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
-                    this.StrongData.PEWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
-                }else if(this.StrongCoatingFilmsJSON[i].BuildItem == 'PO'){
-                    this.StrongData.POCost = this.StrongCoatingFilmsJSON[i].Cost;
-                    this.StrongData.POStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
-                    this.StrongData.POWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
-                }else if(this.StrongCoatingFilmsJSON[i].BuildItem == '硬質塑材'){
-                    this.StrongData.RigidPlasticCost = this.StrongCoatingFilmsJSON[i].Cost;
-                    this.StrongData.RigidPlasticStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
-                    this.StrongData.RigidPlasticWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
-                }else if(this.StrongCoatingFilmsJSON[i].BuildItem == 'ETFE'){
-                    this.StrongData.ETFECost = this.StrongCoatingFilmsJSON[i].Cost;
-                    this.StrongData.ETFEStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
-                    this.StrongData.ETFEWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
-                }else if(this.StrongCoatingFilmsJSON[i].BuildItem == '玻璃'){
-                    this.StrongData.GlassCost = this.StrongCoatingFilmsJSON[i].Cost;
-                    this.StrongData.GlassStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
-                    this.StrongData.GlassWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
+                if(this.StrongCoatingFilmsJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongCoatingFilmsJSON[i].BuildItem == 'PE'){
+                        this.StrongData.PECost = this.StrongCoatingFilmsJSON[i].Cost;
+                        this.StrongData.PEStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
+                        this.StrongData.PEWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
+                    }else if(this.StrongCoatingFilmsJSON[i].BuildItem == 'PO'){
+                        this.StrongData.POCost = this.StrongCoatingFilmsJSON[i].Cost;
+                        this.StrongData.POStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
+                        this.StrongData.POWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
+                    }else if(this.StrongCoatingFilmsJSON[i].BuildItem == '硬質塑材'){
+                        this.StrongData.RigidPlasticCost = this.StrongCoatingFilmsJSON[i].Cost;
+                        this.StrongData.RigidPlasticStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
+                        this.StrongData.RigidPlasticWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
+                    }else if(this.StrongCoatingFilmsJSON[i].BuildItem == 'ETFE'){
+                        this.StrongData.ETFECost = this.StrongCoatingFilmsJSON[i].Cost;
+                        this.StrongData.ETFEStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
+                        this.StrongData.ETFEWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
+                    }else if(this.StrongCoatingFilmsJSON[i].BuildItem == '玻璃'){
+                        this.StrongData.GlassCost = this.StrongCoatingFilmsJSON[i].Cost;
+                        this.StrongData.GlassStructureRisk = this.StrongCoatingFilmsJSON[i].StructuralRisk;
+                        this.StrongData.GlassWorkDifficulty = this.StrongCoatingFilmsJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -1955,22 +1955,24 @@ export default {
             });
             this.StrongContinuitysJSON = await StrongContinuitys.json();
             for(var i = 0 ; i < this.StrongContinuitysJSON.length ; i++){
-                if(this.StrongContinuitysJSON[i].BuildItem == '獨棟'){
-                    this.StrongData.DetachedHouseCost = this.StrongContinuitysJSON[i].Cost;
-                    this.StrongData.DetachedHouseStructureRisk = this.StrongContinuitysJSON[i].StructuralRisk;
-                    this.StrongData.DetachedHouseWorkDifficulty = this.StrongContinuitysJSON[i].JobDifficulty;
-                }else if(this.StrongContinuitysJSON[i].BuildItem == '二連棟'){
-                    this.StrongData.TwoStoryBuildingCost = this.StrongContinuitysJSON[i].Cost;
-                    this.StrongData.TwoStoryBuildingStructureRisk = this.StrongContinuitysJSON[i].StructuralRisk;
-                    this.StrongData.TwoStoryBuildingWorkDifficulty = this.StrongContinuitysJSON[i].JobDifficulty;
-                }else if(this.StrongContinuitysJSON[i].BuildItem == '三連棟'){
-                    this.StrongData.ThreeStoryCost = this.StrongContinuitysJSON[i].Cost;
-                    this.StrongData.ThreeStoryStructureRisk = this.StrongContinuitysJSON[i].StructuralRisk;
-                    this.StrongData.ThreeStoryWorkDifficulty = this.StrongContinuitysJSON[i].JobDifficulty;
-                }else if(this.StrongContinuitysJSON[i].BuildItem == '四連棟'){
-                    this.StrongData.FourStoryCost = this.StrongContinuitysJSON[i].Cost;
-                    this.StrongData.FourStoryStructureRisk = this.StrongContinuitysJSON[i].StructuralRisk;
-                    this.StrongData.FourStoryWorkDifficulty = this.StrongContinuitysJSON[i].JobDifficulty;
+                if(this.StrongContinuitysJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongContinuitysJSON[i].BuildItem == '獨棟'){
+                        this.StrongData.DetachedHouseCost = this.StrongContinuitysJSON[i].Cost;
+                        this.StrongData.DetachedHouseStructureRisk = this.StrongContinuitysJSON[i].StructuralRisk;
+                        this.StrongData.DetachedHouseWorkDifficulty = this.StrongContinuitysJSON[i].JobDifficulty;
+                    }else if(this.StrongContinuitysJSON[i].BuildItem == '二連棟'){
+                        this.StrongData.TwoStoryBuildingCost = this.StrongContinuitysJSON[i].Cost;
+                        this.StrongData.TwoStoryBuildingStructureRisk = this.StrongContinuitysJSON[i].StructuralRisk;
+                        this.StrongData.TwoStoryBuildingWorkDifficulty = this.StrongContinuitysJSON[i].JobDifficulty;
+                    }else if(this.StrongContinuitysJSON[i].BuildItem == '三連棟'){
+                        this.StrongData.ThreeStoryCost = this.StrongContinuitysJSON[i].Cost;
+                        this.StrongData.ThreeStoryStructureRisk = this.StrongContinuitysJSON[i].StructuralRisk;
+                        this.StrongData.ThreeStoryWorkDifficulty = this.StrongContinuitysJSON[i].JobDifficulty;
+                    }else if(this.StrongContinuitysJSON[i].BuildItem == '四連棟'){
+                        this.StrongData.FourStoryCost = this.StrongContinuitysJSON[i].Cost;
+                        this.StrongData.FourStoryStructureRisk = this.StrongContinuitysJSON[i].StructuralRisk;
+                        this.StrongData.FourStoryWorkDifficulty = this.StrongContinuitysJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -1980,18 +1982,20 @@ export default {
             });
             this.StrongFoundationsJSON = await StrongFoundations.json();
             for(var i = 0 ; i < this.StrongFoundationsJSON.length ; i++){
-                if(this.StrongFoundationsJSON[i].BuildItem == '獨立基礎'){
-                    this.StrongData.IndependenceFoundationCost = this.StrongFoundationsJSON[i].Cost;
-                    this.StrongData.IndependenceFoundationStructureRisk = this.StrongFoundationsJSON[i].StructuralRisk;
-                    this.StrongData.IndependenceFoundationWorkDifficulty = this.StrongFoundationsJSON[i].JobDifficulty;
-                }else if(this.StrongFoundationsJSON[i].BuildItem == '連續樑'){
-                    this.StrongData.ContinuousBeamCost = this.StrongFoundationsJSON[i].Cost;
-                    this.StrongData.ContinuousBeamStructureRisk = this.StrongFoundationsJSON[i].StructuralRisk;
-                    this.StrongData.ContinuousBeamWorkDifficulty = this.StrongFoundationsJSON[i].JobDifficulty;
-                }else if(this.StrongFoundationsJSON[i].BuildItem == '快速基礎'){
-                    this.StrongData.RapidBasicsCost = this.StrongFoundationsJSON[i].Cost;
-                    this.StrongData.RapidBasicsStructureRisk = this.StrongFoundationsJSON[i].StructuralRisk;
-                    this.StrongData.RapidBasicsWorkDifficulty = this.StrongFoundationsJSON[i].JobDifficulty;
+                if(this.StrongFoundationsJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongFoundationsJSON[i].BuildItem == '獨立基礎'){
+                        this.StrongData.IndependenceFoundationCost = this.StrongFoundationsJSON[i].Cost;
+                        this.StrongData.IndependenceFoundationStructureRisk = this.StrongFoundationsJSON[i].StructuralRisk;
+                        this.StrongData.IndependenceFoundationWorkDifficulty = this.StrongFoundationsJSON[i].JobDifficulty;
+                    }else if(this.StrongFoundationsJSON[i].BuildItem == '連續樑'){
+                        this.StrongData.ContinuousBeamCost = this.StrongFoundationsJSON[i].Cost;
+                        this.StrongData.ContinuousBeamStructureRisk = this.StrongFoundationsJSON[i].StructuralRisk;
+                        this.StrongData.ContinuousBeamWorkDifficulty = this.StrongFoundationsJSON[i].JobDifficulty;
+                    }else if(this.StrongFoundationsJSON[i].BuildItem == '快速基礎'){
+                        this.StrongData.RapidBasicsCost = this.StrongFoundationsJSON[i].Cost;
+                        this.StrongData.RapidBasicsStructureRisk = this.StrongFoundationsJSON[i].StructuralRisk;
+                        this.StrongData.RapidBasicsWorkDifficulty = this.StrongFoundationsJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -2001,22 +2005,24 @@ export default {
             });
             this.StrongGreenhousPprofilesJSON = await StrongGreenhousPprofiles.json();
             for(var i = 0 ; i < this.StrongGreenhousPprofilesJSON.length ; i++){
-                if(this.StrongGreenhousPprofilesJSON[i].BuildItem == '標準型材'){
-                    this.StrongData.StandardProfileCost = this.StrongGreenhousPprofilesJSON[i].Cost;
-                    this.StrongData.StandardProfileStructureRisk = this.StrongGreenhousPprofilesJSON[i].StructuralRisk;
-                    this.StrongData.StandardProfileWorkDifficulty = this.StrongGreenhousPprofilesJSON[i].JobDifficulty;
-                }else if(this.StrongGreenhousPprofilesJSON[i].BuildItem == '高強型材'){
-                    this.StrongData.HighStrengthMoldMaterialCost = this.StrongGreenhousPprofilesJSON[i].Cost;
-                    this.StrongData.HighStrengthMoldMaterialStructureRisk = this.StrongGreenhousPprofilesJSON[i].StructuralRisk;
-                    this.StrongData.HighStrengthMoldMaterialWorkDifficulty = this.StrongGreenhousPprofilesJSON[i].JobDifficulty;
-                }else if(this.StrongGreenhousPprofilesJSON[i].BuildItem == '耐蝕型材'){
-                    this.StrongData.CorrosionResistantMoldMaterialCost = this.StrongGreenhousPprofilesJSON[i].Cost;
-                    this.StrongData.CorrosionResistantMoldMaterialStructureRisk = this.StrongGreenhousPprofilesJSON[i].StructuralRisk;
-                    this.StrongData.CorrosionResistantMoldMaterialWorkDifficulty = this.StrongGreenhousPprofilesJSON[i].JobDifficulty;
-                }else if(this.StrongGreenhousPprofilesJSON[i].BuildItem == '高強高耐蝕型材'){
-                    this.StrongData.HighStrengthHighCorrosionResistantMoldMaterialCost = this.StrongGreenhousPprofilesJSON[i].Cost;
-                    this.StrongData.HighStrengthHighCorrosionResistantMoldMaterialStructureRisk = this.StrongGreenhousPprofilesJSON[i].StructuralRisk;
-                    this.StrongData.HighStrengthHighCorrosionResistantMoldMaterialWorkDifficulty = this.StrongGreenhousPprofilesJSON[i].JobDifficulty;
+                if(this.StrongGreenhousPprofilesJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongGreenhousPprofilesJSON[i].BuildItem == '標準型材'){
+                        this.StrongData.StandardProfileCost = this.StrongGreenhousPprofilesJSON[i].Cost;
+                        this.StrongData.StandardProfileStructureRisk = this.StrongGreenhousPprofilesJSON[i].StructuralRisk;
+                        this.StrongData.StandardProfileWorkDifficulty = this.StrongGreenhousPprofilesJSON[i].JobDifficulty;
+                    }else if(this.StrongGreenhousPprofilesJSON[i].BuildItem == '高強型材'){
+                        this.StrongData.HighStrengthMoldMaterialCost = this.StrongGreenhousPprofilesJSON[i].Cost;
+                        this.StrongData.HighStrengthMoldMaterialStructureRisk = this.StrongGreenhousPprofilesJSON[i].StructuralRisk;
+                        this.StrongData.HighStrengthMoldMaterialWorkDifficulty = this.StrongGreenhousPprofilesJSON[i].JobDifficulty;
+                    }else if(this.StrongGreenhousPprofilesJSON[i].BuildItem == '耐蝕型材'){
+                        this.StrongData.CorrosionResistantMoldMaterialCost = this.StrongGreenhousPprofilesJSON[i].Cost;
+                        this.StrongData.CorrosionResistantMoldMaterialStructureRisk = this.StrongGreenhousPprofilesJSON[i].StructuralRisk;
+                        this.StrongData.CorrosionResistantMoldMaterialWorkDifficulty = this.StrongGreenhousPprofilesJSON[i].JobDifficulty;
+                    }else if(this.StrongGreenhousPprofilesJSON[i].BuildItem == '高強高耐蝕型材'){
+                        this.StrongData.HighStrengthHighCorrosionResistantMoldMaterialCost = this.StrongGreenhousPprofilesJSON[i].Cost;
+                        this.StrongData.HighStrengthHighCorrosionResistantMoldMaterialStructureRisk = this.StrongGreenhousPprofilesJSON[i].StructuralRisk;
+                        this.StrongData.HighStrengthHighCorrosionResistantMoldMaterialWorkDifficulty = this.StrongGreenhousPprofilesJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -2026,22 +2032,24 @@ export default {
             });
             this.StrongLengthsJSON = await StrongLengths.json();
             for(var i = 0 ; i < this.StrongLengthsJSON.length ; i++){
-                if(this.StrongLengthsJSON[i].BuildItem == '30m'){
-                    this.StrongData.ThirtymCost = this.StrongLengthsJSON[i].Cost;
-                    this.StrongData.ThirtymStructureRisk = this.StrongLengthsJSON[i].StructuralRisk;
-                    this.StrongData.ThirtymWorkDifficulty = this.StrongLengthsJSON[i].JobDifficulty;
-                }else if(this.StrongLengthsJSON[i].BuildItem == '60m'){
-                    this.StrongData.SixtymCost = this.StrongLengthsJSON[i].Cost;
-                    this.StrongData.SixtymStructureRisk = this.StrongLengthsJSON[i].StructuralRisk;
-                    this.StrongData.SixtymWorkDifficulty = this.StrongLengthsJSON[i].JobDifficulty;
-                }else if(this.StrongLengthsJSON[i].BuildItem == '90m'){
-                    this.StrongData.NinetymCost = this.StrongLengthsJSON[i].Cost;
-                    this.StrongData.NinetymStructureRisk = this.StrongLengthsJSON[i].StructuralRisk;
-                    this.StrongData.NinetymWorkDifficulty = this.StrongLengthsJSON[i].JobDifficulty;
-                }else if(this.StrongLengthsJSON[i].BuildItem == '120m'){
-                    this.StrongData.OneHundredTwentymCost = this.StrongLengthsJSON[i].Cost;
-                    this.StrongData.OneHundredTwentymStructureRisk = this.StrongLengthsJSON[i].StructuralRisk;
-                    this.StrongData.OneHundredTwentymWorkDifficulty = this.StrongLengthsJSON[i].JobDifficulty;
+                if(this.StrongLengthsJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongLengthsJSON[i].BuildItem == '30m'){
+                        this.StrongData.ThirtymCost = this.StrongLengthsJSON[i].Cost;
+                        this.StrongData.ThirtymStructureRisk = this.StrongLengthsJSON[i].StructuralRisk;
+                        this.StrongData.ThirtymWorkDifficulty = this.StrongLengthsJSON[i].JobDifficulty;
+                    }else if(this.StrongLengthsJSON[i].BuildItem == '60m'){
+                        this.StrongData.SixtymCost = this.StrongLengthsJSON[i].Cost;
+                        this.StrongData.SixtymStructureRisk = this.StrongLengthsJSON[i].StructuralRisk;
+                        this.StrongData.SixtymWorkDifficulty = this.StrongLengthsJSON[i].JobDifficulty;
+                    }else if(this.StrongLengthsJSON[i].BuildItem == '90m'){
+                        this.StrongData.NinetymCost = this.StrongLengthsJSON[i].Cost;
+                        this.StrongData.NinetymStructureRisk = this.StrongLengthsJSON[i].StructuralRisk;
+                        this.StrongData.NinetymWorkDifficulty = this.StrongLengthsJSON[i].JobDifficulty;
+                    }else if(this.StrongLengthsJSON[i].BuildItem == '120m'){
+                        this.StrongData.OneHundredTwentymCost = this.StrongLengthsJSON[i].Cost;
+                        this.StrongData.OneHundredTwentymStructureRisk = this.StrongLengthsJSON[i].StructuralRisk;
+                        this.StrongData.OneHundredTwentymWorkDifficulty = this.StrongLengthsJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -2051,30 +2059,32 @@ export default {
             });
             this.StrongRoofFormsJSON = await StrongRoofForms.json();
             for(var i = 0 ; i < this.StrongRoofFormsJSON.length ; i++){
-                if(this.StrongRoofFormsJSON[i].BuildItem == '圓頂UBP'){
-                    this.StrongData.DomeUBPCost = this.StrongRoofFormsJSON[i].Cost;
-                    this.StrongData.DomeUBPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
-                    this.StrongData.DomeUBPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
-                }else if(this.StrongRoofFormsJSON[i].BuildItem == '圓力霸UTP'){
-                    this.StrongData.TwistedPairUTPCost = this.StrongRoofFormsJSON[i].Cost;
-                    this.StrongData.TwistedPairUTPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
-                    this.StrongData.TwistedPairUTPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
-                }else if(this.StrongRoofFormsJSON[i].BuildItem == '山型VBP'){
-                    this.StrongData.MountainTypeVBPCost = this.StrongRoofFormsJSON[i].Cost;
-                    this.StrongData.MountainTypeVBPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
-                    this.StrongData.MountainTypeVBPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
-                }else if(this.StrongRoofFormsJSON[i].BuildItem == '山力霸VTP'){
-                    this.StrongData.YamarikiVTPCost = this.StrongRoofFormsJSON[i].Cost;
-                    this.StrongData.YamarikiVTPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
-                    this.StrongData.YamarikiVTPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
-                }else if(this.StrongRoofFormsJSON[i].BuildItem == 'W型力霸'){
-                    this.StrongData.WTypeForceCost = this.StrongRoofFormsJSON[i].Cost;
-                    this.StrongData.WTypeForceStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
-                    this.StrongData.WTypeForceWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
-                }else if(this.StrongRoofFormsJSON[i].BuildItem == '單斜SP'){
-                    this.StrongData.MonoclinicSPCost = this.StrongRoofFormsJSON[i].Cost;
-                    this.StrongData.MonoclinicSPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
-                    this.StrongData.MonoclinicSPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
+                if(this.StrongRoofFormsJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongRoofFormsJSON[i].BuildItem == '圓頂UBP'){
+                        this.StrongData.DomeUBPCost = this.StrongRoofFormsJSON[i].Cost;
+                        this.StrongData.DomeUBPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
+                        this.StrongData.DomeUBPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
+                    }else if(this.StrongRoofFormsJSON[i].BuildItem == '圓力霸UTP'){
+                        this.StrongData.TwistedPairUTPCost = this.StrongRoofFormsJSON[i].Cost;
+                        this.StrongData.TwistedPairUTPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
+                        this.StrongData.TwistedPairUTPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
+                    }else if(this.StrongRoofFormsJSON[i].BuildItem == '山型VBP'){
+                        this.StrongData.MountainTypeVBPCost = this.StrongRoofFormsJSON[i].Cost;
+                        this.StrongData.MountainTypeVBPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
+                        this.StrongData.MountainTypeVBPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
+                    }else if(this.StrongRoofFormsJSON[i].BuildItem == '山力霸VTP'){
+                        this.StrongData.YamarikiVTPCost = this.StrongRoofFormsJSON[i].Cost;
+                        this.StrongData.YamarikiVTPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
+                        this.StrongData.YamarikiVTPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
+                    }else if(this.StrongRoofFormsJSON[i].BuildItem == 'W型力霸'){
+                        this.StrongData.WTypeForceCost = this.StrongRoofFormsJSON[i].Cost;
+                        this.StrongData.WTypeForceStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
+                        this.StrongData.WTypeForceWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
+                    }else if(this.StrongRoofFormsJSON[i].BuildItem == '單斜SP'){
+                        this.StrongData.MonoclinicSPCost = this.StrongRoofFormsJSON[i].Cost;
+                        this.StrongData.MonoclinicSPStructureRisk = this.StrongRoofFormsJSON[i].StructuralRisk;
+                        this.StrongData.MonoclinicSPWorkDifficulty = this.StrongRoofFormsJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -2084,26 +2094,28 @@ export default {
             });
             this.StrongShoulderHeightsJSON = await StrongShoulderHeights.json();
             for(var i = 0 ; i < this.StrongShoulderHeightsJSON.length ; i++){
-                if(this.StrongShoulderHeightsJSON[i].BuildItem == '3m'){
-                    this.StrongData.threeMCost = this.StrongShoulderHeightsJSON[i].Cost;
-                    this.StrongData.threeMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
-                    this.StrongData.threeMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
-                }else if(this.StrongShoulderHeightsJSON[i].BuildItem == '3.5m'){
-                    this.StrongData.threeFiveMCost = this.StrongShoulderHeightsJSON[i].Cost;
-                    this.StrongData.threeFiveMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
-                    this.StrongData.threeFiveMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
-                }else if(this.StrongShoulderHeightsJSON[i].BuildItem == '4m'){
-                    this.StrongData.fourMCost = this.StrongShoulderHeightsJSON[i].Cost;
-                    this.StrongData.fourMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
-                    this.StrongData.fourMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
-                }else if(this.StrongShoulderHeightsJSON[i].BuildItem == '4.5m'){
-                    this.StrongData.fourFiveMCost = this.StrongShoulderHeightsJSON[i].Cost;
-                    this.StrongData.fourFiveMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
-                    this.StrongData.fourFiveMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
-                }else if(this.StrongShoulderHeightsJSON[i].BuildItem == '5m'){
-                    this.StrongData.fiveMCost = this.StrongShoulderHeightsJSON[i].Cost;
-                    this.StrongData.fiveMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
-                    this.StrongData.fiveMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
+                if(this.StrongShoulderHeightsJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongShoulderHeightsJSON[i].BuildItem == '3m'){
+                        this.StrongData.threeMCost = this.StrongShoulderHeightsJSON[i].Cost;
+                        this.StrongData.threeMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
+                        this.StrongData.threeMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
+                    }else if(this.StrongShoulderHeightsJSON[i].BuildItem == '3.5m'){
+                        this.StrongData.threeFiveMCost = this.StrongShoulderHeightsJSON[i].Cost;
+                        this.StrongData.threeFiveMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
+                        this.StrongData.threeFiveMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
+                    }else if(this.StrongShoulderHeightsJSON[i].BuildItem == '4m'){
+                        this.StrongData.fourMCost = this.StrongShoulderHeightsJSON[i].Cost;
+                        this.StrongData.fourMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
+                        this.StrongData.fourMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
+                    }else if(this.StrongShoulderHeightsJSON[i].BuildItem == '4.5m'){
+                        this.StrongData.fourFiveMCost = this.StrongShoulderHeightsJSON[i].Cost;
+                        this.StrongData.fourFiveMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
+                        this.StrongData.fourFiveMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
+                    }else if(this.StrongShoulderHeightsJSON[i].BuildItem == '5m'){
+                        this.StrongData.fiveMCost = this.StrongShoulderHeightsJSON[i].Cost;
+                        this.StrongData.fiveMStructureRisk = this.StrongShoulderHeightsJSON[i].StructuralRisk;
+                        this.StrongData.fiveMWorkDifficulty = this.StrongShoulderHeightsJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -2113,26 +2125,28 @@ export default {
             });
             this.StrongSpansJSON = await StrongSpans.json();
             for(var i = 0 ; i < this.StrongSpansJSON.length ; i++){
-                if(this.StrongSpansJSON[i].BuildItem == '6m'){
-                    this.StrongData.sixMCost = this.StrongSpansJSON[i].Cost;
-                    this.StrongData.sixMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
-                    this.StrongData.sixMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
-                }else if(this.StrongSpansJSON[i].BuildItem == '7m'){
-                    this.StrongData.sevenMCost = this.StrongSpansJSON[i].Cost;
-                    this.StrongData.sevenMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
-                    this.StrongData.sevenMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
-                }else if(this.StrongSpansJSON[i].BuildItem == '8m'){
-                    this.StrongData.eightMCost = this.StrongSpansJSON[i].Cost;
-                    this.StrongData.eightMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
-                    this.StrongData.eightMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
-                }else if(this.StrongSpansJSON[i].BuildItem == '9m'){
-                    this.StrongData.nineMCost = this.StrongSpansJSON[i].Cost;
-                    this.StrongData.nineMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
-                    this.StrongData.nineMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
-                }else if(this.StrongSpansJSON[i].BuildItem == '10m'){
-                    this.StrongData.tenMCost = this.StrongSpansJSON[i].Cost;
-                    this.StrongData.tenMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
-                    this.StrongData.tenMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
+                if(this.StrongSpansJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongSpansJSON[i].BuildItem == '6m'){
+                        this.StrongData.sixMCost = this.StrongSpansJSON[i].Cost;
+                        this.StrongData.sixMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
+                        this.StrongData.sixMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
+                    }else if(this.StrongSpansJSON[i].BuildItem == '7m'){
+                        this.StrongData.sevenMCost = this.StrongSpansJSON[i].Cost;
+                        this.StrongData.sevenMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
+                        this.StrongData.sevenMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
+                    }else if(this.StrongSpansJSON[i].BuildItem == '8m'){
+                        this.StrongData.eightMCost = this.StrongSpansJSON[i].Cost;
+                        this.StrongData.eightMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
+                        this.StrongData.eightMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
+                    }else if(this.StrongSpansJSON[i].BuildItem == '9m'){
+                        this.StrongData.nineMCost = this.StrongSpansJSON[i].Cost;
+                        this.StrongData.nineMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
+                        this.StrongData.nineMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
+                    }else if(this.StrongSpansJSON[i].BuildItem == '10m'){
+                        this.StrongData.tenMCost = this.StrongSpansJSON[i].Cost;
+                        this.StrongData.tenMStructureRisk = this.StrongSpansJSON[i].StructuralRisk;
+                        this.StrongData.tenMWorkDifficulty = this.StrongSpansJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -2142,18 +2156,20 @@ export default {
             });
             this.StrongUpperArchDistancesJSON = await StrongUpperArchDistances.json();
             for(var i = 0 ; i < this.StrongUpperArchDistancesJSON.length ; i++){
-                if(this.StrongUpperArchDistancesJSON[i].BuildItem == '2M'){
-                    this.StrongData.twoMCost = this.StrongUpperArchDistancesJSON[i].Cost;
-                    this.StrongData.twoMStructureRisk = this.StrongUpperArchDistancesJSON[i].StructuralRisk;
-                    this.StrongData.twoMWorkDifficulty = this.StrongUpperArchDistancesJSON[i].JobDifficulty;
-                }else if(this.StrongUpperArchDistancesJSON[i].BuildItem == '1.33M'){
-                    this.StrongData.oneThreeThreeMCost = this.StrongUpperArchDistancesJSON[i].Cost;
-                    this.StrongData.oneThreeThreeMStructureRisk = this.StrongUpperArchDistancesJSON[i].StructuralRisk;
-                    this.StrongData.oneThreeThreeMWorkDifficulty = this.StrongUpperArchDistancesJSON[i].JobDifficulty;
-                }else if(this.StrongUpperArchDistancesJSON[i].BuildItem == '1M'){
-                    this.StrongData.oneMCost = this.StrongUpperArchDistancesJSON[i].Cost;
-                    this.StrongData.oneMStructureRisk = this.StrongUpperArchDistancesJSON[i].StructuralRisk;
-                    this.StrongData.oneMWorkDifficulty = this.StrongUpperArchDistancesJSON[i].JobDifficulty;
+                if(this.StrongUpperArchDistancesJSON[i].Expert == this.$route.params.id){
+                    if(this.StrongUpperArchDistancesJSON[i].BuildItem == '2M'){
+                        this.StrongData.twoMCost = this.StrongUpperArchDistancesJSON[i].Cost;
+                        this.StrongData.twoMStructureRisk = this.StrongUpperArchDistancesJSON[i].StructuralRisk;
+                        this.StrongData.twoMWorkDifficulty = this.StrongUpperArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.StrongUpperArchDistancesJSON[i].BuildItem == '1.33M'){
+                        this.StrongData.oneThreeThreeMCost = this.StrongUpperArchDistancesJSON[i].Cost;
+                        this.StrongData.oneThreeThreeMStructureRisk = this.StrongUpperArchDistancesJSON[i].StructuralRisk;
+                        this.StrongData.oneThreeThreeMWorkDifficulty = this.StrongUpperArchDistancesJSON[i].JobDifficulty;
+                    }else if(this.StrongUpperArchDistancesJSON[i].BuildItem == '1M'){
+                        this.StrongData.oneMCost = this.StrongUpperArchDistancesJSON[i].Cost;
+                        this.StrongData.oneMStructureRisk = this.StrongUpperArchDistancesJSON[i].StructuralRisk;
+                        this.StrongData.oneMWorkDifficulty = this.StrongUpperArchDistancesJSON[i].JobDifficulty;
+                    }
                 }
             }
 
@@ -2406,6 +2422,9 @@ export default {
                         break;
                 }
             }
+        },returnCost(){
+            // 返回溫室構造成本分析
+            window.location = '/#/DevelopConstructionCostAnalysisTestment';
         }
     },
 }

@@ -1615,6 +1615,7 @@
             
 
             <div class="text-right">
+                <button type="button" class="btn btn-secondary" v-on:click="returnCost">返回</button>
                 <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>創建</button>
             </div>
 
@@ -2110,6 +2111,9 @@ export default {
                         break;
                 }
             }
+        },returnCost(){
+            // 返回溫室構造成本分析
+            window.location = '/#/DevelopConstructionCostAnalysisTestment';
         }
     },
 }

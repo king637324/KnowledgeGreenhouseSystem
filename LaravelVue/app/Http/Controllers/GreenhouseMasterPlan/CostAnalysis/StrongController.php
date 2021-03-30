@@ -737,8 +737,520 @@ class StrongController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd('Controller裡 update');
-        //
+        // 設定必填欄位 & 必填欄位的的條件
+        $request -> validate([
+            'Expert' => 'required',
+            /******** 溫室型材  ********/
+            // 標準型材
+            'StandardProfileCost' => 'required',
+            'StandardProfileStructureRisk' => 'required',
+            'StandardProfileWorkDifficulty' => 'required',
+            // 高強型材
+            'HighStrengthMoldMaterialCost' => 'required',
+            'HighStrengthMoldMaterialStructureRisk' => 'required',
+            'HighStrengthMoldMaterialWorkDifficulty' => 'required',
+            // 耐蝕型材
+            'CorrosionResistantMoldMaterialCost' => 'required',
+            'CorrosionResistantMoldMaterialStructureRisk' => 'required',
+            'CorrosionResistantMoldMaterialWorkDifficulty' => 'required',
+            // 高強高耐蝕型材
+            'HighStrengthHighCorrosionResistantMoldMaterialCost' => 'required',
+            'HighStrengthHighCorrosionResistantMoldMaterialStructureRisk' => 'required',
+            'HighStrengthHighCorrosionResistantMoldMaterialWorkDifficulty' => 'required',
+
+            /******** 屋頂形式  ********/
+            // 圓頂UBP
+            'DomeUBPCost' => 'required',
+            'DomeUBPStructureRisk' => 'required',
+            'DomeUBPWorkDifficulty' => 'required',
+            // 圓力霸UTP
+            'TwistedPairUTPCost' => 'required',
+            'TwistedPairUTPStructureRisk' => 'required',
+            'TwistedPairUTPWorkDifficulty' => 'required',
+            // 山型VBP
+            'MountainTypeVBPCost' => 'required',
+            'MountainTypeVBPStructureRisk' => 'required',
+            'MountainTypeVBPWorkDifficulty' => 'required',
+            // 山力霸VTP
+            'YamarikiVTPCost' => 'required',
+            'YamarikiVTPStructureRisk' => 'required',
+            'YamarikiVTPWorkDifficulty' => 'required',
+            // W型力霸
+            'WTypeForceCost' => 'required',
+            'WTypeForceStructureRisk' => 'required',
+            'WTypeForceWorkDifficulty' => 'required',
+            // 單斜SP
+            'MonoclinicSPCost' => 'required',
+            'MonoclinicSPStructureRisk' => 'required',
+            'MonoclinicSPWorkDifficulty' => 'required',
+
+            /******** 上拱距  ********/
+            // 2M
+            'twoMCost' => 'required',
+            'twoMStructureRisk' => 'required',
+            'twoMWorkDifficulty' => 'required',
+            // 1.33M
+            'oneThreeThreeMCost' => 'required',
+            'oneThreeThreeMStructureRisk' => 'required',
+            'oneThreeThreeMWorkDifficulty' => 'required',
+            // 1M
+            'oneMCost' => 'required',
+            'oneMStructureRisk' => 'required',
+            'oneMWorkDifficulty' => 'required',
+
+            /******** 基礎  ********/
+            // 獨立基礎
+            'IndependenceFoundationCost' => 'required',
+            'IndependenceFoundationStructureRisk' => 'required',
+            'IndependenceFoundationWorkDifficulty' => 'required',
+            // 連續樑
+            'ContinuousBeamCost' => 'required',
+            'ContinuousBeamStructureRisk' => 'required',
+            'ContinuousBeamWorkDifficulty' => 'required',
+            // 快速基礎
+            'RapidBasicsCost' => 'required',
+            'RapidBasicsStructureRisk' => 'required',
+            'RapidBasicsWorkDifficulty' => 'required',
+
+            /******** 跨距  ********/
+            // 6m
+            'sixMCost' => 'required',
+            'sixMStructureRisk' => 'required',
+            'sixMWorkDifficulty' => 'required',
+            // 7m
+            'sevenMCost' => 'required',
+            'sevenMStructureRisk' => 'required',
+            'sevenMWorkDifficulty' => 'required',
+            // 8m
+            'eightMCost' => 'required',
+            'eightMStructureRisk' => 'required',
+            'eightMWorkDifficulty' => 'required',
+            // 9m
+            'nineMCost' => 'required',
+            'nineMStructureRisk' => 'required',
+            'nineMWorkDifficulty' => 'required',
+            // 10m
+            'tenMCost' => 'required',
+            'tenMStructureRisk' => 'required',
+            'tenMWorkDifficulty' => 'required',
+
+            /******** 肩高  ********/
+            // 3m
+            'threeMCost' => 'required',
+            'threeMStructureRisk' => 'required',
+            'threeMWorkDifficulty' => 'required',
+            // 3.5m
+            'threeFiveMCost' => 'required',
+            'threeFiveMStructureRisk' => 'required',
+            'threeFiveMWorkDifficulty' => 'required',
+            // 4m
+            'fourMCost' => 'required',
+            'fourMStructureRisk' => 'required',
+            'fourMWorkDifficulty' => 'required',
+            // 4.5m
+            'fourFiveMCost' => 'required',
+            'fourFiveMStructureRisk' => 'required',
+            'fourFiveMWorkDifficulty' => 'required',
+            // 5m
+            'fiveMCost' => 'required',
+            'fiveMStructureRisk' => 'required',
+            'fiveMWorkDifficulty' => 'required',
+
+            /******** 長度  ********/
+            // 30m
+            'ThirtymCost' => 'required',
+            'ThirtymStructureRisk' => 'required',
+            'ThirtymWorkDifficulty' => 'required',
+            // 60m
+            'SixtymCost' => 'required',
+            'SixtymStructureRisk' => 'required',
+            'SixtymWorkDifficulty' => 'required',
+            // 90m
+            'NinetymCost' => 'required',
+            'NinetymStructureRisk' => 'required',
+            'NinetymWorkDifficulty' => 'required',
+            // 120m
+            'OneHundredTwentymCost' => 'required',
+            'OneHundredTwentymStructureRisk' => 'required',
+            'OneHundredTwentymWorkDifficulty' => 'required',
+
+            /******** 連續性  ********/
+            // 獨棟
+            'DetachedHouseCost' => 'required',
+            'DetachedHouseStructureRisk' => 'required',
+            'DetachedHouseWorkDifficulty' => 'required',
+            // 二連棟
+            'TwoStoryBuildingCost' => 'required',
+            'TwoStoryBuildingStructureRisk' => 'required',
+            'TwoStoryBuildingWorkDifficulty' => 'required',
+            // 三連棟
+            'ThreeStoryCost' => 'required',
+            'ThreeStoryStructureRisk' => 'required',
+            'ThreeStoryWorkDifficulty' => 'required',
+            // 四連棟
+            'FourStoryCost' => 'required',
+            'FourStoryStructureRisk' => 'required',
+            'FourStoryWorkDifficulty' => 'required',
+
+            /******** 披覆膜  ********/
+            // PE
+            'PECost' => 'required',
+            'PEStructureRisk' => 'required',
+            'PEWorkDifficulty' => 'required',
+            // PO
+            'POCost' => 'required',
+            'POStructureRisk' => 'required',
+            'POWorkDifficulty' => 'required',
+            // 硬質塑材
+            'RigidPlasticCost' => 'required',
+            'RigidPlasticStructureRisk' => 'required',
+            'RigidPlasticWorkDifficulty' => 'required',
+            // ETFE
+            'ETFECost' => 'required',
+            'ETFEStructureRisk' => 'required',
+            'ETFEWorkDifficulty' => 'required',
+            // 玻璃
+            'GlassCost' => 'required',
+            'GlassStructureRisk' => 'required',
+            'GlassWorkDifficulty' => 'required',
+
+            /******** 各成本比例  ********/
+            // 溫室型材
+            'GreenhouseProfileCost' => 'required',
+            'GreenhouseProfileStructuralRisk' => 'required',
+            'GreenhouseProfileJobDifficulty' => 'required',
+            // 屋頂形式
+            'RoofFormCost' => 'required',
+            'RoofFormStructuralRisk' => 'required',
+            'RoofFormJobDifficulty' => 'required',
+            // 上拱距
+            'UpperArchCost' => 'required',
+            'UpperArchStructuralRisk' => 'required',
+            'UpperArchJobDifficulty' => 'required',
+            // 基礎
+            'BasisCost' => 'required',
+            'BasisStructuralRisk' => 'required',
+            'BasisJobDifficulty' => 'required',
+            // 跨距
+            'SpanCost' => 'required',
+            'SpanStructuralRisk' => 'required',
+            'SpanJobDifficulty' => 'required',
+            // 肩高
+            'ShoulderHeightCost' => 'required',
+            'ShoulderHeightStructuralRisk' => 'required',
+            'ShoulderHeightJobDifficulty' => 'required',
+            // 長度
+            'LengthCost' => 'required',
+            'LengthStructuralRisk' => 'required',
+            'LengthJobDifficulty' => 'required',
+            // 連續性
+            'ContinuityCost' => 'required',
+            'ContinuityStructuralRisk' => 'required',
+            'ContinuityJobDifficulty' => 'required',
+            // 披覆膜
+            'CoatedFilmCost' => 'required',
+            'CoatedFilmStructuralRisk' => 'required',
+            'CoatedFilmJobDifficulty' => 'required',
+        ]);
+
+        /******** 溫室型材  ********/
+        // 標準型材
+        $GreenhouseProfile  = stronggreenhouseprofile::where('Expert',$id)->where('BuildItem','標準型材');
+        $GreenhouseProfile->update(['Cost' => $request->StandardProfileCost]);
+        $GreenhouseProfile->update(['StructuralRisk' => $request->StandardProfileStructureRisk]);
+        $GreenhouseProfile->update(['JobDifficulty' => $request->StandardProfileWorkDifficulty]);
+        
+        // 高強型材        
+        $GreenhouseProfile  = stronggreenhouseprofile::where('Expert',$id)->where('BuildItem','高強型材');
+        $GreenhouseProfile->update(['Cost' => $request->HighStrengthMoldMaterialCost]);
+        $GreenhouseProfile->update(['StructuralRisk' => $request->HighStrengthMoldMaterialStructureRisk]);
+        $GreenhouseProfile->update(['JobDifficulty' => $request->HighStrengthMoldMaterialWorkDifficulty]);
+        
+        // 耐蝕型材
+        $GreenhouseProfile  = stronggreenhouseprofile::where('Expert',$id)->where('BuildItem','耐蝕型材');
+        $GreenhouseProfile->update(['Cost' => $request->CorrosionResistantMoldMaterialCost]);
+        $GreenhouseProfile->update(['StructuralRisk' => $request->CorrosionResistantMoldMaterialStructureRisk]);
+        $GreenhouseProfile->update(['JobDifficulty' => $request->CorrosionResistantMoldMaterialWorkDifficulty]);
+        
+        // 高強高耐蝕型材
+        $GreenhouseProfile  = stronggreenhouseprofile::where('Expert',$id)->where('BuildItem','高強高耐蝕型材');
+        $GreenhouseProfile->update(['Cost' => $request->HighStrengthHighCorrosionResistantMoldMaterialCost]);
+        $GreenhouseProfile->update(['StructuralRisk' => $request->HighStrengthHighCorrosionResistantMoldMaterialStructureRisk]);
+        $GreenhouseProfile->update(['JobDifficulty' => $request->HighStrengthHighCorrosionResistantMoldMaterialWorkDifficulty]);
+
+        /******** 屋頂形式  ********/
+        // 圓頂UBP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','圓頂UBP');
+        $GroofForm->update(['Cost' => $request->DomeUBPCost]);
+        $GroofForm->update(['StructuralRisk' => $request->DomeUBPStructureRisk]);
+        $GroofForm->update(['JobDifficulty' => $request->DomeUBPWorkDifficulty]);
+        
+        // 圓力霸UTP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','圓力霸UTP');
+        $GroofForm->update(['Cost' => $request->TwistedPairUTPCost]);
+        $GroofForm->update(['StructuralRisk' => $request->TwistedPairUTPStructureRisk]);
+        $GroofForm->update(['JobDifficulty' => $request->TwistedPairUTPWorkDifficulty]);
+        
+        // 山型VBP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','山型VBP');
+        $GroofForm->update(['Cost' => $request->MountainTypeVBPCost]);
+        $GroofForm->update(['StructuralRisk' => $request->MountainTypeVBPStructureRisk]);
+        $GroofForm->update(['JobDifficulty' => $request->MountainTypeVBPWorkDifficulty]);
+        
+        // 山力霸VTP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','山力霸VTP');
+        $GroofForm->update(['Cost' => $request->YamarikiVTPCost]);
+        $GroofForm->update(['StructuralRisk' => $request->YamarikiVTPStructureRisk]);
+        $GroofForm->update(['JobDifficulty' => $request->YamarikiVTPWorkDifficulty]);
+        
+        // W型力霸
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','W型力霸');
+        $GroofForm->update(['Cost' => $request->WTypeForceCost]);
+        $GroofForm->update(['StructuralRisk' => $request->WTypeForceStructureRisk]);
+        $GroofForm->update(['JobDifficulty' => $request->WTypeForceWorkDifficulty]);
+        
+        // 單斜SP
+        $GroofForm  = strongroofform::where('Expert',$id)->where('BuildItem','單斜SP');
+        $GroofForm->update(['Cost' => $request->MonoclinicSPCost]);
+        $GroofForm->update(['StructuralRisk' => $request->MonoclinicSPStructureRisk]);
+        $GroofForm->update(['JobDifficulty' => $request->MonoclinicSPWorkDifficulty]);
+        
+        /******** 上拱距  ********/
+        // 2M
+        $UpperArchDistance  = strongupperarchdistance::where('Expert',$id)->where('BuildItem','2M');
+        $UpperArchDistance->update(['Cost' => $request->twoMCost]);
+        $UpperArchDistance->update(['StructuralRisk' => $request->twoMStructureRisk]);
+        $UpperArchDistance->update(['JobDifficulty' => $request->twoMWorkDifficulty]);
+        
+        // 1.33M
+        $UpperArchDistance  = strongupperarchdistance::where('Expert',$id)->where('BuildItem','1.33M');
+        $UpperArchDistance->update(['Cost' => $request->oneThreeThreeMCost]);
+        $UpperArchDistance->update(['StructuralRisk' => $request->oneThreeThreeMStructureRisk]);
+        $UpperArchDistance->update(['JobDifficulty' => $request->oneThreeThreeMWorkDifficulty]);
+        
+        // 1M
+        $UpperArchDistance  = strongupperarchdistance::where('Expert',$id)->where('BuildItem','1M');
+        $UpperArchDistance->update(['Cost' => $request->oneMCost]);
+        $UpperArchDistance->update(['StructuralRisk' => $request->oneMStructureRisk]);
+        $UpperArchDistance->update(['JobDifficulty' => $request->oneMWorkDifficulty]);
+
+        /******** 基礎  ********/
+        // 獨立基礎
+        $Foundation  = strongfoundation::where('Expert',$id)->where('BuildItem','獨立基礎');
+        $Foundation->update(['Cost' => $request->IndependenceFoundationCost]);
+        $Foundation->update(['StructuralRisk' => $request->IndependenceFoundationStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->IndependenceFoundationWorkDifficulty]);
+        
+        // 連續樑
+        $Foundation  = strongfoundation::where('Expert',$id)->where('BuildItem','連續樑');
+        $Foundation->update(['Cost' => $request->ContinuousBeamCost]);
+        $Foundation->update(['StructuralRisk' => $request->ContinuousBeamStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->ContinuousBeamWorkDifficulty]);
+        
+        // 快速基礎
+        $Foundation  = strongfoundation::where('Expert',$id)->where('BuildItem','快速基礎');
+        $Foundation->update(['Cost' => $request->RapidBasicsCost]);
+        $Foundation->update(['StructuralRisk' => $request->RapidBasicsStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->RapidBasicsWorkDifficulty]);
+
+        /******** 跨距  ********/
+        // 6m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','6m');
+        $Span->update(['Cost' => $request->sixMCost]);
+        $Span->update(['StructuralRisk' => $request->sixMStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->sixMWorkDifficulty]);
+
+        // 7m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','7m');
+        $Span->update(['Cost' => $request->sevenMCost]);
+        $Span->update(['StructuralRisk' => $request->sevenMStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->sevenMWorkDifficulty]);
+        
+        // 8m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','8m');
+        $Span->update(['Cost' => $request->eightMCost]);
+        $Span->update(['StructuralRisk' => $request->eightMStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->eightMWorkDifficulty]);
+        
+        // 9m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','9m');
+        $Span->update(['Cost' => $request->nineMCost]);
+        $Span->update(['StructuralRisk' => $request->nineMStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->nineMWorkDifficulty]);
+        
+        // 10m
+        $Span  = strongspan::where('Expert',$id)->where('BuildItem','10m');
+        $Span->update(['Cost' => $request->tenMCost]);
+        $Span->update(['StructuralRisk' => $request->tenMStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->tenMWorkDifficulty]);
+
+        /******** 肩高  ********/
+        // 3m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','3m');
+        $ShoulderHeight->update(['Cost' => $request->threeMCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->threeMStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->threeMWorkDifficulty]);
+        
+        // 3.5m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','3.5m');
+        $ShoulderHeight->update(['Cost' => $request->threeFiveMCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->threeFiveMStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->threeFiveMWorkDifficulty]);
+        
+        // 4m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','4m');
+        $ShoulderHeight->update(['Cost' => $request->fourMCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->fourMStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->fourMWorkDifficulty]);
+        
+        // 4.5m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','4.5m');
+        $ShoulderHeight->update(['Cost' => $request->fourFiveMCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->fourFiveMStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->fourFiveMWorkDifficulty]);
+        
+        // 5m
+        $ShoulderHeight  = strongshoulderheight::where('Expert',$id)->where('BuildItem','5m');
+        $ShoulderHeight->update(['Cost' => $request->fiveMCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->fiveMStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->fiveMWorkDifficulty]);
+
+        /******** 長度  ********/
+        // 30m
+        $Length  = stronglength::where('Expert',$id)->where('BuildItem','30m');
+        $Length->update(['Cost' => $request->ThirtymCost]);
+        $Length->update(['StructuralRisk' => $request->ThirtymStructureRisk]);
+        $Length->update(['JobDifficulty' => $request->ThirtymWorkDifficulty]);
+        
+        // 60m
+        $Length  = stronglength::where('Expert',$id)->where('BuildItem','60m');
+        $Length->update(['Cost' => $request->SixtymCost]);
+        $Length->update(['StructuralRisk' => $request->SixtymStructureRisk]);
+        $Length->update(['JobDifficulty' => $request->SixtymWorkDifficulty]);
+        
+        // 90m
+        $Length  = stronglength::where('Expert',$id)->where('BuildItem','90m');
+        $Length->update(['Cost' => $request->NinetymCost]);
+        $Length->update(['StructuralRisk' => $request->NinetymStructureRisk]);
+        $Length->update(['JobDifficulty' => $request->NinetymWorkDifficulty]);
+        
+        // 120m
+        $Length  = stronglength::where('Expert',$id)->where('BuildItem','120m');
+        $Length->update(['Cost' => $request->OneHundredTwentymCost]);
+        $Length->update(['StructuralRisk' => $request->OneHundredTwentymStructureRisk]);
+        $Length->update(['JobDifficulty' => $request->OneHundredTwentymWorkDifficulty]);
+
+        /******** 連續性  ********/
+        // 獨棟
+        $Continuity  = strongcontinuity::where('Expert',$id)->where('BuildItem','獨棟');
+        $Continuity->update(['Cost' => $request->DetachedHouseCost]);
+        $Continuity->update(['StructuralRisk' => $request->DetachedHouseStructureRisk]);
+        $Continuity->update(['JobDifficulty' => $request->DetachedHouseWorkDifficulty]);
+        
+        // 二連棟
+        $Continuity  = strongcontinuity::where('Expert',$id)->where('BuildItem','二連棟');
+        $Continuity->update(['Cost' => $request->TwoStoryBuildingCost]);
+        $Continuity->update(['StructuralRisk' => $request->TwoStoryBuildingStructureRisk]);
+        $Continuity->update(['JobDifficulty' => $request->TwoStoryBuildingWorkDifficulty]);
+        
+        // 三連棟
+        $Continuity  = strongcontinuity::where('Expert',$id)->where('BuildItem','三連棟');
+        $Continuity->update(['Cost' => $request->ThreeStoryCost]);
+        $Continuity->update(['StructuralRisk' => $request->ThreeStoryStructureRisk]);
+        $Continuity->update(['JobDifficulty' => $request->ThreeStoryWorkDifficulty]);
+        
+        // 四連棟
+        $Continuity  = strongcontinuity::where('Expert',$id)->where('BuildItem','四連棟');
+        $Continuity->update(['Cost' => $request->FourStoryCost]);
+        $Continuity->update(['StructuralRisk' => $request->FourStoryStructureRisk]);
+        $Continuity->update(['JobDifficulty' => $request->FourStoryWorkDifficulty]);
+
+
+        /******** 披覆膜  ********/
+        // PE
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','PE');
+        $CoatingFilm->update(['Cost' => $request->PECost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->PEStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->PEWorkDifficulty]);
+        
+        // PO
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','PO');
+        $CoatingFilm->update(['Cost' => $request->POCost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->POStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->POWorkDifficulty]);
+        
+        // 硬質塑材
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','硬質塑材');
+        $CoatingFilm->update(['Cost' => $request->RigidPlasticCost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->RigidPlasticStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->RigidPlasticWorkDifficulty]);
+        
+        // ETFE
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','ETFE');
+        $CoatingFilm->update(['Cost' => $request->ETFECost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->ETFEStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->ETFEWorkDifficulty]);
+        
+        // 玻璃
+        $CoatingFilm  = strongcoatingfilm::where('Expert',$id)->where('BuildItem','玻璃');
+        $CoatingFilm->update(['Cost' => $request->GlassCost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->GlassStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->GlassWorkDifficulty]);
+
+        /******** 各成本比例  ********/
+        // 溫室型材
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','溫室型材');
+        $Costratio->update(['Cost' => $request->GreenhouseProfileCost]);
+        $Costratio->update(['StructuralRisk' => $request->GreenhouseProfileStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->GreenhouseProfileJobDifficulty]);
+        
+        // 屋頂形式
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','屋頂形式');
+        $Costratio->update(['Cost' => $request->RoofFormCost]);
+        $Costratio->update(['StructuralRisk' => $request->RoofFormStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->RoofFormJobDifficulty]);
+        
+        // 上拱距
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','上拱距');
+        $Costratio->update(['Cost' => $request->UpperArchCost]);
+        $Costratio->update(['StructuralRisk' => $request->UpperArchStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->UpperArchJobDifficulty]);
+
+        // 基礎
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','基礎');
+        $Costratio->update(['Cost' => $request->BasisCost]);
+        $Costratio->update(['StructuralRisk' => $request->BasisStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->BasisJobDifficulty]);
+        
+        // 跨距        
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','跨距');
+        $Costratio->update(['Cost' => $request->SpanCost]);
+        $Costratio->update(['StructuralRisk' => $request->SpanStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->SpanJobDifficulty]);
+        
+        // 肩高
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','肩高');
+        $Costratio->update(['Cost' => $request->ShoulderHeightCost]);
+        $Costratio->update(['StructuralRisk' => $request->ShoulderHeightStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->ShoulderHeightJobDifficulty]);
+        
+        // 長度
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','長度');
+        $Costratio->update(['Cost' => $request->LengthCost]);
+        $Costratio->update(['StructuralRisk' => $request->LengthStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->LengthJobDifficulty]);
+        
+        // 連續性
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','連續性');
+        $Costratio->update(['Cost' => $request->ContinuityCost]);
+        $Costratio->update(['StructuralRisk' => $request->ContinuityStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->ContinuityJobDifficulty]);
+        
+        // 披覆膜
+        $Costratio  = strongcostratio::where('Expert',$id)->where('BuildItem','披覆膜');
+        $Costratio->update(['Cost' => $request->CoatedFilmCost]);
+        $Costratio->update(['StructuralRisk' => $request->CoatedFilmStructuralRisk]);
+        $Costratio->update(['JobDifficulty' => $request->CoatedFilmJobDifficulty]);
     }
 
     /**
