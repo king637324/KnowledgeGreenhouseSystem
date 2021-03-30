@@ -801,6 +801,7 @@ class SimpleController extends Controller
      */
     public function edit($id)
     {
+        dd('Controller裡 edit');
         //
     }
 
@@ -811,7 +812,7 @@ class SimpleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)   // 修改簡易型成本參數
     {
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
@@ -1058,12 +1059,365 @@ class SimpleController extends Controller
                 'CoatedFilmCost' => 'required',
                 'CoatedFilmStructuralRisk' => 'required',
                 'CoatedFilmJobDifficulty' => 'required',
-            ]);
+        ]);
 
-        $data = $request->only(['id','Expert','classification','VegetableTypes','Goodlight','Photoperiod','Illuminance','PPFD','LightSaturationPoint','LightCompensationPoint','Temperatureadaptability','LowestGrowthTemperature','OptimalGrowthTemperature','HighestGrowthTemperature','LowestGerminationTemperature','OptimumGerminationTemperature','HighestGerminationTemperature','CO2IncreasedProductionRate']);
-        $EditCropData  = vegetable::where('id',$id);
+        /******** 溫室管材  ********/
+        // 標準管材
+        $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','標準管材');
+        $GreenhousePipe->update(['Cost' => $request->StandardPipeCost]);
+        $GreenhousePipe->update(['StructuralRisk' => $request->StandardPipeStructureRisk]);
+        $GreenhousePipe->update(['JobDifficulty' => $request->StandardPipeWorkDifficulty]);
 
-        $EditCropData->update($data);
+        // 高強管材
+        $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','高強管材');
+        $GreenhousePipe->update(['Cost' => $request->HighStrengthPipeCostCost]);
+        $GreenhousePipe->update(['StructuralRisk' => $request->HighStrengthPipeStructureRisk]);
+        $GreenhousePipe->update(['JobDifficulty' => $request->HighStrengthPipeWorkDifficulty]);
+
+        // 耐蝕管材
+        $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','耐蝕管材');
+        $GreenhousePipe->update(['Cost' => $request->CorrosionResistantPipeCostCost]);
+        $GreenhousePipe->update(['StructuralRisk' => $request->CorrosionResistantPipeStructureRisk]);
+        $GreenhousePipe->update(['JobDifficulty' => $request->CorrosionResistantPipeWorkDifficulty]);
+
+        // 高強高耐蝕管材
+        $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','高強高耐蝕管材');
+        $GreenhousePipe->update(['Cost' => $request->HighStrengthCorrosionResistantPipeCost]);
+        $GreenhousePipe->update(['StructuralRisk' => $request->HighStrengthCorrosionResistantPipeStructureRisk]);
+        $GreenhousePipe->update(['JobDifficulty' => $request->HighStrengthCorrosionResistantPipeWorkDifficulty]);
+
+        /******** 圓頂形式  ********/
+        // 單一圓拱
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','單一圓拱');
+        $Domeform->update(['Cost' => $request->SingleRoundArchCost]);
+        $Domeform->update(['StructuralRisk' => $request->SingleRoundArchStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->SingleRoundArchWorkDifficulty]);
+
+        // 下橫樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','下橫樑');
+        $Domeform->update(['Cost' => $request->LowerBeamCost]);
+        $Domeform->update(['StructuralRisk' => $request->LowerBeamStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->LowerBeamWorkDifficulty]);
+
+        // 上1/3橫梁
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','上1/3橫梁');
+        $Domeform->update(['Cost' => $request->UpperOneThreeBeamCost]);
+        $Domeform->update(['StructuralRisk' => $request->UpperOneThreeBeamStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->UpperOneThreeBeamWorkDifficulty]);
+        
+        // 上二橫梁
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','上二橫梁');
+        $Domeform->update(['Cost' => $request->UpperSecondBeamCost]);
+        $Domeform->update(['StructuralRisk' => $request->UpperSecondBeamStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->UpperSecondBeamWorkDifficulty]);
+
+        // T型樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','T型樑');
+        $Domeform->update(['Cost' => $request->TBeamCost]);
+        $Domeform->update(['StructuralRisk' => $request->TBeamStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->TBeamWorkDifficulty]);
+        
+        // 三支集中樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','三支集中樑');
+        $Domeform->update(['Cost' => $request->ThreeConcentratedBeamsCost]);
+        $Domeform->update(['StructuralRisk' => $request->ThreeConcentratedBeamsStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->ThreeConcentratedBeamsWorkDifficulty]);
+
+        // 三支垂支梁
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','三支垂支梁');
+        $Domeform->update(['Cost' => $request->ThreeVerticalBeamsCost]);
+        $Domeform->update(['StructuralRisk' => $request->ThreeVerticalBeamsStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->ThreeVerticalBeamsWorkDifficulty]);
+
+        // V型樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','V型樑');
+        $Domeform->update(['Cost' => $request->VBeamCost]);
+        $Domeform->update(['StructuralRisk' => $request->VBeamStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->VBeamWorkDifficulty]);
+
+        // W型樑
+        $Domeform  = simpledomeform::where('Expert',$id)->where('BuildItem','W型樑');
+        $Domeform->update(['Cost' => $request->WBeamCost]);
+        $Domeform->update(['StructuralRisk' => $request->WBeamStructureRisk]);
+        $Domeform->update(['JobDifficulty' => $request->WBeamWorkDifficulty]);
+
+        /******** 圓拱距  ********/
+        // 1M-1"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','1M-1"');
+        $CircularArchDistance->update(['Cost' => $request->oneMoneCost]);
+        $CircularArchDistance->update(['StructuralRisk' => $request->oneMoneStructureRisk]);
+        $CircularArchDistance->update(['JobDifficulty' => $request->oneMoneWorkDifficulty]);
+
+        // 1M-1-1/4"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','1M-1-1/4"');
+        $CircularArchDistance->update(['Cost' => $request->oneMone_OneFourCost]);
+        $CircularArchDistance->update(['StructuralRisk' => $request->oneMone_OneFourStructureRisk]);
+        $CircularArchDistance->update(['JobDifficulty' => $request->oneMone_OneFourWorkDifficulty]);
+
+        // 1M-1-1/2"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','1M-1-1/2"');
+        $CircularArchDistance->update(['Cost' => $request->oneMone_OneTwoCost]);
+        $CircularArchDistance->update(['StructuralRisk' => $request->oneMone_OneTwoStructureRisk]);
+        $CircularArchDistance->update(['JobDifficulty' => $request->oneMone_OneTwoWorkDifficulty]);
+
+        // 1.5M-1-1/2"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','1.5M-1-1/2"');
+        $CircularArchDistance->update(['Cost' => $request->onefiveMone_OneTwoCost]);
+        $CircularArchDistance->update(['StructuralRisk' => $request->onefiveMone_OneTwoStructureRisk]);
+        $CircularArchDistance->update(['JobDifficulty' => $request->onefiveMone_OneTwoWorkDifficulty]);
+
+        // 2M-2"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','2M-2"');
+        $CircularArchDistance->update(['Cost' => $request->twoMtwoCost]);
+        $CircularArchDistance->update(['StructuralRisk' => $request->twoMtwoStructureRisk]);
+        $CircularArchDistance->update(['JobDifficulty' => $request->twoMtwoWorkDifficulty]);
+
+        // 0.5M-1"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','0.5M-1"');
+        $CircularArchDistance->update(['Cost' => $request->zerofiveMoneCost]);
+        $CircularArchDistance->update(['StructuralRisk' => $request->zerofiveMoneStructureRisk]);
+        $CircularArchDistance->update(['JobDifficulty' => $request->zerofiveMoneWorkDifficulty]);
+
+        // 0.5-3/4"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','0.5-3/4"');
+        $CircularArchDistance->update(['Cost' => $request->zerofiveMthreefourCost]);
+        $CircularArchDistance->update(['StructuralRisk' => $request->zerofiveMthreefourStructureRisk]);
+        $CircularArchDistance->update(['JobDifficulty' => $request->zerofiveMthreefourWorkDifficulty]);
+
+        // 0.5-1/2"
+        $CircularArchDistance  = simplecirculararchdistance::where('Expert',$id)->where('BuildItem','0.5-1/2"');
+        $CircularArchDistance->update(['Cost' => $request->zerofiveMonetwoCost]);
+        $CircularArchDistance->update(['StructuralRisk' => $request->zerofiveMonetwoStructureRisk]);
+        $CircularArchDistance->update(['JobDifficulty' => $request->zerofiveMonetwoWorkDifficulty]);
+
+        /******** 基礎  ********/
+        // 直插40cm
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插40cm');
+        $Foundation->update(['Cost' => $request->fourtycmCost]);
+        $Foundation->update(['StructuralRisk' => $request->fourtycmStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->fourtycmWorkDifficulty]);
+
+        // 直插50cm
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插50cm');
+        $Foundation->update(['Cost' => $request->fiftycmCost]);
+        $Foundation->update(['StructuralRisk' => $request->fiftycmStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->fiftycmWorkDifficulty]);
+
+        // 直插30cm
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插30cm');
+        $Foundation->update(['Cost' => $request->thirtycmCost]);
+        $Foundation->update(['StructuralRisk' => $request->thirtycmStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->thirtycmWorkDifficulty]);
+
+        // 直插40cm+地錨
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插40cm+地錨');
+        $Foundation->update(['Cost' => $request->fourtycmPlusCost]);
+        $Foundation->update(['StructuralRisk' => $request->fourtycmPlusStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->fourtycmPlusWorkDifficulty]);
+
+        // 直插50cm+地錨
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插50cm+地錨');
+        $Foundation->update(['Cost' => $request->fiftycmPlusCost]);
+        $Foundation->update(['StructuralRisk' => $request->fiftycmPlusStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->fiftycmPlusWorkDifficulty]);
+
+        // 直插30cm+地錨
+        $Foundation  = simplefoundation::where('Expert',$id)->where('BuildItem','直插30cm+地錨');
+        $Foundation->update(['Cost' => $request->thirtycmPlusCost]);
+        $Foundation->update(['StructuralRisk' => $request->thirtycmPlusStructureRisk]);
+        $Foundation->update(['JobDifficulty' => $request->thirtycmPlusWorkDifficulty]);
+
+        /******** 跨距  ********/
+        // 5.4m
+        $Span  = simplespan::where('Expert',$id)->where('BuildItem','5.4m');
+        $Span->update(['Cost' => $request->FiveFourmCost]);
+        $Span->update(['StructuralRisk' => $request->FiveFourmStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->FiveFourmWorkDifficulty]);
+
+        // 6m
+        $Span  = simplespan::where('Expert',$id)->where('BuildItem','6m');
+        $Span->update(['Cost' => $request->SixmCost]);
+        $Span->update(['StructuralRisk' => $request->SixmStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->SixmWorkDifficulty]);
+
+        // 7.2m
+        $Span  = simplespan::where('Expert',$id)->where('BuildItem','7.2m');
+        $Span->update(['Cost' => $request->SevenmCost]);
+        $Span->update(['StructuralRisk' => $request->SevenmStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->SevenmWorkDifficulty]);
+
+        // 8m
+        $Span  = simplespan::where('Expert',$id)->where('BuildItem','8m');
+        $Span->update(['Cost' => $request->eightmCost]);
+        $Span->update(['StructuralRisk' => $request->eightmStructureRisk]);
+        $Span->update(['JobDifficulty' => $request->eightmWorkDifficulty]);
+
+        /******** 肩高  ********/
+        // 2m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','2m');
+        $ShoulderHeight->update(['Cost' => $request->TwomCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->TwomStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->TwomWorkDifficulty]);
+
+        // 2.5m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','2.5m');
+        $ShoulderHeight->update(['Cost' => $request->TwoFivemCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->TwoFivemStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->TwoFivemWorkDifficulty]);
+
+        // 3m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','3m');
+        $ShoulderHeight->update(['Cost' => $request->ThreemCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->ThreemStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->ThreemWorkDifficulty]);
+
+        // 3.5m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','3.5m');
+        $ShoulderHeight->update(['Cost' => $request->ThreeFivemCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->ThreeFivemStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->ThreeFivemWorkDifficulty]);
+
+        // 4m
+        $ShoulderHeight  = simpleshoulderheight::where('Expert',$id)->where('BuildItem','4m');
+        $ShoulderHeight->update(['Cost' => $request->FourmCost]);
+        $ShoulderHeight->update(['StructuralRisk' => $request->FourmStructureRisk]);
+        $ShoulderHeight->update(['JobDifficulty' => $request->FourmWorkDifficulty]);
+
+        /******** 長度  ********/
+        // 30m
+        $Length  = simplelength::where('Expert',$id)->where('BuildItem','30m');
+        $Length->update(['Cost' => $request->ThirtymCost]);
+        $Length->update(['StructuralRisk' => $request->ThirtymStructureRisk]);
+        $Length->update(['JobDifficulty' => $request->ThirtymWorkDifficulty]);
+
+        // 60m
+        $Length  = simplelength::where('Expert',$id)->where('BuildItem','60m');
+        $Length->update(['Cost' => $request->SixtymCost]);
+        $Length->update(['StructuralRisk' => $request->SixtymStructureRisk]);
+        $Length->update(['JobDifficulty' => $request->SixtymWorkDifficulty]);
+
+        // 90m
+        $Length  = simplelength::where('Expert',$id)->where('BuildItem','90m');
+        $Length->update(['Cost' => $request->NinetymCost]);
+        $Length->update(['StructuralRisk' => $request->NinetymStructureRisk]);
+        $Length->update(['JobDifficulty' => $request->NinetymWorkDifficulty]);
+
+        // 120m
+        $Length  = simplelength::where('Expert',$id)->where('BuildItem','120m');
+        $Length->update(['Cost' => $request->OneHundredTwentymCost]);
+        $Length->update(['StructuralRisk' => $request->OneHundredTwentymStructureRisk]);
+        $Length->update(['JobDifficulty' => $request->OneHundredTwentymWorkDifficulty]);
+
+        /******** 連續性  ********/
+        // 獨棟
+        $Continuity  = simplecontinuity::where('Expert',$id)->where('BuildItem','獨棟');
+        $Continuity->update(['Cost' => $request->DetachedHouseCost]);
+        $Continuity->update(['StructuralRisk' => $request->DetachedHouseStructureRisk]);
+        $Continuity->update(['JobDifficulty' => $request->DetachedHouseWorkDifficulty]);
+
+        // 二連棟
+        $Continuity  = simplecontinuity::where('Expert',$id)->where('BuildItem','二連棟');
+        $Continuity->update(['Cost' => $request->TwoStoryBuildingCost]);
+        $Continuity->update(['StructuralRisk' => $request->TwoStoryBuildingStructureRisk]);
+        $Continuity->update(['JobDifficulty' => $request->TwoStoryBuildingWorkDifficulty]);
+
+        // 三連棟
+        $Continuity  = simplecontinuity::where('Expert',$id)->where('BuildItem','三連棟');
+        $Continuity->update(['Cost' => $request->ThreeStoryCost]);
+        $Continuity->update(['StructuralRisk' => $request->ThreeStoryStructureRisk]);
+        $Continuity->update(['JobDifficulty' => $request->ThreeStoryWorkDifficulty]);
+
+        // 四連棟
+        $Continuity  = simplecontinuity::where('Expert',$id)->where('BuildItem','四連棟');
+        $Continuity->update(['Cost' => $request->FourStoryCost]);
+        $Continuity->update(['StructuralRisk' => $request->FourStoryStructureRisk]);
+        $Continuity->update(['JobDifficulty' => $request->FourStoryWorkDifficulty]);
+
+        /******** 披覆膜  ********/
+        // PE
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','PE');
+        $CoatingFilm->update(['Cost' => $request->PECost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->PEStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->PEWorkDifficulty]);
+
+        // PO
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','PO');
+        $CoatingFilm->update(['Cost' => $request->POCost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->POStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->POWorkDifficulty]);
+
+        // 硬質塑材
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','硬質塑材');
+        $CoatingFilm->update(['Cost' => $request->RigidPlasticCost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->RigidPlasticStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->RigidPlasticWorkDifficulty]);
+
+        // ETFE
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','ETFE');
+        $CoatingFilm->update(['Cost' => $request->ETFECost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->ETFEStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->ETFEWorkDifficulty]);
+
+        // 玻璃
+        $CoatingFilm  = simplecoatingfilm::where('Expert',$id)->where('BuildItem','玻璃');
+        $CoatingFilm->update(['Cost' => $request->GlassCost]);
+        $CoatingFilm->update(['StructuralRisk' => $request->GlassStructureRisk]);
+        $CoatingFilm->update(['JobDifficulty' => $request->GlassWorkDifficulty]);
+
+        /******** 各成本比例  ********/
+        // 溫室管材
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','溫室管材');
+        $CostRatio->update(['Cost' => $request->GreenhousePipeCost]);
+        $CostRatio->update(['StructuralRisk' => $request->GreenhousePipeStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->GreenhousePipeJobDifficulty]);
+
+        // 圓頂形式
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','圓頂形式');
+        $CostRatio->update(['Cost' => $request->DomeFormCost]);
+        $CostRatio->update(['StructuralRisk' => $request->DomeFormStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->DomeFormJobDifficulty]);
+
+        // 圓拱距
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','圓拱距');
+        $CostRatio->update(['Cost' => $request->ArcDistanceCost]);
+        $CostRatio->update(['StructuralRisk' => $request->ArcDistanceStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->ArcDistanceJobDifficulty]);
+
+        // 基礎
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','基礎');
+        $CostRatio->update(['Cost' => $request->BasisCost]);
+        $CostRatio->update(['StructuralRisk' => $request->BasisStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->BasisJobDifficulty]);
+
+        // 跨距
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','跨距');
+        $CostRatio->update(['Cost' => $request->SpanCost]);
+        $CostRatio->update(['StructuralRisk' => $request->SpanStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->SpanJobDifficulty]);
+
+        // 肩高
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','肩高');
+        $CostRatio->update(['Cost' => $request->ShoulderHeightCost]);
+        $CostRatio->update(['StructuralRisk' => $request->ShoulderHeightStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->ShoulderHeightJobDifficulty]);
+
+        // 長度
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','長度');
+        $CostRatio->update(['Cost' => $request->LengthCost]);
+        $CostRatio->update(['StructuralRisk' => $request->LengthStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->LengthJobDifficulty]);
+
+        // 連續性
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','連續性');
+        $CostRatio->update(['Cost' => $request->ContinuityCost]);
+        $CostRatio->update(['StructuralRisk' => $request->ContinuityStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->ContinuityJobDifficulty]);
+
+        // 披覆膜
+        $CostRatio  = simplecostratio::where('Expert',$id)->where('BuildItem','披覆膜');
+        $CostRatio->update(['Cost' => $request->CoatedFilmCost]);
+        $CostRatio->update(['StructuralRisk' => $request->CoatedFilmStructuralRisk]);
+        $CostRatio->update(['JobDifficulty' => $request->CoatedFilmJobDifficulty]);
     }
 
     /**

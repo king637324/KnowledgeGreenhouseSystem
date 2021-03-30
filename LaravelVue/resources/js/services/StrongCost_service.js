@@ -8,14 +8,13 @@ export function createStrongCost(data) {
 }
 
 export function UpdateStrongCost(id, data) {
+    // console.log("------UpdateStrongCost的service裡-------");
+    // console.log("-----------id-------------");
+    // console.log(id);
+    // console.log("-----------data-------------");
+    // console.log(data);
 
-    console.log("------UpdateStrongCost的service裡-------");
-    console.log("-----------id-------------");
-    console.log(id);
-    console.log("-----------data-------------");
-    console.log(data);
-
-    // return httpFile().post(`/GreenhouseMasterPlan/CostAnalysis/StrongCost/${id}`, data);
+    return httpFile().post(`/GreenhouseMasterPlan/CostAnalysis/StrongCost/${id}`, data);
 }
 
 export function deleteStrongCost(data) {

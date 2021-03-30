@@ -1950,7 +1950,7 @@
             <hr>
 
             <div class="text-right">
-                <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>創建</button>
+                <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>確認修改</button>
             </div>
 
         </v-form>
@@ -2228,9 +2228,9 @@ export default {
             errors:{
 
             },
-            proportiontotoalCost: 100,
-            proportiontotoalStructuralRisk: 100,
-            proportiontotoalJobDifficulty: 100,
+            proportiontotoalCost: '',
+            proportiontotoalStructuralRisk: '',
+            proportiontotoalJobDifficulty: '',
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -2590,6 +2590,8 @@ export default {
                     }
                 }
             }
+
+            this.calculator();
         },
         calculator(){
             this.proportiontotoalCost = parseInt(this.SimpleData.GreenhousePipeCost) + parseInt(this.SimpleData.DomeFormCost) + parseInt(this.SimpleData.ArcDistanceCost) + parseInt(this.SimpleData.BasisCost) + parseInt(this.SimpleData.SpanCost) + parseInt(this.SimpleData.ShoulderHeightCost) + parseInt(this.SimpleData.LengthCost) + parseInt(this.SimpleData.ContinuityCost) + parseInt(this.SimpleData.CoatedFilmCost);
@@ -2841,6 +2843,7 @@ export default {
             formData.append('CoatedFilmCost',this.SimpleData.CoatedFilmCost);
             formData.append('CoatedFilmStructuralRisk',this.SimpleData.CoatedFilmStructuralRisk);
             formData.append('CoatedFilmJobDifficulty',this.SimpleData.CoatedFilmJobDifficulty);
+            formData.append('_method','put');
 
             try{
                 const response = await SimpleCostAddService.UpdateSimpleCost(this.$route.params.id,formData);

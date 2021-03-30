@@ -1615,7 +1615,7 @@
             
 
             <div class="text-right">
-                <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>創建</button>
+                <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>確認修改</button>
             </div>
 
         </v-form>
@@ -1852,9 +1852,9 @@ export default {
             errors:{
 
             },
-            proportiontotoalCost: 100,
-            proportiontotoalStructuralRisk: 100,
-            proportiontotoalJobDifficulty: 100,
+            proportiontotoalCost: '',
+            proportiontotoalStructuralRisk: '',
+            proportiontotoalJobDifficulty: '',
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -2156,6 +2156,9 @@ export default {
                     this.StrongData.oneMWorkDifficulty = this.StrongUpperArchDistancesJSON[i].JobDifficulty;
                 }
             }
+
+            this.calculator();
+
         },
         calculator(){
             this.proportiontotoalCost = parseInt(this.StrongData.GreenhouseProfileCost) +  parseInt(this.StrongData.RoofFormCost) + parseInt(this.StrongData.UpperArchCost) + parseInt(this.StrongData.BasisCost) + parseInt(this.StrongData.SpanCost) + parseInt(this.StrongData.ShoulderHeightCost) + parseInt(this.StrongData.LengthCost) + parseInt(this.StrongData.ContinuityCost) + parseInt(this.StrongData.CoatedFilmCost);
@@ -2376,6 +2379,7 @@ export default {
             formData.append('CoatedFilmCost',this.StrongData.CoatedFilmCost);
             formData.append('CoatedFilmStructuralRisk',this.StrongData.CoatedFilmStructuralRisk);
             formData.append('CoatedFilmJobDifficulty',this.StrongData.CoatedFilmJobDifficulty);
+            formData.append('_method','put');
             
 
             try{
