@@ -710,6 +710,7 @@ class SimpleController extends Controller
         /******** 各成本比例  ********/
         // 溫室管材
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '溫室管材';
         $CcostRatio->Cost = $request->GreenhousePipeCost;
         $CcostRatio->StructuralRisk = $request->GreenhousePipeStructuralRisk;
@@ -718,6 +719,7 @@ class SimpleController extends Controller
 
         // 圓頂形式
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '圓頂形式';
         $CcostRatio->Cost = $request->DomeFormCost;
         $CcostRatio->StructuralRisk = $request->DomeFormStructuralRisk;
@@ -726,6 +728,7 @@ class SimpleController extends Controller
 
         // 圓拱距
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '圓拱距';
         $CcostRatio->Cost = $request->ArcDistanceCost;
         $CcostRatio->StructuralRisk = $request->ArcDistanceStructuralRisk;
@@ -734,6 +737,7 @@ class SimpleController extends Controller
 
         // 基礎
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '基礎';
         $CcostRatio->Cost = $request->BasisCost;
         $CcostRatio->StructuralRisk = $request->BasisStructuralRisk;
@@ -742,6 +746,7 @@ class SimpleController extends Controller
 
         // 跨距
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '跨距';
         $CcostRatio->Cost = $request->SpanCost;
         $CcostRatio->StructuralRisk = $request->SpanStructuralRisk;
@@ -750,6 +755,7 @@ class SimpleController extends Controller
 
         // 肩高
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '肩高';
         $CcostRatio->Cost = $request->ShoulderHeightCost;
         $CcostRatio->StructuralRisk = $request->ShoulderHeightStructuralRisk;
@@ -758,6 +764,7 @@ class SimpleController extends Controller
 
         // 長度
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '長度';
         $CcostRatio->Cost = $request->LengthCost;
         $CcostRatio->StructuralRisk = $request->LengthStructuralRisk;
@@ -766,6 +773,7 @@ class SimpleController extends Controller
 
         // 連續性
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '連續性';
         $CcostRatio->Cost = $request->ContinuityCost;
         $CcostRatio->StructuralRisk = $request->ContinuityStructuralRisk;
@@ -774,6 +782,7 @@ class SimpleController extends Controller
 
         // 披覆膜
         $CcostRatio = new simplecostratio();    // 各建構項目比例
+        $CcostRatio->Expert = $request->Expert;
         $CcostRatio->BuildItem = '披覆膜';
         $CcostRatio->Cost = $request->CoatedFilmCost;
         $CcostRatio->StructuralRisk = $request->CoatedFilmStructuralRisk;

@@ -52,27 +52,18 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
 
-                        <div class="sb-sidenav-menu-heading">測試</div>
-                        <router-link to="/DevelopConstructionCostAnalysisTestment" class="nav-link" exact>
-                            <b-icon icon="hammer"></b-icon> 構造成本測試
-                        </router-link>
+                        <!-- <div class="sb-sidenav-menu-heading">測試</div>
 
                         <router-link to="/test" class="nav-link" exact>
                             <b-icon icon="hammer"></b-icon> 頁面測試
                         </router-link>
                         <router-link to="/categories" class="nav-link" exact>
                             Categories
-                        </router-link>
+                        </router-link> -->
 
-                        <div class="sb-sidenav-menu-heading">其他</div>
-                        <router-link to="/UnitConversion" class="nav-link" exact>
-                            各單位換算
-                        </router-link>
-                        <router-link to="/Q&A" class="nav-link" exact>
-                            常見問題Q&A
-                        </router-link>
+                        
 
-                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <div class="sb-sidenav-menu-heading">知識庫</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室技術知識庫" aria-expanded="false" aria-controls="溫室技術知識庫">
                             <div class="sb-nav-link-icon"><b-icon icon="book"></b-icon></div>
                             溫室技術知識庫
@@ -88,13 +79,13 @@
                                     分析知識庫
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="分析知識庫" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="分析知識庫" aria-labelledby="headingOne" data-parent="#溫室技術知識庫">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室流體分析" aria-expanded="false" aria-controls="溫室流體分析">
                                             溫室流體分析
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                         </a>
-                                        <div class="collapse" id="溫室流體分析" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                        <div class="collapse" id="溫室流體分析" aria-labelledby="headingOne" data-parent="#分析知識庫">
                                             <nav class="sb-sidenav-menu-nested nav">
                                                 <router-link to="/GreenhouseFluidAnalysis/SimpleGreenhouse" class="nav-link" exact>
                                                     簡易溫室
@@ -118,7 +109,7 @@
                                             材料結構分析
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                         </a>
-                                        <div class="collapse" id="材料結構分析" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                        <div class="collapse" id="材料結構分析" aria-labelledby="headingOne" data-parent="#分析知識庫">
                                             <nav class="sb-sidenav-menu-nested nav">
                                                 <router-link to="/MaterialStructureAnalysis/RoundPipe" class="nav-link" exact>
                                                     圓管材
@@ -136,7 +127,7 @@
                                             溫室結構分析
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                         </a>
-                                        <div class="collapse" id="溫室結構分析" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                        <div class="collapse" id="溫室結構分析" aria-labelledby="headingOne" data-parent="#分析知識庫">
                                             <nav class="sb-sidenav-menu-nested nav">
                                                 <router-link to="/GreenhouseStructureAnalysis/RobustGreenhouse" class="nav-link" exact>
                                                     強固型溫室
@@ -155,6 +146,8 @@
                             </nav>
                         </div>
 
+
+                        <div class="sb-sidenav-menu-heading">設計 / 分析規劃</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室總體規劃系統" aria-expanded="false" aria-controls="溫室總體規劃系統">
                             <div class="sb-nav-link-icon"><b-icon icon="book"></b-icon></div>
                             溫室總體規劃系統
@@ -186,7 +179,7 @@
                                     成本分析
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="成本分析" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="成本分析" aria-labelledby="headingOne" data-parent="#溫室總體規劃系統">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" class="nav-link" exact>
                                             溫室材料成本分析
@@ -233,7 +226,7 @@
                             </nav>
                         </div> -->
 
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Pages
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -263,8 +256,17 @@
                                     </nav>
                                 </div>
                             </nav>
-                        </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
+                        </div> -->
+
+                        <div class="sb-sidenav-menu-heading">其他</div>
+                        <router-link to="/UnitConversion" class="nav-link" exact>
+                            各單位換算
+                        </router-link>
+                        <router-link to="/Q&A" class="nav-link" exact>
+                            常見問題Q&A
+                        </router-link>
+
+                        <!-- <div class="sb-sidenav-menu-heading">Addons</div>
                         <a class="nav-link" href="charts.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Charts
@@ -272,7 +274,8 @@
                         <a class="nav-link" href="tables.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Tables
-                        </a>
+                        </a> -->
+
                     </div>
                 </div>
                 <!-- <div class="sb-sidenav-footer">

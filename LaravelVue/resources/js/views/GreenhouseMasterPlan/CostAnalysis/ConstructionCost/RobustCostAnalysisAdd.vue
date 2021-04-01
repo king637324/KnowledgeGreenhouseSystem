@@ -4,8 +4,7 @@
         <h2>強固型溫室</h2>
         <hr>
 
-        <!-- <v-form v-on:submit.prevent="createRobust" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-        <v-form v-on:submit.prevent="createRobust">
+        <v-form v-on:submit.prevent="createRobust" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
             <div class="d-flex justify-content-around">
                 <div class="p-2 bd-highlight">
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">溫室型材</span></p>

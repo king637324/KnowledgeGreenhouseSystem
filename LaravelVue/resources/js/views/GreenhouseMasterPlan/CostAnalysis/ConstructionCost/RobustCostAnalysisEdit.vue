@@ -1,11 +1,10 @@
 <template>
-    <div>
+    <div v-if="$auth.user().id == this.$route.params.id">
         <br>
         <h2>強固型溫室</h2>
         <hr>
         
-        <!-- <v-form v-on:submit.prevent="UpdateRobust" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-        <v-form v-on:submit.prevent="UpdateRobust">
+        <v-form v-on:submit.prevent="UpdateRobust" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
             <div class="d-flex justify-content-around">
                 <div class="p-2 bd-highlight">
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">溫室型材</span></p>
@@ -1618,6 +1617,13 @@
 
         </v-form>
     </div>
+    <div v-else>
+        <br><br><br><br><br><br>
+        <h2 align="center" valign="center">
+            {{this.$route.params.id}} 的參數，不是您所建立，因此無法修改!
+        </h2>
+        <br><br><br><br><br><br>
+    </div>
 
 </template>
 
@@ -1857,10 +1863,11 @@ export default {
     },
     created:function(){  // 網頁載入時，一開始就載入
         // this.$auth.user();
-        // console.log(this.$auth.user()); // 可以取得使用者資料
+        console.log(this.$auth.user()); // 可以取得使用者資料
+        console.log(this.$auth.user().id); // 可以取得使用者資料
         // 如果帳號有登入，才能顯示他的id帳號
         if(this.$auth.check()){
-            this.SimpleData.Expert = this.$auth.user().id;
+            this.StrongData.Expert = this.$auth.user().id;
         }
 
         // this.$route.params.id

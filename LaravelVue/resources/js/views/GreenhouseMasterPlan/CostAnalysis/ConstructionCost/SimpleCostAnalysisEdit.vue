@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div v-if="$auth.user().id == this.$route.params.id">
+    <!-- <div> -->
         <br>
         <h2>簡易型溫室</h2>
         <hr>
         
 
-        <!-- <v-form v-on:submit.prevent="UpdateSimple" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> -->
-        <v-form v-on:submit.prevent="UpdateSimple">
+        <v-form v-on:submit.prevent="UpdateSimple" v-model="valid" lazy-validation v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
             <div class="d-flex justify-content-around">
                 <div class="p-2 bd-highlight">
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">溫室管材</span></p>
@@ -1955,6 +1955,13 @@
             </div>
 
         </v-form>
+    </div>
+    <div v-else>
+        <br><br><br><br><br><br>
+        <h2 align="center" valign="center">
+            {{this.$route.params.id}} 的參數，不是您所建立，因此無法修改!
+        </h2>
+        <br><br><br><br><br><br>
     </div>
 
 </template>
