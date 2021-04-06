@@ -645,6 +645,22 @@ export default {
                 });
                 this.vegetablejson = await Vegetable.json();
 
+                // 更新 專家的下拉選單
+                var checkfalg = false; // 確認下拉選單中是否有此專家
+                for(var i = 0 ; i < this.ExpertOrder.length ; i++){
+                    // 下拉選單中有此專家
+                    if( this.ExpertOrder[i] == this.$auth.user().id){
+                        checkfalg = true;
+                        break;
+                    }
+                }
+
+                // 如果下拉選單中，沒有此專家，頁面重新整理
+                if(!checkfalg){
+                    // console.log("要跳轉");
+                    window.location.reload();
+                }
+
             } catch (error){
 
                 switch (error.response.status) {
@@ -701,6 +717,13 @@ export default {
                     time: 5000
                 });
             }
+
+            // 如果下拉選單中，沒有此專家，頁面重新整理
+            if(this.CropSelect.length == 0){
+                // console.log("要跳轉");
+                window.location.reload();
+            }
+
         },
         hideEditCropModal(){    // 隱藏編輯表單
             this.$refs.EditCropModal.hide();
