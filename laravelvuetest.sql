@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-03-31 10:04:09
+-- 產生時間： 2021-04-06 09:56:23
 -- 伺服器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -557,19 +557,19 @@ CREATE TABLE `lme_metal_prices` (
 --
 
 INSERT INTO `lme_metal_prices` (`MetalName`, `MetalPrice`, `MetalDate`, `MetalLink`) VALUES
-('廢鋼', 471.000, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
-('特種鋁合金', 2221.000, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
-('金', 1685.800, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
-('鈷', 51110.000, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
-('鉛', 1944.000, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
-('銀', 24.120, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
-('銅', 8788.500, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
-('鋁', 2220.500, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
-('鋁合金', 2134.500, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
-('鋅', 2822.000, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
-('鋼筋', 647.500, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
-('錫', 27517.000, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
-('鎳', 16327.000, 'US$:  30 March 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
+('廢鋼', 476.000, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
+('特種鋁合金', 2183.000, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
+('金', 1727.500, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
+('鈷', 50105.000, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
+('鉛', 1942.500, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
+('銀', 24.900, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
+('銅', 8768.000, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
+('鋁', 2212.500, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
+('鋁合金', 2041.500, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
+('鋅', 2765.500, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
+('鋼筋', 643.000, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
+('錫', 27369.000, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
+('鎳', 16001.000, 'US$:  1 April 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
 
 -- --------------------------------------------------------
 
@@ -1918,7 +1918,7 @@ CREATE TABLE `usdollars` (
 --
 
 INSERT INTO `usdollars` (`id`, `USD`) VALUES
-(1, '28.56');
+(1, '28.575');
 
 -- --------------------------------------------------------
 
@@ -1947,12 +1947,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `phoneNumber`, `email`, `email_verified_at`, `password`, `identity`, `companyname`, `isadmin`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '宜靜', '0900000000', '0651095@nkust.edu.tw', NULL, '$2y$10$/EQbFqkWf5EjIJtT47cXZuq5gQyePFz9L6dnj0prIMBXErA8QRTJS', '管理者', 'MIRDC-UC', 1, '正常', NULL, '2020-09-14 19:08:32', '2020-12-07 01:10:02'),
-(2, 'YICHING', '0912345678', 'king637324@gmail.com', NULL, '$2y$10$LjVuhYmzXbTl6OHjq4Gn0unDxNSIYIsHVv6DQ99THZW..xPVjA596', '設計者', 'MIRDC-UC', 0, '正常', 'l3K5FFYZW9BQhsl0kgrRQvZQ18bCtTnMRkKxynba1I5pJZII36AAoDIXbqVn', '2020-09-06 22:22:35', '2020-12-07 00:30:26'),
-(3, 'admin', '0900000000', 'admin@gmail.com', NULL, '$2y$10$29xnJ7tmNAch56xdqdydeuz4kqtaanoqOZP0dJpzqa41aOe1/jC4u', '管理者', 'MIRDC-UC', 1, '正常', NULL, '2020-09-11 01:34:35', '2020-09-11 01:34:35'),
-(8, 'MIRDC-UC', '0900000000', '123@gmail.com', NULL, '$2y$10$kv7rIM4GpVDl0Ji239FeFe8RpeOddisVppdbAYYpjAyrrn9rHmMB.', '專家', 'MIRDC', 1, '正常', NULL, '2020-10-29 00:02:36', '2020-10-29 00:02:36'),
-(9, 'hcc', '0910861175', 'huangcc@mail.mirdc.org.tw', NULL, '$2y$10$3G5frtZU3dmCGYiPQQ0hnu.JJbV7SXzQBY9Vl/BD8hsDBvdWrI8ze', '農民', 'mirdc', 0, '正常', NULL, '2020-11-17 14:28:15', '2020-11-17 14:28:15'),
-(10, 'qaz', 'qaz', '0451024@nkust.edu.tw', NULL, '$2y$10$guNkFbhNaHryJzrMEOF63O12rj2F2KMa1aGxaRIdadMDc9xfy9s/C', '農民', 'qaz', 0, '正常', NULL, '2021-02-24 06:21:48', '2021-02-24 06:21:48');
+(1, '管理員', '0900000000', 'admin@gmail.com', NULL, '$2y$10$29xnJ7tmNAch56xdqdydeuz4kqtaanoqOZP0dJpzqa41aOe1/jC4u', '管理者', 'MIRDC-UC', 1, '正常', NULL, '2020-09-11 01:34:35', '2020-09-11 01:34:35'),
+(2, 'hcc', '0910861175', 'huangcc@mail.mirdc.org.tw', NULL, '$2y$10$3G5frtZU3dmCGYiPQQ0hnu.JJbV7SXzQBY9Vl/BD8hsDBvdWrI8ze', '農民', 'mirdc', 0, '正常', NULL, '2020-11-17 14:28:15', '2020-11-17 14:28:15'),
+(3, '宜靜', '0900000000', '0651095@nkust.edu.tw', NULL, '$2y$10$/EQbFqkWf5EjIJtT47cXZuq5gQyePFz9L6dnj0prIMBXErA8QRTJS', '專家', 'MIRDC-UC', 1, '正常', NULL, '2020-09-14 19:08:32', '2020-12-07 01:10:02'),
+(4, 'Yi-Ching', '0900000000', 'king637324@gmail.com', NULL, '$2y$10$kh89O08VmFIZwvEl.P2MSO5K9UMHeE9/yfgbGgnEhb0rmHuxjC5zi', '農民', 'MIRDCUC', 0, '正常', NULL, '2021-04-05 23:52:01', '2021-04-05 23:52:01');
 
 -- --------------------------------------------------------
 
@@ -2473,121 +2471,121 @@ ALTER TABLE `oauth_personal_access_clients`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simplecirculararchdistances`
 --
 ALTER TABLE `simplecirculararchdistances`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simplecoatingfilms`
 --
 ALTER TABLE `simplecoatingfilms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simplecontinuities`
 --
 ALTER TABLE `simplecontinuities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simplecostratios`
 --
 ALTER TABLE `simplecostratios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simpledomeforms`
 --
 ALTER TABLE `simpledomeforms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simplefoundations`
 --
 ALTER TABLE `simplefoundations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simplegreenhousepipes`
 --
 ALTER TABLE `simplegreenhousepipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simplelengths`
 --
 ALTER TABLE `simplelengths`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simpleshoulderheights`
 --
 ALTER TABLE `simpleshoulderheights`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `simplespans`
 --
 ALTER TABLE `simplespans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `strongcoatingfilms`
 --
 ALTER TABLE `strongcoatingfilms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `strongcontinuities`
 --
 ALTER TABLE `strongcontinuities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `strongcostratios`
 --
 ALTER TABLE `strongcostratios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `strongfoundations`
 --
 ALTER TABLE `strongfoundations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `stronggreenhouseprofiles`
 --
 ALTER TABLE `stronggreenhouseprofiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `stronglengths`
 --
 ALTER TABLE `stronglengths`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `strongroofforms`
 --
 ALTER TABLE `strongroofforms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `strongshoulderheights`
 --
 ALTER TABLE `strongshoulderheights`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `strongspans`
 --
 ALTER TABLE `strongspans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `strongupperarchdistances`
 --
 ALTER TABLE `strongupperarchdistances`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `structuralanalysis`
@@ -2605,7 +2603,7 @@ ALTER TABLE `usdollars`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `vegetables`

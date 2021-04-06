@@ -62,9 +62,12 @@ class User extends Authenticatable implements JWTSubject
     /**
      * Override the mail body for reset password notification mail.
      */
-    public function setPasswordAttribute($value) {
-        $this->attributes['password'] = Hash::make($value);
+    public function sendPasswordResetNotification($token){
+        $this->notify(new \App\Notifications\MailResetPasswordNotification($token));
     }
+    // public function setPasswordAttribute($value) {
+    //     $this->attributes['password'] = Hash::make($value);
+    // }
 
 
 

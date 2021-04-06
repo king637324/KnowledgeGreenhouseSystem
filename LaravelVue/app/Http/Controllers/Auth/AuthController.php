@@ -7,11 +7,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Auth\Passwords\PasswordBroker;
+// use Illuminate\Foundation\Auth\RegistersUsers;
+// use Illuminate\Foundation\Auth\AuthenticatesUsers;
+// use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Password;
+// use Illuminate\Support\Facades\Password;
 class AuthController extends Controller
 {
     // 將資料庫的User資料表  轉成JSON
@@ -45,15 +45,15 @@ class AuthController extends Controller
 
         $user->password = bcrypt($request->password);
         $user->save();
-        $user->sendEmailVerificationNotification();
+        // $user->sendEmailVerificationNotification();
         return response()->json(['status' => 'success'], 200);
     }
-    protected function resetPassword($user, $password)
-    {
-        $user->password = bcrypt($password);
-        $user->save();
-        event(new PasswordReset($user));
-    }
+    // protected function resetPassword($user, $password)
+    // {
+    //     $user->password = bcrypt($password);
+    //     $user->save();
+    //     event(new PasswordReset($user));
+    // }
     // 登入
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
