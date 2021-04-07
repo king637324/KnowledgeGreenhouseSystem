@@ -592,6 +592,15 @@ export default {
             this.ExpertSelect = this.CropSelect;
         },
         createCrop: async function(){
+
+            // 判斷 要新增的資訊 在此專家所建立的資訊中是否有重複建立
+            for(var i = 0 ; i < this.vegetablejson.length ; i++){
+                if(this.vegetablejson[i].Expert == this.CropData.Expert && this.vegetablejson[i].VegetableTypes == this.CropData.VegetableTypes){
+                    window.alert(`您已增過 ${this.vegetablejson[i].VegetableTypes} 的資訊了`);
+                    return;
+                }
+            }
+
             let formData = new FormData();
 
             formData.append('Expert',this.CropData.Expert);
@@ -685,7 +694,14 @@ export default {
                 }
             }
 
-            if(!window.confirm(`你確定要刪除 ${DeleteData.Expert} 的 ${DeleteData.VegetableTypes} 嗎?`)){
+            // 判斷 要刪除的資訊是否為此專家所建立的
+            if(DeleteData.Expert == 'System'){
+                window.alert("此為系統參數，不可刪除");
+                return;
+            }else if(this.$auth.user().id != DeleteData.Expert){
+                window.alert(` ${DeleteData.Expert} 的參數，不是您所建立，因此無法刪除!`);
+                return;
+            }else if(!window.confirm(`你確定要刪除 ${DeleteData.Expert} 的 ${DeleteData.VegetableTypes} 嗎?`)){
                 return;
             }
 
@@ -720,7 +736,6 @@ export default {
 
             // 如果下拉選單中，沒有此專家，頁面重新整理
             if(this.CropSelect.length == 0){
-                // console.log("要跳轉");
                 window.location.reload();
             }
 
@@ -733,6 +748,16 @@ export default {
         },
         EditCrop(CropData){     // 複製所選要編輯的作物資料
             this.EditCropData = {...CropData};
+
+            // 判斷 要編輯的資訊是否為此專家所建立的
+            if(this.EditCropData.Expert == 'System'){
+                window.alert("此為系統參數，不可修改!!");
+                return;
+            }else if(this.$auth.user().id != this.EditCropData.Expert){
+                window.alert(` ${this.EditCropData.VegetableTypes} 的參數是由專家${this.EditCropData.Expert}，不是您所建立，因此無法修改!`);
+                return;
+            }
+
             this.showEditCropModal();
         },
         UpdateCrop:async function(){    // 編輯作物資料 函式呼叫
