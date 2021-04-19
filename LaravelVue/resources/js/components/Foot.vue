@@ -33,8 +33,8 @@
                         <h6>MIRDC UC 開發</h6>
                         
                         <h6>
-                            網站在線人數：
-                            <a href="https://vigrx.co"><img src="http://vigrx.co/count.php?c_style=115&id=1617779827" border="0"></a><br>
+                            網站總拜訪人數：
+                            <img src="http://vigrx.co/count.php?c_style=115&id=1617779827" border="0">
                         </h6>
                         
 

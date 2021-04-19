@@ -39,7 +39,7 @@
 
             </v-navigation-drawer>
 
-            <div class="pages">
+            <div class="pages" v-overflow-scroll="true">
                 <div class="d-flex bd-highlight">
                     <div class="p-2 flex-grow-1 bd-highlight">
                         <h3>

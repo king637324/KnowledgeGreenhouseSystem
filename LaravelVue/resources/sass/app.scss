@@ -10451,10 +10451,12 @@ img.table-image {
 .pages {
     min-height: 800px;
     max-height: 100%;
-    padding-left: 250px;
+    padding-left: 50px;
+    min-width: 135vmin;
+    max-width: 100%;
+    overflow-x: scroll;
 }
 
 // @import '~vuetify/dist/vuetify.min.css';
 // @import '~material-icons/iconfont/material-icons.scss';
 // @import '@~mdi/font/scss/materialdesignicons.scss';
-

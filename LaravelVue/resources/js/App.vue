@@ -1,7 +1,4 @@
 <template>
-
-
-
     <main>
         <Sidebar/>
         <v-content>

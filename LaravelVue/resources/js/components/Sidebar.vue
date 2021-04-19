@@ -171,9 +171,23 @@
                                     溫室設計
                                 </router-link>
 
-                                <router-link to="/Development" class="nav-link" exact>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#環控設計" aria-expanded="false" aria-controls="成本分析">
                                     環控設計
-                                </router-link>
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="環控設計" aria-labelledby="headingOne" data-parent="#溫室總體規劃系統">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <router-link to="/EnvironmentalControlDesign/LightEnvironment" class="nav-link" exact>
+                                            光環境控制
+                                        </router-link>
+                                        <router-link to="/EnvironmentalControlDesign/TemperatureEnvironment" class="nav-link" exact>
+                                            溫環境控制
+                                        </router-link>
+                                        <router-link to="/EnvironmentalControlDesign/GasEnvironment" class="nav-link" exact>
+                                            氣環境控制
+                                        </router-link>
+                                    </nav>
+                                </div>
 
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#成本分析" aria-expanded="false" aria-controls="成本分析">
                                     成本分析

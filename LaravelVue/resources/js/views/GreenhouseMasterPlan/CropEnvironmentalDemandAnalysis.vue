@@ -8,6 +8,7 @@
         <div class="d-flex justify-content-around">
             <div class="p-2 w-100 bd-highlight">
                 <b-card-group deck>
+                    <!-- 種植植物生長環境需求 -->
                     <b-card
                         header-tag="header"
                         header-text-variant="white"

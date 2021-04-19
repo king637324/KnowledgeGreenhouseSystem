@@ -42,6 +42,10 @@ import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleEdit from '
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustAdd from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/RobustCostAnalysisAdd.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustEdit from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/RobustCostAnalysisEdit.vue';
 
+import GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/LightEnvironment.vue';
+import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment.vue';
+import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
+
 
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
@@ -70,6 +74,27 @@ const routes = [{
     path: '/Development',
     name: 'Development',
     component: Development,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/EnvironmentalControlDesign/LightEnvironment',
+    name: '環控設計_光環境',
+    component: GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/EnvironmentalControlDesign/TemperatureEnvironment',
+    name: '環控設計_溫環境',
+    component: GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/EnvironmentalControlDesign/GasEnvironment',
+    name: '環控設計_氣環境',
+    component: GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment,
     meta: {
         auth: undefined
     }
