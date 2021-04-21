@@ -36,6 +36,7 @@ import GreenhouseMasterPlan_CropSelection from './views/GreenhouseMasterPlan/Gre
 import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
+import GreenhouseMasterPlan_GreenhouseDesign from './views/GreenhouseMasterPlan/GreenhouseDesign.vue';
 
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleAdd from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisAdd.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleEdit from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisEdit.vue';
@@ -46,17 +47,10 @@ import GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment from './
 import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
 
-
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
-
-
-
 import Categories from './views/Categories.vue';
-
-
-
 
 Vue.use(VueRouter);
 
@@ -76,6 +70,41 @@ const routes = [{
     component: Development,
     meta: {
         auth: undefined
+    }
+}, {
+    path: '/login',
+    name: '使用者登入',
+    component: Auth_Login,
+    meta: {
+        auth: false
+    }
+}, {
+    path: '/Auth_managerUser',
+    name: '管理會員',
+    component: Auth_managerUser,
+    meta: {
+        auth: true
+    }
+}, {
+    path: '/reset-password',
+    name: 'reset-password',
+    component: ForgotPassword,
+    meta: {
+        auth: false
+    }
+}, {
+    path: '/reset-password/:token',
+    name: 'reset-password-form',
+    component: ResetPasswordForm,
+    meta: {
+        auth: false
+    }
+}, {
+    path: '/GreenhouseDesign',
+    name: '溫室設計',
+    component: GreenhouseMasterPlan_GreenhouseDesign,
+    meta: {
+        auth: false
     }
 }, {
     path: '/EnvironmentalControlDesign/LightEnvironment',
@@ -125,34 +154,6 @@ const routes = [{
     component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustEdit,
     meta: {
         auth: true
-    }
-}, {
-    path: '/login',
-    name: '使用者登入',
-    component: Auth_Login,
-    meta: {
-        auth: false
-    }
-}, {
-    path: '/Auth_managerUser',
-    name: '管理會員',
-    component: Auth_managerUser,
-    meta: {
-        auth: true
-    }
-}, {
-    path: '/reset-password',
-    name: 'reset-password',
-    component: ForgotPassword,
-    meta: {
-        auth: false
-    }
-}, {
-    path: '/reset-password/:token',
-    name: 'reset-password-form',
-    component: ResetPasswordForm,
-    meta: {
-        auth: false
     }
 }, {
     path: '/MaterialsAndDesignKnowledgeBase/Article',
