@@ -1155,10 +1155,10 @@ export default {
                 this.SimpleJobDifficultyAdd = 0;
 
                 for (var i = 0; i < this.SelectSimple.length; i++) {
-                    this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.SelectSimple[i][1].Cost * this.SimpleCostratiosJSON[i].Cost / 100;
-                    this.SimpleCostAdd += this.SelectSimple[i][1].Cost * this.SimpleCostratiosJSON[i].Cost / 100;
-                    this.SimpleStructuralRiskAdd += this.SelectSimple[i][1].StructuralRisk * this.SimpleCostratiosJSON[i].StructuralRisk / 100;
-                    this.SimpleJobDifficultyAdd += this.SelectSimple[i][1].JobDifficulty * this.SimpleCostratiosJSON[i].JobDifficulty/ 100;
+                    this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
+                    this.SimpleCostAdd += this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
+                    this.SimpleStructuralRiskAdd += this.SelectSimple[i][1].StructuralRisk * this.SimpleCostratios[i].StructuralRisk / 100;
+                    this.SimpleJobDifficultyAdd += this.SelectSimple[i][1].JobDifficulty * this.SimpleCostratios[i].JobDifficulty/ 100;
                 }
 
                 this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
@@ -1234,10 +1234,10 @@ export default {
                 this.RobustJobDifficultyAdd = 0;
 
                 for (var i = 0; i < this.SelectRobust.length; i++) {
-                    this.RobustTotalCost += this.RuggedHousrBasePrice * this.SelectRobust[i][1].Cost * this.StrongCostRatiosJSON[i].Cost / 100;
-                    this.RobustCostAdd += this.SelectRobust[i][1].Cost * this.StrongCostRatiosJSON[i].Cost / 100;
-                    this.RobustStructuralRiskAdd += this.SelectRobust[i][1].StructuralRisk * this.StrongCostRatiosJSON[i].StructuralRisk / 100;
-                    this.RobustJobDifficultyAdd += this.SelectRobust[i][1].JobDifficulty * this.StrongCostRatiosJSON[i].JobDifficulty/ 100;
+                    this.RobustTotalCost += this.RuggedHousrBasePrice * this.SelectRobust[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
+                    this.RobustCostAdd += this.SelectRobust[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
+                    this.RobustStructuralRiskAdd += this.SelectRobust[i][1].StructuralRisk * this.StrongCostRatios[i].StructuralRisk / 100;
+                    this.RobustJobDifficultyAdd += this.SelectRobust[i][1].JobDifficulty * this.StrongCostRatios[i].JobDifficulty/ 100;
                 }
 
                 this.RobustTotalCost =  parseInt(this.RobustTotalCost);

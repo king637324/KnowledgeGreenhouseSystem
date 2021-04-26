@@ -213,7 +213,7 @@
                                     </nav>
                                 </div>
 
-                                <router-link to="/Development" class="nav-link" exact>
+                                <router-link to="/RiskAnalysis" class="nav-link" exact>
                                     風險分析
                                 </router-link>
 

@@ -37,6 +37,7 @@ import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/Greenh
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseDesign from './views/GreenhouseMasterPlan/GreenhouseDesign.vue';
+import GreenhouseMasterPlan_RiskAnalysis from './views/GreenhouseMasterPlan/RiskAnalysis.vue';
 
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleAdd from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisAdd.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleEdit from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisEdit.vue';
@@ -96,6 +97,13 @@ const routes = [{
     path: '/reset-password/:token',
     name: 'reset-password-form',
     component: ResetPasswordForm,
+    meta: {
+        auth: false
+    }
+}, {
+    path: '/RiskAnalysis',
+    name: '風險分析',
+    component: GreenhouseMasterPlan_RiskAnalysis,
     meta: {
         auth: false
     }
