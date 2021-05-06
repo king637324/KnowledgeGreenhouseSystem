@@ -12,7 +12,7 @@
 
             <v-spacer></v-spacer>
 
-            <!-- 檢查是否有登入會員 -->
+            <!-- 尚未登入會員 -->
             <div v-if="!$auth.check()">
                 <v-btn icon>
                     <router-link to="/login" style="color:white;">

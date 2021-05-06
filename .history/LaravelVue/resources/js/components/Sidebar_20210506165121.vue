@@ -12,7 +12,7 @@
 
             <v-spacer></v-spacer>
 
-            <!-- 檢查是否有登入會員 -->
+            <!-- 尚未登入會員 -->
             <div v-if="!$auth.check()">
                 <v-btn icon>
                     <router-link to="/login" style="color:white;">
@@ -26,10 +26,8 @@
                         Hi! {{$auth.user().name}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
-                            <a class="dropdown-item" href="#" disabled='ture'>專家編號：{{$auth.user().id}}</a>
-                            <div class="dropdown-divider"></div>  <!-- 分隔線 -->
-                        </div>
+                        專家編號：{{$auth.user().id}}
+                        <div class="dropdown-divider"></div>
                         <!-- 是管理員才能編輯資料庫 -->
                         <div v-if="$auth.user().identity === '管理者'">
                             <!-- <a class="dropdown-item" href="/managerUser">會員管理</a> -->

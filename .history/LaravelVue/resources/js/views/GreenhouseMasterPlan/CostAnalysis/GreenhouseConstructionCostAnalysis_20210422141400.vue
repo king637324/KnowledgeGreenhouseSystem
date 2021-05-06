@@ -1524,7 +1524,7 @@ export default {
             }
 
         },creatSimple(){
-            for(var i = 0 ; i < this.SimpleExpertOrder.length ; i++){
+            for(var i = 0 ; i < this.StrongExpertOrder.length ; i++){
                 if( this.$auth.user().id == this.SimpleExpertOrder[i]){
                     window.alert("您已新增過簡易型溫室成本參數，不可再新增");
                     return;
@@ -1534,7 +1534,7 @@ export default {
 
         },creatRobust(){
             for(var i = 0 ; i < this.StrongExpertOrder.length ; i++){
-                if( this.$auth.user().id == this.StrongExpertOrder[i]){
+                if( this.$auth.user().id == this.SimpleExpertOrder[i]){
                     window.alert("您已新增過強固型溫室成本參數，不可再新增");
                     return;
                 }

@@ -105,14 +105,14 @@ const routes = [{
     name: '風險分析',
     component: GreenhouseMasterPlan_RiskAnalysis,
     meta: {
-        auth: undefined
+        auth: false
     }
 }, {
     path: '/GreenhouseDesign',
     name: '溫室設計',
     component: GreenhouseMasterPlan_GreenhouseDesign,
     meta: {
-        auth: undefined
+        auth: false
     }
 }, {
     path: '/EnvironmentalControlDesign/LightEnvironment',
