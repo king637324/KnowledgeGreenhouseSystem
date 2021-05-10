@@ -44,7 +44,7 @@ class StrongController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) // 新增強固型溫室成本參數
+    public function store(Request $request) // 創建強固型溫室成本參數
     {
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
@@ -735,7 +735,7 @@ class StrongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)    // 更新強固型溫室成本參數
+    public function update(Request $request, $id)
     {
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
@@ -1259,7 +1259,7 @@ class StrongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)    // 刪除強固型溫室成本參數
+    public function destroy($id)
     {
         /******** 溫室型材  ********/
         // 標準型材
@@ -1465,70 +1465,70 @@ class StrongController extends Controller
         $Costratio->delete();
     }
 
-    /* 強固型各建構項目比例_將資料庫資料轉成JSON形式 */
+    /* 強固型各建構項目比例 */
     public function getJSON_StrongCostRatio()
     {
         $StrongCostRatio = strongcostratio::get();
         return $StrongCostRatio;
     }
 
-    /* 強固型披覆膜_將資料庫資料轉成JSON形式 */
+    /* 強固型披覆膜 */
     public function getJSON_StrongCoatingFilm()
     {
         $StrongCoatingFilm = strongcoatingfilm::get();
         return $StrongCoatingFilm;
     }
 
-    /* 強固型連續性_將資料庫資料轉成JSON形式 */
+    /* 強固型連續性 */
     public function getJSON_StrongContinuity()
     {
         $StrongContinuity = strongcontinuity::get();
         return $StrongContinuity;
     }
 
-    /* 強固型基礎_將資料庫資料轉成JSON形式 */
+    /* 強固型基礎 */
     public function getJSON_StrongFoundation()
     {
         $StrongFoundation = strongfoundation::get();
         return $StrongFoundation;
     }
 
-    /* 強固型溫室型材_將資料庫資料轉成JSON形式 */
+    /* 強固型溫室型材 */
     public function getJSON_StrongGreenhouseProfile()
     {
         $StrongGreenhouseProfile = stronggreenhouseprofile::get();
         return $StrongGreenhouseProfile;
     }
 
-    /* 強固型長度_將資料庫資料轉成JSON形式 */
+    /* 強固型長度 */
     public function getJSON_StrongLength()
     {
         $StrongLength = stronglength::get();
         return $StrongLength;
     }
 
-    /* 強固型屋頂形式_將資料庫資料轉成JSON形式 */
+    /* 強固型屋頂形式 */
     public function getJSON_StrongRoofForm()
     {
         $StrongRoofForm = strongroofform::get();
         return $StrongRoofForm;
     }
 
-    /* 強固型肩高_將資料庫資料轉成JSON形式 */
+    /* 強固型肩高 */
     public function getJSON_StrongShoulderHeight()
     {
         $StrongShoulderHeight = strongshoulderheight::get();
         return $StrongShoulderHeight;
     }
 
-    /* 強固型跨距_將資料庫資料轉成JSON形式 */
+    /* 強固型跨距 */
     public function getJSON_StrongSpan()
     {
         $StrongSpan = strongspan::get();
         return $StrongSpan;
     }
 
-    /* 強固型上拱距_將資料庫資料轉成JSON形式 */
+    /* 強固型上拱距 */
     public function getJSON_StrongUpperArchDistance()
     {
         $StrongUpperArchDistance = strongupperarchdistance::get();

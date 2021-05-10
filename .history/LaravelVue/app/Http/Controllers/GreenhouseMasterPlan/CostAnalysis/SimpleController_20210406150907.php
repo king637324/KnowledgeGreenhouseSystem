@@ -810,6 +810,7 @@ class SimpleController extends Controller
      */
     public function edit($id)
     {
+        dd('Controller裡 edit');
         //
     }
 
@@ -1434,8 +1435,9 @@ class SimpleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)    // 刪除簡易型成本參數
+    public function destroy($id)
     {
+
         /******** 溫室管材  ********/
         // 標準管材
         $GreenhousePipe  = simplegreenhousepipe::where('Expert',$id)->where('BuildItem','標準管材');
@@ -1679,70 +1681,70 @@ class SimpleController extends Controller
         $CostRatio->delete();
     }
 
-    /* 簡易型各建構項目比例_將資料庫資料轉成JSON形式 */
+    /* 簡易型各建構項目比例 */
     public function getJSON_SimpleCostRatio()
     {
         $SimpleCostRatio = simplecostratio::get();
         return $SimpleCostRatio;
     }
 
-    /* 簡易型圓拱距_將資料庫資料轉成JSON形式 */
+    /* 簡易型圓拱距 */
     public function getJSON_SimpleCircularArchDistance()
     {
         $SimpleCircularArchDistance = simplecirculararchdistance::get();
         return $SimpleCircularArchDistance;
     }
 
-    /* 簡易型披覆膜_將資料庫資料轉成JSON形式 */
+    /* 簡易型披覆膜 */
     public function getJSON_SimpleCoatingFilm()
     {
         $SimpleCoatingFilm = simplecoatingfilm::get();
         return $SimpleCoatingFilm;
     }
 
-    /* 簡易型連續性_將資料庫資料轉成JSON形式 */
+    /* 簡易型連續性 */
     public function getJSON_SimpleContinuity()
     {
         $SimpleContinuity = simplecontinuity::get();
         return $SimpleContinuity;
     }
 
-    /* 簡易型圓頂形式_將資料庫資料轉成JSON形式 */
+    /* 簡易型圓頂形式 */
     public function getJSON_SimpleDomeForm()
     {
         $SimpleDomeForm = simpledomeform::get();
         return $SimpleDomeForm;
     }
 
-    /* 簡易型基礎_將資料庫資料轉成JSON形式 */
+    /* 簡易型基礎 */
     public function getJSON_SimpleFoundation()
     {
         $SimpleFoundation = simplefoundation::get();
         return $SimpleFoundation;
     }
 
-    /* 簡易型溫室管材_將資料庫資料轉成JSON形式 */
+    /* 簡易型溫室管材 */
     public function getJSON_SimpleGreenhousePipe()
     {
         $SimpleGreenhousePipe = simplegreenhousepipe::get();
         return $SimpleGreenhousePipe;
     }
 
-    /* 簡易型長度_將資料庫資料轉成JSON形式 */
+    /* 簡易型長度 */
     public function getJSON_SimpleLength()
     {
         $SimpleLength = simplelength::get();
         return $SimpleLength;
     }
 
-    /* 簡易型肩高_將資料庫資料轉成JSON形式 */
+    /* 簡易型肩高 */
     public function getJSON_SimpleShoulderHeight()
     {
         $SimpleShoulderHeight = simpleshoulderheight::get();
         return $SimpleShoulderHeight;
     }
 
-    /* 簡易型跨距_將資料庫資料轉成JSON形式 */
+    /* 簡易型跨距 */
     public function getJSON_SimpleSpan()
     {
         $SimpleSpan = simplespan::get();

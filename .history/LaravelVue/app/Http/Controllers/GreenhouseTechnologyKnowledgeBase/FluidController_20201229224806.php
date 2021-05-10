@@ -11,11 +11,13 @@ use App\Models\GreenhouseTechnologyKnowledgeBase\GreenhouseFluidAnalysis\greenho
 
 class FluidController extends Controller
 {
-    // 溫室流體分析使用的JSON
     public function ToJSON(){
 
         $formats = greenhouseformat::get();
+
+
         $ChartData = array();
+
 
         foreach ($formats as $value){
             array_push($ChartData, [$value -> Greenhouse_Type,$value -> Greenhouse_id,$value -> width,$value -> ColumnHeight,$value -> ChordHeight,$value -> Donggao,$value -> Bevel,$value -> ShoulderHeight,$value -> Span]);
@@ -25,7 +27,6 @@ class FluidController extends Controller
 
     }
 
-    // 各種溫室型式風壓比較的圖表資料處理
     public function ChartData(Request $request){
         $fluid = fluidanalysisresult::get();
 

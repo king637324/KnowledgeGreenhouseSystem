@@ -15,7 +15,7 @@ use App\Models\GreenhouseMasterPlan\CostAnalysis\GreenhouseConstructionCostAnaly
 
 class CostAnalysisController extends Controller
 {
-    /* 溫室構造成本分析_將資料庫資料轉成JSON形式 */
+    /* 溫室構造成本分析 */
     // 將資料庫的greenhousecostanalysis資料表  轉成JSON
     public function getJSON_GreenhouseCost()
     {
@@ -31,14 +31,16 @@ class CostAnalysisController extends Controller
     }
 
 
-    /* 溫室材料成本分析_將資料庫資料轉成JSON形式 */
+    /* 溫室材料成本分析 */
+    // materialcost  轉成JSON
     public function getJSON_MaterialCost()
     {
         $MaterialCost = materialcost::get();
         return $MaterialCost;
     }
 
-    /* 溫室材料成本分析－美金_將資料庫資料轉成JSON形式 */
+    /* 溫室材料成本分析－美金 */
+    // 將資料庫的usdollar資料表  轉成JSON
     public function getJSON_USD()
     {
         $USD = usdollar::get();

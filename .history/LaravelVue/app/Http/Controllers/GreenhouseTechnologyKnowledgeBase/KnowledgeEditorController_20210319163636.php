@@ -31,8 +31,6 @@ class KnowledgeEditorController extends Controller
                     ->orderBy('id', 'ASC')
                     ->get();
 
-        //  ->with('children')的children是 Model中knowledgeeditor的function children
-
         return $articles;
     }
 
@@ -62,7 +60,7 @@ class KnowledgeEditorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)  // 新增知識庫的知識資料
+    public function store(Request $request)  // 創建新資料用
     {
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
@@ -122,7 +120,7 @@ class KnowledgeEditorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)   // 更新知識庫的知識資料
+    public function update(Request $request, $id)   // 更新知識資料
     {
 
         $request -> validate([
@@ -152,7 +150,7 @@ class KnowledgeEditorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)    // 刪除知識庫的知識資料
+    public function destroy($id) // 刪除資料用
     {
         if((boolean) knowledgeeditor::where('parent_id', $id)->first()){
             return response()->json([

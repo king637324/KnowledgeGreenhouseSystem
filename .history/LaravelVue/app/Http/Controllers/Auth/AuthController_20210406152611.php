@@ -48,14 +48,12 @@ class AuthController extends Controller
         // $user->sendEmailVerificationNotification();
         return response()->json(['status' => 'success'], 200);
     }
-
     // protected function resetPassword($user, $password)
     // {
     //     $user->password = bcrypt($password);
     //     $user->save();
     //     event(new PasswordReset($user));
     // }
-
     // 登入
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
@@ -73,6 +71,7 @@ class AuthController extends Controller
             'msg' => 'Logged out Successfully.'
         ], 200);
     }
+
 
     // 使用者
     public function user(Request $request){

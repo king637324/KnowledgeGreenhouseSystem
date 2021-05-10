@@ -44,7 +44,7 @@ class StrongController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) // 新增強固型溫室成本參數
+    public function store(Request $request) // 創建強固型溫室成本參數
     {
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
@@ -735,7 +735,7 @@ class StrongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)    // 更新強固型溫室成本參數
+    public function update(Request $request, $id)
     {
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
@@ -1259,7 +1259,7 @@ class StrongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)    // 刪除強固型溫室成本參數
+    public function destroy($id)
     {
         /******** 溫室型材  ********/
         // 標準型材

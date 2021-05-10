@@ -14,7 +14,6 @@ use App\Models\GreenhouseTechnologyKnowledgeBase\MaterialStructureAnalysis\truss
 
 class MaterialController extends Controller
 {
-    // 材料分析使用的JSON
     public function ToJSON(){
 
         $formats = materialformat::get();

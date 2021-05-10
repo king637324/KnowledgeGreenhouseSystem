@@ -31,8 +31,6 @@ class KnowledgeEditorController extends Controller
                     ->orderBy('id', 'ASC')
                     ->get();
 
-        //  ->with('children')的children是 Model中knowledgeeditor的function children
-
         return $articles;
     }
 
