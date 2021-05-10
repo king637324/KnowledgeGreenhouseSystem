@@ -1,16 +1,16 @@
 <template>
     <div>
-        <h3>新增知識資料</h3>
+        <h3>編輯知識資料</h3>
         <hr>
 
-        <form v-on:submit.prevent="createKnowledge">
+        <form v-on:submit.prevent="UpdateKnowledge" method="post">
             <table>
                 <tr>
                     <td>
                         <div class="form-group">
                             <div class="form-group" >
-                                <label for="parent_id" style="width: 10vmin">父項目:</label>
-                                <b-select  v-model="KnowledgeData.parent_id" label="父項目:">
+                                <label for="parent_id" style="width: 30vmin">父項目:</label>
+                                <b-select  v-model="EditKnowledgeData.parent_id" :items="SelectParent" label="父項目:">
                                     <option v-for="(data, index) in SelectParent" :value="data[0]">
                                         {{data[0]}} {{data[1]}}
                                     </option>
@@ -22,32 +22,34 @@
                     <td>
                         <div class="form-group">
                             <label for="Title" style="width: 30vmin">標題:</label>
-                            <input type="Title" v-model="KnowledgeData.name" class="form-control" id="Title" placeholder="請輸入標題">
+                            <input type="Title" v-model="EditKnowledgeData.name" class="form-control" id="Title" placeholder="請輸入標題">
                             <div class="invalid-feedback" v-if="errors.name">{{ errors.name[0] }}</div>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             <label for="Editor" style="width: 30vmin">編輯人:</label>
-                            <input type="Editor" v-model="KnowledgeData.editor" class="form-control" id="Editor" placeholder="請輸入編輯人">
+                            <input type="Editor" v-model="EditKnowledgeData.editor" class="form-control" id="Editor" placeholder="請輸入編輯人">
                             <div class="invalid-feedback" v-if="errors.editor">{{ errors.editor[0] }}</div>
                         </div>
                     </td>
                 </tr>
             </table>
 
-            <ckeditor v-model="KnowledgeData.content" :editorUrl="editorURL" :config="editorConfig"></ckeditor>
 
-            <div class="invalid-feedback" v-if="errors.content">{{ errors.content[0] }}</div>
+            <ckeditor v-model="EditKnowledgeData.content" :editorUrl="editorURL" :config="editorConfig"></ckeditor>
+
+
 
             <hr>
             <div class="text-right">
                 <button type="button" class="btn btn-secondary" v-on:click="returnArticle">取消</button>
-                <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>創建</button>
+                <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span>儲存</button>
             </div>
 
         </form>
     </div>
+
 </template>
 
 <script src="/js/ckfinder/ckfinder.js"></script><!-- 處理圖片上傳 -->
@@ -66,6 +68,7 @@ export default {
                 autoGrow_minHeight : 450,
                 autoGrow_onStartup : true,
                 language: 'zh',// 設定語言
+
                 filebrowserBrowseUrl: '/js/ckfinder/ckfinder.html',
                 filebrowserImageBrowseUrl: '/js/ckfinder/ckfinder.html?type=Images',
                 filebrowserFlashBrowseUrl: '/js/ckfinder/ckfinder.html?type=Flash',
@@ -75,10 +78,12 @@ export default {
             },
 
             KnowledgeData:{
-                    parent_id:0,
-                    name:'',
-                    editor:'',
-                    content:'',
+                parent_id:0,
+                name:'',
+                editor:'',
+                content:'',
+            },
+            EditKnowledgeData:{
 
             },
             errors:{
@@ -93,6 +98,7 @@ export default {
         this.getJson();
     },
     mounted() {
+
     },
     methods: {
         async getJson(){
@@ -112,41 +118,49 @@ export default {
                 this.SelectParent.push(idname);
             }
 
-        },createKnowledge: async function(){    // 新增資料 函式呼叫
-            let formData = new FormData();
-            formData.append('parent_id',this.KnowledgeData.parent_id);
-            formData.append('name',this.KnowledgeData.name);
-            formData.append('editor',this.KnowledgeData.editor);
-            formData.append('content',this.KnowledgeData.content);
-            try{
-                const response = await KnowledgeService.createKnowledge(formData);
-                // 創建成功後，頁面跳轉回 文章知識頁面
+            this.EditKnowledge();
+
+        },
+        EditKnowledge(){  // 編輯資料 變數宣告，得到要編輯的知識id
+            var find = null;
+            var ArticleNumber = this.$route.params.id;  // this.$route.params.id 可以得到夾帶參數的id
+
+            // 從知識資料庫中尋找要編輯的知識id
+            for(var i=0; i<this.Knowledgejson.length;i++){
+                if(ArticleNumber == this.Knowledgejson[i].id){
+                    find = this.Knowledgejson[i];
+                    break;
+                }
+            }
+
+            this.EditKnowledgeData = {...find};
+
+        },
+        UpdateKnowledge:async function(){ // 編輯資料 函式呼叫
+            try {
+                let formData = new FormData();
+                formData.append('parent_id',this.EditKnowledgeData.parent_id);
+                formData.append('name',this.EditKnowledgeData.name);
+                formData.append('editor',this.EditKnowledgeData.editor);
+                formData.append('content',this.EditKnowledgeData.content);
+                formData.append('_method','put');
+                const response = await KnowledgeService.UpdateKnowledge(this.EditKnowledgeData, formData);
+
+                // 修改成功後，頁面跳轉回 文章知識頁面
                 window.location = '/#/MaterialsAndDesignKnowledgeBase/Article';
-                // 創建成功的提示視窗
+
+                // 修改成功的提示視窗
                 this.flashMessage.success({
-                    message: '知識 資料寫入成功!!',
+                    message: '知識 資料更新成功!!',
                     time: 3000
                 });
-                this.KnowledgeData = {
-                    parent_id:0,
-                    name:'',
-                    editor:'',
-                    content:''
-                };
-            } catch (error){
 
-                // 創建失敗的提示視窗
-                switch (error.response.status) {
-                    case 422:
-                        this.errors = error.response.data.errors;
-                        break;
-                    default:
-                        this.flashMessage.error({
-                            message: '知識 資料寫入有錯誤發生!!',
-                            time: 5000
-                        });
-                        break;
-                }
+            } catch (error) {
+                // 修改失敗的提示視窗
+                this.flashMessage.error({
+                    message: error.response.data.message,
+                    time: 5000
+                });
             }
         },returnArticle(){
             // 返回文章知識頁面

@@ -1246,7 +1246,7 @@ export default {
                     this.checkData.push(this.Fluidjson[i]);
                 }
             }
-        },ChartClear(){    // 清除勾選
+        }, ChartClear(){    // 清除勾選
             this.checkedNames = [];
             this.checkData = [];
 

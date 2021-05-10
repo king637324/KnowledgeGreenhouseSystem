@@ -101,6 +101,8 @@ export default {
                 }
             }
 
+        },check(){
+            console.log("-----------檢查------------");
         }
     }
 }

@@ -576,7 +576,8 @@ export default {
                 if(this.ExpertSelect[i].classification == this.selectCrop)  this.CropSelect.push(this.ExpertSelect[i]);
             }
 
-        },updateExpertTable(){
+        },
+        updateExpertTable(){
             // 從所選的專家id 找到 所選 專家
             for(var i = 0 ; i < this.ExpertOrder.length ; i++){
                 if(i == this.ExpertIdx)    this.selectExpert = this.ExpertOrder[i];
@@ -589,7 +590,8 @@ export default {
             }
 
             this.ExpertSelect = this.CropSelect;
-        },createCrop: async function(){
+        },
+        createCrop: async function(){
 
             // 判斷 要新增的資訊 在此專家所建立的資訊中是否有重複建立
             for(var i = 0 ; i < this.vegetablejson.length ; i++){
@@ -682,7 +684,8 @@ export default {
                         break;
                 }
             }
-        },deleteCrop: async function(DeleteId){    // 刪除作物資料 函式呼叫
+        },
+        deleteCrop: async function(DeleteId){    // 刪除作物資料 函式呼叫
             var DeleteData = [];
 
             for(var i = 0 ; i < this.vegetablejson.length ; i++){
@@ -736,11 +739,14 @@ export default {
                 window.location.reload();
             }
 
-        },hideEditCropModal(){    // 隱藏編輯表單
+        },
+        hideEditCropModal(){    // 隱藏編輯表單
             this.$refs.EditCropModal.hide();
-        },showEditCropModal(){    // 顯示編輯表單
+        },
+        showEditCropModal(){    // 顯示編輯表單
             this.$refs.EditCropModal.show();
-        },EditCrop(CropData){     // 複製所選要編輯的作物資料
+        },
+        EditCrop(CropData){     // 複製所選要編輯的作物資料
             this.EditCropData = {...CropData};
 
             // 判斷 要編輯的資訊是否為此專家所建立的
@@ -753,7 +759,8 @@ export default {
             }
 
             this.showEditCropModal();
-        },UpdateCrop:async function(){    // 編輯作物資料 函式呼叫
+        },
+        UpdateCrop:async function(){    // 編輯作物資料 函式呼叫
             try {
                 let formData = new FormData();
                 // console.log("this.EditCropData");

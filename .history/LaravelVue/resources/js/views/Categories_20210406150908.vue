@@ -181,7 +181,8 @@
                         time: 5000
                     });
                 }
-            },attachImage(){
+            },
+            attachImage(){
                 this.categoryData.image = this.$refs.NewCategoryImage.files[0];
                 let reader = new FileReader();
                 reader.addEventListener('load',function(){
@@ -189,11 +190,14 @@
                 }.bind(this),false);
 
                 reader.readAsDataURL(this.categoryData.image);
-            },hideNewCategoryModal(){
+            },
+            hideNewCategoryModal(){
                 this.$refs.NewCategoryModal.hide();
-            },showNewCategoryModal(){
+            },
+            showNewCategoryModal(){
                 this.$refs.NewCategoryModal.show();
-            },createCategory: async function(){
+            },
+            createCategory: async function(){
                 let formData = new FormData();
                 formData.append('name',this.categoryData.name);
                 formData.append('mail',this.categoryData.mail);
@@ -229,7 +233,8 @@
                             break;
                     }
                 }
-            },deleteCategory: async function(test){
+            },
+            deleteCategory: async function(test){
                 if(!window.confirm(`你確定要刪除 ${test.name} 嗎?`)){
                     return;
                 }
@@ -254,15 +259,19 @@
                         time: 5000
                     });
                 }
-            },hideEditCategoryModal(){
+            },
+            hideEditCategoryModal(){
                 this.$refs.EditCategoryModal.hide();
-            },showEditCategoryModal(){
+            },
+            showEditCategoryModal(){
                 this.$refs.EditCategoryModal.show();
-            },EditCategory(test){
+            },
+            EditCategory(test){
                 this.editData = {...test};
                 this.showEditCategoryModal();
 
-            },EditAttachImage(){
+            },
+            EditAttachImage(){
                 this.editData.image = this.$refs.EditCategoryImage.files[0];
                 let reader = new FileReader();
                 reader.addEventListener('load',function(){
@@ -270,7 +279,8 @@
                 }.bind(this),false);
 
                 reader.readAsDataURL(this.editData.image);
-            },UpdateCategory:async function(){
+            },
+            UpdateCategory:async function(){
                 try {
                     let formData = new FormData();
                     formData.append('name',this.editData.name);

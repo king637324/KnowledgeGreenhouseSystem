@@ -112,7 +112,8 @@ export default {
                 this.SelectParent.push(idname);
             }
 
-        },createKnowledge: async function(){    // 新增資料 函式呼叫
+        },
+        createKnowledge: async function(){    // 新增資料 函式呼叫
             let formData = new FormData();
             formData.append('parent_id',this.KnowledgeData.parent_id);
             formData.append('name',this.KnowledgeData.name);
@@ -148,7 +149,8 @@ export default {
                         break;
                 }
             }
-        },returnArticle(){
+        },
+        returnArticle(){
             // 返回文章知識頁面
             window.location = '/#/MaterialsAndDesignKnowledgeBase/Article';
         }

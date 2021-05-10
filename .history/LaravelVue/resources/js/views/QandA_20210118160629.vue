@@ -291,7 +291,7 @@
 export default {
     data(){
         return{
-            tabIndex: 0, // 處理分頁的顯示
+            tabIndex: 0,
 
         }
     },
@@ -299,7 +299,7 @@ export default {
 
     },
     methods:{
-        linkClass(idx) { // 處理分頁的顯示
+        linkClass(idx) {
             if (this.tabIndex === idx) {
                 return ['bg-info', 'text-light']
             } else {

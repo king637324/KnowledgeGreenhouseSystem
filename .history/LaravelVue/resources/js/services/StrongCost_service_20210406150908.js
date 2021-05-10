@@ -8,9 +8,9 @@ export function createStrongCost(data) {
 }
 
 export function UpdateStrongCost(id, data) {
-    // console.log("------UpdateStrongCost的service裡-------");
-    // console.log("-----------id-------------");
-    // console.log(id);
+    console.log("------UpdateStrongCost的service裡-------");
+    console.log("-----------id-------------");
+    console.log(id);
     // console.log("-----------data-------------");
     // console.log(data);
 

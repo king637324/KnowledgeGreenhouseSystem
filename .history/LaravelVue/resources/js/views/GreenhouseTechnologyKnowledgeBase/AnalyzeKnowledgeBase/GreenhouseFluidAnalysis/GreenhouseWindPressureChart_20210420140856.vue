@@ -145,7 +145,9 @@ export default {
 
             this.Fluidjson = await res.json();
 
-        },updateChart(){
+        },check(){
+
+        }, updateChart(){
             var DataChart=[];
             for(var i=0; i<this.Fluidjson.length ; i++){
                 for(var j=0;j<this.checkedNames.length;j++){

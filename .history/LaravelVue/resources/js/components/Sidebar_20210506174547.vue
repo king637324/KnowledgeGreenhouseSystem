@@ -26,7 +26,6 @@
                         Hi! {{$auth.user().name}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <!-- 顯示專家的編號 -->
                         <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
                             <a class="dropdown-item" href="#" disabled='ture'>專家編號：{{$auth.user().id}}</a>
                             <div class="dropdown-divider"></div>  <!-- 分隔線 -->

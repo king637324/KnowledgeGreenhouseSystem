@@ -542,12 +542,12 @@
 export default {
     data() {
         return {
-            tabIndex: 0,    // 處理分頁的顯示
-            Materialjson:[],
-            TrussHeight:[],
-            TrussBellyRodAnglean:[],
-            TrussBellyRodSizeUpperLower:[],
-            TrussRoofCombination:[],
+        tabIndex: 0,
+        Materialjson:[],
+        TrussHeight:[],
+        TrussBellyRodAnglean:[],
+        TrussBellyRodSizeUpperLower:[],
+        TrussRoofCombination:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -584,7 +584,7 @@ export default {
                 method: 'GET',
             });
             this.TrussRoofCombination = await TrussRoofCombinationChange.json();
-        },linkClass(idx) {   // 處理分頁的顯示
+        },linkClass(idx) {
             if (this.tabIndex === idx) {
                 return ['bg-info', 'text-light']
             } else {

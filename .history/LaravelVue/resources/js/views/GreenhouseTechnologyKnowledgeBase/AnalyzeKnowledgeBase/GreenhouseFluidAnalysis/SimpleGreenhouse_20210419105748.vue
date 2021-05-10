@@ -85,6 +85,7 @@ export default {
                     this.SimpleData.push(this.Fluidjson[i]);
                 }
             }
+            console.log(this.SimpleData);
 
         }
     }
