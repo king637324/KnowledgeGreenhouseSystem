@@ -9,7 +9,7 @@ class regionalwindspeed extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['PostalCode', 'County', 'Region', 'SpeedPerSecond', 'WindLandingId', 'WindPathId', 'monthHighTemperature', 'monthLowTemperature', 'monthSunShine', 'monthGloblRad', 'weatherlink'];
+    protected $fillable = ['County','Region','SpeedPerSecond'];
 
     public $timestamps = false;
 }

@@ -177,7 +177,7 @@
                                         </option>
                                     </b-select>
                                     <br><br>
-                                    <a v-if="this.selectRegion" class="btn btn-primary mr-auto p-2 bd-highlight text-white" :href="weatherlink" target="_blank" style="font-size:1.8vmin; font-family:Microsoft JhengHei;">{{this.selectCity}} {{this.selectRegion}} 歷史日溫連結</a>
+                                    <a class="btn btn-primary mr-auto p-2 bd-highlight text-white" href = "/#/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis" target="_blank" style="font-size:1.8vmin; font-family:Microsoft JhengHei;">OO歷史日溫</a>
 
                                 </div>
 
@@ -438,7 +438,7 @@ export default {
 
             Region:['==請選擇地區==',], // 地區選單的陣列表
             regionIdx: 0,   // 所選地區的id
-            selectRegion: null, // 所選地區的名稱
+            selectRegion: '-', // 所選地區的名稱
             StrHighTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最高月均溫
             StrLowTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最低月均溫
 
@@ -497,6 +497,7 @@ export default {
                 }
             }
 
+
             // 風速對照表
             const WindSpeed = await fetch('/WindSpeedControlJSON',  {
                 method: 'GET',
@@ -508,6 +509,8 @@ export default {
                 method: 'GET',
             });
             this.regionalwindspeedjson = await RegionalWindSpeed.json();
+            console.log("----this.regionalwindspeedjson-------");
+            console.log(this.regionalwindspeedjson);
 
             // 風力登陸分析、風力路徑分析
             const WindLandingAndPath = await fetch('/WindLandingAndPathJSON',  {
@@ -603,27 +606,19 @@ export default {
         },updateRegion(){   // 更新所選擇的地區
             // 從所選的地區id 找到 所選的地區名稱
             for(var i = 0 ; i < this.Region.length ; i++){
-                if(i == this.regionIdx)     this.selectRegion = this.Region[i];
+                if(i == this.regionIdx)    this.selectRegion = this.Region[i];
             }
 
             var StrGloblRad,StrSunShine; // 字串切割：全天空日射量、日照量
-            // 取得 風速、風力登陸分析、風力路徑分析、日照時數與全天空日射量、該地區歷史日溫
+            // 取得 風速、風力登陸分析、風力路徑分析
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
                 if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
-                    // 取得 該地區歷史日溫
-                    this.weatherlink = this.regionalwindspeedjson[i].weatherlink;
-
-                    // 取得 風速
                     this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
-
-                    // 取得 日照時數與全天空日射量
                     StrGloblRad = this.regionalwindspeedjson[i].monthGloblRad.split(",");
                     StrSunShine = this.regionalwindspeedjson[i].monthSunShine.split(",");
 
-                    // 取得 每月最高最低溫
                     this.StrHighTemperature = this.regionalwindspeedjson[i].monthHighTemperature.split(",");
                     this.StrLowTemperature = this.regionalwindspeedjson[i].monthLowTemperature.split(",");
-
                     break;
                 }
             }

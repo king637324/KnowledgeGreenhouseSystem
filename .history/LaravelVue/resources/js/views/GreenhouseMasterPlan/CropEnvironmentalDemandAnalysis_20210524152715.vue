@@ -177,7 +177,7 @@
                                         </option>
                                     </b-select>
                                     <br><br>
-                                    <a v-if="this.selectRegion" class="btn btn-primary mr-auto p-2 bd-highlight text-white" :href="weatherlink" target="_blank" style="font-size:1.8vmin; font-family:Microsoft JhengHei;">{{this.selectCity}} {{this.selectRegion}} 歷史日溫連結</a>
+                                    <a v-if="this.selectRegion" class="btn btn-primary mr-auto p-2 bd-highlight text-white" :href="weatherlink" target="_blank" style="font-size:1.8vmin; font-family:Microsoft JhengHei;">{{this.selectRegion}}歷史日溫</a>
 
                                 </div>
 
@@ -603,7 +603,10 @@ export default {
         },updateRegion(){   // 更新所選擇的地區
             // 從所選的地區id 找到 所選的地區名稱
             for(var i = 0 ; i < this.Region.length ; i++){
-                if(i == this.regionIdx)     this.selectRegion = this.Region[i];
+                if(i == this.regionIdx){
+                    this.selectRegion = this.Region[i];
+                    console.log(this.Region[i]);
+                }
             }
 
             var StrGloblRad,StrSunShine; // 字串切割：全天空日射量、日照量

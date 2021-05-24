@@ -177,7 +177,7 @@
                                         </option>
                                     </b-select>
                                     <br><br>
-                                    <a v-if="this.selectRegion" class="btn btn-primary mr-auto p-2 bd-highlight text-white" :href="weatherlink" target="_blank" style="font-size:1.8vmin; font-family:Microsoft JhengHei;">{{this.selectCity}} {{this.selectRegion}} 歷史日溫連結</a>
+                                    <a v-if="this.selectRegion" class="btn btn-primary mr-auto p-2 bd-highlight text-white" :href="weatherlink" target="_blank" style="font-size:1.8vmin; font-family:Microsoft JhengHei;">{{this.selectCity}} {{this.selectRegion}} 歷史日溫</a>
 
                                 </div>
 
