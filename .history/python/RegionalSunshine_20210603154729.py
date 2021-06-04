@@ -17,7 +17,7 @@ db_settings = {
     "port": 3306,
     "user": "root",
     "password": "mirdcuc",
-    "db": "laravelvuetest",
+    "db": "expertknowledge",
     "charset": "utf8"
 }
 # 確認資料庫是否連線成功

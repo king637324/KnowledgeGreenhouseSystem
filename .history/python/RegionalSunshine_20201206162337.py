@@ -17,7 +17,7 @@ db_settings = {
     "port": 3306,
     "user": "root",
     "password": "mirdcuc",
-    "db": "laravelvuetest",
+    "db": "expertknowledge",
     "charset": "utf8"
 }
 # 確認資料庫是否連線成功
@@ -85,7 +85,7 @@ with conn.cursor() as cursor:
             test = ""
             SunShinelist = []
             GloblRadlist = []
-            year = 2020
+            year = 2019
 
             if result[i][1] == "台北市":
                 # 訪問 各地區平均月均溫
