@@ -2,9 +2,8 @@
 
     <div class="container-field">
         <div class="row">
-            <div class="col-sm-2">
-                <br>
-                <v-navigation-drawer light permanent stateless style="float:right;">
+            <div class="col-sm-2" >
+                <v-navigation-drawer light permanent style="float:right;">
                     <h3>材料與設計知識庫</h3>
                     <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
                     <v-text-field
@@ -42,8 +41,7 @@
                 </v-navigation-drawer>
             </div>
             <div class="col-sm-10">
-                <br>
-                <div class="pages" v-overflow-scroll="true">
+                <div class="pages"  v-overflow-scroll="true">
                     <div class="d-flex bd-highlight">
                         <div class="p-2 flex-grow-1 bd-highlight">
                             <h3>

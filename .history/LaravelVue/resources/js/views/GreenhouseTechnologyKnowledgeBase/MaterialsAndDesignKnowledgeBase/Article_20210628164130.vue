@@ -1,78 +1,82 @@
 <template>
-    <div >
-        <br>
-        <v-container >
-            <v-navigation-drawer light absolute permanent stateless>
-                <h3>材料與設計知識庫</h3>
-                <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
-                <v-text-field
-                    label="知識庫搜尋欄"
-                    v-model="Search"
-                    @input="getSearchSelect"
-                    >
-                </v-text-field>
 
-                <b-select v-model="SearchIndex" v-on:change="SearchSelectReslut" style="font-size: 2vmin; width:25vmin" >
-                    <option v-for="(data, index) in SearchList" :value="data[0]">
-                        {{data[1]}}
-                    </option>
-                </b-select>
-                <div v-if="$auth.check()">
-                    <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
-                        <a class="btn btn-primary" href = "/#/MaterialsAndDesignKnowledgeBase/AddArticle"><span class="fa fa-plus"></span> 新 增 知 識</a>
-                    </div>
-                </div>
+    <div class="container-field">
+        <div class="row">
+            <div class="col-sm-2">
+                <center>
+                    <v-navigation-drawer light absolute permanent stateless>
 
-                <v-treeview
-                    activatable
-                    :items="KnowledgeTreejson"
-                    item-key="id"
-                    open-on-click >
+                        <h3>材料與設計知識庫</h3>
+                        <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
+                        <v-text-field
+                            label="知識庫搜尋欄"
+                            v-model="Search"
+                            @input="getSearchSelect"
+                            >
+                        </v-text-field>
 
-                    <!-- 讓treeview 可以透過點擊標題來觸發顯示的知識 -->
-                    <template slot="label" slot-scope="{ item }" >
-                        <div v-on:click="getItemContent(item)">
-                        <a> {{item.name}} </a>
+                        <b-select v-model="SearchIndex" v-on:change="SearchSelectReslut" style="font-size: 2vmin; width:25vmin" >
+                            <option v-for="(data, index) in SearchList" :value="data[0]">
+                                {{data[1]}}
+                            </option>
+                        </b-select>
+                        <div v-if="$auth.check()">
+                            <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                                <a class="btn btn-primary" href = "/#/MaterialsAndDesignKnowledgeBase/AddArticle"><span class="fa fa-plus"></span> 新 增 知 識</a>
+                            </div>
                         </div>
-                    </template>
-                </v-treeview>
 
-            </v-navigation-drawer>
+                        <v-treeview
+                            activatable
+                            :items="KnowledgeTreejson"
+                            item-key="id"
+                            open-on-click >
 
-            <div class="pages" v-overflow-scroll="true">
-                <div class="d-flex bd-highlight">
-                    <div class="p-2 flex-grow-1 bd-highlight">
-                        <h3>
-                            {{KnowledgeContent[1]}}
-                        </h3>
-                    </div>
-                    <div class="p-2 bd-highlight">
-                        <h6>
-                            編輯者：{{KnowledgeContent[2]}}
-                        </h6>
-                        <h6>
-                            最後修改日：{{KnowledgeContent[4]}}
-                        </h6>
-                    </div>
+                            <!-- 讓treeview 可以透過點擊標題來觸發顯示的知識 -->
+                            <template slot="label" slot-scope="{ item }" >
+                                <div v-on:click="getItemContent(item)">
+                                <a> {{item.name}} </a>
+                                </div>
+                            </template>
+                        </v-treeview>
 
-                    <div v-if="$auth.check()">
-                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
-
-                        <!-- 修改 -->
-                        <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a>
-                        <!-- 刪除 -->
-                        <button class="btn btn-danger"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-
-                <h5 v-html="KnowledgeContent[3]">
-                </h5>
+                    </v-navigation-drawer>
+                </center>
             </div>
+            <div class="col-sm-10">
+                <div class="pages"  v-overflow-scroll="true">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <h3>
+                                {{KnowledgeContent[1]}}
+                            </h3>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <h6>
+                                編輯者：{{KnowledgeContent[2]}}
+                            </h6>
+                            <h6>
+                                最後修改日：{{KnowledgeContent[4]}}
+                            </h6>
+                        </div>
 
-        </v-container>
+                        <div v-if="$auth.check()">
+                            <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
 
+                            <!-- 修改 -->
+                            <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a>
+                            <!-- 刪除 -->
+                            <button class="btn btn-danger"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <h5 v-html="KnowledgeContent[3]">
+                    </h5>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -96,7 +100,7 @@ export default {
         // console.log(this.$auth.user());
     },
     methods: {
-        async getJson(){
+        async getJson(){    //取的資料庫資料，將資料轉成JSON
             // 知識庫資料 (treeview用)
             const KnowledgeTree = await fetch('/KnowledgeTreeJSON',  {
                 method: 'GET',
@@ -186,14 +190,6 @@ export default {
                     time: 5000
                 });
             }
-        },check(){  // 檢查用
-            // console.log("----KnowledgeTreejson----");
-            // console.log(this.KnowledgeTreejson);
-            // console.log("----Knowledgejson----");
-            // console.log(this.Knowledgejson);
-            // console.log("----KnowledgeData.parent_i----");
-            // console.log(this.KnowledgeData.parent_id);
-
         }
     }
 }

@@ -2,9 +2,8 @@
 
     <div class="container-field">
         <div class="row">
-            <div class="col-sm-2">
-                <br>
-                <v-navigation-drawer light permanent stateless style="float:right;">
+            <div class="col-sm-3">
+                <v-navigation-drawer light absolute permanent stateless>
                     <h3>材料與設計知識庫</h3>
                     <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
                     <v-text-field
@@ -41,39 +40,36 @@
 
                 </v-navigation-drawer>
             </div>
-            <div class="col-sm-10">
-                <br>
-                <div class="pages" v-overflow-scroll="true">
-                    <div class="d-flex bd-highlight">
-                        <div class="p-2 flex-grow-1 bd-highlight">
-                            <h3>
-                                {{KnowledgeContent[1]}}
-                            </h3>
-                        </div>
-                        <div class="p-2 bd-highlight">
-                            <h6>
-                                編輯者：{{KnowledgeContent[2]}}
-                            </h6>
-                            <h6>
-                                最後修改日：{{KnowledgeContent[4]}}
-                            </h6>
-                        </div>
+            <div class="col-sm-9 pages" v-overflow-scroll="true">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <h3>
+                            {{KnowledgeContent[1]}}
+                        </h3>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <h6>
+                            編輯者：{{KnowledgeContent[2]}}
+                        </h6>
+                        <h6>
+                            最後修改日：{{KnowledgeContent[4]}}
+                        </h6>
+                    </div>
 
-                        <div v-if="$auth.check()">
-                            <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                    <div v-if="$auth.check()">
+                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
 
-                            <!-- 修改 -->
-                            <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a>
-                            <!-- 刪除 -->
-                            <button class="btn btn-danger"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
-                            </div>
+                        <!-- 修改 -->
+                        <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a>
+                        <!-- 刪除 -->
+                        <button class="btn btn-danger"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
                         </div>
                     </div>
-                    <hr>
-
-                    <h5 v-html="KnowledgeContent[3]">
-                    </h5>
                 </div>
+                <hr>
+
+                <h5 v-html="KnowledgeContent[3]">
+                </h5>
             </div>
         </div>
     </div>

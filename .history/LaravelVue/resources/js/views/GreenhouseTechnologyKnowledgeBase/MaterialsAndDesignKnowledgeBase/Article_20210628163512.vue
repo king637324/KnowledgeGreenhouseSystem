@@ -2,81 +2,12 @@
 
     <div class="container-field">
         <div class="row">
-            <div class="col-sm-2">
-                <br>
-                <v-navigation-drawer light permanent stateless style="float:right;">
-                    <h3>材料與設計知識庫</h3>
-                    <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
-                    <v-text-field
-                        label="知識庫搜尋欄"
-                        v-model="Search"
-                        @input="getSearchSelect"
-                        >
-                    </v-text-field>
-
-                    <b-select v-model="SearchIndex" v-on:change="SearchSelectReslut" style="font-size: 2vmin; width:25vmin" >
-                        <option v-for="(data, index) in SearchList" :value="data[0]">
-                            {{data[1]}}
-                        </option>
-                    </b-select>
-                    <div v-if="$auth.check()">
-                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
-                            <a class="btn btn-primary" href = "/#/MaterialsAndDesignKnowledgeBase/AddArticle"><span class="fa fa-plus"></span> 新 增 知 識</a>
-                        </div>
-                    </div>
-
-                    <v-treeview
-                        activatable
-                        :items="KnowledgeTreejson"
-                        item-key="id"
-                        open-on-click >
-
-                        <!-- 讓treeview 可以透過點擊標題來觸發顯示的知識 -->
-                        <template slot="label" slot-scope="{ item }" >
-                            <div v-on:click="getItemContent(item)">
-                            <a> {{item.name}} </a>
-                            </div>
-                        </template>
-                    </v-treeview>
-
-                </v-navigation-drawer>
-            </div>
-            <div class="col-sm-10">
-                <br>
-                <div class="pages" v-overflow-scroll="true">
-                    <div class="d-flex bd-highlight">
-                        <div class="p-2 flex-grow-1 bd-highlight">
-                            <h3>
-                                {{KnowledgeContent[1]}}
-                            </h3>
-                        </div>
-                        <div class="p-2 bd-highlight">
-                            <h6>
-                                編輯者：{{KnowledgeContent[2]}}
-                            </h6>
-                            <h6>
-                                最後修改日：{{KnowledgeContent[4]}}
-                            </h6>
-                        </div>
-
-                        <div v-if="$auth.check()">
-                            <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
-
-                            <!-- 修改 -->
-                            <a class="btn btn-primary" :href="'/#/MaterialsAndDesignKnowledgeBase/EditArticle/'+KnowledgeContent[0]"><span class="fa fa-edit"></span></a>
-                            <!-- 刪除 -->
-                            <button class="btn btn-danger"  v-on:click="deleteKnowledge(KnowledgeContent)"><span class="fa fa-trash"></span></button>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <h5 v-html="KnowledgeContent[3]">
-                    </h5>
-                </div>
-            </div>
+            <div class="col-sm-2" style="background-color:blue">col-sm-4</div>
+            <div class="col-sm-10" style="background-color:black">col-sm-8</div>
         </div>
     </div>
+    
+   
 </template>
 
 <script>
