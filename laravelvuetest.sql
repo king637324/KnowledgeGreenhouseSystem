@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-06-04 10:07:06
+-- 產生時間： 2021-06-30 03:03:46
 -- 伺服器版本： 10.4.13-MariaDB
 -- PHP 版本： 7.4.8
 
@@ -408,19 +408,19 @@ CREATE TABLE `lme_metal_prices` (
 --
 
 INSERT INTO `lme_metal_prices` (`MetalName`, `MetalPrice`, `MetalDate`, `MetalLink`) VALUES
-('廢鋼', 510.000, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
-('特種鋁合金', 2302.500, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
-('金', 1907.500, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
-('鈷', 43615.000, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
-('鉛', 2228.500, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
-('銀', 28.120, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
-('銅', 10117.500, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
-('鋁', 2442.000, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
-('鋁合金', 2143.000, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
-('鋅', 3061.500, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
-('鋼筋', 755.000, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
-('錫', 32950.000, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
-('鎳', 18133.000, 'US$:  2 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
+('廢鋼', 505.000, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Scrap#tabIndex=2'),
+('特種鋁合金', 2300.000, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Non-ferrous/NASAAC#tabIndex=2'),
+('金', 1778.100, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Gold#tabIndex=2'),
+('鈷', 45495.000, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Minor-metals/Cobalt#tabIndex=2'),
+('鉛', 2217.500, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Lead#tabIndex=2'),
+('銀', 26.020, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Precious-metals/LME-Silver#tabIndex=2'),
+('銅', 9432.500, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Copper#tabIndex=2'),
+('鋁', 2451.000, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium#tabIndex=2'),
+('鋁合金', 2067.500, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Aluminium-Alloy#tabIndex=2'),
+('鋅', 2876.500, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Zinc#tabIndex=2'),
+('鋼筋', 753.000, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Ferrous/Steel-Rebar#tabIndex=2'),
+('錫', 32457.000, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Tin#tabIndex=2'),
+('鎳', 18611.000, 'US$:  25 June 2021', 'https://www.lme.com/Metals/Non-ferrous/Nickel#tabIndex=2');
 
 -- --------------------------------------------------------
 
@@ -1775,7 +1775,7 @@ CREATE TABLE `usdollars` (
 --
 
 INSERT INTO `usdollars` (`id`, `USD`) VALUES
-(1, '27.735');
+(1, '27.945');
 
 -- --------------------------------------------------------
 
