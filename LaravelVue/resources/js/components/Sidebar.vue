@@ -199,7 +199,7 @@
                                         <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" class="nav-link" exact>
                                             溫室材料成本分析
                                         </router-link>
-                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis" class="nav-link" exact>
+                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/easy" class="nav-link" exact>
                                             溫室構造成本分析
                                         </router-link>
                                         <router-link to="/Development" class="nav-link" exact>
