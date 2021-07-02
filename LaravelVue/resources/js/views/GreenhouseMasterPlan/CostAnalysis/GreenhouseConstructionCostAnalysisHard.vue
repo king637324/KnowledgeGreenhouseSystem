@@ -19,357 +19,277 @@
                 <template #header>
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 強 固 型 溫 室 成 本 選 擇</h6>
                 </template>
-                <b-card-text>
-                    <!-- 專家選擇 -->
-                    <b-form-select v-model="StrongIdx" v-on:change="updateRobustData" style="font-size: 2vmin; width:30vmin">
-                        <option v-for="(data, index) in StrongExpertOrder" :value="index">
-                            {{data}}
-                        </option>
-                    </b-form-select>
-                    <!-- 強固型溫室成本選擇 -->
-                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                        <thead class="table-active">
-                            <tr align="center">
-                                <td style='width:15vmin'>構建分部</td>
-                                <td>規格</td>
-                            </tr>
-                        </thead>
-                        <tr align="center" id="溫室型材">
-                            <td>溫室型材</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
+                <v-container-fluid>
+                    <v-row>
+                        <v-col class="col-md-8">
+                            <b-card-text>
+                                <!-- 專家選擇 -->
+                                <b-form-select v-model="StrongIdx" v-on:change="updateRobustData" style="font-size: 2vmin; width:30vmin">
+                                    <option v-for="(data, index) in StrongExpertOrder" :value="index">
+                                        {{data}}
+                                    </option>
+                                </b-form-select>
+                                <!-- 強固型溫室成本選擇 -->
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td style='width:15vmin'>構建分部</td>
+                                            <td>規格</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center" id="溫室型材">
+                                        <td>溫室型材</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr align="center" id="屋頂形式">
+                                        <td>屋頂形式</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr align="center" id="上拱距">
+                                        <td>上拱距</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr align="center" id="基礎">
+                                        <td>基礎</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustFoundation" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr align="center" id="跨距">
+                                        <td>跨距</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongSpans" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustSpan" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr align="center" id="肩高">
+                                        <td>肩高</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr align="center" id="長度">
+                                        <td>長度</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustLength" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr align="center" id="連續性">
+                                        <td>連續性</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustContinuity" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr align="center" id="披覆膜">
+                                        <td>披覆膜</td>
+                                        <td align="left">
+                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongCoatingFilms" :key="index">
+                                                <input type="radio" :value="robust" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
+                                                <label>{{robust.BuildItem}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <h6>備註：請選取欲建置的溫室規格</h6>
+                                <div v-if="$auth.check()">
+                                    <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                                    <div class="d-flex justify-content-around">
+                                        <div class="p-2 bd-highlight">
+                                            <!-- <a class="btn btn-primary" href = "/#/ConstructionCost/RobustCostAnalysis/Add"><span class="fa fa-plus"></span> 新 增 強 固 型 溫 室 參 數</a> -->
+                                            <button class="btn btn-primary"  v-on:click="creatRobust()"><span class="fa fa-plus"></span> 新 增 強 固 型 溫 室 參 數</button>
+                                        </div>
+                                        <div class="p-2 bd-highlight">
+                                            <button class="btn btn-warning"  v-on:click="updateRobust(StrongSelectExpert)"><span class="fa fa-edit"></span> 修 改 {{StrongSelectExpert}} 溫 室 參 數</button>
+                                        </div>
+                                        <div class="p-2 bd-highlight">
+                                            <button class="btn btn-danger"  v-on:click="deleteRobust(StrongSelectExpert)"><span class="fa fa-trash"></span> 刪 除 {{StrongSelectExpert}} 溫 室 參 數</button>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr align="center" id="屋頂形式">
-                            <td>屋頂形式</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr align="center" id="上拱距">
-                            <td>上拱距</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr align="center" id="基礎">
-                            <td>基礎</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustFoundation" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr align="center" id="跨距">
-                            <td>跨距</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongSpans" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustSpan" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr align="center" id="肩高">
-                            <td>肩高</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr align="center" id="長度">
-                            <td>長度</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustLength" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr align="center" id="連續性">
-                            <td>連續性</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustContinuity" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr align="center" id="披覆膜">
-                            <td>披覆膜</td>
-                            <td align="left">
-                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongCoatingFilms" :key="index">
-                                    <input type="radio" :value="robust" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
-                                    <label>{{robust.BuildItem}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
-                    <h6>備註：請選取欲建置的溫室規格</h6>
-                    <div v-if="$auth.check()">
-                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
-                        <div class="d-flex justify-content-around">
-                            <div class="p-2 bd-highlight">
-                                <!-- <a class="btn btn-primary" href = "/#/ConstructionCost/RobustCostAnalysis/Add"><span class="fa fa-plus"></span> 新 增 強 固 型 溫 室 參 數</a> -->
-                                <button class="btn btn-primary"  v-on:click="creatRobust()"><span class="fa fa-plus"></span> 新 增 強 固 型 溫 室 參 數</button>
-                            </div>
-                            <div class="p-2 bd-highlight">
-                                <button class="btn btn-warning"  v-on:click="updateRobust(StrongSelectExpert)"><span class="fa fa-edit"></span> 修 改 {{StrongSelectExpert}} 溫 室 參 數</button>
-                            </div>
-                            <div class="p-2 bd-highlight">
-                                <button class="btn btn-danger"  v-on:click="deleteRobust(StrongSelectExpert)"><span class="fa fa-trash"></span> 刪 除 {{StrongSelectExpert}} 溫 室 參 數</button>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </b-card-text>
+                            </b-card-text>
+                        </v-col>
+                        <v-col class="col-md-4">
+                            <b-card-text>
+                                <h5 style="color:red;">請完成強固型溫室規格選擇 還有 {{9-SelectRobust.length}}個未完成選擇</h5>
+                                <br>
+                                <h5>標準強固型溫室成本價格</h5>
+                                <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>構建分部</td>
+                                            <td>標準規格</td>
+                                            <td>成本性</td>
+                                            <td>結構風險</td>
+                                            <td>作業難度</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center">
+                                        <td> 溫室型材 </td>
+                                        <td> 標準型材 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 屋頂形式 </td>
+                                        <td> 圓頂UBP </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 上拱距 </td>
+                                        <td> 2M </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 基礎 </td>
+                                        <td> 獨立基礎 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 跨距 </td>
+                                        <td> 6m </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 肩高 </td>
+                                        <td> 3m </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 長度 </td>
+                                        <td> 30m </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 連續性	</td>
+                                        <td> 獨棟 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 披覆膜 </td>
+                                        <td> PE </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td> 參數分析 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                        <td> 1.00 </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td>總價格</td>
+                                        <td>  </td>
+                                        <td colspan="3">NT$ 1500000</td>
+                                    </tr>
+                                </table>
+                                <button class="btn btn-primary" style="float: right;" v-on:click="saveresult">儲存</button>
+                            </b-card-text>
+                        </v-col>
+                    </v-row>
+                </v-container-fluid>
             </b-card>
-
+        </b-card-group>
+        <b-card-group>
             <!-- 強 固 型 溫 室 成 本 分 析 -->
             <b-card header-tag="header">
-            <template #header>
-                <h6 class="mb-0"><b-icon icon="building"></b-icon> 強 固 型 溫 室 成 本 分 析</h6>
-            </template>
-            <b-card-text>
-                <div v-if="SelectRobust.length != 9">
-                    <h5 style="color:red;">請完成強固型溫室規格選擇 還有 {{9-SelectRobust.length}}個未完成選擇</h5>
-                    <br>
-                    <h5>標準強固型溫室成本價格</h5>
-                    <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                        <thead class="table-active">
-                            <tr align="center">
-                                <td>構建分部</td>
-                                <td>標準規格</td>
-                                <td>成本性</td>
-                                <td>結構風險</td>
-                                <td>作業難度</td>
-                            </tr>
-                        </thead>
-                        <tr align="center">
-                            <td> 溫室型材 </td>
-                            <td> 標準型材 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 屋頂形式 </td>
-                            <td> 圓頂UBP </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 上拱距 </td>
-                            <td> 2M </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 基礎 </td>
-                            <td> 獨立基礎 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 跨距 </td>
-                            <td> 6m </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 肩高 </td>
-                            <td> 3m </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 長度 </td>
-                            <td> 30m </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 連續性	</td>
-                            <td> 獨棟 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 披覆膜 </td>
-                            <td> PE </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td> 參數分析 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                            <td> 1.00 </td>
-                        </tr>
-                        <tr align="center">
-                            <td>總價格</td>
-                            <td>  </td>
-                            <td colspan="3">NT$ 1500000</td>
-                        </tr>
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 分 析</h6>
+                </template>
+                <b-card-text>
+                    <div v-if="SelectRobust.length != 9">
 
-                    </table>
-                    <br><br><br>
-                </div>
-                <div v-else>
-                    <div class="d-flex justify-content-around">
-                        <!-- 標準強固型溫室成本價格 -->
+                    </div>
+                    <div v-else>
                         <div class="p-2 bd-highlight">
-                            <h5>標準強固型溫室成本</h5>
-                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                <thead class="table-active">
-                                    <tr align="center">
-                                        <td>構建分部</td>
-                                        <td>標準規格</td>
-                                        <td>成本性</td>
-                                        <td>結構風險</td>
-                                        <td>作業難度</td>
-                                    </tr>
-                                </thead>
-                                <tr align="center">
-                                    <td> 溫室型材 </td>
-                                    <td> 標準型材 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 屋頂形式 </td>
-                                    <td> 圓頂UBP </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 上拱距 </td>
-                                    <td> 2M </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 基礎 </td>
-                                    <td> 獨立基礎 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 跨距 </td>
-                                    <td> 6m </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 肩高 </td>
-                                    <td> 3m </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 長度 </td>
-                                    <td> 30m </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 連續性	</td>
-                                    <td> 獨棟 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 披覆膜 </td>
-                                    <td> PE </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td> 參數分析 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                    <td> 1.00 </td>
-                                </tr>
-                                <tr align="center">
-                                    <td>總價格</td>
-                                    <td>  </td>
-                                    <td colspan="3">NT$ 1500000</td>
-                                </tr>
+                            <v-content-fluid>
+                                <v-row>
+                                    <v-col class="col-md-4"  v-for="(simple_copy, index) in SelectSimple_copy" :key="index">
+                                        <h5>所選擇之強固型溫室成本-第{{ index+1 }}版本</h5>
+                                        <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                            <thead class="table-active">
+                                                <tr align="center">
+                                                    <td>構建分部</td>
+                                                    <td>規格選擇</td>
+                                                    <td>成本性</td>
+                                                    <td>結構風險</td>
+                                                    <td>作業難度</td>
+                                                </tr>
+                                            </thead>
+                                            <tr align="center" v-for="(select, index) in  simple_copy" :key="index">
+                                                <td> {{select[0]}}</td>
+                                                <td> {{select[1].BuildItem}} </td>
+                                                <td> {{select[1].Cost}} </td>
+                                                <td> {{select[1].StructuralRisk}} </td>
+                                                <td> {{select[1].JobDifficulty}} </td>
+                                            </tr>
+                                            <tr align="center">
+                                                <td colspan=""> 參數分析 </td>
+                                                <td>  </td>
+                                                <td> {{SimpleRecord[index][0]}} </td>
+                                                <td> {{SimpleRecord[index][1]}} </td>
+                                                <td> {{SimpleRecord[index][2]}} </td>
 
-                            </table>
-                        </div>
-                        <div class="p-2 bd-highlight"></div>
-                        <!-- 所選擇的強固型溫室成本價格 -->
-                        <div class="p-2 bd-highlight">
-                            <h5>所選擇之強固型溫室成本</h5>
-                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                <thead class="table-active">
-                                    <tr align="center">
-                                        <td>構建分部</td>
-                                        <td>規格選擇</td>
-                                        <td>成本性</td>
-                                        <td>結構風險</td>
-                                        <td>作業難度</td>
-                                    </tr>
-                                </thead>
-                                <tr align="center" v-for="(select, index) in  SelectRobust" :key="index">
-                                    <td> {{select[0]}}</td>
-                                    <td> {{select[1].BuildItem}} </td>
-                                    <td> {{select[1].Cost}} </td>
-                                    <td> {{select[1].StructuralRisk}} </td>
-                                    <td> {{select[1].JobDifficulty}} </td>
-                                </tr>
-                                <tr align="center">
-                                    <td colspan=""> 參數分析 </td>
-                                    <td>  </td>
-                                    <td> {{RobustCostAdd}} </td>
-                                    <td> {{RobustStructuralRiskAdd}} </td>
-                                    <td> {{RobustJobDifficultyAdd}} </td>
-
-                                </tr>
-                                <tr align="center">
-                                    <td>總價格</td>
-                                    <td>  </td>
-                                    <td colspan="3">NT$ {{RobustTotalCost}} </td>
-                                </tr>
-                            </table>
+                                            </tr>
+                                            <tr align="center">
+                                                <td>總價格</td>
+                                                <td>  </td>
+                                                <td colspan="3">NT$ {{SimpleRecord[index][3]}} </td>
+                                            </tr>
+                                        </table>
+                                    </v-col>
+                                </v-row>
+                            </v-content-fluid>
                         </div>
                     </div>
-                    <br><br>
-                </div>
-            </b-card-text>
-
+                </b-card-text>    
             </b-card>
         </b-card-group>
     </div>
@@ -383,6 +303,8 @@ export default {
     data(){
         return{
             SelectSimple:[],
+            SelectSimple_copy:[], //儲存所有選項，可用迴圈跑出表格
+            SelectSimple_copy_2:[], //控制表格的出現
             SimpleExpertOrder :["==請選擇專家=="],    // 簡易型溫室專家清單
             SimpleIdx: 0, // 所選簡易型溫室專家的id
             SimpleSelectExpert: 'System', // 所選專家
@@ -451,6 +373,7 @@ export default {
             SimpleCostAdd:0,
             SimpleStructuralRiskAdd:0,
             SimpleJobDifficultyAdd:0,
+            SimpleRecord:[],
 
             /* 強固型溫室 */
             RobustGreenhouse:[],
@@ -862,6 +785,9 @@ export default {
                 this.SelectRobust.push(temp); // 披覆膜
             }
 
+
+
+        },saveresult(){
             if(this.SelectRobust.length == 9 ){
                 this.RobustTotalCost = 0,
                 this.RobustCostAdd = 0,
@@ -879,7 +805,11 @@ export default {
                 this.RobustCostAdd =  this.RobustCostAdd.toFixed(2);
                 this.RobustStructuralRiskAdd =  this.RobustStructuralRiskAdd.toFixed(2);
                 this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
+                this.SimpleRecord.push([this.RobustCostAdd,this.RobustStructuralRiskAdd,this.RobustJobDifficultyAdd,this.RobustTotalCost])
+                this.SelectSimple_copy.push(this.SelectRobust); //將表格結果存進陣列，方便跑出表格
+                this.SelectSimple_copy_2 = this.SelectRobust; //確認表格是否被填了9個的變數
             }
+            
 
         },updateSimpleData(){   // 根據簡易型溫室的專家選擇，將數據更新成該專家的參數
             this.SimpleGreenhousePipe = null,  // 簡易型溫室管材

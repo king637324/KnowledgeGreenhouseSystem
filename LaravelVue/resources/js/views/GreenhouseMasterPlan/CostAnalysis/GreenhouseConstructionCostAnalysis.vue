@@ -340,52 +340,131 @@
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 分 析</h6>
                 </template>
                 <b-card-text>
-                    <div v-if="SelectSimple_copy.length != 9">
+                    <div v-if="SelectSimple_copy_2.length != 9">
                         
                     </div>
                     <div v-else>
                         <br>
                         <!-- 標準簡易型溫室成本價格 -->
-                        <h5>標準簡易型溫室成本</h5>
                         <div class="p-2 bd-highlight">
-                            <h5>所選擇之簡易型溫室成本</h5>
-                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                <thead class="table-active">
-                                    <tr align="center">
-                                        <td>構建分部</td>
-                                        <td>規格選擇</td>
-                                        <td>成本性</td>
-                                        <td>結構風險</td>
-                                        <td>作業難度</td>
-                                    </tr>
-                                </thead>
-                                <tr align="center" v-for="(select, index) in SelectSimple_copy" :key="index">
-                                    <td> {{select[0]}}</td>
-                                    <td> {{select[1].BuildItem}} </td>
-                                    <td> {{select[1].Cost}} </td>
-                                    <td> {{select[1].StructuralRisk}} </td>
-                                    <td> {{select[1].JobDifficulty}} </td>
-                                </tr>
-                                <tr align="center">
-                                    <td colspan=""> 參數分析 </td>
-                                    <td>  </td>
-                                    <td> {{SimpleCostAdd}} </td>
-                                    <td> {{SimpleStructuralRiskAdd}} </td>
-                                    <td> {{SimpleJobDifficultyAdd}} </td>
+                            <v-content-fluid>
+                                <v-row>
+                                    <v-col class="col-md-4"  v-for="(simple_copy, index) in SelectSimple_copy" :key="index">
+                                        <h5>所選擇之簡易型溫室成本-第{{ index+1 }}版本</h5>
+                                        <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                            <thead class="table-active">
+                                                <tr align="center">
+                                                    <td>構建分部</td>
+                                                    <td>規格選擇</td>
+                                                    <td>成本性</td>
+                                                    <td>結構風險</td>
+                                                    <td>作業難度</td>
+                                                </tr>
+                                            </thead>
+                                            <tr align="center" v-for="(select, index) in simple_copy" :key="index">
+                                                <td> {{select[0]}}</td>
+                                                <td> {{select[1].BuildItem}} </td>
+                                                <td> {{select[1].Cost}} </td>
+                                                <td> {{select[1].StructuralRisk}} </td>
+                                                <td> {{select[1].JobDifficulty}} </td>
+                                            </tr>
 
-                                </tr>
-                                <tr align="center">
-                                    <td>總價格</td>
-                                    <td>  </td>
-                                    <td colspan="3">NT$ {{SimpleTotalSimpleCost}} </td>
-                                </tr>
-                            </table>
+                                            <tr align="center">
+                                                <td colspan=""> 參數分析 </td>
+                                                <td>  </td>
+                                                <td> {{SimpleRecord[index][0]}} </td>
+                                                <td> {{SimpleRecord[index][1]}} </td>
+                                                <td> {{SimpleRecord[index][2]}} </td>
+
+                                            </tr>
+                                            <tr align="center">
+                                                <td>總價格</td>
+                                                <td>  </td>
+                                                <td colspan="3">NT$ {{SimpleRecord[index][3]}} </td>
+                                            </tr>
+                                        </table>
+                                    </v-col>
+                                </v-row>
+                            </v-content-fluid>
                         </div>                       
                     </div>
                     <br><br>
                 </b-card-text>
             </b-card>
         </b-card-group>
+        <!-- <b-card-group>
+            <b-card header-tag="header">
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="building"></b-icon> 溫 室 架 構 比 較 分 析</h6>
+                </template>
+                <b-card-text>
+                    <div class="p-2 bd-highlight">
+                        <v-content-fluid>
+                            <v-row>
+                                <v-col class="col-md-4"  v-for="(simple_copy, index) in SelectSimple_copy" :key="index">
+                                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                        <thead class="table-active">
+                                            <tr align="center">
+                                                <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" v-on:click="updatePipeCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
+                                                </td>
+                                            </tr>
+                                            <tr align="center">
+                                                <td> 速度性 </td>
+                                                <td> 結構風險 </td>
+                                                <td> 腐蝕性 </td>
+                                                <td> 重量性 </td>
+                                                <td> 成本性 </td>
+                                            </tr>
+                                        </thead>
+                                        <tr align="center">
+                                            <td>
+                                                <v-text-field
+                                                    label="請輸入速度性"
+                                                    v-model="PipeSpeed"
+                                                ></v-text-field>
+                                            </td>
+                                            <td>
+                                                <v-text-field
+                                                    label="請輸入結構風險"
+                                                    v-model="PipeStructuralRisk"
+                                                ></v-text-field>
+                                            </td>
+                                            <td>
+                                                <v-text-field
+                                                    label="請輸入腐蝕性"
+                                                    v-model="PipeCorrosive"
+                                                ></v-text-field>
+                                            </td>
+                                            <td>
+                                                <v-text-field
+                                                    label="請輸入重量性"
+                                                    v-model="PipeWeightiness"
+                                                ></v-text-field>
+                                            </td>
+                                            <td>
+                                                <v-text-field
+                                                    label="請輸入成本性"
+                                                    v-model="PipeCost"
+                                                ></v-text-field>
+                                            </td>
+                                        </tr>
+                                        <tr align="center">
+                                            <td> 123 </td>
+                                            <td> 123 </td>
+                                            <td> 123 </td>
+                                            <td> 123 </td>
+                                            <td> 123 </td>
+                                        </tr>
+                                    </table>                                        
+                                </v-col>
+                            </v-row>
+                        </v-content-fluid>
+                    </div>
+                </b-card-text>
+            </b-card>
+        </b-card-group> -->
     </div>
 </template>
 
@@ -396,8 +475,9 @@ import * as StrongCostAddService from '../../../services/StrongCost_service';
 export default {
     data(){
         return{
-            SelectSimple:[],
-            SelectSimple_copy:[],
+            SelectSimple:[], //儲存選項
+            SelectSimple_copy:[], //儲存所有選項，可用迴圈跑出表格
+            SelectSimple_copy_2:[], //控制表格的出現
             SimpleExpertOrder :["==請選擇專家=="],    // 簡易型溫室專家清單
             SimpleIdx: 0, // 所選簡易型溫室專家的id
             SimpleSelectExpert: 'System', // 所選專家
@@ -466,6 +546,7 @@ export default {
             SimpleCostAdd:0,
             SimpleStructuralRiskAdd:0,
             SimpleJobDifficultyAdd:0,
+            SimpleRecord:[],
 
             /* 強固型溫室 */
             RobustGreenhouse:[],
@@ -797,6 +878,8 @@ export default {
                 temp.push(this.SimpleCoatingFilm);
                 this.SelectSimple.push(temp);  // 簡易型披覆膜
             }
+
+        },saveresult(){
             if(this.SelectSimple.length == 9 ){
                 this.SimpleTotalSimpleCost = 0,
                 this.SimpleCostAdd = 0,
@@ -814,9 +897,11 @@ export default {
                 this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
                 this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);
                 this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
+                this.SimpleRecord.push([this.SimpleCostAdd,this.SimpleStructuralRiskAdd,this.SimpleJobDifficultyAdd,this.SimpleTotalSimpleCost])
+                this.SelectSimple_copy.push(this.SelectSimple); //將表格結果存進陣列，方便跑出表格
+                this.SelectSimple_copy_2 = this.SelectSimple; //確認表格是否被填了9個的變數
             }
-        },saveresult(){
-            this.SelectSimple_copy = this.SelectSimple;
+            
 
         },updateRobustRadio(){  // 更新強固型溫室選擇狀況，判斷是否有選滿9項
             this.SelectRobust = [];
