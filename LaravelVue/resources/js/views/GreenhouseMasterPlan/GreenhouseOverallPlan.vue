@@ -297,72 +297,110 @@
 
   export default {
     data: () => ({
-      cropIdx: 0,
-      plantIdx: 0,
-      selectCrop: null,
-      vegetablejson:[],
-      CropOrder: ["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
-      GrowPlants: ['==請選擇作物==',],
+        cropIdx: 0,
+        plantIdx: 0,
+        selectCrop: null,
+        vegetablejson:[],
+        CropOrder: ["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
+        GrowPlants: ['==請選擇作物==',],
 
-      tabIndex: 0,
-      regionalwindspeedjson:[],   // 縣市地區資料
-      City:['==請選擇縣市==',],   // 縣市選單的陣列表
-      cityIdx: 0, // 所選縣市的id
-      selectCity: null, // 所選縣市的名稱
-      Region:['==請選擇地區==',], // 地區選單的陣列表
-      regionIdx: 0,   // 所選地區的id
-      selectRegion: null, // 所選地區的名稱
+        tabIndex: 0,
+        regionalwindspeedjson:[],   // 縣市地區資料
+        City:['==請選擇縣市==',],   // 縣市選單的陣列表
+        cityIdx: 0, // 所選縣市的id
+        selectCity: null, // 所選縣市的名稱
+        Region:['==請選擇地區==',], // 地區選單的陣列表
+        regionIdx: 0,   // 所選地區的id
+        selectRegion: null, // 所選地區的名稱
 
-      SelectTerrain:0, // 選擇地形
-      SelectLandform:0, // 選擇地貌
+        SelectTerrain:0, // 選擇地形
+        SelectLandform:0, // 選擇地貌
 
-      greenhouseradio: null, //透過radio button選擇要簡易還是強固
+        greenhouseradio: null, //透過radio button選擇要簡易還是強固
 
-      /* 簡易型溫室 */
-      SelectSimple:[],
-      SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
-      SimpleCostratios: [],               // 簡易型各建構項目比例
-      SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
-      SimpleCircularArchDistances: [],    // 簡易型圓拱距
-      SimpleCoatingFilmsJSON: [],             // 簡易型披覆膜
-      SimpleCoatingFilms: [],             // 簡易型披覆膜
-      SimpleContinuitysJSON: [],              // 簡易型連續性
-      SimpleContinuitys: [],              // 簡易型連續性
-      SimpleDomeFormsJSON: [],                // 簡易型圓頂形式
-      SimpleDomeForms: [],                // 簡易型圓頂形式
-      SimpleFoundationsJSON: [],              // 簡易型基礎
-      SimpleFoundations: [],              // 簡易型基礎
-      SimpleGreenhousePipesJSON: [],          // 簡易型溫室管材
-      SimpleGreenhousePipes: [],          // 簡易型溫室管材
-      SimpleLengthsJSON: [],                  // 簡易型長度
-      SimpleLengths: [],                  // 簡易型長度
-      SimpleShoulderHeightsJSON: [],          // 簡易型肩高
-      SimpleShoulderHeights: [],          // 簡易型肩高
-      SimpleSpansJSON: [],                    // 簡易型跨距
-      SimpleSpans: [],                    // 簡易型跨距
+        Fluidjson: [],
+        checkData:[],
+        checkedNames: [],
+        
+        /* 簡易型溫室 */
+        SelectSimple:[],
+        SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
+        SimpleCostratios: [],               // 簡易型各建構項目比例
+        SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
+        SimpleCircularArchDistances: [],    // 簡易型圓拱距
+        SimpleCoatingFilmsJSON: [],             // 簡易型披覆膜
+        SimpleCoatingFilms: [],             // 簡易型披覆膜
+        SimpleContinuitysJSON: [],              // 簡易型連續性
+        SimpleContinuitys: [],              // 簡易型連續性
+        SimpleDomeFormsJSON: [],                // 簡易型圓頂形式
+        SimpleDomeForms: [],                // 簡易型圓頂形式
+        SimpleFoundationsJSON: [],              // 簡易型基礎
+        SimpleFoundations: [],              // 簡易型基礎
+        SimpleGreenhousePipesJSON: [],          // 簡易型溫室管材
+        SimpleGreenhousePipes: [],          // 簡易型溫室管材
+        SimpleLengthsJSON: [],                  // 簡易型長度
+        SimpleLengths: [],                  // 簡易型長度
+        SimpleShoulderHeightsJSON: [],          // 簡易型肩高
+        SimpleShoulderHeights: [],          // 簡易型肩高
+        SimpleSpansJSON: [],                    // 簡易型跨距
+        SimpleSpans: [],                    // 簡易型跨距
+        /* 簡易型溫室 */
+        SimpleGreenhouse:[],
+        SimpleGreenhouseRatio:[],
+        SimpleGreenhousePipe:null,  // 簡易型溫室管材
+        SimpleDomeForm:null,  // 簡易型圓頂形式
+        SimpleCircularArchDistance:null,  // 簡易型圓拱距
+        SimpleFoundation:null,  // 簡易型基礎
+        SimpleSpan:null,  // 簡易型跨距
+        SimpleShoulderHeight:null,  // 簡易型肩高
+        SimpleLength:null,  // 簡易型長度
+        SimpleContinuity:null,  // 簡易型連續性
+        SimpleCoatingFilm:null,  // 簡易型披覆膜
+        SimpleHousrBasePrice:500000, // 簡易型溫室基本價格
+        SimpleTotalSimpleCost:0,
+        SimpleCostAdd:0,
+        SimpleStructuralRiskAdd:0,
+        SimpleJobDifficultyAdd:0,
 
-      /* 強固型溫室 */
-      SelectRobust:[],
-      StrongCostRatiosJSON: [],               // 強固型各建構項目比例
-      StrongCostRatios: [],               // 強固型各建構項目比例
-      StrongCoatingFilmsJSON: [],             // 強固型披覆膜
-      StrongCoatingFilms: [],             // 強固型披覆膜
-      StrongContinuitysJSON: [],              // 強固型連續性
-      StrongContinuitys: [],              // 強固型連續性
-      StrongFoundationsJSON: [],              // 強固型基礎
-      StrongFoundations: [],              // 強固型基礎
-      StrongGreenhousPprofilesJSON: [],       // 強固型溫室型材
-      StrongGreenhousPprofiles: [],       // 強固型溫室型材
-      StrongLengthsJSON: [],                  // 強固型長度
-      StrongLengths: [],                  // 強固型長度
-      StrongRoofFormsJSON: [],                // 強固型屋頂形式
-      StrongRoofForms: [],                // 強固型屋頂形式
-      StrongShoulderHeightsJSON: [],          // 強固型肩高
-      StrongShoulderHeights: [],          // 強固型肩高
-      StrongSpansJSON: [],                    // 強固型跨距
-      StrongSpans: [],                    // 強固型跨距
-      StrongUpperArchDistancesJSON: [],       // 強固型上拱距
-      StrongUpperArchDistances: [],       // 強固型上拱距
+        /* 強固型溫室 */
+        SelectRobust:[],
+        StrongCostRatiosJSON: [],               // 強固型各建構項目比例
+        StrongCostRatios: [],               // 強固型各建構項目比例
+        StrongCoatingFilmsJSON: [],             // 強固型披覆膜
+        StrongCoatingFilms: [],             // 強固型披覆膜
+        StrongContinuitysJSON: [],              // 強固型連續性
+        StrongContinuitys: [],              // 強固型連續性
+        StrongFoundationsJSON: [],              // 強固型基礎
+        StrongFoundations: [],              // 強固型基礎
+        StrongGreenhousPprofilesJSON: [],       // 強固型溫室型材
+        StrongGreenhousPprofiles: [],       // 強固型溫室型材
+        StrongLengthsJSON: [],                  // 強固型長度
+        StrongLengths: [],                  // 強固型長度
+        StrongRoofFormsJSON: [],                // 強固型屋頂形式
+        StrongRoofForms: [],                // 強固型屋頂形式
+        StrongShoulderHeightsJSON: [],          // 強固型肩高
+        StrongShoulderHeights: [],          // 強固型肩高
+        StrongSpansJSON: [],                    // 強固型跨距
+        StrongSpans: [],                    // 強固型跨距
+        StrongUpperArchDistancesJSON: [],       // 強固型上拱距
+        StrongUpperArchDistances: [],       // 強固型上拱距
+        /* 強固型溫室 */
+        RobustGreenhouse:[],
+        RobustGreenhouseRatio:[],
+        RobustGreenhouseProfile:null,   // 溫室型材
+        RobustRoofForm:null,   // 屋頂形式
+        RobustUpperArch:null,   // 上拱距
+        RobustFoundation:null,   // 強固型基礎
+        RobustSpan:null,   // 強固型跨距
+        RobustShoulderHeight:null,   // 強固型肩高
+        RobustLength:null,   // 強固型長度
+        RobustContinuity:null,   // 強固型連續性
+        RobustCoatingFilm:null,   // 強固型披覆膜
+        RuggedHousrBasePrice :1500000,  // 強固型溫室基本價格
+        RobustTotalCost:0,
+        RobustCostAdd:0,
+        RobustStructuralRiskAdd:0,
+        RobustJobDifficultyAdd:0,
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -370,9 +408,9 @@
     },
 
     methods: {
-      async getJson(){
+        async getJson(){
         const Vegetable = await fetch('/VegetableJSON',  {
-          method: 'GET',
+            method: 'GET',
         });
         this.vegetablejson = await Vegetable.json();
 
@@ -617,24 +655,23 @@
                 this.StrongUpperArchDistances.push(this.StrongUpperArchDistancesJSON[i]);
             }
         }
-      },
+    },
 
-      updateCrop(){     // 更新所選擇的作物分類
-            // 從所選的作物id 找到 所選作物分類
-            for(var i = 0 ; i < this.CropOrder.length ; i++){
-                if(i == this.cropIdx)    this.selectCrop = this.CropOrder[i];
-            }
+    updateCrop(){     // 更新所選擇的作物分類
+        // 從所選的作物id 找到 所選作物分類
+        for(var i = 0 ; i < this.CropOrder.length ; i++){
+            if(i == this.cropIdx)    this.selectCrop = this.CropOrder[i];
+        }
 
-            this.GrowPlants = ['==請選擇作物==',];  // 作物資料初始化
-            this.plantIdx = 0;
-            for(var i = 0 ; i < this.vegetablejson.length ; i++){
-                if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.vegetablejson;
-                if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
-            }
+        this.GrowPlants = ['==請選擇作物==',];  // 作物資料初始化
+        this.plantIdx = 0;
+        for(var i = 0 ; i < this.vegetablejson.length ; i++){
+            if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.vegetablejson;
+            if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
+        }
+    },
 
-      },
-
-      updatePlant(){    // 更新所選擇的作物
+    updatePlant(){    // 更新所選擇的作物
         // 從所選的作物id 找到 所選作物分類
         for(var i = 0 ; i < this.GrowPlants.length ; i++){
             if(i == this.plantIdx)    this.selectplant = this.GrowPlants[i];
@@ -642,19 +679,19 @@
 
         // 找出所選資料的data
         for(var i = 0 ; i < this.vegetablejson.length ; i++){
-          if(this.vegetablejson[i].VegetableTypes == this.selectplant){
-              this.Goodlight = this.vegetablejson[i].Goodlight;
-              this.Photoperiod = this.vegetablejson[i].Photoperiod;
-              this.Illuminance = this.vegetablejson[i].Illuminance;
-              this.PPFD = this.vegetablejson[i].PPFD;
-              this.LightSaturationPoint = this.vegetablejson[i].LightSaturationPoint;
-              this.LightCompensationPoint = this.vegetablejson[i].LightCompensationPoint;
-              break;
-          }
+            if(this.vegetablejson[i].VegetableTypes == this.selectplant){
+                this.Goodlight = this.vegetablejson[i].Goodlight;
+                this.Photoperiod = this.vegetablejson[i].Photoperiod;
+                this.Illuminance = this.vegetablejson[i].Illuminance;
+                this.PPFD = this.vegetablejson[i].PPFD;
+                this.LightSaturationPoint = this.vegetablejson[i].LightSaturationPoint;
+                this.LightCompensationPoint = this.vegetablejson[i].LightCompensationPoint;
+                break;
+            }
         }
-      },
+    },
 
-      updateCity(){     // 更新所選擇的縣市
+    updateCity(){     // 更新所選擇的縣市
         // 從所選的縣市id 找到 所選的縣市名稱
         for(var i = 0 ; i < this.City.length ; i++){
             if(i == this.cityIdx)    this.selectCity = this.City[i];
@@ -668,24 +705,181 @@
 
         // 篩選所選縣市的地區
         for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
-          if(this.regionalwindspeedjson[i].County == this.selectCity){
-              this.Region.push(this.regionalwindspeedjson[i].Region);
-          }
-        }
-      },
-
-      updateRegion(){   // 更新所選擇的地區
-            // 將地區資料初始化
-            this.LandingProbability = 0,
-            this.PathProbability = 0,
-            this.Landing = null,
-            this.Path = null;
-
-            // 從所選的地區id 找到 所選的地區名稱
-            for(var i = 0 ; i < this.Region.length ; i++){
-                if(i == this.regionIdx)    this.selectRegion = this.Region[i];
+            if(this.regionalwindspeedjson[i].County == this.selectCity){
+                this.Region.push(this.regionalwindspeedjson[i].Region);
             }
         }
     },
-  }
+
+    updateRegion(){   // 更新所選擇的地區
+        // 將地區資料初始化
+        this.LandingProbability = 0,
+        this.PathProbability = 0,
+        this.Landing = null,
+        this.Path = null;
+
+        // 從所選的地區id 找到 所選的地區名稱
+        for(var i = 0 ; i < this.Region.length ; i++){
+            if(i == this.regionIdx)    this.selectRegion = this.Region[i];
+        }
+    },
+
+    updateSimpleRadio(){  // 更新簡易型溫室選擇狀況，判斷是否有選滿9項
+        this.SelectSimple = [];
+        var temp = [];
+        if(this.SimpleGreenhousePipe){
+            temp = [];
+            temp.push('溫室管材');
+            temp.push(this.SimpleGreenhousePipe);
+            this.SelectSimple.push(temp); // 簡易型溫室管材
+        }
+        if(this.SimpleDomeForm){
+            temp = [];
+            temp.push('圓頂形式');
+            temp.push(this.SimpleDomeForm);
+            this.SelectSimple.push(temp);    // 簡易型圓頂形式
+        }
+        if(this.SimpleCircularArchDistance){
+            temp = [];
+            temp.push('圓拱距');
+            temp.push(this.SimpleCircularArchDistance);
+            this.SelectSimple.push(temp);    // 簡易型圓拱距
+        }
+        if(this.SimpleFoundation){
+            temp = [];
+            temp.push('基礎');
+            temp.push(this.SimpleFoundation);
+            this.SelectSimple.push(temp);    // 簡易型基礎
+        }
+        if(this.SimpleSpan){
+            temp = [];
+            temp.push('跨距');
+            temp.push(this.SimpleSpan);
+            this.SelectSimple.push(temp);    // 簡易型跨距
+        }
+        if(this.SimpleShoulderHeight){
+            temp = [];
+            temp.push('肩高');
+            temp.push(this.SimpleShoulderHeight);
+            this.SelectSimple.push(temp);    // 簡易型肩高
+        }
+        if(this.SimpleLength){
+            temp = [];
+            temp.push('長度');
+            temp.push(this.SimpleLength);
+            this.SelectSimple.push(temp);    // 簡易型長度
+        }
+        if(this.SimpleContinuity){
+            temp = [];
+            temp.push('連續性');
+            temp.push(this.SimpleContinuity);
+            this.SelectSimple.push(temp);    // 簡易型連續性
+        }
+        if(this.SimpleCoatingFilm){
+            temp = [];
+            temp.push('披覆膜');
+            temp.push(this.SimpleCoatingFilm);
+            this.SelectSimple.push(temp);  // 簡易型披覆膜
+        }
+
+        if(this.SelectSimple.length == 9 ){
+            this.SimpleTotalSimpleCost = 0,
+            this.SimpleCostAdd = 0,
+            this.SimpleStructuralRiskAdd = 0,
+            this.SimpleJobDifficultyAdd = 0;
+
+            for (var i = 0; i < this.SelectSimple.length; i++) {
+                this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
+                this.SimpleCostAdd += this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
+                this.SimpleStructuralRiskAdd += this.SelectSimple[i][1].StructuralRisk * this.SimpleCostratios[i].StructuralRisk / 100;
+                this.SimpleJobDifficultyAdd += this.SelectSimple[i][1].JobDifficulty * this.SimpleCostratios[i].JobDifficulty/ 100;
+            }
+
+            this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
+            this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
+            this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);
+            this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
+        }
+
+        },
+    updateRobustRadio(){  // 更新強固型溫室選擇狀況，判斷是否有選滿9項
+        this.SelectRobust = [];
+        var temp = [];
+        if(this.RobustGreenhouseProfile){
+            temp = [];
+            temp.push('溫室型材');
+            temp.push(this.RobustGreenhouseProfile);
+            this.SelectRobust.push(temp); // 溫室型材
+        }
+        if(this.RobustRoofForm){
+            temp = [];
+            temp.push('屋頂形式');
+            temp.push(this.RobustRoofForm);
+            this.SelectRobust.push(temp); // 屋頂形式
+        }
+        if(this.RobustUpperArch){
+            temp = [];
+            temp.push('上拱距');
+            temp.push(this.RobustUpperArch);
+            this.SelectRobust.push(temp); // 上拱距
+        }
+        if(this.RobustFoundation){
+            temp = [];
+            temp.push('基礎');
+            temp.push(this.RobustFoundation);
+            this.SelectRobust.push(temp); // 強固型基礎
+        }
+        if(this.RobustSpan){
+            temp = [];
+            temp.push('跨距');
+            temp.push(this.RobustSpan);
+            this.SelectRobust.push(temp); // 強固型跨距
+        }
+        if(this.RobustShoulderHeight){
+            temp = [];
+            temp.push('肩高');
+            temp.push(this.RobustShoulderHeight);
+            this.SelectRobust.push(temp); // 強固型肩高
+        }
+        if(this.RobustLength){
+            temp = [];
+            temp.push('長度');
+            temp.push(this.RobustLength);
+            this.SelectRobust.push(temp); // 強固型長度
+        }
+        if(this.RobustContinuity){
+            temp = [];
+            temp.push('連續性');
+            temp.push(this.RobustContinuity);
+            this.SelectRobust.push(temp); // 強固型連續性
+        }
+        if(this.RobustCoatingFilm){
+            temp = [];
+            temp.push('披覆膜');
+            temp.push(this.RobustCoatingFilm);
+            this.SelectRobust.push(temp); // 披覆膜
+        }
+
+        if(this.SelectRobust.length == 9 ){
+            this.RobustTotalCost = 0,
+            this.RobustCostAdd = 0,
+            this.RobustStructuralRiskAdd = 0,
+            this.RobustJobDifficultyAdd = 0;
+
+            for (var i = 0; i < this.SelectRobust.length; i++) {
+                this.RobustTotalCost += this.RuggedHousrBasePrice * this.SelectRobust[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
+                this.RobustCostAdd += this.SelectRobust[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
+                this.RobustStructuralRiskAdd += this.SelectRobust[i][1].StructuralRisk * this.StrongCostRatios[i].StructuralRisk / 100;
+                this.RobustJobDifficultyAdd += this.SelectRobust[i][1].JobDifficulty * this.StrongCostRatios[i].JobDifficulty/ 100;
+            }
+
+            this.RobustTotalCost =  parseInt(this.RobustTotalCost);
+            this.RobustCostAdd =  this.RobustCostAdd.toFixed(2);
+            this.RobustStructuralRiskAdd =  this.RobustStructuralRiskAdd.toFixed(2);
+            this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
+        }
+
+    }
+},
+}
 </script>
