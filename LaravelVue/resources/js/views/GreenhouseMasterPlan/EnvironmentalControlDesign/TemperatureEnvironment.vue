@@ -4,7 +4,6 @@
         <h3>
             溫環境控制
         </h3>
-        <h6 data-toggle="tooltip" title="耶耶耶">滑鼠移上來</h6>
         <hr>
 
         <b-card-group deck>
@@ -30,9 +29,9 @@
                             {{plant}}
                         </option>
                     </b-select>
-
-
-                    <table class="separate" style="border:1px solid black;" border='1'>
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
                         <tr align="center" class="table-active">
                             <td colspan="6">溫度適應性</td>
                         </tr>
@@ -60,9 +59,11 @@
                             <td id="HighestGerminationTemperature"> {{HighestGerminationTemperature}} </td>
                         </tr>
                     </table>
+                    <br>
+                    <br>
                     <h6>備註： - 為尚無資料</h6>
 
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地 點</span></p>
+                    <!-- <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地 點</span></p>
                     <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
                         <option v-for="(city, index) in City" :value="index">
                             {{city}}
@@ -96,11 +97,24 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p>
+                    <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p> -->
                 </b-card-text>
             </b-card>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 溫環境需求</h6>
+                </template>
+                <b-card-text>
 
-            <!-- 作物與地區溫度比較 -->
+                </b-card-text>
+            </b-card>
+        </b-card-group>
+        <br>
+        <b-card-group>
             <b-card
                 header-tag="header"
                 header-text-variant="white"
@@ -110,7 +124,20 @@
                     <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 溫環境分析</h6>
                 </template>
                 <b-card-text>
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">溫度分析圖</span></p>
+                    <p>
+                        <span class="badge badge-pill badge-secondary" style="font-size: 2vmin">溫度分析圖</span>
+                        <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
+                            <option v-for="(city, index) in City" :value="index">
+                                {{city}}
+                            </option>
+                        </b-select>
+
+                        <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
+                            <option v-for="(region, index) in Region" :value="index">
+                                {{region}}
+                            </option>
+                        </b-select>
+                    </p>
                     <line-chart xtitle="月份" ytitle="溫度" :discrete="true" :data="CropTemperature" height="30vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
 
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">各月作物與地區適合種植高低溫差值</span></p>
@@ -167,43 +194,6 @@
                 </b-card-text>
 
             </b-card>
-        </b-card-group>
-
-        <b-card-group deck>
-            <!-- test2 -->
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
-                    <h6 class="mb-0"><i class="fas fa-chart-area"></i> test2</h6>
-                </template>
-                <b-card-text>
-                    
-
-                </b-card-text>
-
-            </b-card>
-
-            
-            <br>
-
-            <!-- test -->
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
-                    <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> test</h6>
-                </template>
-                <b-card-text>
-                    
-                </b-card-text>
-
-            </b-card>
-
         </b-card-group>
 
     </div>

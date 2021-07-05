@@ -15,18 +15,17 @@
                 <v-col md="2">
                     <div>
                         <h3>
-                            <img src ="/images/GreenhouseDesigner/簡易溫室.png" class="table-image"/>
+                            <img src ="/images/GreenhouseDesigner/簡易溫室.png" class="table-image"/><br>
                             簡易溫室(UP)
                         </h3>
                         <input type="checkbox" id="UP540_185" value="UP540_185" v-model="checkedNames" v-on:change="updateChart">
                         <label>UP540_185</label>
                         <input type="checkbox" id="UP600_205" value="UP600_205" v-model="checkedNames" v-on:change="updateChart">
-                        <label>UP600_205</label>
+                        <label>UP600_205</label><br>
                         <input type="checkbox" id="UP720_180" value="UP720_180" v-model="checkedNames" v-on:change="updateChart">
                         <label>UP720_180</label>
-                        <br>
                         <input type="checkbox" id="UP720_400" value="UP720_400" v-model="checkedNames" v-on:change="updateChart">
-                        <label>UP720_400</label>
+                        <label>UP720_400</label><br>
                         <input type="checkbox" id="UP800_400" value="UP800_400" v-model="checkedNames" v-on:change="updateChart">
                         <label>UP800_400</label>
                         <input type="checkbox" id="UP800_500" value="UP800_500" v-model="checkedNames" v-on:change="updateChart">
@@ -37,13 +36,13 @@
                 <v-col md="2">
                     <div>
                         <h3>
-                            <img src ="/images/GreenhouseDesigner/圓頂溫室.png" class="table-image"/>
+                            <img src ="/images/GreenhouseDesigner/圓頂溫室.png" class="table-image"/><br>
                             圓頂溫室(UBP)
                         </h3>
                         <input type="checkbox" id="UBP520_300" value="UBP520_300" v-model="checkedNames" v-on:change="updateChart">
                         <label>UBP520_300</label>
                         <input type="checkbox" id="UBP620_300" value="UBP620_300" v-model="checkedNames" v-on:change="updateChart">
-                        <label>UBP620_300</label>
+                        <label>UBP620_300</label><br>
                         <input type="checkbox" id="UBP680_300" value="UBP680_300" v-model="checkedNames" v-on:change="updateChart">
                         <label>UBP680_300</label>
                         <input type="checkbox" id="UBP680_350" value="UBP680_350" v-model="checkedNames" v-on:change="updateChart">
@@ -54,13 +53,13 @@
                 <v-col md="2">
                     <div>
                         <h3>
-                            <img src ="/images/GreenhouseDesigner/圓頂溫室.png" class="table-image"/>
+                            <img src ="/images/GreenhouseDesigner/圓頂溫室.png" class="table-image"/><br>
                             圓頂力霸溫室(UTP)
                         </h3>
                         <input type="checkbox" id="UTP960_350" value="UTP960_350" v-model="checkedNames" v-on:change="updateChart">
                         <label>UTP960_350</label>
                         <input type="checkbox" id="UTP1040_350" value="UTP1040_350" v-model="checkedNames" v-on:change="updateChart">
-                        <label>UTP1040_350</label>
+                        <label>UTP1040_350</label><br>
                         <input type="checkbox" id="UTP1140_350" value="UTP1140_350" v-model="checkedNames" v-on:change="updateChart">
                         <label>UTP1140_350</label>
                         <input type="checkbox" id="UTP1140_400" value="UTP1140_400" v-model="checkedNames" v-on:change="updateChart">
@@ -71,13 +70,13 @@
                 <v-col md="2">
                     <div>
                         <h3>
-                            <img src ="/images/GreenhouseDesigner/斜頂溫室.png" class="table-image"/>
+                            <img src ="/images/GreenhouseDesigner/斜頂溫室.png" class="table-image"/><br>
                             斜頂溫室(SP)
                         </h3>
                         <input type="checkbox" id="SP1100_12" value="SP1100_12" v-model="checkedNames" v-on:change="updateChart">
                         <label>SP1100_12</label>
                         <input type="checkbox" id="SP1100_20" value="SP1100_20" v-model="checkedNames" v-on:change="updateChart">
-                        <label>SP1100_20</label>
+                        <label>SP1100_20</label><br>
                         <input type="checkbox" id="SP1100_23" value="SP1100_23" v-model="checkedNames" v-on:change="updateChart">
                         <label>SP1100_23</label>
                         <input type="checkbox" id="SP1100_30" value="SP1100_30" v-model="checkedNames" v-on:change="updateChart">
@@ -89,59 +88,59 @@
             <v-row>
                 <v-col md="2">
                     <h3>
-                        <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image"/>
-                        Velno溫室(WTG-640系列)
+                        <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image"/><br>
+                        Velno溫室(WTG-640)
                     </h3>
                     <input type="checkbox" id="WTG640_300" value="WTG640_300" v-model="checkedNames" v-on:change="updateChart">
                     <label>WTG640_300</label>
                     <input type="checkbox" id="WTG640_350" value="WTG640_350" v-model="checkedNames" v-on:change="updateChart">
-                    <label>WTG640_350</label>
+                    <label>WTG640_350</label><br>
                     <input type="checkbox" id="WTG640_400" value="WTG640_400" v-model="checkedNames" v-on:change="updateChart">
                     <label>WTG640_400</label>
                 </v-col>
                 <v-col md="1"></v-col>
                 <v-col md="2">
                     <h3>
-                        <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image"/>
-                        Velno溫室(WTG-960系列)
+                        <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image"/><br>
+                        Velno溫室(WTG-960)
                     </h3>
                     <input type="checkbox" id="WTG960_300" value="WTG960_300" v-model="checkedNames" v-on:change="updateChart">
                     <label>WTG960_300</label>
                     <input type="checkbox" id="WTG960_350" value="WTG960_350" v-model="checkedNames" v-on:change="updateChart">
-                    <label>WTG960_350</label>
+                    <label>WTG960_350</label><br>
                     <input type="checkbox" id="WTG960_400" value="WTG960_400" v-model="checkedNames" v-on:change="updateChart">
                     <label>WTG960_400</label>
                 </v-col>
                 <v-col md="1"></v-col>
                 <v-col md="2">
                     <h3>
-                        <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image"/>
+                        <img src ="/images/GreenhouseDesigner/2連棟山型溫室.png" class="table-image"/><br>
                         山型溫室(VBP)
                     </h3>
                     <input type="checkbox" id="VBP820_300" value="VBP820_300" v-model="checkedNames" v-on:change="updateChart">
                     <label>VBP820_300</label>
                     <input type="checkbox" id="VBP860_300" value="VBP860_300" v-model="checkedNames" v-on:change="updateChart">
-                    <label>VBP860_300</label>
+                    <label>VBP860_300</label><br>
                     <input type="checkbox" id="VBP860_350" value="VBP860_350" v-model="checkedNames" v-on:change="updateChart">
                     <label>VBP860_350</label>
                 </v-col>
                 <v-col md="1"></v-col>
                 <v-col md="2">
                     <h3>
-                        <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image"/>
+                        <img src ="/images/GreenhouseDesigner/3連棟山型溫室.png" class="table-image"/><br>
                         山型力霸溫室(VTP)
                     </h3>
                     <input type="checkbox" id="VTP800_400" value="VTP800_400" v-model="checkedNames" v-on:change="updateChart">
                     <label>VTP800_400</label>
                     <input type="checkbox" id="VTP800_450" value="VTP800_450" v-model="checkedNames" v-on:change="updateChart">
-                    <label>VTP800_450</label>
+                    <label>VTP800_450</label><br>
                     <input type="checkbox" id="VTP800_500" value="VTP800_500" v-model="checkedNames" v-on:change="updateChart">
                     <label>VTP800_500</label>
                 </v-col>
                 <v-col md="1"><button type="button" class="btn btn-danger"  @click="ChartClear">清空勾選</button></v-col>
             </v-row>
         </v-container-fluid>
-
+        <hr>
 
 
         <div style="min-width: 135vmin; max-width: 100%; overflow-x: scroll;">

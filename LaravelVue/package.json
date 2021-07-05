@@ -21,6 +21,7 @@
     "echarts": "^4.9.0",
     "es6-promise": "^4.2.8",
     "highcharts": "^8.2.2",
+    "mdbvue": "^6.7.2",
     "v-charts": "^1.19.0",
     "vee-validate": "^4.4.5",
     "vue-axios": "^3.2.4",
