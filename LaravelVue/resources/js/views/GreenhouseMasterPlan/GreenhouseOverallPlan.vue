@@ -304,7 +304,7 @@
                                             <v-col v-for="(totalrecord, index) in totalrecordinfo">
                                                 <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                                     <template #header>
-                                                        <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 已儲存之規劃結果</h6>
+                                                        <h6 class="mb-0"><b-icon icon="flower1"></b-icon> {{ time.getFullYear() }}/{{ time.getMonth()+1 }}/{{ time.getDate() }}-{{ totalrecord[1] }}-{{ index+1 }}</h6>
                                                     </template>
                                                     <b-card-text>
                                                         <span>溫室作物：{{ totalrecord[0] }}-{{ totalrecord[1] }}</span><br>
@@ -569,6 +569,8 @@
         planningform: true,
 
         addshowform: false,
+
+        time: new Date(),
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
