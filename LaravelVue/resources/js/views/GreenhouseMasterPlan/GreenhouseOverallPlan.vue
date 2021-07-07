@@ -6,7 +6,11 @@
             總體規劃
         </h3>
         <hr>
+<<<<<<< HEAD
         <v-container-fluid v-if="planningform == true">
+=======
+        <v-container-fluid>
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
             <v-row>
                 <v-col class="col-md-8 offset-md-2">
                     <form>
@@ -35,6 +39,7 @@
                             <v-subheader>栽種面積</v-subheader>
                           </v-col>
                           <v-col cols="12" md="2">
+<<<<<<< HEAD
                             <v-text-field :counter="10" label="輸入長度" v-model="plantlength"></v-text-field>
                           </v-col>  
                           <v-col cols="12" md="2">
@@ -42,6 +47,15 @@
                           </v-col>       
                           <v-col cols="12" md="2">
                             <v-text-field :counter="10" label="輸入角度" v-model="plantangle"></v-text-field>
+=======
+                            <v-text-field :counter="10" label="輸入長度"></v-text-field>
+                          </v-col>  
+                          <v-col cols="12" md="2">
+                            <v-text-field :counter="10" label="輸入寬度"></v-text-field>
+                          </v-col>       
+                          <v-col cols="12" md="2">
+                            <v-text-field :counter="10" label="輸入角度"></v-text-field>
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
                           </v-col>                      
                         </v-row>
                         <v-row>
@@ -281,13 +295,18 @@
                           </v-col>
                         </v-row>                    
                       </v-container>
+<<<<<<< HEAD
                       <v-btn class="mr-4" @click="submit" style="float:right;" v-on:click="recordallinfo">submit</v-btn>
+=======
+                      <v-btn class="mr-4" @click="submit" style="float:right;">submit</v-btn>
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
                       <v-btn @click="clear" style="float:right;">clear</v-btn>
                     </form>
                     <br><br><br><br><br><br>
                 </v-col>
             </v-row>
         </v-container-fluid>
+<<<<<<< HEAD
         <v-container-fluid v-else-if="planningform == false">
             <v-row>
                 <v-col>
@@ -444,6 +463,8 @@
                 </v-btn>
             </v-fab-transition>
         </v-container-fluid>
+=======
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
     </div>
 </template>
 
@@ -460,10 +481,13 @@
         CropOrder: ["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
         GrowPlants: ['==請選擇作物==',],
 
+<<<<<<< HEAD
         plantlength: 0,
         plantwidth: 0,
         plantangle: 0,
 
+=======
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
         tabIndex: 0,
         regionalwindspeedjson:[],   // 縣市地區資料
         City:['==請選擇縣市==',],   // 縣市選單的陣列表
@@ -481,7 +505,10 @@
         Fluidjson: [],
         checkData:[],
         checkedNames: [],
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
         
         /* 簡易型溫室 */
         SelectSimple:[],
@@ -562,6 +589,7 @@
         RobustCostAdd:0,
         RobustStructuralRiskAdd:0,
         RobustJobDifficultyAdd:0,
+<<<<<<< HEAD
 
         recordinfo: [],
         totalrecordinfo: [],
@@ -569,13 +597,18 @@
         planningform: true,
 
         addshowform: false,
+=======
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
     },
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
     methods: {
         async getJson(){
         const Vegetable = await fetch('/VegetableJSON',  {
@@ -1048,6 +1081,7 @@
             this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
         }
 
+<<<<<<< HEAD
     },
 
     recordallinfo(){
@@ -1068,6 +1102,9 @@
         this.totalrecordinfo.push(this.recordinfo)
         this.planningform = false
     },
+=======
+    }
+>>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
 },
 }
 </script>
