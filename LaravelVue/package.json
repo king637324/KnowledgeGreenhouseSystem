@@ -24,10 +24,7 @@
     "mdbvue": "^6.7.2",
     "v-charts": "^1.19.0",
     "vee-validate": "^4.4.5",
-<<<<<<< HEAD
     "vue": "^2.6.14",
-=======
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
     "vue-axios": "^3.2.4",
     "vue-chartjs": "^3.5.1",
     "vue-chartkick": "^0.6.1",
@@ -54,10 +51,7 @@
     "resolve-url-loader": "^3.1.2",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
-<<<<<<< HEAD
-=======
     "vue": "^2.6.12",
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
     "vue-cli-plugin-vuetify": "~2.0.8",
     "vue-overflow-scroll": "^1.1.4",
     "vue-template-compiler": "^2.6.10",

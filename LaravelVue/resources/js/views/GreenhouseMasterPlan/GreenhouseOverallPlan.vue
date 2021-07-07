@@ -6,14 +6,11 @@
             總體規劃
         </h3>
         <hr>
-<<<<<<< HEAD
+
         <v-container-fluid v-if="planningform == true">
-=======
-        <v-container-fluid>
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
             <v-row>
                 <v-col class="col-md-8 offset-md-2">
-                    <form>
+                    <v-form v-on:submit.prevent="recordallinfo">
                       <v-container>
                         <v-row>
                           <v-col md="2">
@@ -39,24 +36,11 @@
                             <v-subheader>栽種面積</v-subheader>
                           </v-col>
                           <v-col cols="12" md="2">
-<<<<<<< HEAD
                             <v-text-field :counter="10" label="輸入長度" v-model="plantlength"></v-text-field>
                           </v-col>  
                           <v-col cols="12" md="2">
                             <v-text-field :counter="10" label="輸入寬度" v-model="plantwidth"></v-text-field>
-                          </v-col>       
-                          <v-col cols="12" md="2">
-                            <v-text-field :counter="10" label="輸入角度" v-model="plantangle"></v-text-field>
-=======
-                            <v-text-field :counter="10" label="輸入長度"></v-text-field>
-                          </v-col>  
-                          <v-col cols="12" md="2">
-                            <v-text-field :counter="10" label="輸入寬度"></v-text-field>
-                          </v-col>       
-                          <v-col cols="12" md="2">
-                            <v-text-field :counter="10" label="輸入角度"></v-text-field>
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
-                          </v-col>                      
+                          </v-col>                         
                         </v-row>
                         <v-row>
                           <v-col md="2">
@@ -295,18 +279,19 @@
                           </v-col>
                         </v-row>                    
                       </v-container>
-<<<<<<< HEAD
-                      <v-btn class="mr-4" @click="submit" style="float:right;" v-on:click="recordallinfo">submit</v-btn>
-=======
-                      <v-btn class="mr-4" @click="submit" style="float:right;">submit</v-btn>
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
+
+                      <button type="submit" class="btn btn-primary">新增</button>
+
                       <v-btn @click="clear" style="float:right;">clear</v-btn>
-                    </form>
+                    </v-form>
                     <br><br><br><br><br><br>
                 </v-col>
             </v-row>
+            <v-btn dark fixed right fab style="top:900px" @click="planningform=false">
+                <v-icon>fas fa-arrow-circle-right</v-icon>
+            </v-btn>
         </v-container-fluid>
-<<<<<<< HEAD
+
         <v-container-fluid v-else-if="planningform == false">
             <v-row>
                 <v-col>
@@ -320,24 +305,34 @@
                                 <b-card-group deck>
                                     <v-container-fluid>
                                         <v-row>
-                                            <v-col v-for="(totalrecord, index) in totalrecordinfo">
+                                            <v-col v-for="(totalrecord, index) in totalrecordinfo" :key="index">
                                                 <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                                     <template #header>
-                                                        <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 已儲存之規劃結果</h6>
+                                                        <h6 class="mb-0">
+                                                            <b-icon icon="flower1"></b-icon> 
+                                                            {{ time.getFullYear() }}/{{ time.getMonth()+1 }}/{{ time.getDate() }}-{{ totalrecord[1] }}-{{ index+1 }}
+                                                            <v-btn dark fab style="float:right; width:20px; height:20px;" v-on:click="deleterecord(index)"><v-icon>fas fa-times</v-icon></v-btn>
+                                                        </h6>
                                                     </template>
                                                     <b-card-text>
                                                         <span>溫室作物：{{ totalrecord[0] }}-{{ totalrecord[1] }}</span><br>
                                                         <span>栽種面積：{{ totalrecord[2] }}*{{ totalrecord[3] }}</span><br>
-                                                        <span>屋頂角度：{{ totalrecord[4] }}</span><br>
-                                                        <span>地點選擇：{{ totalrecord[5] }}-{{ totalrecord[6] }}</span><br>
-                                                        <span>地型選擇：{{ totalrecord[7] }}-{{ totalrecord[8] }}</span><br>
-                                                        <span>溫室選擇：{{ totalrecord[9] }}</span><br>
-                                                        <span>
-                                                            溫室設計：<br>溫室管材-{{ totalrecord[10] }}&nbsp;圓頂形式-{{ totalrecord[11] }}<br>
-                                                                    圓拱距-{{ totalrecord[12] }}&nbsp;簡易基礎-{{ totalrecord[13] }}<br>
-                                                                    簡易跨距-{{ totalrecord[14] }}&nbsp;簡易肩高-{{ totalrecord[15] }}<br>
-                                                                    簡易長度-{{ totalrecord[16] }}&nbsp;簡易連續性-{{ totalrecord[17] }}<br>
-                                                                    簡易披覆膜-{{ totalrecord[18] }}<br>
+                                                        <span>地點選擇：{{ totalrecord[4] }}-{{ totalrecord[5] }}</span><br>
+                                                        <span>地型選擇：{{ totalrecord[6] }}-{{ totalrecord[7] }}</span><br>
+                                                        <span>溫室選擇：{{ totalrecord[8] }}</span><br>
+                                                        <span v-if="greenhouseradio == '簡易溫室'">
+                                                            溫室設計：<br>溫室管材-{{ totalrecord[9] }}&nbsp;圓頂形式-{{ totalrecord[10] }}<br>
+                                                                    圓拱距-{{ totalrecord[11] }}&nbsp;簡易基礎-{{ totalrecord[12] }}<br>
+                                                                    簡易跨距-{{ totalrecord[13] }}&nbsp;簡易肩高-{{ totalrecord[14] }}<br>
+                                                                    簡易長度-{{ totalrecord[15] }}&nbsp;簡易連續性-{{ totalrecord[16] }}<br>
+                                                                    簡易披覆膜-{{ totalrecord[17] }}<br>
+                                                        </span><br>
+                                                        <span v-if="greenhouseradio == '強固溫室'">
+                                                            溫室設計：<br>溫室型材-{{ totalrecord[9] }}&nbsp;屋頂形式-{{ totalrecord[10] }}<br>
+                                                                    上拱距-{{ totalrecord[11] }}&nbsp;基礎-{{ totalrecord[12] }}<br>
+                                                                    跨距-{{ totalrecord[13] }}&nbsp;肩高-{{ totalrecord[14] }}<br>
+                                                                    長度-{{ totalrecord[15] }}&nbsp;連續性-{{ totalrecord[16] }}<br>
+                                                                    披覆膜-{{ totalrecord[17] }}<br>
                                                         </span><br>
                                                         <span>----------------------------------</span><br>
                                                         <span>結構風險：test</span><br>
@@ -350,6 +345,9 @@
                                     </v-container-fluid>
                                 </b-card-group>
                             </b-card-text>
+                            <v-btn dark fab style="float:right;" v-on:click="hi">
+                                <v-icon>fas fa-save</v-icon>
+                            </v-btn>
                         </b-card>
                     </b-card-group>
                 </v-col>
@@ -438,7 +436,7 @@
                                                             <td style='width:6.5vmin'> 排名值 </td>
                                                         </tr>
                                                     </thead>
-                                                    <tr align="center" v-for="(select, index) in selectPipe" :key="index">
+                                                    <tr align="center">
                                                         <td>test</td>
                                                         <td>test</td>
                                                         <td>test</td>
@@ -458,19 +456,16 @@
                 </v-col> 
             </v-row>
             <v-fab-transition>
-                <v-btn v-show="!hidden" dark fixed right fab style="top:900px" @click="planningform=true">
-                    <v-icon>mdi-plus</v-icon>
+                <v-btn dark fixed right fab style="top:900px" @click="planningform=true">
+                    <v-icon>fas fa-undo</v-icon>
                 </v-btn>
             </v-fab-transition>
         </v-container-fluid>
-=======
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
     </div>
 </template>
 
 <script>
-  import { validationMixin } from 'vuelidate'
-  import { required, maxLength, email } from 'vuelidate/lib/validators'
+  import * as SaveOverPlan from '../../services/saveoverplan_service.js';
 
   export default {
     data: () => ({
@@ -481,13 +476,9 @@
         CropOrder: ["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
         GrowPlants: ['==請選擇作物==',],
 
-<<<<<<< HEAD
         plantlength: 0,
         plantwidth: 0,
-        plantangle: 0,
 
-=======
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
         tabIndex: 0,
         regionalwindspeedjson:[],   // 縣市地區資料
         City:['==請選擇縣市==',],   // 縣市選單的陣列表
@@ -505,10 +496,6 @@
         Fluidjson: [],
         checkData:[],
         checkedNames: [],
-<<<<<<< HEAD
-
-=======
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
         
         /* 簡易型溫室 */
         SelectSimple:[],
@@ -589,7 +576,6 @@
         RobustCostAdd:0,
         RobustStructuralRiskAdd:0,
         RobustJobDifficultyAdd:0,
-<<<<<<< HEAD
 
         recordinfo: [],
         totalrecordinfo: [],
@@ -597,18 +583,20 @@
         planningform: true,
 
         addshowform: false,
-=======
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
+
+        time: new Date(),
+
+        countid: 0,
+
+        recordinfo:{
+            abc:null,
+        }
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
     },
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
     methods: {
         async getJson(){
         const Vegetable = await fetch('/VegetableJSON',  {
@@ -1081,30 +1069,45 @@
             this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
         }
 
-<<<<<<< HEAD
     },
+    recordallinfo: async function() {
 
-    recordallinfo(){
         this.recordinfo = []
         this.recordinfo.push(this.CropOrder[this.cropIdx]) //作物分類
         this.recordinfo.push(this.GrowPlants [this.plantIdx]) //作物選擇
         this.recordinfo.push(this.plantlength) //長度
         this.recordinfo.push(this.plantwidth) //寬度
-        this.recordinfo.push(this.plantangle) //角度
         this.recordinfo.push(this.selectCity) //選擇城市
         this.recordinfo.push(this.selectRegion) //選擇地區
         this.recordinfo.push(this.SelectTerrain) //選擇地形
         this.recordinfo.push(this.SelectLandform) //選擇地貌
         this.recordinfo.push(this.greenhouseradio) //簡易or強固
-        for(var i = 0; i < this.SelectSimple.length; i++){
-            this.recordinfo.push(this.SelectSimple[i][1].BuildItem) 
+        if (this.greenhouseradio == '簡易溫室'){
+            for(var i = 0; i < this.SelectSimple.length; i++){
+                this.recordinfo.push(this.SelectSimple[i][1].BuildItem) 
+            }
+        } else if(this.greenhouseradio == '強固溫室'){
+            for(var i = 0; i < this.SelectRobust.length; i++){
+                this.recordinfo.push(this.SelectRobust[i][1].BuildItem) 
+            }            
         }
+        // let formData = new FormData();
+        // formData.append('Expert',this.recordinfo.abc);
+        // window.alert(this.recordinfo.abc)
+        // const response = await SaveOverPlan.createOverPlan(this.recordinfo.abc)
+        // window.alert('hi1')
+        // window.location = '#/GreenhouseMasterPlan/GreenhouseOverallPlan';
         this.totalrecordinfo.push(this.recordinfo)
         this.planningform = false
     },
-=======
+
+    deleterecord(id){
+        window.alert(this.totalrecordinfo)
+        this.$delete(this.totalrecordinfo,id)
+    },
+    hi(){
+        window.alert('hi')
     }
->>>>>>> 4e1626cbbd55698deed9c0116a1faefcb81e424b
 },
 }
 </script>
