@@ -38,7 +38,6 @@ class CropController extends Controller
      */
     public function store(Request $request) // 創建作物資訊
     {
-        dd($request);
         // 設定必填欄位 & 必填欄位的的條件
         $request -> validate([
             'Expert' => 'required',
