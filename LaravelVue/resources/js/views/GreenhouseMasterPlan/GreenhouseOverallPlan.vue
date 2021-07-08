@@ -36,7 +36,7 @@
                             <v-subheader>栽種面積</v-subheader>
                           </v-col>
                           <v-col cols="12" md="2">
-                            <v-text-field :counter="10" label="輸入長度" v-model="plantlength"></v-text-field>
+                            <v-text-field :counter="10" label="輸入長度" v-model="recordinfo.abc"></v-text-field>
                           </v-col>  
                           <v-col cols="12" md="2">
                             <v-text-field :counter="10" label="輸入寬度" v-model="plantwidth"></v-text-field>
@@ -1072,32 +1072,32 @@
     },
     recordallinfo: async function() {
 
-        this.recordinfo = []
-        this.recordinfo.push(this.CropOrder[this.cropIdx]) //作物分類
-        this.recordinfo.push(this.GrowPlants [this.plantIdx]) //作物選擇
-        this.recordinfo.push(this.plantlength) //長度
-        this.recordinfo.push(this.plantwidth) //寬度
-        this.recordinfo.push(this.selectCity) //選擇城市
-        this.recordinfo.push(this.selectRegion) //選擇地區
-        this.recordinfo.push(this.SelectTerrain) //選擇地形
-        this.recordinfo.push(this.SelectLandform) //選擇地貌
-        this.recordinfo.push(this.greenhouseradio) //簡易or強固
-        if (this.greenhouseradio == '簡易溫室'){
-            for(var i = 0; i < this.SelectSimple.length; i++){
-                this.recordinfo.push(this.SelectSimple[i][1].BuildItem) 
-            }
-        } else if(this.greenhouseradio == '強固溫室'){
-            for(var i = 0; i < this.SelectRobust.length; i++){
-                this.recordinfo.push(this.SelectRobust[i][1].BuildItem) 
-            }            
-        }
-        // let formData = new FormData();
-        // formData.append('Expert',this.recordinfo.abc);
-        // window.alert(this.recordinfo.abc)
-        // const response = await SaveOverPlan.createOverPlan(this.recordinfo.abc)
-        // window.alert('hi1')
-        // window.location = '#/GreenhouseMasterPlan/GreenhouseOverallPlan';
-        this.totalrecordinfo.push(this.recordinfo)
+        // this.recordinfo = []
+        // this.recordinfo.push(this.CropOrder[this.cropIdx]) //作物分類
+        // this.recordinfo.push(this.GrowPlants [this.plantIdx]) //作物選擇
+        // this.recordinfo.push(this.plantlength) //長度
+        // this.recordinfo.push(this.plantwidth) //寬度
+        // this.recordinfo.push(this.selectCity) //選擇城市
+        // this.recordinfo.push(this.selectRegion) //選擇地區
+        // this.recordinfo.push(this.SelectTerrain) //選擇地形
+        // this.recordinfo.push(this.SelectLandform) //選擇地貌
+        // this.recordinfo.push(this.greenhouseradio) //簡易or強固
+        // if (this.greenhouseradio == '簡易溫室'){
+        //     for(var i = 0; i < this.SelectSimple.length; i++){
+        //         this.recordinfo.push(this.SelectSimple[i][1].BuildItem) 
+        //     }
+        // } else if(this.greenhouseradio == '強固溫室'){
+        //     for(var i = 0; i < this.SelectRobust.length; i++){
+        //         this.recordinfo.push(this.SelectRobust[i][1].BuildItem) 
+        //     }            
+        // }
+        let formData = new FormData();
+        formData.append('Expert',this.recordinfo.abc);
+        window.alert(this.recordinfo.abc)
+        const response = await SaveOverPlan.createOverPlan(this.recordinfo.abc)
+        window.alert('hi1')
+        //window.location = '#/GreenhouseMasterPlan/GreenhouseOverallPlan';
+        //this.totalrecordinfo.push(this.recordinfo)
         this.planningform = false
     },
 

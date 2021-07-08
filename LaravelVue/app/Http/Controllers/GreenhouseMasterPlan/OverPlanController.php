@@ -5,6 +5,7 @@ namespace App\Http\Controllers\GreenhouseMasterPlan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\GreenhouseMasterPlan\usdollar;
 class OverPlanController extends Controller
 {
     /**
@@ -35,7 +36,9 @@ class OverPlanController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $usdollar = new usdollar();
+        $usdollar->USD = '12';
+        $usdollar->save();
     }
 
     /**
@@ -44,7 +47,7 @@ class OverPlanController extends Controller
      * @param  \App\Models\Test\test  $test
      * @return \Illuminate\Http\Response
      */
-    public function show(test $test)
+    public function show()
     {
         //
     }
@@ -55,7 +58,7 @@ class OverPlanController extends Controller
      * @param  \App\Models\Test\test  $test
      * @return \Illuminate\Http\Response
      */
-    public function edit(test $test)
+    public function edit()
     {
         //
     }
@@ -67,7 +70,7 @@ class OverPlanController extends Controller
      * @param  \App\Models\Test\test  $test
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, test $test)
+    public function update()
     {
         
     }
