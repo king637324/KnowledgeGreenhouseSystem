@@ -280,9 +280,8 @@
                         </v-row>                    
                       </v-container>
 
-                      <button type="submit" class="btn btn-primary">新增</button>
-
-                      <v-btn @click="clear" style="float:right;">clear</v-btn>
+                      <button type="submit" class="btn btn-primary" style="float:right;">新增</button>
+                      <button type="reset" class="btn btn-primary" style="float:right;">清除</button>
                     </v-form>
                     <br><br><br><br><br><br>
                 </v-col>
@@ -305,34 +304,34 @@
                                 <b-card-group deck>
                                     <v-container-fluid>
                                         <v-row>
-                                            <v-col v-for="(totalrecord, index) in totalrecordinfo" :key="index">
+                                            <v-col v-for="(OverPlan, index) in showoverplan" :key="index">
                                                 <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                                     <template #header>
                                                         <h6 class="mb-0">
                                                             <b-icon icon="flower1"></b-icon> 
-                                                            {{ time.getFullYear() }}/{{ time.getMonth()+1 }}/{{ time.getDate() }}-{{ totalrecord[1] }}-{{ index+1 }}
-                                                            <v-btn dark fab style="float:right; width:20px; height:20px;" v-on:click="deleterecord(index)"><v-icon>fas fa-times</v-icon></v-btn>
+                                                            {{ time.getFullYear() }}/{{ time.getMonth()+1 }}/{{ time.getDate() }}-{{ OverPlan.plant }}-{{ index+1 }}
+                                                            <v-btn dark fab style="float:right; width:20px; height:20px;" v-on:click="deleterecord(OverPlan.pid)"><v-icon>fas fa-times</v-icon></v-btn>
                                                         </h6>
                                                     </template>
                                                     <b-card-text>
-                                                        <span>溫室作物：{{ totalrecord[0] }}-{{ totalrecord[1] }}</span><br>
-                                                        <span>栽種面積：{{ totalrecord[2] }}*{{ totalrecord[3] }}</span><br>
-                                                        <span>地點選擇：{{ totalrecord[4] }}-{{ totalrecord[5] }}</span><br>
-                                                        <span>地型選擇：{{ totalrecord[6] }}-{{ totalrecord[7] }}</span><br>
-                                                        <span>溫室選擇：{{ totalrecord[8] }}</span><br>
+                                                        <span>溫室作物：{{ OverPlan.plantclass }}-{{ OverPlan.plant }}</span><br>
+                                                        <span>栽種面積：{{ OverPlan.croplength }}*{{ OverPlan.cropwidth }}</span><br>
+                                                        <span>地點選擇：{{ OverPlan.localcity }}-{{ OverPlan.localarea }}</span><br>
+                                                        <span>地型選擇：{{ OverPlan.terrain }}-{{ OverPlan.landform }}</span><br>
+                                                        <span>溫室選擇：{{ OverPlan.greenhouse }}</span><br>
                                                         <span v-if="greenhouseradio == '簡易溫室'">
-                                                            溫室設計：<br>溫室管材-{{ totalrecord[9] }}&nbsp;圓頂形式-{{ totalrecord[10] }}<br>
-                                                                    圓拱距-{{ totalrecord[11] }}&nbsp;簡易基礎-{{ totalrecord[12] }}<br>
-                                                                    簡易跨距-{{ totalrecord[13] }}&nbsp;簡易肩高-{{ totalrecord[14] }}<br>
-                                                                    簡易長度-{{ totalrecord[15] }}&nbsp;簡易連續性-{{ totalrecord[16] }}<br>
-                                                                    簡易披覆膜-{{ totalrecord[17] }}<br>
+                                                            溫室設計：<br>溫室管材-{{ OverPlan.greenhousepipe }}&nbsp;圓頂形式-{{ OverPlan.domeforms }}<br>
+                                                                    圓拱距-{{ OverPlan.circulararchdistances }}&nbsp;簡易基礎-{{ OverPlan.foundations }}<br>
+                                                                    簡易跨距-{{ OverPlan.spans }}&nbsp;簡易肩高-{{ OverPlan.shoulderheights }}<br>
+                                                                    簡易長度-{{ OverPlan.lengths }}&nbsp;簡易連續性-{{ OverPlan.continuitys }}<br>
+                                                                    簡易披覆膜-{{ OverPlan.coatingfilms }}<br>
                                                         </span><br>
                                                         <span v-if="greenhouseradio == '強固溫室'">
-                                                            溫室設計：<br>溫室型材-{{ totalrecord[9] }}&nbsp;屋頂形式-{{ totalrecord[10] }}<br>
-                                                                    上拱距-{{ totalrecord[11] }}&nbsp;基礎-{{ totalrecord[12] }}<br>
-                                                                    跨距-{{ totalrecord[13] }}&nbsp;肩高-{{ totalrecord[14] }}<br>
-                                                                    長度-{{ totalrecord[15] }}&nbsp;連續性-{{ totalrecord[16] }}<br>
-                                                                    披覆膜-{{ totalrecord[17] }}<br>
+                                                            溫室設計：<br>溫室型材-{{ OverPlan.greenhousepipe }}&nbsp;屋頂形式-{{ OverPlan.domeforms }}<br>
+                                                                    上拱距-{{ OverPlan.circulararchdistances }}&nbsp;基礎-{{ OverPlan.foundations }}<br>
+                                                                    跨距-{{ OverPlan.spans }}&nbsp;肩高-{{ OverPlan.shoulderheights }}<br>
+                                                                    長度-{{ OverPlan.lengths }}&nbsp;連續性-{{ OverPlan.continuitys }}<br>
+                                                                    披覆膜-{{ OverPlan.coatingfilms }}<br>
                                                         </span><br>
                                                         <span>----------------------------------</span><br>
                                                         <span>結構風險：test</span><br>
@@ -577,20 +576,11 @@
         RobustStructuralRiskAdd:0,
         RobustJobDifficultyAdd:0,
 
-        recordinfo: [],
-        totalrecordinfo: [],
-
         planningform: true,
-
-        addshowform: false,
-
         time: new Date(),
+        OverPlanJson: [],
 
-        countid: 0,
-
-        recordinfo:{
-            abc:null,
-        }
+        showoverplan: [],
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -845,8 +835,16 @@
                 this.StrongUpperArchDistances.push(this.StrongUpperArchDistancesJSON[i]);
             }
         }
-    },
 
+        const J_OverPlan = await fetch('/OverPlanJson',  {
+            method: 'GET',
+        });
+        this.OverPlanJson = await J_OverPlan.json();
+        for (var i = 0 ; i < this.OverPlanJson.length ; i++){
+            this.showoverplan.push(this.OverPlanJson[i]);
+        }
+    },
+    
     updateCrop(){     // 更新所選擇的作物分類
         // 從所選的作物id 找到 所選作物分類
         for(var i = 0 ; i < this.CropOrder.length ; i++){
@@ -1071,40 +1069,67 @@
 
     },
     recordallinfo: async function() {
-
-        this.recordinfo = []
-        this.recordinfo.push(this.CropOrder[this.cropIdx]) //作物分類
-        this.recordinfo.push(this.GrowPlants [this.plantIdx]) //作物選擇
-        this.recordinfo.push(this.plantlength) //長度
-        this.recordinfo.push(this.plantwidth) //寬度
-        this.recordinfo.push(this.selectCity) //選擇城市
-        this.recordinfo.push(this.selectRegion) //選擇地區
-        this.recordinfo.push(this.SelectTerrain) //選擇地形
-        this.recordinfo.push(this.SelectLandform) //選擇地貌
-        this.recordinfo.push(this.greenhouseradio) //簡易or強固
+        this.recordinfos = []
+        this.recordinfos.push(this.CropOrder[this.cropIdx]) //作物分類
+        this.recordinfos.push(this.GrowPlants [this.plantIdx]) //作物選擇
+        this.recordinfos.push(this.plantlength) //長度
+        this.recordinfos.push(this.plantwidth) //寬度
+        this.recordinfos.push(this.selectCity) //選擇城市
+        this.recordinfos.push(this.selectRegion) //選擇地區
+        this.recordinfos.push(this.SelectTerrain) //選擇地形
+        this.recordinfos.push(this.SelectLandform) //選擇地貌
+        this.recordinfos.push(this.greenhouseradio) //簡易or強固
         if (this.greenhouseradio == '簡易溫室'){
             for(var i = 0; i < this.SelectSimple.length; i++){
-                this.recordinfo.push(this.SelectSimple[i][1].BuildItem) 
+                this.recordinfos.push(this.SelectSimple[i][1].BuildItem) 
             }
         } else if(this.greenhouseradio == '強固溫室'){
             for(var i = 0; i < this.SelectRobust.length; i++){
-                this.recordinfo.push(this.SelectRobust[i][1].BuildItem) 
+                this.recordinfos.push(this.SelectRobust[i][1].BuildItem) 
             }            
         }
-        // let formData = new FormData();
-        // formData.append('Expert',this.recordinfo.abc);
-        // window.alert(this.recordinfo.abc)
-        // const response = await SaveOverPlan.createOverPlan(this.recordinfo.abc)
-        // window.alert('hi1')
-        // window.location = '#/GreenhouseMasterPlan/GreenhouseOverallPlan';
-        this.totalrecordinfo.push(this.recordinfo)
+        let formData = new FormData();
+        let formarray = [
+            'plantclass',
+            'plant',
+            'croplength',
+            'cropwidth',
+            'localcity',
+            'localarea',
+            'terrain',
+            'landform',
+            'greenhouse',
+            'greenhousepipe',
+            'domeforms',
+            'circulararchdistances',
+            'foundations',
+            'spans',
+            'shoulderheights',
+            'lengths',
+            'continuitys',
+            'coatingfilms',
+            ]
+        for (var i = 0; i < formarray.length; i++){
+            formData.append(formarray[i],this.recordinfos[i]) 
+        }
+        const response = await SaveOverPlan.createOverPlan(formData)
+        this.showoverplan.push(response.data);
+        window.location = '#/GreenhouseMasterPlan/GreenhouseOverallPlan';
         this.planningform = false
     },
 
-    deleterecord(id){
-        window.alert(this.totalrecordinfo)
-        this.$delete(this.totalrecordinfo,id)
+    deleterecord: async function(DeleteId){ 
+        await SaveOverPlan.deleteOverPlan(DeleteId);
+        const J_OverPlan = await fetch('/OverPlanJson',  {
+            method: 'GET',
+        });
+        this.OverPlanJson = await J_OverPlan.json();
+        this.showoverplan = [];
+        for (var i = 0 ; i < this.OverPlanJson.length ; i++){
+            this.showoverplan.push(this.OverPlanJson[i]);
+        }
     },
+
     hi(){
         window.alert('hi')
     }

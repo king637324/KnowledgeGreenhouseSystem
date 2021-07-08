@@ -2,7 +2,6 @@ import { http, httpFile } from './http_service';
 
 // 新增簡易型溫室參數資料
 export function createOverPlan(data) {
-    window.alert(data)
     return httpFile().post('/GreenhouseMasterPlan/GreenhouseOverallPlan', data);
 }
 

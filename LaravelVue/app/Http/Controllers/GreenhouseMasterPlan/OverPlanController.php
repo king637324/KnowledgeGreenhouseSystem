@@ -4,6 +4,8 @@ namespace App\Http\Controllers\GreenhouseMasterPlan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\GreenhouseMasterPlan\saveoverplan;
+use Illuminate\Support\Facades\Auth;
 
 class OverPlanController extends Controller
 {
@@ -35,7 +37,47 @@ class OverPlanController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // $request -> validate([
+        //     'plantclass' => 'required',
+        //     'plant' => 'required',
+        //     'croplength' => 'required',
+        //     'cropwidth' => 'required',
+        //     'localcity' => 'required',
+        //     'localarea' => 'required',
+        //     'terrain' => 'required',
+        //     'landform' => 'required',
+        //     'greenhouse' => 'required',
+        //     'greenhousepipe' => 'required',
+        //     'domeforms' => 'required',
+        //     'circulararchdistances' => 'required',
+        //     'foundations' => 'required',
+        //     'spans' => 'required',
+        //     'shoulderheights' => 'required',
+        //     'lengths' => 'required',
+        //     'continuitys' => 'required',
+        //     'coatingfilms' => 'required',
+        // ]);
+        $saveoverplan = new saveoverplan();
+        $saveoverplan->plantclass = $request->plantclass;
+        $saveoverplan->plant = $request->plant;
+        $saveoverplan->croplength = $request->croplength;
+        $saveoverplan->cropwidth = $request->cropwidth;
+        $saveoverplan->localcity = $request->localcity;
+        $saveoverplan->localarea = $request->localarea;
+        $saveoverplan->terrain = $request->terrain;
+        $saveoverplan->landform = $request->landform;
+        $saveoverplan->greenhouse = $request->greenhouse;
+        $saveoverplan->greenhousepipe = $request->greenhousepipe;
+        $saveoverplan->domeforms = $request->domeforms;
+        $saveoverplan->circulararchdistances = $request->circulararchdistances;
+        $saveoverplan->foundations = $request->foundations;
+        $saveoverplan->spans = $request->spans;
+        $saveoverplan->shoulderheights = $request->shoulderheights;
+        $saveoverplan->lengths = $request->lengths;
+        $saveoverplan->continuitys = $request->continuitys;
+        $saveoverplan->coatingfilms = $request->coatingfilms;
+        $saveoverplan->save();
+        return response()->json($saveoverplan);
     }
 
     /**
@@ -78,8 +120,14 @@ class OverPlanController extends Controller
      * @param  \App\Models\Test\test  $test
      * @return \Illuminate\Http\Response
      */
-    public function destroy($name)
+    public function destroy($id)
     {
+        $deleteoverplan = saveoverplan::where('pid', $id)->delete();
+    }
 
+    public function getJSON_OverPlan()
+    {
+        $JSON_OverPlan = saveoverplan::get();
+        return $JSON_OverPlan;
     }
 }
