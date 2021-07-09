@@ -49,7 +49,7 @@ import GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment from './
 import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
 import OverallPlan from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
-
+import OverallPlanResult from './views/GreenhouseMasterPlan/GreenhousrOverallPlanResult.vue';
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
@@ -327,8 +327,15 @@ const routes = [{
     }
 }, {
     path: '/GreenhouseMasterPlan/GreenhouseOverallPlan',
-    name: 'OverallPlan',
+    name: 'GreenhouseOverallPlan',
     component: OverallPlan,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/GreenhousrOverallPlanResult',
+    name: 'GreenhousrOverallPlanResult',
+    component: OverallPlanResult,
     meta: {
         auth: undefined
     }
