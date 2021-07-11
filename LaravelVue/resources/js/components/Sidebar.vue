@@ -221,20 +221,9 @@
                                     風險分析
                                 </router-link> -->
                         <div class="sb-sidenav-menu-heading">規劃</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#總體規劃" aria-expanded="false">
+                            <router-link to="/GreenhouseMasterPlan/GreenhouseOverallPlan" class="nav-link" exact>
                                 總體規劃
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="總體規劃" aria-labelledby="headingOne">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <router-link to="/GreenhouseMasterPlan/GreenhouseOverallPlan" class="nav-link" exact>
-                                        總體規劃-表單
-                                    </router-link>
-                                    <router-link to="/GreenhouseMasterPlan/GreenhousrOverallPlanResult" class="nav-link" exact>
-                                        總體規劃-結果
-                                    </router-link>
-                                </nav>
-                            </div>
+                            </router-link>
                             <router-link to="/Development" class="nav-link" exact>
                                 優化分析
                             </router-link>
