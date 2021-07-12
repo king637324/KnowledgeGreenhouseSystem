@@ -1,0 +1,10 @@
+id,Expert,BuildItem,Cost,StructuralRisk,JobDifficulty
+1,System,溫室管材,20%,15%,10%
+2,System,圓頂形式,10%,15%,10%
+3,System,圓拱距,10%,10%,10%
+4,System,基礎,10%,10%,10%
+5,System,跨距,10%,15%,15%
+6,System,肩高,10%,10%,15%
+7,System,長度,10%,5%,10%
+8,System,連續性,10%,10%,10%
+9,System,披覆膜,10%,10%,10%

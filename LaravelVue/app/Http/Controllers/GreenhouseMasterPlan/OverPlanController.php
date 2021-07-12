@@ -1,0 +1,112 @@
+<?php
+
+namespace App\Http\Controllers\GreenhouseMasterPlan;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\GreenhouseMasterPlan\saveoverplan;
+
+class OverPlanController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $saveoverplan = new saveoverplan();
+        $saveoverplan->plantclass = $request->plantclass;
+        $saveoverplan->plant = $request->plant;
+        $saveoverplan->croplength = $request->croplength;
+        $saveoverplan->cropwidth = $request->cropwidth;
+        $saveoverplan->localcity = $request->localcity;
+        $saveoverplan->localarea = $request->localarea;
+        $saveoverplan->terrain = $request->terrain;
+        $saveoverplan->landform = $request->landform;
+        $saveoverplan->greenhouse = $request->greenhouse;
+        $saveoverplan->greenhousepipe = $request->greenhousepipe;
+        $saveoverplan->domeforms = $request->domeforms;
+        $saveoverplan->circulararchdistances = $request->circulararchdistances;
+        $saveoverplan->foundations = $request->foundations;
+        $saveoverplan->spans = $request->spans;
+        $saveoverplan->shoulderheights = $request->shoulderheights;
+        $saveoverplan->lengths = $request->lengths;
+        $saveoverplan->continuitys = $request->continuitys;
+        $saveoverplan->coatingfilms = $request->coatingfilms;
+        $saveoverplan->save();
+        return response()->json($saveoverplan);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Test\test  $test
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Test\test  $test
+     * @return \Illuminate\Http\Response
+     */
+    public function edit()
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Test\test  $test
+     * @return \Illuminate\Http\Response
+     */
+    public function update()
+    {
+        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Test\test  $test
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $deleteoverplan = saveoverplan::where('pid', $id)->delete();
+    }
+
+    public function getJSON_OverPlan()
+    {
+        $JSON_OverPlan = saveoverplan::get();
+        return $JSON_OverPlan;
+    }
+}
