@@ -312,24 +312,24 @@
                                                         </h6>
                                                     </template>
                                                     <b-card-text>
-                                                        <span>溫室作物：{{ OverPlan.plantclass }}-{{ OverPlan.plant }}</span><br>
-                                                        <span>栽種面積：{{ OverPlan.croplength }}*{{ OverPlan.cropwidth }}</span><br>
-                                                        <span>地點選擇：{{ OverPlan.localcity }}-{{ OverPlan.localarea }}</span><br>
-                                                        <span>地型選擇：{{ OverPlan.terrain }}-{{ OverPlan.landform }}</span><br>
-                                                        <span>溫室選擇：{{ OverPlan.greenhouse }}</span><br>
+                                                        <span>A.溫室作物：{{ OverPlan.plantclass }}-{{ OverPlan.plant }}</span><br>
+                                                        <span>B.栽種面積：{{ OverPlan.croplength }}*{{ OverPlan.cropwidth }}</span><br>
+                                                        <span>C.地點選擇：{{ OverPlan.localcity }}-{{ OverPlan.localarea }}</span><br>
+                                                        <span>D.地型選擇：{{ OverPlan.terrain }}-{{ OverPlan.landform }}</span><br>
+                                                        <span>E.溫室選擇：{{ OverPlan.greenhouse }}</span><br>
                                                         <span v-if="OverPlan.greenhouse == '簡易溫室'">
-                                                            溫室設計：<br>溫室管材-{{ OverPlan.greenhousepipe }}&nbsp;圓頂形式-{{ OverPlan.domeforms }}<br>
-                                                                    圓拱距-{{ OverPlan.circulararchdistances }}&nbsp;簡易基礎-{{ OverPlan.foundations }}<br>
-                                                                    簡易跨距-{{ OverPlan.spans }}&nbsp;簡易肩高-{{ OverPlan.shoulderheights }}<br>
-                                                                    簡易長度-{{ OverPlan.lengths }}&nbsp;簡易連續性-{{ OverPlan.continuitys }}<br>
-                                                                    簡易披覆膜-{{ OverPlan.coatingfilms }}<br>
+                                                            溫室設計：<br>F.溫室管材-{{ OverPlan.greenhousepipe }}<br>G.圓頂形式-{{ OverPlan.domeforms }}<br>
+                                                                    H.圓拱距-{{ OverPlan.circulararchdistances }}<br>I.簡易基礎-{{ OverPlan.foundations }}<br>
+                                                                    J.簡易跨距-{{ OverPlan.spans }}<br>K.簡易肩高-{{ OverPlan.shoulderheights }}<br>
+                                                                    L.簡易長度-{{ OverPlan.lengths }}<br>M.簡易連續性-{{ OverPlan.continuitys }}<br>
+                                                                    N.簡易披覆膜-{{ OverPlan.coatingfilms }}<br>
                                                         </span><br>
                                                         <span v-if="OverPlan.greenhouse == '強固溫室'">
-                                                            溫室設計：<br>溫室型材-{{ OverPlan.greenhousepipe }}&nbsp;屋頂形式-{{ OverPlan.domeforms }}<br>
-                                                                    上拱距-{{ OverPlan.circulararchdistances }}&nbsp;基礎-{{ OverPlan.foundations }}<br>
-                                                                    跨距-{{ OverPlan.spans }}&nbsp;肩高-{{ OverPlan.shoulderheights }}<br>
-                                                                    長度-{{ OverPlan.lengths }}&nbsp;連續性-{{ OverPlan.continuitys }}<br>
-                                                                    披覆膜-{{ OverPlan.coatingfilms }}<br>
+                                                            溫室設計：<br>F.溫室型材-{{ OverPlan.greenhousepipe }}<br>G.屋頂形式-{{ OverPlan.domeforms }}<br>
+                                                                    H.上拱距-{{ OverPlan.circulararchdistances }}<br>I.基礎-{{ OverPlan.foundations }}<br>
+                                                                    J.跨距-{{ OverPlan.spans }}<br>K.肩高-{{ OverPlan.shoulderheights }}<br>
+                                                                    L.長度-{{ OverPlan.lengths }}<br>M.連續性-{{ OverPlan.continuitys }}<br>
+                                                                    N.披覆膜-{{ OverPlan.coatingfilms }}<br>
                                                         </span>
                                                     </b-card-text>
                                                 </b-card>
