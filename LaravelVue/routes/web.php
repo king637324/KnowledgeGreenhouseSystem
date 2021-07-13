@@ -99,3 +99,8 @@ Route::get('/MaterialsAndDesignKnowledgeBase/Article/show/{title}',[KnowledgeEdi
 use App\Http\Controllers\GreenhouseMasterPlan\OverPlanController;
 Route::get('/OverPlanJson',[OverPlanController::class, 'getJSON_OverPlan']);
 
+use App\Http\Controllers\GreenhouseMasterPlan\LightController;
+Route::get('/LightJson',[LightController::class, 'getJSON_Light']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\TempController;
+Route::get('/TempJson',[TempController::class, 'getJSON_Temp']);
