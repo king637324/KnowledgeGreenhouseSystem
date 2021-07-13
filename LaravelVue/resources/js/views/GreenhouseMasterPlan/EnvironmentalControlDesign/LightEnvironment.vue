@@ -17,13 +17,13 @@
                 <b-card-text>
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">生長光環境</span></p>
                     <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
-                        <option v-for="(crop, index) in CropOrder" :value="index">
+                        <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
                             {{crop}}
                         </option>
                     </b-select>
 
                     <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
-                        <option v-for="(plant, index) in GrowPlants" :value="index">
+                        <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
                             {{plant}}
                         </option>
                     </b-select>
@@ -51,11 +51,13 @@
                             <td id="LightCompensationPoint" colspan="2"> {{LightCompensationPoint}} </td>
                         </tr>
                     </table>
+
                     <br>
                     <br>
                     <h6>備註： - 為尚無資料</h6>
 
                     <!-- <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地 點</span></p>
+
                     <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
                         <option v-for="(city, index) in City" :value="index">
                             {{city}}
@@ -89,16 +91,19 @@
                             </tr>
                         </tbody>
                     </table>
+
                     <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p> -->
 
                 </b-card-text>
             </b-card>
+
             <b-card
                 header-tag="header"
                 header-text-variant="white"
                 header-bg-variant="info"
             >
                 <template #header>
+
                     <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 環境控制-光設計 </h6>
                 </template>
                 <b-card-text>
@@ -110,12 +115,14 @@
                 </b-card-text>
                 <v-textarea filled row-height="5" readonly :value="LightDesignIntroduction"></v-textarea>
             </b-card>
+
             <b-card
                 header-tag="header"
                 header-text-variant="white"
                 header-bg-variant="info"
             >
                 <template #header>
+
                     <h6 class="mb-0"><i class="fas fa-chart-area"></i> 環境控制-光控制 </h6>
                 </template>
                 <b-card-text>
@@ -135,12 +142,14 @@
         <br><br>
         <b-card-group deck>
             <!-- 環境控制-光設計 -->
+
             <b-card
                 header-tag="header"
                 header-text-variant="white"
                 header-bg-variant="info"
             >
                 <template #header>
+
                     <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 種植地區環境分析</h6>
                 </template>
                 <b-card-text>
@@ -151,13 +160,17 @@
                                     <span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光資源</span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
-                                        <option v-for="(city, index) in City" :value="index">
+
+                                        <option v-for="(city, index) in City" :value="index" :key="index">
+
                                             {{city}}
                                         </option>
                                     </b-select>
 
                                     <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
-                                        <option v-for="(region, index) in Region" :value="index">
+
+                                        <option v-for="(region, index) in Region" :value="index" :key="index">
+
                                             {{region}}
                                         </option>
                                     </b-select>

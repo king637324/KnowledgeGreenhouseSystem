@@ -1,3 +1,4 @@
+
 <!--<template>
     <div class = "container-fluid"  style="bottom=0px">
         <div class = "row">
@@ -45,6 +46,12 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+</template>
+=======
+>>>>>>> c797014702d0744b9e70db5e18e6123693bfc53a
 </template>-->
 <template>
 <div>
@@ -71,4 +78,5 @@
     </v-footer>
   </v-card>
 </div>
+
 </template>

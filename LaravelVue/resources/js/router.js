@@ -48,7 +48,8 @@ import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustEdit from '
 import GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/LightEnvironment.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
-import OverallPlan from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
+import OverallPlanbase from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
+import PlanDesign from './views/GreenhouseMasterPlan/GreenhousePlanDesign.vue';
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
@@ -274,12 +275,14 @@ const routes = [{
         auth: undefined
     }
 }, {
+
     path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/easy',
     name: '溫室構造成本分析',
     component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis,
     meta: {
         auth: undefined
     }
+
 
 }, {
     path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/hard',
@@ -325,9 +328,16 @@ const routes = [{
         auth: undefined
     }
 }, {
-    path: '/GreenhouseMasterPlan/GreenhouseOverallPlan',
-    name: 'GreenhouseOverallPlan',
-    component: OverallPlan,
+    path: '/GreenhouseMasterPlan/GreenhouseOverallPlanbase',
+    name: 'GreenhouseOverallPlanbase',
+    component: OverallPlanbase,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/GreenhousePlanDesign',
+    name: 'GreenhousePlanDesign',
+    component: PlanDesign,
     meta: {
         auth: undefined
     }

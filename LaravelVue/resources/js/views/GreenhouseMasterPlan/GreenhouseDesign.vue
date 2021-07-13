@@ -210,11 +210,11 @@
             </table>
         </div>
 
-
         <!-- <br><br>
         <b-card-group deck id="簡易型溫室">
 
             <!-- 簡 易 型 溫 室 選 擇
+
             <b-card 
                 header-tag="header"
                 header-text-variant="white"
@@ -224,6 +224,7 @@
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 設 計 選 擇</h6>
                 </template>
                 <b-card-text>
+
                     <!-- 簡易型溫室設計參數選擇
                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                         <thead class="table-active">
@@ -319,6 +320,7 @@
                 </b-card-text>
             </b-card>
 
+
             <!-- 簡 易 型 溫 室  設 計 比 較
             <b-card 
                 header-tag="header"
@@ -332,7 +334,7 @@
                     <div v-if="SelectSimple.length != 9">
                         <h5 style="color:red;">請完成簡易型溫室規格選擇 還有 {{9-SelectSimple.length}}個未完成選擇</h5>
                         <br>
-                        <!-- 標準簡易型溫室設計價格
+
                         <h5>標準簡易型溫室設計</h5>
                         <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
                             <thead class="table-active">
@@ -425,6 +427,7 @@
                     </div>
                     <div v-else>
                         <div class="d-flex justify-content-around">
+
                             <!-- 標準簡易型溫室設計價格
                             <div class="p-2 bd-highlight">
                                 <h5>標準簡易型溫室設計</h5>
@@ -517,7 +520,7 @@
                                 </table>
                             </div>
                             <div class="p-2 bd-highlight"></div>
-                            <!-- 所選擇的簡易型溫室設計價格
+
                             <div class="p-2 bd-highlight">
                                 <h5>所選擇之簡易型溫室設計</h5>
                                 <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
@@ -562,7 +565,7 @@
         </b-card-group>
 
         <b-card-group deck id="簡易型溫室">
-            <!-- 強 固 型 溫 室 選 擇
+
             <b-card 
                 header-tag="header"
                 header-text-variant="white"
@@ -572,7 +575,7 @@
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 強 固 型 溫 室 設 計 選 擇</h6>
                 </template>
                 <b-card-text>
-                    <!-- 強固型溫室設計選擇
+
                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                         <thead class="table-active">
                             <tr align="center">
@@ -772,6 +775,7 @@
                 </div>
                 <div v-else>
                     <div class="d-flex justify-content-around">
+
                         <!-- 標準強固型溫室設計價格
                         <div class="p-2 bd-highlight">
                             <h5>標準強固型溫室設計</h5>
@@ -905,7 +909,6 @@
             </b-card-text>
 
             </b-card>
-
         </b-card-group> -->
 
     </div>

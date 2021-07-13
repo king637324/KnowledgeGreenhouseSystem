@@ -4,11 +4,13 @@
         <h2>
             溫室構造成本分析
 
+
             <button  class="btn btn-primary">
                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/easy" style="color:white;">簡易型溫室</a>
             </button>
             <button  class="btn btn-primary">
                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/hard" style="color:white;">強固型溫室</a>
+
             </button>
         </h2>
         <hr>
@@ -20,12 +22,15 @@
                 <template #header>
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 選 擇</h6>
                 </template>
+
                 <v-container-fluid>
                     <v-row>
                         <v-col class="col-md-8">
                             <b-card-text>
                                     <b-form-select v-model="SimpleIdx" v-on:change="updateSimpleData" style="font-size: 2vmin; width:30vmin">
-                                        <option v-for="(data, index) in SimpleExpertOrder" :value="index">
+
+                                        <option v-for="(data, index) in SimpleExpertOrder" :value="index" :key="index">
+
                                             {{data}}
                                         </option>
                                     </b-form-select>
@@ -340,6 +345,7 @@
                     <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 分 析</h6>
                 </template>
                 <b-card-text>
+
                     <div v-if="SelectSimple_copy_2.length != 9">
                         
                     </div>
@@ -475,6 +481,7 @@ import * as StrongCostAddService from '../../../services/StrongCost_service';
 export default {
     data(){
         return{
+
             SelectSimple:[], //儲存選項
             SelectSimple_copy:[], //儲存所有選項，可用迴圈跑出表格
             SelectSimple_copy_2:[], //控制表格的出現
@@ -546,6 +553,8 @@ export default {
             SimpleCostAdd:0,
             SimpleStructuralRiskAdd:0,
             SimpleJobDifficultyAdd:0,
+            SimpleRecord:[],
+
             SimpleRecord:[],
 
             /* 強固型溫室 */
@@ -897,6 +906,7 @@ export default {
                 this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
                 this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);
                 this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
+
                 this.SimpleRecord.push([this.SimpleCostAdd,this.SimpleStructuralRiskAdd,this.SimpleJobDifficultyAdd,this.SimpleTotalSimpleCost])
                 this.SelectSimple_copy.push(this.SelectSimple); //將表格結果存進陣列，方便跑出表格
                 this.SelectSimple_copy_2 = this.SelectSimple; //確認表格是否被填了9個的變數

@@ -3,7 +3,7 @@
     <div>
         <br>
         <h3 id="總體規劃X">
-            總體規劃
+            溫室總體規劃系統
         </h3>
         <hr>
 
@@ -14,7 +14,7 @@
                       <v-container>
                         <v-row>
                           <v-col md="2">
-                            <v-subheader>溫室作物</v-subheader>
+                            <v-subheader>A.溫室作物</v-subheader>
                           </v-col>
                           <v-col md="4">
                             <b-select v-model="cropIdx" v-on:change="updateCrop">
@@ -33,259 +33,88 @@
                         </v-row>
                         <v-row>
                           <v-col cols="12" md="2">
-                            <v-subheader>栽種面積</v-subheader>
+                            <v-subheader>B.栽種面積</v-subheader>
                           </v-col>
                           <v-col cols="12" md="2">
                             <v-text-field :counter="10" label="輸入長度" v-model="plantlength"></v-text-field>
                           </v-col>  
                           <v-col cols="12" md="2">
                             <v-text-field :counter="10" label="輸入寬度" v-model="plantwidth"></v-text-field>
-                          </v-col>                         
-                        </v-row>
-                        <v-row>
-                          <v-col md="2">
-                            <v-subheader>地點選擇</v-subheader>
-                          </v-col>
-                          <v-col md="2">
-                            <b-select v-model="cityIdx" v-on:change="updateCity">
-                              <option v-for="(data, index) in City" :value="index">
-                                  {{data}}
-                              </option>
-                            </b-select>
-                          </v-col>
-                          <v-col md="2">
-                            <b-select v-model="regionIdx" v-on:change="updateRegion">
-                                <option v-for="(data, index) in Region" :value="index">
+                          </v-col>       
+                          <v-col cols="12" md="2">
+                            <b-select v-model="position" v-on:change="updateRegion">
+                                <option v-for="(data, index) in allposition" :value="index">
                                     {{data}}
                                 </option>
                             </b-select>
-                          </v-col>
-                          <v-col md="2">
-                            <b-select v-model="SelectTerrain">
-                                <option value="0">==請選擇地形==</option>
-                                <option value="平原">平原</option>
-                                <option value="山區">山區</option>
-                                <option value="海邊">海邊</option>
-                            </b-select>
-                          </v-col>
-                          <v-col md="2">
-                            <b-select v-model="SelectLandform">
-                                <option value="0">==請選擇地貌==</option>
-                                <option value="建築物">建築物</option>
-                                <option value="空曠">空曠</option>
-                                <option value="風口">風口</option>
-                            </b-select>
-                          </v-col>
-
-
+                          </v-col>                      
                         </v-row>
                         <v-row>
-                          <v-col md="2">
-                            <v-subheader>溫室選擇</v-subheader>
-                          </v-col>
-                          <v-col md="4">
-                            <v-radio-group row v-model="greenhouseradio">
-                              <v-radio label="簡易溫室" id="簡易溫室" value="簡易溫室"></v-radio>
-                              <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
-                            </v-radio-group>
-                          </v-col>
+                            <v-col md="2">
+                                <v-subheader>C.地點選擇</v-subheader>
+                            </v-col>
+                            <v-col md="2">
+                                <b-select v-model="cityIdx" v-on:change="updateCity">
+                                    <option v-for="(data, index) in City" :value="index">
+                                        {{data}}
+                                    </option>
+                                </b-select>
+                            </v-col>
+                            <v-col md="2">
+                                <b-select v-model="regionIdx" v-on:change="updateRegion">
+                                    <option v-for="(data, index) in Region" :value="index">
+                                        {{data}}
+                                    </option>
+                                </b-select>
+                            </v-col>
                         </v-row>
-                        
                         <v-row>
-                          <v-col md="2">
-                            <v-subheader>溫室設計</v-subheader>
-                          </v-col>
-                          <v-col md="10" v-if="greenhouseradio == '簡易溫室'">
-                            <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                              <thead class="table-active">
-                                  <tr align="center">
-                                      <td style='width:15vmin'>構建分部</td>
-                                      <td>規格</td>
-                                  </tr>
-                              </thead>
-                              <tr align="center" id="溫室管材">
-                                  <td>溫室管材</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleGreenhousePipes" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="圓頂形式">
-                                  <td>圓頂形式</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleDomeForms" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="圓拱距">
-                                  <td>圓拱距</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCircularArchDistances" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易基礎">
-                                  <td>基礎</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleFoundations" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleFoundation" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易跨距">
-                                  <td>跨距</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleSpans" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleSpan" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易肩高">
-                                  <td>肩高</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleShoulderHeights" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易長度">
-                                  <td>長度</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleLengths" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleLength" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易連續性">
-                                  <td>連續性</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleContinuitys" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleContinuity" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>                    
-                              </tr>
-                              <tr align="center" id="簡易披覆膜">
-                                  <td>披覆膜</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilms" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                            </table>
-                          </v-col>
-                          <v-col md="10" v-else-if="greenhouseradio == '強固溫室'">
-                            <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                              <thead class="table-active">
-                                  <tr align="center">
-                                      <td style='width:15vmin'>構建分部</td>
-                                      <td>規格</td>
-                                  </tr>
-                              </thead>
-                              <tr align="center" id="溫室型材">
-                                  <td>溫室型材</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="屋頂形式">
-                                  <td>屋頂形式</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="上拱距">
-                                  <td>上拱距</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="基礎">
-                                  <td>基礎</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustFoundation" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="跨距">
-                                  <td>跨距</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongSpans" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustSpan" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="肩高">
-                                  <td>肩高</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="長度">
-                                  <td>長度</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustLength" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="連續性">
-                                  <td>連續性</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustContinuity" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="披覆膜">
-                                  <td>披覆膜</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongCoatingFilms" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                  </td>
-                              </tr>
-                            </table>
-                          </v-col>
-                        </v-row>                    
+                            <v-col md="2">
+                                <v-subheader>D.地形地貌</v-subheader>
+                            </v-col>
+                            <v-col md="2">
+                                <b-select v-model="SelectTerrain">
+                                    <option value="0">地形</option>
+                                    <option value="平原">平原</option>
+                                    <option value="山區">山區</option>
+                                    <option value="海邊">海邊</option>
+                                </b-select>
+                            </v-col>
+                            <v-col md="2">
+                                <b-select v-model="SelectLandform">
+                                    <option value="0">地貌</option>
+                                    <option value="建築物">建築物</option>
+                                    <option value="空曠">空曠</option>
+                                    <option value="風口">風口</option>
+                                </b-select>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col md="2">
+                                <v-subheader>E.決策權重</v-subheader>
+                            </v-col>
+                            <v-col md="2">
+                                <v-text-field :counter="10" label="輸入品質性能" v-model="quality"></v-text-field>
+                            </v-col>
+                            <v-col md="2">
+                                <v-text-field :counter="10" label="輸入風險性" v-model="risk"></v-text-field>
+                            </v-col>
+                            <v-col md="2">
+                                <v-text-field :counter="10" label="輸入速度性" v-model="speed"></v-text-field>
+                            </v-col>
+                            <v-col md="2">
+                                <v-text-field :counter="10" label="輸入成本性" v-model="cost"></v-text-field>
+                            </v-col>
+                        </v-row>               
                       </v-container>
                       <button type="submit" class="btn btn-primary" style="float:right;">新增</button>
                       <button type="reset" class="btn btn-primary" style="float:right;">清除</button>
                     </v-form>
                     <br><br><br><br><br><br>
                 </v-col>
-                <v-btn fab dark fixed bottom right style="top:700px;" v-on:click="showform=false">
-                  <v-icon class="fa fa-forward"></v-icon>
+
+                <v-btn fab dark style="position:fixed; bottom: 0; right: 0; z-index: 9999;" v-on:click="showform=false">
+                  <b-icon icon="arrow-right"></b-icon>
                 </v-btn>
             </v-row>
         </v-container-fluid>
@@ -308,28 +137,29 @@
                                                         <h6 class="mb-0">
                                                             <b-icon icon="flower1"></b-icon> 
                                                             {{ time.getFullYear() }}/{{ time.getMonth()+1 }}/{{ time.getDate() }}-{{ OverPlan.plant }}-{{ index+1 }}
-                                                            <button type="button" style="float:right; width:20px; height:20px;" v-on:click="deleterecord(OverPlan.pid)"><v-icon>fas fa-times</v-icon></button>
+
+                                                            <button type="button" style="float:right; width:20px; height:20px;" v-on:click="deleterecord(OverPlan.pid)"><b-icon icon="X"></b-icon></button>
                                                         </h6>
                                                     </template>
                                                     <b-card-text>
-                                                        <span>溫室作物：{{ OverPlan.plantclass }}-{{ OverPlan.plant }}</span><br>
-                                                        <span>栽種面積：{{ OverPlan.croplength }}*{{ OverPlan.cropwidth }}</span><br>
-                                                        <span>地點選擇：{{ OverPlan.localcity }}-{{ OverPlan.localarea }}</span><br>
-                                                        <span>地型選擇：{{ OverPlan.terrain }}-{{ OverPlan.landform }}</span><br>
-                                                        <span>溫室選擇：{{ OverPlan.greenhouse }}</span><br>
+                                                        <span>A.溫室作物：{{ OverPlan.plantclass }}-{{ OverPlan.plant }}</span><br>
+                                                        <span>B.栽種面積：{{ OverPlan.croplength }}*{{ OverPlan.cropwidth }}</span><br>
+                                                        <span>C.地點選擇：{{ OverPlan.localcity }}-{{ OverPlan.localarea }}</span><br>
+                                                        <span>D.地型選擇：{{ OverPlan.terrain }}-{{ OverPlan.landform }}</span><br>
+                                                        <span>E.溫室選擇：{{ OverPlan.greenhouse }}</span><br>
                                                         <span v-if="OverPlan.greenhouse == '簡易溫室'">
-                                                            溫室設計：<br>溫室管材-{{ OverPlan.greenhousepipe }}&nbsp;圓頂形式-{{ OverPlan.domeforms }}<br>
-                                                                    圓拱距-{{ OverPlan.circulararchdistances }}&nbsp;簡易基礎-{{ OverPlan.foundations }}<br>
-                                                                    簡易跨距-{{ OverPlan.spans }}&nbsp;簡易肩高-{{ OverPlan.shoulderheights }}<br>
-                                                                    簡易長度-{{ OverPlan.lengths }}&nbsp;簡易連續性-{{ OverPlan.continuitys }}<br>
-                                                                    簡易披覆膜-{{ OverPlan.coatingfilms }}<br>
+                                                            溫室設計：<br>F.溫室管材-{{ OverPlan.greenhousepipe }}<br>G.圓頂形式-{{ OverPlan.domeforms }}<br>
+                                                                    H.圓拱距-{{ OverPlan.circulararchdistances }}<br>I.簡易基礎-{{ OverPlan.foundations }}<br>
+                                                                    J.簡易跨距-{{ OverPlan.spans }}<br>K.簡易肩高-{{ OverPlan.shoulderheights }}<br>
+                                                                    L.簡易長度-{{ OverPlan.lengths }}<br>M.簡易連續性-{{ OverPlan.continuitys }}<br>
+                                                                    N.簡易披覆材料-{{ OverPlan.coatingfilms }}<br>
                                                         </span><br>
                                                         <span v-if="OverPlan.greenhouse == '強固溫室'">
-                                                            溫室設計：<br>溫室型材-{{ OverPlan.greenhousepipe }}&nbsp;屋頂形式-{{ OverPlan.domeforms }}<br>
-                                                                    上拱距-{{ OverPlan.circulararchdistances }}&nbsp;基礎-{{ OverPlan.foundations }}<br>
-                                                                    跨距-{{ OverPlan.spans }}&nbsp;肩高-{{ OverPlan.shoulderheights }}<br>
-                                                                    長度-{{ OverPlan.lengths }}&nbsp;連續性-{{ OverPlan.continuitys }}<br>
-                                                                    披覆膜-{{ OverPlan.coatingfilms }}<br>
+                                                            溫室設計：<br>F.溫室型材-{{ OverPlan.greenhousepipe }}<br>G.屋頂形式-{{ OverPlan.domeforms }}<br>
+                                                                    H.上拱距-{{ OverPlan.circulararchdistances }}<br>I.基礎-{{ OverPlan.foundations }}<br>
+                                                                    J.跨距-{{ OverPlan.spans }}<br>K.肩高-{{ OverPlan.shoulderheights }}<br>
+                                                                    L.長度-{{ OverPlan.lengths }}<br>M.連續性-{{ OverPlan.continuitys }}<br>
+                                                                    N.披覆材料-{{ OverPlan.coatingfilms }}<br>
                                                         </span>
                                                     </b-card-text>
                                                 </b-card>
@@ -438,8 +268,9 @@
                         </b-card>
                     </b-card-group>                   
                 </v-col> 
-                <v-btn fab dark fixed bottom right style="top:700px;" v-on:click="showform=true">
-                  <v-icon class="fa fa-undo"></v-icon>
+
+                <v-btn fab dark style="position:fixed; bottom: 0; right: 0; z-index: 9999;" v-on:click="showform=true">
+                  <b-icon icon="arrow-left"></b-icon>
                 </v-btn>
             </v-row>
         </v-container-fluid>
@@ -454,16 +285,16 @@
         plantIdx: 0,
         selectCrop: null,
         vegetablejson:[],
-        CropOrder: ["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
-        GrowPlants: ['==請選擇作物==',],
+        CropOrder: ["分類","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
+        GrowPlants: ['作物',],
         plantlength: 0,
         plantwidth: 0,
         tabIndex: 0,
         regionalwindspeedjson:[],   // 縣市地區資料
-        City:['==請選擇縣市==',],   // 縣市選單的陣列表
+        City:['縣市',],   // 縣市選單的陣列表
         cityIdx: 0, // 所選縣市的id
         selectCity: null, // 所選縣市的名稱
-        Region:['==請選擇地區==',], // 地區選單的陣列表
+        Region:['地區',], // 地區選單的陣列表
         regionIdx: 0,   // 所選地區的id
         selectRegion: null, // 所選地區的名稱
         SelectTerrain:0, // 選擇地形
@@ -479,8 +310,9 @@
         SimpleCostratios: [],               // 簡易型各建構項目比例
         SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
         SimpleCircularArchDistances: [],    // 簡易型圓拱距
-        SimpleCoatingFilmsJSON: [],             // 簡易型披覆膜
-        SimpleCoatingFilms: [],             // 簡易型披覆膜
+
+        SimpleCoatingFilmsJSON: [],             // 簡易型披覆材料
+        SimpleCoatingFilms: [],             // 簡易型披覆材料
         SimpleContinuitysJSON: [],              // 簡易型連續性
         SimpleContinuitys: [],              // 簡易型連續性
         SimpleDomeFormsJSON: [],                // 簡易型圓頂形式
@@ -506,7 +338,8 @@
         SimpleShoulderHeight:null,  // 簡易型肩高
         SimpleLength:null,  // 簡易型長度
         SimpleContinuity:null,  // 簡易型連續性
-        SimpleCoatingFilm:null,  // 簡易型披覆膜
+
+        SimpleCoatingFilm:null,  // 簡易型披覆材料
         SimpleHousrBasePrice:500000, // 簡易型溫室基本價格
         SimpleTotalSimpleCost:0,
         SimpleCostAdd:0,
@@ -516,8 +349,9 @@
         SelectRobust:[],
         StrongCostRatiosJSON: [],               // 強固型各建構項目比例
         StrongCostRatios: [],               // 強固型各建構項目比例
-        StrongCoatingFilmsJSON: [],             // 強固型披覆膜
-        StrongCoatingFilms: [],             // 強固型披覆膜
+
+        StrongCoatingFilmsJSON: [],             // 強固型披覆材料
+        StrongCoatingFilms: [],             // 強固型披覆材料
         StrongContinuitysJSON: [],              // 強固型連續性
         StrongContinuitys: [],              // 強固型連續性
         StrongFoundationsJSON: [],              // 強固型基礎
@@ -545,7 +379,8 @@
         RobustShoulderHeight:null,   // 強固型肩高
         RobustLength:null,   // 強固型長度
         RobustContinuity:null,   // 強固型連續性
-        RobustCoatingFilm:null,   // 強固型披覆膜
+
+        RobustCoatingFilm:null,   // 強固型披覆材料
         RuggedHousrBasePrice :1500000,  // 強固型溫室基本價格
         RobustTotalCost:0,
         RobustCostAdd:0,
@@ -557,6 +392,13 @@
         overplanArray: [],
 
         showform:true,
+
+        allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
+        position:0,
+        quality:null,
+        risk:null,
+        speed:null,
+        cost:null,
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
@@ -605,7 +447,9 @@
                 this.SimpleCircularArchDistances.push(this.SimpleCircularArchDistancesJSON[i]);
             }
         }
-        // 簡易型披覆膜
+
+        // 簡易型披覆材料
+
         const SimpleCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
             method: 'GET',
         });
@@ -695,8 +539,9 @@
                 this.StrongCostRatios.push(this.StrongCostRatiosJSON[i]);
             }
         }
-        // 強固型披覆膜
-        const StrongCoatingFilms = await fetch('/StrongCoatingFilmJSON',  {
+
+        // 強固型披覆材料
+        const StrongCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
             method: 'GET',
         });
         this.StrongCoatingFilmsJSON = await StrongCoatingFilms.json();
@@ -800,10 +645,10 @@
         for(var i = 0 ; i < this.CropOrder.length ; i++){
             if(i == this.cropIdx)    this.selectCrop = this.CropOrder[i];
         }
-        this.GrowPlants = ['==請選擇作物==',];  // 作物資料初始化
+        this.GrowPlants = ['作物',];  // 作物資料初始化
         this.plantIdx = 0;
         for(var i = 0 ; i < this.vegetablejson.length ; i++){
-            if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.vegetablejson;
+            if(this.selectCrop == "分類") this.CropSelect = this.vegetablejson;
             if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
         }
     },
@@ -833,7 +678,7 @@
         // 將地區資料初始化
         this.selectRegion = null;
         this.regionIdx = 0;
-        this.Region = ['==請選擇地區=='];
+        this.Region = ['地區'];
         // 篩選所選縣市的地區
         for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
             if(this.regionalwindspeedjson[i].County == this.selectCity){
@@ -905,9 +750,10 @@
         }
         if(this.SimpleCoatingFilm){
             temp = [];
-            temp.push('披覆膜');
+
+            temp.push('披覆材料');
             temp.push(this.SimpleCoatingFilm);
-            this.SelectSimple.push(temp);  // 簡易型披覆膜
+            this.SelectSimple.push(temp);  // 簡易型披覆材料
         }
         if(this.SelectSimple.length == 9 ){
             this.SimpleTotalSimpleCost = 0,
@@ -979,9 +825,9 @@
         }
         if(this.RobustCoatingFilm){
             temp = [];
-            temp.push('披覆膜');
+            temp.push('披覆材料');
             temp.push(this.RobustCoatingFilm);
-            this.SelectRobust.push(temp); // 披覆膜
+            this.SelectRobust.push(temp); // 披覆材料
         }
         if(this.SelectRobust.length == 9 ){
             this.RobustTotalCost = 0,

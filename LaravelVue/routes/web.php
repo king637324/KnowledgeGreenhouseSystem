@@ -94,5 +94,8 @@ Route::get('/KnowledgeJSON',[KnowledgeEditorController::class, 'getJSON_Knowledg
 Route::get('/KnowledgeTreeJSON',[KnowledgeEditorController::class, 'getCategories']);    // 知識庫做樹狀結構
 Route::get('/MaterialsAndDesignKnowledgeBase/Article/show/{title}',[KnowledgeEditorController::class, 'show']);    // 知識庫做獨立的頁面
 
+
+
 use App\Http\Controllers\GreenhouseMasterPlan\OverPlanController;
 Route::get('/OverPlanJson',[OverPlanController::class, 'getJSON_OverPlan']);
+

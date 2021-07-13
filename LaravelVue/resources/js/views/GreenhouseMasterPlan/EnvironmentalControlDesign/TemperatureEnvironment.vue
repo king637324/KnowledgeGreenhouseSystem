@@ -4,6 +4,7 @@
         <h3>
             溫環境控制
         </h3>
+
         <hr>
 
         <b-card-group deck>
@@ -19,16 +20,17 @@
                 <b-card-text>
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">作物生長溫環境</span></p>
                     <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
-                        <option v-for="(crop, index) in CropOrder" :value="index">
+                        <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
                             {{crop}}
                         </option>
                     </b-select>
 
                     <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
-                        <option v-for="(plant, index) in GrowPlants" :value="index">
+                        <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
                             {{plant}}
                         </option>
                     </b-select>
+
                     <br>
                     <br>
                     <table class="separate" style="border:1px solid black;" border='1' width="100%">
@@ -59,6 +61,7 @@
                             <td id="HighestGerminationTemperature"> {{HighestGerminationTemperature}} </td>
                         </tr>
                     </table>
+
                     <br>
                     <br>
                     <h6>備註： - 為尚無資料</h6>
@@ -97,6 +100,7 @@
                             </tr>
                         </tbody>
                     </table>
+
                     <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p> -->
                 </b-card-text>
             </b-card>
@@ -124,20 +128,26 @@
                     <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 溫環境分析</h6>
                 </template>
                 <b-card-text>
+
+
                     <p>
                         <span class="badge badge-pill badge-secondary" style="font-size: 2vmin">溫度分析圖</span>
                         <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
-                            <option v-for="(city, index) in City" :value="index">
+                            <option v-for="(city, index) in City" :value="index" :key="index">
+
                                 {{city}}
                             </option>
                         </b-select>
 
                         <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
-                            <option v-for="(region, index) in Region" :value="index">
+
+                            <option v-for="(region, index) in Region" :value="index" :key="index">
+
                                 {{region}}
                             </option>
                         </b-select>
                     </p>
+
                     <line-chart xtitle="月份" ytitle="溫度" :discrete="true" :data="CropTemperature" height="30vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
 
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 2vmin">各月作物與地區適合種植高低溫差值</span></p>
@@ -165,7 +175,7 @@
                         </tr>
                         <tr align="center" id="HighApproach">
                             <td>環控</td>
-                            <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="StrOptimalTemperature[1]-temperature < 0">
+                            <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="StrOptimalTemperature[1]-temperature < 0" >
                                 需降溫
                             </td>
                             <td v-else>
