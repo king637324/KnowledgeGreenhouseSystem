@@ -108,8 +108,10 @@
                 </template>
                 <b-card-text>
                     <div class="d-inline-flex p-2 bd-highlight" v-for="(design, index) in LightDesignData" :key="index">
-                        <input type="radio" :value="design" v-model="LightDesign" v-on:change="updateLightDesignRadio">
-                        <label>{{design[0]}}</label>
+                        <div v-if="design.ControlItem == '遮光控制'">                        
+                            <input type="radio" :value="design" v-model="LightDesign" v-on:change="updateLightDesignRadio">
+                            <label>{{design.ControlSystem}}</label>
+                        </div>
                     </div>
                     <br>
                 </b-card-text>
@@ -202,17 +204,13 @@ export default {
             windspeedjson:[],  // 風速對照表
             regionalwindspeedjson:[],   // 縣市地區資料
 
-            LightSensingData: [['日射計','日射計介紹'],['光合輻射計PAR','光合輻射計PAR介紹'],['照度計','照度計介紹']],    //光感測
+            LightSensingData: [],    //光感測
             LightSensing: null,    //光感測的選擇
             LightSensingIntroduction: null,    //光感測選擇的介紹
-            LightDesignData: [['溫室幾何型式','溫室幾何型式介紹'],['溫室方位性','溫室方位性介紹'],
-                              ['溫室連動性','溫室連動性介紹'],['溫室結構遮蔽','溫室結構遮蔽介紹'],
-                              ['溫室結構反射','溫室結構反射介紹'],['光質控制披覆','光質控制披覆介紹'],
-                              ['光量控制披覆','光量控制披覆介紹'],['光向控制披覆','光向控制披覆介紹']],    //光設計
+            LightDesignData: [],    //光設計
             LightDesign: null,    //光設計的選擇
             LightDesignIntroduction: null,    //光設計選擇的介紹
-            LightControlData: [['外遮光','外遮光介紹'],['內遮光','內遮光介紹'],['披覆材料','披覆材料介紹'],
-                               ['反射材料','反射材料介紹'],['人工光源','人工光源介紹'],['光感測控制','光感測控制介紹']],    //光控制
+            LightControlData: [],    //光控制
             LightControl: null,    //光控制的選擇
             LightControlIntroduction: null,    //光控制選擇的介紹
 
@@ -283,6 +281,12 @@ export default {
                 method: 'GET',
             });
             this.windlandingandpathjson = await WindLandingAndPath.json();
+
+            // 光環境
+            const Light_info = await fetch('/LightJson',  {
+                method: 'GET',
+            });
+            this.LightDesignData = await Light_info.json();
 
             var filterfalg = false;
             // 篩選重複出現的縣市

@@ -10,7 +10,7 @@ class simplecoatingfilm extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id','Expert','BuildItem','Cost','StructuralRisk','JobDifficulty'
+        'id','Expert','BuildItem','LightLoss','StructuralRisk','JobDifficulty','Cost','SideEffect'
     ];
     public $timestamps = false;
 }
