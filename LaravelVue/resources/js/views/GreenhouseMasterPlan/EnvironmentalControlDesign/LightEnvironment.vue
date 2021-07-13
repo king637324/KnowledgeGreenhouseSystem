@@ -17,19 +17,19 @@
                 <b-card-text>
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">生長光環境</span></p>
                     <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
-                        <option v-for="(crop, index) in CropOrder" :value="index">
+                        <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
                             {{crop}}
                         </option>
                     </b-select>
 
                     <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
-                        <option v-for="(plant, index) in GrowPlants" :value="index">
+                        <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
                             {{plant}}
                         </option>
                     </b-select>
-
-
-                    <table class="separate" style="border:1px solid black;" border='1'>
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
                         <tr align="center" class="table-active">
                             <td colspan="2">好光性</td>
                             <td colspan="2">光週期</td>
@@ -51,9 +51,13 @@
                             <td id="LightCompensationPoint" colspan="2"> {{LightCompensationPoint}} </td>
                         </tr>
                     </table>
+
+                    <br>
+                    <br>
                     <h6>備註： - 為尚無資料</h6>
 
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地 點</span></p>
+                    <!-- <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地 點</span></p>
+
                     <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
                         <option v-for="(city, index) in City" :value="index">
                             {{city}}
@@ -87,49 +91,19 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p>
+
+                    <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p> -->
 
                 </b-card-text>
             </b-card>
 
-            <!-- 種植地區環境分析 -->
             <b-card
                 header-tag="header"
                 header-text-variant="white"
                 header-bg-variant="info"
             >
                 <template #header>
-                    <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 種植地區環境分析</h6>
-                </template>
-                <b-card-text>
-                    
 
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光資源</span></p>
-                    <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
-
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光感測</span></p>
-                    <div class="d-inline-flex p-2 bd-highlight" v-for="(sensing, index) in LightSensingData" :key="index">
-                        <input type="radio" :value="sensing" v-model="LightSensing" v-on:change="updateLightSensingRadio">
-                        <label>{{sensing[0]}}</label>
-                    </div>
-                    <br>
-                    {{LightSensingIntroduction}}
-                </b-card-text>
-
-            </b-card>
-
-        </b-card-group>
-
-        <br><br>
-
-        <b-card-group deck>
-            <!-- 環境控制-光設計 -->
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
                     <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 環境控制-光設計 </h6>
                 </template>
                 <b-card-text>
@@ -138,20 +112,17 @@
                         <label>{{design[0]}}</label>
                     </div>
                     <br>
-                    {{LightDesignIntroduction}}
                 </b-card-text>
-
+                <v-textarea filled row-height="5" readonly :value="LightDesignIntroduction"></v-textarea>
             </b-card>
 
-            <br>
-
-            <!-- test2 -->
             <b-card
                 header-tag="header"
                 header-text-variant="white"
                 header-bg-variant="info"
             >
                 <template #header>
+
                     <h6 class="mb-0"><i class="fas fa-chart-area"></i> 環境控制-光控制 </h6>
                 </template>
                 <b-card-text>
@@ -160,10 +131,61 @@
                         <label>{{control[0]}}</label>
                     </div>
                     <br>
-                    {{LightControlIntroduction}}
+                </b-card-text>
+                <br>
+                <br>
+                <v-textarea filled row-height="5" readonly :value="LightControlIntroduction"></v-textarea>
+            </b-card>
+            <!-- 種植地區環境分析 -->
+        </b-card-group>
+
+        <br><br>
+        <b-card-group deck>
+            <!-- 環境控制-光設計 -->
+
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+
+                    <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 種植地區環境分析</h6>
+                </template>
+                <b-card-text>
+                    <v-container-fluid>
+                        <v-row>
+                            <v-col md="12">
+                                <p>
+                                    <span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光資源</span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
+                                        <option v-for="(city, index) in City" :value="index" :key="index">
+                                            {{city}}
+                                        </option>
+                                    </b-select>
+
+                                    <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
+                                        <option v-for="(region, index) in Region" :value="index" :key="index">
+                                            {{region}}
+                                        </option>
+                                    </b-select>
+                                </p>
+                                <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
+                            </v-col>
+                        </v-row>
+                    </v-container-fluid>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光感測</span></p>
+                    <div class="d-inline-flex p-2 bd-highlight" v-for="(sensing, index) in LightSensingData" :key="index">
+                        <input type="radio" :value="sensing" v-model="LightSensing" v-on:change="updateLightSensingRadio">
+                        <label>{{sensing[0]}}</label>
+                    </div>
+                    <br>
+                    <v-textarea filled row-height="5" readonly :value="LightSensingIntroduction"></v-textarea>
                 </b-card-text>
 
             </b-card>
+            <br>
         </b-card-group>
 
     </div>

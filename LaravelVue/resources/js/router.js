@@ -35,6 +35,7 @@ import GreenhouseMasterPlan_GeographicalEnvironmentAnalysis from './views/Greenh
 import GreenhouseMasterPlan_CropSelection from './views/GreenhouseMasterPlan/GreenhouseCropSelection/CropSelection.vue';
 import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis.vue';
+import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysisHard from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysisHard.vue';
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseDesign from './views/GreenhouseMasterPlan/GreenhouseDesign.vue';
 import GreenhouseMasterPlan_RiskAnalysis from './views/GreenhouseMasterPlan/RiskAnalysis.vue';
@@ -47,7 +48,7 @@ import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustEdit from '
 import GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/LightEnvironment.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
-
+import OverallPlan from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
@@ -273,12 +274,23 @@ const routes = [{
         auth: undefined
     }
 }, {
-    path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis',
+
+    path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/easy',
     name: '溫室構造成本分析',
     component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis,
     meta: {
         auth: undefined
     }
+
+
+}, {
+    path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/hard',
+    name: '溫室構造成本分析',
+    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysisHard,
+    meta: {
+        auth: undefined
+    }
+
 }, {
     path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis',
     name: '溫室材料成本分析',
@@ -311,6 +323,14 @@ const routes = [{
     path: '/123',
     name: 'welcome',
     component: Welcome,
+    meta: {
+        auth: undefined
+    }
+
+}, {
+    path: '/GreenhouseMasterPlan/GreenhouseOverallPlan',
+    name: 'GreenhouseOverallPlan',
+    component: OverallPlan,
     meta: {
         auth: undefined
     }

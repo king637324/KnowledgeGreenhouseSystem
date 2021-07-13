@@ -148,21 +148,24 @@
                         </div>
 
 
-                        <div class="sb-sidenav-menu-heading">設計 / 分析規劃</div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室總體規劃系統" aria-expanded="false" aria-controls="溫室總體規劃系統">
+
+                        <div class="sb-sidenav-menu-heading">科普 / 查詢</div>
+                        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室總體規劃系統" aria-expanded="false" aria-controls="溫室總體規劃系統">
                             <div class="sb-nav-link-icon"><b-icon icon="book"></b-icon></div>
                             溫室總體規劃系統
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="溫室總體規劃系統" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion">
-                                <router-link to="/GreenhouseMasterPlan/CropSelection" class="nav-link" exact>
+                        </a> -->
+
+                                <!-- <router-link to="/GreenhouseMasterPlan/CropSelection" class="nav-link" exact>
+
                                     溫室作物選擇
                                 </router-link>
 
                                 <router-link to="/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis" class="nav-link" exact>
                                     作物環境需求分析
-                                </router-link>
+
+                                </router-link> -->
+
 
                                 <router-link to="/GreenhouseMasterPlan/GeographicalEnvironmentAnalysis" class="nav-link" exact>
                                     地理環境分析
@@ -172,11 +175,18 @@
                                     溫室設計
                                 </router-link>
 
+
+                                <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" class="nav-link" exact>
+                                    溫室材料成本分析
+                                </router-link>
+
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#環控設計" aria-expanded="false" aria-controls="成本分析">
                                     環控設計
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="環控設計" aria-labelledby="headingOne" data-parent="#溫室總體規劃系統">
+
+                                <div class="collapse" id="環控設計" aria-labelledby="headingOne">
+
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <router-link to="/EnvironmentalControlDesign/LightEnvironment" class="nav-link" exact>
                                             光環境控制
@@ -184,13 +194,17 @@
                                         <router-link to="/EnvironmentalControlDesign/TemperatureEnvironment" class="nav-link" exact>
                                             溫環境控制
                                         </router-link>
-                                        <router-link to="/EnvironmentalControlDesign/GasEnvironment" class="nav-link" exact>
+
+                                        <router-link to="/Development" class="nav-link" exact>
+
                                             氣環境控制
                                         </router-link>
                                     </nav>
                                 </div>
 
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#成本分析" aria-expanded="false" aria-controls="成本分析">
+
+                                <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#成本分析" aria-expanded="false" aria-controls="成本分析">
+
                                     成本分析
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
@@ -199,7 +213,9 @@
                                         <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" class="nav-link" exact>
                                             溫室材料成本分析
                                         </router-link>
-                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis" class="nav-link" exact>
+
+                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/easy" class="nav-link" exact>
+
                                             溫室構造成本分析
                                         </router-link>
                                         <router-link to="/Development" class="nav-link" exact>
@@ -216,62 +232,16 @@
 
                                 <router-link to="/RiskAnalysis" class="nav-link" exact>
                                     風險分析
-                                </router-link>
 
-                                <router-link to="/Development" class="nav-link" exact>
-                                    決策分析
-                                </router-link>
+                                </router-link> -->
+                        <div class="sb-sidenav-menu-heading">規劃</div>
+                            <router-link to="/GreenhouseMasterPlan/GreenhouseOverallPlan" class="nav-link" exact>
+                                總體規劃
+                            </router-link>
+                            <router-link to="/Development" class="nav-link" exact>
+                                優化分析
+                            </router-link>
 
-                                <router-link to="/Development" class="nav-link" exact>
-                                    優化分析
-                                </router-link>
-                            </nav>
-                        </div>
-
-
-                        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Layouts
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                            </nav>
-                        </div> -->
-
-                        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                    Error
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div> -->
 
                         <div class="sb-sidenav-menu-heading">其他</div>
                         <router-link to="/UnitConversion" class="nav-link" exact>
@@ -281,22 +251,8 @@
                             常見問題Q&A
                         </router-link>
 
-                        <!-- <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
-                        </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a> -->
-
                     </div>
                 </div>
-                <!-- <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
-                </div> -->
             </nav>
         </v-navigation-drawer>
     </div>
