@@ -110,6 +110,8 @@
                                           <input type="radio" :value="simple" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/MaterialStructureAnalysis/RoundPipe"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="圓頂形式">
@@ -119,6 +121,8 @@
                                           <input type="radio" :value="simple" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseFluidAnalysis/DomeGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="圓拱距">
@@ -128,6 +132,8 @@
                                           <input type="radio" :value="simple" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="簡易基礎">
@@ -137,6 +143,8 @@
                                           <input type="radio" :value="simple" v-model="SimpleFoundation" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="簡易跨距">
@@ -146,6 +154,8 @@
                                           <input type="radio" :value="simple" v-model="SimpleSpan" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="簡易肩高">
@@ -155,6 +165,8 @@
                                           <input type="radio" :value="simple" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="簡易長度">
@@ -164,6 +176,8 @@
                                           <input type="radio" :value="simple" v-model="SimpleLength" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="簡易連續性">
@@ -173,15 +187,19 @@
                                           <input type="radio" :value="simple" v-model="SimpleContinuity" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>                    
                               </tr>
-                              <tr align="center" id="簡易披覆膜">
-                                  <td>披覆膜</td>
+                              <tr align="center" id="簡易披覆材料">
+                                  <td>披覆材料</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilms" :key="index">
                                           <input type="radio" :value="simple" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio">
                                           <label>{{simple.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                             </table>
@@ -201,6 +219,8 @@
                                           <input type="radio" :value="robust" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/MaterialStructureAnalysis/ProfilePipe"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="屋頂形式">
@@ -210,6 +230,8 @@
                                           <input type="radio" :value="robust" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseFluidAnalysis/GreenhouseWindPressureChart"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="上拱距">
@@ -219,6 +241,8 @@
                                           <input type="radio" :value="robust" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="基礎">
@@ -228,15 +252,19 @@
                                           <input type="radio" :value="robust" v-model="RobustFoundation" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="跨距">
                                   <td>跨距</td>
                                   <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongSpans" :key="index">
+                                      <div class="d-inline-flex p-2 bd-highlight" style="valign:center;" v-for="(robust, index) in StrongSpans" :key="index">
                                           <input type="radio" :value="robust" v-model="RobustSpan" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="肩高">
@@ -246,6 +274,8 @@
                                           <input type="radio" :value="robust" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="長度">
@@ -255,6 +285,8 @@
                                           <input type="radio" :value="robust" v-model="RobustLength" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                               <tr align="center" id="連續性">
@@ -264,15 +296,19 @@
                                           <input type="radio" :value="robust" v-model="RobustContinuity" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
-                              <tr align="center" id="披覆膜">
-                                  <td>披覆膜</td>
+                              <tr align="center" id="披覆材料">
+                                  <td>披覆材料</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongCoatingFilms" :key="index">
                                           <input type="radio" :value="robust" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
                                           <label>{{robust.BuildItem}}</label>
                                       </div>
+                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><v-icon class="d-inline-flex fa fa-chart-line" style="float:right;"></v-icon></a>
+                                      <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><v-icon class="d-inline-flex fa fa-question-circle" style="float:right;"></v-icon></a>
                                   </td>
                               </tr>
                             </table>
@@ -322,14 +358,14 @@
                                                                     H.圓拱距-{{ OverPlan.circulararchdistances }}<br>I.簡易基礎-{{ OverPlan.foundations }}<br>
                                                                     J.簡易跨距-{{ OverPlan.spans }}<br>K.簡易肩高-{{ OverPlan.shoulderheights }}<br>
                                                                     L.簡易長度-{{ OverPlan.lengths }}<br>M.簡易連續性-{{ OverPlan.continuitys }}<br>
-                                                                    N.簡易披覆膜-{{ OverPlan.coatingfilms }}<br>
+                                                                    N.簡易披覆材料-{{ OverPlan.coatingfilms }}<br>
                                                         </span><br>
                                                         <span v-if="OverPlan.greenhouse == '強固溫室'">
                                                             溫室設計：<br>F.溫室型材-{{ OverPlan.greenhousepipe }}<br>G.屋頂形式-{{ OverPlan.domeforms }}<br>
                                                                     H.上拱距-{{ OverPlan.circulararchdistances }}<br>I.基礎-{{ OverPlan.foundations }}<br>
                                                                     J.跨距-{{ OverPlan.spans }}<br>K.肩高-{{ OverPlan.shoulderheights }}<br>
                                                                     L.長度-{{ OverPlan.lengths }}<br>M.連續性-{{ OverPlan.continuitys }}<br>
-                                                                    N.披覆膜-{{ OverPlan.coatingfilms }}<br>
+                                                                    N.披覆材料-{{ OverPlan.coatingfilms }}<br>
                                                         </span>
                                                     </b-card-text>
                                                 </b-card>
@@ -479,8 +515,8 @@
         SimpleCostratios: [],               // 簡易型各建構項目比例
         SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
         SimpleCircularArchDistances: [],    // 簡易型圓拱距
-        SimpleCoatingFilmsJSON: [],             // 簡易型披覆膜
-        SimpleCoatingFilms: [],             // 簡易型披覆膜
+        SimpleCoatingFilmsJSON: [],             // 簡易型披覆材料
+        SimpleCoatingFilms: [],             // 簡易型披覆材料
         SimpleContinuitysJSON: [],              // 簡易型連續性
         SimpleContinuitys: [],              // 簡易型連續性
         SimpleDomeFormsJSON: [],                // 簡易型圓頂形式
@@ -506,7 +542,7 @@
         SimpleShoulderHeight:null,  // 簡易型肩高
         SimpleLength:null,  // 簡易型長度
         SimpleContinuity:null,  // 簡易型連續性
-        SimpleCoatingFilm:null,  // 簡易型披覆膜
+        SimpleCoatingFilm:null,  // 簡易型披覆材料
         SimpleHousrBasePrice:500000, // 簡易型溫室基本價格
         SimpleTotalSimpleCost:0,
         SimpleCostAdd:0,
@@ -516,8 +552,8 @@
         SelectRobust:[],
         StrongCostRatiosJSON: [],               // 強固型各建構項目比例
         StrongCostRatios: [],               // 強固型各建構項目比例
-        StrongCoatingFilmsJSON: [],             // 強固型披覆膜
-        StrongCoatingFilms: [],             // 強固型披覆膜
+        StrongCoatingFilmsJSON: [],             // 強固型披覆材料
+        StrongCoatingFilms: [],             // 強固型披覆材料
         StrongContinuitysJSON: [],              // 強固型連續性
         StrongContinuitys: [],              // 強固型連續性
         StrongFoundationsJSON: [],              // 強固型基礎
@@ -545,7 +581,7 @@
         RobustShoulderHeight:null,   // 強固型肩高
         RobustLength:null,   // 強固型長度
         RobustContinuity:null,   // 強固型連續性
-        RobustCoatingFilm:null,   // 強固型披覆膜
+        RobustCoatingFilm:null,   // 強固型披覆材料
         RuggedHousrBasePrice :1500000,  // 強固型溫室基本價格
         RobustTotalCost:0,
         RobustCostAdd:0,
@@ -605,7 +641,7 @@
                 this.SimpleCircularArchDistances.push(this.SimpleCircularArchDistancesJSON[i]);
             }
         }
-        // 簡易型披覆膜
+        // 簡易型披覆材料
         const SimpleCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
             method: 'GET',
         });
@@ -695,8 +731,8 @@
                 this.StrongCostRatios.push(this.StrongCostRatiosJSON[i]);
             }
         }
-        // 強固型披覆膜
-        const StrongCoatingFilms = await fetch('/StrongCoatingFilmJSON',  {
+        // 強固型披覆材料
+        const StrongCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
             method: 'GET',
         });
         this.StrongCoatingFilmsJSON = await StrongCoatingFilms.json();
@@ -905,9 +941,9 @@
         }
         if(this.SimpleCoatingFilm){
             temp = [];
-            temp.push('披覆膜');
+            temp.push('披覆材料');
             temp.push(this.SimpleCoatingFilm);
-            this.SelectSimple.push(temp);  // 簡易型披覆膜
+            this.SelectSimple.push(temp);  // 簡易型披覆材料
         }
         if(this.SelectSimple.length == 9 ){
             this.SimpleTotalSimpleCost = 0,
@@ -979,9 +1015,9 @@
         }
         if(this.RobustCoatingFilm){
             temp = [];
-            temp.push('披覆膜');
+            temp.push('披覆材料');
             temp.push(this.RobustCoatingFilm);
-            this.SelectRobust.push(temp); // 披覆膜
+            this.SelectRobust.push(temp); // 披覆材料
         }
         if(this.SelectRobust.length == 9 ){
             this.RobustTotalCost = 0,
