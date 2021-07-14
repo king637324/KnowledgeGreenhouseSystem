@@ -72,29 +72,24 @@
 
                             <nav class="sb-sidenav-menu-nested nav">
                                 <router-link to="/GreenhouseMasterPlan/GreenhouseOverallPlanbase" class="nav-link" exact>
-                                    A.溫室基本資訊輸入子系統
+                                    A.溫室基本資訊輸入
                                 </router-link>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#作物需求與環境分析子系統" aria-expanded="false" aria-controls="成本分析">
-                                    B.作物需求與環境分析子系統
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#作物需求與環境分析" aria-expanded="false" aria-controls="成本分析">
+                                    B.作物需求與環境分析
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="作物需求與環境分析子系統" aria-labelledby="headingOne">
+                                <div class="collapse" id="作物需求與環境分析" aria-labelledby="headingOne">
                                     <nav class="sb-sidenav-menu-nested nav">
+                                        <router-link to="/GreenhouseMasterPlan/CropSelection" class="nav-link" exact>
+                                            1.作物需求
+                                        </router-link>
+
                                         <router-link to="/GreenhouseMasterPlan/GeographicalEnvironmentAnalysis" class="nav-link" exact>
-                                            地理環境分析
-                                        </router-link>
-
-                                        <router-link to="/GreenhouseDesign" class="nav-link" exact>
-                                            溫室設計
-                                        </router-link>
-
-
-                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" class="nav-link" exact>
-                                            溫室材料成本分析
+                                            2.地理分析
                                         </router-link>
 
                                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#環控設計" aria-expanded="false" aria-controls="成本分析">
-                                            環控設計
+                                            3.環控設計
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                         </a>
 
@@ -103,25 +98,20 @@
 
                                             <nav class="sb-sidenav-menu-nested nav">
                                                 <router-link to="/EnvironmentalControlDesign/LightEnvironment" class="nav-link" exact>
-                                                    光環境控制
+                                                    (1).光環境控制
                                                 </router-link>
                                                 <router-link to="/EnvironmentalControlDesign/TemperatureEnvironment" class="nav-link" exact>
-                                                    溫環境控制
-                                                </router-link>
-
-
-                                                <router-link to="/Development" class="nav-link" exact>
-                                                    氣環境控制
+                                                    (2).溫環境控制
                                                 </router-link>
                                             </nav>
                                         </div>
                                     </nav>
                                 </div>
                                 <router-link to="/GreenhouseMasterPlan/GreenhousePlanDesign" class="nav-link" exact>
-                                    C.溫室規劃設計子系統
+                                    C.溫室規劃設計
                                 </router-link>
                                 <router-link to="/Development" class="nav-link" exact>
-                                    D.溫室設計分析子系統
+                                    D.溫室設計分析
                                 </router-link>
                             </nav>
                         </div>

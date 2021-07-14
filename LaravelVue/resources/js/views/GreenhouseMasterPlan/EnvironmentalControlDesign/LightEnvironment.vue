@@ -104,7 +104,7 @@
             >
                 <template #header>
 
-                    <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 環境控制-光設計 </h6>
+                    <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 環境控制-遮光控制 </h6>
                 </template>
                 <b-card-text>
                     <div class="d-inline-flex p-2 bd-highlight" v-for="(design, index) in LightDesignData" :key="index">
@@ -162,17 +162,13 @@
                                     <span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光資源</span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
-
                                         <option v-for="(city, index) in City" :value="index" :key="index">
-
                                             {{city}}
                                         </option>
                                     </b-select>
 
                                     <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
-
                                         <option v-for="(region, index) in Region" :value="index" :key="index">
-
                                             {{region}}
                                         </option>
                                     </b-select>
@@ -193,7 +189,6 @@
             </b-card>
             <br>
         </b-card-group>
-
 
     </div>
 

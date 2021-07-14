@@ -182,7 +182,7 @@
                     {{data}}
                 </option>
             </b-select>
-            <a class="btn btn-success mr-auto p-2 bd-highlight text-white" href = "/#/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis" target="_blank" style="font-size:1.8vmin; font-family:Microsoft JhengHei;">作 物 環 境 需 求 分 析</a>
+            <!-- <a class="btn btn-success mr-auto p-2 bd-highlight text-white" href = "/#/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis" target="_blank" style="font-size:1.8vmin; font-family:Microsoft JhengHei;">作 物 環 境 需 求 分 析</a> -->
 
             <br>
 

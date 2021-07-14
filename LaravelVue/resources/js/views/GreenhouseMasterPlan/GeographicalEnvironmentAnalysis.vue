@@ -9,18 +9,74 @@
                 <div class="card">
                     <label class="card-header  bg-info text-white" style="font-size: 2.3vmin">地區選擇</label>
                     <div class="card-body">
-                        <b-select v-model="cityIdx" v-on:change="updateCity" style="font-size: 2vmin; width:20vmin" >
-                            <option v-for="(data, index) in City" :value="index">
-                                {{data}}
-                            </option>
-                        </b-select>
-
-                        <b-select v-model="regionIdx" v-on:change="updateRegion" style="font-size: 2vmin; width:20vmin" >
-                            <option v-for="(data, index) in Region" :value="index">
-                                {{data}}
-                            </option>
-                        </b-select>
-
+                        <v-container-fluid>
+                            <v-row>
+                                <v-col>
+                                    <label for="縣市" style="color:rgba(0,0,0,.6); font-size:8px;">縣市</label>
+                                    <b-select v-model="cityIdx" v-on:change="updateCity" style="font-size: 2vmin; width:10vmin" name="縣市">
+                                        <option v-for="(data, index) in City" :value="index" :key="index">
+                                            {{data}}
+                                        </option>
+                                    </b-select>
+                                </v-col>  
+                                <v-col>  
+                                    <label for="地區" style="color:rgba(0,0,0,.6); font-size:8px;">地區</label>
+                                    <b-select v-model="regionIdx" v-on:change="updateRegion" style="font-size: 2vmin; width:10vmin" name="地區">
+                                        <option v-for="(data, index) in Region" :value="index" :key="index">
+                                            {{data}}
+                                        </option>
+                                    </b-select>
+                                </v-col> 
+                                <v-col>  
+                                    <label for="方位" style="color:rgba(0,0,0,.6); font-size:8px;">方位</label>
+                                    <b-select v-model="position" name="方位" style="font-size: 2vmin; width:10vmin">
+                                        <option v-for="(data, index) in allposition" :value="index" :key="index">
+                                            {{data}}
+                                        </option>
+                                    </b-select>
+                                </v-col> 
+                            </v-row>
+                            <v-row>
+                                <v-col>
+                                    <label for="地形" style="color:rgba(0,0,0,.6); font-size:8px;">地形</label>
+                                    <b-select v-model="SelectTerrain" name="地形" style="font-size: 2vmin; width:10vmin">
+                                        <option value="0">地形</option>
+                                        <option value="平原">平原</option>
+                                        <option value="山區">山區</option>
+                                        <option value="海邊">海邊</option>
+                                    </b-select>
+                                </v-col>  
+                                <v-col>  
+                                    <label for="地貌" style="color:rgba(0,0,0,.6); font-size:8px;">地貌</label>
+                                    <b-select v-model="SelectLandform" name="地貌" style="font-size: 2vmin; width:10vmin">
+                                        <option value="0">地貌</option>
+                                        <option value="建築物">建築物</option>
+                                        <option value="空曠">空曠</option>
+                                        <option value="風口">風口</option>
+                                    </b-select>
+                                </v-col>
+                                <v-col>
+                                    <label for="地況" style="color:rgba(0,0,0,.6); font-size:8px;">地況</label>
+                                    <b-select v-model="SelectLandcondition" name="地況" style="font-size: 2vmin; width:10vmin">
+                                        <option value="0">地況</option>
+                                        <option value="硬質土">硬質土</option>
+                                        <option value="軟質土">軟質土</option>
+                                        <option value="下陷區">下陷區</option>
+                                    </b-select>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col>
+                                    <v-text-field label="長度(m)" v-model="plantlength" v-on:change="areacount" style="font-size: 2vmin; width:10vmin"></v-text-field>
+                                </v-col>  
+                                <v-col>
+                                    <v-text-field label="寬度(m)" v-model="plantwidth" v-on:change="areacount" style="font-size: 2vmin; width:10vmin"></v-text-field>
+                                </v-col>    
+                                <v-col>
+                                    <v-text-field readonly label="面積試算(公頃)" v-model="area" style="font-size: 2vmin; width:10vmin"></v-text-field>
+                                </v-col>  
+                            </v-row>
+                        </v-container-fluid>
                         <br>
                         <h5>縣市：{{selectCity}} </h5>
                         <h5>地區：{{selectRegion}} </h5>
@@ -31,7 +87,7 @@
                         <h5>風力路徑分析： {{Path}} </h5>
                         <h5>颱風登陸總機率： {{LandingProbability}} %</h5>
                         <h5>颱風路徑總機率： {{PathProbability}} %</h5>
-
+                        <h5>風速加級： None</h5>
                         <br>
                         <h6>備註：風速為臺灣地區各地之基本設計風速 </h6>
 
@@ -108,11 +164,11 @@ export default {
             WindLand:[],  // 紀錄颱風登陸的分類
             WindPath:[],  // 紀錄路徑分析的分類
 
-            City:['==請選擇縣市==',],   // 縣市選單的陣列表
+            City:['縣市',],   // 縣市選單的陣列表
             cityIdx: 0, // 所選縣市的id
             selectCity: null, // 所選縣市的名稱
 
-            Region:['==請選擇地區==',], // 地區選單的陣列表
+            Region:['地區',], // 地區選單的陣列表
             regionIdx: 0,   // 所選地區的id
             selectRegion: null, // 所選地區的名稱
 
@@ -124,6 +180,16 @@ export default {
 
             LandingProbability: 0, // 進行颱風登陸分析機率加總
             PathProbability: 0, // 進行颱風路徑分析機率加總
+
+            SelectTerrain:0,
+            SelectLandform:0,
+            SelectLandcondition:0,
+            allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
+            position:0,
+
+            plantlength:0,
+            plantwidth:0,
+            area:0,
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -185,7 +251,7 @@ export default {
             this.PathProbability = 0,
             this.Landing = null,
             this.Path = null,
-            this.Region = ['==請選擇地區=='];
+            this.Region = ['地區'];
 
 
             // 篩選所選縣市的地區
@@ -255,7 +321,10 @@ export default {
             this.LandingProbability = this.LandingProbability.toFixed(2);
             this.PathProbability = this.PathProbability.toFixed(2);
 
-        }
+        },    
+        areacount(){
+            this.area = (this.plantlength*this.plantwidth)/10000
+        },
     },
 }
 </script>
