@@ -110,21 +110,6 @@
                 header-bg-variant="info"
             >
                 <template #header>
-                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 溫環境需求</h6>
-                </template>
-                <b-card-text>
-
-                </b-card-text>
-            </b-card>
-        </b-card-group>
-        <br>
-        <b-card-group>
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
                     <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 溫環境分析</h6>
                 </template>
                 <b-card-text>
@@ -204,8 +189,19 @@
                 </b-card-text>
 
             </b-card>
-        </b-card-group>
+            <!-- <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 溫環境需求</h6>
+                </template>
+                <b-card-text>
 
+                </b-card-text>
+            </b-card> -->
+        </b-card-group>
     </div>
 
 </template>
