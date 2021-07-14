@@ -48,6 +48,7 @@ import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustEdit from '
 
 import GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/LightEnvironment.vue';
 import EnvironmentNeed from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/LightEnvironment_need.vue';
+import TempEnvironmentNeed from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment_need.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
 import OverallPlanbase from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
@@ -354,6 +355,13 @@ const routes = [{
     path: '/EnvironmentalControlDesign/LightEnvironmentNeed',
     name: 'LightEnvironmentNeed',
     component: EnvironmentNeed,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/EnvironmentalControlDesign/TemperatureEnvironmentNeed',
+    name: 'TemperatureEnvironmentNeed',
+    component: TempEnvironmentNeed,
     meta: {
         auth: undefined
     }

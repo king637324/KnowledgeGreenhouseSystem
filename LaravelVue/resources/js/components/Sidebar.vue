@@ -137,7 +137,7 @@
                                                 <router-link to="/EnvironmentalControlDesign/LightEnvironmentNeed" class="nav-link" exact>
                                                     (1).光控設計
                                                 </router-link>
-                                                <router-link to="/EnvironmentalControlDesign/TemperatureEnvironment" class="nav-link" exact>
+                                                <router-link to="/EnvironmentalControlDesign/TemperatureEnvironmentNeed" class="nav-link" exact>
                                                     (2).溫控設計
                                                 </router-link>
                                             </nav>

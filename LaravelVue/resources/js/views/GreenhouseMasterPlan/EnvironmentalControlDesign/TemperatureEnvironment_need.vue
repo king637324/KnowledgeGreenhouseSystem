@@ -110,21 +110,6 @@
                 header-bg-variant="info"
             >
                 <template #header>
-                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 溫環境需求</h6>
-                </template>
-                <b-card-text>
-
-                </b-card-text>
-            </b-card>
-        </b-card-group>
-        <br>
-        <b-card-group>
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
                     <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 溫環境分析</h6>
                 </template>
                 <b-card-text>
@@ -205,6 +190,163 @@
 
             </b-card>
         </b-card-group>
+        <br>
+        <b-card-group>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫控需求-降溫控制</h6>
+                </template>
+                <b-card-text>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">降溫控制</span></p>
+                    <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
+                        <option v-for="(crop, index) in Tempjson" :value="index" :key="index" v-if="crop.ControlItem=='降溫控制'">
+                            {{crop.ControlSystem}}
+                        </option>
+                    </b-select>
+
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
+                        <tr align="center" class="table-active">
+                            <td colspan="6">溫度適應性</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="Temperatureadaptability" colspan="6"> None </td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td colspan="3">生長溫度</td>
+                            <td colspan="3">發芽溫度</td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td>最低溫</td>
+                            <td>最適溫</td>
+                            <td>最高溫</td>
+                            <td>最低溫</td>
+                            <td>最適溫</td>
+                            <td>最高溫</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="LowestGrowthTemperature"> None </td>
+                            <td id="OptimalGrowthTemperature"> None </td>
+                            <td id="HighestGrowthTemperature"> None </td>
+                            <td id="LowestGerminationTemperature"> None </td>
+                            <td id="OptimumGerminationTemperature"> None </td>
+                            <td id="HighestGerminationTemperature"> None </td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <br>
+                    <h6>備註： - 為尚無資料</h6>
+                </b-card-text>
+            </b-card>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫控需求-加溫控制</h6>
+                </template>
+                <b-card-text>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">加溫控制</span></p>
+                    <b-select v-model="cropIdx1" v-on:change="updateCrop" style="width:20vmin" >
+                        <option v-for="(crop, index) in Tempjson" :value="index" :key="index" v-if="crop.ControlItem=='加溫控制'">
+                            {{crop.ControlSystem}}
+                        </option>
+                    </b-select>
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
+                        <tr align="center" class="table-active">
+                            <td colspan="6">溫度適應性</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="Temperatureadaptability" colspan="6"> None </td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td colspan="3">生長溫度</td>
+                            <td colspan="3">發芽溫度</td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td>最低溫</td>
+                            <td>最適溫</td>
+                            <td>最高溫</td>
+                            <td>最低溫</td>
+                            <td>最適溫</td>
+                            <td>最高溫</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="LowestGrowthTemperature"> None </td>
+                            <td id="OptimalGrowthTemperature"> None </td>
+                            <td id="HighestGrowthTemperature"> None </td>
+                            <td id="LowestGerminationTemperature"> None </td>
+                            <td id="OptimumGerminationTemperature"> None </td>
+                            <td id="HighestGerminationTemperature"> None </td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <br>
+                    <h6>備註： - 為尚無資料</h6>
+                </b-card-text>
+            </b-card>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫控需求-濕度控制</h6>
+                </template>
+                <b-card-text>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">濕度控制</span></p>
+                    <b-select v-model="cropIdx2" v-on:change="updateCrop" style="width:20vmin" >
+                        <option v-for="(crop, index) in Tempjson" :value="index" :key="index" v-if="crop.ControlItem=='濕度控制'">
+                            {{crop.ControlSystem}}
+                        </option>
+                    </b-select>
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
+                        <tr align="center" class="table-active">
+                            <td colspan="6">溫度適應性</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="Temperatureadaptability" colspan="6"> None </td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td colspan="3">生長溫度</td>
+                            <td colspan="3">發芽溫度</td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td>最低溫</td>
+                            <td>最適溫</td>
+                            <td>最高溫</td>
+                            <td>最低溫</td>
+                            <td>最適溫</td>
+                            <td>最高溫</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="LowestGrowthTemperature"> None </td>
+                            <td id="OptimalGrowthTemperature"> None </td>
+                            <td id="HighestGrowthTemperature"> None </td>
+                            <td id="LowestGerminationTemperature"> None </td>
+                            <td id="OptimumGerminationTemperature"> None </td>
+                            <td id="HighestGerminationTemperature"> None </td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <br>
+                    <h6>備註： - 為尚無資料</h6>
+                </b-card-text>
+            </b-card>
+        </b-card-group>
 
     </div>
 
@@ -223,6 +365,8 @@ export default {
             /* 種植植物生長環境需求*/
             CropOrder:["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"], // 作物分類的選單陣列表
             cropIdx: 0, // 所選作物的id
+            cropIdx1: 0, // 所選作物的id
+            cropIdx2: 0, // 所選作物的id
             selectCrop: null, // 所選作物的名稱
             GrowPlants:['==請選擇作物==',],
             plantIdx: 0, // 所選作物的id
@@ -260,6 +404,8 @@ export default {
             Series: '-', // 風力級數
             Wind: '-',   // 風的名稱
             SpeedPerSecond: '-',    // 風速
+
+            Tempjson:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -290,6 +436,11 @@ export default {
                 method: 'GET',
             });
             this.windlandingandpathjson = await WindLandingAndPath.json();
+
+            const Temp = await fetch('/TempJson',  {
+                method: 'GET',
+            });
+            this.Tempjson = await Temp.json();
 
             var filterfalg = false;
             // 篩選重複出現的縣市
