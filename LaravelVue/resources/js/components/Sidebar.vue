@@ -88,28 +88,62 @@
                                             2.地理分析
                                         </router-link>
 
-                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#環控設計" aria-expanded="false" aria-controls="成本分析">
-                                            3.環控設計
+                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#環控分析" aria-expanded="false" aria-controls="成本分析">
+                                            3.環控分析
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                         </a>
 
 
-                                        <div class="collapse" id="環控設計" aria-labelledby="headingOne">
+                                        <div class="collapse" id="環控分析" aria-labelledby="headingOne">
 
                                             <nav class="sb-sidenav-menu-nested nav">
                                                 <router-link to="/EnvironmentalControlDesign/LightEnvironment" class="nav-link" exact>
-                                                    (1).光環境控制
+                                                    (1).光環境分析
                                                 </router-link>
                                                 <router-link to="/EnvironmentalControlDesign/TemperatureEnvironment" class="nav-link" exact>
-                                                    (2).溫環境控制
+                                                    (2).溫環境分析
                                                 </router-link>
                                             </nav>
                                         </div>
                                     </nav>
                                 </div>
-                                <router-link to="/GreenhouseMasterPlan/GreenhousePlanDesign" class="nav-link" exact>
+
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室規劃設計" aria-expanded="false" aria-controls="成本分析">
                                     C.溫室規劃設計
-                                </router-link>
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="溫室規劃設計" aria-labelledby="headingOne">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <router-link to="/GreenhouseMasterPlan/GreenhouseCoatedFilm" class="nav-link" exact>
+                                            1.披覆材料設計
+                                        </router-link>
+
+                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" class="nav-link" exact>
+                                            2.結構材料設計
+                                        </router-link>
+
+                                        <router-link to="/GreenhouseMasterPlan/GreenhousePlanDesign" class="nav-link" exact>
+                                            3.溫室型式設計
+                                        </router-link>
+
+                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#環控設計" aria-expanded="false" aria-controls="成本分析">
+                                            4.溫室環控設計
+                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        </a>
+
+                                        <div class="collapse" id="環控設計" aria-labelledby="headingOne">
+
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <router-link to="/EnvironmentalControlDesign/LightEnvironment" class="nav-link" exact>
+                                                    (1).光控設計
+                                                </router-link>
+                                                <router-link to="/EnvironmentalControlDesign/TemperatureEnvironment" class="nav-link" exact>
+                                                    (2).溫控設計
+                                                </router-link>
+                                            </nav>
+                                        </div>
+                                    </nav>
+                                </div>
                                 <router-link to="/Development" class="nav-link" exact>
                                     D.溫室設計分析
                                 </router-link>

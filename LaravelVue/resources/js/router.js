@@ -35,6 +35,7 @@ import GreenhouseMasterPlan_GeographicalEnvironmentAnalysis from './views/Greenh
 import GreenhouseMasterPlan_CropSelection from './views/GreenhouseMasterPlan/GreenhouseCropSelection/CropSelection.vue';
 import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis.vue';
+import CoatedFilm from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseCoatedFilm.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysisHard from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysisHard.vue';
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseDesign from './views/GreenhouseMasterPlan/GreenhouseDesign.vue';
@@ -338,6 +339,13 @@ const routes = [{
     path: '/GreenhouseMasterPlan/GreenhousePlanDesign',
     name: 'GreenhousePlanDesign',
     component: PlanDesign,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/GreenhouseCoatedFilm',
+    name: 'GreenhouseCoatedFilm',
+    component: CoatedFilm,
     meta: {
         auth: undefined
     }
