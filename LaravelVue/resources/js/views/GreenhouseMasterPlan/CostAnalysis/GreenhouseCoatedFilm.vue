@@ -18,7 +18,7 @@
                                 header-bg-variant="info"
                             >
                                 <template #header>
-                                    <h6 class="mb-0"><b-icon icon="building"></b-icon> 玻 璃 披 覆 材 料</h6>
+                                    <h6 class="mb-0"><b-icon icon="building"></b-icon>披 覆 材 料</h6>
                                 </template>
                                 <b-card-text>
                                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
@@ -33,9 +33,9 @@
                                                 <td style='width:8vmin'> 副作用 </td>
                                             </tr>
                                         </thead>
-                                        <tr align="center" v-for="(all, index) in CoatingFilmJSON" :key="index" v-if="all.material=='玻璃'">
+                                        <tr align="center" v-for="(all, index) in CoatingFilmJSON" :key="index">
                                             <td><input type="checkbox" :value="all.id" v-model="checkedglass" v-on:change="updateSelectPipe"></td>
-                                            <td align="left"> {{all.BuildItem}}</td>
+                                            <td align="left"> {{all.material}}-{{all.BuildItem}}</td>
                                             <td>{{all.LightLoss}}</td>
                                             <td>{{all.StructuralRisk}}</td>
                                             <td>{{all.JobDifficulty}}</td>
@@ -47,7 +47,7 @@
 
                                     <!-- 管 材 製 程 比 較 分 析 -->
                                     <div v-if="checkedglass.length != 0">
-                                        <h5> 玻 璃 披 覆 材 料</h5>
+                                        <h5>披 覆 材 料</h5>
                                         <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                             <thead class="table-active">
                                                 <tr align="center">
@@ -57,15 +57,19 @@
                                                     <td style='width:8vmin'> 作業<br>難度 </td>
                                                     <td style='width:8vmin'> 成本性 </td>
                                                     <td style='width:8vmin'> 副作用 </td>
+                                                    <td style='width:6.5vmin'> 比較值 </td>
+                                                    <td style='width:6.5vmin'> 排名 </td>
                                                 </tr>
                                             </thead>
                                             <tr align="center" v-for="(all, index) in selectglass" :key="index">
-                                                <td align="left"> {{all.BuildItem}}</td>
-                                                <td>NT$ {{all.LightLoss}}</td>
+                                                <td align="left">{{all.material}}-{{all.BuildItem}}</td>
+                                                <td>{{all.LightLoss}}</td>
                                                 <td>{{all.StructuralRisk}}</td>
                                                 <td>{{all.JobDifficulty}}</td>
                                                 <td>{{all.Cost}}</td>
                                                 <td>{{all.SideEffect}}</td>
+                                                <td>None</td>
+                                                <td>None</td>
                                             </tr>
                                         </table>
                                         <br>
@@ -132,244 +136,6 @@
                             </b-card>
 
                             <br>
-
-                            <!-- 型 材 製 程 成 本 分 析 -->
-                            <b-card
-                                header-tag="header"
-                                header-text-variant="white"
-                                header-bg-variant="info"
-                            >
-                                <template #header>
-                                    <h6 class="mb-0"><b-icon icon="building"></b-icon> 軟 性 膜 披 覆 材 料</h6>
-                                </template>
-                                <b-card-text>
-                                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                        <thead class="table-active">
-                                            <tr align="center">
-                                                <td style='width:5vmin'> 勾選 </td>
-                                                <td style='width:23vmin'> 材料<br>名稱 </td>
-                                                <td style='width:8vmin'> 透光<br>損失 </td>
-                                                <td style='width:8vmin'> 結構<br>風險 </td>
-                                                <td style='width:8vmin'> 作業<br>難度 </td>
-                                                <td style='width:8vmin'> 成本性 </td>
-                                                <td style='width:8vmin'> 副作用 </td>
-                                            </tr>
-                                        </thead>
-                                        <tr align="center" v-for="(all, index) in CoatingFilmJSON" :key="index" v-if="all.material=='柔性膜'">
-                                            <td><input type="checkbox" :value="all.id" v-model="checkedsoft" v-on:change="updateSelectSoft"></td>
-                                            <td align="left"> {{all.BuildItem}}</td>
-                                            <td>{{all.LightLoss}}</td>
-                                            <td>{{all.StructuralRisk}}</td>
-                                            <td>{{all.JobDifficulty}}</td>
-                                            <td>{{all.Cost}}</td>
-                                            <td>{{all.SideEffect}}</td>
-                                        </tr>
-                                    </table>
-                                    <br>
-
-                                    <!-- 管 材 製 程 比 較 分 析 -->
-                                    <div v-if="checkedglass.length != 0">
-                                        <h5> 軟 性 膜 披 覆 材 料</h5>
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td style='width:23vmin'> 材料<br>名稱 </td>
-                                                    <td style='width:8vmin'> 透光<br>損失 </td>
-                                                    <td style='width:8vmin'> 結構<br>風險 </td>
-                                                    <td style='width:8vmin'> 作業<br>難度 </td>
-                                                    <td style='width:8vmin'> 成本性 </td>
-                                                    <td style='width:8vmin'> 副作用 </td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center" v-for="(all, index) in selectsoft" :key="index">
-                                                <td align="left"> {{all.BuildItem}}</td>
-                                                <td>NT$ {{all.LightLoss}}</td>
-                                                <td>{{all.StructuralRisk}}</td>
-                                                <td>{{all.JobDifficulty}}</td>
-                                                <td>{{all.Cost}}</td>
-                                                <td>{{all.SideEffect}}</td>
-                                            </tr>
-                                        </table>
-                                        <br>
-
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-warning" v-on:click="updatePipeCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
-                                                    </td>
-                                                </tr>
-                                                <tr align="center">
-                                                    <td> 速度性 </td>
-                                                    <td> 結構風險 </td>
-                                                    <td> 腐蝕性 </td>
-                                                    <td> 重量性 </td>
-                                                    <td> 成本性 </td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center">
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入速度性"
-                                                        v-model="PipeSpeed"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入結構風險"
-                                                        v-model="PipeStructuralRisk"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入腐蝕性"
-                                                        v-model="PipeCorrosive"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入重量性"
-                                                        v-model="PipeWeightiness"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入成本性"
-                                                        v-model="PipeCost"
-                                                    ></v-text-field>
-                                                </td>
-                                            </tr>
-                                            <tr align="center">
-                                                <td>  {{Math.floor(PipeSpeed/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeStructuralRisk/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeCorrosive/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeWeightiness/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                            </tr>
-                                        </table>
-
-                                    </div>
-                                </b-card-text>
-                            </b-card>
-                            <b-card
-                                header-tag="header"
-                                header-text-variant="white"
-                                header-bg-variant="info"
-                            >
-                                <template #header>
-                                    <h6 class="mb-0"><b-icon icon="building"></b-icon> 硬 質 板 披 覆 材 料</h6>
-                                </template>
-                                <b-card-text>
-                                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                        <thead class="table-active">
-                                            <tr align="center">
-                                                <td style='width:5vmin'> 勾選 </td>
-                                                <td style='width:23vmin'> 材料<br>名稱 </td>
-                                                <td style='width:8vmin'> 透光<br>損失 </td>
-                                                <td style='width:8vmin'> 結構<br>風險 </td>
-                                                <td style='width:8vmin'> 作業<br>難度 </td>
-                                                <td style='width:8vmin'> 成本性 </td>
-                                                <td style='width:8vmin'> 副作用 </td>
-                                            </tr>
-                                        </thead>
-                                        <tr align="center" v-for="(all, index) in CoatingFilmJSON" :key="index" v-if="all.material=='硬質板'">
-                                            <td><input type="checkbox" :value="all.id" v-model="checkedhard" v-on:change="updateSelectHard"></td>
-                                            <td align="left"> {{all.BuildItem}}</td>
-                                            <td>{{all.LightLoss}}</td>
-                                            <td>{{all.StructuralRisk}}</td>
-                                            <td>{{all.JobDifficulty}}</td>
-                                            <td>{{all.Cost}}</td>
-                                            <td>{{all.SideEffect}}</td>
-                                        </tr>
-                                    </table>
-                                    <br>
-
-                                    <!-- 管 材 製 程 比 較 分 析 -->
-                                    <div v-if="checkedglass.length != 0">
-                                        <h5> 硬 質 板 披 覆 材 料</h5>
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td style='width:23vmin'> 材料<br>名稱 </td>
-                                                    <td style='width:8vmin'> 透光<br>損失 </td>
-                                                    <td style='width:8vmin'> 結構<br>風險 </td>
-                                                    <td style='width:8vmin'> 作業<br>難度 </td>
-                                                    <td style='width:8vmin'> 成本性 </td>
-                                                    <td style='width:8vmin'> 副作用 </td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center" v-for="(all, index) in selecthard" :key="index">
-                                                <td align="left"> {{all.BuildItem}}</td>
-                                                <td>NT$ {{all.LightLoss}}</td>
-                                                <td>{{all.StructuralRisk}}</td>
-                                                <td>{{all.JobDifficulty}}</td>
-                                                <td>{{all.Cost}}</td>
-                                                <td>{{all.SideEffect}}</td>
-                                            </tr>
-                                        </table>
-                                        <br>
-
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-warning" v-on:click="updatePipeCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
-                                                    </td>
-                                                </tr>
-                                                <tr align="center">
-                                                    <td> 速度性 </td>
-                                                    <td> 結構風險 </td>
-                                                    <td> 腐蝕性 </td>
-                                                    <td> 重量性 </td>
-                                                    <td> 成本性 </td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center">
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入速度性"
-                                                        v-model="PipeSpeed"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入結構風險"
-                                                        v-model="PipeStructuralRisk"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入腐蝕性"
-                                                        v-model="PipeCorrosive"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入重量性"
-                                                        v-model="PipeWeightiness"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入成本性"
-                                                        v-model="PipeCost"
-                                                    ></v-text-field>
-                                                </td>
-                                            </tr>
-                                            <tr align="center">
-                                                <td>  {{Math.floor(PipeSpeed/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeStructuralRisk/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeCorrosive/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeWeightiness/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                            </tr>
-                                        </table>
-
-                                    </div>
-                                </b-card-text>
-                            </b-card>
                         </div>
                     </v-col>
                     <v-col md="1">
@@ -429,8 +195,6 @@ export default {
 
             // 管材
             selectglass:[],
-            selectsoft:[],
-            selecthard:[],
             selectPipeRank:[],
             selectPipeRankValue:[],
             PipeSpeed:null,
@@ -453,8 +217,6 @@ export default {
             ProfileTotal:null,
             CoatingFilmJSON:[],
             checkedglass:[],
-            checkedsoft:[],
-            checkedhard:[],
             glass:[],
             SoftFilm:[],
             HardFilm:[],
@@ -505,12 +267,8 @@ export default {
 
             for (var i = 0; i < this.CoatingFilmJSON.length; i++) {
 
-                if(this.CoatingFilmJSON[i].material == "玻璃"){
+                if(this.CoatingFilmJSON[i].material){
                     this.glass.push(this.CoatingFilmJSON[i]);
-                }else if(this.CoatingFilmJSON[i].material == "柔性膜"){
-                    this.SoftFilm.push(this.CoatingFilmJSON[i]);
-                }else if(this.CoatingFilmJSON[i].material == "硬質板"){
-                    this.HardFilm.push(this.CoatingFilmJSON[i]);
                 }
             }
 
@@ -521,26 +279,6 @@ export default {
             for (var i = 0; i < this.glass.length; i++) {
                 for (var j = 0; j < this.checkedglass.length; j++) {
                     if(this.checkedglass[j] == this.glass[i].id)  this.selectglass.push(this.glass[i]);
-                }
-            }
-
-        },updateSelectSoft(){   // 更新所選擇的管材
-
-            this.selectsoft = [];
-
-            for (var i = 0; i < this.SoftFilm.length; i++) {
-                for (var j = 0; j < this.checkedsoft.length; j++) {
-                    if(this.checkedsoft[j] == this.SoftFilm[i].id)  this.selectsoft.push(this.SoftFilm[i]);
-                }
-            }
-
-        },updateSelectHard(){   // 更新所選擇的管材
-
-            this.selecthard = [];
-
-            for (var i = 0; i < this.HardFilm.length; i++) {
-                for (var j = 0; j < this.checkedhard.length; j++) {
-                    if(this.checkedhard[j] == this.HardFilm[i].id)  this.selecthard.push(this.HardFilm[i]);
                 }
             }
 

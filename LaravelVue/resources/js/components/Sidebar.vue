@@ -134,7 +134,7 @@
                                         <div class="collapse" id="環控設計" aria-labelledby="headingOne">
 
                                             <nav class="sb-sidenav-menu-nested nav">
-                                                <router-link to="/EnvironmentalControlDesign/LightEnvironment" class="nav-link" exact>
+                                                <router-link to="/EnvironmentalControlDesign/LightEnvironmentNeed" class="nav-link" exact>
                                                     (1).光控設計
                                                 </router-link>
                                                 <router-link to="/EnvironmentalControlDesign/TemperatureEnvironment" class="nav-link" exact>

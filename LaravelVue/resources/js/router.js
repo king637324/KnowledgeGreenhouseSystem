@@ -47,6 +47,7 @@ import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustAdd from '.
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_RobustEdit from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/RobustCostAnalysisEdit.vue';
 
 import GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/LightEnvironment.vue';
+import EnvironmentNeed from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/LightEnvironment_need.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
 import OverallPlanbase from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
@@ -346,6 +347,13 @@ const routes = [{
     path: '/GreenhouseMasterPlan/GreenhouseCoatedFilm',
     name: 'GreenhouseCoatedFilm',
     component: CoatedFilm,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/EnvironmentalControlDesign/LightEnvironmentNeed',
+    name: 'LightEnvironmentNeed',
+    component: EnvironmentNeed,
     meta: {
         auth: undefined
     }
