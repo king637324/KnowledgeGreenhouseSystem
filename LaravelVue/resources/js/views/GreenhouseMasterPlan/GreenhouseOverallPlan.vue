@@ -14,17 +14,35 @@
                       <v-container>
                         <v-row>
                           <v-col md="2">
-                            <v-subheader>A.溫室作物</v-subheader>
+                            <v-subheader>1.使用者</v-subheader> 
                           </v-col>
                           <v-col md="4">
-                            <b-select v-model="cropIdx" v-on:change="updateCrop">
+                            <label for="類別" style="color:rgba(0,0,0,.6); font-size:8px;">類別</label>
+                            <b-select v-model="cropIdx" name="類別">
+                              <option v-for="(crop, index) in user_class" :value="index">
+                                  {{crop}}
+                              </option>
+                            </b-select>
+                          </v-col>
+                          <v-col md="4">
+                            <v-text-field label="代號" v-model="codename"></v-text-field>
+                          </v-col>                  
+                        </v-row>
+                        <v-row>
+                          <v-col md="2">
+                            <v-subheader>2.溫室作物</v-subheader>
+                          </v-col>
+                          <v-col md="4">
+                            <label for="分類" style="color:rgba(0,0,0,.6); font-size:8px;">分類</label>
+                            <b-select v-model="cropIdx" v-on:change="updateCrop" name="分類">
                               <option v-for="(crop, index) in CropOrder" :value="index">
                                   {{crop}}
                               </option>
                             </b-select>
                           </v-col>
                           <v-col md="4">
-                            <b-select v-model="plantIdx" v-on:change="updatePlant">
+                            <label for="作物" style="color:rgba(0,0,0,.6); font-size:8px;">作物</label>
+                            <b-select v-model="plantIdx" v-on:change="updatePlant" name="作物">
                                 <option v-for="(plant, index) in GrowPlants" :value="index">
                                     {{plant}}
                                 </option>
@@ -32,36 +50,20 @@
                           </v-col>                  
                         </v-row>
                         <v-row>
-                          <v-col cols="12" md="2">
-                            <v-subheader>B.栽種面積</v-subheader>
-                          </v-col>
-                          <v-col cols="12" md="2">
-                            <v-text-field :counter="10" label="輸入長度" v-model="plantlength"></v-text-field>
-                          </v-col>  
-                          <v-col cols="12" md="2">
-                            <v-text-field :counter="10" label="輸入寬度" v-model="plantwidth"></v-text-field>
-                          </v-col>       
-                          <v-col cols="12" md="2">
-                            <b-select v-model="position" v-on:change="updateRegion">
-                                <option v-for="(data, index) in allposition" :value="index">
-                                    {{data}}
-                                </option>
-                            </b-select>
-                          </v-col>                      
-                        </v-row>
-                        <v-row>
                             <v-col md="2">
-                                <v-subheader>C.地點選擇</v-subheader>
+                                <v-subheader>3.地點選擇</v-subheader>
                             </v-col>
                             <v-col md="2">
-                                <b-select v-model="cityIdx" v-on:change="updateCity">
+                                <label for="縣市" style="color:rgba(0,0,0,.6); font-size:8px;">縣市</label>
+                                <b-select v-model="cityIdx" v-on:change="updateCity" name="縣市">
                                     <option v-for="(data, index) in City" :value="index">
                                         {{data}}
                                     </option>
                                 </b-select>
                             </v-col>
                             <v-col md="2">
-                                <b-select v-model="regionIdx" v-on:change="updateRegion">
+                                <label for="地區" style="color:rgba(0,0,0,.6); font-size:8px;">地區</label>
+                                <b-select v-model="regionIdx" v-on:change="updateRegion" name="地區">
                                     <option v-for="(data, index) in Region" :value="index">
                                         {{data}}
                                     </option>
@@ -70,10 +72,11 @@
                         </v-row>
                         <v-row>
                             <v-col md="2">
-                                <v-subheader>D.地形地貌</v-subheader>
+                                <v-subheader>4.地形地貌</v-subheader>
                             </v-col>
                             <v-col md="2">
-                                <b-select v-model="SelectTerrain">
+                                <label for="地形" style="color:rgba(0,0,0,.6); font-size:8px;">地形</label>
+                                <b-select v-model="SelectTerrain" name="地形">
                                     <option value="0">地形</option>
                                     <option value="平原">平原</option>
                                     <option value="山區">山區</option>
@@ -81,34 +84,66 @@
                                 </b-select>
                             </v-col>
                             <v-col md="2">
-                                <b-select v-model="SelectLandform">
+                                <label for="地貌" style="color:rgba(0,0,0,.6); font-size:8px;">地貌</label>
+                                <b-select v-model="SelectLandform" name="地貌">
                                     <option value="0">地貌</option>
                                     <option value="建築物">建築物</option>
                                     <option value="空曠">空曠</option>
                                     <option value="風口">風口</option>
                                 </b-select>
                             </v-col>
+                            <v-col md="2">
+                                <label for="地況" style="color:rgba(0,0,0,.6); font-size:8px;">地況</label>
+                                <b-select v-model="SelectLandform" name="地況">
+                                    <option value="0">地況</option>
+                                    <option value="硬質土">硬質土</option>
+                                    <option value="軟質土">軟質土</option>
+                                    <option value="下陷區">下陷區</option>
+                                </b-select>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                          <v-col cols="12" md="2">
+                            <v-subheader>5.栽種面積</v-subheader>
+                          </v-col>
+                          <v-col cols="12" md="2">
+                            <v-text-field label="長度(m)" v-model="plantlength" v-on:change="areacount"></v-text-field>
+                          </v-col>  
+                          <v-col cols="12" md="2">
+                            <v-text-field label="寬度(m)" v-model="plantwidth" v-on:change="areacount"></v-text-field>
+                          </v-col>    
+                          <v-col cols="12" md="2">
+                            <v-text-field readonly label="面積試算(公頃)" v-model="area"></v-text-field>
+                          </v-col>    
+                          <v-col cols="12" md="2">
+                            <label for="方位" style="color:rgba(0,0,0,.6); font-size:8px;">方位</label>
+                            <b-select v-model="position" name="方位">
+                                <option v-for="(data, index) in allposition" :value="index">
+                                    {{data}}
+                                </option>
+                            </b-select>
+                          </v-col>                      
                         </v-row>
                         <v-row>
                             <v-col md="2">
-                                <v-subheader>E.決策權重</v-subheader>
+                                <v-subheader>6.決策權重</v-subheader>
                             </v-col>
                             <v-col md="2">
-                                <v-text-field :counter="10" label="輸入品質性能" v-model="quality"></v-text-field>
+                                <v-text-field :hint="decide[0]" persistent-hint label="品質性能" v-model="quality" v-on:change="countdecide"></v-text-field>
                             </v-col>
                             <v-col md="2">
-                                <v-text-field :counter="10" label="輸入風險性" v-model="risk"></v-text-field>
+                                <v-text-field :hint="decide[1]" persistent-hint label="風險性" v-model="risk" v-on:change="countdecide"></v-text-field>
                             </v-col>
                             <v-col md="2">
-                                <v-text-field :counter="10" label="輸入速度性" v-model="speed"></v-text-field>
+                                <v-text-field :hint="decide[2]" persistent-hint label="速度性" v-model="speed" v-on:change="countdecide"></v-text-field>
                             </v-col>
                             <v-col md="2">
-                                <v-text-field :counter="10" label="輸入成本性" v-model="cost"></v-text-field>
+                                <v-text-field :hint="decide[3]" persistent-hint label="成本性" v-model="cost" v-on:change="countdecide"></v-text-field>
                             </v-col>
                         </v-row>               
                       </v-container>
-                      <button type="submit" class="btn btn-primary" style="float:right;">新增</button>
-                      <button type="reset" class="btn btn-primary" style="float:right;">清除</button>
+                      <button type="submit" class="btn btn-primary" style="float:right;">確定</button>
+                      <button type="reset" class="btn btn-primary" style="float:left;">清除</button>
                     </v-form>
                     <br><br><br><br><br><br>
                 </v-col>
@@ -395,10 +430,16 @@
 
         allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
         position:0,
-        quality:null,
-        risk:null,
-        speed:null,
-        cost:null,
+        quality:0,
+        risk:0,
+        speed:0,
+        cost:0,
+        decide:[0,0,0,0],
+        area:0,
+
+        user_class: ['類別','農民','專家','設計者'],
+        codename:'None',
+        user_index: 0,
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
@@ -903,6 +944,18 @@
             return obj.pid != DeleteId;
         });
     },
+
+    areacount(){
+        this.area = this.plantlength*this.plantwidth
+    },
+
+    countdecide(){
+        this.decide = []
+        this.decide.push(String(Math.floor(((parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))/100)*parseInt(this.quality)*100))+'%')
+        this.decide.push(String(Math.floor(((parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))/100)*parseInt(this.risk)*100))+'%')
+        this.decide.push(String(Math.floor(((parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))/100)*parseInt(this.speed)*100))+'%')
+        this.decide.push(String(Math.floor(((parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))/100)*parseInt(this.cost)*100))+'%')
+    }
 },
 }
 </script>

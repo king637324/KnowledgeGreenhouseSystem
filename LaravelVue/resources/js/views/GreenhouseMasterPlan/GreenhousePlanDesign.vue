@@ -41,8 +41,8 @@
                                       <td>規格</td>
                                   </tr>
                               </thead>
-                              <tr align="center" id="溫室管材">
-                                  <td>溫室管材</td>
+                              <tr align="center" id="遮光控制">
+                                  <td>遮光控制</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleGreenhousePipes" :key="index">
                                           <input type="radio" :value="simple" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio">
@@ -52,8 +52,8 @@
                                       <a href="/#/MaterialStructureAnalysis/RoundPipe"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
                                   </td>
                               </tr>
-                              <tr align="center" id="圓頂形式">
-                                  <td>圓頂形式</td>
+                              <tr align="center" id="補光控制">
+                                  <td>補光控制</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleDomeForms" :key="index">
                                           <input type="radio" :value="simple" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio">
@@ -63,8 +63,8 @@
                                       <a href="/#/GreenhouseFluidAnalysis/DomeGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
                                   </td>
                               </tr>
-                              <tr align="center" id="圓拱距">
-                                  <td>圓拱距</td>
+                              <tr align="center" id="光質控制">
+                                  <td>光質控制</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCircularArchDistances" :key="index">
                                           <input type="radio" :value="simple" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio">
@@ -74,8 +74,8 @@
                                       <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
                                   </td>
                               </tr>
-                              <tr align="center" id="簡易基礎">
-                                  <td>基礎</td>
+                              <tr align="center" id="光週期控制">
+                                  <td>光週期控制</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleFoundations" :key="index">
                                           <input type="radio" :value="simple" v-model="SimpleFoundation" v-on:change="updateSimpleRadio">
@@ -83,61 +83,6 @@
                                       </div>
                                       <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
                                       <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易跨距">
-                                  <td>跨距</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleSpans" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleSpan" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易肩高">
-                                  <td>肩高</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleShoulderHeights" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易長度">
-                                  <td>長度</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleLengths" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleLength" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="簡易連續性">
-                                  <td>連續性</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleContinuitys" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleContinuity" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                  </td>                    
-                              </tr>
-                              <tr align="center" id="簡易披覆材料">
-                                  <td>披覆材料</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilms" :key="index">
-                                          <input type="radio" :value="simple" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio">
-                                          <label>{{simple.BuildItem}}</label>
-                                      </div>
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
                                   </td>
                               </tr>
                             </table>
@@ -155,8 +100,8 @@
                                       <td>規格</td>
                                   </tr>
                               </thead>
-                              <tr align="center" id="溫室型材">
-                                  <td>溫室型材</td>
+                              <tr align="center" id="降溫控制">
+                                  <td>降溫控制</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
                                           <input type="radio" :value="robust" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
@@ -168,8 +113,8 @@
 
                                   </td>
                               </tr>
-                              <tr align="center" id="屋頂形式">
-                                  <td>屋頂形式</td>
+                              <tr align="center" id="加溫控制">
+                                  <td>加溫控制</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
                                           <input type="radio" :value="robust" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
@@ -181,8 +126,8 @@
 
                                   </td>
                               </tr>
-                              <tr align="center" id="上拱距">
-                                  <td>上拱距</td>
+                              <tr align="center" id="濕度控制">
+                                  <td>濕度控制</td>
                                   <td align="left">
                                       <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
                                           <input type="radio" :value="robust" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
@@ -192,81 +137,6 @@
                                       <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
                                       <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
 
-                                  </td>
-                              </tr>
-                              <tr align="center" id="基礎">
-                                  <td>基礎</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustFoundation" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                  </td>
-                              </tr>
-                              <tr align="center" id="跨距">
-                                  <td>跨距</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" style="valign:center;" v-for="(robust, index) in StrongSpans" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustSpan" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                  </td>
-                              </tr>
-                              <tr align="center" id="肩高">
-                                  <td>肩高</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                  </td>
-                              </tr>
-                              <tr align="center" id="長度">
-                                  <td>長度</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustLength" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                  </td>
-                              </tr>
-                              <tr align="center" id="連續性">
-                                  <td>連續性</td>
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustContinuity" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                  </td>
-                              </tr>
-                              <tr align="center" id="披覆材料">
-                                  <td>披覆材料</td>
-
-                                  <td align="left">
-                                      <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongCoatingFilms" :key="index">
-                                          <input type="radio" :value="robust" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
-                                          <label>{{robust.BuildItem}}</label>
-                                      </div>
-
-                                      <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                      <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
                                   </td>
                               </tr>
                             </table>
