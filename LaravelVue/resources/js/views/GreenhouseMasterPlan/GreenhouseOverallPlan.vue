@@ -94,7 +94,7 @@
                             </v-col>
                             <v-col md="2">
                                 <label for="地況" style="color:rgba(0,0,0,.6); font-size:8px;">地況</label>
-                                <b-select v-model="SelectLandform" name="地況">
+                                <b-select v-model="SelectLandcondition" name="地況">
                                     <option value="0">地況</option>
                                     <option value="硬質土">硬質土</option>
                                     <option value="軟質土">軟質土</option>
@@ -334,6 +334,7 @@
         selectRegion: null, // 所選地區的名稱
         SelectTerrain:0, // 選擇地形
         SelectLandform:0, // 選擇地貌
+        SelectLandcondition:0, // 選擇地況
         greenhouseradio: null, //透過radio button選擇要簡易還是強固
         Fluidjson: [],
         checkData:[],
