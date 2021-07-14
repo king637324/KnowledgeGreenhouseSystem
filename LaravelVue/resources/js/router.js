@@ -35,6 +35,8 @@ import GreenhouseMasterPlan_GeographicalEnvironmentAnalysis from './views/Greenh
 import GreenhouseMasterPlan_CropSelection from './views/GreenhouseMasterPlan/GreenhouseCropSelection/CropSelection.vue';
 import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis.vue';
+import Steel from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseSteel.vue';
+import load from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseStructuralLoad.vue';
 import CoatedFilm from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseCoatedFilm.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysisHard from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysisHard.vue';
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
@@ -362,6 +364,20 @@ const routes = [{
     path: '/EnvironmentalControlDesign/TemperatureEnvironmentNeed',
     name: 'TemperatureEnvironmentNeed',
     component: TempEnvironmentNeed,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseSteel',
+    name: 'GreenhouseConstructionSteel',
+    component: Steel,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseStructuralLoad',
+    name: 'GreenhouseStructuralLoad',
+    component: load,
     meta: {
         auth: undefined
     }

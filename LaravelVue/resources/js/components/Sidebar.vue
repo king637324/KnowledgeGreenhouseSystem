@@ -144,9 +144,106 @@
                                         </div>
                                     </nav>
                                 </div>
-                                <router-link to="/Development" class="nav-link" exact>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室設計分析" aria-expanded="false" aria-controls="成本分析">
                                     D.溫室設計分析
-                                </router-link>
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="溫室設計分析" aria-labelledby="headingOne">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#材料設計分析" aria-expanded="false" aria-controls="成本分析">
+                                            1.材料設計分析
+                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        </a>
+
+                                        <div class="collapse" id="材料設計分析" aria-labelledby="headingOne">
+
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseSteel" class="nav-link" exact>
+                                                    (1).國際鋼材
+                                                </router-link>
+                                                <router-link to="/MaterialStructureAnalysis/RoundPipe" class="nav-link" exact>
+                                                    (2).管材
+                                                </router-link>
+                                                <router-link to="/MaterialStructureAnalysis/ProfilePipe" class="nav-link" exact>
+                                                    (3).型材
+                                                </router-link>
+                                            </nav>
+                                        </div>
+                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#載重設計分析" aria-expanded="false" aria-controls="成本分析">
+                                            2.載重設計分析
+                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        </a>
+
+                                        <div class="collapse" id="載重設計分析" aria-labelledby="headingOne">
+
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseStructuralLoad" class="nav-link" exact>
+                                                    (1).結構載重
+                                                </router-link>
+                                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#風載重" aria-expanded="false" aria-controls="成本分析">
+                                                    (2)風載重
+                                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                                </a>
+
+                                                <div class="collapse" id="風載重" aria-labelledby="headingOne">
+
+                                                    <nav class="sb-sidenav-menu-nested nav">
+                                                        <router-link to="/GreenhouseFluidAnalysis/SimpleGreenhouse" class="nav-link" exact>
+                                                            (2.1).簡易溫室
+                                                        </router-link>
+                                                        <router-link to="/GreenhouseFluidAnalysis/DomeGreenhouse" class="nav-link" exact>
+                                                            (2.2).圓頂溫室
+                                                        </router-link>
+                                                        <router-link to="/GreenhouseFluidAnalysis/MountainGreenhouse" class="nav-link" exact>
+                                                            (2.3).山型溫室
+                                                        </router-link>
+                                                        <router-link to="/GreenhouseFluidAnalysis/InclinedRoofGreenhouse" class="nav-link" exact>
+                                                            (2.4).斜頂溫室
+                                                        </router-link>
+                                                        <router-link to="/GreenhouseFluidAnalysis/GreenhouseWindPressureChart" class="nav-link" exact>
+                                                            (2.5).型式風壓比較
+                                                        </router-link>
+                                                    </nav>
+                                                </div>
+                                            </nav>
+                                        </div>
+                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#結構設計分析" aria-expanded="false" aria-controls="成本分析">
+                                            3.結構設計分析
+                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        </a>
+
+                                        <div class="collapse" id="結構設計分析" aria-labelledby="headingOne">
+
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <router-link to="/MaterialStructureAnalysis/Truss" class="nav-link" exact>
+                                                    (1).樑柱設計
+                                                </router-link>
+                                                <router-link to="/GreenhouseStructureAnalysis/SimpleGreenhouse" class="nav-link" exact>
+                                                    (2).強化設計
+                                                </router-link>
+                                                <router-link to="/GreenhouseStructureAnalysis/RobustGreenhouse" class="nav-link" exact>
+                                                    (2).屋架設計
+                                                </router-link>
+                                            </nav>
+                                        </div>
+                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#環控設計分析" aria-expanded="false" aria-controls="成本分析">
+                                            4.環控設計分析
+                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        </a>
+<!-- 
+                                        <div class="collapse" id="環控設計分析" aria-labelledby="headingOne">
+
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <router-link to="/EnvironmentalControlDesign/LightEnvironmentNeed" class="nav-link" exact>
+                                                    (1).光控設計
+                                                </router-link>
+                                                <router-link to="/EnvironmentalControlDesign/TemperatureEnvironmentNeed" class="nav-link" exact>
+                                                    (2).溫控設計
+                                                </router-link>
+                                            </nav>
+                                        </div> -->
+                                    </nav>
+                                </div>
                             </nav>
                         </div>
                         <!-- <router-link to="/Development" class="nav-link" exact>
