@@ -201,7 +201,7 @@
                                                             (2.4).斜頂溫室
                                                         </router-link>
                                                         <router-link to="/GreenhouseFluidAnalysis/GreenhouseWindPressureChart" class="nav-link" exact>
-                                                            (2.5).型式風壓比較
+                                                            (2.5).溫室風壓
                                                         </router-link>
                                                     </nav>
                                                 </div>
@@ -216,13 +216,13 @@
 
                                             <nav class="sb-sidenav-menu-nested nav">
                                                 <router-link to="/MaterialStructureAnalysis/Truss" class="nav-link" exact>
-                                                    (1).樑柱設計
+                                                    (1).屋架桁架
                                                 </router-link>
                                                 <router-link to="/GreenhouseStructureAnalysis/SimpleGreenhouse" class="nav-link" exact>
-                                                    (2).強化設計
+                                                    (2).簡易溫室
                                                 </router-link>
                                                 <router-link to="/GreenhouseStructureAnalysis/RobustGreenhouse" class="nav-link" exact>
-                                                    (2).屋架設計
+                                                    (2).強固溫室
                                                 </router-link>
                                             </nav>
                                         </div>
