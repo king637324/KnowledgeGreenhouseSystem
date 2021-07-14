@@ -96,55 +96,6 @@
 
                 </b-card-text>
             </b-card>
-
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
-
-                    <h6 class="mb-0"><b-icon icon="bar-chart-fill"></b-icon> 環境控制-遮光控制 </h6>
-                </template>
-                <b-card-text>
-                    <div class="d-inline-flex p-2 bd-highlight" v-for="(design, index) in LightDesignData" :key="index">
-                        <div v-if="design.ControlItem == '遮光控制'">                        
-                            <input type="radio" :value="design" v-model="LightDesign" v-on:change="updateLightDesignRadio">
-                            <label>{{design.ControlSystem}}</label>
-                        </div>
-                    </div>
-                    <br>
-                </b-card-text>
-                <v-textarea filled row-height="5" readonly :value="LightDesignIntroduction"></v-textarea>
-            </b-card>
-
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
-
-                    <h6 class="mb-0"><i class="fas fa-chart-area"></i> 環境控制-光控制 </h6>
-                </template>
-                <b-card-text>
-                    <div class="d-inline-flex p-2 bd-highlight" v-for="(control, index) in LightControlData" :key="index">
-                        <input type="radio" :value="control" v-model="LightControl" v-on:change="updateLightControlRadio">
-                        <label>{{control[0]}}</label>
-                    </div>
-                    <br>
-                </b-card-text>
-                <br>
-                <br>
-                <v-textarea filled row-height="5" readonly :value="LightControlIntroduction"></v-textarea>
-            </b-card>
-            <!-- 種植地區環境分析 -->
-        </b-card-group>
-
-        <br><br>
-        <b-card-group deck>
-            <!-- 環境控制-光設計 -->
-
             <b-card
                 header-tag="header"
                 header-text-variant="white"
@@ -177,17 +128,223 @@
                             </v-col>
                         </v-row>
                     </v-container-fluid>
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光感測</span></p>
+                    <!-- <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光感測</span></p>
                     <div class="d-inline-flex p-2 bd-highlight" v-for="(sensing, index) in LightSensingData" :key="index">
                         <input type="radio" :value="sensing" v-model="LightSensing" v-on:change="updateLightSensingRadio">
                         <label>{{sensing[0]}}</label>
                     </div>
                     <br>
-                    <v-textarea filled row-height="5" readonly :value="LightSensingIntroduction"></v-textarea>
+                    <v-textarea filled row-height="5" readonly :value="LightSensingIntroduction"></v-textarea> -->
                 </b-card-text>
 
             </b-card>
-            <br>
+        </b-card-group>
+        <b-card-group>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長光環境與種植地區環境分析</h6>
+                </template>
+                <b-card-text>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">生長光環境</span></p>
+                    <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
+                        <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
+                            {{crop}}
+                        </option>
+                    </b-select>
+
+                    <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
+                        <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
+                            {{plant}}
+                        </option>
+                    </b-select>
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
+                        <tr align="center" class="table-active">
+                            <td colspan="2">好光性</td>
+                            <td colspan="2">光週期</td>
+                            <td colspan="2">光照度</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="Goodlight" colspan="2"> {{Goodlight}} </td>
+                            <td id="Photoperiod" colspan="2"> {{Photoperiod}} </td>
+                            <td id="Illuminance" colspan="2"> {{Illuminance}} </td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td colspan="2">光合光子密度</td>
+                            <td colspan="2">光飽和點(klx)</td>
+                            <td colspan="2">光補償點(klx)</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="PPFD" colspan="2"> {{PPFD}} </td>
+                            <td id="LightSaturationPoint" colspan="2"> {{LightSaturationPoint}} </td>
+                            <td id="LightCompensationPoint" colspan="2"> {{LightCompensationPoint}} </td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <br>
+                    <h6>備註： - 為尚無資料</h6>
+                </b-card-text>
+            </b-card>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長光環境與種植地區環境分析</h6>
+                </template>
+                <b-card-text>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">生長光環境</span></p>
+                    <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
+                        <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
+                            {{crop}}
+                        </option>
+                    </b-select>
+
+                    <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
+                        <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
+                            {{plant}}
+                        </option>
+                    </b-select>
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
+                        <tr align="center" class="table-active">
+                            <td colspan="2">好光性</td>
+                            <td colspan="2">光週期</td>
+                            <td colspan="2">光照度</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="Goodlight" colspan="2"> {{Goodlight}} </td>
+                            <td id="Photoperiod" colspan="2"> {{Photoperiod}} </td>
+                            <td id="Illuminance" colspan="2"> {{Illuminance}} </td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td colspan="2">光合光子密度</td>
+                            <td colspan="2">光飽和點(klx)</td>
+                            <td colspan="2">光補償點(klx)</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="PPFD" colspan="2"> {{PPFD}} </td>
+                            <td id="LightSaturationPoint" colspan="2"> {{LightSaturationPoint}} </td>
+                            <td id="LightCompensationPoint" colspan="2"> {{LightCompensationPoint}} </td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <br>
+                    <h6>備註： - 為尚無資料</h6>
+                </b-card-text>
+            </b-card>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長光環境與種植地區環境分析</h6>
+                </template>
+                <b-card-text>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">生長光環境</span></p>
+                    <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
+                        <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
+                            {{crop}}
+                        </option>
+                    </b-select>
+
+                    <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
+                        <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
+                            {{plant}}
+                        </option>
+                    </b-select>
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
+                        <tr align="center" class="table-active">
+                            <td colspan="2">好光性</td>
+                            <td colspan="2">光週期</td>
+                            <td colspan="2">光照度</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="Goodlight" colspan="2"> {{Goodlight}} </td>
+                            <td id="Photoperiod" colspan="2"> {{Photoperiod}} </td>
+                            <td id="Illuminance" colspan="2"> {{Illuminance}} </td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td colspan="2">光合光子密度</td>
+                            <td colspan="2">光飽和點(klx)</td>
+                            <td colspan="2">光補償點(klx)</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="PPFD" colspan="2"> {{PPFD}} </td>
+                            <td id="LightSaturationPoint" colspan="2"> {{LightSaturationPoint}} </td>
+                            <td id="LightCompensationPoint" colspan="2"> {{LightCompensationPoint}} </td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <br>
+                    <h6>備註： - 為尚無資料</h6>
+
+                </b-card-text>
+            </b-card>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長光環境與種植地區環境分析</h6>
+                </template>
+                <b-card-text>
+                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">生長光環境</span></p>
+                    <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
+                        <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
+                            {{crop}}
+                        </option>
+                    </b-select>
+
+                    <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
+                        <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
+                            {{plant}}
+                        </option>
+                    </b-select>
+                    <br>
+                    <br>
+                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
+                        <tr align="center" class="table-active">
+                            <td colspan="2">好光性</td>
+                            <td colspan="2">光週期</td>
+                            <td colspan="2">光照度</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="Goodlight" colspan="2"> {{Goodlight}} </td>
+                            <td id="Photoperiod" colspan="2"> {{Photoperiod}} </td>
+                            <td id="Illuminance" colspan="2"> {{Illuminance}} </td>
+                        </tr>
+                        <tr align="center" class="table-active">
+                            <td colspan="2">光合光子密度</td>
+                            <td colspan="2">光飽和點(klx)</td>
+                            <td colspan="2">光補償點(klx)</td>
+                        </tr>
+                        <tr align="center">
+                            <td id="PPFD" colspan="2"> {{PPFD}} </td>
+                            <td id="LightSaturationPoint" colspan="2"> {{LightSaturationPoint}} </td>
+                            <td id="LightCompensationPoint" colspan="2"> {{LightCompensationPoint}} </td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <br>
+                    <h6>備註： - 為尚無資料</h6>
+                </b-card-text>
+            </b-card>
         </b-card-group>
 
     </div>

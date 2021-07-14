@@ -83,17 +83,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr align="center">
-                                                    <td> 速度性 </td>
+                                                    <td> 透光損失 </td>
                                                     <td> 結構風險 </td>
-                                                    <td> 腐蝕性 </td>
-                                                    <td> 重量性 </td>
+                                                    <td> 作業難度 </td>
                                                     <td> 成本性 </td>
+                                                    <td> 副作用 </td>
                                                 </tr>
                                             </thead>
                                             <tr align="center">
                                                 <td>
                                                     <v-text-field
-                                                        label="請輸入速度性"
+                                                        label="請輸入透光損失"
                                                         v-model="PipeSpeed"
                                                     ></v-text-field>
                                                 </td>
@@ -105,19 +105,19 @@
                                                 </td>
                                                 <td>
                                                     <v-text-field
-                                                        label="請輸入腐蝕性"
+                                                        label="請輸入作業難度"
                                                         v-model="PipeCorrosive"
                                                     ></v-text-field>
                                                 </td>
                                                 <td>
                                                     <v-text-field
-                                                        label="請輸入重量性"
+                                                        label="請輸入成本性"
                                                         v-model="PipeWeightiness"
                                                     ></v-text-field>
                                                 </td>
                                                 <td>
                                                     <v-text-field
-                                                        label="請輸入成本性"
+                                                        label="請輸入副作用"
                                                         v-model="PipeCost"
                                                     ></v-text-field>
                                                 </td>
