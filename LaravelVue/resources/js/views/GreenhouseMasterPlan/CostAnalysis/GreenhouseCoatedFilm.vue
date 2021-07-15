@@ -8,7 +8,7 @@
         <v-container-fluid>
             <div class="d-flex justify-content-around">
                 <v-row>
-                    <v-col md="11">
+                    <v-col md="12">
                         <div class="p-2 w-100 bd-highlight">
                             <!-- 管 材 製 程 成 本 分 析 -->
 
@@ -18,7 +18,13 @@
                                 header-bg-variant="info"
                             >
                                 <template #header>
-                                    <h6 class="mb-0"><b-icon icon="building"></b-icon>披 覆 材 料</h6>
+                                    <h6 class="mb-0">
+                                        <b-icon icon="building"></b-icon>
+                                        披 覆 材 料
+                                        <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><button class="btn btn-primary">玻璃</button></a>
+                                        <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><button class="btn btn-primary">柔性膜</button></a>
+                                        <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><button class="btn btn-primary">硬質板</button></a>
+                                    </h6>
                                 </template>
                                 <b-card-text>
                                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
@@ -68,8 +74,8 @@
                                                 <td>{{all.JobDifficulty}}</td>
                                                 <td>{{all.Cost}}</td>
                                                 <td>{{all.SideEffect}}</td>
-                                                <td>None</td>
-                                                <td>None</td>
+                                                <td>{{selectPipeRank[index]}}</td>
+                                                <td>{{selectPipeRankValue[index]}}</td>
                                             </tr>
                                         </table>
                                         <br>
@@ -136,34 +142,6 @@
                             </b-card>
 
                             <br>
-                        </div>
-                    </v-col>
-                    <v-col md="1">
-                        <!-- LME倫敦金屬價格 -->
-                        <div style="position:fixed;">
-                            <!-- <h4 align="center">金屬價格</h4> -->
-                            <br>
-                            <table align="center" style="border:1px solid black;" border='1' >
-                                <thead>
-                                    <tr>
-                                        <td colspan="2" class="table-dark"> {{MetalDate}} </td>
-                                    </tr>
-                                </thead>
-                                <tbody v-for="(metal, index) in MetalPrice" :key="index">
-                                    <tr>
-                                        <td align="center">
-                                            <a :href="metal[3]" target="_blank" style="color:gray;"> {{metal[0]}} </a>
-                                        </td>
-                                        <td align="right">
-                                            {{metal[1]}}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p style = "font-size: 1.5vmin;">
-                                資料來源：
-                                <a href="https://www.lme.com/" target="_blank" style="color:gray;">倫敦金屬交易所</a>
-                            </p>
                         </div>
                     </v-col>
                 </v-row>
@@ -287,16 +265,16 @@ export default {
 
             var Compare = 0,selectComparelist = [],rank = [];
             // 計算 比較值
-            for (var i = 0; i < this.selectPipe.length; i++) {
-                Compare = (this.selectPipe[i][0].Speed * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectPipe[i][0].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Corrosive * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Weight * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][1] * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
+            for (var i = 0; i < this.selectglass.length; i++) {
+                Compare = (this.selectglass[i].LightLoss * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectglass[i].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectglass[i].JobDifficulty * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectglass[i].Cost * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectglass[i].SideEffect * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
                 Compare = Compare.toFixed(2);
-
+                
                 rank = [];
-                rank.push(this.selectPipe[i][0].id);
+                rank.push(this.selectglass[i].id);
                 rank.push(Compare);
                 rank.push(0);
                 selectComparelist.push(rank);
-
+                
             }
 
             /* 將所勾選的 管材進行氣泡排序 */
