@@ -80,5 +80,5 @@ Route::resource('/GreenhouseMasterPlan/CostAnalysis/StrongCost',StrongController
 
 //總體規劃
 use App\Http\Controllers\GreenhouseMasterPlan\OverPlanController;
-Route::resource('/GreenhouseMasterPlan/GreenhouseOverallPlan',OverPlanController::class);
+Route::resource('/GreenhouseMasterPlan/GreenhouseOverallPlanbase',OverPlanController::class);
 

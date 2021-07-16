@@ -11,26 +11,22 @@ class saveoverplan extends Model
     protected $fillable = [
         'pid',
         'uid',
-        'plantclass',   
-        'plant',
-        'croplength',
-        'cropwidth',
+        'userclass',   
+        'usercodename',
+        'palntclass',
+        'cropplant',
         'localcity',
         'localarea',
         'terrain',
         'landform',
-        'greenhouse',
-        'greenhousepipe',
-        'domeforms',
-        'circulararchdistances',
-        'foundations',
-        'spans',
-        'shoulderheights',
-        'lengths',
-        'continuitys',
-        'coatingfilms',
+        'landcondition',
+        'croplength',
+        'cropwidth',
+        'croparea',
+        'position',
+        'quality',
+        'risk',
+        'speed',
+        'cost'
     ];
-
-    
-    public $timestamps = false;
 }

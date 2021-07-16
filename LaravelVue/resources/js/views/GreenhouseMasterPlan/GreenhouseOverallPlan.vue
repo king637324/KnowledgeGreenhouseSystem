@@ -18,8 +18,8 @@
                           </v-col>
                           <v-col md="4">
                             <label for="類別" style="color:rgba(0,0,0,.6); font-size:8px;">類別</label>
-                            <b-select v-model="cropIdx" name="類別">
-                              <option v-for="(crop, index) in user_class" :value="index">
+                            <b-select v-model="classIdx" name="類別">
+                              <option v-for="(crop, index) in user_class" :value="index" :key="index">
                                   {{crop}}
                               </option>
                             </b-select>
@@ -35,7 +35,7 @@
                           <v-col md="4">
                             <label for="分類" style="color:rgba(0,0,0,.6); font-size:8px;">分類</label>
                             <b-select v-model="cropIdx" v-on:change="updateCrop" name="分類">
-                              <option v-for="(crop, index) in CropOrder" :value="index">
+                              <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
                                   {{crop}}
                               </option>
                             </b-select>
@@ -43,7 +43,7 @@
                           <v-col md="4">
                             <label for="作物" style="color:rgba(0,0,0,.6); font-size:8px;">作物</label>
                             <b-select v-model="plantIdx" v-on:change="updatePlant" name="作物">
-                                <option v-for="(plant, index) in GrowPlants" :value="index">
+                                <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
                                     {{plant}}
                                 </option>
                             </b-select>     
@@ -56,7 +56,7 @@
                             <v-col md="2">
                                 <label for="縣市" style="color:rgba(0,0,0,.6); font-size:8px;">縣市</label>
                                 <b-select v-model="cityIdx" v-on:change="updateCity" name="縣市">
-                                    <option v-for="(data, index) in City" :value="index">
+                                    <option v-for="(data, index) in City" :value="index" :key="index">
                                         {{data}}
                                     </option>
                                 </b-select>
@@ -64,7 +64,7 @@
                             <v-col md="2">
                                 <label for="地區" style="color:rgba(0,0,0,.6); font-size:8px;">地區</label>
                                 <b-select v-model="regionIdx" v-on:change="updateRegion" name="地區">
-                                    <option v-for="(data, index) in Region" :value="index">
+                                    <option v-for="(data, index) in Region" :value="index" :key="index">
                                         {{data}}
                                     </option>
                                 </b-select>
@@ -118,7 +118,7 @@
                           <v-col cols="12" md="2">
                             <label for="方位" style="color:rgba(0,0,0,.6); font-size:8px;">方位</label>
                             <b-select v-model="position" name="方位">
-                                <option v-for="(data, index) in allposition" :value="index">
+                                <option v-for="(data, index) in allposition" :value="index" :key="index">
                                     {{data}}
                                 </option>
                             </b-select>
@@ -171,31 +171,23 @@
                                                     <template #header>
                                                         <h6 class="mb-0">
                                                             <b-icon icon="flower1"></b-icon> 
-                                                            {{ time.getFullYear() }}/{{ time.getMonth()+1 }}/{{ time.getDate() }}-{{ OverPlan.plant }}-{{ index+1 }}
+                                                            2021/07/16-{{ OverPlan.cropplant }}-{{ index+1 }}
 
                                                             <button type="button" style="float:right; width:20px; height:20px;" v-on:click="deleterecord(OverPlan.pid)"><b-icon icon="X"></b-icon></button>
                                                         </h6>
                                                     </template>
                                                     <b-card-text>
-                                                        <span>A.溫室作物：{{ OverPlan.plantclass }}-{{ OverPlan.plant }}</span><br>
-                                                        <span>B.栽種面積：{{ OverPlan.croplength }}*{{ OverPlan.cropwidth }}</span><br>
+                                                        <span>A.使用者：{{ OverPlan.userclass }}-{{ OverPlan.usercodename }}</span><br>
+                                                        <span>B.溫室作物：{{ OverPlan.palntclass }}*{{ OverPlan.cropplant }}</span><br>
                                                         <span>C.地點選擇：{{ OverPlan.localcity }}-{{ OverPlan.localarea }}</span><br>
-                                                        <span>D.地型選擇：{{ OverPlan.terrain }}-{{ OverPlan.landform }}</span><br>
-                                                        <span>E.溫室選擇：{{ OverPlan.greenhouse }}</span><br>
-                                                        <span v-if="OverPlan.greenhouse == '簡易溫室'">
-                                                            溫室設計：<br>F.溫室管材-{{ OverPlan.greenhousepipe }}<br>G.圓頂形式-{{ OverPlan.domeforms }}<br>
-                                                                    H.圓拱距-{{ OverPlan.circulararchdistances }}<br>I.簡易基礎-{{ OverPlan.foundations }}<br>
-                                                                    J.簡易跨距-{{ OverPlan.spans }}<br>K.簡易肩高-{{ OverPlan.shoulderheights }}<br>
-                                                                    L.簡易長度-{{ OverPlan.lengths }}<br>M.簡易連續性-{{ OverPlan.continuitys }}<br>
-                                                                    N.簡易披覆材料-{{ OverPlan.coatingfilms }}<br>
+                                                        <span>D.地型地貌：{{ OverPlan.terrain }}-{{ OverPlan.landform }}-{{ OverPlan.landcondition }}</span><br>
+                                                        <span>E.栽種面積：{{ OverPlan.croplength }}x{{ OverPlan.cropwidth }}={{ OverPlan.croparea }}&nbsp;&nbsp;方位{{ OverPlan.position }}</span><br>
+                                                        <span>
+                                                            F.決策權重：品質性能-{{ OverPlan.quality }}<br>
+                                                                        風險性-{{ OverPlan.risk }}<br>
+                                                                        速度性-{{ OverPlan.speed }}<br>
+                                                                        成本性-{{ OverPlan.cost }}<br>
                                                         </span><br>
-                                                        <span v-if="OverPlan.greenhouse == '強固溫室'">
-                                                            溫室設計：<br>F.溫室型材-{{ OverPlan.greenhousepipe }}<br>G.屋頂形式-{{ OverPlan.domeforms }}<br>
-                                                                    H.上拱距-{{ OverPlan.circulararchdistances }}<br>I.基礎-{{ OverPlan.foundations }}<br>
-                                                                    J.跨距-{{ OverPlan.spans }}<br>K.肩高-{{ OverPlan.shoulderheights }}<br>
-                                                                    L.長度-{{ OverPlan.lengths }}<br>M.連續性-{{ OverPlan.continuitys }}<br>
-                                                                    N.披覆材料-{{ OverPlan.coatingfilms }}<br>
-                                                        </span>
                                                     </b-card-text>
                                                 </b-card>
                                             </v-col>
@@ -339,89 +331,7 @@
         Fluidjson: [],
         checkData:[],
         checkedNames: [],
-        
-        /* 簡易型溫室 */
-        SelectSimple:[],
-        SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
-        SimpleCostratios: [],               // 簡易型各建構項目比例
-        SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
-        SimpleCircularArchDistances: [],    // 簡易型圓拱距
 
-        SimpleCoatingFilmsJSON: [],             // 簡易型披覆材料
-        SimpleCoatingFilms: [],             // 簡易型披覆材料
-        SimpleContinuitysJSON: [],              // 簡易型連續性
-        SimpleContinuitys: [],              // 簡易型連續性
-        SimpleDomeFormsJSON: [],                // 簡易型圓頂形式
-        SimpleDomeForms: [],                // 簡易型圓頂形式
-        SimpleFoundationsJSON: [],              // 簡易型基礎
-        SimpleFoundations: [],              // 簡易型基礎
-        SimpleGreenhousePipesJSON: [],          // 簡易型溫室管材
-        SimpleGreenhousePipes: [],          // 簡易型溫室管材
-        SimpleLengthsJSON: [],                  // 簡易型長度
-        SimpleLengths: [],                  // 簡易型長度
-        SimpleShoulderHeightsJSON: [],          // 簡易型肩高
-        SimpleShoulderHeights: [],          // 簡易型肩高
-        SimpleSpansJSON: [],                    // 簡易型跨距
-        SimpleSpans: [],                    // 簡易型跨距
-        /* 簡易型溫室 */
-        SimpleGreenhouse:[],
-        SimpleGreenhouseRatio:[],
-        SimpleGreenhousePipe:null,  // 簡易型溫室管材
-        SimpleDomeForm:null,  // 簡易型圓頂形式
-        SimpleCircularArchDistance:null,  // 簡易型圓拱距
-        SimpleFoundation:null,  // 簡易型基礎
-        SimpleSpan:null,  // 簡易型跨距
-        SimpleShoulderHeight:null,  // 簡易型肩高
-        SimpleLength:null,  // 簡易型長度
-        SimpleContinuity:null,  // 簡易型連續性
-
-        SimpleCoatingFilm:null,  // 簡易型披覆材料
-        SimpleHousrBasePrice:500000, // 簡易型溫室基本價格
-        SimpleTotalSimpleCost:0,
-        SimpleCostAdd:0,
-        SimpleStructuralRiskAdd:0,
-        SimpleJobDifficultyAdd:0,
-        /* 強固型溫室 */
-        SelectRobust:[],
-        StrongCostRatiosJSON: [],               // 強固型各建構項目比例
-        StrongCostRatios: [],               // 強固型各建構項目比例
-
-        StrongCoatingFilmsJSON: [],             // 強固型披覆材料
-        StrongCoatingFilms: [],             // 強固型披覆材料
-        StrongContinuitysJSON: [],              // 強固型連續性
-        StrongContinuitys: [],              // 強固型連續性
-        StrongFoundationsJSON: [],              // 強固型基礎
-        StrongFoundations: [],              // 強固型基礎
-        StrongGreenhousPprofilesJSON: [],       // 強固型溫室型材
-        StrongGreenhousPprofiles: [],       // 強固型溫室型材
-        StrongLengthsJSON: [],                  // 強固型長度
-        StrongLengths: [],                  // 強固型長度
-        StrongRoofFormsJSON: [],                // 強固型屋頂形式
-        StrongRoofForms: [],                // 強固型屋頂形式
-        StrongShoulderHeightsJSON: [],          // 強固型肩高
-        StrongShoulderHeights: [],          // 強固型肩高
-        StrongSpansJSON: [],                    // 強固型跨距
-        StrongSpans: [],                    // 強固型跨距
-        StrongUpperArchDistancesJSON: [],       // 強固型上拱距
-        StrongUpperArchDistances: [],       // 強固型上拱距
-        /* 強固型溫室 */
-        RobustGreenhouse:[],
-        RobustGreenhouseRatio:[],
-        RobustGreenhouseProfile:null,   // 溫室型材
-        RobustRoofForm:null,   // 屋頂形式
-        RobustUpperArch:null,   // 上拱距
-        RobustFoundation:null,   // 強固型基礎
-        RobustSpan:null,   // 強固型跨距
-        RobustShoulderHeight:null,   // 強固型肩高
-        RobustLength:null,   // 強固型長度
-        RobustContinuity:null,   // 強固型連續性
-
-        RobustCoatingFilm:null,   // 強固型披覆材料
-        RuggedHousrBasePrice :1500000,  // 強固型溫室基本價格
-        RobustTotalCost:0,
-        RobustCostAdd:0,
-        RobustStructuralRiskAdd:0,
-        RobustJobDifficultyAdd:0,
 
         time: new Date(),
         OverPlanJson: [],
@@ -429,13 +339,15 @@
 
         showform:true,
 
+        classIdx:0,
+
         allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
         position:0,
         quality:0,
         risk:0,
         speed:0,
         cost:0,
-        decide:[0,0,0,0],
+        decide:['0','0','0','0'],
         area:0,
 
         user_class: ['類別','農民','專家','設計者'],
@@ -465,213 +377,12 @@
             }
             if(!filterfalg) this.City.push(this.regionalwindspeedjson[i].County);
         }
+
         const res = await fetch('/FluidAnalysisJSON',  {
             method: 'GET',
         });
         this.Fluidjson = await res.json();
-        // 簡易型各建構項目比例
-        const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
-            method: 'GET',
-        });
-        this.SimpleCostratiosJSON = await SimpleCostratios.json();
-        for(var i = 0 ; i < this.SimpleCostratiosJSON.length ; i++){
-            if(this.SimpleCostratiosJSON[i].Expert == "System"){
-                this.SimpleCostratios.push(this.SimpleCostratiosJSON[i]);
-            }
-        }
-        // 簡易型圓拱距
-        const SimpleCircularArchDistances = await fetch('/SimpleCircularArchDistanceJSON',  {
-            method: 'GET',
-        });
-        this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
-        for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
-            if(this.SimpleCircularArchDistancesJSON[i].Expert == "System"){
-                this.SimpleCircularArchDistances.push(this.SimpleCircularArchDistancesJSON[i]);
-            }
-        }
-
-        // 簡易型披覆材料
-
-        const SimpleCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
-            method: 'GET',
-        });
-        this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
-        for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
-            if(this.SimpleCoatingFilmsJSON[i].Expert == "System"){
-                this.SimpleCoatingFilms.push(this.SimpleCoatingFilmsJSON[i]);
-            }
-        }
-        // 簡易型連續性
-        const SimpleContinuitys = await fetch('/SimpleContinuityJSON',  {
-            method: 'GET',
-        });
-        this.SimpleContinuitysJSON = await SimpleContinuitys.json();
-        for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
-            if(this.SimpleContinuitysJSON[i].Expert == "System"){
-                this.SimpleContinuitys.push(this.SimpleContinuitysJSON[i]);
-            }
-        }
-        // 簡易型圓頂形式
-        const SimpleDomeForms = await fetch('/SimpleDomeFormJSON',  {
-            method: 'GET',
-        });
-        this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
-        for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
-            if(this.SimpleDomeFormsJSON[i].Expert == "System"){
-                this.SimpleDomeForms.push(this.SimpleDomeFormsJSON[i]);
-            }
-        }
-        // 簡易型基礎
-        const SimpleFoundations = await fetch('/SimpleFoundationJSON',  {
-            method: 'GET',
-        });
-        this.SimpleFoundationsJSON = await SimpleFoundations.json();
-        for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
-            if(this.SimpleFoundationsJSON[i].Expert == "System"){
-                this.SimpleFoundations.push(this.SimpleFoundationsJSON[i]);
-            }
-        }
-        // 簡易型溫室管材
-        const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
-            method: 'GET',
-        });
-        this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
-        for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
-            if(this.SimpleGreenhousePipesJSON[i].Expert == "System"){
-                this.SimpleGreenhousePipes.push(this.SimpleGreenhousePipesJSON[i]);
-            }
-        }
-        // 簡易型長度
-        const SimpleLengths = await fetch('/SimpleLengthJSON',  {
-            method: 'GET',
-        });
-        this.SimpleLengthsJSON = await SimpleLengths.json();
-        for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
-            if(this.SimpleLengthsJSON[i].Expert == "System"){
-                this.SimpleLengths.push(this.SimpleLengthsJSON[i]);
-            }
-        }
-        // 簡易型肩高
-        const SimpleShoulderHeights = await fetch('/SimpleShoulderHeightJSON',  {
-            method: 'GET',
-        });
-        this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
-        for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
-            if(this.SimpleShoulderHeightsJSON[i].Expert == "System"){
-                this.SimpleShoulderHeights.push(this.SimpleShoulderHeightsJSON[i]);
-            }
-        }
-        // 簡易型跨距
-        const SimpleSpans = await fetch('/SimpleSpanJSON',  {
-            method: 'GET',
-        });
-        this.SimpleSpansJSON = await SimpleSpans.json();
-        for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
-            if(this.SimpleSpansJSON[i].Expert == "System"){
-                this.SimpleSpans.push(this.SimpleSpansJSON[i]);
-            }
-        }
-        // 強固型各建構項目比例
-        const StrongCostRatios = await fetch('/StrongCostRatioJSON',  {
-            method: 'GET',
-        });
-        this.StrongCostRatiosJSON = await StrongCostRatios.json();
-        for(var i = 0 ; i < this.StrongCostRatiosJSON.length ; i++){
-            if(this.StrongCostRatiosJSON[i].Expert == "System"){
-                this.StrongCostRatios.push(this.StrongCostRatiosJSON[i]);
-            }
-        }
-
-        // 強固型披覆材料
-        const StrongCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
-            method: 'GET',
-        });
-        this.StrongCoatingFilmsJSON = await StrongCoatingFilms.json();
-        for(var i = 0 ; i < this.StrongCoatingFilmsJSON.length ; i++){
-            if(this.StrongCoatingFilmsJSON[i].Expert == "System"){
-                this.StrongCoatingFilms.push(this.StrongCoatingFilmsJSON[i]);
-            }
-        }
-        // 強固型連續性
-        const StrongContinuitys = await fetch('/StrongContinuityJSON',  {
-            method: 'GET',
-        });
-        this.StrongContinuitysJSON = await StrongContinuitys.json();
-        for(var i = 0 ; i < this.StrongContinuitysJSON.length ; i++){
-            if(this.StrongContinuitysJSON[i].Expert == "System"){
-                this.StrongContinuitys.push(this.StrongContinuitysJSON[i]);
-            }
-        }
-        // 強固型基礎
-        const StrongFoundations = await fetch('/StrongFoundationJSON',  {
-            method: 'GET',
-        });
-        this.StrongFoundationsJSON = await StrongFoundations.json();
-        for(var i = 0 ; i < this.StrongFoundationsJSON.length ; i++){
-            if(this.StrongFoundationsJSON[i].Expert == "System"){
-                this.StrongFoundations.push(this.StrongFoundationsJSON[i]);
-            }
-        }
-        // 強固型溫室型材
-        const StrongGreenhousPprofiles = await fetch('/StrongGreenhouseProfileJSON',  {
-            method: 'GET',
-        });
-        this.StrongGreenhousPprofilesJSON = await StrongGreenhousPprofiles.json();
-        for(var i = 0 ; i < this.StrongGreenhousPprofilesJSON.length ; i++){
-            if(this.StrongGreenhousPprofilesJSON[i].Expert == "System"){
-                this.StrongGreenhousPprofiles.push(this.StrongGreenhousPprofilesJSON[i]);
-            }
-        }
-        // 強固型長度
-        const StrongLengths = await fetch('/StrongLengthJSON',  {
-            method: 'GET',
-        });
-        this.StrongLengthsJSON = await StrongLengths.json();
-        for(var i = 0 ; i < this.StrongLengthsJSON.length ; i++){
-            if(this.StrongLengthsJSON[i].Expert == "System"){
-                this.StrongLengths.push(this.StrongLengthsJSON[i]);
-            }
-        }
-        // 強固型屋頂形式
-        const StrongRoofForms = await fetch('/StrongRoofFormJSON',  {
-            method: 'GET',
-        });
-        this.StrongRoofFormsJSON = await StrongRoofForms.json();
-        for(var i = 0 ; i < this.StrongRoofFormsJSON.length ; i++){
-            if(this.StrongRoofFormsJSON[i].Expert == "System"){
-                this.StrongRoofForms.push(this.StrongRoofFormsJSON[i]);
-            }
-        }
-        // 強固型肩高
-        const StrongShoulderHeights = await fetch('/StrongShoulderHeightJSON',  {
-            method: 'GET',
-        });
-        this.StrongShoulderHeightsJSON = await StrongShoulderHeights.json();
-        for(var i = 0 ; i < this.StrongShoulderHeightsJSON.length ; i++){
-            if(this.StrongShoulderHeightsJSON[i].Expert == "System"){
-                this.StrongShoulderHeights.push(this.StrongShoulderHeightsJSON[i]);
-            }
-        }
-        // 強固型跨距
-        const StrongSpans = await fetch('/StrongSpanJSON',  {
-            method: 'GET',
-        });
-        this.StrongSpansJSON = await StrongSpans.json();
-        for(var i = 0 ; i < this.StrongSpansJSON.length ; i++){
-            if(this.StrongSpansJSON[i].Expert == "System"){
-                this.StrongSpans.push(this.StrongSpansJSON[i]);
-            }
-        }
-        // 強固型上拱距
-        const StrongUpperArchDistances = await fetch('/StrongUpperArchDistanceJSON',  {
-            method: 'GET',
-        });
-        this.StrongUpperArchDistancesJSON = await StrongUpperArchDistances.json();
-        for(var i = 0 ; i < this.StrongUpperArchDistancesJSON.length ; i++){
-            if(this.StrongUpperArchDistancesJSON[i].Expert == "System"){
-                this.StrongUpperArchDistances.push(this.StrongUpperArchDistancesJSON[i]);
-            }
-        }
+        
         const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
         });
@@ -739,198 +450,46 @@
             if(i == this.regionIdx)    this.selectRegion = this.Region[i];
         }
     },
-    updateSimpleRadio(){  // 更新簡易型溫室選擇狀況，判斷是否有選滿9項
-        this.SelectSimple = [];
-        var temp = [];
-        if(this.SimpleGreenhousePipe){
-            temp = [];
-            temp.push('溫室管材');
-            temp.push(this.SimpleGreenhousePipe);
-            this.SelectSimple.push(temp); // 簡易型溫室管材
-        }
-        if(this.SimpleDomeForm){
-            temp = [];
-            temp.push('圓頂形式');
-            temp.push(this.SimpleDomeForm);
-            this.SelectSimple.push(temp);    // 簡易型圓頂形式
-        }
-        if(this.SimpleCircularArchDistance){
-            temp = [];
-            temp.push('圓拱距');
-            temp.push(this.SimpleCircularArchDistance);
-            this.SelectSimple.push(temp);    // 簡易型圓拱距
-        }
-        if(this.SimpleFoundation){
-            temp = [];
-            temp.push('基礎');
-            temp.push(this.SimpleFoundation);
-            this.SelectSimple.push(temp);    // 簡易型基礎
-        }
-        if(this.SimpleSpan){
-            temp = [];
-            temp.push('跨距');
-            temp.push(this.SimpleSpan);
-            this.SelectSimple.push(temp);    // 簡易型跨距
-        }
-        if(this.SimpleShoulderHeight){
-            temp = [];
-            temp.push('肩高');
-            temp.push(this.SimpleShoulderHeight);
-            this.SelectSimple.push(temp);    // 簡易型肩高
-        }
-        if(this.SimpleLength){
-            temp = [];
-            temp.push('長度');
-            temp.push(this.SimpleLength);
-            this.SelectSimple.push(temp);    // 簡易型長度
-        }
-        if(this.SimpleContinuity){
-            temp = [];
-            temp.push('連續性');
-            temp.push(this.SimpleContinuity);
-            this.SelectSimple.push(temp);    // 簡易型連續性
-        }
-        if(this.SimpleCoatingFilm){
-            temp = [];
-
-            temp.push('披覆材料');
-            temp.push(this.SimpleCoatingFilm);
-            this.SelectSimple.push(temp);  // 簡易型披覆材料
-        }
-        if(this.SelectSimple.length == 9 ){
-            this.SimpleTotalSimpleCost = 0,
-            this.SimpleCostAdd = 0,
-            this.SimpleStructuralRiskAdd = 0,
-            this.SimpleJobDifficultyAdd = 0;
-            for (var i = 0; i < this.SelectSimple.length; i++) {
-                this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
-                this.SimpleCostAdd += this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
-                this.SimpleStructuralRiskAdd += this.SelectSimple[i][1].StructuralRisk * this.SimpleCostratios[i].StructuralRisk / 100;
-                this.SimpleJobDifficultyAdd += this.SelectSimple[i][1].JobDifficulty * this.SimpleCostratios[i].JobDifficulty/ 100;
-            }
-            this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
-            this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
-            this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);
-            this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
-        }
-        },
-    updateRobustRadio(){  // 更新強固型溫室選擇狀況，判斷是否有選滿9項
-        this.SelectRobust = [];
-        var temp = [];
-        if(this.RobustGreenhouseProfile){
-            temp = [];
-            temp.push('溫室型材');
-            temp.push(this.RobustGreenhouseProfile);
-            this.SelectRobust.push(temp); // 溫室型材
-        }
-        if(this.RobustRoofForm){
-            temp = [];
-            temp.push('屋頂形式');
-            temp.push(this.RobustRoofForm);
-            this.SelectRobust.push(temp); // 屋頂形式
-        }
-        if(this.RobustUpperArch){
-            temp = [];
-            temp.push('上拱距');
-            temp.push(this.RobustUpperArch);
-            this.SelectRobust.push(temp); // 上拱距
-        }
-        if(this.RobustFoundation){
-            temp = [];
-            temp.push('基礎');
-            temp.push(this.RobustFoundation);
-            this.SelectRobust.push(temp); // 強固型基礎
-        }
-        if(this.RobustSpan){
-            temp = [];
-            temp.push('跨距');
-            temp.push(this.RobustSpan);
-            this.SelectRobust.push(temp); // 強固型跨距
-        }
-        if(this.RobustShoulderHeight){
-            temp = [];
-            temp.push('肩高');
-            temp.push(this.RobustShoulderHeight);
-            this.SelectRobust.push(temp); // 強固型肩高
-        }
-        if(this.RobustLength){
-            temp = [];
-            temp.push('長度');
-            temp.push(this.RobustLength);
-            this.SelectRobust.push(temp); // 強固型長度
-        }
-        if(this.RobustContinuity){
-            temp = [];
-            temp.push('連續性');
-            temp.push(this.RobustContinuity);
-            this.SelectRobust.push(temp); // 強固型連續性
-        }
-        if(this.RobustCoatingFilm){
-            temp = [];
-            temp.push('披覆材料');
-            temp.push(this.RobustCoatingFilm);
-            this.SelectRobust.push(temp); // 披覆材料
-        }
-        if(this.SelectRobust.length == 9 ){
-            this.RobustTotalCost = 0,
-            this.RobustCostAdd = 0,
-            this.RobustStructuralRiskAdd = 0,
-            this.RobustJobDifficultyAdd = 0;
-            for (var i = 0; i < this.SelectRobust.length; i++) {
-                this.RobustTotalCost += this.RuggedHousrBasePrice * this.SelectRobust[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
-                this.RobustCostAdd += this.SelectRobust[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
-                this.RobustStructuralRiskAdd += this.SelectRobust[i][1].StructuralRisk * this.StrongCostRatios[i].StructuralRisk / 100;
-                this.RobustJobDifficultyAdd += this.SelectRobust[i][1].JobDifficulty * this.StrongCostRatios[i].JobDifficulty/ 100;
-            }
-            this.RobustTotalCost =  parseInt(this.RobustTotalCost);
-            this.RobustCostAdd =  this.RobustCostAdd.toFixed(2);
-            this.RobustStructuralRiskAdd =  this.RobustStructuralRiskAdd.toFixed(2);
-            this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
-        }
-    },
     recordallinfo: async function() {
+        
         this.recordinfos = []
-        this.recordinfos.push(2) //作物分類
-        this.recordinfos.push(this.CropOrder[this.cropIdx]) //作物分類
-        this.recordinfos.push(this.GrowPlants [this.plantIdx]) //作物選擇
-        this.recordinfos.push(this.plantlength) //長度
-        this.recordinfos.push(this.plantwidth) //寬度
-        this.recordinfos.push(this.selectCity) //選擇城市
-        this.recordinfos.push(this.selectRegion) //選擇地區
-        this.recordinfos.push(this.SelectTerrain) //選擇地形
-        this.recordinfos.push(this.SelectLandform) //選擇地貌
-        this.recordinfos.push(this.greenhouseradio) //簡易or強固
-        if (this.greenhouseradio == '簡易溫室'){
-            for(var i = 0; i < this.SelectSimple.length; i++){
-                this.recordinfos.push(this.SelectSimple[i][1].BuildItem) 
-            }
-        } else if(this.greenhouseradio == '強固溫室'){
-            for(var i = 0; i < this.SelectRobust.length; i++){
-                this.recordinfos.push(this.SelectRobust[i][1].BuildItem) 
-            }            
-        }
-
+        this.recordinfos.push(this.user_class[this.classIdx]) //作物分類
+        this.recordinfos.push(this.codename) //作物選擇
+        this.recordinfos.push(this.CropOrder[this.cropIdx])
+        this.recordinfos.push(this.GrowPlants[this.plantIdx])
+        this.recordinfos.push(this.selectCity)
+        this.recordinfos.push(this.selectRegion)
+        this.recordinfos.push(this.SelectTerrain)
+        this.recordinfos.push(this.SelectLandform)
+        this.recordinfos.push(this.SelectLandcondition)
+        this.recordinfos.push(this.plantlength)
+        this.recordinfos.push(this.plantwidth)
+        this.recordinfos.push(this.area)
+        this.recordinfos.push(this.allposition[this.position])
+        this.recordinfos.push(this.quality)
+        this.recordinfos.push(this.risk)
+        this.recordinfos.push(this.speed)
+        this.recordinfos.push(this.cost)
+        
         let formData = new FormData();
         let formarray = [
-            'uid',
-            'plantclass',
-            'plant',
-            'croplength',
-            'cropwidth',
+            'userclass',
+            'usercodename',
+            'palntclass',
+            'cropplant',
             'localcity',
             'localarea',
             'terrain',
             'landform',
-            'greenhouse',
-            'greenhousepipe',
-            'domeforms',
-            'circulararchdistances',
-            'foundations',
-            'spans',
-            'shoulderheights',
-            'lengths',
-            'continuitys',
-            'coatingfilms',
+            'landcondition',
+            'croplength',
+            'cropwidth',
+            'croparea',
+            'position',
+            'quality',
+            'risk',
+            'speed',
+            'cost',
             ]
         for (var i = 0; i < formarray.length; i++){
             formData.append(formarray[i],this.recordinfos[i]) 

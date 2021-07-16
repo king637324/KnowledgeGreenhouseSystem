@@ -37,24 +37,23 @@ class OverPlanController extends Controller
     public function store(Request $request)
     {
         $saveoverplan = new saveoverplan();
-        $saveoverplan->plantclass = $request->plantclass;
-        $saveoverplan->plant = $request->plant;
-        $saveoverplan->croplength = $request->croplength;
-        $saveoverplan->cropwidth = $request->cropwidth;
+        $saveoverplan->userclass = $request->userclass;
+        $saveoverplan->usercodename = $request->usercodename;
+        $saveoverplan->palntclass = $request->palntclass;
+        $saveoverplan->cropplant = $request->cropplant;
         $saveoverplan->localcity = $request->localcity;
         $saveoverplan->localarea = $request->localarea;
         $saveoverplan->terrain = $request->terrain;
         $saveoverplan->landform = $request->landform;
-        $saveoverplan->greenhouse = $request->greenhouse;
-        $saveoverplan->greenhousepipe = $request->greenhousepipe;
-        $saveoverplan->domeforms = $request->domeforms;
-        $saveoverplan->circulararchdistances = $request->circulararchdistances;
-        $saveoverplan->foundations = $request->foundations;
-        $saveoverplan->spans = $request->spans;
-        $saveoverplan->shoulderheights = $request->shoulderheights;
-        $saveoverplan->lengths = $request->lengths;
-        $saveoverplan->continuitys = $request->continuitys;
-        $saveoverplan->coatingfilms = $request->coatingfilms;
+        $saveoverplan->landcondition = $request->landcondition;
+        $saveoverplan->croplength = $request->croplength;
+        $saveoverplan->cropwidth = $request->cropwidth;
+        $saveoverplan->croparea = $request->croparea;
+        $saveoverplan->position = $request->position;
+        $saveoverplan->quality = $request->quality;
+        $saveoverplan->risk = $request->risk;
+        $saveoverplan->speed = $request->speed;
+        $saveoverplan->cost = $request->cost;
         $saveoverplan->save();
         return response()->json($saveoverplan);
     }

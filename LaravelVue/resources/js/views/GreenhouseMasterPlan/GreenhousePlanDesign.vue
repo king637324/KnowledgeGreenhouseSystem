@@ -1424,32 +1424,32 @@
         }
 
         let formData = new FormData();
-        let formarray = [
-            'uid',
-            'plantclass',
-            'plant',
-            'croplength',
-            'cropwidth',
-            'localcity',
-            'localarea',
-            'terrain',
-            'landform',
-            'greenhouse',
-            'greenhousepipe',
-            'domeforms',
-            'circulararchdistances',
-            'foundations',
-            'spans',
-            'shoulderheights',
-            'lengths',
-            'continuitys',
-            'coatingfilms',
-            ]
-        for (var i = 0; i < formarray.length; i++){
-            formData.append(formarray[i],this.recordinfos[i]) 
-        }
-        const response = await SaveOverPlan.createOverPlan(formData)
-        this.overplanArray.push(response.data)
+        // let formarray = [
+        //     'uid',
+        //     'plantclass',
+        //     'plant',
+        //     'croplength',
+        //     'cropwidth',
+        //     'localcity',
+        //     'localarea',
+        //     'terrain',
+        //     'landform',
+        //     'greenhouse',
+        //     'greenhousepipe',
+        //     'domeforms',
+        //     'circulararchdistances',
+        //     'foundations',
+        //     'spans',
+        //     'shoulderheights',
+        //     'lengths',
+        //     'continuitys',
+        //     'coatingfilms',
+        //     ]
+        // for (var i = 0; i < formarray.length; i++){
+        //     formData.append(formarray[i],this.recordinfos[i]) 
+        // }
+        // const response = await SaveOverPlan.createOverPlan(formData)
+        // this.overplanArray.push(response.data)
         this.showform = false;
     },
     deleterecord: async function(DeleteId){ 
