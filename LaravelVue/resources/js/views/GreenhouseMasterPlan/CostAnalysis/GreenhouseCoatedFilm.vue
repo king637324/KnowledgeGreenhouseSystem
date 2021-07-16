@@ -11,7 +11,7 @@
                     <v-col md="12">
                         <div class="p-2 w-100 bd-highlight">
                             <!-- 管 材 製 程 成 本 分 析 -->
-
+                        <b-card-group>
                             <b-card
                                 header-tag="header"
                                 header-text-variant="white"
@@ -136,11 +136,30 @@
                                                 <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
                                             </tr>
                                         </table>
-
                                     </div>
                                 </b-card-text>
                             </b-card>
-
+                            <b-card
+                                header-tag="header"
+                                header-text-variant="white"
+                                header-bg-variant="info"
+                            >
+                                <template #header>
+                                    <h6 class="mb-0">
+                                        <b-icon icon="building"></b-icon>
+                                        科 普 披 覆 材 料
+                                        <button class="btn btn-primary" v-on:click="glassshow = true,softshow = false,hardshow = false">玻璃</button>
+                                        <button class="btn btn-primary" v-on:click="glassshow = false,softshow = true,hardshow = false">柔性膜</button>
+                                        <button class="btn btn-primary" v-on:click="glassshow = false,softshow = false,hardshow = true">硬質板</button>
+                                    </h6>
+                                </template>
+                                <b-card-text>
+                                  <div v-html="glasscontent[0]" v-show="glassshow"></div>
+                                  <div v-html="softcontent[0]" v-show="softshow"></div>
+                                  <div v-html="hardcontent[0]" v-show="hardshow"></div>
+                                </b-card-text>
+                            </b-card>
+                        </b-card-group>
                             <br>
                         </div>
                     </v-col>
@@ -198,6 +217,16 @@ export default {
             glass:[],
             SoftFilm:[],
             HardFilm:[],
+
+            Knowledgejson:[],
+
+            glasscontent:[],
+            softcontent:[],
+            hardcontent:[],
+
+            glassshow:true,
+            softshow:false,
+            hardshow:false,
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -233,6 +262,20 @@ export default {
                 method: 'GET',
             });
             this.CoatingFilmJSON = await CoatingFilmJSON.json();
+
+            const Knowledge = await fetch('/KnowledgeJSON',  {
+                method: 'GET',
+            });
+            this.Knowledgejson = await Knowledge.json();
+            for(var i = 0; i < this.Knowledgejson.length; i++){
+                if(this.Knowledgejson[i].name == '玻璃'){
+                    this.glasscontent.push(this.Knowledgejson[i].content)
+                } else if (this.Knowledgejson[i].name == '軟性薄膜'){
+                    this.softcontent.push(this.Knowledgejson[i].content)
+                } else if (this.Knowledgejson[i].name == '硬質塑膠'){
+                    this.hardcontent.push(this.Knowledgejson[i].content)
+                }
+            }
 
             // 美金價格
             const USDJSON = await fetch('/USDPriceJSON',  {
