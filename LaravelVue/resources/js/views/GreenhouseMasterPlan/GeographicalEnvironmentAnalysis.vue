@@ -88,6 +88,7 @@
                         <h5>颱風登陸總機率： {{LandingProbability}} %</h5>
                         <h5>颱風路徑總機率： {{PathProbability}} %</h5>
                         <h5>風速加級： None</h5>
+                        <h5>腐蝕加級： None</h5>
                         <br>
                         <h6>備註：風速為臺灣地區各地之基本設計風速 </h6>
 

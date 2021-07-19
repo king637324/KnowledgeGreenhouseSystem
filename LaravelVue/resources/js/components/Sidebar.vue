@@ -65,7 +65,7 @@
                         </router-link> -->
                         <div class="sb-sidenav-menu-heading">規劃</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#總體規劃" aria-expanded="false">
-                            總體規劃
+                            溫室總體規畫系統
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="總體規劃" aria-labelledby="headingOne">

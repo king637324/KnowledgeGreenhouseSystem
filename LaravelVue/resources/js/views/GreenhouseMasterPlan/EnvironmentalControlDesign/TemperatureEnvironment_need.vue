@@ -191,58 +191,126 @@
             </b-card>
         </b-card-group>
         <br>
-        <b-card-group>
+                <b-card-group>
             <b-card
                 header-tag="header"
                 header-text-variant="white"
                 header-bg-variant="info"
             >
                 <template #header>
-                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫控需求-降溫控制</h6>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫環境-設備控制</h6>
                 </template>
-                <b-card-text>
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">降溫控制</span></p>
-                    <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
-                        <option v-for="(crop, index) in Tempjson" :value="index" :key="index" v-if="crop.ControlItem=='降溫控制'">
-                            {{crop.ControlSystem}}
-                        </option>
-                    </b-select>
+                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                    <thead class="table-active">
+                        <tr align="center">
+                            <td style='width:5vmin'> 勾選 </td>
+                            <td style='width:23vmin'> 材料名稱 </td>
+                            <td style='width:8vmin'> 品質控制差異 </td>
+                            <td style='width:8vmin'> 結構風險 </td>
+                            <td style='width:8vmin'> 作業難易 </td>
+                            <td style='width:8vmin'> 成本性 </td>
+                            <td style='width:8vmin'> 副作用 </td>
+                        </tr>
+                    </thead>
+                    <tr align="center" v-for="(all, index) in Tempjson" :key="index">
+                        <td>
+                            <input type="checkbox" :value="all.id" v-model="checkedTemp" v-on:change="updateSelectTemp">
+                        </td>
+                        
+                        <td>{{all.ControlItem}}-{{all.ControlSystem}}</td>
+                        <td>{{all.QualityControl}}</td>
+                        <td>{{all.StructuralRisk}}</td>
+                        <td>{{all.JobDifficulty}}</td>
+                        <td>{{all.Cost}}</td>
+                        <td>{{all.SideEffect}} </td>
+                    </tr>
+                </table>
+                <br>
+                <div v-if="checkedTemp.length != 0">
+                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                        <thead class="table-active">
+                            <tr align="center">
+                                <td style='width:23vmin'> 材料名稱 </td>
+                                <td style='width:8vmin'> 品質控制差異 </td>
+                                <td style='width:8vmin'> 結構風險 </td>
+                                <td style='width:8vmin'> 作業難易 </td>
+                                <td style='width:8vmin'> 成本性 </td>
+                                <td style='width:8vmin'> 副作用 </td>
+                                <td style='width:6.5vmin'> 比較值 </td>
+                                <td style='width:6.5vmin'> 排名 </td>
+                            </tr>
+                        </thead>
+                        <tr align="center" v-for="(select, index) in selectTemp" :key="index">
+                            <td>{{select.ControlItem}}-{{select.ControlSystem}}</td>
+                            <td>{{select.QualityControl}}</td>
+                            <td>{{select.StructuralRisk}}</td>
+                            <td>{{select.JobDifficulty}}</td>
+                            <td>{{select.Cost}}</td>
+                            <td>{{select.SideEffect}} </td>
+                            <td>{{selectTempRank[index]}}</td>
+                            <td>{{selectTempRankValue[index]}}</td>
+                        </tr>
+                    </table>
+                    <br>
 
-                    <br>
-                    <br>
-                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
-                        <tr align="center" class="table-active">
-                            <td colspan="6">溫度適應性</td>
+                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                        <thead class="table-active">
+                            <tr align="center">
+                                <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
+                                <td>
+                                    <button type="button" class="btn btn-warning" v-on:click="updateProfileCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td> 品質差異 </td>
+                                <td> 結構風險 </td>
+                                <td> 作業難度 </td>
+                                <td> 成本性 </td>
+                                <td> 副作用 </td>
+                            </tr>
+                        </thead>
+                        <tr align="center">
+                            <td>
+                                <v-text-field
+                                    label="品質差異"
+                                    v-model="ProfileSpeed"
+                                ></v-text-field>
+                            </td>
+                            <td>
+                                <v-text-field
+                                    label="結構風險"
+                                    v-model="ProfileStructuralRisk"
+                                ></v-text-field>
+                            </td>
+                            <td>
+                                <v-text-field
+                                    label="作業難度"
+                                    v-model="ProfileCorrosive"
+                                ></v-text-field>
+                            </td>
+                            <td>
+                                <v-text-field
+                                    label="成本性"
+                                    v-model="ProfileWeightiness"
+                                ></v-text-field>
+                            </td>
+                            <td>
+                                <v-text-field
+                                    label="副作用"
+                                    v-model="ProfileCost"
+                                ></v-text-field>
+                            </td>
                         </tr>
                         <tr align="center">
-                            <td id="Temperatureadaptability" colspan="6"> None </td>
-                        </tr>
-                        <tr align="center" class="table-active">
-                            <td colspan="3">生長溫度</td>
-                            <td colspan="3">發芽溫度</td>
-                        </tr>
-                        <tr align="center" class="table-active">
-                            <td>最低溫</td>
-                            <td>最適溫</td>
-                            <td>最高溫</td>
-                            <td>最低溫</td>
-                            <td>最適溫</td>
-                            <td>最高溫</td>
-                        </tr>
-                        <tr align="center">
-                            <td id="LowestGrowthTemperature"> None </td>
-                            <td id="OptimalGrowthTemperature"> None </td>
-                            <td id="HighestGrowthTemperature"> None </td>
-                            <td id="LowestGerminationTemperature"> None </td>
-                            <td id="OptimumGerminationTemperature"> None </td>
-                            <td id="HighestGerminationTemperature"> None </td>
+                            <td>  {{Math.floor(ProfileSpeed/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                            <td>  {{Math.floor(ProfileStructuralRisk/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                            <td>  {{Math.floor(ProfileCorrosive/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                            <td>  {{Math.floor(ProfileWeightiness/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                            <td>  {{Math.floor(ProfileCost/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
                         </tr>
                     </table>
 
-                    <br>
-                    <br>
-                    <h6>備註： - 為尚無資料</h6>
-                </b-card-text>
+                </div>
             </b-card>
             <b-card
                 header-tag="header"
@@ -250,101 +318,8 @@
                 header-bg-variant="info"
             >
                 <template #header>
-                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫控需求-加溫控制</h6>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫環境-設備控制</h6>
                 </template>
-                <b-card-text>
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">加溫控制</span></p>
-                    <b-select v-model="cropIdx1" v-on:change="updateCrop" style="width:20vmin" >
-                        <option v-for="(crop, index) in Tempjson" :value="index" :key="index" v-if="crop.ControlItem=='加溫控制'">
-                            {{crop.ControlSystem}}
-                        </option>
-                    </b-select>
-                    <br>
-                    <br>
-                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
-                        <tr align="center" class="table-active">
-                            <td colspan="6">溫度適應性</td>
-                        </tr>
-                        <tr align="center">
-                            <td id="Temperatureadaptability" colspan="6"> None </td>
-                        </tr>
-                        <tr align="center" class="table-active">
-                            <td colspan="3">生長溫度</td>
-                            <td colspan="3">發芽溫度</td>
-                        </tr>
-                        <tr align="center" class="table-active">
-                            <td>最低溫</td>
-                            <td>最適溫</td>
-                            <td>最高溫</td>
-                            <td>最低溫</td>
-                            <td>最適溫</td>
-                            <td>最高溫</td>
-                        </tr>
-                        <tr align="center">
-                            <td id="LowestGrowthTemperature"> None </td>
-                            <td id="OptimalGrowthTemperature"> None </td>
-                            <td id="HighestGrowthTemperature"> None </td>
-                            <td id="LowestGerminationTemperature"> None </td>
-                            <td id="OptimumGerminationTemperature"> None </td>
-                            <td id="HighestGerminationTemperature"> None </td>
-                        </tr>
-                    </table>
-
-                    <br>
-                    <br>
-                    <h6>備註： - 為尚無資料</h6>
-                </b-card-text>
-            </b-card>
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
-                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫控需求-濕度控制</h6>
-                </template>
-                <b-card-text>
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">濕度控制</span></p>
-                    <b-select v-model="cropIdx2" v-on:change="updateCrop" style="width:20vmin" >
-                        <option v-for="(crop, index) in Tempjson" :value="index" :key="index" v-if="crop.ControlItem=='濕度控制'">
-                            {{crop.ControlSystem}}
-                        </option>
-                    </b-select>
-                    <br>
-                    <br>
-                    <table class="separate" style="border:1px solid black;" border='1' width="100%">
-                        <tr align="center" class="table-active">
-                            <td colspan="6">溫度適應性</td>
-                        </tr>
-                        <tr align="center">
-                            <td id="Temperatureadaptability" colspan="6"> None </td>
-                        </tr>
-                        <tr align="center" class="table-active">
-                            <td colspan="3">生長溫度</td>
-                            <td colspan="3">發芽溫度</td>
-                        </tr>
-                        <tr align="center" class="table-active">
-                            <td>最低溫</td>
-                            <td>最適溫</td>
-                            <td>最高溫</td>
-                            <td>最低溫</td>
-                            <td>最適溫</td>
-                            <td>最高溫</td>
-                        </tr>
-                        <tr align="center">
-                            <td id="LowestGrowthTemperature"> None </td>
-                            <td id="OptimalGrowthTemperature"> None </td>
-                            <td id="HighestGrowthTemperature"> None </td>
-                            <td id="LowestGerminationTemperature"> None </td>
-                            <td id="OptimumGerminationTemperature"> None </td>
-                            <td id="HighestGerminationTemperature"> None </td>
-                        </tr>
-                    </table>
-
-                    <br>
-                    <br>
-                    <h6>備註： - 為尚無資料</h6>
-                </b-card-text>
             </b-card>
         </b-card-group>
 
@@ -359,7 +334,6 @@ export default {
         return {
             tabIndex: 0,
             vegetablejson:[],
-            windspeedjson:[],  // 風速對照表
             regionalwindspeedjson:[],   // 縣市地區資料
 
             /* 種植植物生長環境需求*/
@@ -401,11 +375,18 @@ export default {
             SelectTerrain:0, // 選擇地形
             SelectLandform:0, // 選擇地貌
 
-            Series: '-', // 風力級數
-            Wind: '-',   // 風的名稱
-            SpeedPerSecond: '-',    // 風速
-
             Tempjson:[],
+            checkedTemp:[],
+            TempData:[],
+            selectTemp:[],
+            selectTempRank:[],
+            selectTempRankValue:[],
+            ProfileSpeed:null,
+            ProfileStructuralRisk:null,
+            ProfileCorrosive:null,
+            ProfileWeightiness:null,
+            ProfileCost:null,
+            ProfileTotal:null,
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -419,23 +400,11 @@ export default {
             });
             this.vegetablejson = await Vegetable.json();
 
-            // 風速對照表
-            const WindSpeed = await fetch('/WindSpeedControlJSON',  {
-                method: 'GET',
-            });
-            this.windspeedjson = await WindSpeed.json();
-
             // 縣市地區資料
             const RegionalWindSpeed = await fetch('/RegionalWindSpeedJSON',  {
                 method: 'GET',
             });
             this.regionalwindspeedjson = await RegionalWindSpeed.json();
-
-            // 風力登陸分析、風力路徑分析
-            const WindLandingAndPath = await fetch('/WindLandingAndPathJSON',  {
-                method: 'GET',
-            });
-            this.windlandingandpathjson = await WindLandingAndPath.json();
 
             const Temp = await fetch('/TempJson',  {
                 method: 'GET',
@@ -452,7 +421,10 @@ export default {
                 if(!filterfalg) this.City.push(this.regionalwindspeedjson[i].County);
 
             }
-
+            for (var i = 0; i < this.Tempjson.length; i++) {
+                
+                this.TempData.push(this.Tempjson[i]);
+            }
 
         },updateCrop(){     // 更新所選擇的作物分類
             // 從所選的作物id 找到 所選作物分類
@@ -544,17 +516,71 @@ export default {
             this.CropTemperature[1].data = {"1月":this.StrHighTemperature[0],"2月":this.StrHighTemperature[1],"3月":this.StrHighTemperature[2],"4月":this.StrHighTemperature[3],"5月":this.StrHighTemperature[4],"6月":this.StrHighTemperature[5],"7月":this.StrHighTemperature[6],"8月":this.StrHighTemperature[7],"9月":this.StrHighTemperature[8],"10月":this.StrHighTemperature[9],"11月":this.StrHighTemperature[10],"12月":this.StrHighTemperature[11]};
 
 
-            // 取得 級數 & 風名
-            for(var i = 0 ; i < this.windspeedjson.length ; i++){
-                if((this.SpeedPerSecond < this.windspeedjson[i].SpeedMax) && (this.SpeedPerSecond > this.windspeedjson[i].SpeedMin)){
-                    this.Series = this.windspeedjson[i].Series;
-                    this.Wind = this.windspeedjson[i].Wind;
-                }else if(this.SpeedPerSecond > this.windspeedjson[i].SpeedMax){
-                    this.Series = this.windspeedjson[i].Series;
-                    this.Wind = this.windspeedjson[i].Wind;
+
+        },updateSelectTemp(){    // 更新所選擇的型材
+            this.selectTemp = [];
+
+            for (var i = 0; i < this.TempData.length; i++) {
+                for (var j = 0; j < this.checkedTemp.length; j++) {
+                    if(this.checkedTemp[j] == this.TempData[i].id)  this.selectTemp.push(this.TempData[i]);
+                }
+
+            }
+
+        },updateProfileCompare(){   // 更新所選型材的參數比較
+            this.ProfileTotal = parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost);
+
+            var Compare = 0,selectComparelist = [],rank = [];
+            // 計算 比較值
+            for (var i = 0; i < this.selectTemp.length; i++) {
+                Compare = (this.selectTemp[i].QualityControl * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectTemp[i].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectTemp[i].JobDifficulty * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectTemp[i].Cost * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectTemp[i].SideEffect * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
+                Compare = Compare.toFixed(2);
+
+                rank = [];
+                rank.push(this.selectTemp[i].id);
+                rank.push(Compare);
+                rank.push(0);
+                selectComparelist.push(rank);
+
+            }
+
+            /* 將所勾選的 型材進行氣泡排序 */
+            var temp;
+            for (var i = selectComparelist.length - 1; i > 0; i--) {
+                for (var j = 0; j <= i - 1; j++) {
+                    if (selectComparelist[j][1] > selectComparelist[j + 1][1]) {
+                        temp = selectComparelist[j];
+                        selectComparelist[j] = selectComparelist[j + 1];
+                        selectComparelist[j + 1] = temp;
+                    }
                 }
             }
 
+            /* 將所勾選的 型材進行排名 */
+            for (var i = 0; i < selectComparelist.length; i++) {
+                var a=i;
+                selectComparelist[i][2] = ++a;
+            }
+
+            /* 將所勾選的 型材進行id序號的氣泡排序，才能使顯示是照順序的 */
+            for (var i = selectComparelist.length - 1; i > 0; i--) {
+                for (var j = 0; j <= i - 1; j++) {
+                    if (selectComparelist[j][0] > selectComparelist[j + 1][0]) {
+                        temp = selectComparelist[j];
+                        selectComparelist[j] = selectComparelist[j + 1];
+                        selectComparelist[j + 1] = temp;
+                    }
+                }
+            }
+
+            this.selectTempRank = [],  // 排名
+            this.selectTempRankValue = []; // 排名值
+
+            /* 將所勾選的 型材 比較值與排名 顯示 */
+            for (var i = 0; i < selectComparelist.length; i++) {
+                this.selectTempRankValue.push(selectComparelist[i][2]);
+                this.selectTempRank.push(selectComparelist[i][1]);
+            }
         }
     }
 }

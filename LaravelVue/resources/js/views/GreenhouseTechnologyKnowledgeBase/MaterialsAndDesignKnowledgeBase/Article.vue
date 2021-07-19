@@ -8,7 +8,7 @@
                     <h3>材料與設計知識庫</h3>
                     <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
                     <v-text-field
-                        label="知識庫搜尋欄"
+                        label="請輸入欲搜尋文字"
                         v-model="Search"
                         @input="getSearchSelect"
                         >
