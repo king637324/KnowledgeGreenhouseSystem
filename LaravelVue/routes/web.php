@@ -51,6 +51,7 @@ use App\Http\Controllers\GreenhouseMasterPlan\GeographicalController;
 Route::get('/WindSpeedControlJSON',[GeographicalController::class, 'getJSON_WindSpeedControl']);
 Route::get('/RegionalWindSpeedJSON',[GeographicalController::class, 'getJSON_RegionalWindSpeed']);
 Route::get('/WindLandingAndPathJSON',[GeographicalController::class, 'getJSON_WindLandingAndPath']);
+Route::get('/WindCorrosionsJSON',[GeographicalController::class, 'getJSON_WindCorrosions']);
 
 use App\Http\Controllers\GreenhouseMasterPlan\CropController;
 // 溫室總體規劃設計－溫室作物選擇

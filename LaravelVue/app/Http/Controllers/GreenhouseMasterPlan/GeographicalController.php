@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\GreenhouseMasterPlan\GeographicalEnvironmentAnalysis\regionalwindspeed;
 use App\Models\GreenhouseMasterPlan\GeographicalEnvironmentAnalysis\windspeedcontrol;
 use App\Models\GreenhouseMasterPlan\GeographicalEnvironmentAnalysis\windlandingandpath;
+use App\Models\GreenhouseMasterPlan\wind_corrosion;
 
 class GeographicalController extends Controller
 {
@@ -30,6 +31,13 @@ class GeographicalController extends Controller
     {
         $windlandingandpath = windlandingandpath::get();
         return $windlandingandpath;
+    }
+
+    // 將資料庫的WindLandingAndPath資料表  轉成JSON
+    public function getJSON_WindCorrosions()
+    {
+        $wind_corrosion = wind_corrosion::get();
+        return $wind_corrosion;
     }
 
 

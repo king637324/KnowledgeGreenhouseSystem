@@ -39,20 +39,16 @@
                             <v-row>
                                 <v-col>
                                     <label for="地形" style="color:rgba(0,0,0,.6); font-size:8px;">地形</label>
-                                    <b-select v-model="SelectTerrain" name="地形" style="font-size: 2vmin; width:10vmin">
+                                    <b-select v-model="SelectTerrain" name="地形" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)" style="font-size: 2vmin; width:10vmin">
                                         <option value="0">地形</option>
-                                        <option value="平原">平原</option>
-                                        <option value="山區">山區</option>
-                                        <option value="海邊">海邊</option>
+                                        <option v-for="(data, index) in windcorrosionjson" :value="data.landtype" :key="index" v-if="data.land=='地形'">{{ data.landtype }}</option>
                                     </b-select>
                                 </v-col>  
                                 <v-col>  
                                     <label for="地貌" style="color:rgba(0,0,0,.6); font-size:8px;">地貌</label>
-                                    <b-select v-model="SelectLandform" name="地貌" style="font-size: 2vmin; width:10vmin">
+                                    <b-select v-model="SelectLandform" name="地貌" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)" style="font-size: 2vmin; width:10vmin">
                                         <option value="0">地貌</option>
-                                        <option value="建築物">建築物</option>
-                                        <option value="空曠">空曠</option>
-                                        <option value="風口">風口</option>
+                                        <option v-for="(data, index) in windcorrosionjson" :value="data.landtype" :key="index" v-if="data.land=='地貌'">{{ data.landtype }}</option>
                                     </b-select>
                                 </v-col>
                                 <v-col>
@@ -87,8 +83,8 @@
                         <h5>風力路徑分析： {{Path}} </h5>
                         <h5>颱風登陸總機率： {{LandingProbability}} %</h5>
                         <h5>颱風路徑總機率： {{PathProbability}} %</h5>
-                        <h5>風速加級： None</h5>
-                        <h5>腐蝕加級： None</h5>
+                        <h5>風速加級： {{ data_wind }}</h5>
+                        <h5>腐蝕加級： {{ data_corrosion }}</h5>
                         <br>
                         <h6>備註：風速為臺灣地區各地之基本設計風速 </h6>
 
@@ -191,6 +187,9 @@ export default {
             plantlength:0,
             plantwidth:0,
             area:0,
+            windcorrosionjson: [],
+            data_wind: 0,
+            data_corrosion: 0,
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -211,10 +210,10 @@ export default {
             this.regionalwindspeedjson = await RegionalWindSpeed.json();
 
             // 風力登陸分析、風力路徑分析
-            const WindLandingAndPath = await fetch('/WindLandingAndPathJSON',  {
+            const windcorrosion = await fetch('/WindCorrosionsJSON',  {
                 method: 'GET',
             });
-            this.windlandingandpathjson = await WindLandingAndPath.json();
+            this.windcorrosionjson = await windcorrosion.json();
 
             var filterfalg = false;
             // 篩選重複出現的縣市
@@ -326,6 +325,21 @@ export default {
         areacount(){
             this.area = (this.plantlength*this.plantwidth)/10000
         },
+        updatewindcorrosion(SelectTerrain,SelectLandform){
+            let wind = [];
+            let corrosion = [];
+            for (var i = 0; i < this.windcorrosionjson.length; i++){
+                if (this.windcorrosionjson[i].landtype == SelectTerrain){
+                    wind[0] = this.windcorrosionjson[i].wind
+                    corrosion[0] = this.windcorrosionjson[i].corrosion
+                } else if (this.windcorrosionjson[i].landtype == SelectLandform){
+                    wind[1] = this.windcorrosionjson[i].wind
+                    corrosion[1] = this.windcorrosionjson[i].corrosion                    
+                }
+            }
+            this.data_wind = Math.round(wind[0]*wind[1]*100)/100
+            this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
+        }
     },
 }
 </script>
