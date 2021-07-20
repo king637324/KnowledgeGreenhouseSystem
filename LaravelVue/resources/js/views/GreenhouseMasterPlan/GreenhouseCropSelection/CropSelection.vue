@@ -597,27 +597,10 @@ export default {
             for(var i = 0 ; i < this.GrowPlants.length ; i++){
                 if(i == this.plantIdx)    this.selectplant = this.GrowPlants[i];
             }
-
-            // 找出所選資料的data
-            for(var i = 0 ; i < this.vegetablejson.length ; i++){
-                if(this.vegetablejson[i].VegetableTypes == this.selectplant){
-                    this.PPFD = this.vegetablejson[i].PPFD;
-                    this.Temperatureadaptability = this.vegetablejson[i].Temperatureadaptability;
-                    this.LowestGrowthTemperature = this.vegetablejson[i].LowestGrowthTemperature;
-                    this.OptimalGrowthTemperature = this.vegetablejson[i].OptimalGrowthTemperature;
-                    this.HighestGrowthTemperature = this.vegetablejson[i].HighestGrowthTemperature;
-                    this.LowestGerminationTemperature = this.vegetablejson[i].LowestGerminationTemperature;
-                    this.OptimumGerminationTemperature = this.vegetablejson[i].OptimumGerminationTemperature;
-                    this.HighestGerminationTemperature = this.vegetablejson[i].HighestGerminationTemperature;
-                    this.StrOptimalTemperature = this.OptimalGrowthTemperature.split("~");
-                    break;
-                }
+            this.CropSelect = [];
+            for(var i = 0 ; i < this.ExpertSelect.length ; i++){
+                if(this.ExpertSelect[i].VegetableTypes == this.selectplant)  this.CropSelect.push(this.ExpertSelect[i]);
             }
-
-            // 更新 作物生長最適溫最高區間 的圖表
-            this.CropTemperature[2].data = {"1月":this.StrOptimalTemperature[0],"2月":this.StrOptimalTemperature[0],"3月":this.StrOptimalTemperature[0],"4月":this.StrOptimalTemperature[0],"5月":this.StrOptimalTemperature[0],"6月":this.StrOptimalTemperature[0],"7月":this.StrOptimalTemperature[0],"8月":this.StrOptimalTemperature[0],"9月":this.StrOptimalTemperature[0],"10月":this.StrOptimalTemperature[0],"11月":this.StrOptimalTemperature[0],"12月":this.StrOptimalTemperature[0]};
-            // 更新 作物生長最適溫最低區間 的圖表
-            this.CropTemperature[3].data = {"1月":this.StrOptimalTemperature[1],"2月":this.StrOptimalTemperature[1],"3月":this.StrOptimalTemperature[1],"4月":this.StrOptimalTemperature[1],"5月":this.StrOptimalTemperature[1],"6月":this.StrOptimalTemperature[1],"7月":this.StrOptimalTemperature[1],"8月":this.StrOptimalTemperature[1],"9月":this.StrOptimalTemperature[1],"10月":this.StrOptimalTemperature[1],"11月":this.StrOptimalTemperature[1],"12月":this.StrOptimalTemperature[1]};
 
         },updateExpertTable(){  // 根據專家的選擇，更新作物的表格顯示
             // 從所選的專家id 找到 所選 專家

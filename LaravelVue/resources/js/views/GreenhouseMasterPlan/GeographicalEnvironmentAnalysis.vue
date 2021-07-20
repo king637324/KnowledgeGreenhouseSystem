@@ -214,6 +214,11 @@ export default {
                 method: 'GET',
             });
             this.windcorrosionjson = await windcorrosion.json();
+    
+            const WindLandingAndPath = await fetch('/WindLandingAndPathJSON',  {
+                method: 'GET',
+            });
+            this.windlandingandpathjson = await WindLandingAndPath.json();
 
             var filterfalg = false;
             // 篩選重複出現的縣市
@@ -307,7 +312,6 @@ export default {
                     }
                 }
             }
-
             // 進行颱風路徑總機率計算
             for(var i = 0 ; i <  StrPath.length; i++){
                 for(var j = 0 ; j < this.WindPath.length ; j++){
@@ -316,7 +320,6 @@ export default {
                     }
                 }
             }
-
             // 過濾計算所出現的小數點bug
             this.LandingProbability = this.LandingProbability.toFixed(2);
             this.PathProbability = this.PathProbability.toFixed(2);
@@ -326,18 +329,18 @@ export default {
             this.area = (this.plantlength*this.plantwidth)/10000
         },
         updatewindcorrosion(SelectTerrain,SelectLandform){
-            let wind = [];
+            let wind123 = [];
             let corrosion = [];
             for (var i = 0; i < this.windcorrosionjson.length; i++){
                 if (this.windcorrosionjson[i].landtype == SelectTerrain){
-                    wind[0] = this.windcorrosionjson[i].wind
+                    wind123[0] = this.windcorrosionjson[i].wind
                     corrosion[0] = this.windcorrosionjson[i].corrosion
                 } else if (this.windcorrosionjson[i].landtype == SelectLandform){
-                    wind[1] = this.windcorrosionjson[i].wind
+                    wind123[1] = this.windcorrosionjson[i].wind
                     corrosion[1] = this.windcorrosionjson[i].corrosion                    
                 }
             }
-            this.data_wind = Math.round(wind[0]*wind[1]*100)/100
+            this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
             this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
         }
     },
