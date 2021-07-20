@@ -225,7 +225,17 @@
                         <td>{{all.SideEffect}} </td>
                     </tr>
                 </table>
-                <br>
+                
+            </b-card>
+            <b-card
+                header-tag="header"
+                header-text-variant="white"
+                header-bg-variant="info"
+            >
+                <template #header>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫環境-設備控制</h6>
+                </template>
+
                 <div v-if="checkedTemp.length != 0">
                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                         <thead class="table-active">
@@ -311,15 +321,6 @@
                     </table>
 
                 </div>
-            </b-card>
-            <b-card
-                header-tag="header"
-                header-text-variant="white"
-                header-bg-variant="info"
-            >
-                <template #header>
-                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫環境-設備控制</h6>
-                </template>
             </b-card>
         </b-card-group>
 
