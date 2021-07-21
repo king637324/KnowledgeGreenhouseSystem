@@ -103,6 +103,15 @@
                 <template #header>
                     <h6 class="mb-0"><b-icon icon="flower1"></b-icon>光環境-設備控制</h6>
                 </template>
+                <h5>
+                    請勾選欲比較之材料
+                    <b-select v-model="lightidx" v-on:change="updateLightDesign" style="width:20vmin" >
+                        <option value="遮光控制">遮光控制</option>
+                        <option value="補光控制">補光控制</option>
+                        <option value="光質控制">光質控制</option>
+                        <option value="光週期控制">光週期控制</option>
+                    </b-select>
+                </h5>
                 <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                     <thead class="table-active">
                         <tr align="center">
@@ -115,7 +124,7 @@
                             <td style='width:8vmin'> 副作用 </td>
                         </tr>
                     </thead>
-                    <tr align="center" v-for="(all, index) in LightDesignData" :key="index">
+                    <tr align="center" v-for="(all, index) in LightData" :key="index">
                         <td>
                             <input type="checkbox" :value="all.id" v-model="checkedLight" v-on:change="updateSelectLight">
                         </td>
@@ -143,6 +152,7 @@
                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                         <thead class="table-active">
                             <tr align="center">
+                                <td style='width:5vmin'> 勾選 </td>
                                 <td style='width:23vmin'> 材料名稱 </td>
                                 <td style='width:8vmin'> 品質控制差異 </td>
                                 <td style='width:8vmin'> 結構風險 </td>
@@ -154,6 +164,9 @@
                             </tr>
                         </thead>
                         <tr align="center" v-for="(select, index) in selectLight" :key="index">
+                            <td>
+                                <input type="checkbox" :value="select.ControlItem+'-'+select.ControlSystem" v-model="lightcheck">
+                            </td>
                             <td>{{select.ControlItem}}-{{select.ControlSystem}}</td>
                             <td>{{select.QualityControl}}</td>
                             <td>{{select.StructuralRisk}}</td>
@@ -222,7 +235,13 @@
                             <td>  {{Math.floor(ProfileCost/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
                         </tr>
                     </table>
+                    <br>
+                    <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                        <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in lightcheck" :key="index" @click:close="lightcheck.splice(index,1)">{{ select }}</v-chip>
 
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-warning" style="font-size:1.5vmin; font-family:Microsoft JhengHei; bottom:0; float:right;">儲存</button>
                 </div>
             </b-card>
         </b-card-group>
@@ -294,6 +313,10 @@ export default {
             ProfileWeightiness:null,
             ProfileCost:null,
             ProfileTotal:null,
+
+            lightdesign: [],
+            lightidx:"遮光控制",
+            lightcheck:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -330,8 +353,9 @@ export default {
 
             }
             for (var i = 0; i < this.LightDesignData.length; i++) {
-                
-                this.LightData.push(this.LightDesignData[i]);
+                if (this.LightDesignData[i].ControlItem == '遮光控制'){
+                    this.LightData.push(this.LightDesignData[i]);
+                }
             }
 
         },updateCrop(){     // 更新所選擇的作物分類
@@ -426,7 +450,6 @@ export default {
                 for (var j = 0; j < this.checkedLight.length; j++) {
                     if(this.checkedLight[j] == this.LightData[i].id)  this.selectLight.push(this.LightData[i]);
                 }
-
             }
 
         },updateProfileCompare(){   // 更新所選型材的參數比較
@@ -484,7 +507,14 @@ export default {
                 this.selectLightRank.push(selectComparelist[i][1]);
             }
 
-        }
+        },updateLightDesign(){
+            this.LightData = [];
+            for (var i = 0; i < this.LightDesignData.length; i++) {
+                if (this.lightidx == this.LightDesignData[i].ControlItem){
+                    this.LightData.push(this.LightDesignData[i])
+                }
+            }
+        },
     }
 }
 

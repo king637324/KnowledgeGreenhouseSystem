@@ -200,6 +200,14 @@
                 <template #header>
                     <h6 class="mb-0"><b-icon icon="flower1"></b-icon>溫環境-設備控制</h6>
                 </template>
+                <h5>
+                    請勾選欲比較之材料
+                    <b-select v-model="Tempidx" v-on:change="updateTempDesign" style="width:20vmin" >
+                        <option value="降溫控制">降溫控制</option>
+                        <option value="加溫控制">加溫控制</option>
+                        <option value="濕度控制">濕度控制</option>
+                    </b-select>
+                </h5>
                 <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                     <thead class="table-active">
                         <tr align="center">
@@ -212,7 +220,7 @@
                             <td style='width:8vmin'> 副作用 </td>
                         </tr>
                     </thead>
-                    <tr align="center" v-for="(all, index) in Tempjson" :key="index">
+                    <tr align="center" v-for="(all, index) in TempData" :key="index">
                         <td>
                             <input type="checkbox" :value="all.id" v-model="checkedTemp" v-on:change="updateSelectTemp">
                         </td>
@@ -240,6 +248,7 @@
                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                         <thead class="table-active">
                             <tr align="center">
+                                <td style='width:5vmin'> 勾選 </td>
                                 <td style='width:23vmin'> 材料名稱 </td>
                                 <td style='width:8vmin'> 品質控制差異 </td>
                                 <td style='width:8vmin'> 結構風險 </td>
@@ -251,6 +260,9 @@
                             </tr>
                         </thead>
                         <tr align="center" v-for="(select, index) in selectTemp" :key="index">
+                            <td>
+                                <input type="checkbox" :value="select.ControlItem+'-'+select.ControlSystem" v-model="Tempcheck">
+                            </td>
                             <td>{{select.ControlItem}}-{{select.ControlSystem}}</td>
                             <td>{{select.QualityControl}}</td>
                             <td>{{select.StructuralRisk}}</td>
@@ -319,7 +331,13 @@
                             <td>  {{Math.floor(ProfileCost/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
                         </tr>
                     </table>
+                    <br>
+                    <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                        <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in Tempcheck" :key="index" @click:close="Tempcheck.splice(index,1)">{{ select }}</v-chip>
 
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-warning" style="font-size:1.5vmin; font-family:Microsoft JhengHei; bottom:0; float:right;">儲存</button>
                 </div>
             </b-card>
         </b-card-group>
@@ -388,6 +406,9 @@ export default {
             ProfileWeightiness:null,
             ProfileCost:null,
             ProfileTotal:null,
+
+            Tempidx:'降溫控制',
+            Tempcheck:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -422,9 +443,11 @@ export default {
                 if(!filterfalg) this.City.push(this.regionalwindspeedjson[i].County);
 
             }
+
             for (var i = 0; i < this.Tempjson.length; i++) {
-                
-                this.TempData.push(this.Tempjson[i]);
+                if (this.Tempjson[i].ControlItem == '降溫控制'){
+                    this.TempData.push(this.Tempjson[i]);
+                }
             }
 
         },updateCrop(){     // 更新所選擇的作物分類
@@ -582,7 +605,14 @@ export default {
                 this.selectTempRankValue.push(selectComparelist[i][2]);
                 this.selectTempRank.push(selectComparelist[i][1]);
             }
-        }
+        },updateTempDesign(){
+            this.TempData = [];
+            for (var i = 0; i < this.Tempjson.length; i++) {
+                if (this.Tempidx == this.Tempjson[i].ControlItem){
+                    this.TempData.push(this.Tempjson[i])
+                }
+            }
+        },
     }
 }
 
