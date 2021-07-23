@@ -314,7 +314,6 @@ export default {
             ProfileCost:null,
             ProfileTotal:null,
 
-            lightdesign: [],
             lightidx:"遮光控制",
             lightcheck:[],
         }
