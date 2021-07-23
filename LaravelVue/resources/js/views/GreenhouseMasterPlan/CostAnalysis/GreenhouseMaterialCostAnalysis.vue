@@ -499,7 +499,6 @@ export default {
                 var data=[];
                 var dataCalculator=[];
                 var Cost = this.SteelPrice;
-
                 // dataCalculator 做 成本的計算
                 dataCalculator.push(this.MaterialCostjson[i].HighStrengthMaterial);
                 dataCalculator.push(this.MaterialCostjson[i].SteelBillet);
