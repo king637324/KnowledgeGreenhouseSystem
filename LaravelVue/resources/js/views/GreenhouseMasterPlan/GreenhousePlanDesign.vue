@@ -683,11 +683,73 @@
                             <h5>
                                 請選擇欲察看之知識庫：
                                 <b-select v-model="knowledgeIdx" style="width:20vmin" >
-                                    <option v-for="(know, index) in knowledge" :value="index">
+                                    <option v-for="(know, index) in knowledge" :value="know">
                                         {{know}}
                                     </option>
                                 </b-select>
                             </h5>
+                            <div v-if="knowledgeIdx=='溫室型式'">
+                                <v-radio-group row v-model="housetype"> 
+                                    <v-radio v-for="(type, index) in housetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/溫室型式構造.JPG" v-if="housetype=='溫室型式構造'">
+                                <img src="/image/強固溫室(1).JPG" v-if="housetype=='強固溫室'">
+                                <img src="/image/強固溫室(2).JPG" v-if="housetype=='強固溫室'">
+                                <img src="/image/簡易溫室(1).JPG" v-if="housetype=='簡易溫室'">
+                                <img src="/image/簡易溫室(2).JPG" v-if="housetype=='簡易溫室'">
+                                <img src="/image/使用年限.JPG" v-if="housetype=='使用年限'">
+                            </div>
+                            <div v-if="knowledgeIdx=='管材'">
+                                <v-radio-group row v-model="pipetype"> 
+                                    <v-radio v-for="(type, index) in pipetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/溫室管材.JPG" v-if="pipetype=='溫室管材'">
+                                <img src="/image/管材規格(1).JPG" v-if="pipetype=='管材規格'">
+                                <img src="/image/管材規格(2).JPG" v-if="pipetype=='管材規格'">
+                                <img src="/image/管材規格(3).JPG" v-if="pipetype=='管材規格'">
+                            </div>
+                            <div v-if="knowledgeIdx=='屋頂'">
+                                <v-radio-group row v-model="rooftype"> 
+                                    <v-radio v-for="(type, index) in rooftypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/溫室屋頂強化結構.JPG" v-if="rooftype=='溫室屋頂強化結構'">
+                                <img src="/image/溫室圓拱距(桁距)設計.JPG" v-if="rooftype=='溫室圓拱距(桁距)設計'">
+                                <img src="/image/簡易型溫室基礎(1).JPG" v-if="rooftype=='簡易型溫室基礎'">
+                                <img src="/image/簡易型溫室基礎(2).JPG" v-if="rooftype=='簡易型溫室基礎'">
+                                <img src="/image/溫室基礎地質分析.JPG" v-if="rooftype=='溫室基礎地質分析'">
+                                <img src="/image/簡易溫室肩高設計.JPG" v-if="rooftype=='簡易溫室肩高設計'">
+                                <img src="/image/簡易溫室肩高設計(2).JPG" v-if="rooftype=='簡易溫室肩高設計'">
+                                <img src="/image/簡易溫室跨距設計(1).JPG" v-if="rooftype=='簡易溫室跨距設計'">
+                                <img src="/image/簡易溫室跨距設計(2).JPG" v-if="rooftype=='簡易溫室跨距設計'">
+                                <img src="/image/溫室型材.JPG" v-if="rooftype=='溫室型材'">
+                                <img src="/image/型材規格(1).JPG" v-if="rooftype=='型材規格'">
+                                <img src="/image/型材規格(2).JPG" v-if="rooftype=='型材規格'">
+                                <img src="/image/型材規格(3).JPG" v-if="rooftype=='型材規格'">
+                            </div>
+                            <div v-if="knowledgeIdx=='溫室型式(圖)'">
+                                <v-radio-group row v-model="housepictype"> 
+                                    <v-radio v-for="(type, index) in housepictypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/強固溫室型式標準圖(1).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室型式標準圖(2).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室型式標準圖(3).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室型式標準圖(4).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室型式標準圖(5).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室.JPG" v-if="housepictype=='強固溫室'">
+                            </div>
+                            <div v-if="knowledgeIdx=='基礎'">
+                                <v-radio-group row v-model="basetype"> 
+                                    <v-radio v-for="(type, index) in basetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/溫室基礎設計.JPG" v-if="basetype=='溫室基礎設計'">
+                                <img src="/image/基礎設計流程圖.JPG" v-if="basetype=='基礎設計流程圖'">
+                                <img src="/image/強固基礎(1).JPG" v-if="basetype=='強固基礎'">
+                                <img src="/image/強固基礎(2).JPG" v-if="basetype=='強固基礎'">
+                                <img src="/image/強固基礎(3).JPG" v-if="basetype=='強固基礎'">
+                                <img src="/image/強固基礎(4).JPG" v-if="basetype=='強固基礎'">
+
+                                <img src="/image/地質分析.JPG" v-if="basetype=='地質分析'">
+                            </div>
                         </b-card-text>
                     </b-card>
                 </b-card-group>
@@ -1506,9 +1568,9 @@
 
         allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
         position:0,
-        knowledge:['==溫室材料==','溫室管材','圓頂型式','圓拱距','基礎','跨距','肩高','長度','連續性','披腹膜'],
+        knowledge:['==溫室設計==','溫室型式','管材','屋頂','溫室型式(圖)','基礎'],
         material:['==材料設計==','型管材','披腹膜'],
-        knowledgeIdx:0,
+        knowledgeIdx:'==溫室設計==',
         materialIdx:'==材料設計==',
 
         MaterialCostjson: [],
@@ -1553,6 +1615,17 @@
         glass:[],
         SoftFilm:[],
         HardFilm:[],
+
+        housetypelist:['溫室型式構造','強固溫室','簡易溫室','使用年限'],
+        housetype:null,
+        pipetypelist:['溫室管材','管材規格'],
+        pipetype:null,
+        rooftypelist:['溫室屋頂強化結構','溫室圓拱距(桁距)設計','簡易型溫室基礎','溫室基礎地質分析','簡易溫室肩高設計','簡易溫室跨距設計','溫室型材','型材規格'],
+        rooftype:null,
+        housepictypelist:['強固溫室型式標準圖','強固溫室'],
+        housepictype:null,
+        basetypelist:['溫室基礎設計','基礎設計流程圖','強固基礎','簡易基礎','地質分析'],
+        basetype:null,
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
