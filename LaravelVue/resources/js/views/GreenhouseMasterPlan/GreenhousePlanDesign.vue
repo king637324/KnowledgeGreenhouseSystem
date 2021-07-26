@@ -20,16 +20,16 @@
                                             <v-subheader>A.決策權重</v-subheader>
                                         </v-col>
                                         <v-col md="2">
-                                            <v-text-field :counter="10" label="輸入品質性能" v-model="quality"></v-text-field>
+                                            <v-text-field :hint="decide[0]" persistent-hint label="輸入品質性能" v-model="quality" v-on:change="countdecide"></v-text-field>
                                         </v-col>
                                         <v-col md="2">
-                                            <v-text-field :counter="10" label="輸入風險性" v-model="risk"></v-text-field>
+                                            <v-text-field :hint="decide[1]" persistent-hint label="輸入風險性" v-model="risk" v-on:change="countdecide"></v-text-field>
                                         </v-col>
                                         <v-col md="2">
-                                            <v-text-field :counter="10" label="輸入速度性" v-model="speed"></v-text-field>
+                                            <v-text-field :hint="decide[2]" persistent-hint label="輸入速度性" v-model="speed" v-on:change="countdecide"></v-text-field>
                                         </v-col>
                                         <v-col md="2">
-                                            <v-text-field :counter="10" label="輸入成本性" v-model="cost"></v-text-field>
+                                            <v-text-field :hint="decide[3]" persistent-hint label="輸入成本性" v-model="cost" v-on:change="countdecide"></v-text-field>
                                         </v-col>
                                     </v-row>    
 
@@ -1114,7 +1114,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tr align="center" v-for="(all, index) in SimpleCoatingFilmsJSON" :key="index">
-                                                                <td><input type="checkbox" :value="all.id" v-model="checkedglass" v-on:change="updateSelectPipe"></td>
+                                                                <td><input type="checkbox" :value="all.id" v-model="checkedglass" v-on:change="updateSelectGlass"></td>
                                                                 <td align="left"> {{all.material}}-{{all.BuildItem}}</td>
                                                                 <td>{{all.LightLoss}}</td>
                                                                 <td>{{all.StructuralRisk}}</td>
@@ -1124,7 +1124,6 @@
                                                             </tr>
                                                         </table>
                                                         <br>
-
                                                         <div v-if="checkedglass.length != 0">
                                                             <h5>披 覆 材 料</h5>
                                                             <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
@@ -1140,6 +1139,7 @@
                                                                         <td style='width:6.5vmin'> 排名 </td>
                                                                     </tr>
                                                                 </thead>
+                                                                
                                                                 <tr align="center" v-for="(all, index) in selectglass" :key="index">
                                                                     <td align="left">{{all.material}}-{{all.BuildItem}}</td>
                                                                     <td>{{all.LightLoss}}</td>
@@ -1158,7 +1158,7 @@
                                                                     <tr align="center">
                                                                         <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
                                                                         <td>
-                                                                            <button type="button" class="btn btn-warning" v-on:click="updatePipeCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
+                                                                            <button type="button" class="btn btn-warning" v-on:click="updateGlassCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
                                                                         </td>
                                                                     </tr>
                                                                     <tr align="center">
@@ -1173,40 +1173,40 @@
                                                                     <td>
                                                                         <v-text-field
                                                                             label="請輸入透光損失"
-                                                                            v-model="PipeSpeed"
+                                                                            v-model="GlassSpeed"
                                                                         ></v-text-field>
                                                                     </td>
                                                                     <td>
                                                                         <v-text-field
                                                                             label="請輸入結構風險"
-                                                                            v-model="PipeStructuralRisk"
+                                                                            v-model="GlassStructuralRisk"
                                                                         ></v-text-field>
                                                                     </td>
                                                                     <td>
                                                                         <v-text-field
                                                                             label="請輸入作業難度"
-                                                                            v-model="PipeCorrosive"
+                                                                            v-model="GlassCorrosive"
                                                                         ></v-text-field>
                                                                     </td>
                                                                     <td>
                                                                         <v-text-field
                                                                             label="請輸入成本性"
-                                                                            v-model="PipeWeightiness"
+                                                                            v-model="GlassWeightiness"
                                                                         ></v-text-field>
                                                                     </td>
                                                                     <td>
                                                                         <v-text-field
                                                                             label="請輸入副作用"
-                                                                            v-model="PipeCost"
+                                                                            v-model="GlassCost"
                                                                         ></v-text-field>
                                                                     </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td>  {{Math.floor(PipeSpeed/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                                    <td>  {{Math.floor(PipeStructuralRisk/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                                    <td>  {{Math.floor(PipeCorrosive/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                                    <td>  {{Math.floor(PipeWeightiness/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                                    <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
+                                                                    <td>  {{Math.floor(GlassSpeed/(parseFloat(this.GlassSpeed) + parseFloat(this.GlassStructuralRisk) + parseFloat(this.GlassCorrosive) + parseFloat(this.GlassWeightiness) + parseFloat(this.GlassCost))*100)}}% </td>
+                                                                    <td>  {{Math.floor(GlassStructuralRisk/(parseFloat(this.GlassSpeed) + parseFloat(this.GlassStructuralRisk) + parseFloat(this.GlassCorrosive) + parseFloat(this.GlassWeightiness) + parseFloat(this.GlassCost))*100)}}% </td>
+                                                                    <td>  {{Math.floor(GlassCorrosive/(parseFloat(this.GlassSpeed) + parseFloat(this.GlassStructuralRisk) + parseFloat(this.GlassCorrosive) + parseFloat(this.GlassWeightiness) + parseFloat(this.GlassCost))*100)}}% </td>
+                                                                    <td>  {{Math.floor(GlassWeightiness/(parseFloat(this.GlassSpeed) + parseFloat(this.GlassStructuralRisk) + parseFloat(this.GlassCorrosive) + parseFloat(this.GlassWeightiness) + parseFloat(this.GlassCost))*100)}}% </td>
+                                                                    <td>  {{Math.floor(GlassCost/(parseFloat(this.GlassSpeed) + parseFloat(this.GlassStructuralRisk) + parseFloat(this.GlassCorrosive) + parseFloat(this.GlassWeightiness) + parseFloat(this.GlassCost))*100)}}% </td>
                                                                 </tr>
                                                             </table>
                                                         </div>
@@ -1530,12 +1530,20 @@
         selectPipe:[],
         selectPipeRank:[],
         selectPipeRankValue:[],
+        selectGlassRank:[],
+        selectGlassRankValue:[],
         PipeSpeed:null,
         PipeStructuralRisk:null,
         PipeCorrosive:null,
         PipeWeightiness:null,
         PipeCost:null,
         PipeTotal:null,
+        GlassSpeed:null,
+        GlassStructuralRisk:null,
+        GlassCorrosive:null,
+        GlassWeightiness:null,
+        GlassCost:null,
+        GlassTotal:null,
 
         // 型材
         checkedProfile:[],
@@ -1549,10 +1557,13 @@
         ProfileCost:null,
         ProfileTotal:null,
 
+        selectglass:[],
         checkedglass:[],
         glass:[],
         SoftFilm:[],
         HardFilm:[],
+
+        decide:['0','0','0','0'],
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
@@ -2099,127 +2110,199 @@
                 }
             }
 
-        },updatePipeCompare(){  // 更新所選管材的參數比較
-            this.PipeTotal = parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost);
+    },updateSelectGlass(){   // 更新所選擇的管材
 
-            var Compare = 0,selectComparelist = [],rank = [];
-            // 計算 比較值
-            for (var i = 0; i < this.selectPipe.length; i++) {
-                Compare = (this.selectPipe[i][0].Speed * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectPipe[i][0].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Corrosive * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Weight * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][1] * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
-                Compare = Compare.toFixed(2);
-
-                rank = [];
-                rank.push(this.selectPipe[i][0].id);
-                rank.push(Compare);
-                rank.push(0);
-                selectComparelist.push(rank);
-
-            }
-
-            /* 將所勾選的 管材進行氣泡排序 */
-            var temp;
-            for (var i = selectComparelist.length - 1; i > 0; i--) {
-                for (var j = 0; j <= i - 1; j++) {
-                    if (selectComparelist[j][1] > selectComparelist[j + 1][1]) {
-                        temp = selectComparelist[j];
-                        selectComparelist[j] = selectComparelist[j + 1];
-                        selectComparelist[j + 1] = temp;
-                    }
+            this.selectglass = [];
+            for (var i = 0; i < this.glass.length; i++) {
+                for (var j = 0; j < this.checkedglass.length; j++) {
+                    if(this.checkedglass[j] == this.glass[i].id)  this.selectglass.push(this.glass[i]);
                 }
             }
 
-            /* 將所勾選的 管材進行排名 */
-            for (var i = 0; i < selectComparelist.length; i++) {
-                var a=i;
-                selectComparelist[i][2] = ++a;
-            }
+    },updatePipeCompare(){  // 更新所選管材的參數比較
+        this.PipeTotal = parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost);
 
-            /* 將所勾選的 管材進行id序號的氣泡排序，才能使顯示是照順序的 */
-            for (var i = selectComparelist.length - 1; i > 0; i--) {
-                for (var j = 0; j <= i - 1; j++) {
-                    if (selectComparelist[j][0] > selectComparelist[j + 1][0]) {
-                        temp = selectComparelist[j];
-                        selectComparelist[j] = selectComparelist[j + 1];
-                        selectComparelist[j + 1] = temp;
-                    }
+        var Compare = 0,selectComparelist = [],rank = [];
+        // 計算 比較值
+        for (var i = 0; i < this.selectPipe.length; i++) {
+            Compare = (this.selectPipe[i][0].Speed * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectPipe[i][0].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Corrosive * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Weight * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][1] * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
+            Compare = Compare.toFixed(2);
+
+            rank = [];
+            rank.push(this.selectPipe[i][0].id);
+            rank.push(Compare);
+            rank.push(0);
+            selectComparelist.push(rank);
+
+        }
+
+        /* 將所勾選的 管材進行氣泡排序 */
+        var temp;
+        for (var i = selectComparelist.length - 1; i > 0; i--) {
+            for (var j = 0; j <= i - 1; j++) {
+                if (selectComparelist[j][1] > selectComparelist[j + 1][1]) {
+                    temp = selectComparelist[j];
+                    selectComparelist[j] = selectComparelist[j + 1];
+                    selectComparelist[j + 1] = temp;
                 }
             }
+        }
 
-            this.selectPipeRank = [],  // 排名
-            this.selectPipeRankValue = []; // 排名值
+        /* 將所勾選的 管材進行排名 */
+        for (var i = 0; i < selectComparelist.length; i++) {
+            var a=i;
+            selectComparelist[i][2] = ++a;
+        }
 
-            /* 將所勾選的 管材 比較值與排名 顯示 */
-            for (var i = 0; i < selectComparelist.length; i++) {
-                this.selectPipeRankValue.push(selectComparelist[i][2]);
-                this.selectPipeRank.push(selectComparelist[i][1]);
-            }
-
-        },updateSelectProfile(){    // 更新所選擇的型材
-            this.selectProfile = [];
-
-            for (var i = 0; i < this.ProfileData.length; i++) {
-                for (var j = 0; j < this.checkedProfile.length; j++) {
-                    if(this.checkedProfile[j] == this.ProfileData[i][0].id)  this.selectProfile.push(this.ProfileData[i]);
-                }
-
-            }
-
-        },updateProfileCompare(){   // 更新所選型材的參數比較
-            this.ProfileTotal = parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost);
-
-            var Compare = 0,selectComparelist = [],rank = [];
-            // 計算 比較值
-            for (var i = 0; i < this.selectProfile.length; i++) {
-                Compare = (this.selectProfile[i][0].Speed * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectProfile[i][0].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Corrosive * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Weight * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][1] * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
-                Compare = Compare.toFixed(2);
-
-                rank = [];
-                rank.push(this.selectProfile[i][0].id);
-                rank.push(Compare);
-                rank.push(0);
-                selectComparelist.push(rank);
-
-            }
-
-            /* 將所勾選的 型材進行氣泡排序 */
-            var temp;
-            for (var i = selectComparelist.length - 1; i > 0; i--) {
-                for (var j = 0; j <= i - 1; j++) {
-                    if (selectComparelist[j][1] > selectComparelist[j + 1][1]) {
-                        temp = selectComparelist[j];
-                        selectComparelist[j] = selectComparelist[j + 1];
-                        selectComparelist[j + 1] = temp;
-                    }
+        /* 將所勾選的 管材進行id序號的氣泡排序，才能使顯示是照順序的 */
+        for (var i = selectComparelist.length - 1; i > 0; i--) {
+            for (var j = 0; j <= i - 1; j++) {
+                if (selectComparelist[j][0] > selectComparelist[j + 1][0]) {
+                    temp = selectComparelist[j];
+                    selectComparelist[j] = selectComparelist[j + 1];
+                    selectComparelist[j + 1] = temp;
                 }
             }
+        }
 
-            /* 將所勾選的 型材進行排名 */
-            for (var i = 0; i < selectComparelist.length; i++) {
-                var a=i;
-                selectComparelist[i][2] = ++a;
-            }
+        this.selectPipeRank = [],  // 排名
+        this.selectPipeRankValue = []; // 排名值
 
-            /* 將所勾選的 型材進行id序號的氣泡排序，才能使顯示是照順序的 */
-            for (var i = selectComparelist.length - 1; i > 0; i--) {
-                for (var j = 0; j <= i - 1; j++) {
-                    if (selectComparelist[j][0] > selectComparelist[j + 1][0]) {
-                        temp = selectComparelist[j];
-                        selectComparelist[j] = selectComparelist[j + 1];
-                        selectComparelist[j + 1] = temp;
-                    }
+        /* 將所勾選的 管材 比較值與排名 顯示 */
+        for (var i = 0; i < selectComparelist.length; i++) {
+            this.selectPipeRankValue.push(selectComparelist[i][2]);
+            this.selectPipeRank.push(selectComparelist[i][1]);
+        }
+
+    },updateGlassCompare(){  // 更新所選管材的參數比較
+        this.GlassTotal = parseFloat(this.GlassSpeed) + parseFloat(this.GlassStructuralRisk) + parseFloat(this.GlassCorrosive) + parseFloat(this.GlassWeightiness) + parseFloat(this.GlassCost);
+
+        var Compare = 0,selectComparelist = [],rank = [];
+        // 計算 比較值
+        for (var i = 0; i < this.selectglass.length; i++) {
+            Compare = (this.selectglass[i].LightLoss * Math.floor(parseFloat(this.GlassSpeed) / this.GlassTotal * 100) / 100) + (this.selectglass[i].StructuralRisk * Math.floor(parseFloat(this.GlassStructuralRisk) / this.GlassTotal * 100) / 100) + ( this.selectglass[i].JobDifficulty * Math.floor(parseFloat(this.GlassCorrosive) / this.GlassTotal * 100) / 100) + ( this.selectglass[i].Cost * Math.floor(parseFloat(this.GlassWeightiness) / this.GlassTotal * 100) / 100) + ( this.selectglass[i].SideEffect * Math.floor(parseFloat(this.GlassCost) / this.GlassTotal * 100) / 100);
+            Compare = Compare.toFixed(2);
+
+            rank = [];
+            rank.push(this.selectglass[i].id);
+            rank.push(Compare);
+            rank.push(0);
+            selectComparelist.push(rank);
+
+        }
+
+        /* 將所勾選的 管材進行氣泡排序 */
+        var temp;
+        for (var i = selectComparelist.length - 1; i > 0; i--) {
+            for (var j = 0; j <= i - 1; j++) {
+                if (selectComparelist[j][1] > selectComparelist[j + 1][1]) {
+                    temp = selectComparelist[j];
+                    selectComparelist[j] = selectComparelist[j + 1];
+                    selectComparelist[j + 1] = temp;
                 }
             }
+        }
 
-            this.selectProfileRank = [],  // 排名
-            this.selectProfileRankValue = []; // 排名值
+        /* 將所勾選的 管材進行排名 */
+        for (var i = 0; i < selectComparelist.length; i++) {
+            var a=i;
+            selectComparelist[i][2] = ++a;
+        }
 
-            /* 將所勾選的 型材 比較值與排名 顯示 */
-            for (var i = 0; i < selectComparelist.length; i++) {
-                this.selectProfileRankValue.push(selectComparelist[i][2]);
-                this.selectProfileRank.push(selectComparelist[i][1]);
+        /* 將所勾選的 管材進行id序號的氣泡排序，才能使顯示是照順序的 */
+        for (var i = selectComparelist.length - 1; i > 0; i--) {
+            for (var j = 0; j <= i - 1; j++) {
+                if (selectComparelist[j][0] > selectComparelist[j + 1][0]) {
+                    temp = selectComparelist[j];
+                    selectComparelist[j] = selectComparelist[j + 1];
+                    selectComparelist[j + 1] = temp;
+                }
+            }
+        }
+
+        this.selectPipeRank = [],  // 排名
+        this.selectPipeRankValue = []; // 排名值
+
+        /* 將所勾選的 管材 比較值與排名 顯示 */
+        for (var i = 0; i < selectComparelist.length; i++) {
+            this.selectGlassRankValue.push(selectComparelist[i][2]);
+            this.selectGlassRank.push(selectComparelist[i][1]);
+        }
+
+    },updateSelectProfile(){    // 更新所選擇的型材
+        this.selectProfile = [];
+
+        for (var i = 0; i < this.ProfileData.length; i++) {
+            for (var j = 0; j < this.checkedProfile.length; j++) {
+                if(this.checkedProfile[j] == this.ProfileData[i][0].id)  this.selectProfile.push(this.ProfileData[i]);
             }
 
         }
+
+    },updateProfileCompare(){   // 更新所選型材的參數比較
+        this.ProfileTotal = parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost);
+
+        var Compare = 0,selectComparelist = [],rank = [];
+        // 計算 比較值
+        for (var i = 0; i < this.selectProfile.length; i++) {
+            Compare = (this.selectProfile[i][0].Speed * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectProfile[i][0].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Corrosive * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Weight * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][1] * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
+            Compare = Compare.toFixed(2);
+
+            rank = [];
+            rank.push(this.selectProfile[i][0].id);
+            rank.push(Compare);
+            rank.push(0);
+            selectComparelist.push(rank);
+
+        }
+
+        /* 將所勾選的 型材進行氣泡排序 */
+        var temp;
+        for (var i = selectComparelist.length - 1; i > 0; i--) {
+            for (var j = 0; j <= i - 1; j++) {
+                if (selectComparelist[j][1] > selectComparelist[j + 1][1]) {
+                    temp = selectComparelist[j];
+                    selectComparelist[j] = selectComparelist[j + 1];
+                    selectComparelist[j + 1] = temp;
+                }
+            }
+        }
+
+        /* 將所勾選的 型材進行排名 */
+        for (var i = 0; i < selectComparelist.length; i++) {
+            var a=i;
+            selectComparelist[i][2] = ++a;
+        }
+
+        /* 將所勾選的 型材進行id序號的氣泡排序，才能使顯示是照順序的 */
+        for (var i = selectComparelist.length - 1; i > 0; i--) {
+            for (var j = 0; j <= i - 1; j++) {
+                if (selectComparelist[j][0] > selectComparelist[j + 1][0]) {
+                    temp = selectComparelist[j];
+                    selectComparelist[j] = selectComparelist[j + 1];
+                    selectComparelist[j + 1] = temp;
+                }
+            }
+        }
+
+        this.selectProfileRank = [],  // 排名
+        this.selectProfileRankValue = []; // 排名值
+
+        /* 將所勾選的 型材 比較值與排名 顯示 */
+        for (var i = 0; i < selectComparelist.length; i++) {
+            this.selectProfileRankValue.push(selectComparelist[i][2]);
+            this.selectProfileRank.push(selectComparelist[i][1]);
+        }
+
+    },
+
+    countdecide(){
+        this.decide = []
+        this.decide.push(String(Math.floor(this.quality/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
+        this.decide.push(String(Math.floor(this.risk/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
+        this.decide.push(String(Math.floor(this.speed/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
+        this.decide.push(String(Math.floor(this.cost/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
+    }
 },
 }
 </script>

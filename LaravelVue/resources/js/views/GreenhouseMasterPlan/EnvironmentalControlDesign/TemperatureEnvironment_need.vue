@@ -151,12 +151,14 @@
                             <td>10月份</td>
                             <td>11月份</td>
                             <td>12月份</td>
+                            <td>合計</td>
                         </tr>
                         <tr align="center" id="HighTemperatureDifference">
                             <td>高溫差</td>
                             <td v-for="(temperature, index) in StrHighTemperature" :key="index">
-                                {{StrOptimalTemperature[1]-temperature}}
+                                {{StrOptimalTemperature[1]-temperature+3}}
                             </td>
+                            <td rowspan="2">{{ StrOptimalTemperature[1]*12-StrHighTemperature.reduce((a, b) => a + b)+3*12 }}</td>
                         </tr>
                         <tr align="center" id="HighApproach">
                             <td>環控</td>
@@ -171,8 +173,9 @@
                         <tr align="center">
                             <td>低溫差</td>
                             <td v-for="(temperature, index) in StrLowTemperature" :key="index">
-                                {{StrOptimalTemperature[0]-temperature}}
+                                {{StrOptimalTemperature[0]-temperature+3}}
                             </td>
+                            <td rowspan="2">{{ StrOptimalTemperature[1]*12-StrLowTemperature.reduce((a, b) => a + b)+3*12 }}</td>
                         </tr>
                         <tr align="center">
                             <td>環控</td>
@@ -524,12 +527,15 @@ export default {
             }
 
             // 取得 風速、風力登陸分析、風力路徑分析
+            this.StrHighTemperature = [];
+            this.StrLowTemperature = [];
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
                 if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
                     this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
-
-                    this.StrHighTemperature = this.regionalwindspeedjson[i].monthHighTemperature.split(",");
-                    this.StrLowTemperature = this.regionalwindspeedjson[i].monthLowTemperature.split(",");
+                    for(var j = 0 ; j < this.regionalwindspeedjson[i].monthHighTemperature.split(",").length ; j++){
+                        this.StrHighTemperature.push(parseInt(this.regionalwindspeedjson[j].monthHighTemperature.split(",")[j]))
+                        this.StrLowTemperature.push(parseInt(this.regionalwindspeedjson[j].monthLowTemperature.split(",")[j]))
+                    }
                     break;
                 }
             }

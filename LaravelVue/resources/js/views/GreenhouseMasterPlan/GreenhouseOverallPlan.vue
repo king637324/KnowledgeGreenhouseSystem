@@ -506,15 +506,15 @@
     },
 
     areacount(){
-        this.area = this.plantlength*this.plantwidth
+        this.area = this.plantlength*this.plantwidth/10000
     },
 
     countdecide(){
         this.decide = []
-        this.decide.push(String(Math.floor(((parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))/100)*parseInt(this.quality)*100))+'%')
-        this.decide.push(String(Math.floor(((parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))/100)*parseInt(this.risk)*100))+'%')
-        this.decide.push(String(Math.floor(((parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))/100)*parseInt(this.speed)*100))+'%')
-        this.decide.push(String(Math.floor(((parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))/100)*parseInt(this.cost)*100))+'%')
+        this.decide.push(String(Math.floor(this.quality/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
+        this.decide.push(String(Math.floor(this.risk/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
+        this.decide.push(String(Math.floor(this.speed/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
+        this.decide.push(String(Math.floor(this.cost/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
     }
 },
 }
