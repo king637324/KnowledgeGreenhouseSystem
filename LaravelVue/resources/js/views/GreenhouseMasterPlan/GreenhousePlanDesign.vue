@@ -301,7 +301,7 @@
                                         <v-col>
                                         <b-card header-tag="header" v-if="greenhouseradio == '簡易溫室'">
                                             <template #header>
-                                                <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本 分 析</h6>
+                                                <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本、風 險、工 時、預 估</h6>
                                             </template>
                                             <b-card-text>
                                                 <br>
@@ -389,11 +389,7 @@
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                 </tr>
-                                                                <tr align="center">
-                                                                    <td>總價格</td>
-                                                                    <td>  </td>
-                                                                    <td colspan="3">NT$ 500000</td>
-                                                                </tr>
+                                                                
                                                                 <tr align="center">
                                                                     <td rowspan="3">成本分析</td>
                                                                     <td>每平方米單價</td>
@@ -481,7 +477,7 @@
                                         </b-card>
                                         <b-card header-tag="header" v-else-if="greenhouseradio == '強固溫室'">
                                             <template #header>
-                                                <h6 class="mb-0"><b-icon icon="building"></b-icon> 強 固 型 溫 室 成 本 分 析</h6>
+                                                <h6 class="mb-0"><b-icon icon="building"></b-icon> 強 固 型 溫 室 成 本、風 險、工 時、預 估</h6>
                                             </template>
                                             <b-card-text>
                                                 <br>
@@ -489,7 +485,7 @@
                                                 <v-container>
                                                     <v-row>
                                                         <v-col>
-                                                            <table style="border:1px solid black; " border='1'>
+                                                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
                                                                 <thead class="table-active">
                                                                     <tr align="center">
                                                                         <td>構建分部</td>
@@ -500,43 +496,43 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tr align="center">
-                                                                    <td> 溫室管材 </td>
-                                                                    <td> 標準管材 </td>
+                                                                    <td> 溫室型材 </td>
+                                                                    <td> 標準型材 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td> 圓頂形式 </td>
-                                                                    <td> 單一圓拱 </td>
+                                                                    <td> 屋頂形式 </td>
+                                                                    <td> 圓頂UBP </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td> 圓拱距 </td>
-                                                                    <td> 1M-1" </td>
+                                                                    <td> 上拱距 </td>
+                                                                    <td> 2M </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td> 基礎 </td>
-                                                                    <td> 直插40cm </td>
+                                                                    <td> 獨立基礎 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td> 跨距 </td>
-                                                                    <td> 5.4m </td>
+                                                                    <td> 6m </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td> 肩高 </td>
-                                                                    <td> 2m </td>
+                                                                    <td> 3m </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
@@ -549,15 +545,15 @@
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td> 連續性	 </td>
+                                                                    <td> 連續性	</td>
                                                                     <td> 獨棟 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td> 披覆膜	</td>
-                                                                    <td> PE獨棟 </td>
+                                                                    <td> 披覆膜 </td>
+                                                                    <td> PE </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
@@ -570,27 +566,9 @@
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td rowspan="3">成本分析</td>
-                                                                    <td>每平方米單價</td>
-                                                                    <td colspan="3">NT$ 650</td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>每坪單價</td>
-                                                                    <td colspan="3">NT$ 2149</td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>總價</td>
-                                                                    <td colspan="3">NT$ 650</td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>風險分析</td>
-                                                                    <td>風險指數</td>
-                                                                    <td colspan="3">1.0</td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>作業難度</td>
-                                                                    <td>作業指數</td>
-                                                                    <td colspan="3">1.0</td>
+                                                                    <td>總價格</td>
+                                                                    <td>  </td>
+                                                                    <td colspan="3">NT$ 1500000</td>
                                                                 </tr>
 
                                                             </table>

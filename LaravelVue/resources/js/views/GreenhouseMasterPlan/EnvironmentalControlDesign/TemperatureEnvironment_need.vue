@@ -156,13 +156,13 @@
                         <tr align="center" id="HighTemperatureDifference">
                             <td>高溫差</td>
                             <td v-for="(temperature, index) in StrHighTemperature" :key="index">
-                                {{parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)-StrOptimalTemperature[1]+3}}
+                                {{parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[1]+3}}
                             </td>
                             <td rowspan="2">{{ total_temp_high }}</td>
                         </tr>
                         <tr align="center" id="HighApproach">
                             <td>環控</td>
-                            <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="temperature-parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)+3 < 0" >
+                            <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[1]+3 > 0" >
                                 需降溫
                             </td>
                             <td v-else>
@@ -173,13 +173,13 @@
                         <tr align="center">
                             <td>低溫差</td>
                             <td v-for="(temperature, index) in StrLowTemperature" :key="index">
-                                {{parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)-StrOptimalTemperature[0]+3}}
+                                {{parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[0]+3}}
                             </td>
                             <td rowspan="2">{{ total_temp_low }}</td>
                         </tr>
                         <tr align="center">
                             <td>環控</td>
-                            <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)-StrOptimalTemperature[0]+3 < 0">
+                            <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[0]+3 < 0">
                                 需加溫
                             </td>
                             <td v-else>
@@ -559,12 +559,12 @@ export default {
             };
 
             for(var i = 0 ; i < 12 ; i++){
-                if (parseFloat(parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i])/2)-this.StrOptimalTemperature[1]+3 > 0){
-                    this.total_temp_high += (parseFloat(parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i])/2)-this.StrOptimalTemperature[1]+3)
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0){
+                    this.total_temp_high += parseFloat((parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3))
                 }
                 
-                if (this.StrOptimalTemperature[0]-parseFloat(parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i])/2)+3 < 0){  
-                    this.total_temp_low += (this.StrOptimalTemperature[0]-parseFloat(parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i])/2)+3)
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0){  
+                    this.total_temp_low += parseFloat((parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3))
                 }
             }
             
