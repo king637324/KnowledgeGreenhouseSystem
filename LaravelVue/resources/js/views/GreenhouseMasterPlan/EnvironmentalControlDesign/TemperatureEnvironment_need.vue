@@ -156,13 +156,13 @@
                         <tr align="center" id="HighTemperatureDifference">
                             <td>高溫差</td>
                             <td v-for="(temperature, index) in StrHighTemperature" :key="index">
-                                {{StrOptimalTemperature[1]-temperature+3}}
+                                {{parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)-StrOptimalTemperature[1]+3}}
                             </td>
-                            <td rowspan="2">{{ StrOptimalTemperature[1]*12-StrHighTemperature.reduce((a, b) => a + b)+3*12 }}</td>
+                            <td rowspan="2">{{ total_temp_high }}</td>
                         </tr>
                         <tr align="center" id="HighApproach">
                             <td>環控</td>
-                            <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="StrOptimalTemperature[1]-temperature < 0" >
+                            <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="temperature-parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)+3 < 0" >
                                 需降溫
                             </td>
                             <td v-else>
@@ -173,13 +173,13 @@
                         <tr align="center">
                             <td>低溫差</td>
                             <td v-for="(temperature, index) in StrLowTemperature" :key="index">
-                                {{StrOptimalTemperature[0]-temperature+3}}
+                                {{StrOptimalTemperature[0]-parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)+3}}
                             </td>
-                            <td rowspan="2">{{ StrOptimalTemperature[1]*12-StrLowTemperature.reduce((a, b) => a + b)+3*12 }}</td>
+                            <td rowspan="2">{{ total_temp_low }}</td>
                         </tr>
                         <tr align="center">
                             <td>環控</td>
-                            <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="StrOptimalTemperature[0]-temperature > 0">
+                            <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="StrOptimalTemperature[0]-parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)+3 > 0">
                                 需加溫
                             </td>
                             <td v-else>
@@ -376,7 +376,7 @@ export default {
             OptimumGerminationTemperature: '-',
             HighestGerminationTemperature: '-',
             CropTemperature:[
-                {name: "地區平均月均溫", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+                {name: "溫室平均月均溫", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
                 // {name: "地區最高月均溫", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
                 {name: "作物生長最適溫區間", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
                 {name: "作物生長最適溫區間", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
@@ -412,6 +412,9 @@ export default {
 
             Tempidx:'降溫控制',
             Tempcheck:[],
+
+            total_temp_high:0,
+            total_temp_low:0,
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -525,7 +528,6 @@ export default {
             for(var i = 0 ; i < this.Region.length ; i++){
                 if(i == this.regionIdx)    this.selectRegion = this.Region[i];
             }
-
             // 取得 風速、風力登陸分析、風力路徑分析
             this.StrHighTemperature = [];
             this.StrLowTemperature = [];
@@ -533,8 +535,8 @@ export default {
                 if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
                     this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
                     for(var j = 0 ; j < this.regionalwindspeedjson[i].monthHighTemperature.split(",").length ; j++){
-                        this.StrHighTemperature.push(parseInt(this.regionalwindspeedjson[j].monthHighTemperature.split(",")[j]))
-                        this.StrLowTemperature.push(parseInt(this.regionalwindspeedjson[j].monthLowTemperature.split(",")[j]))
+                        this.StrHighTemperature.push(parseInt(this.regionalwindspeedjson[i].monthHighTemperature.split(",")[j]))
+                        this.StrLowTemperature.push(parseInt(this.regionalwindspeedjson[i].monthLowTemperature.split(",")[j]))
                     }
                     break;
                 }
@@ -555,8 +557,17 @@ export default {
                 "11月":parseFloat(parseInt(this.StrLowTemperature[10])+parseInt(this.StrHighTemperature[10])/2),
                 "12月":parseFloat(parseInt(this.StrLowTemperature[11])+parseInt(this.StrHighTemperature[11])/2),
             };
-            // // 更新 地區最高月均溫 的圖表
-            // this.CropTemperature[1].data = {"1月":this.StrHighTemperature[0],"2月":this.StrHighTemperature[1],"3月":this.StrHighTemperature[2],"4月":this.StrHighTemperature[3],"5月":this.StrHighTemperature[4],"6月":this.StrHighTemperature[5],"7月":this.StrHighTemperature[6],"8月":this.StrHighTemperature[7],"9月":this.StrHighTemperature[8],"10月":this.StrHighTemperature[9],"11月":this.StrHighTemperature[10],"12月":this.StrHighTemperature[11]};
+
+            for(var i = 0 ; i < 12 ; i++){
+                if (parseFloat(parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i])/2)-this.StrOptimalTemperature[1]+3 > 0){
+                    this.total_temp_high += (parseFloat(parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i])/2)-this.StrOptimalTemperature[1]+3)
+                }
+                
+                if (this.StrOptimalTemperature[0]-parseFloat(parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i])/2)+3 < 0){  
+                    this.total_temp_low += (this.StrOptimalTemperature[0]-parseFloat(parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i])/2)+3)
+                }
+            }
+            
 
 
 
