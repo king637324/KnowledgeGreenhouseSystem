@@ -107,13 +107,13 @@
                             <v-subheader>5.栽種面積</v-subheader>
                           </v-col>
                           <v-col cols="12" md="2">
-                            <v-text-field label="長度(m)" v-model="plantlength" v-on:change="areacount"></v-text-field>
+                            <v-text-field label="南北長度(m)" v-model="plantlength" v-on:change="areacount"></v-text-field>
                           </v-col>  
                           <v-col cols="12" md="2">
-                            <v-text-field label="寬度(m)" v-model="plantwidth" v-on:change="areacount"></v-text-field>
+                            <v-text-field label="東西長度(m)" v-model="plantwidth" v-on:change="areacount"></v-text-field>
                           </v-col>    
                           <v-col cols="12" md="2">
-                            <v-text-field readonly label="面積試算(公頃)" v-model="area"></v-text-field>
+                            <v-text-field readonly label="面積試算(平方公尺)" v-model="area"></v-text-field>
                           </v-col>    
                           <v-col cols="12" md="2">
                             <label for="方位" style="color:rgba(0,0,0,.6); font-size:8px;">方位</label>
@@ -506,7 +506,7 @@
     },
 
     areacount(){
-        this.area = this.plantlength*this.plantwidth/10000
+        this.area = this.plantlength*this.plantwidth
     },
 
     countdecide(){

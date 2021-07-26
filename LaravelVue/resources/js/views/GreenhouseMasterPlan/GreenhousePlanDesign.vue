@@ -32,22 +32,36 @@
                                             <v-text-field :hint="decide[3]" persistent-hint label="輸入成本性" v-model="cost" v-on:change="countdecide"></v-text-field>
                                         </v-col>
                                     </v-row>    
-
                                     <v-row>
-                                    <v-col md="2">
-                                        <v-subheader>B.溫室選擇</v-subheader>
-                                    </v-col>
-                                    <v-col md="4">
-                                        <v-radio-group row v-model="greenhouseradio">
-                                        <v-radio label="簡易溫室" id="簡易溫室" value="簡易溫室"></v-radio>
-                                        <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
-                                        </v-radio-group>
-                                    </v-col>
+                                        <v-col cols="12" md="2">
+                                            <v-subheader>B.栽種面積</v-subheader>
+                                        </v-col>
+                                        <v-col cols="12" md="2">
+                                            <v-text-field label="南北長度(m)" v-model="plantlength" v-on:change="areacount"></v-text-field>
+                                        </v-col>  
+                                        <v-col cols="12" md="2">
+                                            <v-text-field label="東西長度(m)" v-model="plantwidth" v-on:change="areacount"></v-text-field>
+                                        </v-col>    
+                                        <v-col cols="12" md="2">
+                                            <v-text-field readonly label="面積試算(平方公尺)" v-model="area"></v-text-field>
+                                        </v-col>    
+                                                             
+                                    </v-row>
+                                    <v-row>
+                                        <v-col md="2">
+                                            <v-subheader>C.溫室選擇</v-subheader>
+                                        </v-col>
+                                        <v-col md="4">
+                                            <v-radio-group row v-model="greenhouseradio">
+                                            <v-radio label="簡易溫室" id="簡易溫室" value="簡易溫室"></v-radio>
+                                            <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
+                                            </v-radio-group>
+                                        </v-col>
                                     </v-row>
                                     
                                     <v-row>
                                     <v-col md="2">
-                                        <v-subheader>C.溫室設計</v-subheader>
+                                        <v-subheader>D.溫室設計</v-subheader>
                                     </v-col>
                                     <v-col md="8" v-if="greenhouseradio == '簡易溫室'">
                                         <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
@@ -271,7 +285,7 @@
                                             <td>披覆材料</td>
 
                                             <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongCoatingFilms" :key="index">
+                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in SimpleCoatingFilms" :key="index">
                                                     <input type="radio" :value="robust" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
@@ -380,6 +394,29 @@
                                                                     <td>  </td>
                                                                     <td colspan="3">NT$ 500000</td>
                                                                 </tr>
+                                                                <tr align="center">
+                                                                    <td rowspan="3">成本分析</td>
+                                                                    <td>每平方米單價</td>
+                                                                    <td colspan="3">NT$ 650</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>每坪單價</td>
+                                                                    <td colspan="3">NT$ 2149</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>總價</td>
+                                                                    <td colspan="3">NT$ 650</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>風險分析</td>
+                                                                    <td>風險指數</td>
+                                                                    <td colspan="3">1.0</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>作業難度</td>
+                                                                    <td>作業指數</td>
+                                                                    <td colspan="3">1.0</td>
+                                                                </tr>
 
                                                             </table>
                                                         </v-col>
@@ -411,10 +448,29 @@
                                                                         <td> {{SimpleJobDifficultyAdd}} </td>
 
                                                                     </tr>
+                                                                    
                                                                     <tr align="center">
-                                                                        <td>總價格</td>
-                                                                        <td>  </td>
-                                                                        <td colspan="3">NT$ {{SimpleTotalSimpleCost}} </td>
+                                                                        <td rowspan="3">成本分析</td>
+                                                                        <td>每平方米單價</td>
+                                                                        <td colspan="3">NT$ {{Math.floor(SimpleTotalSimpleCost/500000*650)}}</td>
+                                                                    </tr>
+                                                                    <tr align="center">
+                                                                        <td>每坪單價</td>
+                                                                        <td colspan="3">NT$ {{Math.floor(SimpleTotalSimpleCost/500000*650/0.3025)}}</td>
+                                                                    </tr>
+                                                                    <tr align="center">
+                                                                        <td>總價</td>
+                                                                        <td colspan="3">NT$ {{Math.floor(SimpleTotalSimpleCost/500000*650*area)}}</td>
+                                                                    </tr>
+                                                                    <tr align="center">
+                                                                        <td>風險分析</td>
+                                                                        <td>風險指數</td>
+                                                                        <td colspan="3">{{SimpleStructuralRiskAdd}}</td>
+                                                                    </tr>
+                                                                    <tr align="center">
+                                                                        <td>作業難度</td>
+                                                                        <td>作業指數</td>
+                                                                        <td colspan="3">{{SimpleJobDifficultyAdd}}</td>
                                                                     </tr>
                                                                 </table>
                                                             </div>
@@ -514,98 +570,80 @@
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td>總價格</td>
-                                                                    <td>  </td>
-                                                                    <td colspan="3">NT$ 500000</td>
+                                                                    <td rowspan="3">成本分析</td>
+                                                                    <td>每平方米單價</td>
+                                                                    <td colspan="3">NT$ 650</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>每坪單價</td>
+                                                                    <td colspan="3">NT$ 2149</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>總價</td>
+                                                                    <td colspan="3">NT$ 650</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>風險分析</td>
+                                                                    <td>風險指數</td>
+                                                                    <td colspan="3">1.0</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>作業難度</td>
+                                                                    <td>作業指數</td>
+                                                                    <td colspan="3">1.0</td>
                                                                 </tr>
 
                                                             </table>
                                                         </v-col>
                                                         <v-col>
-                                                            <table style="border:1px solid black; " border='1'>
+                                                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
                                                                 <thead class="table-active">
                                                                     <tr align="center">
                                                                         <td>構建分部</td>
-                                                                        <td>標準規格</td>
+                                                                        <td>規格選擇</td>
                                                                         <td>成本性</td>
                                                                         <td>結構風險</td>
                                                                         <td>作業難度</td>
                                                                     </tr>
                                                                 </thead>
-                                                                <tr align="center">
-                                                                    <td> 溫室管材 </td>
-                                                                    <td> 標準管材 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
+                                                                <tr align="center" v-for="(select, index) in  SelectRobust" :key="index">
+                                                                    <td> {{select[0]}}</td>
+                                                                    <td> {{select[1].BuildItem}} </td>
+                                                                    <td> {{select[1].Cost}} </td>
+                                                                    <td> {{select[1].StructuralRisk}} </td>
+                                                                    <td> {{select[1].JobDifficulty}} </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td> 圓頂形式 </td>
-                                                                    <td> 單一圓拱 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td> 圓拱距 </td>
-                                                                    <td> 1M-1" </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td> 基礎 </td>
-                                                                    <td> 直插40cm </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td> 跨距 </td>
-                                                                    <td> 5.4m </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td> 肩高 </td>
-                                                                    <td> 2m </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td> 長度 </td>
-                                                                    <td> 30m </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td> 連續性	 </td>
-                                                                    <td> 獨棟 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td> 披覆膜	</td>
-                                                                    <td> PE獨棟 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td> 參數分析 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                    <td> 1.00 </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>總價格</td>
+                                                                    <td colspan=""> 參數分析 </td>
                                                                     <td>  </td>
-                                                                    <td colspan="3">NT$ 500000</td>
+                                                                    <td> {{RobustCostAdd}} </td>
+                                                                    <td> {{RobustStructuralRiskAdd}} </td>
+                                                                    <td> {{RobustJobDifficultyAdd}} </td>
+
+                                                                </tr>
+                                                        
+                                                                <tr align="center">
+                                                                    <td rowspan="3">成本分析</td>
+                                                                    <td>每平方米單價</td>
+                                                                    <td colspan="3">NT$ {{Math.floor(RobustTotalCost/500000*650)}}</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>每坪單價</td>
+                                                                    <td colspan="3">NT$ {{Math.floor(RobustTotalCost/500000*650/0.3025)}}</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>總價</td>
+                                                                    <td colspan="3">NT$ {{Math.floor(RobustTotalCost/500000*650*area)}}</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>風險分析</td>
+                                                                    <td>風險指數</td>
+                                                                    <td colspan="3">{{RobustStructuralRiskAdd}}</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>作業難度</td>
+                                                                    <td>作業指數</td>
+                                                                    <td colspan="3">{{RobustJobDifficultyAdd}}</td>
                                                                 </tr>
                                                             </table>
                                                         </v-col>
@@ -1584,6 +1622,9 @@
         housepictype:null,
         basetypelist:['溫室基礎設計','基礎設計流程圖','強固基礎','簡易基礎','地質分析'],
         basetype:null,
+        area:0,
+        plantlength: 0,
+        plantwidth: 0,
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
@@ -2322,7 +2363,9 @@
         this.decide.push(String(Math.floor(this.risk/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
         this.decide.push(String(Math.floor(this.speed/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
         this.decide.push(String(Math.floor(this.cost/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
-    }
+    },areacount(){
+        this.area = this.plantlength*this.plantwidth
+    },
 },
 }
 </script>

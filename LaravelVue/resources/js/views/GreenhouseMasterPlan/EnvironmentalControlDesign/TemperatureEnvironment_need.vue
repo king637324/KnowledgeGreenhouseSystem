@@ -173,13 +173,13 @@
                         <tr align="center">
                             <td>低溫差</td>
                             <td v-for="(temperature, index) in StrLowTemperature" :key="index">
-                                {{StrOptimalTemperature[0]-parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)+3}}
+                                {{parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)-StrOptimalTemperature[0]+3}}
                             </td>
                             <td rowspan="2">{{ total_temp_low }}</td>
                         </tr>
                         <tr align="center">
                             <td>環控</td>
-                            <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="StrOptimalTemperature[0]-parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)+3 > 0">
+                            <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="parseFloat(parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index])/2)-StrOptimalTemperature[0]+3 < 0">
                                 需加溫
                             </td>
                             <td v-else>
@@ -544,18 +544,18 @@ export default {
 
             // 更新 地區最低月均溫 的圖表
             this.CropTemperature[0].data = {
-                "1月":parseFloat(parseInt(this.StrLowTemperature[0])+parseInt(this.StrHighTemperature[0])/2),
-                "2月":parseFloat(parseInt(this.StrLowTemperature[1])+parseInt(this.StrHighTemperature[1])/2),
-                "3月":parseFloat(parseInt(this.StrLowTemperature[2])+parseInt(this.StrHighTemperature[2])/2),
-                "4月":parseFloat(parseInt(this.StrLowTemperature[3])+parseInt(this.StrHighTemperature[3])/2),
-                "5月":parseFloat(parseInt(this.StrLowTemperature[4])+parseInt(this.StrHighTemperature[4])/2),
-                "6月":parseFloat(parseInt(this.StrLowTemperature[5])+parseInt(this.StrHighTemperature[5])/2),
-                "7月":parseFloat(parseInt(this.StrLowTemperature[6])+parseInt(this.StrHighTemperature[6])/2),
-                "8月":parseFloat(parseInt(this.StrLowTemperature[7])+parseInt(this.StrHighTemperature[7])/2),
-                "9月":parseFloat(parseInt(this.StrLowTemperature[8])+parseInt(this.StrHighTemperature[8])/2),
-                "10月":parseFloat(parseInt(this.StrLowTemperature[9])+parseInt(this.StrHighTemperature[9])/2),
-                "11月":parseFloat(parseInt(this.StrLowTemperature[10])+parseInt(this.StrHighTemperature[10])/2),
-                "12月":parseFloat(parseInt(this.StrLowTemperature[11])+parseInt(this.StrHighTemperature[11])/2),
+                "1月":parseFloat((parseInt(this.StrLowTemperature[0])+parseInt(this.StrHighTemperature[0]))/2)+3,
+                "2月":parseFloat((parseInt(this.StrLowTemperature[1])+parseInt(this.StrHighTemperature[1]))/2)+3,
+                "3月":parseFloat((parseInt(this.StrLowTemperature[2])+parseInt(this.StrHighTemperature[2]))/2)+3,
+                "4月":parseFloat((parseInt(this.StrLowTemperature[3])+parseInt(this.StrHighTemperature[3]))/2)+3,
+                "5月":parseFloat((parseInt(this.StrLowTemperature[4])+parseInt(this.StrHighTemperature[4]))/2)+3,
+                "6月":parseFloat((parseInt(this.StrLowTemperature[5])+parseInt(this.StrHighTemperature[5]))/2)+3,
+                "7月":parseFloat((parseInt(this.StrLowTemperature[6])+parseInt(this.StrHighTemperature[6]))/2)+3,
+                "8月":parseFloat((parseInt(this.StrLowTemperature[7])+parseInt(this.StrHighTemperature[7]))/2)+3,
+                "9月":parseFloat((parseInt(this.StrLowTemperature[8])+parseInt(this.StrHighTemperature[8]))/2)+3,
+                "10月":parseFloat((parseInt(this.StrLowTemperature[9])+parseInt(this.StrHighTemperature[9]))/2)+3,
+                "11月":parseFloat((parseInt(this.StrLowTemperature[10])+parseInt(this.StrHighTemperature[10]))/2)+3,
+                "12月":parseFloat((parseInt(this.StrLowTemperature[11])+parseInt(this.StrHighTemperature[11]))/2)+3,
             };
 
             for(var i = 0 ; i < 12 ; i++){
