@@ -384,37 +384,40 @@
                                                             </table>
                                                         </v-col>
                                                         <v-col>
-                                                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                                                <thead class="table-active">
-                                                                    <tr align="center">
-                                                                        <td>構建分部</td>
-                                                                        <td>規格選擇</td>
-                                                                        <td>成本性</td>
-                                                                        <td>結構風險</td>
-                                                                        <td>作業難度</td>
+                                                            <div class="p-2 bd-highlight">
+                                                                <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                                                    <thead class="table-active">
+                                                                        <tr align="center">
+                                                                            <td>構建分部</td>
+                                                                            <td>規格選擇</td>
+                                                                            <td>成本性</td>
+                                                                            <td>結構風險</td>
+                                                                            <td>作業難度</td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                
+                                                                    <tr align="center" v-for="(select, index) in SelectSimple" :key="index">
+                                                                        <td> {{select[0]}}</td>
+                                                                        <td> {{select[1].BuildItem}} </td>
+                                                                        <td> {{select[1].Cost}} </td>
+                                                                        <td> {{select[1].StructuralRisk}} </td>
+                                                                        <td> {{select[1].JobDifficulty}} </td>
                                                                     </tr>
-                                                                </thead>
-                                                                <tr align="center" v-for="(select, index) in SelectSimple" :key="index">
-                                                                    <td> {{select.BuildBranch}}</td>
-                                                                    <td> {{select.BuildItem}} </td>
-                                                                    <td> {{select.Cost}} </td>
-                                                                    <td> {{select.StructuralRisk}} </td>
-                                                                    <td> {{select.JobDifficulty}} </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td colspan=""> 參數分析 </td>
-                                                                    <td>  </td>
-                                                                    <td> {{SimpleCostAdd}} </td>
-                                                                    <td> {{SimpleStructuralRiskAdd}} </td>
-                                                                    <td> {{SimpleJobDifficultyAdd}} </td>
+                                                                    <tr align="center">
+                                                                        <td colspan=""> 參數分析 </td>
+                                                                        <td>  </td>
+                                                                        <td> {{SimpleCostAdd}} </td>
+                                                                        <td> {{SimpleStructuralRiskAdd}} </td>
+                                                                        <td> {{SimpleJobDifficultyAdd}} </td>
 
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>總價格</td>
-                                                                    <td>  </td>
-                                                                    <td colspan="3">NT$ {{SimpleTotalSimpleCost}} </td>
-                                                                </tr>
-                                                            </table>
+                                                                    </tr>
+                                                                    <tr align="center">
+                                                                        <td>總價格</td>
+                                                                        <td>  </td>
+                                                                        <td colspan="3">NT$ {{SimpleTotalSimpleCost}} </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
                                                         </v-col>
                                                     </v-row>
                                                 </v-container>
