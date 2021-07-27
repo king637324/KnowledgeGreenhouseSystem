@@ -401,7 +401,7 @@
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td>總價</td>
-                                                                    <td colspan="3">NT$ 650</td>
+                                                                    <td colspan="3">NT$ {{650*area}}</td>
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td>風險分析</td>
@@ -409,9 +409,9 @@
                                                                     <td colspan="3">1.0</td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td>作業難度</td>
-                                                                    <td>作業指數</td>
-                                                                    <td colspan="3">1.0</td>
+                                                                    <td>工時分析</td>
+                                                                    <td>工期</td>
+                                                                    <td colspan="3">{{Math.round(20+1*40*area/1000*100)/100}}</td>
                                                                 </tr>
 
                                                             </table>
@@ -464,9 +464,9 @@
                                                                         <td colspan="3">{{SimpleStructuralRiskAdd}}</td>
                                                                     </tr>
                                                                     <tr align="center">
-                                                                        <td>作業難度</td>
-                                                                        <td>作業指數</td>
-                                                                        <td colspan="3">{{SimpleJobDifficultyAdd}}</td>
+                                                                        <td>工時分析</td>
+                                                                        <td>工期</td>
+                                                                        <td colspan="3">{{Math.round(20+SimpleJobDifficultyAdd*40*area/1000*100)/100}}</td>
                                                                     </tr>
                                                                 </table>
                                                             </div>
@@ -584,9 +584,9 @@
                                                                     <td colspan="3">1.0</td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td>作業難度</td>
-                                                                    <td>作業指數</td>
-                                                                    <td colspan="3">1.0</td>
+                                                                    <td>工時分析</td>
+                                                                    <td>工期</td>
+                                                                    <td colspan="3">{{Math.round(30+1*60*area/1000*100)/100}}</td>
                                                                 </tr>
 
                                                             </table>
@@ -637,9 +637,9 @@
                                                                     <td colspan="3">{{RobustStructuralRiskAdd}}</td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td>作業難度</td>
-                                                                    <td>作業指數</td>
-                                                                    <td colspan="3">{{RobustJobDifficultyAdd}}</td>
+                                                                    <td>工時分析</td>
+                                                                    <td>工期</td>
+                                                                    <td colspan="3">{{Math.round(30+RobustJobDifficultyAdd*60*area/1000*100)/100}}</td>
                                                                 </tr>
                                                             </table>
                                                         </v-col>
