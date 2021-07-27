@@ -557,14 +557,15 @@ export default {
                 "11月":parseFloat((parseInt(this.StrLowTemperature[10])+parseInt(this.StrHighTemperature[10]))/2)+3,
                 "12月":parseFloat((parseInt(this.StrLowTemperature[11])+parseInt(this.StrHighTemperature[11]))/2)+3,
             };
-
+            this.total_temp_high = 0;
+            this.total_temp_low = 0;
             for(var i = 0 ; i < 12 ; i++){
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0){
-                    this.total_temp_high += parseFloat((parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3))
+                    this.total_temp_high += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3)
                 }
                 
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0){  
-                    this.total_temp_low += parseFloat((parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3))
+                    this.total_temp_low += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3)
                 }
             }
             

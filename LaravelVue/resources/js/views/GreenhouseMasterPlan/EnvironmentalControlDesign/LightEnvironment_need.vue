@@ -89,6 +89,35 @@
                                 <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
                             </v-col>
                         </v-row>
+                        <table style="border:1px solid black;" border='1'>
+                        <tr align="center">
+                            <td></td>
+                            <td>1月份</td>
+                            <td>2月份</td>
+                            <td>3月份</td>
+                            <td>4月份</td>
+                            <td>5月份</td>
+                            <td>6月份</td>
+                            <td>7月份</td>
+                            <td>8月份</td>
+                            <td>9月份</td>
+                            <td>10月份</td>
+                            <td>11月份</td>
+                            <td>12月份</td>
+                            <td>平均</td>
+                        </tr>
+                        <tr align="center" id="HighTemperatureDifference">
+                            <td>全天空日射量</td>
+                            <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[0].data[String(n)+'月']/30*100)/100}}</td>
+                            <td>{{ Math.round(average_total/12*100)/100 }}</td>
+                        </tr>
+                        <tr align="center" id="HighApproach">
+                            <td>日照時數</td>
+                            <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[1].data[String(n)+'月']/30*100)/100}}</td>
+                            <td>{{ Math.round(average_sun/12*100)/100 }}</td>
+                        </tr>
+                        
+                    </table>
                     </v-container-fluid>
                 </b-card-text>
 
@@ -316,6 +345,9 @@ export default {
 
             lightidx:"遮光控制",
             lightcheck:[],
+
+            average_sun:0,
+            average_total:0,
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -441,6 +473,11 @@ export default {
                 {name: "全天空日射量(MJ/㎡)", data: {"1月":StrGloblRad[0],"2月":StrGloblRad[1],"3月":StrGloblRad[2],"4月":StrGloblRad[3],"5月":StrGloblRad[4],"6月":StrGloblRad[5],"7月":StrGloblRad[6],"8月":StrGloblRad[7],"9月":StrGloblRad[8],"10月":StrGloblRad[9],"11月":StrGloblRad[10],"12月":StrGloblRad[11]}},
                 {name: "日照時數(小時)", data: {"1月":StrSunShine[0],"2月":StrSunShine[1],"3月":StrSunShine[2],"4月":StrSunShine[3],"5月":StrSunShine[4],"6月":StrSunShine[5],"7月":StrSunShine[6],"8月":StrSunShine[7],"9月":StrSunShine[8],"10月":StrSunShine[9],"11月":StrSunShine[10],"12月":StrSunShine[11]}},
             ];
+            for (var i = 0; i < 12; i++) {
+                this.average_total += Math.round(StrGloblRad[i]/30*100)/100
+                this.average_sun += Math.round(StrSunShine[i]/30*100)/100
+            }
+
 
         },updateSelectLight(){    // 更新所選擇的型材
             this.selectLight = [];
