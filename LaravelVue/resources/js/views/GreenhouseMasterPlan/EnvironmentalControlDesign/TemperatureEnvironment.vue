@@ -151,12 +151,14 @@
                             <td>10月份</td>
                             <td>11月份</td>
                             <td>12月份</td>
+                            <td>合計</td>
                         </tr>
                         <tr align="center" id="HighTemperatureDifference">
                             <td>高溫差</td>
                             <td v-for="(temperature, index) in StrHighTemperature" :key="index">
                                 {{parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[1]+3}}
                             </td>
+                            <td rowspan="2">{{ total_temp_high }}</td>
                         </tr>
                         <tr align="center" id="HighApproach">
                             <td>環控</td>
@@ -173,6 +175,7 @@
                             <td v-for="(temperature, index) in StrLowTemperature" :key="index">
                                 {{parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[0]+3}}
                             </td>
+                            <td rowspan="2">{{ total_temp_low }}</td>
                         </tr>
                         <tr align="center">
                             <td>環控</td>
@@ -398,13 +401,15 @@ export default {
                 "11月":parseFloat((parseInt(this.StrLowTemperature[10])+parseInt(this.StrHighTemperature[10]))/2)+3,
                 "12月":parseFloat((parseInt(this.StrLowTemperature[11])+parseInt(this.StrHighTemperature[11]))/2)+3,
             };
+            this.total_temp_high = 0;
+            this.total_temp_low = 0;
             for(var i = 0 ; i < 12 ; i++){
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0){
-                    this.total_temp_high += parseFloat((parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3))
+                    this.total_temp_high += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3)
                 }
                 
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0){  
-                    this.total_temp_low += parseFloat((parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3))
+                    this.total_temp_low += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3)
                 }
             }
 
