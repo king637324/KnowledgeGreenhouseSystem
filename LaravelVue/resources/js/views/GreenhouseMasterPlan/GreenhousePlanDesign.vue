@@ -448,15 +448,15 @@
                                                                     <tr align="center">
                                                                         <td rowspan="3">成本分析</td>
                                                                         <td>每平方米單價</td>
-                                                                        <td colspan="3">NT$ {{Math.floor(SimpleTotalSimpleCost/500000*650)}}</td>
+                                                                        <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650)}}</td>
                                                                     </tr>
                                                                     <tr align="center">
                                                                         <td>每坪單價</td>
-                                                                        <td colspan="3">NT$ {{Math.floor(SimpleTotalSimpleCost/500000*650/0.3025)}}</td>
+                                                                        <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650/0.3025)}}</td>
                                                                     </tr>
                                                                     <tr align="center">
                                                                         <td>總價</td>
-                                                                        <td colspan="3">NT$ {{Math.floor(SimpleTotalSimpleCost/500000*650*area)}}</td>
+                                                                        <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650*area)}}</td>
                                                                     </tr>
                                                                     <tr align="center">
                                                                         <td>風險分析</td>
@@ -566,9 +566,27 @@
                                                                     <td> 1.00 </td>
                                                                 </tr>
                                                                 <tr align="center">
-                                                                    <td>總價格</td>
-                                                                    <td>  </td>
-                                                                    <td colspan="3">NT$ 1500000</td>
+                                                                    <td rowspan="3">成本分析</td>
+                                                                    <td>每平方米單價</td>
+                                                                    <td colspan="3">NT$ 1300</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>每坪單價</td>
+                                                                    <td colspan="3">NT$ 4298</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>總價</td>
+                                                                    <td colspan="3">NT$ 1300</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>風險分析</td>
+                                                                    <td>風險指數</td>
+                                                                    <td colspan="3">1.0</td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <td>作業難度</td>
+                                                                    <td>作業指數</td>
+                                                                    <td colspan="3">1.0</td>
                                                                 </tr>
 
                                                             </table>
@@ -603,15 +621,15 @@
                                                                 <tr align="center">
                                                                     <td rowspan="3">成本分析</td>
                                                                     <td>每平方米單價</td>
-                                                                    <td colspan="3">NT$ {{Math.floor(RobustTotalCost/500000*650)}}</td>
+                                                                    <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300)}}</td>
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td>每坪單價</td>
-                                                                    <td colspan="3">NT$ {{Math.floor(RobustTotalCost/500000*650/0.3025)}}</td>
+                                                                    <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300/0.3025)}}</td>
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td>總價</td>
-                                                                    <td colspan="3">NT$ {{Math.floor(RobustTotalCost/500000*650*area)}}</td>
+                                                                    <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300*area)}}</td>
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td>風險分析</td>
