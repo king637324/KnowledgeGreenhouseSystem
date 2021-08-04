@@ -7,6 +7,7 @@
         <Foot/>
         <FlashMessage position="right bottom"></FlashMessage>
     </main>
+
 </template>
 
 <script>

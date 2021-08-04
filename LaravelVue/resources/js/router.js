@@ -55,6 +55,8 @@ import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment fr
 import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
 import OverallPlanbase from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
 import PlanDesign from './views/GreenhouseMasterPlan/GreenhousePlanDesign.vue';
+import Widget from './views/GreenhouseMasterPlan/Greenhousewidget.vue';
+import CostCount from './views/GreenhouseMasterPlan/GreenhouseCostCount.vue';
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
@@ -350,6 +352,20 @@ const routes = [{
     path: '/GreenhouseMasterPlan/GreenhouseCoatedFilm',
     name: 'GreenhouseCoatedFilm',
     component: CoatedFilm,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/Greenhousewidget',
+    name: 'Greenhousewidget',
+    component: Widget,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/GreenhouseCostCount',
+    name: 'GreenhouseCostCount',
+    component: CostCount,
     meta: {
         auth: undefined
     }

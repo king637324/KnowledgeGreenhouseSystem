@@ -74,9 +74,9 @@
                                 <router-link to="/GreenhouseMasterPlan/GreenhouseOverallPlanbase" class="nav-link" style="font-size:18px;" exact>
                                     A.溫室基本資訊輸入
                                 </router-link>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#作物需求與環境分析" style="font-size:18px;" aria-expanded="false" aria-controls="成本分析">
+                                <a class="nav-link collapseㄎd" href="#" data-toggle="collapse" data-target="#作物需求與環境分析" style="font-size:18px;" aria-expanded="false" aria-controls="成本分析">
                                     B.作物需求環境分析
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    <div class="sb-sidenav-collaㄅpse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="作物需求與環境分析" aria-labelledby="headingOne">
                                     <nav class="sb-sidenav-menu-nested nav">
@@ -242,6 +242,28 @@
                                                 </router-link>
                                             </nav>
                                         </div> -->
+                                    </nav>
+                                </div>
+                                <router-link to="/GreenhouseMasterPlan/Greenhousewidget" style="font-size:18px;" class="nav-link" exact>
+                                    E.溫室結構重量估算系統
+                                </router-link>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#成本計算系統" style="font-size:18px;" aria-expanded="false" aria-controls="成本分析">
+                                    F.成本計算系統
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="成本計算系統" aria-labelledby="headingOne">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <router-link to="/GreenhouseMasterPlan/GreenhouseCostCount" style="font-size:16px;" class="nav-link" exact>
+                                            1.結構材料成本
+                                        </router-link>
+
+                                        <router-link to="/GreenhouseMasterPlan/GreenhouseCostCount" style="font-size:16px;" class="nav-link" exact>
+                                            2.披覆材料成本
+                                        </router-link>
+
+                                        <router-link to="/GreenhouseMasterPlan/GreenhouseCostCount" style="font-size:16px;" class="nav-link" exact>
+                                            3.土建工程
+                                        </router-link>
                                     </nav>
                                 </div>
                             </nav>

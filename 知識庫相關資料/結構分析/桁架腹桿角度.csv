@@ -1,9 +1,0 @@
-item,MaterialForm,Material,TrussForm,BellyRodAngleController,count,Weight,StressRatio
-A,/images/greenhousestructure/Truss/TrussBellyRodAngle/A_MaterialForm.png,"Ys=230MPa,Ts=400MPa
-",/images/greenhousestructure/Truss/TrussBellyRodAngle/A_TrussForm.png,/images/greenhousestructure/Truss/TrussBellyRodAngle/A_TrussBellyRodAngleController.png,23,71.06,0.53
-B,/images/greenhousestructure/Truss/TrussBellyRodAngle/B_MaterialForm.png,"Ys=350MPa,Ts=540MPa
-",/images/greenhousestructure/Truss/TrussBellyRodAngle/B_TrussForm.png,/images/greenhousestructure/Truss/TrussBellyRodAngle/B_TrussBellyRodAngleController.png,24,69.46,0.43
-C,/images/greenhousestructure/Truss/TrussBellyRodAngle/C_MaterialForm.png,"Ys=350MPa,Ts=540MPa
-",/images/greenhousestructure/Truss/TrussBellyRodAngle/C_TrussForm.png,/images/greenhousestructure/Truss/TrussBellyRodAngle/C_TrussBellyRodAngleController.png,20,66.38,0.41
-D,/images/greenhousestructure/Truss/TrussBellyRodAngle/D_MaterialForm.png,"Ys=350MPa,Ts=540MPa
-",/images/greenhousestructure/Truss/TrussBellyRodAngle/D_TrussForm.png,/images/greenhousestructure/Truss/TrussBellyRodAngle/D_TrussBellyRodAngleController.png,16,63.31,0.41

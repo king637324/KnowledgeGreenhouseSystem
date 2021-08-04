@@ -1,5 +1,0 @@
-id,Expert,BuildItem,Cost,StructuralRisk,JobDifficulty
-1,System,獨棟,1,1,1
-2,System,二連棟,0.95,0.95,0.95
-3,System,三連棟,0.9,0.9,0.93
-4,System,四連棟,0.88,0.88,0.92

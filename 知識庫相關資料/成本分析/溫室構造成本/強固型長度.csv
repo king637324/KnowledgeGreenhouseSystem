@@ -1,5 +1,0 @@
-id,Expert,BuildItem,Cost,StructuralRisk,JobDifficulty
-1,System,30m,1,1,1
-2,System,60m,0.96,0.99,0.98
-3,System,90m,0.93,0.98,0.96
-4,System,120m,0.9,0.97,0.94
