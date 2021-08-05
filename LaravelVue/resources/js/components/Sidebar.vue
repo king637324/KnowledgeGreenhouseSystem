@@ -246,26 +246,10 @@
                                 </div>
                                 <router-link to="/GreenhouseMasterPlan/Greenhousewidget" style="font-size:18px;" class="nav-link" exact>
                                     E.溫室結構重量估算系統
-                                </router-link>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#成本計算系統" style="font-size:18px;" aria-expanded="false" aria-controls="成本分析">
+                                </router-link> 
+                                <router-link to="/GreenhouseMasterPlan/GreenhouseCostCount" style="font-size:18px;" class="nav-link" exact>
                                     F.成本計算系統
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="成本計算系統" aria-labelledby="headingOne">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <router-link to="/GreenhouseMasterPlan/GreenhouseCostCount" style="font-size:16px;" class="nav-link" exact>
-                                            1.結構材料成本
-                                        </router-link>
-
-                                        <router-link to="/GreenhouseMasterPlan/GreenhouseCostCount" style="font-size:16px;" class="nav-link" exact>
-                                            2.披覆材料成本
-                                        </router-link>
-
-                                        <router-link to="/GreenhouseMasterPlan/GreenhouseCostCount" style="font-size:16px;" class="nav-link" exact>
-                                            3.土建工程
-                                        </router-link>
-                                    </nav>
-                                </div>
+                                </router-link>
                             </nav>
                         </div>
                         <!-- <router-link to="/Development" class="nav-link" exact>

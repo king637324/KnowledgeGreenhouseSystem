@@ -93,10 +93,10 @@
                                                     <td>kg/m2</td>
                                                 </tr>
                                             </thead>
-                                            <tr align="center" v-for="n in roof_type.length" :key="n">
-                                                <td>{{ roof_type[n] }}</td>
-                                                <td>{{ roof_name[n] }}</td>
-                                                <td>{{ roof_number[n] }}</td>
+                                            <tr align="center" v-for="(data, index) in roof_type" :key="index">
+                                                <td>{{ roof_type[index] }}</td>
+                                                <td>{{ roof_name[index] }}</td>
+                                                <td>{{ roof_number[index] }}</td>
                                             </tr>
                                             
                                         </table>
