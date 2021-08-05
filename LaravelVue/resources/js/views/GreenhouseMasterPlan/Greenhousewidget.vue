@@ -141,10 +141,10 @@
                                                 <td>{{ roof_type[roof_name.indexOf(radio_roof)] }}</td>
                                                 <td>{{ radio_roof }}</td>
                                                 <td>{{ roof_number[roof_name.indexOf(radio_roof)] }}</td>
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>None</td>
+                                                <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
+                                                <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
+                                                <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
+                                                <td>{{ Math.round(Math.floor(1-design_story)/5*100)/100 }}</td>
                                                 <td>None</td>
                                             </tr>
                                         </table>
@@ -170,12 +170,12 @@
                                                 <td>{{ plantwidth }}</td>
                                                 <td>{{ position }}</td>
                                                 <td>{{ Math.floor(plantlength*plantwidth) }}</td>
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>None</td>
+                                                <td>4</td>
+                                                <td>{{ Math.floor(plantlength/4*0.95) }}</td>
+                                                <td>{{ design_span }}</td>
+                                                <td>{{ Math.floor(plantwidth/design_span*0.95) }}</td>
+                                                <td>{{ Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span }}</td>
+                                                <td>{{ Math.round(Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)/Math.floor(plantlength*plantwidth)*100)/100*100 }}%</td>
                                                 <td>None</td>
                                             </tr>
                                         </table>
