@@ -247,9 +247,7 @@
                                 <router-link to="/GreenhouseMasterPlan/Greenhousewidget" style="font-size:18px;" class="nav-link" exact>
                                     E.溫室結構重量估算系統
                                 </router-link> 
-                                <router-link to="/GreenhouseMasterPlan/GreenhouseCostCount" style="font-size:18px;" class="nav-link" exact>
-                                    F.成本計算系統
-                                </router-link>
+                                
                             </nav>
                         </div>
                         <!-- <router-link to="/Development" class="nav-link" exact>
