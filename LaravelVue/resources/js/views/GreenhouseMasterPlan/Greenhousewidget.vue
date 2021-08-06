@@ -85,100 +85,203 @@
                             <v-row>
                                 <v-col>
                                     <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td>型式</td>
-                                                    <td>名稱</td>
-                                                    <td>kg/m2</td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center" v-for="(data, index) in roof_type" :key="index">
-                                                <td>{{ roof_type[index] }}</td>
-                                                <td>{{ roof_name[index] }}</td>
-                                                <td>{{ roof_number[index] }}</td>
-                                            </tr>
-                                            
-                                        </table>
-                                        <br>
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td>標準風速</td>
-                                                    <td>規範風速</td>
-                                                    <td>風速加級</td>
-                                                    <td>系統建議風速</td>
-                                                    <td>標準跨距</td>
-                                                    <td>標準肩高</td>
-                                                    <td>連棟性</td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center" id="風速">
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>None</td>
-                                                <td>8</td>
-                                                <td>3</td>
-                                                <td>1</td>
-                                            </tr>
-                                        </table>
-                                        <br>
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td>型式</td>
-                                                    <td>名稱</td>
-                                                    <td>kg/m2</td>
-                                                    <td>風速指數</td>
-                                                    <td>跨距指數</td>
-                                                    <td>肩高指數</td>
-                                                    <td>連棟指數</td>
-                                                    <td>預估單量</td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center" id="風速">
-                                                <td>{{ roof_type[roof_name.indexOf(radio_roof)] }}</td>
-                                                <td>{{ radio_roof }}</td>
-                                                <td>{{ roof_number[roof_name.indexOf(radio_roof)] }}</td>
-                                                <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
-                                                <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
-                                                <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
-                                                <td>{{ Math.round(Math.floor(1-design_story)/5*100)/100 }}</td>
-                                                <td>None</td>
-                                            </tr>
-                                        </table>
-                                        <br>
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td>農地南北長度</td>
-                                                    <td>農地東西長度</td>
-                                                    <td>方位(長邊)</td>
-                                                    <td>農地面積(m2)</td>
-                                                    <td>拱跨距</td>
-                                                    <td>拱數</td>
-                                                    <td>寬跨距</td>
-                                                    <td>跨數</td>
-                                                    <td>溫室面積(m2)</td>
-                                                    <td>土地使用率</td>
-                                                    <td>溫室結構總重</td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center" id="風速">
-                                                <td>{{ plantlength }}</td>
-                                                <td>{{ plantwidth }}</td>
-                                                <td>{{ position }}</td>
-                                                <td>{{ Math.floor(plantlength*plantwidth) }}</td>
-                                                <td>4</td>
-                                                <td>{{ Math.floor(plantlength/4*0.95) }}</td>
-                                                <td>{{ design_span }}</td>
-                                                <td>{{ Math.floor(plantwidth/design_span*0.95) }}</td>
-                                                <td>{{ Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span }}</td>
-                                                <td>{{ Math.round(Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)/Math.floor(plantlength*plantwidth)*100)/100*100 }}%</td>
-                                                <td>None</td>
-                                            </tr>
-                                        </table>
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>型式</td>
+                                                            <td>名稱</td>
+                                                            <td>kg/m2</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center" v-for="(data, index) in roof_type" :key="index">
+                                                        <td>{{ roof_type[index] }}</td>
+                                                        <td>{{ roof_name[index] }}</td>
+                                                        <td>{{ roof_number[index] }}</td>
+                                                    </tr>
+                                                    
+                                                </table>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>標準風速</td>
+                                                            <td>規範風速</td>
+                                                            <td>風速加級</td>
+                                                            <td>系統建議風速</td>
+                                                            <td>標準跨距</td>
+                                                            <td>標準肩高</td>
+                                                            <td>連棟性</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center" id="風速">
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                        <td>8</td>
+                                                        <td>3</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                </table>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>型式</td>
+                                                            <td>名稱</td>
+                                                            <td>kg/m2</td>
+                                                            <td>風速指數</td>
+                                                            <td>跨距指數</td>
+                                                            <td>肩高指數</td>
+                                                            <td>連棟指數</td>
+                                                            <td>預估單量</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center" id="風速">
+                                                        <td>{{ roof_type[roof_name.indexOf(radio_roof)] }}</td>
+                                                        <td>{{ radio_roof }}</td>
+                                                        <td>{{ roof_number[roof_name.indexOf(radio_roof)] }}</td>
+                                                        <td>None</td>
+                                                        <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
+                                                        <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
+                                                        <td>{{ Math.round(Math.floor(1-design_story)/5*100)/100 }}</td>
+                                                        <td>None</td>
+                                                    </tr>
+                                                </table>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>農地南北長度</td>
+                                                            <td>農地東西長度</td>
+                                                            <td>方位(長邊)</td>
+                                                            <td>農地面積(m2)</td>
+                                                            <td>拱跨距</td>
+                                                            <td>拱數</td>
+                                                            <td>寬跨距</td>
+                                                            <td>跨數</td>
+                                                            <td>溫室面積(m2)</td>
+                                                            <td>土地使用率</td>
+                                                            <td>溫室結構總重</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center" id="風速">
+                                                        <td>{{ plantlength }}</td>
+                                                        <td>{{ plantwidth }}</td>
+                                                        <td>{{ position }}</td>
+                                                        <td>{{ Math.floor(plantlength*plantwidth) }}</td>
+                                                        <td>4</td>
+                                                        <td>{{ Math.floor(plantlength/4*0.95) }}</td>
+                                                        <td>{{ design_span }}</td>
+                                                        <td>{{ Math.floor(plantwidth/design_span*0.95) }}</td>
+                                                        <td>{{ Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span }}</td>
+                                                        <td>{{ Math.round(Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)/Math.floor(plantlength*plantwidth)*100)/100*100 }}%</td>
+                                                        <td>None</td>
+                                                    </tr>
+                                                </table>
+                                            </v-col>
+                                        </v-row>
+                                    </div>
+                                </v-col>
+                                <v-col>
+                                    <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>結構材料單價(kg)</td>
+                                                            <td>結構材料總價(kg)</td>
+                                                            <td>人工單價(元/kg)</td>
+                                                            <td>溫室人工費</td>
+                                                            <td>結構工程總價</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center">
+                                                        <td>40</td>
+                                                        <td>None</td>
+                                                        <td>10</td>
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                    </tr>
+                                                </table>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>披覆材料面積(m2)</td>
+                                                            <td>披覆材料單價(元/m2)</td>
+                                                            <td>披覆材料價(元)</td>
+                                                            <td>披覆人工費(元/m2)</td>
+                                                            <td>披覆材料人工費(元)</td>
+                                                            <td>披覆工程總價</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center">
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+Math.floor(plantlength+plantwidth)*2*1.5) }}</td>
+                                                        <td>{{ 50 }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+Math.floor(plantlength+plantwidth)*2*1.5*50) }}</td>
+                                                        <td>{{ 10 }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+Math.floor(plantlength+plantwidth)*2*1.5*10) }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+Math.floor(plantlength+plantwidth)*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+Math.floor(plantlength+plantwidth)*2*1.5*10) }}</td>
+                                                    </tr>
+                                                </table>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>整地面積(m2)</td>
+                                                            <td>整地單價</td>
+                                                            <td>整地費用</td>
+                                                            <td>基礎數量</td>
+                                                            <td>基礎單價</td>
+                                                            <td>基礎費用</td>
+                                                            <td>土建工程費用</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center">
+                                                        <td>{{ Math.floor(plantlength*plantwidth) }}</td>
+                                                        <td>{{ 100 }}</td>
+                                                        <td>{{ Math.floor(plantlength*plantwidth)*100 }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2) }}</td>
+                                                        <td>2000</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000) }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100 }}</td>
+                                                    </tr>
+                                                </table>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>A.結構工程</td>
+                                                            <td>B.披覆工程</td>
+                                                            <td>C.土建工程</td>
+                                                            <td>D.設計管理</td>
+                                                            <td>合計</td>
+                                                            <td>平方米單價</td>
+                                                            <td>坪單價</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center">
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                        <td>None</td>
+                                                    </tr>
+                                                </table>
+                                            </v-col>
+                                        </v-row>
                                     </div>
                                 </v-col>
                             </v-row>
