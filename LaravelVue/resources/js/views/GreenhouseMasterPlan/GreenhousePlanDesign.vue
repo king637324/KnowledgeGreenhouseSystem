@@ -670,6 +670,7 @@
                                     </option>
                                 </b-select>
                             </h5>
+<<<<<<< HEAD
                             <div v-if="knowledgeIdx=='溫室管材&型材'">
                                 <v-radio-group row v-model="housetype"> 
                                     <v-radio v-for="(type, index) in housetypelist" :value="type" :label="type" :key="index"></v-radio>
@@ -705,20 +706,74 @@
                                     <v-radio v-for="(type, index) in rooftypelist" :value="type" :label="type" :key="index"></v-radio>
                                 </v-radio-group>
                                 <img src="/image/溫室圓拱距(桁距)設計.JPG" v-if="rooftype=='溫室圓拱距(桁距)設計'">
+=======
+                            <div v-if="knowledgeIdx=='溫室型式'">
+                                <v-radio-group row v-model="housetype"> 
+                                    <v-radio v-for="(type, index) in housetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/溫室型式構造.JPG" v-if="housetype=='溫室型式構造'">
+                                <img src="/image/強固溫室(1).JPG" v-if="housetype=='強固溫室'">
+                                <img src="/image/強固溫室(2).JPG" v-if="housetype=='強固溫室'">
+                                <img src="/image/簡易溫室(1).JPG" v-if="housetype=='簡易溫室'">
+                                <img src="/image/簡易溫室(2).JPG" v-if="housetype=='簡易溫室'">
+                                <img src="/image/使用年限.JPG" v-if="housetype=='使用年限'">
+                            </div>
+                            <div v-if="knowledgeIdx=='管材'">
+                                <v-radio-group row v-model="pipetype"> 
+                                    <v-radio v-for="(type, index) in pipetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/溫室管材.JPG" v-if="pipetype=='溫室管材'">
+                                <img src="/image/管材規格(1).JPG" v-if="pipetype=='管材規格'">
+                                <img src="/image/管材規格(2).JPG" v-if="pipetype=='管材規格'">
+                                <img src="/image/管材規格(3).JPG" v-if="pipetype=='管材規格'">
+                            </div>
+                            <div v-if="knowledgeIdx=='屋頂'">
+                                <v-radio-group row v-model="rooftype"> 
+                                    <v-radio v-for="(type, index) in rooftypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/溫室屋頂強化結構.JPG" v-if="rooftype=='溫室屋頂強化結構'">
+                                <img src="/image/溫室圓拱距(桁距)設計.JPG" v-if="rooftype=='溫室圓拱距(桁距)設計'">
+                                <img src="/image/簡易型溫室基礎(1).JPG" v-if="rooftype=='簡易型溫室基礎'">
+                                <img src="/image/簡易型溫室基礎(2).JPG" v-if="rooftype=='簡易型溫室基礎'">
+                                <img src="/image/溫室基礎地質分析.JPG" v-if="rooftype=='溫室基礎地質分析'">
+                                <img src="/image/簡易溫室肩高設計.JPG" v-if="rooftype=='簡易溫室肩高設計'">
+                                <img src="/image/簡易溫室肩高設計(2).JPG" v-if="rooftype=='簡易溫室肩高設計'">
+                                <img src="/image/簡易溫室跨距設計(1).JPG" v-if="rooftype=='簡易溫室跨距設計'">
+                                <img src="/image/簡易溫室跨距設計(2).JPG" v-if="rooftype=='簡易溫室跨距設計'">
+                                <img src="/image/溫室型材.JPG" v-if="rooftype=='溫室型材'">
+                                <img src="/image/型材規格(1).JPG" v-if="rooftype=='型材規格'">
+                                <img src="/image/型材規格(2).JPG" v-if="rooftype=='型材規格'">
+                                <img src="/image/型材規格(3).JPG" v-if="rooftype=='型材規格'">
+                            </div>
+                            <div v-if="knowledgeIdx=='溫室型式(圖)'">
+                                <v-radio-group row v-model="housepictype"> 
+                                    <v-radio v-for="(type, index) in housepictypelist" :value="type" :label="type" :key="index"></v-radio>
+                                </v-radio-group>
+                                <img src="/image/強固溫室型式標準圖(1).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室型式標準圖(2).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室型式標準圖(3).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室型式標準圖(4).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室型式標準圖(5).JPG" v-if="housepictype=='強固溫室型式標準圖'">
+                                <img src="/image/強固溫室.JPG" v-if="housepictype=='強固溫室'">
+>>>>>>> 59c666ffdf5c358f5f123fd2b4ce986964111afd
                             </div>
                             <div v-if="knowledgeIdx=='基礎'">
                                 <v-radio-group row v-model="basetype"> 
                                     <v-radio v-for="(type, index) in basetypelist" :value="type" :label="type" :key="index"></v-radio>
                                 </v-radio-group>
+<<<<<<< HEAD
                                 <img src="/image/簡易型溫室基礎(1).JPG" v-if="basetype=='簡易型溫室基礎'">
                                 <img src="/image/簡易型溫室基礎(2).JPG" v-if="basetype=='簡易型溫室基礎'">
                                 <img src="/image/溫室基礎地質分析.JPG" v-if="basetype=='溫室基礎地質分析'">
+=======
+>>>>>>> 59c666ffdf5c358f5f123fd2b4ce986964111afd
                                 <img src="/image/溫室基礎設計.JPG" v-if="basetype=='溫室基礎設計'">
                                 <img src="/image/基礎設計流程圖.JPG" v-if="basetype=='基礎設計流程圖'">
                                 <img src="/image/強固基礎(1).JPG" v-if="basetype=='強固基礎'">
                                 <img src="/image/強固基礎(2).JPG" v-if="basetype=='強固基礎'">
                                 <img src="/image/強固基礎(3).JPG" v-if="basetype=='強固基礎'">
                                 <img src="/image/強固基礎(4).JPG" v-if="basetype=='強固基礎'">
+<<<<<<< HEAD
                                 <img src="/image/地質分析.JPG" v-if="basetype=='地質分析'">
                             </div>
                             <div v-if="knowledgeIdx=='跨距'">
@@ -750,6 +805,11 @@
                                 </v-radio-group>
                                 <img src="/image/溫室型式構造.JPG" v-if="drapepictype=='溫室型式構造'">
                             </div>
+=======
+
+                                <img src="/image/地質分析.JPG" v-if="basetype=='地質分析'">
+                            </div>
+>>>>>>> 59c666ffdf5c358f5f123fd2b4ce986964111afd
                         </b-card-text>
                     </b-card>
                 </b-card-group>
@@ -1568,7 +1628,11 @@
 
         allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
         position:0,
+<<<<<<< HEAD
         knowledge:['==溫室設計==','溫室管材&型材','圓頂&屋頂形式','上&圓拱距','基礎','跨距','肩高','長度','連續性','披覆材料'],
+=======
+        knowledge:['==溫室設計==','溫室型式','管材','屋頂','溫室型式(圖)','基礎'],
+>>>>>>> 59c666ffdf5c358f5f123fd2b4ce986964111afd
         material:['==材料設計==','型管材','披腹膜'],
         knowledgeIdx:'==溫室設計==',
         materialIdx:'==材料設計==',
@@ -1626,6 +1690,7 @@
         HardFilm:[],
 
         decide:['0','0','0','0'],
+<<<<<<< HEAD
         housetypelist:['管材','型材'],
         housetype:null,
         pipetypelist:['強固溫室','簡易溫室','溫室屋頂強化結構','強固溫室型式標準圖','使用年限'],
@@ -1641,6 +1706,17 @@
         drapepictypelist:['溫室型式構造'],
         drapepictype:null,
         basetypelist:['簡易型溫室基礎','溫室基礎地質分析','溫室基礎設計','基礎設計流程圖','強固基礎','簡易基礎','地質分析'],
+=======
+        housetypelist:['溫室型式構造','強固溫室','簡易溫室','使用年限'],
+        housetype:null,
+        pipetypelist:['溫室管材','管材規格'],
+        pipetype:null,
+        rooftypelist:['溫室屋頂強化結構','溫室圓拱距(桁距)設計','簡易型溫室基礎','溫室基礎地質分析','簡易溫室肩高設計','簡易溫室跨距設計','溫室型材','型材規格'],
+        rooftype:null,
+        housepictypelist:['強固溫室型式標準圖','強固溫室'],
+        housepictype:null,
+        basetypelist:['溫室基礎設計','基礎設計流程圖','強固基礎','簡易基礎','地質分析'],
+>>>>>>> 59c666ffdf5c358f5f123fd2b4ce986964111afd
         basetype:null,
         area:0,
         plantlength: 0,

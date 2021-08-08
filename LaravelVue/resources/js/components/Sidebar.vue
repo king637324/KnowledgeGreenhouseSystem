@@ -246,7 +246,12 @@
                                 </div>
                                 <router-link to="/GreenhouseMasterPlan/Greenhousewidget" style="font-size:18px;" class="nav-link" exact>
                                     E.溫室結構重量估算系統
+<<<<<<< HEAD
                                 </router-link>
+=======
+                                </router-link> 
+                                
+>>>>>>> 59c666ffdf5c358f5f123fd2b4ce986964111afd
                             </nav>
                         </div>
                         <!-- <router-link to="/Development" class="nav-link" exact>
