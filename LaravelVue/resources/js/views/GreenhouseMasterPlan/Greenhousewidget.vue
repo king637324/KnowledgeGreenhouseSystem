@@ -527,10 +527,6 @@
                 method: 'GET',
             });
             this.windcorrosionjson = await windcorrosion.json();
-<<<<<<< HEAD
-=======
-
->>>>>>> 59c666ffdf5c358f5f123fd2b4ce986964111afd
             const RegionalWindSpeed = await fetch('/RegionalWindSpeedJSON',  {
                 method: 'GET',
             });

@@ -177,7 +177,7 @@
                                         <div class="collapse" id="載重設計分析" aria-labelledby="headingOne">
 
                                             <nav class="sb-sidenav-menu-nested nav">
-                                                <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseStructuralLoad" style="font-size:12px;" class="nav-link" exact>
+                                                <router-link to="/GreenhouseMasterPlan/Greenhousewidget" style="font-size:12px;" class="nav-link" exact>
                                                     (1).結構載重
                                                 </router-link>
                                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#風載重" style="font-size:12px;" aria-expanded="false" aria-controls="成本分析">
@@ -230,33 +230,11 @@
                                             4.環控設計分析
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                         </a>
-<!-- 
-                                        <div class="collapse" id="環控設計分析" aria-labelledby="headingOne">
-
-                                            <nav class="sb-sidenav-menu-nested nav">
-                                                <router-link to="/EnvironmentalControlDesign/LightEnvironmentNeed" class="nav-link" exact>
-                                                    (1).光控設計
-                                                </router-link>
-                                                <router-link to="/EnvironmentalControlDesign/TemperatureEnvironmentNeed" class="nav-link" exact>
-                                                    (2).溫控設計
-                                                </router-link>
-                                            </nav>
-                                        </div> -->
                                     </nav>
                                 </div>
-                                <router-link to="/GreenhouseMasterPlan/Greenhousewidget" style="font-size:18px;" class="nav-link" exact>
-                                    E.溫室結構重量估算系統
-<<<<<<< HEAD
-                                </router-link>
-=======
-                                </router-link> 
-                                
->>>>>>> 59c666ffdf5c358f5f123fd2b4ce986964111afd
                             </nav>
                         </div>
-                        <!-- <router-link to="/Development" class="nav-link" exact>
-                            優化分析
-                        </router-link> -->
+                        
 
                         <div class="sb-sidenav-menu-heading">知識庫</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室技術知識庫" aria-expanded="false" aria-controls="溫室技術知識庫" style="font-size:20px;">
