@@ -12,7 +12,7 @@
                     <v-form>
                         <v-container>
                             <v-row>
-                                <v-col cols="2"><v-subheader>A.屋頂形式</v-subheader></v-col>
+                                <v-col><v-subheader>A.屋頂形式</v-subheader></v-col>
                                 <v-radio-group row v-model="radio_roof">
                                     <v-col><v-radio label="玻璃溫室" value="玻璃溫室"></v-radio></v-col>
                                     <v-col><v-radio label="斜頂溫室" value="斜頂溫室"></v-radio></v-col>
@@ -20,6 +20,7 @@
                                     <v-col><v-radio label="圓形力霸" value="圓形力霸"></v-radio></v-col>
                                     <v-col><v-radio label="山型塑膠膜" value="山型塑膠膜"></v-radio></v-col>
                                     <v-col><v-radio label="圓形塑膠膜" value="圓形塑膠膜"></v-radio> </v-col>
+                                    <v-col><v-radio label="簡易溫室" value="簡易溫室"></v-radio> </v-col>
                                 </v-radio-group>
                             </v-row>
                             <v-row>
@@ -60,13 +61,13 @@
                             <v-row>
                                 <v-col cols="2"><v-subheader>C.設計數據</v-subheader></v-col>
                                 <v-col>
-                                    <v-text-field :label="'目標風速(建議'+SpeedPerSecond*data_wind+')'" v-model="design_wind"></v-text-field>
+                                    <v-text-field :label="'設計風速(建議'+SpeedPerSecond*data_wind+'m/s)'" v-model="design_wind"></v-text-field>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="設計跨距" v-model="design_span"></v-text-field>
+                                    <v-text-field label="設計跨距(m)" v-model="design_span"></v-text-field>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="設計肩高" v-model="design_shoulder"></v-text-field>
+                                    <v-text-field label="設計肩高(m)" v-model="design_shoulder"></v-text-field>
                                 </v-col>
                                 <v-col>
                                     <v-text-field label="設計連棟" v-model="design_story"></v-text-field>
@@ -93,6 +94,9 @@
                                 <v-col>
                                     <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
                                         <v-row>
+                                            <v-col cols="12">
+                                                <h3>重量預估</h3>
+                                            </v-col>
                                             <v-col cols="12">
                                                 <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                                     <thead class="table-active">
@@ -135,14 +139,14 @@
                                                         <td>{{ roof_type[roof_name.indexOf(radio_roof)] }}</td>
                                                         <td>{{ radio_roof }}</td>
                                                         <td>{{ roof_number[roof_name.indexOf(radio_roof)] }}</td>
-                                                        <td>{{ Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100 }}</td>
+                                                        <td>{{ Math.round(Math.floor(design_wind-30)/SpeedPerSecond*data_wind*100)/100 }}</td>
                                                         <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
                                                         <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
                                                         <td>{{ Math.round(Math.floor(1-design_story)/5*100)/100 }}</td>
                                                         <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/SpeedPerSecond*data_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
@@ -197,6 +201,9 @@
                                 <v-col>
                                     <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
                                         <v-row>
+                                            <v-col cols="12">
+                                                <h3>成本分析</h3>
+                                            </v-col>
                                             <v-col cols="12">
                                                 <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                                     <thead class="table-active">
@@ -510,9 +517,9 @@
         plantwidth:0,
         allposition:['方位','東','南','西','北','東南','西北'],
         position:'方位',
-        roof_type:['WTG','SP','VTP','UTP','VBP','UBP'],
-        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓型力霸','山型塑膠膜','圓型塑膠膜'],
-        roof_number:[16,16,15,14,13,12],
+        roof_type:['WTG','SP','VTP','UTP','VBP','UBP','UP'],
+        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓型力霸','山型塑膠膜','圓型塑膠膜','簡易溫室'],
+        roof_number:[16,16,15,14,13,12,6],
         SpeedPerSecond: null, 
         data_wind: 0,
     }),
