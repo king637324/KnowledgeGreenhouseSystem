@@ -84,12 +84,13 @@ class OverPlanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Test\test  $test
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request, $id)
     {
-        
+        $data = $request->only(['palntclass']);
+        $EditCropData  = saveoverplan::where('pid',$id);
+        $EditCropData->update($data);
     }
 
     /**

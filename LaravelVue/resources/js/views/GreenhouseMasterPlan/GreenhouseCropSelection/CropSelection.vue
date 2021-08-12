@@ -173,17 +173,17 @@
 
 
             <b-select v-model="ExpertIdx" v-on:change="updateExpertTable" style="font-size: 2vmin; width:25vmin" >
-                <option v-for="(data, index) in ExpertOrder" :value="index">
+                <option v-for="(data, index) in ExpertOrder" :value="index" :key="index">
                     {{data}}
                 </option>
             </b-select>
             <b-select v-model="cropIdx" v-on:change="updateCropTable" style="font-size: 2vmin; width:25vmin" >
-                <option v-for="(data, index) in CropOrder" :value="index">
+                <option v-for="(data, index) in CropOrder" :value="data" :key="index">
                     {{data}}
                 </option>
             </b-select>
             <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
-                <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
+                <option v-for="(plant, index) in GrowPlants" :value="plant" :key="index">
                     {{plant}}
                 </option>
             </b-select>
@@ -420,6 +420,7 @@
 
                             </v-col>
                         </v-row>
+
                     </v-container-fluid>
                     <hr>
                     <div class="text-right">
@@ -438,7 +439,7 @@
 
 <script>
 import * as CropService from '../../../services/crop_service';
-
+import * as SaveOverPlan from '../../../services/saveoverplan_service.js';
 export default {
     data() {
         return {
@@ -453,10 +454,12 @@ export default {
             selectExpert: 0, // 所選專家
 
             CropOrder:["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"], // 作物分類的選單陣列表
-            cropIdx: 0, // 所選作物的id
+            cropIdx: null, // 所選作物的id
             selectCrop: null, // 所選作物的名稱
-            plantIdx: 0, // 所選作物的id
+            plantIdx: null, // 所選作物的id
             GrowPlants:['==請選擇作物==',],
+            overplanArray:[],
+            OverPlanJson:[],
 
             CropRules: [
                 v => !!v || '必填',
@@ -551,6 +554,15 @@ export default {
             });
             this.vegetablejson = await Vegetable.json();
 
+            const J_OverPlan = await fetch('/OverPlanJson',  {
+            method: 'GET',
+            });
+            this.OverPlanJson = await J_OverPlan.json();
+                for(var i = 0; i < this.OverPlanJson.length; i++){
+                    this.overplanArray.push(this.OverPlanJson[i])
+            }
+            this.cropIdx = this.overplanArray[0].palntclass
+
             var filterfalg = false;
             for(var i = 0 ; i < this.vegetablejson.length ; i++){
                 if(this.vegetablejson[i].Expert == "System"){
@@ -570,15 +582,8 @@ export default {
 
             this.CropSelect = this.ExpertSelect;   // 之後選擇分類會使用到
 
-            // 如果帳號有登入，才能顯示他的id帳號
-            if(this.$auth.check()){
-                this.CropData.Expert = this.$auth.user().id;
-            }
-
-        },updateCropTable(){    // 根據作物的選擇，更新作物的表格顯示
-            // 從所選的作物id 找到 所選作物分類
             for(var i = 0 ; i < this.CropOrder.length ; i++){
-                if(i == this.cropIdx)    this.selectCrop = this.CropOrder[i];
+                if(this.CropOrder[i] == this.cropIdx)    this.selectCrop = this.CropOrder[i];
             }
             this.CropSelect = [];  // 作物資料初始化
             for(var i = 0 ; i < this.ExpertSelect.length ; i++){
@@ -586,16 +591,49 @@ export default {
                 if(this.ExpertSelect[i].classification == this.selectCrop)  this.CropSelect.push(this.ExpertSelect[i]);
             }
             this.GrowPlants = ['==請選擇作物==',];  // 作物資料初始化
-            this.plantIdx = 0;
             for(var i = 0 ; i < this.vegetablejson.length ; i++){
                 if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.vegetablejson;
                 if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
             }
+            this.plantIdx = this.overplanArray[0].cropplant
+            for(var i = 0 ; i < this.GrowPlants.length ; i++){
+                if(this.GrowPlants[i] == this.plantIdx)    this.selectplant = this.GrowPlants[i];
+            }
+            this.CropSelect = [];
+            for(var i = 0 ; i < this.ExpertSelect.length ; i++){
+                if(this.ExpertSelect[i].VegetableTypes == this.selectplant)  this.CropSelect.push(this.ExpertSelect[i]);
+            }
+
+            // 如果帳號有登入，才能顯示他的id帳號
+            if(this.$auth.check()){
+                this.CropData.Expert = this.$auth.user().id;
+            }
+
+        },updateCropTable: async function(){    // 根據作物的選擇，更新作物的表格顯示
+            // 從所選的作物id 找到 所選作物分類
+            for(var i = 0 ; i < this.CropOrder.length ; i++){
+                if(this.CropOrder[i] == this.cropIdx)    this.selectCrop = this.CropOrder[i];
+            }
+            this.CropSelect = [];  // 作物資料初始化
+            for(var i = 0 ; i < this.ExpertSelect.length ; i++){
+                if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.ExpertSelect;
+                if(this.ExpertSelect[i].classification == this.selectCrop)  this.CropSelect.push(this.ExpertSelect[i]);
+            }
+            this.GrowPlants = ['==請選擇作物==',];  // 作物資料初始化
+            for(var i = 0 ; i < this.vegetablejson.length ; i++){
+                if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.vegetablejson;
+                if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
+            }
+            let formData = new FormData();
+            formData.append('palntclass',this.cropIdx);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+
 
         },updatePlant(){    // 更新所選擇的作物
             // 從所選的作物id 找到 所選作物分類
             for(var i = 0 ; i < this.GrowPlants.length ; i++){
-                if(i == this.plantIdx)    this.selectplant = this.GrowPlants[i];
+                if(this.GrowPlants[i] == this.plantIdx)    this.selectplant = this.GrowPlants[i];
             }
             this.CropSelect = [];
             for(var i = 0 ; i < this.ExpertSelect.length ; i++){
