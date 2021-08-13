@@ -14,7 +14,7 @@
                                 <v-col>
                                     <label for="縣市" style="color:rgba(0,0,0,.6); font-size:8px;">縣市</label>
                                     <b-select v-model="cityIdx" v-on:change="updateCity" style="font-size: 2vmin; width:10vmin" name="縣市">
-                                        <option v-for="(data, index) in City" :value="index" :key="index">
+                                        <option v-for="(data, index) in City" :value="data" :key="index">
                                             {{data}}
                                         </option>
                                     </b-select>
@@ -22,15 +22,15 @@
                                 <v-col>  
                                     <label for="地區" style="color:rgba(0,0,0,.6); font-size:8px;">地區</label>
                                     <b-select v-model="regionIdx" v-on:change="updateRegion" style="font-size: 2vmin; width:10vmin" name="地區">
-                                        <option v-for="(data, index) in Region" :value="index" :key="index">
+                                        <option v-for="(data, index) in Region" :value="data" :key="index">
                                             {{data}}
                                         </option>
                                     </b-select>
                                 </v-col> 
                                 <v-col>  
                                     <label for="方位" style="color:rgba(0,0,0,.6); font-size:8px;">方位</label>
-                                    <b-select v-model="position" name="方位" style="font-size: 2vmin; width:10vmin">
-                                        <option v-for="(data, index) in allposition" :value="index" :key="index">
+                                    <b-select v-model="position" name="方位" v-on:change="updateposition()" style="font-size: 2vmin; width:10vmin">
+                                        <option v-for="(data, index) in allposition" :value="data" :key="index">
                                             {{data}}
                                         </option>
                                     </b-select>
@@ -53,7 +53,7 @@
                                 </v-col>
                                 <v-col>
                                     <label for="地況" style="color:rgba(0,0,0,.6); font-size:8px;">地況</label>
-                                    <b-select v-model="SelectLandcondition" name="地況" style="font-size: 2vmin; width:10vmin">
+                                    <b-select v-model="SelectLandcondition" name="地況" v-on:change="updatelandcondition()" style="font-size: 2vmin; width:10vmin">
                                         <option value="0">地況</option>
                                         <option value="硬質土">硬質土</option>
                                         <option value="軟質土">軟質土</option>
@@ -149,7 +149,7 @@
 </template>
 
 <script>
-
+import * as SaveOverPlan from '../../services/saveoverplan_service.js';
 export default {
     data() {
         return {
@@ -162,11 +162,11 @@ export default {
             WindPath:[],  // 紀錄路徑分析的分類
 
             City:['縣市',],   // 縣市選單的陣列表
-            cityIdx: 0, // 所選縣市的id
+            cityIdx: null, // 所選縣市的id
             selectCity: null, // 所選縣市的名稱
 
             Region:['地區',], // 地區選單的陣列表
-            regionIdx: 0,   // 所選地區的id
+            regionIdx: null,   // 所選地區的id
             selectRegion: null, // 所選地區的名稱
 
             Series: null, // 風力級數
@@ -178,11 +178,11 @@ export default {
             LandingProbability: 0, // 進行颱風登陸分析機率加總
             PathProbability: 0, // 進行颱風路徑分析機率加總
 
-            SelectTerrain:0,
-            SelectLandform:0,
-            SelectLandcondition:0,
+            SelectTerrain:'地形',
+            SelectLandform:'地貌',
+            SelectLandcondition:'地況',
             allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
-            position:0,
+            position:'方位',
 
             plantlength:0,
             plantwidth:0,
@@ -190,6 +190,8 @@ export default {
             windcorrosionjson: [],
             data_wind: 0,
             data_corrosion: 0,
+            overplanArray:[],
+            OverPlanJson:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -220,6 +222,22 @@ export default {
             });
             this.windlandingandpathjson = await WindLandingAndPath.json();
 
+            const J_OverPlan = await fetch('/OverPlanJson',  {
+            method: 'GET',
+            });
+            this.OverPlanJson = await J_OverPlan.json();
+                for(var i = 0; i < this.OverPlanJson.length; i++){
+                    this.overplanArray.push(this.OverPlanJson[i])
+            }
+            this.cityIdx = this.overplanArray[0].localcity
+            this.position = this.overplanArray[0].position
+            this.SelectTerrain = this.overplanArray[0].terrain
+            this.SelectLandform = this.overplanArray[0].landform
+            this.SelectLandcondition = this.overplanArray[0].landcondition
+            this.plantlength = this.overplanArray[0].croplength
+            this.plantwidth = this.overplanArray[0].cropwidth
+            this.area = (this.plantlength*this.plantwidth)/10000
+
             var filterfalg = false;
             // 篩選重複出現的縣市
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
@@ -240,10 +258,8 @@ export default {
                 }
             }
 
-        },updateCity(){     // 更新所選擇的縣市
-            // 從所選的縣市id 找到 所選的縣市名稱
             for(var i = 0 ; i < this.City.length ; i++){
-                if(i == this.cityIdx)    this.selectCity = this.City[i];
+                if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
             }
 
             // 將地區資料初始化
@@ -265,9 +281,8 @@ export default {
                     this.Region.push(this.regionalwindspeedjson[i].Region);
                 }
             }
+            this.regionIdx = this.overplanArray[0].localarea
 
-        },updateRegion(){   // 更新所選擇的地區
-            // 將地區資料初始化
             this.LandingProbability = 0,
             this.PathProbability = 0,
             this.Landing = null,
@@ -275,7 +290,7 @@ export default {
 
             // 從所選的地區id 找到 所選的地區名稱
             for(var i = 0 ; i < this.Region.length ; i++){
-                if(i == this.regionIdx)    this.selectRegion = this.Region[i];
+                if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
             }
 
             var StrLanding,StrPath;  // 字串切割：風力登陸分析、風力路徑分析
@@ -324,24 +339,144 @@ export default {
             this.LandingProbability = this.LandingProbability.toFixed(2);
             this.PathProbability = this.PathProbability.toFixed(2);
 
+        },updateCity: async function(){     // 更新所選擇的縣市
+            // 從所選的縣市id 找到 所選的縣市名稱
+            for(var i = 0 ; i < this.City.length ; i++){
+                if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
+            }
+
+            // 將地區資料初始化
+            this.selectRegion = null;
+            this.SpeedPerSecond = null;
+            this.Series = null;
+            this.Wind = null;
+            this.regionIdx = 0;
+            this.LandingProbability = 0,
+            this.PathProbability = 0,
+            this.Landing = null,
+            this.Path = null,
+            this.Region = ['地區'];
+
+
+            // 篩選所選縣市的地區
+            for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+                if(this.regionalwindspeedjson[i].County == this.selectCity){
+                    this.Region.push(this.regionalwindspeedjson[i].Region);
+                }
+            }
+            let formData = new FormData();
+            formData.append('localcity',this.cityIdx);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+
+        },updateRegion: async function(){   // 更新所選擇的地區
+            // 將地區資料初始化
+            this.LandingProbability = 0,
+            this.PathProbability = 0,
+            this.Landing = null,
+            this.Path = null;
+
+            // 從所選的地區id 找到 所選的地區名稱
+            for(var i = 0 ; i < this.Region.length ; i++){
+                if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
+            }
+
+            var StrLanding,StrPath;  // 字串切割：風力登陸分析、風力路徑分析
+            // 取得 風速、風力登陸分析、風力路徑分析
+            for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+                if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
+                    this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
+                    this.Landing = this.regionalwindspeedjson[i].WindLandingId;
+                    this.Path = this.regionalwindspeedjson[i].WindPathId;
+
+                    StrLanding = this.Landing.split(",");
+                    StrPath =  this.Path.split(",");
+
+                }
+            }
+
+            // 取得 級數 & 風名
+            for(var i = 0 ; i < this.windspeedjson.length ; i++){
+                if((this.SpeedPerSecond < this.windspeedjson[i].SpeedMax) && (this.SpeedPerSecond > this.windspeedjson[i].SpeedMin)){
+                    this.Series = this.windspeedjson[i].Series;
+                    this.Wind = this.windspeedjson[i].Wind;
+                }else if(this.SpeedPerSecond > this.windspeedjson[i].SpeedMax){
+                    this.Series = this.windspeedjson[i].Series;
+                    this.Wind = this.windspeedjson[i].Wind;
+                }
+            }
+
+            // 進行颱風登陸總機率計算
+            for(var i = 0 ; i <  StrLanding.length; i++){
+                if(StrLanding[i] == "無") break;
+                for(var j = 0 ; j < this.WindLand.length ; j++){
+                    if(StrLanding[i] == this.WindLand[j].item_Id){
+                        this.LandingProbability += parseFloat(this.WindLand[j].percentage,10);    // parseFloat() 將字串轉成浮點數做計算
+                    }
+                }
+            }
+            // 進行颱風路徑總機率計算
+            for(var i = 0 ; i <  StrPath.length; i++){
+                for(var j = 0 ; j < this.WindPath.length ; j++){
+                    if(StrPath[i] == this.WindPath[j].item_Id){
+                        this.PathProbability += parseFloat(this.WindPath[j].percentage,10);    // parseFloat() 將字串轉成浮點數做計算
+                    }
+                }
+            }
+            // 過濾計算所出現的小數點bug
+            this.LandingProbability = this.LandingProbability.toFixed(2);
+            this.PathProbability = this.PathProbability.toFixed(2);
+
+            let formData = new FormData();
+            formData.append('localarea',this.regionIdx);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+
         },    
-        areacount(){
+        areacount:async function(){
+            
             this.area = (this.plantlength*this.plantwidth)/10000
+            let formData = new FormData();
+            formData.append('croplength',this.plantlength);
+            formData.append('cropwidth',this.plantwidth);
+            formData.append('croparea',this.area);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
         },
-        updatewindcorrosion(SelectTerrain,SelectLandform){
+        updatewindcorrosion: async function(SelectTerrain,SelectLandform){
             let wind123 = [];
             let corrosion = [];
             for (var i = 0; i < this.windcorrosionjson.length; i++){
                 if (this.windcorrosionjson[i].landtype == SelectTerrain){
                     wind123[0] = this.windcorrosionjson[i].wind
                     corrosion[0] = this.windcorrosionjson[i].corrosion
+                    let formData = new FormData();
+                    formData.append('terrain',SelectTerrain);
+                    formData.append('_method','put');
+                    const response = await SaveOverPlan.UpdateOverPlan(1, formData);
                 } else if (this.windcorrosionjson[i].landtype == SelectLandform){
                     wind123[1] = this.windcorrosionjson[i].wind
-                    corrosion[1] = this.windcorrosionjson[i].corrosion                    
+                    corrosion[1] = this.windcorrosionjson[i].corrosion              
+                    let formData = new FormData();
+                    formData.append('landform',SelectLandform);
+                    formData.append('_method','put');
+                    const response = await SaveOverPlan.UpdateOverPlan(1, formData);      
                 }
             }
             this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
             this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
+        },
+        updateposition: async function(){
+            let formData = new FormData();
+            formData.append('position',this.position);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+        },
+        updatelandcondition: async function(){
+            let formData = new FormData();
+            formData.append('landcondition',this.SelectLandcondition);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
         }
     },
 }

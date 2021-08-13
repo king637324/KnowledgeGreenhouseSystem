@@ -88,9 +88,44 @@ class OverPlanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->only(['palntclass']);
-        $EditCropData  = saveoverplan::where('pid',$id);
-        $EditCropData->update($data);
+        if ($request['palntclass']){
+            $data = $request->only(['palntclass']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        } else if($request['cropplant']){
+            $data = $request->only(['cropplant']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        } else if($request['localcity']){
+            $data = $request->only(['localcity']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        } else if($request['localarea']){
+            $data = $request->only(['localarea']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        } else if($request['terrain']){
+            $data = $request->only(['terrain']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        } else if($request['landform']){
+            $data = $request->only(['landform']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        } else if($request['position']){
+            $data = $request->only(['position']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        } else if($request['landcondition']){
+            $data = $request->only(['landcondition']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        } else if($request['croparea']){
+            $data = $request->only(['croplength','cropwidth','croparea']);
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        }
+        
     }
 
     /**

@@ -20,13 +20,13 @@
                 <b-card-text>
                     <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">作物生長溫環境</span></p>
                     <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
-                        <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
+                        <option v-for="(crop, index) in CropOrder" :value="crop" :key="index">
                             {{crop}}
                         </option>
                     </b-select>
 
                     <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
-                        <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
+                        <option v-for="(plant, index) in GrowPlants" :value="plant" :key="index">
                             {{plant}}
                         </option>
                     </b-select>
@@ -65,43 +65,6 @@
                     <br>
                     <br>
                     <h6>備註： - 為尚無資料</h6>
-
-                    <!-- <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">地 點</span></p>
-                    <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
-                        <option v-for="(city, index) in City" :value="index">
-                            {{city}}
-                        </option>
-                    </b-select>
-
-                    <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
-                        <option v-for="(region, index) in Region" :value="index">
-                            {{region}}
-                        </option>
-                    </b-select>
-
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">設 計 風 速</span></p>
-                    <table class="separate" style="border:1px solid black;" border='1'>
-                        <thead>
-                            <tr align="center" class="table-active">
-                                <td style='width:7vmin'>縣市</td>
-                                <td style='width:7vmin'>地區</td>
-                                <td style='width:7vmin'>風速(m/sec)</td>
-                                <td style='width:7vmin'>級數</td>
-                                <td style='width:7vmin'>風名</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr align="center">
-                                <td id="County"> {{selectCity}} </td>
-                                <td id="Region"> {{selectRegion}} </td>
-                                <td id="SpeedPerSecond"> {{SpeedPerSecond}} </td>
-                                <td id="Series"> {{Series}} </td>
-                                <td id="Wind"> {{Wind}} </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <p style = "font-size: 1.2vmin;"> 備註：風速為臺灣地區各地之基本設計風速</p> -->
                 </b-card-text>
             </b-card>
             <b-card
@@ -118,7 +81,7 @@
                     <p>
                         <span class="badge badge-pill badge-secondary" style="font-size: 2vmin">溫度分析圖</span>
                         <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
-                            <option v-for="(city, index) in City" :value="index" :key="index">
+                            <option v-for="(city, index) in City" :value="city" :key="index">
 
                                 {{city}}
                             </option>
@@ -126,7 +89,7 @@
 
                         <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
 
-                            <option v-for="(region, index) in Region" :value="index" :key="index">
+                            <option v-for="(region, index) in Region" :value="region" :key="index">
 
                                 {{region}}
                             </option>
@@ -350,7 +313,7 @@
 </template>
 
 <script>
-
+import * as SaveOverPlan from '../../../services/saveoverplan_service.js';
 export default {
     data(){
         return {
@@ -415,6 +378,8 @@ export default {
 
             total_temp_high:0,
             total_temp_low:0,
+            overplanArray:[],
+            OverPlanJson:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -439,40 +404,29 @@ export default {
             });
             this.Tempjson = await Temp.json();
 
-            var filterfalg = false;
-            // 篩選重複出現的縣市
-            for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
-                filterfalg = false;
-                for(var j = 0;j < this.City.length ; j++){
-                    if(this.regionalwindspeedjson[i].County == this.City[j]) filterfalg = true;
-                }
-                if(!filterfalg) this.City.push(this.regionalwindspeedjson[i].County);
-
+             const J_OverPlan = await fetch('/OverPlanJson',  {
+            method: 'GET',
+            });
+            this.OverPlanJson = await J_OverPlan.json();
+                for(var i = 0; i < this.OverPlanJson.length; i++){
+                    this.overplanArray.push(this.OverPlanJson[i])
             }
+            this.cropIdx = this.overplanArray[0].palntclass
+            this.cityIdx = this.overplanArray[0].localcity
 
-            for (var i = 0; i < this.Tempjson.length; i++) {
-                if (this.Tempjson[i].ControlItem == '降溫控制'){
-                    this.TempData.push(this.Tempjson[i]);
-                }
-            }
-
-        },updateCrop(){     // 更新所選擇的作物分類
-            // 從所選的作物id 找到 所選作物分類
             for(var i = 0 ; i < this.CropOrder.length ; i++){
-                if(i == this.cropIdx)    this.selectCrop = this.CropOrder[i];
+                if(this.CropOrder[i] == this.cropIdx)    this.selectCrop = this.CropOrder[i];
             }
-
             this.GrowPlants = ['==請選擇作物==',];  // 作物資料初始化
-            this.plantIdx = 0;
             for(var i = 0 ; i < this.vegetablejson.length ; i++){
                 if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.vegetablejson;
                 if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
             }
+            this.plantIdx = this.overplanArray[0].cropplant
 
-        },updatePlant(){    // 更新所選擇的作物
             // 從所選的作物id 找到 所選作物分類
             for(var i = 0 ; i < this.GrowPlants.length ; i++){
-                if(i == this.plantIdx)    this.selectplant = this.GrowPlants[i];
+                if(this.GrowPlants[i] == this.plantIdx)    this.selectplant = this.GrowPlants[i];
             }
 
             // 找出所選資料的data
@@ -496,10 +450,19 @@ export default {
             // 更新 作物生長最適溫最低區間 的圖表
             this.CropTemperature[2].data = {"1月":this.StrOptimalTemperature[1],"2月":this.StrOptimalTemperature[1],"3月":this.StrOptimalTemperature[1],"4月":this.StrOptimalTemperature[1],"5月":this.StrOptimalTemperature[1],"6月":this.StrOptimalTemperature[1],"7月":this.StrOptimalTemperature[1],"8月":this.StrOptimalTemperature[1],"9月":this.StrOptimalTemperature[1],"10月":this.StrOptimalTemperature[1],"11月":this.StrOptimalTemperature[1],"12月":this.StrOptimalTemperature[1]};
 
-        },updateCity(){     // 更新所選擇的縣市
-            // 從所選的縣市id 找到 所選的縣市名稱
+            var filterfalg = false;
+            // 篩選重複出現的縣市
+            for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+                filterfalg = false;
+                for(var j = 0;j < this.City.length ; j++){
+                    if(this.regionalwindspeedjson[i].County == this.City[j]) filterfalg = true;
+                }
+                if(!filterfalg) this.City.push(this.regionalwindspeedjson[i].County);
+
+            }
+
             for(var i = 0 ; i < this.City.length ; i++){
-                if(i == this.cityIdx)    this.selectCity = this.City[i];
+                if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
             }
 
             // 將地區資料初始化
@@ -522,11 +485,153 @@ export default {
                     this.Region.push(this.regionalwindspeedjson[i].Region);
                 }
             }
+            this.regionIdx = this.overplanArray[0].localarea
 
-        },updateRegion(){   // 更新所選擇的地區
+
             // 從所選的地區id 找到 所選的地區名稱
             for(var i = 0 ; i < this.Region.length ; i++){
-                if(i == this.regionIdx)    this.selectRegion = this.Region[i];
+                if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
+            }
+
+            // 取得 風速、風力登陸分析、風力路徑分析
+            for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+                if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
+                    this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
+
+                    this.StrHighTemperature = this.regionalwindspeedjson[i].monthHighTemperature.split(",");
+                    this.StrLowTemperature = this.regionalwindspeedjson[i].monthLowTemperature.split(",");
+                    break;
+                }
+            }
+
+            // 更新 地區最低月均溫 的圖表
+            this.CropTemperature[0].data = {
+                "1月":parseFloat((parseInt(this.StrLowTemperature[0])+parseInt(this.StrHighTemperature[0]))/2)+3,
+                "2月":parseFloat((parseInt(this.StrLowTemperature[1])+parseInt(this.StrHighTemperature[1]))/2)+3,
+                "3月":parseFloat((parseInt(this.StrLowTemperature[2])+parseInt(this.StrHighTemperature[2]))/2)+3,
+                "4月":parseFloat((parseInt(this.StrLowTemperature[3])+parseInt(this.StrHighTemperature[3]))/2)+3,
+                "5月":parseFloat((parseInt(this.StrLowTemperature[4])+parseInt(this.StrHighTemperature[4]))/2)+3,
+                "6月":parseFloat((parseInt(this.StrLowTemperature[5])+parseInt(this.StrHighTemperature[5]))/2)+3,
+                "7月":parseFloat((parseInt(this.StrLowTemperature[6])+parseInt(this.StrHighTemperature[6]))/2)+3,
+                "8月":parseFloat((parseInt(this.StrLowTemperature[7])+parseInt(this.StrHighTemperature[7]))/2)+3,
+                "9月":parseFloat((parseInt(this.StrLowTemperature[8])+parseInt(this.StrHighTemperature[8]))/2)+3,
+                "10月":parseFloat((parseInt(this.StrLowTemperature[9])+parseInt(this.StrHighTemperature[9]))/2)+3,
+                "11月":parseFloat((parseInt(this.StrLowTemperature[10])+parseInt(this.StrHighTemperature[10]))/2)+3,
+                "12月":parseFloat((parseInt(this.StrLowTemperature[11])+parseInt(this.StrHighTemperature[11]))/2)+3,
+            };
+            this.total_temp_high = 0;
+            this.total_temp_low = 0;
+            for(var i = 0 ; i < 12 ; i++){
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0){
+                    this.total_temp_high += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3)
+                }
+                
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0){  
+                    this.total_temp_low += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3)
+                }
+            }
+
+
+            // 取得 級數 & 風名
+            for(var i = 0 ; i < this.windspeedjson.length ; i++){
+                if((this.SpeedPerSecond < this.windspeedjson[i].SpeedMax) && (this.SpeedPerSecond > this.windspeedjson[i].SpeedMin)){
+                    this.Series = this.windspeedjson[i].Series;
+                    this.Wind = this.windspeedjson[i].Wind;
+                }else if(this.SpeedPerSecond > this.windspeedjson[i].SpeedMax){
+                    this.Series = this.windspeedjson[i].Series;
+                    this.Wind = this.windspeedjson[i].Wind;
+                }
+            }
+
+            for (var i = 0; i < this.Tempjson.length; i++) {
+                if (this.Tempjson[i].ControlItem == '降溫控制'){
+                    this.TempData.push(this.Tempjson[i]);
+                }
+            }
+
+        },updateCrop: async function(){     // 更新所選擇的作物分類
+            // 從所選的作物id 找到 所選作物分類
+            for(var i = 0 ; i < this.CropOrder.length ; i++){
+                if(this.CropOrder[i] == this.cropIdx)    this.selectCrop = this.CropOrder[i];
+            }
+
+            this.GrowPlants = ['==請選擇作物==',];  // 作物資料初始化
+            this.plantIdx = 0;
+            for(var i = 0 ; i < this.vegetablejson.length ; i++){
+                if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.vegetablejson;
+                if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
+            }
+            let formData = new FormData();
+            formData.append('palntclass',this.cropIdx);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+
+        },updatePlant: async function(){    // 更新所選擇的作物
+            // 從所選的作物id 找到 所選作物分類
+            for(var i = 0 ; i < this.GrowPlants.length ; i++){
+                if(this.GrowPlants[i] == this.plantIdx)    this.selectplant = this.GrowPlants[i];
+            }
+
+            // 找出所選資料的data
+            for(var i = 0 ; i < this.vegetablejson.length ; i++){
+                if(this.vegetablejson[i].VegetableTypes == this.selectplant){
+                    this.PPFD = this.vegetablejson[i].PPFD;
+                    this.Temperatureadaptability = this.vegetablejson[i].Temperatureadaptability;
+                    this.LowestGrowthTemperature = this.vegetablejson[i].LowestGrowthTemperature;
+                    this.OptimalGrowthTemperature = this.vegetablejson[i].OptimalGrowthTemperature;
+                    this.HighestGrowthTemperature = this.vegetablejson[i].HighestGrowthTemperature;
+                    this.LowestGerminationTemperature = this.vegetablejson[i].LowestGerminationTemperature;
+                    this.OptimumGerminationTemperature = this.vegetablejson[i].OptimumGerminationTemperature;
+                    this.HighestGerminationTemperature = this.vegetablejson[i].HighestGerminationTemperature;
+                    this.StrOptimalTemperature = this.OptimalGrowthTemperature.split("~");
+                    break;
+                }
+            }
+
+            // 更新 作物生長最適溫最高區間 的圖表
+            this.CropTemperature[1].data = {"1月":this.StrOptimalTemperature[0],"2月":this.StrOptimalTemperature[0],"3月":this.StrOptimalTemperature[0],"4月":this.StrOptimalTemperature[0],"5月":this.StrOptimalTemperature[0],"6月":this.StrOptimalTemperature[0],"7月":this.StrOptimalTemperature[0],"8月":this.StrOptimalTemperature[0],"9月":this.StrOptimalTemperature[0],"10月":this.StrOptimalTemperature[0],"11月":this.StrOptimalTemperature[0],"12月":this.StrOptimalTemperature[0]};
+            // 更新 作物生長最適溫最低區間 的圖表
+            this.CropTemperature[2].data = {"1月":this.StrOptimalTemperature[1],"2月":this.StrOptimalTemperature[1],"3月":this.StrOptimalTemperature[1],"4月":this.StrOptimalTemperature[1],"5月":this.StrOptimalTemperature[1],"6月":this.StrOptimalTemperature[1],"7月":this.StrOptimalTemperature[1],"8月":this.StrOptimalTemperature[1],"9月":this.StrOptimalTemperature[1],"10月":this.StrOptimalTemperature[1],"11月":this.StrOptimalTemperature[1],"12月":this.StrOptimalTemperature[1]};
+            let formData = new FormData();
+            formData.append('cropplant',this.plantIdx);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+
+        },updateCity: async function(){     // 更新所選擇的縣市
+            // 從所選的縣市id 找到 所選的縣市名稱
+            for(var i = 0 ; i < this.City.length ; i++){
+                if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
+            }
+
+            // 將地區資料初始化
+            this.selectRegion = null;
+            this.SpeedPerSecond = null;
+            this.Series = null;
+            this.Wind = null;
+            this.regionIdx = 0;
+            this.LandingProbability = null,
+            this.PathProbability = null,
+            this.Landing = null,
+            this.Path = null,
+            this.Region = ['==請選擇地區=='],
+            this.GloblRad = null,
+            this.SunShine = null;
+
+            // 篩選所選縣市的地區
+            for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+                if(this.regionalwindspeedjson[i].County == this.selectCity){
+                    this.Region.push(this.regionalwindspeedjson[i].Region);
+                }
+            }
+            let formData = new FormData();
+            formData.append('localcity',this.cityIdx);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+
+        },updateRegion: async function(){   // 更新所選擇的地區
+            // 從所選的地區id 找到 所選的地區名稱
+            for(var i = 0 ; i < this.Region.length ; i++){
+                if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
             }
             // 取得 風速、風力登陸分析、風力路徑分析
             this.StrHighTemperature = [];
@@ -568,9 +673,10 @@ export default {
                     this.total_temp_low += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3)
                 }
             }
-            
-
-
+            let formData = new FormData();
+            formData.append('localarea',this.regionIdx);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
 
         },updateSelectTemp(){    // 更新所選擇的型材
             this.selectTemp = [];
