@@ -105,3 +105,6 @@ Route::get('/LightJson',[LightController::class, 'getJSON_Light']);
 
 use App\Http\Controllers\GreenhouseMasterPlan\TempController;
 Route::get('/TempJson',[TempController::class, 'getJSON_Temp']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\WeightEstimationController;
+Route::get('/WeightJson',[WeightEstimationController::class, 'getJSON_Weiget']);

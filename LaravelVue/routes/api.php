@@ -76,7 +76,8 @@ Route::resource('/GreenhouseMasterPlan/CostAnalysis/SimpleCost',SimpleController
 use App\Http\Controllers\GreenhouseMasterPlan\CostAnalysis\StrongController;
 Route::resource('/GreenhouseMasterPlan/CostAnalysis/StrongCost',StrongController::class);
 
-
+use App\Http\Controllers\GreenhouseMasterPlan\WeightEstimationController;
+Route::resource('/GreenhouseMasterPlan/Greenhousewidget',WeightEstimationController::class);
 
 //總體規劃
 use App\Http\Controllers\GreenhouseMasterPlan\OverPlanController;
