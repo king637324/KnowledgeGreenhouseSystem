@@ -83,3 +83,5 @@ Route::resource('/GreenhouseMasterPlan/Greenhousewidget',WeightEstimationControl
 use App\Http\Controllers\GreenhouseMasterPlan\OverPlanController;
 Route::resource('/GreenhouseMasterPlan/GreenhouseOverallPlanbase',OverPlanController::class);
 
+use App\Http\Controllers\GreenhouseMasterPlan\GreenhouseDesignController;
+Route::resource('/GreenhouseMasterPlan/GreenhousePlanDesign',GreenhouseDesignController::class);

@@ -13,7 +13,7 @@
                             <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長環境需求</h6>
                         </template>
                         <b-card-text>
-                                <v-form v-on:submit.prevent="recordallinfo">
+                                <v-form>
                                 <v-container-fluid>
                                     <v-row>
                                         <v-col md="2">
@@ -52,7 +52,7 @@
                                             <v-subheader>C.溫室選擇</v-subheader>
                                         </v-col>
                                         <v-col md="4">
-                                            <v-radio-group row v-model="greenhouseradio">
+                                            <v-radio-group row v-model="greenhouseradio" v-on:change="updateRoofType">
                                             <v-radio label="簡易溫室" id="簡易溫室" value="簡易溫室"></v-radio>
                                             <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
                                             </v-radio-group>
@@ -75,7 +75,7 @@
                                             <td>溫室管材</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleGreenhousePipes" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -86,7 +86,7 @@
                                             <td>圓頂形式</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleDomeForms" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -97,7 +97,7 @@
                                             <td>圓拱距</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCircularArchDistances" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -108,7 +108,7 @@
                                             <td>基礎</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleFoundations" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleFoundation" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleFoundation" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -119,7 +119,7 @@
                                             <td>跨距</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleSpans" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleSpan" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleSpan" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -130,7 +130,7 @@
                                             <td>肩高</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleShoulderHeights" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -141,7 +141,7 @@
                                             <td>長度</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleLengths" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleLength" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleLength" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -152,7 +152,7 @@
                                             <td>連續性</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleContinuitys" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleContinuity" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleContinuity" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -163,7 +163,7 @@
                                             <td>披覆材料</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilms" :key="index">
-                                                    <input type="radio" :value="simple" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -184,7 +184,7 @@
                                             <td>溫室型材</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -197,7 +197,7 @@
                                             <td>屋頂形式</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -210,7 +210,7 @@
                                             <td>上拱距</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -223,7 +223,7 @@
                                             <td>基礎</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustFoundation" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustFoundation" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -236,7 +236,7 @@
                                             <td>跨距</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" style="valign:center;" v-for="(robust, index) in StrongSpans" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustSpan" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustSpan" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -248,7 +248,7 @@
                                             <td>肩高</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -261,7 +261,7 @@
                                             <td>長度</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustLength" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustLength" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -274,7 +274,7 @@
                                             <td>連續性</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustContinuity" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustContinuity" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -286,7 +286,7 @@
 
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in SimpleCoatingFilms" :key="index">
-                                                    <input type="radio" :value="robust" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -1453,6 +1453,7 @@
 
 <script>
   import * as SaveOverPlan from '../../services/saveoverplan_service.js';
+  import * as Design from '../../services/greenhouse_design.js';
   export default {
     data: () => ({
         cropIdx: 0,
@@ -1644,8 +1645,10 @@
         drapetypelist:['溫室型式構造'],
         drapetype:null,
         area:0,
-        plantlength: 0,
-        plantwidth: 0,
+        overplanArray:[],
+        OverPlanJson:[],
+        DesignArray:[],
+        DesignJson:[],
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
@@ -1845,6 +1848,47 @@
             }
         }
 
+        const J_OverPlan = await fetch('/OverPlanJson',  {
+            method: 'GET',
+            });
+        this.OverPlanJson = await J_OverPlan.json();
+            for(var i = 0; i < this.OverPlanJson.length; i++){
+                this.overplanArray.push(this.OverPlanJson[i])
+        }
+        this.plantlength = this.overplanArray[0].croplength
+        this.plantwidth = this.overplanArray[0].cropwidth
+        this.area = this.plantlength*this.plantwidth
+
+        const D_OverPlan = await fetch('/DesignJson',  {
+            method: 'GET',
+            });
+        this.DesignJson = await D_OverPlan.json();
+            for(var i = 0; i < this.DesignJson.length; i++){
+                this.DesignArray.push(this.DesignJson[i])
+        }
+        this.greenhouseradio = this.DesignArray[0].housetype
+        if (this.DesignArray[0].housetype == '簡易溫室'){
+            this.SimpleGreenhousePipe = this.DesignArray[0].pipetype
+            this.SimpleDomeForm = this.DesignArray[0].rooftype
+            this.SimpleCircularArchDistance = this.DesignArray[0].circlespan
+            this.SimpleFoundation = this.DesignArray[0].base
+            this.SimpleSpan = this.DesignArray[0].span
+            this.SimpleShoulderHeight = this.DesignArray[0].shoulder
+            this.SimpleLength = this.DesignArray[0].length
+            this.SimpleContinuity = this.DesignArray[0].continue
+            this.SimpleCoatingFilm = this.DesignArray[0].drape
+        } else {
+            this.RobustGreenhouseProfile = this.DesignArray[0].pipetype
+            this.RobustRoofForm = this.DesignArray[0].rooftype
+            this.RobustUpperArch = this.DesignArray[0].circlespan
+            this.RobustFoundation = this.DesignArray[0].base
+            this.RobustSpan = this.DesignArray[0].span
+            this.RobustShoulderHeight = this.DesignArray[0].shoulder
+            this.RobustLength = this.DesignArray[0].length
+            this.RobustContinuity = this.DesignArray[0].continue
+            this.RobustCoatingFilm = this.DesignArray[0].drape
+        }
+
         const LMEMetalPrice = await fetch('/LMEMetalPriceJSON',  {
             method: 'GET',
         });
@@ -1919,65 +1963,10 @@
             }
         }
     },
+
     
-    updateCrop(){     // 更新所選擇的作物分類
-        // 從所選的作物id 找到 所選作物分類
-        for(var i = 0 ; i < this.CropOrder.length ; i++){
-            if(i == this.cropIdx)    this.selectCrop = this.CropOrder[i];
-        }
-        this.GrowPlants = ['==請選擇作物==',];  // 作物資料初始化
-        this.plantIdx = 0;
-        for(var i = 0 ; i < this.vegetablejson.length ; i++){
-            if(this.selectCrop == "==請選擇作物分類==") this.CropSelect = this.vegetablejson;
-            if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
-        }
-    },
-    updatePlant(){    // 更新所選擇的作物
-        // 從所選的作物id 找到 所選作物分類
-        for(var i = 0 ; i < this.GrowPlants.length ; i++){
-            if(i == this.plantIdx)    this.selectplant = this.GrowPlants[i];
-        }
-        // 找出所選資料的data
-        for(var i = 0 ; i < this.vegetablejson.length ; i++){
-            if(this.vegetablejson[i].VegetableTypes == this.selectplant){
-                this.Goodlight = this.vegetablejson[i].Goodlight;
-                this.Photoperiod = this.vegetablejson[i].Photoperiod;
-                this.Illuminance = this.vegetablejson[i].Illuminance;
-                this.PPFD = this.vegetablejson[i].PPFD;
-                this.LightSaturationPoint = this.vegetablejson[i].LightSaturationPoint;
-                this.LightCompensationPoint = this.vegetablejson[i].LightCompensationPoint;
-                break;
-            }
-        }
-    },
-    updateCity(){     // 更新所選擇的縣市
-        // 從所選的縣市id 找到 所選的縣市名稱
-        for(var i = 0 ; i < this.City.length ; i++){
-            if(i == this.cityIdx)    this.selectCity = this.City[i];
-        }
-        // 將地區資料初始化
-        this.selectRegion = null;
-        this.regionIdx = 0;
-        this.Region = ['==請選擇地區=='];
-        // 篩選所選縣市的地區
-        for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
-            if(this.regionalwindspeedjson[i].County == this.selectCity){
-                this.Region.push(this.regionalwindspeedjson[i].Region);
-            }
-        }
-    },
-    updateRegion(){   // 更新所選擇的地區
-        // 將地區資料初始化
-        this.LandingProbability = 0,
-        this.PathProbability = 0,
-        this.Landing = null,
-        this.Path = null;
-        // 從所選的地區id 找到 所選的地區名稱
-        for(var i = 0 ; i < this.Region.length ; i++){
-            if(i == this.regionIdx)    this.selectRegion = this.Region[i];
-        }
-    },
-    updateSimpleRadio(){  // 更新簡易型溫室選擇狀況，判斷是否有選滿9項
+    
+    updateSimpleRadio: async function(){  // 更新簡易型溫室選擇狀況，判斷是否有選滿9項
         this.SelectSimple = [];
         var temp = [];
         if(this.SimpleGreenhousePipe){
@@ -1985,55 +1974,90 @@
             temp.push('溫室管材');
             temp.push(this.SimpleGreenhousePipe);
             this.SelectSimple.push(temp); // 簡易型溫室管材
+            let formData = new FormData();
+            formData.append('pipetype',this.SimpleGreenhousePipe);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SimpleDomeForm){
             temp = [];
             temp.push('圓頂形式');
             temp.push(this.SimpleDomeForm);
             this.SelectSimple.push(temp);    // 簡易型圓頂形式
+            let formData = new FormData();
+            formData.append('rooftype',this.SimpleDomeForm);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SimpleCircularArchDistance){
             temp = [];
             temp.push('圓拱距');
             temp.push(this.SimpleCircularArchDistance);
             this.SelectSimple.push(temp);    // 簡易型圓拱距
+            let formData = new FormData();
+            formData.append('circlespan',this.SimpleCircularArchDistance);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SimpleFoundation){
             temp = [];
             temp.push('基礎');
             temp.push(this.SimpleFoundation);
             this.SelectSimple.push(temp);    // 簡易型基礎
+            let formData = new FormData();
+            formData.append('base',this.SimpleFoundation);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SimpleSpan){
             temp = [];
             temp.push('跨距');
             temp.push(this.SimpleSpan);
             this.SelectSimple.push(temp);    // 簡易型跨距
+            let formData = new FormData();
+            formData.append('span',this.SimpleSpan);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SimpleShoulderHeight){
             temp = [];
             temp.push('肩高');
             temp.push(this.SimpleShoulderHeight);
             this.SelectSimple.push(temp);    // 簡易型肩高
+            let formData = new FormData();
+            formData.append('shoulder',this.SimpleShoulderHeight);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SimpleLength){
             temp = [];
             temp.push('長度');
             temp.push(this.SimpleLength);
             this.SelectSimple.push(temp);    // 簡易型長度
+            let formData = new FormData();
+            formData.append('length',this.SimpleLength);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SimpleContinuity){
             temp = [];
             temp.push('連續性');
             temp.push(this.SimpleContinuity);
             this.SelectSimple.push(temp);    // 簡易型連續性
+            let formData = new FormData();
+            formData.append('continue',this.SimpleContinuity);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SimpleCoatingFilm){
             temp = [];
-
             temp.push('披覆材料');
             temp.push(this.SimpleCoatingFilm);
             this.SelectSimple.push(temp);  // 簡易型披覆材料
+            let formData = new FormData();
+            formData.append('drape',this.SimpleCoatingFilm);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SelectSimple.length == 9 ){
             this.SimpleTotalSimpleCost = 0,
@@ -2051,8 +2075,8 @@
             this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);
             this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
         }
-        },
-    updateRobustRadio(){  // 更新強固型溫室選擇狀況，判斷是否有選滿9項
+    },
+    updateRobustRadio: async function(){  // 更新強固型溫室選擇狀況，判斷是否有選滿9項
         this.SelectRobust = [];
         var temp = [];
         if(this.RobustGreenhouseProfile){
@@ -2060,54 +2084,90 @@
             temp.push('溫室型材');
             temp.push(this.RobustGreenhouseProfile);
             this.SelectRobust.push(temp); // 溫室型材
+            let formData = new FormData();
+            formData.append('pipetype',this.RobustGreenhouseProfile);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.RobustRoofForm){
             temp = [];
             temp.push('屋頂形式');
             temp.push(this.RobustRoofForm);
             this.SelectRobust.push(temp); // 屋頂形式
+            let formData = new FormData();
+            formData.append('rooftype',this.RobustRoofForm);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.RobustUpperArch){
             temp = [];
             temp.push('上拱距');
             temp.push(this.RobustUpperArch);
             this.SelectRobust.push(temp); // 上拱距
+            let formData = new FormData();
+            formData.append('circlespan',this.RobustUpperArch);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.RobustFoundation){
             temp = [];
             temp.push('基礎');
             temp.push(this.RobustFoundation);
             this.SelectRobust.push(temp); // 強固型基礎
+            let formData = new FormData();
+            formData.append('base',this.RobustFoundation);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.RobustSpan){
             temp = [];
             temp.push('跨距');
             temp.push(this.RobustSpan);
             this.SelectRobust.push(temp); // 強固型跨距
+            let formData = new FormData();
+            formData.append('span',this.RobustSpan);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.RobustShoulderHeight){
             temp = [];
             temp.push('肩高');
             temp.push(this.RobustShoulderHeight);
             this.SelectRobust.push(temp); // 強固型肩高
+            let formData = new FormData();
+            formData.append('shoulder',this.RobustShoulderHeight);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.RobustLength){
             temp = [];
             temp.push('長度');
             temp.push(this.RobustLength);
             this.SelectRobust.push(temp); // 強固型長度
+            let formData = new FormData();
+            formData.append('length',this.RobustLength);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.RobustContinuity){
             temp = [];
             temp.push('連續性');
             temp.push(this.RobustContinuity);
             this.SelectRobust.push(temp); // 強固型連續性
+            let formData = new FormData();
+            formData.append('continue',this.RobustContinuity);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.RobustCoatingFilm){
             temp = [];
             temp.push('披覆材料');
             temp.push(this.RobustCoatingFilm);
             this.SelectRobust.push(temp); // 披覆材料
+            let formData = new FormData();
+            formData.append('drape',this.RobustCoatingFilm);
+            formData.append('_method','put');
+            const response = await Design.UpdateDesign(1, formData);
         }
         if(this.SelectRobust.length == 9 ){
             this.RobustTotalCost = 0,
@@ -2126,63 +2186,13 @@
             this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
         }
     },
-    recordallinfo: async function() {
-        this.recordinfos = []
-        this.recordinfos.push(2) //作物分類
-        this.recordinfos.push(this.CropOrder[this.cropIdx]) //作物分類
-        this.recordinfos.push(this.GrowPlants [this.plantIdx]) //作物選擇
-        this.recordinfos.push(this.plantlength) //長度
-        this.recordinfos.push(this.plantwidth) //寬度
-        this.recordinfos.push(this.selectCity) //選擇城市
-        this.recordinfos.push(this.selectRegion) //選擇地區
-        this.recordinfos.push(this.SelectTerrain) //選擇地形
-        this.recordinfos.push(this.SelectLandform) //選擇地貌
-        this.recordinfos.push(this.greenhouseradio) //簡易or強固
-        if (this.greenhouseradio == '簡易溫室'){
-            for(var i = 0; i < this.SelectSimple.length; i++){
-                this.recordinfos.push(this.SelectSimple[i][1].BuildItem) 
-            }
-        } else if(this.greenhouseradio == '強固溫室'){
-            for(var i = 0; i < this.SelectRobust.length; i++){
-                this.recordinfos.push(this.SelectRobust[i][1].BuildItem) 
-            }            
-        }
-
+    updateRoofType: async function(){
         let formData = new FormData();
-        // let formarray = [
-        //     'uid',
-        //     'plantclass',
-        //     'plant',
-        //     'croplength',
-        //     'cropwidth',
-        //     'localcity',
-        //     'localarea',
-        //     'terrain',
-        //     'landform',
-        //     'greenhouse',
-        //     'greenhousepipe',
-        //     'domeforms',
-        //     'circulararchdistances',
-        //     'foundations',
-        //     'spans',
-        //     'shoulderheights',
-        //     'lengths',
-        //     'continuitys',
-        //     'coatingfilms',
-        //     ]
-        // for (var i = 0; i < formarray.length; i++){
-        //     formData.append(formarray[i],this.recordinfos[i]) 
-        // }
-        // const response = await SaveOverPlan.createOverPlan(formData)
-        // this.overplanArray.push(response.data)
-        this.showform = false;
+        formData.append('housetype',this.greenhouseradio);
+        formData.append('_method','put');
+        const response = await Design.UpdateDesign(1, formData);
     },
-    deleterecord: async function(DeleteId){ 
-        await SaveOverPlan.deleteOverPlan(DeleteId);
-        this.overplanArray = this.overplanArray.filter(obj =>{
-            return obj.pid != DeleteId;
-        });
-    },updateSelectPipe(){   // 更新所選擇的管材
+    updateSelectPipe(){   // 更新所選擇的管材
 
             this.selectPipe = [];
 
@@ -2384,8 +2394,14 @@
         this.decide.push(String(Math.floor(this.risk/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
         this.decide.push(String(Math.floor(this.speed/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
         this.decide.push(String(Math.floor(this.cost/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
-    },areacount(){
+    },areacount:async function(){
         this.area = this.plantlength*this.plantwidth
+        let formData = new FormData();
+        formData.append('croplength',this.plantlength);
+        formData.append('cropwidth',this.plantwidth);
+        formData.append('croparea',this.area);
+        formData.append('_method','put');
+        const response = await SaveOverPlan.UpdateOverPlan(1, formData);
     },
 },
 }
