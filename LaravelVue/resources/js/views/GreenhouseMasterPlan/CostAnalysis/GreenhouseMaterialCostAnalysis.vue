@@ -81,6 +81,7 @@
                                         <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                             <thead class="table-active">
                                                 <tr align="center">
+                                                    <td style='width:6.5vmin'> 勾選 </td>
                                                     <td style='width:23vmin'> 材料<br>名稱 </td>
                                                     <td style='width:6.5vmin'> 鋼料 </td>
                                                     <td style='width:6.5vmin'> 高強材 </td>
@@ -106,6 +107,9 @@
                                                 </tr>
                                             </thead>
                                             <tr align="center" v-for="(select, index) in selectPipe" :key="index">
+                                                <td>
+                                                    <input type="checkbox" :value="select[0].MaterialName" v-model="steelcheck">
+                                                </td>
                                                 <td align="left"> {{select[0].MaterialName}}</td>
                                                 <td>NT$ {{SteelPrice}}</td>
                                                 <td>{{select[0].HighStrengthMaterial}}</td>
@@ -131,64 +135,75 @@
                                             </tr>
                                         </table>
                                         <br>
-
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-warning" v-on:click="updatePipeCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
-                                                    </td>
-                                                </tr>
-                                                <tr align="center">
-                                                    <td> 速度性 </td>
-                                                    <td> 結構風險 </td>
-                                                    <td> 腐蝕性 </td>
-                                                    <td> 重量性 </td>
-                                                    <td> 成本性 </td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center">
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入速度性"
-                                                        v-model="PipeSpeed"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入結構風險"
-                                                        v-model="PipeStructuralRisk"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入腐蝕性"
-                                                        v-model="PipeCorrosive"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入重量性"
-                                                        v-model="PipeWeightiness"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入成本性"
-                                                        v-model="PipeCost"
-                                                    ></v-text-field>
-                                                </td>
-                                            </tr>
-                                            <tr align="center">
-                                                <td>  {{Math.floor(PipeSpeed/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeStructuralRisk/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeCorrosive/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeWeightiness/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                                <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
-                                            </tr>
-                                        </table>
-
+                                        <v-container-fluid>
+                                            <v-row>
+                                                <v-col>
+                                                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                        <thead class="table-active">
+                                                            <tr align="center">
+                                                                <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-warning" v-on:click="updatePipeCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="center">
+                                                                <td> 速度性 </td>
+                                                                <td> 結構風險 </td>
+                                                                <td> 腐蝕性 </td>
+                                                                <td> 重量性 </td>
+                                                                <td> 成本性 </td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tr align="center">
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入速度性"
+                                                                    v-model="PipeSpeed"
+                                                                ></v-text-field>
+                                                            </td>
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入結構風險"
+                                                                    v-model="PipeStructuralRisk"
+                                                                ></v-text-field>
+                                                            </td>
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入腐蝕性"
+                                                                    v-model="PipeCorrosive"
+                                                                ></v-text-field>
+                                                            </td>
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入重量性"
+                                                                    v-model="PipeWeightiness"
+                                                                ></v-text-field>
+                                                            </td>
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入成本性"
+                                                                    v-model="PipeCost"
+                                                                ></v-text-field>
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>  {{Math.floor(PipeSpeed/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
+                                                            <td>  {{Math.floor(PipeStructuralRisk/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
+                                                            <td>  {{Math.floor(PipeCorrosive/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
+                                                            <td>  {{Math.floor(PipeWeightiness/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
+                                                            <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
+                                                        </tr>
+                                                    </table>
+                                                </v-col>
+                                                <v-col>
+                                                    <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                                                        <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in steelcheck" :key="index" @click:close="steelcheck.splice(index,1)">{{ select }}</v-chip>
+                                                    </div>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container-fluid>
+                                        
+                                        
                                     </div>
                                 </b-card-text>
                             </b-card>
@@ -263,6 +278,7 @@
                                         <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                             <thead class="table-active">
                                                 <tr align="center">
+                                                    <td style='width:6.5vmin'> 勾選 </td>
                                                     <td style='width:23vmin'> 材料<br>名稱 </td>
                                                     <td style='width:6.5vmin'> 鋼料 </td>
                                                     <td style='width:6.5vmin'> 高強材 </td>
@@ -288,6 +304,9 @@
                                                 </tr>
                                             </thead>
                                             <tr align="center" v-for="(select, index) in selectProfile" :key="index">
+                                                <td>
+                                                    <input type="checkbox" :value="select[0].MaterialName" v-model="steelcheck2">
+                                                </td>
                                                 <td align="left"> {{select[0].MaterialName}}</td>
                                                 <td>NT$ {{SteelPrice}}</td>
                                                 <td>{{select[0].HighStrengthMaterial}}</td>
@@ -313,64 +332,73 @@
                                             </tr>
                                         </table>
                                         <br>
-
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-warning" v-on:click="updateProfileCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
-                                                    </td>
-                                                </tr>
-                                                <tr align="center">
-                                                    <td> 速度性 </td>
-                                                    <td> 結構風險 </td>
-                                                    <td> 腐蝕性 </td>
-                                                    <td> 重量性 </td>
-                                                    <td> 成本性 </td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center">
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入速度性"
-                                                        v-model="ProfileSpeed"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入結構風險"
-                                                        v-model="ProfileStructuralRisk"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入腐蝕性"
-                                                        v-model="ProfileCorrosive"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入重量性"
-                                                        v-model="ProfileWeightiness"
-                                                    ></v-text-field>
-                                                </td>
-                                                <td>
-                                                    <v-text-field
-                                                        label="請輸入成本性"
-                                                        v-model="ProfileCost"
-                                                    ></v-text-field>
-                                                </td>
-                                            </tr>
-                                            <tr align="center">
-                                                <td>  {{Math.floor(ProfileSpeed/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
-                                                <td>  {{Math.floor(ProfileStructuralRisk/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
-                                                <td>  {{Math.floor(ProfileCorrosive/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
-                                                <td>  {{Math.floor(ProfileWeightiness/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
-                                                <td>  {{Math.floor(ProfileCost/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
-                                            </tr>
-                                        </table>
-
+                                        <v-container-fluid>
+                                            <v-row>
+                                                <v-col>
+                                                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                        <thead class="table-active">
+                                                            <tr align="center">
+                                                                <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-warning" v-on:click="updateProfileCompare" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="center">
+                                                                <td> 速度性 </td>
+                                                                <td> 結構風險 </td>
+                                                                <td> 腐蝕性 </td>
+                                                                <td> 重量性 </td>
+                                                                <td> 成本性 </td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tr align="center">
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入速度性"
+                                                                    v-model="ProfileSpeed"
+                                                                ></v-text-field>
+                                                            </td>
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入結構風險"
+                                                                    v-model="ProfileStructuralRisk"
+                                                                ></v-text-field>
+                                                            </td>
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入腐蝕性"
+                                                                    v-model="ProfileCorrosive"
+                                                                ></v-text-field>
+                                                            </td>
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入重量性"
+                                                                    v-model="ProfileWeightiness"
+                                                                ></v-text-field>
+                                                            </td>
+                                                            <td>
+                                                                <v-text-field
+                                                                    label="請輸入成本性"
+                                                                    v-model="ProfileCost"
+                                                                ></v-text-field>
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>  {{Math.floor(ProfileSpeed/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                                                            <td>  {{Math.floor(ProfileStructuralRisk/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                                                            <td>  {{Math.floor(ProfileCorrosive/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                                                            <td>  {{Math.floor(ProfileWeightiness/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                                                            <td>  {{Math.floor(ProfileCost/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
+                                                        </tr>
+                                                    </table>
+                                                </v-col>
+                                                <v-col>
+                                                    <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                                                        <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in steelcheck2" :key="index" @click:close="steelcheck2.splice(index,1)">{{ select }}</v-chip>
+                                                    </div>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container-fluid>
                                     </div>
                                 </b-card-text>
 
@@ -456,6 +484,8 @@ export default {
             ProfileCost:null,
             ProfileTotal:null,
 
+            steelcheck:[],
+            steelcheck2:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入

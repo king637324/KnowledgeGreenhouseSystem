@@ -57,6 +57,7 @@
                                         <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                             <thead class="table-active">
                                                 <tr align="center">
+                                                    <td style='width:8vmin'> 勾選 </td>
                                                     <td style='width:23vmin'> 材料<br>名稱 </td>
                                                     <td style='width:8vmin'> 透光<br>損失 </td>
                                                     <td style='width:8vmin'> 結構<br>風險 </td>
@@ -68,6 +69,7 @@
                                                 </tr>
                                             </thead>
                                             <tr align="center" v-for="(all, index) in selectglass" :key="index">
+                                                <td><input type="checkbox" :value="all.material + '-' + all.BuildItem" v-model="filmcheck"></td>
                                                 <td align="left">{{all.material}}-{{all.BuildItem}}</td>
                                                 <td>{{all.LightLoss}}</td>
                                                 <td>{{all.StructuralRisk}}</td>
@@ -136,6 +138,10 @@
                                                 <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
                                             </tr>
                                         </table>
+                                        <br>
+                                        <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                                            <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in filmcheck" :key="index" @click:close="filmcheck.splice(index,1)">{{ select }}</v-chip>
+                                        </div>
                                     </div>
                                 </b-card-text>
                             </b-card>
@@ -227,6 +233,8 @@ export default {
             glassshow:true,
             softshow:false,
             hardshow:false,
+
+            filmcheck:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入

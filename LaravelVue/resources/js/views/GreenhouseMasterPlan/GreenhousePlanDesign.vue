@@ -845,6 +845,7 @@
                                                             <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                                                 <thead class="table-active">
                                                                     <tr align="center">
+                                                                        <td style='width:6.5vmin'> 勾選 </td>
                                                                         <td style='width:23vmin'> 材料<br>名稱 </td>
                                                                         <td style='width:6.5vmin'> 鋼料 </td>
                                                                         <td style='width:6.5vmin'> 高強材 </td>
@@ -870,6 +871,9 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tr align="center" v-for="(select, index) in selectPipe" :key="index">
+                                                                    <td>
+                                                                        <input type="checkbox" :value="select[0].MaterialName" v-model="steelcheck">
+                                                                    </td>
                                                                     <td align="left"> {{select[0].MaterialName}}</td>
                                                                     <td>NT$ {{SteelPrice}}</td>
                                                                     <td>{{select[0].HighStrengthMaterial}}</td>
@@ -952,7 +956,10 @@
                                                                     <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
                                                                 </tr>
                                                             </table>
-
+                                                            <br>
+                                                            <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                                                                <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in steelcheck" :key="index" @click:close="steelcheck.splice(index,1)">{{ select }}</v-chip>
+                                                            </div>
                                                         </div>
                                                     </b-card-text>
                                                 </b-card>
@@ -1027,6 +1034,7 @@
                                                             <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                                                 <thead class="table-active">
                                                                     <tr align="center">
+                                                                        <td style='width:6.5vmin'> 勾選 </td>
                                                                         <td style='width:23vmin'> 材料<br>名稱 </td>
                                                                         <td style='width:6.5vmin'> 鋼料 </td>
                                                                         <td style='width:6.5vmin'> 高強材 </td>
@@ -1053,6 +1061,9 @@
                                                                 </thead>
                                                                 
                                                                 <tr align="center" v-for="(select, index) in selectProfile" :key="index">
+                                                                    <td>
+                                                                        <input type="checkbox" :value="select[0].MaterialName" v-model="steelcheck2">
+                                                                    </td>
                                                                     <td align="left"> {{select[0].MaterialName}}</td>
                                                                     <td>NT$ {{SteelPrice}}</td>
                                                                     <td>{{select[0].HighStrengthMaterial}}</td>
@@ -1135,7 +1146,10 @@
                                                                     <td>  {{Math.floor(ProfileCost/(parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost))*100)}}% </td>
                                                                 </tr>
                                                             </table>
-
+                                                            <br>
+                                                            <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                                                                <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in steelcheck2" :key="index" @click:close="steelcheck2.splice(index,1)">{{ select }}</v-chip>
+                                                            </div>
                                                         </div>
                                                     </b-card-text>
 
@@ -1192,6 +1206,7 @@
                                                             <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                                                 <thead class="table-active">
                                                                     <tr align="center">
+                                                                        <td style='width:8vmin'> 勾選 </td>
                                                                         <td style='width:23vmin'> 材料<br>名稱 </td>
                                                                         <td style='width:8vmin'> 透光<br>損失 </td>
                                                                         <td style='width:8vmin'> 結構<br>風險 </td>
@@ -1204,6 +1219,7 @@
                                                                 </thead>
                                                                 
                                                                 <tr align="center" v-for="(all, index) in selectglass" :key="index">
+                                                                    <td><input type="checkbox" :value="all.material+'-'+all.BuildItem" v-model="filmcheck"></td>
                                                                     <td align="left">{{all.material}}-{{all.BuildItem}}</td>
                                                                     <td>{{all.LightLoss}}</td>
                                                                     <td>{{all.StructuralRisk}}</td>
@@ -1272,6 +1288,10 @@
                                                                     <td>  {{Math.floor(GlassCost/(parseFloat(this.GlassSpeed) + parseFloat(this.GlassStructuralRisk) + parseFloat(this.GlassCorrosive) + parseFloat(this.GlassWeightiness) + parseFloat(this.GlassCost))*100)}}% </td>
                                                                 </tr>
                                                             </table>
+                                                            <br>
+                                                            <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                                                                <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in filmcheck" :key="index" @click:close="filmcheck.splice(index,1)">{{ select }}</v-chip>
+                                                            </div>
                                                         </div>
                                                     </b-card-text>
                                                 </b-card>
@@ -1649,6 +1669,14 @@
         OverPlanJson:[],
         DesignArray:[],
         DesignJson:[],
+
+        filmcheck:[],
+        steelcheck:[],
+        steelcheck2:[],
+        quality:0,
+        speed:0,
+        risk:0,
+        cost:0,
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();

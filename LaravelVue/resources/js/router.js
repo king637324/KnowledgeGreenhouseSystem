@@ -41,7 +41,6 @@ import CoatedFilm from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseCoat
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysisHard from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysisHard.vue';
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseDesign from './views/GreenhouseMasterPlan/GreenhouseDesign.vue';
-import GreenhouseMasterPlan_RiskAnalysis from './views/GreenhouseMasterPlan/RiskAnalysis.vue';
 
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleAdd from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisAdd.vue';
 import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis_SimpleEdit from './views/GreenhouseMasterPlan/CostAnalysis/ConstructionCost/SimpleCostAnalysisEdit.vue';
@@ -56,7 +55,6 @@ import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './vi
 import OverallPlanbase from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
 import PlanDesign from './views/GreenhouseMasterPlan/GreenhousePlanDesign.vue';
 import Widget from './views/GreenhouseMasterPlan/Greenhousewidget.vue';
-import CostCount from './views/GreenhouseMasterPlan/GreenhouseCostCount.vue';
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
@@ -106,14 +104,7 @@ const routes = [{
     meta: {
         auth: false
     }
-}, {
-    path: '/RiskAnalysis',
-    name: '風險分析',
-    component: GreenhouseMasterPlan_RiskAnalysis,
-    meta: {
-        auth: undefined
-    }
-}, {
+},{
     path: '/GreenhouseDesign',
     name: '溫室設計',
     component: GreenhouseMasterPlan_GreenhouseDesign,
@@ -359,13 +350,6 @@ const routes = [{
     path: '/GreenhouseMasterPlan/Greenhousewidget',
     name: 'Greenhousewidget',
     component: Widget,
-    meta: {
-        auth: undefined
-    }
-}, {
-    path: '/GreenhouseMasterPlan/GreenhouseCostCount',
-    name: 'GreenhouseCostCount',
-    component: CostCount,
     meta: {
         auth: undefined
     }
