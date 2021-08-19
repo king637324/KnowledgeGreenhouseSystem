@@ -69,7 +69,7 @@
                                                 </tr>
                                             </thead>
                                             <tr align="center" v-for="(all, index) in selectglass" :key="index">
-                                                <td><input type="checkbox" :value="all.material + '-' + all.BuildItem" v-model="filmcheck"></td>
+                                                <td><input type="checkbox" :value="all.material + '-' + all.BuildItem" v-model="filmcheck" v-on:change="updatefilm"></td>
                                                 <td align="left">{{all.material}}-{{all.BuildItem}}</td>
                                                 <td>{{all.LightLoss}}</td>
                                                 <td>{{all.StructuralRisk}}</td>
@@ -179,6 +179,7 @@
 </template>
 
 <script>
+import * as Film from '../../../services/user_film.js';
 export default {
     data(){
         return{
@@ -188,7 +189,7 @@ export default {
             PipeData:[],
             ProfileData:[],
 
-            USD:null,   // 美津
+            USD:null,   // 美金
             SteelPrice:null, //鋼料價格
 
             /* LME 倫敦金屬價格 */
@@ -235,6 +236,8 @@ export default {
             hardshow:false,
 
             filmcheck:[],
+            FilmJson:[],
+            FilmArray:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -301,16 +304,28 @@ export default {
                 }
             }
 
-        },updateSelectPipe(){   // 更新所選擇的管材
+            const F_OverPlan = await fetch('/UserFilmJson',  {
+                method: 'GET',
+            });
+            this.FilmJson = await F_OverPlan.json();
+            for(var i = 0; i < this.FilmJson.length; i++){
+                this.FilmArray.push(this.FilmJson[i])
+                this.checkedglass.push(this.FilmJson[i].id)
+                this.selectglass.push(this.FilmJson[i])
+            }
+            
 
+        },updateSelectPipe: async function(){   // 更新所選擇的管材
             this.selectglass = [];
+            for (var i = 0; i < this.FilmArray.length; i++) {
+                this.selectglass.push(this.FilmArray[i])
+            }
 
             for (var i = 0; i < this.glass.length; i++) {
                 for (var j = 0; j < this.checkedglass.length; j++) {
                     if(this.checkedglass[j] == this.glass[i].id)  this.selectglass.push(this.glass[i]);
                 }
             }
-
         },updatePipeCompare(){  // 更新所選管材的參數比較
             this.PipeTotal = parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost);
 
@@ -431,7 +446,53 @@ export default {
                 this.selectProfileRank.push(selectComparelist[i][1]);
             }
 
-        }
+        },
+        updatefilm:async function (){
+            let film_split = null;
+            let array_build = [];
+            let no_id = null;
+            if (this.FilmArray.length < this.filmcheck.length){
+                for (var i = 0; i < this.FilmArray.length; i++){
+                    array_build.push(this.FilmArray[i].BuildItem)
+                }
+                for (var i = 0; i < this.filmcheck.length; i++){
+                    if (array_build.indexOf(this.filmcheck[i].split("-",2)[1]) == -1){
+                        film_split = this.filmcheck[i].split("-",2)[1]
+                    }
+                }
+
+                for (var i = 0; i < this.CoatingFilmJSON.length; i++){
+                    if (this.CoatingFilmJSON[i].BuildItem === film_split){
+                        let formData = new FormData();
+                        formData.append('Expert',this.CoatingFilmJSON[i].Expert);
+                        formData.append('material',this.CoatingFilmJSON[i].material);
+                        formData.append('BuildItem',this.CoatingFilmJSON[i].BuildItem);
+                        formData.append('LightLoss',this.CoatingFilmJSON[i].LightLoss);
+                        formData.append('StructuralRisk',this.CoatingFilmJSON[i].StructuralRisk);
+                        formData.append('JobDifficulty',this.CoatingFilmJSON[i].JobDifficulty);
+                        formData.append('Cost',this.CoatingFilmJSON[i].Cost);
+                        formData.append('SideEffect',this.CoatingFilmJSON[i].SideEffect);
+                        const response = await Film.createFilm(formData);
+                    }
+                }             
+            }else{
+                for (var i = 0; i < this.FilmArray.length; i++){
+                    array_build.push(this.FilmArray[i].BuildItem)
+                }
+                for (var i = 0; i < this.filmcheck.length; i++){
+                    if (array_build.indexOf(this.filmcheck[i].split("-",2)[1]) == -1){
+                        film_split = this.filmcheck[i].split("-",2)[1]
+                    }
+                }
+                for (var i = 0; i < this.CoatingFilmJSON.length; i++){
+                    if (this.CoatingFilmJSON[i].BuildItem === film_split){
+                        
+                    } else {
+                        
+                    }
+                }
+            }
+        },
     }
 }
 </script>

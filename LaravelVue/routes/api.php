@@ -80,8 +80,8 @@ use App\Http\Controllers\GreenhouseMasterPlan\WeightEstimationController;
 Route::resource('/GreenhouseMasterPlan/Greenhousewidget',WeightEstimationController::class);
 
 //總體規劃
-use App\Http\Controllers\GreenhouseMasterPlan\OverPlanController;
-Route::resource('/GreenhouseMasterPlan/GreenhouseOverallPlanbase',OverPlanController::class);
+use App\Http\Controllers\GreenhouseMasterPlan\UserFilmController;
+Route::resource('/GreenhouseMasterPlan/GreenhouseCoatedFilm',UserFilmController::class);
 
-use App\Http\Controllers\GreenhouseMasterPlan\GreenhouseDesignController;
-Route::resource('/GreenhouseMasterPlan/GreenhousePlanDesign',GreenhouseDesignController::class);
+use App\Http\Controllers\GreenhouseMasterPlan\UserSteelController;
+Route::resource('/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis',UserSteelController::class);

@@ -111,3 +111,9 @@ Route::get('/WeightJson',[WeightEstimationController::class, 'getJSON_Weiget']);
 
 use App\Http\Controllers\GreenhouseMasterPlan\GreenhouseDesignController;
 Route::get('/DesignJson',[GreenhouseDesignController::class, 'getJSON_design']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\UserFilmController;
+Route::get('/UserFilmJson',[UserFilmController::class, 'getJSON_UserFilm']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\UserSteelController;
+Route::get('/SteelJson',[UserSteelController::class, 'getJSON_UserSteel']);
