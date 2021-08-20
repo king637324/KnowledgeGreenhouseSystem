@@ -4,7 +4,7 @@ namespace App\Http\Controllers\GreenhouseMasterPlan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\GreenhouseMasterPlan\user_steel;
+use App\Models\GreenhouseMasterPlan\user_steelinfo;
 
 class UserSteelController extends Controller
 {
@@ -36,7 +36,29 @@ class UserSteelController extends Controller
      */
     public function store(Request $request)
     {
-
+        $user_steel = new user_steelinfo();
+        $user_steel->Type = $request->Type;
+        $user_steel->Price = $request->Price;
+        $user_steel->MaterialName = $request->MaterialName;
+        $user_steel->HighStrengthMaterial = $request->HighStrengthMaterial;
+        $user_steel->SteelBillet = $request->SteelBillet;
+        $user_steel->HotRolledSteelSheet = $request->HotRolledSteelSheet;
+        $user_steel->ColdRolledSteelSheet = $request->ColdRolledSteelSheet;
+        $user_steel->ContinuousHotDipGalvanizing = $request->ContinuousHotDipGalvanizing;
+        $user_steel->ContinuousPaint = $request->ContinuousPaint;
+        $user_steel->ColdForming = $request->ColdForming;
+        $user_steel->Welding = $request->Welding;
+        $user_steel->Processing = $request->Processing;
+        $user_steel->AfterHotDipGalvanizing = $request->AfterHotDipGalvanizing;
+        $user_steel->Galvalume = $request->Galvalume;
+        $user_steel->MagnesiumAluminumZincPlating = $request->MagnesiumAluminumZincPlating;
+        $user_steel->AfterBaking = $request->AfterBaking;
+        $user_steel->Speed = $request->Speed;
+        $user_steel->StructuralRisk = $request->StructuralRisk;
+        $user_steel->Corrosive = $request->Corrosive;
+        $user_steel->Weight = $request->Weight;
+        $user_steel->save();
+        return response()->json($user_steel);
     }
 
     /**
@@ -80,12 +102,12 @@ class UserSteelController extends Controller
      */
     public function destroy($id)
     {
-
+        $deletesteel = user_steelinfo::where('id', $id)->delete();
     }
 
     public function getJSON_UserSteel()
     {
-        $JSON_UserSteel = user_steel::get();
+        $JSON_UserSteel = user_steelinfo::get();
         return $JSON_UserSteel;
     }
 }

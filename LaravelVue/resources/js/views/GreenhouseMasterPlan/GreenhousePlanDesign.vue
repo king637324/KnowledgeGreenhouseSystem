@@ -1147,9 +1147,7 @@
                                                                 </tr>
                                                             </table>
                                                             <br>
-                                                            <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
-                                                                <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in steelcheck2" :key="index" @click:close="steelcheck2.splice(index,1)">{{ select }}</v-chip>
-                                                            </div>
+                                                            
                                                         </div>
                                                     </b-card-text>
 
@@ -1289,9 +1287,7 @@
                                                                 </tr>
                                                             </table>
                                                             <br>
-                                                            <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
-                                                                <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in filmcheck" :key="index" @click:close="filmcheck.splice(index,1)">{{ select }}</v-chip>
-                                                            </div>
+                                                            
                                                         </div>
                                                     </b-card-text>
                                                 </b-card>

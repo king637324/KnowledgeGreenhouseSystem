@@ -108,7 +108,7 @@
                                             </thead>
                                             <tr align="center" v-for="(select, index) in selectPipe" :key="index">
                                                 <td>
-                                                    <input type="checkbox" :value="select[0].MaterialName" v-model="steelcheck">
+                                                    <input type="checkbox" v-model="select.checked" v-on:change="updatesteel(select,select.checked)">
                                                 </td>
                                                 <td align="left"> {{select[0].MaterialName}}</td>
                                                 <td>NT$ {{SteelPrice}}</td>
@@ -194,11 +194,6 @@
                                                             <td>  {{Math.floor(PipeCost/(parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost))*100)}}% </td>
                                                         </tr>
                                                     </table>
-                                                </v-col>
-                                                <v-col>
-                                                    <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
-                                                        <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in steelcheck" :key="index" @click:close="steelcheck.splice(index,1)">{{ select }}</v-chip>
-                                                    </div>
                                                 </v-col>
                                             </v-row>
                                         </v-container-fluid>
@@ -392,11 +387,6 @@
                                                         </tr>
                                                     </table>
                                                 </v-col>
-                                                <v-col>
-                                                    <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
-                                                        <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in steelcheck2" :key="index" @click:close="steelcheck2.splice(index,1)">{{ select }}</v-chip>
-                                                    </div>
-                                                </v-col>
                                             </v-row>
                                         </v-container-fluid>
                                     </div>
@@ -487,6 +477,8 @@ export default {
 
             steelcheck:[],
             steelcheck2:[],
+            SteelJson:[],
+            SteelArray:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -561,6 +553,16 @@ export default {
                     data.push(Cost);
                     this.ProfileData.push(data);
                 }
+            }
+            const S_OverPlan = await fetch('/UserSteelJson',  {
+                method: 'GET',
+            });
+            this.SteelJson = await S_OverPlan.json();
+            for(var i = 0; i < this.SteelJson.length; i++){
+                this.SteelArray.push(this.SteelJson[i])
+                this.checkedPipe.push(this.SteelJson[i].id)
+                this.SteelJson[i].checked = true
+                this.selectPipe.push(this.SteelJson[i])
             }
 
         },updateSelectPipe(){   // 更新所選擇的管材
@@ -693,7 +695,37 @@ export default {
                 this.selectProfileRank.push(selectComparelist[i][1]);
             }
 
-        }
+        },
+        updatesteel:async function (data,check){
+
+            if (check === true){
+                let formData = new FormData();
+                formData.append('Type',data.Type);
+                formData.append('Price',data.Price);
+                formData.append('MaterialName',data.MaterialName);
+                formData.append('HighStrengthMaterial',data.HighStrengthMaterial);
+                formData.append('SteelBillet',data.SteelBillet);
+                formData.append('HotRolledSteelSheet',data.HotRolledSteelSheet);
+                formData.append('ColdRolledSteelSheet',data.ColdRolledSteelSheet);
+                formData.append('ContinuousHotDipGalvanizing',data.ContinuousHotDipGalvanizing);
+                formData.append('ContinuousPaint',data.ContinuousPaint);
+                formData.append('ColdForming',data.ColdForming);
+                formData.append('Welding',data.Welding);
+                formData.append('Processing',data.Processing);
+                formData.append('AfterHotDipGalvanizing',data.AfterHotDipGalvanizing);
+                formData.append('Galvalume',data.Galvalume);
+                formData.append('MagnesiumAluminumZincPlating',data.MagnesiumAluminumZincPlating);
+                formData.append('AfterBaking',data.AfterBaking);
+                formData.append('Speed',data.Speed);
+                formData.append('StructuralRisk',data.StructuralRisk);
+                formData.append('Corrosive',data.Corrosive);
+                formData.append('Weight',data.Weight);
+                const response = await Steel.createSteel(formData);
+            } else {
+                window.alert('hi')
+                await Film.deleteSteel(data.id);
+            }
+        },
     }
 }
 </script>

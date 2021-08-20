@@ -69,7 +69,7 @@
                                                 </tr>
                                             </thead>
                                             <tr align="center" v-for="(all, index) in selectglass" :key="index">
-                                                <td><input type="checkbox" :value="all.material + '-' + all.BuildItem" v-model="filmcheck" v-on:change="updatefilm"></td>
+                                                <td><input type="checkbox" v-model="all.checked" v-on:change="updatefilm(all,all.checked)"></td>
                                                 <td align="left">{{all.material}}-{{all.BuildItem}}</td>
                                                 <td>{{all.LightLoss}}</td>
                                                 <td>{{all.StructuralRisk}}</td>
@@ -139,9 +139,6 @@
                                             </tr>
                                         </table>
                                         <br>
-                                        <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
-                                            <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in filmcheck" :key="index" @click:close="filmcheck.splice(index,1)">{{ select }}</v-chip>
-                                        </div>
                                     </div>
                                 </b-card-text>
                             </b-card>
@@ -311,7 +308,9 @@ export default {
             for(var i = 0; i < this.FilmJson.length; i++){
                 this.FilmArray.push(this.FilmJson[i])
                 this.checkedglass.push(this.FilmJson[i].id)
+                this.FilmJson[i].checked = true
                 this.selectglass.push(this.FilmJson[i])
+                this.filmcheck.push(this.FilmJson[i].material+'-'+this.FilmJson[i].BuildItem)
             }
             
 
@@ -447,50 +446,22 @@ export default {
             }
 
         },
-        updatefilm:async function (){
-            let film_split = null;
-            let array_build = [];
-            let no_id = null;
-            if (this.FilmArray.length < this.filmcheck.length){
-                for (var i = 0; i < this.FilmArray.length; i++){
-                    array_build.push(this.FilmArray[i].BuildItem)
-                }
-                for (var i = 0; i < this.filmcheck.length; i++){
-                    if (array_build.indexOf(this.filmcheck[i].split("-",2)[1]) == -1){
-                        film_split = this.filmcheck[i].split("-",2)[1]
-                    }
-                }
+        updatefilm:async function (data,check){
 
-                for (var i = 0; i < this.CoatingFilmJSON.length; i++){
-                    if (this.CoatingFilmJSON[i].BuildItem === film_split){
-                        let formData = new FormData();
-                        formData.append('Expert',this.CoatingFilmJSON[i].Expert);
-                        formData.append('material',this.CoatingFilmJSON[i].material);
-                        formData.append('BuildItem',this.CoatingFilmJSON[i].BuildItem);
-                        formData.append('LightLoss',this.CoatingFilmJSON[i].LightLoss);
-                        formData.append('StructuralRisk',this.CoatingFilmJSON[i].StructuralRisk);
-                        formData.append('JobDifficulty',this.CoatingFilmJSON[i].JobDifficulty);
-                        formData.append('Cost',this.CoatingFilmJSON[i].Cost);
-                        formData.append('SideEffect',this.CoatingFilmJSON[i].SideEffect);
-                        const response = await Film.createFilm(formData);
-                    }
-                }             
-            }else{
-                for (var i = 0; i < this.FilmArray.length; i++){
-                    array_build.push(this.FilmArray[i].BuildItem)
-                }
-                for (var i = 0; i < this.filmcheck.length; i++){
-                    if (array_build.indexOf(this.filmcheck[i].split("-",2)[1]) == -1){
-                        film_split = this.filmcheck[i].split("-",2)[1]
-                    }
-                }
-                for (var i = 0; i < this.CoatingFilmJSON.length; i++){
-                    if (this.CoatingFilmJSON[i].BuildItem === film_split){
-                        
-                    } else {
-                        
-                    }
-                }
+            if (check === true){
+                let formData = new FormData();
+                formData.append('Expert',data.Expert);
+                formData.append('material',data.material);
+                formData.append('BuildItem',data.BuildItem);
+                formData.append('LightLoss',data.LightLoss);
+                formData.append('StructuralRisk',data.StructuralRisk);
+                formData.append('JobDifficulty',data.JobDifficulty);
+                formData.append('Cost',data.Cost);
+                formData.append('SideEffect',data.SideEffect);
+                const response = await Film.createFilm(formData);
+            } else {
+                window.alert('hi')
+                await Film.deleteFilm(data.id);
             }
         },
     }
