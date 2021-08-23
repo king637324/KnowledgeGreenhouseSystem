@@ -30,7 +30,7 @@
                                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                         <thead class="table-active">
                                             <tr align="center">
-                                                <td style='width:5vmin'> 勾選 </td>
+                                                <td style='width:5vmin'> {{selectglass}} </td>
                                                 <td style='width:23vmin'> 材料<br>名稱 </td>
                                                 <td style='width:8vmin'> 透光<br>損失 </td>
                                                 <td style='width:8vmin'> 結構<br>風險 </td>
@@ -231,8 +231,6 @@ export default {
             glassshow:true,
             softshow:false,
             hardshow:false,
-
-            filmcheck:[],
             FilmJson:[],
             FilmArray:[],
         }
@@ -306,11 +304,12 @@ export default {
             });
             this.FilmJson = await F_OverPlan.json();
             for(var i = 0; i < this.FilmJson.length; i++){
+
+                this.FilmJson[i].checked = true
                 this.FilmArray.push(this.FilmJson[i])
                 this.checkedglass.push(this.FilmJson[i].id)
-                this.FilmJson[i].checked = true
                 this.selectglass.push(this.FilmJson[i])
-                this.filmcheck.push(this.FilmJson[i].material+'-'+this.FilmJson[i].BuildItem)
+
             }
             
 
@@ -380,71 +379,6 @@ export default {
                 this.selectPipeRank.push(selectComparelist[i][1]);
             }
 
-        },updateSelectProfile(){    // 更新所選擇的型材
-            this.selectProfile = [];
-
-            for (var i = 0; i < this.ProfileData.length; i++) {
-                for (var j = 0; j < this.checkedProfile.length; j++) {
-                    if(this.checkedProfile[j] == this.ProfileData[i][0].id)  this.selectProfile.push(this.ProfileData[i]);
-                }
-
-            }
-
-        },updateProfileCompare(){   // 更新所選型材的參數比較
-            this.ProfileTotal = parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost);
-
-            var Compare = 0,selectComparelist = [],rank = [];
-            // 計算 比較值
-            for (var i = 0; i < this.selectProfile.length; i++) {
-                Compare = (this.selectProfile[i][0].Speed * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectProfile[i][0].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Corrosive * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Weight * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][1] * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
-                Compare = Compare.toFixed(2);
-
-                rank = [];
-                rank.push(this.selectProfile[i][0].id);
-                rank.push(Compare);
-                rank.push(0);
-                selectComparelist.push(rank);
-
-            }
-
-            /* 將所勾選的 型材進行氣泡排序 */
-            var temp;
-            for (var i = selectComparelist.length - 1; i > 0; i--) {
-                for (var j = 0; j <= i - 1; j++) {
-                    if (selectComparelist[j][1] > selectComparelist[j + 1][1]) {
-                        temp = selectComparelist[j];
-                        selectComparelist[j] = selectComparelist[j + 1];
-                        selectComparelist[j + 1] = temp;
-                    }
-                }
-            }
-
-            /* 將所勾選的 型材進行排名 */
-            for (var i = 0; i < selectComparelist.length; i++) {
-                var a=i;
-                selectComparelist[i][2] = ++a;
-            }
-
-            /* 將所勾選的 型材進行id序號的氣泡排序，才能使顯示是照順序的 */
-            for (var i = selectComparelist.length - 1; i > 0; i--) {
-                for (var j = 0; j <= i - 1; j++) {
-                    if (selectComparelist[j][0] > selectComparelist[j + 1][0]) {
-                        temp = selectComparelist[j];
-                        selectComparelist[j] = selectComparelist[j + 1];
-                        selectComparelist[j + 1] = temp;
-                    }
-                }
-            }
-
-            this.selectProfileRank = [],  // 排名
-            this.selectProfileRankValue = []; // 排名值
-
-            /* 將所勾選的 型材 比較值與排名 顯示 */
-            for (var i = 0; i < selectComparelist.length; i++) {
-                this.selectProfileRankValue.push(selectComparelist[i][2]);
-                this.selectProfileRank.push(selectComparelist[i][1]);
-            }
-
         },
         updatefilm:async function (data,check){
 
@@ -460,7 +394,6 @@ export default {
                 formData.append('SideEffect',data.SideEffect);
                 const response = await Film.createFilm(formData);
             } else {
-                window.alert('hi')
                 await Film.deleteFilm(data.id);
             }
         },
