@@ -30,7 +30,7 @@
                                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                         <thead class="table-active">
                                             <tr align="center">
-                                                <td style='width:5vmin'> {{selectglass}} </td>
+                                                <td style='width:5vmin'> 勾選 </td>
                                                 <td style='width:23vmin'> 材料<br>名稱 </td>
                                                 <td style='width:8vmin'> 透光<br>損失 </td>
                                                 <td style='width:8vmin'> 結構<br>風險 </td>
@@ -40,7 +40,7 @@
                                             </tr>
                                         </thead>
                                         <tr align="center" v-for="(all, index) in CoatingFilmJSON" :key="index">
-                                            <td><input type="checkbox" :value="all.id" v-model="checkedglass" v-on:change="updateSelectPipe"></td>
+                                            <td><input type="checkbox" v-model="all.checked" v-on:change="updateSelectPipe(all.id,all.checked)"></td>
                                             <td align="left"> {{all.material}}-{{all.BuildItem}}</td>
                                             <td>{{all.LightLoss}}</td>
                                             <td>{{all.StructuralRisk}}</td>
@@ -233,6 +233,7 @@ export default {
             hardshow:false,
             FilmJson:[],
             FilmArray:[],
+            filmname:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -304,24 +305,47 @@ export default {
             });
             this.FilmJson = await F_OverPlan.json();
             for(var i = 0; i < this.FilmJson.length; i++){
-
+                this.filmname.push(this.FilmJson[i].BuildItem)
                 this.FilmJson[i].checked = true
                 this.FilmArray.push(this.FilmJson[i])
                 this.checkedglass.push(this.FilmJson[i].id)
                 this.selectglass.push(this.FilmJson[i])
 
             }
+            for (var i = 0; i < this.CoatingFilmJSON.length; i++){
+                for (var j = 0; j < this.FilmJson.length; j++){
+                    if (this.filmname.indexOf(this.CoatingFilmJSON[i].BuildItem) === -1){
+                        this.CoatingFilmJSON[i].checked = false 
+                    } else{
+                        this.CoatingFilmJSON[i].checked = true
+                    }
+                }
+            }
             
 
-        },updateSelectPipe: async function(){   // 更新所選擇的管材
-            this.selectglass = [];
-            for (var i = 0; i < this.FilmArray.length; i++) {
-                this.selectglass.push(this.FilmArray[i])
-            }
+        },updateSelectPipe: async function(checkid,checktype){   // 更新所選擇的管材
 
-            for (var i = 0; i < this.glass.length; i++) {
-                for (var j = 0; j < this.checkedglass.length; j++) {
-                    if(this.checkedglass[j] == this.glass[i].id)  this.selectglass.push(this.glass[i]);
+            let glassname = null;
+            if (checktype === true){
+                this.checkedglass.push(checkid)
+                for (var i = 0; i < this.CoatingFilmJSON.length; i++) {
+                    if(checkid === this.CoatingFilmJSON[i].id){
+                        this.CoatingFilmJSON[i].checked = false
+                        this.selectglass.push(this.CoatingFilmJSON[i]);
+                    } 
+                }
+            } else{
+                this.checkedglass.splice(this.checkedglass.indexOf(checkid),1)
+                for (var i = 0; i < this.CoatingFilmJSON.length; i++){
+                    if (this.CoatingFilmJSON[i].id === checkid){
+                        glassname = this.CoatingFilmJSON[i].BuildItem
+                    }
+                }
+                for(var j = 0; j < this.selectglass.length; j++){
+                    if (this.selectglass[j].BuildItem === glassname){
+                        await Film.deleteFilm(this.selectglass[j].id);
+                        this.selectglass.splice(j,1)
+                    }
                 }
             }
         },updatePipeCompare(){  // 更新所選管材的參數比較
@@ -381,20 +405,37 @@ export default {
 
         },
         updatefilm:async function (data,check){
-
+            let filmname = [];
             if (check === true){
-                let formData = new FormData();
-                formData.append('Expert',data.Expert);
-                formData.append('material',data.material);
-                formData.append('BuildItem',data.BuildItem);
-                formData.append('LightLoss',data.LightLoss);
-                formData.append('StructuralRisk',data.StructuralRisk);
-                formData.append('JobDifficulty',data.JobDifficulty);
-                formData.append('Cost',data.Cost);
-                formData.append('SideEffect',data.SideEffect);
-                const response = await Film.createFilm(formData);
+                const F_OverPlan = await fetch('/UserFilmJson',  {
+                method: 'GET',
+                });
+                this.FilmJson = await F_OverPlan.json();
+                for (var i = 0; i < this.FilmJson.length; i++){
+                    filmname.push(this.FilmJson[i].BuildItem)
+                }
+                if (filmname.indexOf(data.BuildItem) === -1){
+                    let formData = new FormData();
+                    formData.append('Expert',data.Expert);
+                    formData.append('material',data.material);
+                    formData.append('BuildItem',data.BuildItem);
+                    formData.append('LightLoss',data.LightLoss);
+                    formData.append('StructuralRisk',data.StructuralRisk);
+                    formData.append('JobDifficulty',data.JobDifficulty);
+                    formData.append('Cost',data.Cost);
+                    formData.append('SideEffect',data.SideEffect);
+                    const response = await Film.createFilm(formData);
+                }
             } else {
-                await Film.deleteFilm(data.id);
+                const F_OverPlan = await fetch('/UserFilmJson',  {
+                method: 'GET',
+                });
+                this.FilmJson = await F_OverPlan.json();
+                for (var i = 0; i < this.FilmJson.length; i++){
+                    if (this.FilmJson[i].BuildItem === data.BuildItem){
+                        await Film.deleteFilm(this.FilmJson[i].id);
+                    }
+                }
             }
         },
     }
