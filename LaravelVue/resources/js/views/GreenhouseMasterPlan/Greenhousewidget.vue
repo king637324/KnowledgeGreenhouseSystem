@@ -101,23 +101,39 @@
                                                 <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                                     <thead class="table-active">
                                                         <tr align="center">
-                                                            <td>標準風速</td>
                                                             <td>規範風速</td>
                                                             <td>風速加級</td>
                                                             <td>系統建議風速</td>
-                                                            <td>標準跨距</td>
-                                                            <td>標準肩高</td>
-                                                            <td>連棟性</td>
+                                                            <td style="color:red">設計風速</td>
                                                         </tr>
                                                     </thead>
                                                     <tr align="center" id="風速">
-                                                        <td>30</td>
                                                         <td>{{ SpeedPerSecond }}</td>
                                                         <td>{{ data_wind }}</td>
                                                         <td>{{ SpeedPerSecond*data_wind }}</td>
+                                                        <td style="color:red">{{ design_wind }}</td>
+                                                    </tr>
+                                                </table>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td>標準跨距</td>
+                                                            <td style="color:red">設計跨距</td>
+                                                            <td>標準肩高</td>
+                                                            <td style="color:red">設計肩高</td>
+                                                            <td>連棟性</td>
+                                                            <td style="color:red">設計連棟</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center" id="風速">
                                                         <td>8</td>
+                                                        <td style="color:red">{{ design_span }}</td>
                                                         <td>3</td>
+                                                        <td style="color:red">{{ design_shoulder }}</td>
                                                         <td>1</td>
+                                                        <td style="color:red">{{ design_story }}</td>
                                                     </tr>
                                                 </table>
                                             </v-col>
@@ -612,6 +628,19 @@
                     this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
                 }
             }
+            let wind123 = [];
+            let corrosion = [];
+            for (var i = 0; i < this.windcorrosionjson.length; i++){
+                if (this.windcorrosionjson[i].landtype == this.SelectTerrain){
+                    wind123[0] = this.windcorrosionjson[i].wind
+                    corrosion[0] = this.windcorrosionjson[i].corrosion
+                } else if (this.windcorrosionjson[i].landtype == this.SelectLandform){
+                    wind123[1] = this.windcorrosionjson[i].wind
+                    corrosion[1] = this.windcorrosionjson[i].corrosion                  
+                }
+            }
+            this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
+            this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
         },
         updateCity: async function(){     // 更新所選擇的縣市
             this.SpeedPerSecond = null;

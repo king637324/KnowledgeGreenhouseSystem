@@ -339,6 +339,20 @@ export default {
             this.LandingProbability = this.LandingProbability.toFixed(2);
             this.PathProbability = this.PathProbability.toFixed(2);
 
+            let wind123 = [];
+            let corrosion = [];
+            for (var i = 0; i < this.windcorrosionjson.length; i++){
+                if (this.windcorrosionjson[i].landtype == this.SelectTerrain){
+                    wind123[0] = this.windcorrosionjson[i].wind
+                    corrosion[0] = this.windcorrosionjson[i].corrosion
+                } else if (this.windcorrosionjson[i].landtype == this.SelectLandform){
+                    wind123[1] = this.windcorrosionjson[i].wind
+                    corrosion[1] = this.windcorrosionjson[i].corrosion                  
+                }
+            }
+            this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
+            this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
+
         },updateCity: async function(){     // 更新所選擇的縣市
             // 從所選的縣市id 找到 所選的縣市名稱
             for(var i = 0 ; i < this.City.length ; i++){

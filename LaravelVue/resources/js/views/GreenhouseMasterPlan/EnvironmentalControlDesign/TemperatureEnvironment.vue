@@ -375,7 +375,7 @@ export default {
             this.total_temp_low = 0;
             for(var i = 0 ; i < 12 ; i++){
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0){
-                    this.total_temp_high += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3)
+                    this.total_temp_high += parseFloat(parseFloat((parseFloat(this.StrHighTemperature[i])+parseFloat(this.StrLowTemperature[i]))/2)-this.StrOptimalTemperature[1]+3)
                 }
                 
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0){  
@@ -510,7 +510,7 @@ export default {
             this.total_temp_low = 0;
             for(var i = 0 ; i < 12 ; i++){
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0){
-                    this.total_temp_high += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3)
+                    this.total_temp_high += parseFloat(parseFloat((parseFloat(this.StrHighTemperature[i])+parseFloat(this.StrLowTemperature[i]))/2)-this.StrOptimalTemperature[1]+3)
                 }
                 
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0){  
