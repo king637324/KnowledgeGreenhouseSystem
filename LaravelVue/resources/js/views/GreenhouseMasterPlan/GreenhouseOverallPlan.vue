@@ -7,7 +7,7 @@
         </h3>
         <hr>
 
-        <v-container-fluid v-if="showform==true">
+        <v-container-fluid>
             <v-row>
                 <v-col class="col-md-8 offset-md-2">
                     <v-form v-on:submit.prevent="recordallinfo">
@@ -35,7 +35,7 @@
                           <v-col md="4">
                             <label for="分類" style="color:rgba(0,0,0,.6); font-size:8px;">分類</label>
                             <b-select v-model="cropIdx" v-on:change="updateCrop" name="分類">
-                              <option v-for="(crop, index) in CropOrder" :value="index" :key="index">
+                              <option v-for="(crop, index) in CropOrder" :value="crop" :key="index">
                                   {{crop}}
                               </option>
                             </b-select>
@@ -43,7 +43,7 @@
                           <v-col md="4">
                             <label for="作物" style="color:rgba(0,0,0,.6); font-size:8px;">作物</label>
                             <b-select v-model="plantIdx" v-on:change="updatePlant" name="作物">
-                                <option v-for="(plant, index) in GrowPlants" :value="index" :key="index">
+                                <option v-for="(plant, index) in GrowPlants" :value="plant" :key="index">
                                     {{plant}}
                                 </option>
                             </b-select>     
@@ -56,7 +56,7 @@
                             <v-col md="2">
                                 <label for="縣市" style="color:rgba(0,0,0,.6); font-size:8px;">縣市</label>
                                 <b-select v-model="cityIdx" v-on:change="updateCity" name="縣市">
-                                    <option v-for="(data, index) in City" :value="index" :key="index">
+                                    <option v-for="(data, index) in City" :value="data" :key="index">
                                         {{data}}
                                     </option>
                                 </b-select>
@@ -64,7 +64,7 @@
                             <v-col md="2">
                                 <label for="地區" style="color:rgba(0,0,0,.6); font-size:8px;">地區</label>
                                 <b-select v-model="regionIdx" v-on:change="updateRegion" name="地區">
-                                    <option v-for="(data, index) in Region" :value="index" :key="index">
+                                    <option v-for="(data, index) in Region" :value="data" :key="index">
                                         {{data}}
                                     </option>
                                 </b-select>
@@ -118,7 +118,7 @@
                           <v-col cols="12" md="2">
                             <label for="方位" style="color:rgba(0,0,0,.6); font-size:8px;">方位</label>
                             <b-select v-model="position" name="方位">
-                                <option v-for="(data, index) in allposition" :value="index" :key="index">
+                                <option v-for="(data, index) in allposition" :value="data" :key="index">
                                     {{data}}
                                 </option>
                             </b-select>
@@ -148,16 +148,16 @@
                     <br><br><br><br><br><br>
                 </v-col>
 
-                <v-btn fab dark style="position:fixed; bottom: 0; right: 0; z-index: 9999;" v-on:click="showform=false">
+                <!-- <v-btn fab dark style="position:fixed; bottom: 0; right: 0; z-index: 9999;" v-on:click="showform=false">
                   <b-icon icon="arrow-right"></b-icon>
-                </v-btn>
+                </v-btn> -->
             </v-row>
         </v-container-fluid>
-        <v-container-fluid v-else-if="showform==false">
+        <!-- <v-container-fluid v-else-if="showform==false">
             <v-row>
                 <v-col>
                     <b-card-group>
-                        <!-- 種植植物生長環境需求 -->
+
                         <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                             <template #header>
                                 <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 已儲存之規劃結果</h6>
@@ -202,7 +202,7 @@
             <v-row>
                 <v-col>
                     <b-card-group deck>
-                        <!-- 種植植物生長環境需求 -->
+
                         <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                             <template #header>
                                 <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 規劃結果-比較分析</h6>
@@ -300,7 +300,7 @@
                   <b-icon icon="arrow-left"></b-icon>
                 </v-btn>
             </v-row>
-        </v-container-fluid>
+        </v-container-fluid> -->
     </div>
 </template>
 
@@ -308,8 +308,8 @@
   import * as SaveOverPlan from '../../services/saveoverplan_service.js';
   export default {
     data: () => ({
-        cropIdx: 0,
-        plantIdx: 0,
+        cropIdx: null,
+        plantIdx: null,
         selectCrop: null,
         vegetablejson:[],
         CropOrder: ["分類","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
@@ -319,7 +319,7 @@
         tabIndex: 0,
         regionalwindspeedjson:[],   // 縣市地區資料
         City:['縣市',],   // 縣市選單的陣列表
-        cityIdx: 0, // 所選縣市的id
+        cityIdx: null, // 所選縣市的id
         selectCity: null, // 所選縣市的名稱
         Region:['地區',], // 地區選單的陣列表
         regionIdx: 0,   // 所選地區的id
@@ -337,7 +337,7 @@
         OverPlanJson: [],
         overplanArray: [],
 
-        showform:true,
+        //showform:true,
 
         classIdx:0,
 
@@ -390,16 +390,49 @@
         for(var i = 0; i < this.OverPlanJson.length; i++){
             this.overplanArray.push(this.OverPlanJson[i])
         }
-        
+        this.codename = this.overplanArray[0].usercodename
+        this.cropIdx = this.overplanArray[0].palntclass
+        this.cityIdx = this.overplanArray[0].localcity
+        this.SelectTerrain = this.overplanArray[0].terrain
+        this.SelectLandform = this.overplanArray[0].landform
+        this.SelectLandcondition = this.overplanArray[0].landcondition
+        this.plantlength = this.overplanArray[0].croplength
+        this.plantwidth = this.overplanArray[0].cropwidth
+        this.area = this.overplanArray[0].croparea
+        this.position = this.overplanArray[0].position
+        for(var i = 0 ; i < this.CropOrder.length ; i++){
+            if(this.CropOrder[i] == this.cropIdx)    this.selectCrop = this.CropOrder[i];
+        }
+        this.GrowPlants = ['作物',];  // 作物資料初始化
+        this.plantIdx = 0;
+        for(var i = 0 ; i < this.vegetablejson.length ; i++){
+            if(this.selectCrop == "分類") this.CropSelect = this.vegetablejson;
+            if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
+        }
+        for(var i = 0 ; i < this.City.length ; i++){
+            if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
+        }
+        // 將地區資料初始化
+        this.selectRegion = null;
+        this.regionIdx = 0;
+        this.Region = ['地區'];
+        // 篩選所選縣市的地區
+        for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+            if(this.regionalwindspeedjson[i].County == this.selectCity){
+                this.Region.push(this.regionalwindspeedjson[i].Region);
+            }
+        }
+        this.plantIdx = this.overplanArray[0].cropplant
+        this.regionIdx = this.overplanArray[0].localarea
     },
     
     updateCrop(){     // 更新所選擇的作物分類
         // 從所選的作物id 找到 所選作物分類
         for(var i = 0 ; i < this.CropOrder.length ; i++){
-            if(i == this.cropIdx)    this.selectCrop = this.CropOrder[i];
+            if(this.CropOrder[i] == this.cropIdx)    this.selectCrop = this.CropOrder[i];
         }
         this.GrowPlants = ['作物',];  // 作物資料初始化
-        this.plantIdx = 0;
+        
         for(var i = 0 ; i < this.vegetablejson.length ; i++){
             if(this.selectCrop == "分類") this.CropSelect = this.vegetablejson;
             if(this.vegetablejson[i].classification == this.selectCrop)    this.GrowPlants.push(this.vegetablejson[i].VegetableTypes);
@@ -408,7 +441,7 @@
     updatePlant(){    // 更新所選擇的作物
         // 從所選的作物id 找到 所選作物分類
         for(var i = 0 ; i < this.GrowPlants.length ; i++){
-            if(i == this.plantIdx)    this.selectplant = this.GrowPlants[i];
+            if(this.GrowPlants[i] == this.plantIdx)    this.selectplant = this.GrowPlants[i];
         }
         // 找出所選資料的data
         for(var i = 0 ; i < this.vegetablejson.length ; i++){
@@ -426,7 +459,7 @@
     updateCity(){     // 更新所選擇的縣市
         // 從所選的縣市id 找到 所選的縣市名稱
         for(var i = 0 ; i < this.City.length ; i++){
-            if(i == this.cityIdx)    this.selectCity = this.City[i];
+            if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
         }
         // 將地區資料初始化
         this.selectRegion = null;
@@ -447,56 +480,36 @@
         this.Path = null;
         // 從所選的地區id 找到 所選的地區名稱
         for(var i = 0 ; i < this.Region.length ; i++){
-            if(i == this.regionIdx)    this.selectRegion = this.Region[i];
+            if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
         }
     },
     recordallinfo: async function() {
-        
-        this.recordinfos = []
-        this.recordinfos.push(this.user_class[this.classIdx]) //作物分類
-        this.recordinfos.push(this.codename) //作物選擇
-        this.recordinfos.push(this.CropOrder[this.cropIdx])
-        this.recordinfos.push(this.GrowPlants[this.plantIdx])
-        this.recordinfos.push(this.selectCity)
-        this.recordinfos.push(this.selectRegion)
-        this.recordinfos.push(this.SelectTerrain)
-        this.recordinfos.push(this.SelectLandform)
-        this.recordinfos.push(this.SelectLandcondition)
-        this.recordinfos.push(this.plantlength)
-        this.recordinfos.push(this.plantwidth)
-        this.recordinfos.push(this.area)
-        this.recordinfos.push(this.allposition[this.position])
-        this.recordinfos.push(this.quality)
-        this.recordinfos.push(this.risk)
-        this.recordinfos.push(this.speed)
-        this.recordinfos.push(this.cost)
-        
+
         let formData = new FormData();
-        let formarray = [
-            'userclass',
-            'usercodename',
-            'palntclass',
-            'cropplant',
-            'localcity',
-            'localarea',
-            'terrain',
-            'landform',
-            'landcondition',
-            'croplength',
-            'cropwidth',
-            'croparea',
-            'position',
-            'quality',
-            'risk',
-            'speed',
-            'cost',
-            ]
-        for (var i = 0; i < formarray.length; i++){
-            formData.append(formarray[i],this.recordinfos[i]) 
-        }
-        const response = await SaveOverPlan.createOverPlan(formData)
-        this.overplanArray.push(response.data)
-        this.showform = false;
+        formData.append('userclass','System') 
+        formData.append('uid',this.$auth.user().id) 
+        formData.append('usercodename',this.codename) 
+        formData.append('palntclass',this.cropIdx) 
+        formData.append('cropplant',this.plantIdx) 
+        formData.append('localcity',this.cityIdx) 
+        formData.append('localarea',this.regionIdx) 
+        formData.append('terrain',this.SelectTerrain) 
+        formData.append('landform',this.SelectLandform) 
+        formData.append('landcondition',this.SelectLandcondition) 
+        formData.append('croplength',this.plantlength) 
+        formData.append('cropwidth',this.plantwidth) 
+        formData.append('croparea',this.area) 
+        formData.append('position',this.position) 
+        formData.append('quality',this.quality) 
+        formData.append('risk',this.risk) 
+        formData.append('speed',this.speed) 
+        formData.append('cost',this.cost) 
+        formData.append('_method','patch');
+        const response = await SaveOverPlan.UpdateOverPlan(1,formData)
+        this.overplanArray = []
+        this.overplanArray = response.data
+        window.alert('修改完畢')
+        //this.showform = false;
     },
     deleterecord: async function(DeleteId){ 
         await SaveOverPlan.deleteOverPlan(DeleteId);
