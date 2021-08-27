@@ -155,7 +155,7 @@
                     </thead>
                     <tr align="center" v-for="(all, index) in LightData" :key="index">
                         <td>
-                            <input type="checkbox" :value="all.id" v-model="checkedLight" v-on:change="updateSelectLight">
+                            <input type="checkbox" v-model="all.checked" v-on:change="updateSelectLight(all.id,all.checked)">
                         </td>
                         
                         <td>{{all.ControlItem}}-{{all.ControlSystem}}</td>
@@ -194,7 +194,7 @@
                         </thead>
                         <tr align="center" v-for="(select, index) in selectLight" :key="index">
                             <td>
-                                <input type="checkbox" :value="select.ControlItem+'-'+select.ControlSystem" v-model="lightcheck">
+                                <input type="checkbox" v-model="select.checked" v-on:change="updateLight(select,select.checked)">
                             </td>
                             <td>{{select.ControlItem}}-{{select.ControlSystem}}</td>
                             <td>{{select.QualityControl}}</td>
@@ -265,12 +265,12 @@
                         </tr>
                     </table>
                     <br>
-                    <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
-                        <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in lightcheck" :key="index" @click:close="lightcheck.splice(index,1)">{{ select }}</v-chip>
+                    <!-- <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                        <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in selectLight_copy" :key="index" @click:close="select.ControlSystem">{{ select.ControlItem+'-'+select.ControlSystem }}</v-chip>
 
                     </div>
                     <br>
-                    <button type="button" class="btn btn-warning" style="font-size:1.5vmin; font-family:Microsoft JhengHei; bottom:0; float:right;">儲存</button>
+                    <button type="button" class="btn btn-warning" style="font-size:1.5vmin; font-family:Microsoft JhengHei; bottom:0; float:right;" v-on:click="updatelightcontrol">儲存</button> -->
                 </div>
             </b-card>
         </b-card-group>
@@ -281,6 +281,7 @@
 
 <script>
 import * as SaveOverPlan from '../../../services/saveoverplan_service.js';
+import * as Light from '../../../services/user_light.js';
 export default {
     data(){
         return{
@@ -330,6 +331,7 @@ export default {
             checkedLight:[],
             LightData:[],
             selectLight:[],
+            selectLight_copy:[],
             selectLightRank:[],
             selectLightRankValue:[],
             ProfileSpeed:null,
@@ -346,6 +348,8 @@ export default {
             average_total:0,
             overplanArray:[],
             OverPlanJson:[],
+            LightJson:[],
+            Lightname:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -473,9 +477,27 @@ export default {
                 this.average_total += Math.round(StrGloblRad[i]/30*100)/100
                 this.average_sun += Math.round(StrSunShine[i]/30*100)/100
             }
-            window.alert(this.average_total)
+
+            const lightjson = await fetch('/UserLightJson',  {
+                method: 'GET',
+            });
+            this.LightJson = await lightjson.json();
+            for (var i = 0; i < this.LightJson.length; i++){
+                this.LightJson[i].checked = true
+                this.selectLight.push(this.LightJson[i])
+                // this.selectLight_copy.push(this.LightJson[i])
+                this.checkedLight.push(this.LightJson[i].id)
+                this.Lightname.push(this.LightJson[i].ControlItem+'-'+this.LightJson[i].ControlSystem)
+            }
+
             for (var i = 0; i < this.LightDesignData.length; i++) {
                 if (this.LightDesignData[i].ControlItem == '遮光控制'){
+                    if (this.Lightname.indexOf(this.LightDesignData[i].ControlItem+'-'+this.LightDesignData[i].ControlSystem) === -1){
+                        this.LightDesignData[i].checked = false
+                    } else{
+                        this.LightDesignData[i].checked = true
+                    }
+                    
                     this.LightData.push(this.LightDesignData[i]);
                 }
             }
@@ -588,12 +610,29 @@ export default {
             const response = await SaveOverPlan.UpdateOverPlan(1, formData);
 
 
-        },updateSelectLight(){    // 更新所選擇的型材
-            this.selectLight = [];
-
-            for (var i = 0; i < this.LightData.length; i++) {
-                for (var j = 0; j < this.checkedLight.length; j++) {
-                    if(this.checkedLight[j] == this.LightData[i].id)  this.selectLight.push(this.LightData[i]);
+        },updateSelectLight: async function(checkid,checktype){    // 更新所選擇的型材
+           
+            let lightname = null;
+            if (checktype === true){
+                this.checkedLight.push(checkid)
+                for (var i = 0; i < this.LightData.length; i++) {
+                    if(checkid === this.LightData[i].id){
+                        this.LightData[i].checked = false
+                        this.selectLight.push(this.LightData[i]);
+                    } 
+                }
+            } else{
+                this.checkedLight.splice(this.checkedLight.indexOf(checkid),1)
+                for (var i = 0; i < this.LightData.length; i++){
+                    if (this.LightData[i].id === checkid){
+                        lightname = this.LightData[i].ControlSystem
+                    }
+                }
+                for(var j = 0; j < this.selectLight.length; j++){
+                    if (this.selectLight[j].ControlSystem === lightname){
+                        await Light.deleteLight(this.selectLight[j].id);
+                        this.selectLight.splice(j,1)
+                    }
                 }
             }
 
@@ -656,10 +695,64 @@ export default {
             this.LightData = [];
             for (var i = 0; i < this.LightDesignData.length; i++) {
                 if (this.lightidx == this.LightDesignData[i].ControlItem){
+                    if (this.Lightname.indexOf(this.LightDesignData[i].ControlItem+'-'+this.LightDesignData[i].ControlSystem) === -1){
+                        this.LightDesignData[i].checked = false
+                    } else{
+                        this.LightDesignData[i].checked = true
+                    }
+
                     this.LightData.push(this.LightDesignData[i])
                 }
             }
         },
+        updateLight: async function(data,check){
+            let lightname = [];
+            if (check === true){
+                const lightjson = await fetch('/UserLightJson',  {
+                method: 'GET',
+                });
+                this.LightJson = await lightjson.json();
+                for (var i = 0; i < this.LightJson.length; i++){
+                    lightname.push(this.LightJson[i].ControlSystem)
+                }
+                if (lightname.indexOf(data.ControlSystem) === -1){
+                    let formData = new FormData();
+                    formData.append('ControlItem',data.ControlItem);
+                    formData.append('ControlSystem',data.ControlSystem);
+                    formData.append('QualityControl',data.QualityControl);
+                    formData.append('StructuralRisk',data.StructuralRisk);
+                    formData.append('JobDifficulty',data.JobDifficulty);
+                    formData.append('Cost',data.Cost);
+                    formData.append('SideEffect',data.SideEffect);
+                    const response = await Light.createLight(formData);
+                }
+                // this.selectLight_copy.push(data)
+            } else {
+                const lightjson = await fetch('/UserLightJson',  {
+                method: 'GET',
+                });
+                this.LightJson = await lightjson.json();
+                for (var i = 0; i < this.LightJson.length; i++){
+                    if (this.LightJson[i].ControlSystem === data.ControlSystem){
+                        await Light.deleteLight(this.LightJson[i].id);
+                    }
+                }
+                // for (var i = 0; i < this.selectLight_copy.length; i++){
+                //     if (this.selectLight_copy[i].ControlSystem === data.ControlSystem){
+                //         this.selectLight_copy.splice(i,1)
+                //     }
+                // }
+            }
+        },
+        // updatelightcontrol(){
+        //     const lightjson = await fetch('/UserLightJson',  {
+        //     method: 'GET',
+        //     });
+        //     this.LightJson = await lightjson.json();
+        //     for (var i = 0; i < this.selectLight_copy.length; i++){
+
+        //     }
+        // }
     }
 }
 

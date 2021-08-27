@@ -353,6 +353,8 @@
         user_class: ['類別','農民','專家','設計者'],
         codename:'None',
         user_index: 0,
+
+        now_user: null,
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
@@ -388,7 +390,10 @@
         });
         this.OverPlanJson = await J_OverPlan.json();
         for(var i = 0; i < this.OverPlanJson.length; i++){
-            this.overplanArray.push(this.OverPlanJson[i])
+            if (this.OverPlanJson[i].uid === this.$auth.user().id){
+                this.overplanArray.push(this.OverPlanJson[i])
+                this.now_user = this.OverPlanJson[i].pid
+            }
         }
         this.codename = this.overplanArray[0].usercodename
         this.cropIdx = this.overplanArray[0].palntclass
@@ -505,7 +510,8 @@
         formData.append('speed',this.speed) 
         formData.append('cost',this.cost) 
         formData.append('_method','patch');
-        const response = await SaveOverPlan.UpdateOverPlan(1,formData)
+        window.alert(this.now_user)
+        const response = await SaveOverPlan.UpdateOverPlan(this.now_user,formData)
         this.overplanArray = []
         this.overplanArray = response.data
         window.alert('修改完畢')

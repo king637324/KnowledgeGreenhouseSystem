@@ -227,7 +227,7 @@
                         </thead>
                         <tr align="center" v-for="(select, index) in selectTemp" :key="index">
                             <td>
-                                <input type="checkbox" :value="select.ControlItem+'-'+select.ControlSystem" v-model="Tempcheck">
+                                <input type="checkbox" v-model="select.checked" v-on:change="updateTemp(select,select.checked)">
                             </td>
                             <td>{{select.ControlItem}}-{{select.ControlSystem}}</td>
                             <td>{{select.QualityControl}}</td>
@@ -298,12 +298,12 @@
                         </tr>
                     </table>
                     <br>
-                    <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
+                    <!-- <div style="width:800px; height:150px; outline:#ADADAD dashed 5px;">
                         <v-chip class="ma-2" close color="orange" label outlined v-for="(select, index) in Tempcheck" :key="index" @click:close="Tempcheck.splice(index,1)">{{ select }}</v-chip>
 
                     </div>
                     <br>
-                    <button type="button" class="btn btn-warning" style="font-size:1.5vmin; font-family:Microsoft JhengHei; bottom:0; float:right;">儲存</button>
+                    <button type="button" class="btn btn-warning" style="font-size:1.5vmin; font-family:Microsoft JhengHei; bottom:0; float:right;">儲存</button> -->
                 </div>
             </b-card>
         </b-card-group>
@@ -314,6 +314,7 @@
 
 <script>
 import * as SaveOverPlan from '../../../services/saveoverplan_service.js';
+import * as Temp from '../../../services/user_temp.js';
 export default {
     data(){
         return {
@@ -380,6 +381,8 @@ export default {
             total_temp_low:0,
             overplanArray:[],
             OverPlanJson:[],
+            UserTempJson:[],
+            Tempname:[],
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -532,19 +535,25 @@ export default {
             }
 
 
-            // 取得 級數 & 風名
-            for(var i = 0 ; i < this.windspeedjson.length ; i++){
-                if((this.SpeedPerSecond < this.windspeedjson[i].SpeedMax) && (this.SpeedPerSecond > this.windspeedjson[i].SpeedMin)){
-                    this.Series = this.windspeedjson[i].Series;
-                    this.Wind = this.windspeedjson[i].Wind;
-                }else if(this.SpeedPerSecond > this.windspeedjson[i].SpeedMax){
-                    this.Series = this.windspeedjson[i].Series;
-                    this.Wind = this.windspeedjson[i].Wind;
-                }
+            const tempjson = await fetch('/UserTempJson',  {
+                method: 'GET',
+            });
+            this.UserTempJson = await tempjson.json();
+            for (var i = 0; i < this.UserTempJson.length; i++){
+                this.UserTempJson[i].checked = true
+                this.selectTemp.push(this.UserTempJson[i])
+                // this.selectLight_copy.push(this.UserTempJson[i])
+                this.checkedTemp.push(this.UserTempJson[i].id)
+                this.Tempname.push(this.UserTempJson[i].ControlItem+'-'+this.UserTempJson[i].ControlSystem)
             }
 
             for (var i = 0; i < this.Tempjson.length; i++) {
                 if (this.Tempjson[i].ControlItem == '降溫控制'){
+                    if (this.Tempname.indexOf(this.Tempjson[i].ControlItem+'-'+this.Tempjson[i].ControlSystem) === -1){
+                        this.Tempjson[i].checked = false
+                    } else{
+                        this.Tempjson[i].checked = true
+                    }
                     this.TempData.push(this.Tempjson[i]);
                 }
             }
@@ -748,6 +757,45 @@ export default {
                 if (this.Tempidx == this.Tempjson[i].ControlItem){
                     this.TempData.push(this.Tempjson[i])
                 }
+            }
+        },
+        updateTemp: async function(data,check){
+            let tempname = [];
+            if (check === true){
+                const UserTempJson = await fetch('/UserUserTempJson',  {
+                method: 'GET',
+                });
+                this.UserTempJson = await UserTempJson.json();
+                for (var i = 0; i < this.UserTempJson.length; i++){
+                    tempname.push(this.UserTempJson[i].ControlSystem)
+                }
+                if (tempname.indexOf(data.ControlSystem) === -1){
+                    let formData = new FormData();
+                    formData.append('ControlItem',data.ControlItem);
+                    formData.append('ControlSystem',data.ControlSystem);
+                    formData.append('QualityControl',data.QualityControl);
+                    formData.append('StructuralRisk',data.StructuralRisk);
+                    formData.append('JobDifficulty',data.JobDifficulty);
+                    formData.append('Cost',data.Cost);
+                    formData.append('SideEffect',data.SideEffect);
+                    const response = await Light.createLight(formData);
+                }
+                // this.selectLight_copy.push(data)
+            } else {
+                const UserTempJson = await fetch('/UserUserTempJson',  {
+                method: 'GET',
+                });
+                this.UserTempJson = await UserTempJson.json();
+                for (var i = 0; i < this.UserTempJson.length; i++){
+                    if (this.UserTempJson[i].ControlSystem === data.ControlSystem){
+                        await Light.deleteLight(this.UserTempJson[i].id);
+                    }
+                }
+                // for (var i = 0; i < this.selectLight_copy.length; i++){
+                //     if (this.selectLight_copy[i].ControlSystem === data.ControlSystem){
+                //         this.selectLight_copy.splice(i,1)
+                //     }
+                // }
             }
         },
     }

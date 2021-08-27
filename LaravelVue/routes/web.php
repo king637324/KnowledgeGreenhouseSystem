@@ -117,3 +117,9 @@ Route::get('/UserFilmJson',[UserFilmController::class, 'getJSON_UserFilm']);
 
 use App\Http\Controllers\GreenhouseMasterPlan\UserSteelController;
 Route::get('/UserSteelJson',[UserSteelController::class, 'getJSON_UserSteel']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\UserLightController;
+Route::get('/UserLightJson',[UserLightController::class, 'getJSON_UserLight']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\UserTempController;
+Route::get('/UserTempJson',[UserTempController::class, 'getJSON_UserTemp']);

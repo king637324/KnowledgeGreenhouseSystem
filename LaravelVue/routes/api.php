@@ -88,3 +88,9 @@ Route::resource('/GreenhouseMasterPlan/GreenhouseCoatedFilm',UserFilmController:
 
 use App\Http\Controllers\GreenhouseMasterPlan\UserSteelController;
 Route::resource('/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis',UserSteelController::class);
+
+use App\Http\Controllers\GreenhouseMasterPlan\UserLightController;
+Route::resource('/EnvironmentalControlDesign/LightEnvironmentNeed',UserLightController::class);
+
+use App\Http\Controllers\GreenhouseMasterPlan\UserTempController;
+Route::resource('/EnvironmentalControlDesign/TemperatureEnvironmentNeed',UserTempController::class);
