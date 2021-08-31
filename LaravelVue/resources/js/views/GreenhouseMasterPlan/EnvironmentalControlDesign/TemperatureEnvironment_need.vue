@@ -188,7 +188,7 @@
                     </thead>
                     <tr align="center" v-for="(all, index) in TempData" :key="index">
                         <td>
-                            <input type="checkbox" :value="all.id" v-model="checkedTemp" v-on:change="updateSelectTemp">
+                            <input type="checkbox" v-model="all.checked" v-on:change="updateSelectTemp(all.id,all.checked)">
                         </td>
                         
                         <td>{{all.ControlItem}}-{{all.ControlSystem}}</td>
@@ -542,7 +542,7 @@ export default {
             for (var i = 0; i < this.UserTempJson.length; i++){
                 this.UserTempJson[i].checked = true
                 this.selectTemp.push(this.UserTempJson[i])
-                // this.selectLight_copy.push(this.UserTempJson[i])
+                // this.selectTemp_copy.push(this.UserTempJson[i])
                 this.checkedTemp.push(this.UserTempJson[i].id)
                 this.Tempname.push(this.UserTempJson[i].ControlItem+'-'+this.UserTempJson[i].ControlSystem)
             }
@@ -687,14 +687,29 @@ export default {
             formData.append('_method','put');
             const response = await SaveOverPlan.UpdateOverPlan(1, formData);
 
-        },updateSelectTemp(){    // 更新所選擇的型材
-            this.selectTemp = [];
-
-            for (var i = 0; i < this.TempData.length; i++) {
-                for (var j = 0; j < this.checkedTemp.length; j++) {
-                    if(this.checkedTemp[j] == this.TempData[i].id)  this.selectTemp.push(this.TempData[i]);
+        },updateSelectTemp: async function(checkid,checktype){    // 更新所選擇的型材
+            let tempname = null;
+            if (checktype === true){
+                this.checkedTemp.push(checkid)
+                for (var i = 0; i < this.TempData.length; i++) {
+                    if(checkid === this.TempData[i].id){
+                        this.TempData[i].checked = false
+                        this.selectTemp.push(this.TempData[i]);
+                    } 
                 }
-
+            } else{
+                this.checkedTemp.splice(this.checkedTemp.indexOf(checkid),1)
+                for (var i = 0; i < this.TempData.length; i++){
+                    if (this.TempData[i].id === checkid){
+                        tempname = this.TempData[i].ControlSystem
+                    }
+                }
+                for(var j = 0; j < this.selectTemp.length; j++){
+                    if (this.selectTemp[j].ControlSystem === tempname){
+                        await Temp.deleteTemp(this.selectTemp[j].id);
+                        this.selectTemp.splice(j,1)
+                    }
+                }
             }
 
         },updateProfileCompare(){   // 更新所選型材的參數比較
@@ -752,17 +767,32 @@ export default {
                 this.selectTempRank.push(selectComparelist[i][1]);
             }
         },updateTempDesign(){
+            let temp_copy_name = [];
             this.TempData = [];
-            for (var i = 0; i < this.Tempjson.length; i++) {
-                if (this.Tempidx == this.Tempjson[i].ControlItem){
-                    this.TempData.push(this.Tempjson[i])
+            let temp_info_copy = []
+
+            temp_info_copy = JSON.stringify(this.Tempjson)
+            temp_info_copy = JSON.parse(temp_info_copy);
+            
+            for (var i = 0; i < this.selectTemp.length; i++) {
+                temp_copy_name.push(this.selectTemp[i].ControlItem+'-'+this.selectTemp[i].ControlSystem)
+            }
+            
+            for (var i = 0; i < temp_info_copy.length; i++) {
+                if (this.Tempidx === temp_info_copy[i].ControlItem){
+                    if (temp_copy_name.indexOf(temp_info_copy[i].ControlItem+'-'+temp_info_copy[i].ControlSystem) === -1){
+                        temp_info_copy[i].checked = false
+                    } else{
+                        temp_info_copy[i].checked = true
+                    }
+                    this.TempData.push(temp_info_copy[i])
                 }
             }
         },
         updateTemp: async function(data,check){
             let tempname = [];
             if (check === true){
-                const UserTempJson = await fetch('/UserUserTempJson',  {
+                const UserTempJson = await fetch('/UserTempJson',  {
                 method: 'GET',
                 });
                 this.UserTempJson = await UserTempJson.json();
@@ -778,22 +808,22 @@ export default {
                     formData.append('JobDifficulty',data.JobDifficulty);
                     formData.append('Cost',data.Cost);
                     formData.append('SideEffect',data.SideEffect);
-                    const response = await Light.createLight(formData);
+                    const response = await Temp.createTemp(formData);
                 }
-                // this.selectLight_copy.push(data)
+                // this.selectTemp_copy.push(data)
             } else {
-                const UserTempJson = await fetch('/UserUserTempJson',  {
+                const UserTempJson = await fetch('/UserTempJson',  {
                 method: 'GET',
                 });
                 this.UserTempJson = await UserTempJson.json();
                 for (var i = 0; i < this.UserTempJson.length; i++){
                     if (this.UserTempJson[i].ControlSystem === data.ControlSystem){
-                        await Light.deleteLight(this.UserTempJson[i].id);
+                        await Temp.deleteTemp(this.UserTempJson[i].id);
                     }
                 }
-                // for (var i = 0; i < this.selectLight_copy.length; i++){
-                //     if (this.selectLight_copy[i].ControlSystem === data.ControlSystem){
-                //         this.selectLight_copy.splice(i,1)
+                // for (var i = 0; i < this.selectTemp_copy.length; i++){
+                //     if (this.selectTemp_copy[i].ControlSystem === data.ControlSystem){
+                //         this.selectTemp_copy.splice(i,1)
                 //     }
                 // }
             }

@@ -36,7 +36,16 @@ class UserTempController extends Controller
      */
     public function store(Request $request)
     {
-
+        $user_light = new user_temp();
+        $user_light->ControlItem = $request->ControlItem;
+        $user_light->ControlSystem = $request->ControlSystem;
+        $user_light->QualityControl = $request->QualityControl;
+        $user_light->StructuralRisk = $request->StructuralRisk;
+        $user_light->JobDifficulty = $request->JobDifficulty;
+        $user_light->Cost = $request->Cost;
+        $user_light->SideEffect = $request->SideEffect;
+        $user_light->save();
+        return response()->json($user_light);
     }
 
     /**
@@ -80,7 +89,7 @@ class UserTempController extends Controller
      */
     public function destroy($id)
     {
-        
+        user_temp::where('id', $id)->delete();
     }
 
     public function getJSON_UserTemp()

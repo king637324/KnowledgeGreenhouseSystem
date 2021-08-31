@@ -615,17 +615,17 @@ export default {
             let lightname = null;
             if (checktype === true){
                 this.checkedLight.push(checkid)
-                for (var i = 0; i < this.LightData.length; i++) {
-                    if(checkid === this.LightData[i].id){
-                        this.LightData[i].checked = false
-                        this.selectLight.push(this.LightData[i]);
+                for (var i = 0; i < this.LightDesignData.length; i++) {
+                    if(checkid === this.LightDesignData[i].id){
+                        this.LightDesignData[i].checked = false
+                        this.selectLight.push(this.LightDesignData[i]);
                     } 
                 }
             } else{
                 this.checkedLight.splice(this.checkedLight.indexOf(checkid),1)
-                for (var i = 0; i < this.LightData.length; i++){
-                    if (this.LightData[i].id === checkid){
-                        lightname = this.LightData[i].ControlSystem
+                for (var i = 0; i < this.LightDesignData.length; i++){
+                    if (this.LightDesignData[i].id === checkid){
+                        lightname = this.LightDesignData[i].ControlSystem
                     }
                 }
                 for(var j = 0; j < this.selectLight.length; j++){
@@ -691,17 +691,26 @@ export default {
                 this.selectLightRank.push(selectComparelist[i][1]);
             }
 
-        },updateLightDesign(){
+        },updateLightDesign: async function(){
+            let light_copy_name = [];
             this.LightData = [];
-            for (var i = 0; i < this.LightDesignData.length; i++) {
-                if (this.lightidx == this.LightDesignData[i].ControlItem){
-                    if (this.Lightname.indexOf(this.LightDesignData[i].ControlItem+'-'+this.LightDesignData[i].ControlSystem) === -1){
-                        this.LightDesignData[i].checked = false
-                    } else{
-                        this.LightDesignData[i].checked = true
-                    }
+            let light_info_copy = []
 
-                    this.LightData.push(this.LightDesignData[i])
+            light_info_copy = JSON.stringify(this.LightDesignData)
+            light_info_copy = JSON.parse(light_info_copy);
+            
+            for (var i = 0; i < this.selectLight.length; i++) {
+                light_copy_name.push(this.selectLight[i].ControlItem+'-'+this.selectLight[i].ControlSystem)
+            }
+            
+            for (var i = 0; i < light_info_copy.length; i++) {
+                if (this.lightidx === light_info_copy[i].ControlItem){
+                    if (light_copy_name.indexOf(light_info_copy[i].ControlItem+'-'+light_info_copy[i].ControlSystem) === -1){
+                        light_info_copy[i].checked = false
+                    } else{
+                        light_info_copy[i].checked = true
+                    }
+                    this.LightData.push(light_info_copy[i])
                 }
             }
         },
