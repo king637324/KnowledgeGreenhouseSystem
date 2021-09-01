@@ -2338,11 +2338,11 @@
         var Compare = 0,selectComparelist = [],rank = [];
         // 計算 比較值
         for (var i = 0; i < this.selectPipe.length; i++) {
-            Compare = (this.selectPipe[i][0].Speed * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectPipe[i][0].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Corrosive * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][0].Weight * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i][1] * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
+            Compare = (this.selectPipe[i].Speed * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectPipe[i].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].Corrosive * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].Weight * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].cost * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
             Compare = Compare.toFixed(2);
 
             rank = [];
-            rank.push(this.selectPipe[i][0].id);
+            rank.push(this.selectPipe[i].id);
             rank.push(Compare);
             rank.push(0);
             selectComparelist.push(rank);
@@ -2474,11 +2474,11 @@
         var Compare = 0,selectComparelist = [],rank = [];
         // 計算 比較值
         for (var i = 0; i < this.selectProfile.length; i++) {
-            Compare = (this.selectProfile[i][0].Speed * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectProfile[i][0].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Corrosive * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][0].Weight * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i][1] * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
+            Compare = (this.selectProfile[i].Speed * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectProfile[i].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].Corrosive * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].Weight * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].cost * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
             Compare = Compare.toFixed(2);
 
             rank = [];
-            rank.push(this.selectProfile[i][0].id);
+            rank.push(this.selectProfile[i].id);
             rank.push(Compare);
             rank.push(0);
             selectComparelist.push(rank);

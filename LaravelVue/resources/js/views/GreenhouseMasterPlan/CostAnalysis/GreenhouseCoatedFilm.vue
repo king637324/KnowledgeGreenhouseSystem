@@ -2,7 +2,6 @@
     <div>
         <br>
         <h2>溫室材料成本分析</h2>
-        <!-- <button type="button" class="btn btn-danger" v-on:click="check">檢查</button> -->
         <hr>
 
         <v-container-fluid>
@@ -21,9 +20,6 @@
                                     <h6 class="mb-0">
                                         <b-icon icon="building"></b-icon>
                                         披 覆 材 料
-                                        <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><button class="btn btn-primary">玻璃</button></a>
-                                        <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><button class="btn btn-primary">柔性膜</button></a>
-                                        <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><button class="btn btn-primary">硬質板</button></a>
                                     </h6>
                                 </template>
                                 <b-card-text>

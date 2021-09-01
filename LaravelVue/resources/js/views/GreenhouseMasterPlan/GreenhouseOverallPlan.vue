@@ -510,7 +510,6 @@
         formData.append('speed',this.speed) 
         formData.append('cost',this.cost) 
         formData.append('_method','patch');
-        window.alert(this.now_user)
         const response = await SaveOverPlan.UpdateOverPlan(this.now_user,formData)
         this.overplanArray = []
         this.overplanArray = response.data

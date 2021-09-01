@@ -350,6 +350,7 @@ export default {
             OverPlanJson:[],
             LightJson:[],
             Lightname:[],
+            now_user:null,
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -380,7 +381,10 @@ export default {
             });
             this.OverPlanJson = await J_OverPlan.json();
                 for(var i = 0; i < this.OverPlanJson.length; i++){
-                    this.overplanArray.push(this.OverPlanJson[i])
+                    if (this.OverPlanJson[i].uid === this.$auth.user().id){
+                        this.overplanArray.push(this.OverPlanJson[i])
+                        this.now_user = this.OverPlanJson[i].pid
+                    }
             }
             this.cropIdx = this.overplanArray[0].palntclass
             this.cityIdx = this.overplanArray[0].localcity
