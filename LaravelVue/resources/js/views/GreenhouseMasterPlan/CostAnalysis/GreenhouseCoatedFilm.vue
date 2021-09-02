@@ -301,12 +301,13 @@ export default {
             });
             this.FilmJson = await F_OverPlan.json();
             for(var i = 0; i < this.FilmJson.length; i++){
-                this.filmname.push(this.FilmJson[i].BuildItem)
-                this.FilmJson[i].checked = true
-                this.FilmArray.push(this.FilmJson[i])
-                this.checkedglass.push(this.FilmJson[i].id)
-                this.selectglass.push(this.FilmJson[i])
-
+                if (this.FilmJson[i].uid === this.$auth.user().id){
+                    this.filmname.push(this.FilmJson[i].BuildItem)
+                    this.FilmJson[i].checked = true
+                    this.FilmArray.push(this.FilmJson[i])
+                    this.checkedglass.push(this.FilmJson[i].id)
+                    this.selectglass.push(this.FilmJson[i])
+                }
             }
             for (var i = 0; i < this.CoatingFilmJSON.length; i++){
                 for (var j = 0; j < this.FilmJson.length; j++){
@@ -408,10 +409,13 @@ export default {
                 });
                 this.FilmJson = await F_OverPlan.json();
                 for (var i = 0; i < this.FilmJson.length; i++){
-                    filmname.push(this.FilmJson[i].BuildItem)
+                    if (this.FilmJson[i].uid === this.$auth.user().id){
+                        filmname.push(this.FilmJson[i].BuildItem)
+                    }
                 }
                 if (filmname.indexOf(data.BuildItem) === -1){
                     let formData = new FormData();
+                    formData.append('uid',this.$auth.user().id);
                     formData.append('Expert',data.Expert);
                     formData.append('material',data.material);
                     formData.append('BuildItem',data.BuildItem);
@@ -428,7 +432,7 @@ export default {
                 });
                 this.FilmJson = await F_OverPlan.json();
                 for (var i = 0; i < this.FilmJson.length; i++){
-                    if (this.FilmJson[i].BuildItem === data.BuildItem){
+                    if (this.FilmJson[i].BuildItem === data.BuildItem && this.FilmJson[i].uid === this.auth.user().id){
                         await Film.deleteFilm(this.FilmJson[i].id);
                     }
                 }

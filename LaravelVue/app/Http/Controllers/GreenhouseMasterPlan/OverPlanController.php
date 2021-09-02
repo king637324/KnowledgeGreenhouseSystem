@@ -37,6 +37,7 @@ class OverPlanController extends Controller
     public function store(Request $request)
     {
         $saveoverplan = new saveoverplan();
+        $saveoverplan->uid = $request->uid;
         $saveoverplan->userclass = $request->userclass;
         $saveoverplan->usercodename = $request->usercodename;
         $saveoverplan->palntclass = $request->palntclass;

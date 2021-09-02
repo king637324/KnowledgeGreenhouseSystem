@@ -487,11 +487,13 @@ export default {
             });
             this.LightJson = await lightjson.json();
             for (var i = 0; i < this.LightJson.length; i++){
-                this.LightJson[i].checked = true
-                this.selectLight.push(this.LightJson[i])
-                // this.selectLight_copy.push(this.LightJson[i])
-                this.checkedLight.push(this.LightJson[i].id)
-                this.Lightname.push(this.LightJson[i].ControlItem+'-'+this.LightJson[i].ControlSystem)
+                if (this.LightJson[i].uid === this.$auth.user().id){
+                    this.LightJson[i].checked = true
+                    this.selectLight.push(this.LightJson[i])
+                    // this.selectLight_copy.push(this.LightJson[i])
+                    this.checkedLight.push(this.LightJson[i].id)
+                    this.Lightname.push(this.LightJson[i].ControlItem+'-'+this.LightJson[i].ControlSystem)
+                }
             }
 
             for (var i = 0; i < this.LightDesignData.length; i++) {
@@ -726,10 +728,13 @@ export default {
                 });
                 this.LightJson = await lightjson.json();
                 for (var i = 0; i < this.LightJson.length; i++){
-                    lightname.push(this.LightJson[i].ControlSystem)
+                    if (this.LightJson[i].uid === this.$auth.user().id){
+                        lightname.push(this.LightJson[i].ControlSystem)
+                    }
                 }
                 if (lightname.indexOf(data.ControlSystem) === -1){
                     let formData = new FormData();
+                    formData.append('uid',this.$auth.user().id);
                     formData.append('ControlItem',data.ControlItem);
                     formData.append('ControlSystem',data.ControlSystem);
                     formData.append('QualityControl',data.QualityControl);
@@ -746,7 +751,7 @@ export default {
                 });
                 this.LightJson = await lightjson.json();
                 for (var i = 0; i < this.LightJson.length; i++){
-                    if (this.LightJson[i].ControlSystem === data.ControlSystem){
+                    if (this.LightJson[i].ControlSystem === data.ControlSystem && this.LightJson[i].uid === this.$auth.user().id){
                         await Light.deleteLight(this.LightJson[i].id);
                     }
                 }

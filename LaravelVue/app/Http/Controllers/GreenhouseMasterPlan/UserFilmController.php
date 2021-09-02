@@ -37,6 +37,7 @@ class UserFilmController extends Controller
     public function store(Request $request)
     {
         $user_film = new user_film();
+        $user_film->uid = $request->uid;
         $user_film->Expert = $request->Expert;
         $user_film->material = $request->material;
         $user_film->BuildItem = $request->BuildItem;

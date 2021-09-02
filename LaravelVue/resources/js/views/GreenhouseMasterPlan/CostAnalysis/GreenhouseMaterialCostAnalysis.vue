@@ -526,22 +526,23 @@ export default {
             
             this.SteelJson = await S_OverPlan.json();
             for(var i = 0; i < this.SteelJson.length; i++){
-                this.SteelJson[i].cost = 100
-                this.SteelJson[i].checked = true
-                for (var j = 0; j < this.MaterialCostjson.length; j++) {
-                    if (this.MaterialCostjson[j].MaterialName == this.SteelJson[i].MaterialName){
-                        if (this.MaterialCostjson[j].Type === '管材'){
-                            this.checkedPipe.push(this.MaterialCostjson[j].id)
-                            this.selectPipe.push(this.SteelJson[i])
-                            this.steel_name.push(this.SteelJson[i].MaterialName)
-                        }else{
-                            this.checkedProfile.push(this.MaterialCostjson[j].id)
-                            this.selectProfile.push(this.SteelJson[i])
-                            this.steel_name.push(this.SteelJson[i].MaterialName)
+                if (this.SteelJson[i].uid === this.$auth.user().id){
+                    this.SteelJson[i].cost = 100
+                    this.SteelJson[i].checked = true
+                    for (var j = 0; j < this.MaterialCostjson.length; j++) {
+                        if (this.MaterialCostjson[j].MaterialName == this.SteelJson[i].MaterialName){
+                            if (this.MaterialCostjson[j].Type === '管材'){
+                                this.checkedPipe.push(this.MaterialCostjson[j].id)
+                                this.selectPipe.push(this.SteelJson[i])
+                                this.steel_name.push(this.SteelJson[i].MaterialName)
+                            }else{
+                                this.checkedProfile.push(this.MaterialCostjson[j].id)
+                                this.selectProfile.push(this.SteelJson[i])
+                                this.steel_name.push(this.SteelJson[i].MaterialName)
+                            }
                         }
                     }
                 }
-                
             }
 
             for (var i = 0; i < this.MaterialCostjson.length; i++) {
@@ -765,10 +766,13 @@ export default {
                 });
                 this.SteelJson = await S_OverPlan.json();
                 for (var i = 0; i < this.SteelJson.length; i++){
-                    steelname.push(this.SteelJson[i].MaterialName)
+                    if (this.SteelJson[i].uid === this.$auth.user().id){
+                        steelname.push(this.SteelJson[i].MaterialName)
+                    }
                 }
                 if (steelname.indexOf(data.MaterialName) === -1){
                     let formData = new FormData();
+                    formData.append('uid',this.$auth.user().id);
                     formData.append('Type',data.Type);
                     formData.append('Price',this.SteelPrice);
                     formData.append('MaterialName',data.MaterialName);
@@ -797,7 +801,7 @@ export default {
                 });
                 this.SteelJson = await S_OverPlan.json();
                 for (var i = 0; i < this.SteelJson.length; i++){
-                    if (this.SteelJson[i].MaterialName === data.MaterialName){
+                    if (this.SteelJson[i].MaterialName === data.MaterialName && this.SteelJson[i].uid === this.auth.user().id){
                         await Steel.deleteSteel(this.SteelJson[i].id);
                     }
                 }

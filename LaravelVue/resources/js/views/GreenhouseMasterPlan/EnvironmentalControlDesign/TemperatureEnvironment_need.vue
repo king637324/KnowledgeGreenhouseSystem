@@ -544,11 +544,12 @@ export default {
             });
             this.UserTempJson = await tempjson.json();
             for (var i = 0; i < this.UserTempJson.length; i++){
-                this.UserTempJson[i].checked = true
-                this.selectTemp.push(this.UserTempJson[i])
-                // this.selectTemp_copy.push(this.UserTempJson[i])
-                this.checkedTemp.push(this.UserTempJson[i].id)
-                this.Tempname.push(this.UserTempJson[i].ControlItem+'-'+this.UserTempJson[i].ControlSystem)
+                if (this.UserTempJson[i].uid === this.$auth.user().id){
+                    this.UserTempJson[i].checked = true
+                    this.selectTemp.push(this.UserTempJson[i])
+                    this.checkedTemp.push(this.UserTempJson[i].id)
+                    this.Tempname.push(this.UserTempJson[i].ControlItem+'-'+this.UserTempJson[i].ControlSystem)
+                }
             }
 
             for (var i = 0; i < this.Tempjson.length; i++) {
@@ -801,10 +802,13 @@ export default {
                 });
                 this.UserTempJson = await UserTempJson.json();
                 for (var i = 0; i < this.UserTempJson.length; i++){
-                    tempname.push(this.UserTempJson[i].ControlSystem)
+                    if (this.UserTempJson[i].uid === this.$auth.user().id){
+                        tempname.push(this.UserTempJson[i].ControlSystem)
+                    }
                 }
                 if (tempname.indexOf(data.ControlSystem) === -1){
                     let formData = new FormData();
+                    formData.append('uid',this.$auth.user().id);
                     formData.append('ControlItem',data.ControlItem);
                     formData.append('ControlSystem',data.ControlSystem);
                     formData.append('QualityControl',data.QualityControl);
@@ -821,7 +825,7 @@ export default {
                 });
                 this.UserTempJson = await UserTempJson.json();
                 for (var i = 0; i < this.UserTempJson.length; i++){
-                    if (this.UserTempJson[i].ControlSystem === data.ControlSystem){
+                    if (this.UserTempJson[i].ControlSystem === data.ControlSystem && this.UserTempJson[i].uid === this.$auth.user().id){
                         await Temp.deleteTemp(this.UserTempJson[i].id);
                     }
                 }

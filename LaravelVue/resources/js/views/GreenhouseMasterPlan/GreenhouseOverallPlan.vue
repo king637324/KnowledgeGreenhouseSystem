@@ -489,7 +489,7 @@
         }
     },
     recordallinfo: async function() {
-
+        let get_id = [];
         let formData = new FormData();
         formData.append('userclass','System') 
         formData.append('uid',this.$auth.user().id) 
@@ -509,12 +509,32 @@
         formData.append('risk',this.risk) 
         formData.append('speed',this.speed) 
         formData.append('cost',this.cost) 
-        formData.append('_method','patch');
-        const response = await SaveOverPlan.UpdateOverPlan(this.now_user,formData)
-        this.overplanArray = []
-        this.overplanArray = response.data
-        window.alert('修改完畢')
-        //this.showform = false;
+        for(var i = 0; i < this.OverPlanJson.length; i++){
+            get_id.push(this.OverPlanJson[i].uid)
+        }
+        // const J_OverPlan = await fetch('/OverPlanJson',  {
+        //     method: 'GET',
+        // });
+        // this.OverPlanJson = await J_OverPlan.json();
+        // for(var i = 0; i < this.OverPlanJson.length; i++){
+        //     if (this.OverPlanJson[i].uid === this.$auth.user().id){
+        //         this.overplanArray.push(this.OverPlanJson[i])
+        //         this.now_user = this.OverPlanJson[i].pid
+        //     }
+        // }
+        if (get_id.indexOf(this.$auth.user().id) === -1){
+            const response = await SaveOverPlan.createOverPlan(formData)
+            this.overplanArray = []
+            this.overplanArray = response.data
+            window.alert('新增完畢')
+        } else{
+            formData.append('_method','patch');
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user,formData)
+            this.overplanArray = []
+            this.overplanArray = response.data
+            window.alert('修改完畢')
+        }
+
     },
     deleterecord: async function(DeleteId){ 
         await SaveOverPlan.deleteOverPlan(DeleteId);

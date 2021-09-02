@@ -37,6 +37,7 @@ class UserSteelController extends Controller
     public function store(Request $request)
     {
         $user_steel = new user_steelinfo();
+        $user_steel->uid = $request->uid;
         $user_steel->Type = $request->Type;
         $user_steel->Price = $request->Price;
         $user_steel->MaterialName = $request->MaterialName;

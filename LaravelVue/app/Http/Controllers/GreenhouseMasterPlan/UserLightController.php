@@ -37,6 +37,7 @@ class UserLightController extends Controller
     public function store(Request $request)
     {
         $user_light = new user_light();
+        $user_light->uid = $request->uid;
         $user_light->ControlItem = $request->ControlItem;
         $user_light->ControlSystem = $request->ControlSystem;
         $user_light->QualityControl = $request->QualityControl;
