@@ -36,7 +36,14 @@ class WeightEstimationController extends Controller
      */
     public function store(Request $request)
     {
-
+        $weight = new weight_estimation();
+        $weight->uid = $request->uid;
+        $weight->wind_design = $request->wind_design;
+        $weight->span_design = $request->span_design;
+        $weight->shoulder_design = $request->shoulder_design;
+        $weight->continue_design = $request->continue_design;
+        $weight->save();
+        return response()->json($weight);
     }
 
     /**

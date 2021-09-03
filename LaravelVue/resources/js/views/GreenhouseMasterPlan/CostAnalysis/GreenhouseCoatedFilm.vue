@@ -339,7 +339,7 @@ export default {
                     }
                 }
                 for(var j = 0; j < this.selectglass.length; j++){
-                    if (this.selectglass[j].BuildItem === glassname){
+                    if (this.selectglass[j].BuildItem === glassname && this.selectglass[j].uid === this.$auth.user().id){
                         await Film.deleteFilm(this.selectglass[j].id);
                         this.selectglass.splice(j,1)
                     }

@@ -75,7 +75,7 @@
                                             <td>溫室管材</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleGreenhousePipes" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio('溫室管材',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -86,7 +86,7 @@
                                             <td>圓頂形式</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleDomeForms" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio('圓頂形式',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -97,7 +97,7 @@
                                             <td>圓拱距</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCircularArchDistances" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio('圓拱距',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -108,7 +108,7 @@
                                             <td>基礎</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleFoundations" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleFoundation" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleFoundation" v-on:change="updateSimpleRadio('基礎',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -119,7 +119,7 @@
                                             <td>跨距</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleSpans" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleSpan" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleSpan" v-on:change="updateSimpleRadio('跨距',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -130,7 +130,7 @@
                                             <td>肩高</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleShoulderHeights" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio('肩高',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -141,7 +141,7 @@
                                             <td>長度</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleLengths" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleLength" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleLength" v-on:change="updateSimpleRadio('長度',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -152,7 +152,7 @@
                                             <td>連續性</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleContinuitys" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleContinuity" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleContinuity" v-on:change="updateSimpleRadio('連續性',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -163,7 +163,7 @@
                                             <td>披覆材料</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilms" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio">
+                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio('披覆材料',simple)">
                                                     <label>{{simple.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -184,7 +184,7 @@
                                             <td>溫室型材</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio('溫室型材',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -197,7 +197,7 @@
                                             <td>屋頂形式</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustRoofForm" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustRoofForm" v-on:change="updateRobustRadio('屋頂形式',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -210,7 +210,7 @@
                                             <td>上拱距</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustUpperArch" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustUpperArch" v-on:change="updateRobustRadio('上拱距',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -223,7 +223,7 @@
                                             <td>基礎</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustFoundation" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustFoundation" v-on:change="updateRobustRadio('基礎',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -236,7 +236,7 @@
                                             <td>跨距</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" style="valign:center;" v-for="(robust, index) in StrongSpans" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustSpan" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustSpan" v-on:change="updateRobustRadio('跨距',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -248,7 +248,7 @@
                                             <td>肩高</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio('肩高',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -261,7 +261,7 @@
                                             <td>長度</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustLength" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustLength" v-on:change="updateRobustRadio('長度',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -274,7 +274,7 @@
                                             <td>連續性</td>
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustContinuity" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustContinuity" v-on:change="updateRobustRadio('連續性',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
                                                 <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
@@ -286,7 +286,7 @@
 
                                             <td align="left">
                                                 <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in SimpleCoatingFilms" :key="index">
-                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio">
+                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio('披覆材料',robust)">
                                                     <label>{{robust.BuildItem}}</label>
                                                 </div>
 
@@ -650,8 +650,6 @@
                                         </v-col>
                                     </v-row>                    
                                 </v-container-fluid>
-                                <button type="submit" class="btn btn-primary" style="float:right;">新增</button>
-                                <button type="reset" class="btn btn-primary" style="float:right;">清除</button>
                                 </v-form>
                                 <br><br><br><br><br><br>
 
@@ -1678,6 +1676,10 @@
         FilmJson:[],
         FilmArray:[],
         filmname:[],
+        now_user:null,
+        now_user_design:null,
+        greentype:[],
+        greeninfo:[],
     }),
     created:function(){  // 網頁載入時，一開始就載入
         this.getJson();
@@ -1888,7 +1890,10 @@
             });
         this.OverPlanJson = await J_OverPlan.json();
             for(var i = 0; i < this.OverPlanJson.length; i++){
-                this.overplanArray.push(this.OverPlanJson[i])
+                if (this.OverPlanJson[i].uid === this.$auth.user().id){
+                    this.overplanArray.push(this.OverPlanJson[i])
+                    this.now_user = this.OverPlanJson[i].pid
+            }
         }
         this.plantlength = this.overplanArray[0].croplength
         this.plantwidth = this.overplanArray[0].cropwidth
@@ -1898,8 +1903,11 @@
             method: 'GET',
             });
         this.DesignJson = await D_OverPlan.json();
-            for(var i = 0; i < this.DesignJson.length; i++){
+        for(var i = 0; i < this.DesignJson.length; i++){
+            if (this.DesignJson[i].uid === this.$auth.user().id){
                 this.DesignArray.push(this.DesignJson[i])
+                this.now_user_design = this.DesignJson[i].id
+            } 
         }
         this.greenhouseradio = this.DesignArray[0].housetype
         if (this.DesignArray[0].housetype == '簡易溫室'){
@@ -1959,11 +1967,13 @@
         });
         this.FilmJson = await F_OverPlan.json();
         for(var i = 0; i < this.FilmJson.length; i++){
-            this.filmname.push(this.FilmJson[i].BuildItem)
-            this.FilmJson[i].checked = true
-            this.FilmArray.push(this.FilmJson[i])
-            this.checkedglass.push(this.FilmJson[i].id)
-            this.selectglass.push(this.FilmJson[i])
+            if (this.FilmJson[i].uid === this.$auth.user().id){
+                this.filmname.push(this.FilmJson[i].BuildItem)
+                this.FilmJson[i].checked = true
+                this.FilmArray.push(this.FilmJson[i])
+                this.checkedglass.push(this.FilmJson[i].id)
+                this.selectglass.push(this.FilmJson[i])
+            }
         }
         for (var i = 0; i < this.SimpleCoatingFilmsJSON.length; i++){
             for (var j = 0; j < this.FilmJson.length; j++){
@@ -1980,18 +1990,20 @@
             
         this.SteelJson = await S_OverPlan.json();
         for(var i = 0; i < this.SteelJson.length; i++){
-            this.SteelJson[i].cost = 100
-            this.SteelJson[i].checked = true
-            for (var j = 0; j < this.MaterialCostjson.length; j++) {
-                if (this.MaterialCostjson[j].MaterialName == this.SteelJson[i].MaterialName){
-                    if (this.MaterialCostjson[j].Type === '管材'){
-                        this.checkedPipe.push(this.MaterialCostjson[j].id)
-                        this.selectPipe.push(this.SteelJson[i])
-                        this.steel_name.push(this.SteelJson[i].MaterialName)
-                    }else{
-                        this.checkedProfile.push(this.MaterialCostjson[j].id)
-                        this.selectProfile.push(this.SteelJson[i])
-                        this.steel_name.push(this.SteelJson[i].MaterialName)
+            if (this.SteelJson[i].uid === this.$auth.user().id){
+                this.SteelJson[i].cost = 100
+                this.SteelJson[i].checked = true
+                for (var j = 0; j < this.MaterialCostjson.length; j++) {
+                    if (this.MaterialCostjson[j].MaterialName == this.SteelJson[i].MaterialName){
+                        if (this.MaterialCostjson[j].Type === '管材'){
+                            this.checkedPipe.push(this.MaterialCostjson[j].id)
+                            this.selectPipe.push(this.SteelJson[i])
+                            this.steel_name.push(this.SteelJson[i].MaterialName)
+                        }else{
+                            this.checkedProfile.push(this.MaterialCostjson[j].id)
+                            this.selectProfile.push(this.SteelJson[i])
+                            this.steel_name.push(this.SteelJson[i].MaterialName)
+                        }
                     }
                 }
             }
@@ -2054,98 +2066,106 @@
 
     
     
-    updateSimpleRadio: async function(){  // 更新簡易型溫室選擇狀況，判斷是否有選滿9項
+    updateSimpleRadio: async function(greentype,simple){  // 更新簡易型溫室選擇狀況，判斷是否有選滿9項
         this.SelectSimple = [];
-        var temp = [];
-        if(this.SimpleGreenhousePipe){
-            temp = [];
-            temp.push('溫室管材');
-            temp.push(this.SimpleGreenhousePipe);
-            this.SelectSimple.push(temp); // 簡易型溫室管材
-            let formData = new FormData();
-            formData.append('pipetype',this.SimpleGreenhousePipe);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+        if (this.greentype.indexOf(greentype) === -1){
+            this.greentype.push(greentype)
+            this.greeninfo.push(simple)
+        } else{
+            this.greeninfo.splice(this.greentype.indexOf(greentype),1,simple)
         }
-        if(this.SimpleDomeForm){
-            temp = [];
-            temp.push('圓頂形式');
-            temp.push(this.SimpleDomeForm);
-            this.SelectSimple.push(temp);    // 簡易型圓頂形式
-            let formData = new FormData();
-            formData.append('rooftype',this.SimpleDomeForm);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
-        }
-        if(this.SimpleCircularArchDistance){
-            temp = [];
-            temp.push('圓拱距');
-            temp.push(this.SimpleCircularArchDistance);
-            this.SelectSimple.push(temp);    // 簡易型圓拱距
-            let formData = new FormData();
-            formData.append('circlespan',this.SimpleCircularArchDistance);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
-        }
-        if(this.SimpleFoundation){
-            temp = [];
-            temp.push('基礎');
-            temp.push(this.SimpleFoundation);
-            this.SelectSimple.push(temp);    // 簡易型基礎
-            let formData = new FormData();
-            formData.append('base',this.SimpleFoundation);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
-        }
-        if(this.SimpleSpan){
-            temp = [];
-            temp.push('跨距');
-            temp.push(this.SimpleSpan);
-            this.SelectSimple.push(temp);    // 簡易型跨距
-            let formData = new FormData();
-            formData.append('span',this.SimpleSpan);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
-        }
-        if(this.SimpleShoulderHeight){
-            temp = [];
-            temp.push('肩高');
-            temp.push(this.SimpleShoulderHeight);
-            this.SelectSimple.push(temp);    // 簡易型肩高
-            let formData = new FormData();
-            formData.append('shoulder',this.SimpleShoulderHeight);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
-        }
-        if(this.SimpleLength){
-            temp = [];
-            temp.push('長度');
-            temp.push(this.SimpleLength);
-            this.SelectSimple.push(temp);    // 簡易型長度
-            let formData = new FormData();
-            formData.append('length',this.SimpleLength);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
-        }
-        if(this.SimpleContinuity){
-            temp = [];
-            temp.push('連續性');
-            temp.push(this.SimpleContinuity);
-            this.SelectSimple.push(temp);    // 簡易型連續性
-            let formData = new FormData();
-            formData.append('continue',this.SimpleContinuity);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
-        }
-        if(this.SimpleCoatingFilm){
-            temp = [];
-            temp.push('披覆材料');
-            temp.push(this.SimpleCoatingFilm);
-            this.SelectSimple.push(temp);  // 簡易型披覆材料
-            let formData = new FormData();
-            formData.append('drape',this.SimpleCoatingFilm);
-            formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+        for (var i = 0; i < this.greentype.length; i++){
+            var temp = [];
+            if(this.greentype[i] === '溫室管材'){
+                temp = [];
+                temp.push('溫室管材');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp); // 簡易型溫室管材
+                let formData = new FormData();
+                formData.append('pipetype',this.SimpleGreenhousePipe);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
+            if(this.greentype[i] === '圓頂形式'){
+                temp = [];
+                temp.push('圓頂形式');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp);    // 簡易型圓頂形式
+                let formData = new FormData();
+                formData.append('rooftype',this.SimpleDomeForm);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
+            if(this.greentype[i] === '圓拱距'){
+                temp = [];
+                temp.push('圓拱距');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp);    // 簡易型圓拱距
+                let formData = new FormData();
+                formData.append('circlespan',this.SimpleCircularArchDistance);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
+            if(this.greentype[i] === '基礎'){
+                temp = [];
+                temp.push('基礎');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp);    // 簡易型基礎
+                let formData = new FormData();
+                formData.append('base',this.SimpleFoundation);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
+            if(this.greentype[i] === '跨距'){
+                temp = [];
+                temp.push('跨距');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp);    // 簡易型跨距
+                let formData = new FormData();
+                formData.append('span',this.SimpleSpan);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
+            if(this.greentype[i] === '肩高'){
+                temp = [];
+                temp.push('肩高');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp);    // 簡易型肩高
+                let formData = new FormData();
+                formData.append('shoulder',this.SimpleShoulderHeight);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
+            if(this.greentype[i] === '長度'){
+                temp = [];
+                temp.push('長度');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp);    // 簡易型長度
+                let formData = new FormData();
+                formData.append('length',this.SimpleLength);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
+            if(this.greentype[i] === '連續性'){
+                temp = [];
+                temp.push('連續性');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp);    // 簡易型連續性
+                let formData = new FormData();
+                formData.append('continue',this.SimpleContinuity);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
+            if(this.greentype[i] === '披覆材料'){
+                temp = [];
+                temp.push('披覆材料');
+                temp.push(this.greeninfo[i]);
+                this.SelectSimple.push(temp);  // 簡易型披覆材料
+                let formData = new FormData();
+                formData.append('drape',this.SimpleCoatingFilm);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            }
         }
         if(this.SelectSimple.length == 9 ){
             this.SimpleTotalSimpleCost = 0,
@@ -2164,7 +2184,7 @@
             this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
         }
     },
-    updateRobustRadio: async function(){  // 更新強固型溫室選擇狀況，判斷是否有選滿9項
+    updateRobustRadio: async function(robust){  // 更新強固型溫室選擇狀況，判斷是否有選滿9項
         this.SelectRobust = [];
         var temp = [];
         if(this.RobustGreenhouseProfile){
@@ -2175,7 +2195,7 @@
             let formData = new FormData();
             formData.append('pipetype',this.RobustGreenhouseProfile);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.RobustRoofForm){
             temp = [];
@@ -2185,7 +2205,7 @@
             let formData = new FormData();
             formData.append('rooftype',this.RobustRoofForm);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.RobustUpperArch){
             temp = [];
@@ -2195,7 +2215,7 @@
             let formData = new FormData();
             formData.append('circlespan',this.RobustUpperArch);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.RobustFoundation){
             temp = [];
@@ -2205,7 +2225,7 @@
             let formData = new FormData();
             formData.append('base',this.RobustFoundation);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.RobustSpan){
             temp = [];
@@ -2215,7 +2235,7 @@
             let formData = new FormData();
             formData.append('span',this.RobustSpan);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.RobustShoulderHeight){
             temp = [];
@@ -2225,7 +2245,7 @@
             let formData = new FormData();
             formData.append('shoulder',this.RobustShoulderHeight);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.RobustLength){
             temp = [];
@@ -2235,7 +2255,7 @@
             let formData = new FormData();
             formData.append('length',this.RobustLength);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.RobustContinuity){
             temp = [];
@@ -2245,7 +2265,7 @@
             let formData = new FormData();
             formData.append('continue',this.RobustContinuity);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.RobustCoatingFilm){
             temp = [];
@@ -2255,7 +2275,7 @@
             let formData = new FormData();
             formData.append('drape',this.RobustCoatingFilm);
             formData.append('_method','put');
-            const response = await Design.UpdateDesign(1, formData);
+            const response = await Design.UpdateDesign(this.now_user_design, formData);
         }
         if(this.SelectRobust.length == 9 ){
             this.RobustTotalCost = 0,
@@ -2278,7 +2298,7 @@
         let formData = new FormData();
         formData.append('housetype',this.greenhouseradio);
         formData.append('_method','put');
-        const response = await Design.UpdateDesign(1, formData);
+        const response = await Design.UpdateDesign(this.now_user_design, formData);
     },
     updateSelectPipe:async function(checkid,checktype){   // 更新所選擇的管材
         let pipename = null;
@@ -2298,7 +2318,7 @@
                 }
             }
             for(var j = 0; j < this.selectPipe.length; j++){
-                if (this.selectPipe[j].MaterialName === pipename){
+                if (this.selectPipe[j].MaterialName === pipename && this.selectPipe[j].uid === this.$auth.user().id){
                     await Steel.deleteSteel(this.selectPipe[j].id);
                     this.selectPipe.splice(j,1)
                 }
@@ -2325,7 +2345,7 @@
                 }
             }
             for(var j = 0; j < this.selectglass.length; j++){
-                if (this.selectglass[j].BuildItem === glassname){
+                if (this.selectglass[j].BuildItem === glassname && this.selectglass[j].uid === this.$auth.user().id){
                     await Film.deleteFilm(this.selectglass[j].id);
                     this.selectglass.splice(j,1)
                 }
@@ -2460,7 +2480,7 @@
                     }
                 }
                 for(var j = 0; j < this.selectProfile.length; j++){
-                    if (this.selectProfile[j].MaterialName === pipename){
+                    if (this.selectProfile[j].MaterialName === pipename && this.selectProfile[j].uid === this.$auth.user().id){
                         await Steel.deleteSteel(this.selectProfile[j].id);
                         this.selectProfile.splice(j,1)
                     }
@@ -2539,7 +2559,7 @@
         formData.append('cropwidth',this.plantwidth);
         formData.append('croparea',this.area);
         formData.append('_method','put');
-        const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+        const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
     },
     updatesteel:async function (data,check){
         let steelname = [];
@@ -2549,10 +2569,13 @@
             });
             this.SteelJson = await S_OverPlan.json();
             for (var i = 0; i < this.SteelJson.length; i++){
-                steelname.push(this.SteelJson[i].MaterialName)
+                if (this.SteelJson[i].uid === this.$auth.user().id){
+                    steelname.push(this.SteelJson[i].MaterialName)
+                }
             }
             if (steelname.indexOf(data.MaterialName) === -1){
                 let formData = new FormData();
+                formData.append('uid',this.$auth.user().id);
                 formData.append('Type',data.Type);
                 formData.append('Price',this.SteelPrice);
                 formData.append('MaterialName',data.MaterialName);
@@ -2581,7 +2604,7 @@
             });
             this.SteelJson = await S_OverPlan.json();
             for (var i = 0; i < this.SteelJson.length; i++){
-                if (this.SteelJson[i].MaterialName === data.MaterialName){
+                if (this.SteelJson[i].MaterialName === data.MaterialName && this.SteelJson[i].uid === this.$auth.user().id){
                     await Steel.deleteSteel(this.SteelJson[i].id);
                 }
             }
@@ -2595,10 +2618,13 @@
             });
             this.FilmJson = await F_OverPlan.json();
             for (var i = 0; i < this.FilmJson.length; i++){
-                filmname.push(this.FilmJson[i].BuildItem)
+                if (this.FilmJson[i].uid === this.$auth.user().id){
+                    filmname.push(this.FilmJson[i].BuildItem)
+                }
             }
             if (filmname.indexOf(data.BuildItem) === -1){
                 let formData = new FormData();
+                formData.append('uid',this.$auth.user().id);
                 formData.append('Expert',data.Expert);
                 formData.append('material',data.material);
                 formData.append('BuildItem',data.BuildItem);
@@ -2615,7 +2641,7 @@
             });
             this.FilmJson = await F_OverPlan.json();
             for (var i = 0; i < this.FilmJson.length; i++){
-                if (this.FilmJson[i].BuildItem === data.BuildItem){
+                if (this.FilmJson[i].BuildItem === data.BuildItem && this.FilmJson[i].uid === this.$auth.user().id){
                     await Film.deleteFilm(this.FilmJson[i].id);
                 }
             }

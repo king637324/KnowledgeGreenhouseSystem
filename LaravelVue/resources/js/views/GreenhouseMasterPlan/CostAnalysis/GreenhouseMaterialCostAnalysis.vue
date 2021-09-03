@@ -615,7 +615,7 @@ export default {
                     }
                 }
                 for(var j = 0; j < this.selectPipe.length; j++){
-                    if (this.selectPipe[j].MaterialName === pipename){
+                    if (this.selectPipe[j].MaterialName === pipename  && this.selectPipe[j].uid === this.$auth.user().id){
                         await Steel.deleteSteel(this.selectPipe[j].id);
                         this.selectPipe.splice(j,1)
                     }
@@ -695,7 +695,7 @@ export default {
                     }
                 }
                 for(var j = 0; j < this.selectProfile.length; j++){
-                    if (this.selectProfile[j].MaterialName === pipename){
+                    if (this.selectProfile[j].MaterialName === pipename && this.selectProfile[j].uid === this.$auth.user().id){
                         await Steel.deleteSteel(this.selectProfile[j].id);
                         this.selectProfile.splice(j,1)
                     }

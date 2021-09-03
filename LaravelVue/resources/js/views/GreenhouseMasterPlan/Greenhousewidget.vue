@@ -544,6 +544,8 @@
         overplanArray:[],
         OverPlanJson:[],
         area:0,
+        now_user: null,
+        now_user_two:null,
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -565,8 +567,11 @@
             method: 'GET',
             });
             this.OverPlanJson = await J_OverPlan.json();
-                for(var i = 0; i < this.OverPlanJson.length; i++){
+            for(var i = 0; i < this.OverPlanJson.length; i++){
+                if (this.OverPlanJson[i].uid === this.$auth.user().id){
                     this.overplanArray.push(this.OverPlanJson[i])
+                    this.now_user = this.OverPlanJson[i].pid
+                }
             }
             this.cityIdx = this.overplanArray[0].localcity
             this.SelectTerrain = this.overplanArray[0].terrain
@@ -579,8 +584,11 @@
             method: 'GET',
             });
             this.WeightJson = await W_Estimation.json();
-                for(var i = 0; i < this.WeightJson.length; i++){
+            for(var i = 0; i < this.WeightJson.length; i++){
+                if (this.WeightJson[i].uid === this.$auth.user().id){
                     this.WeightArray.push(this.WeightJson[i])
+                    this.now_user_two = this.WeightJson[i].id
+                }      
             }
 
             this.radio_roof = this.WeightArray[0].roof_type
@@ -660,7 +668,7 @@
             let formData = new FormData();
             formData.append('localcity',this.cityIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
         updateRegion: async function(){   // 更新所選擇的地區
             // 將地區資料初始化
@@ -680,7 +688,7 @@
             let formData = new FormData();
             formData.append('localarea',this.regionIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
         updatewindcorrosion: async function(SelectTerrain,SelectLandform){
             let wind123 = [];
@@ -692,14 +700,14 @@
                     let formData = new FormData();
                     formData.append('terrain',SelectTerrain);
                     formData.append('_method','put');
-                    const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+                    const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
                 } else if (this.windcorrosionjson[i].landtype == SelectLandform){
                     wind123[1] = this.windcorrosionjson[i].wind
                     corrosion[1] = this.windcorrosionjson[i].corrosion     
                     let formData = new FormData();
                     formData.append('landform',SelectLandform);
                     formData.append('_method','put');
-                    const response = await SaveOverPlan.UpdateOverPlan(1, formData);                
+                    const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);                
                 }
             }
             this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
@@ -710,16 +718,28 @@
             formData.append('roof_type',this.radio_roof);
             formData.append('roof_number',this.roof_number[this.roof_name.indexOf(this.radio_roof)]); 
             formData.append('_method','put');
-            const response = await Weight.UpdateWidget(1, formData);
+            const response = await Weight.UpdateWidget(this.now_user_two, formData);
         },
         updatedesign: async function(){
+            let get_id = [];
             let formData = new FormData();
             formData.append('wind_design',this.design_wind);
             formData.append('span_design',this.design_span); 
             formData.append('shoulder_design',this.design_shoulder);
             formData.append('continue_design',this.design_story);
-            formData.append('_method','put');
-            const response = await Weight.UpdateWidget(1, formData);
+            for(var i = 0; i < this.WeightJson.length; i++){
+                get_id.push(this.WeightJson[i].uid)
+            }
+            if (get_id.indexOf(this.$auth.user().id) === -1){
+                const response = await Weight.createWidget(formData)
+                this.WeightArray = []
+                this.WeightArray = response.data
+            } else{
+                formData.append('_method','patch');
+                const response = await Weight.UpdateWidget(this.now_user_two,formData)
+                this.WeightArray = []
+                this.WeightArray = response.data
+            }
         },
         areacount:async function(){
             
@@ -729,13 +749,13 @@
             formData.append('cropwidth',this.plantwidth);
             formData.append('croparea',this.area);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
         updateposition: async function(){
             let formData = new FormData();
             formData.append('position',this.position);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
     },
 }

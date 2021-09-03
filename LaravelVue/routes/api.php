@@ -94,3 +94,6 @@ Route::resource('/EnvironmentalControlDesign/LightEnvironmentNeed',UserLightCont
 
 use App\Http\Controllers\GreenhouseMasterPlan\UserTempController;
 Route::resource('/EnvironmentalControlDesign/TemperatureEnvironmentNeed',UserTempController::class);
+
+use App\Http\Controllers\GreenhouseMasterPlan\GreenhouseDesignController;
+Route::resource('/GreenhouseMasterPlan/GreenhousePlanDesign',GreenhouseDesignController::class);
