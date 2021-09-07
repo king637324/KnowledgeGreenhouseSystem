@@ -631,7 +631,7 @@ export default {
             let formData = new FormData();
             formData.append('palntclass',this.cropIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
 
         },updatePlant: async function(){    // 更新所選擇的作物
@@ -646,7 +646,7 @@ export default {
             let formData = new FormData();
             formData.append('cropplant',this.plantIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
         },updateExpertTable(){  // 根據專家的選擇，更新作物的表格顯示
             // 從所選的專家id 找到 所選 專家

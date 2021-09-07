@@ -351,7 +351,7 @@ export default {
             let formData = new FormData();
             formData.append('palntclass',this.cropIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
         },updatePlant: async function(){    // 更新所選擇的作物
             // 從所選的作物id 找到 所選作物分類
@@ -374,7 +374,7 @@ export default {
             let formData = new FormData();
             formData.append('cropplant',this.plantIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
         },updateCity: async function(){     // 更新所選擇的縣市
             // 從所選的縣市id 找到 所選的縣市名稱
@@ -405,7 +405,7 @@ export default {
             let formData = new FormData();
             formData.append('localcity',this.cityIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
         },updateRegion: async function(){   // 更新所選擇的地區
             // 從所選的地區id 找到 所選的地區名稱
@@ -441,7 +441,7 @@ export default {
             let formData = new FormData();
             formData.append('localarea',this.regionIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
         },updateLightSensingRadio(){    // 光感測選擇
             console.log("---updateLightSensingRadio---");

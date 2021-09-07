@@ -801,7 +801,7 @@ export default {
                 });
                 this.SteelJson = await S_OverPlan.json();
                 for (var i = 0; i < this.SteelJson.length; i++){
-                    if (this.SteelJson[i].MaterialName === data.MaterialName && this.SteelJson[i].uid === this.auth.user().id){
+                    if (this.SteelJson[i].MaterialName === data.MaterialName && this.SteelJson[i].uid === this.$auth.user().id){
                         await Steel.deleteSteel(this.SteelJson[i].id);
                     }
                 }

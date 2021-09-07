@@ -432,7 +432,7 @@ export default {
                 });
                 this.FilmJson = await F_OverPlan.json();
                 for (var i = 0; i < this.FilmJson.length; i++){
-                    if (this.FilmJson[i].BuildItem === data.BuildItem && this.FilmJson[i].uid === this.auth.user().id){
+                    if (this.FilmJson[i].BuildItem === data.BuildItem && this.FilmJson[i].uid === this.$auth.user().id){
                         await Film.deleteFilm(this.FilmJson[i].id);
                     }
                 }

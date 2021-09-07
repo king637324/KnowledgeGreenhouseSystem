@@ -69,7 +69,7 @@
                                     <v-text-field label="寬度(m)" v-model="plantwidth" v-on:change="areacount" style="font-size: 2vmin; width:10vmin"></v-text-field>
                                 </v-col>    
                                 <v-col>
-                                    <v-text-field readonly label="面積試算(公頃)" v-model="area" style="font-size: 2vmin; width:10vmin"></v-text-field>
+                                    <v-text-field readonly label="面積試算" v-model="area" style="font-size: 2vmin; width:10vmin"></v-text-field>
                                 </v-col>  
                             </v-row>
                         </v-container-fluid>
@@ -385,7 +385,7 @@ export default {
             let formData = new FormData();
             formData.append('localcity',this.cityIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
         },updateRegion: async function(){   // 更新所選擇的地區
             // 將地區資料初始化
@@ -448,18 +448,18 @@ export default {
             let formData = new FormData();
             formData.append('localarea',this.regionIdx);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
         },    
         areacount:async function(){
             
-            this.area = (this.plantlength*this.plantwidth)/10000
+            this.area = (this.plantlength*this.plantwidth)
             let formData = new FormData();
             formData.append('croplength',this.plantlength);
             formData.append('cropwidth',this.plantwidth);
             formData.append('croparea',this.area);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
         updatewindcorrosion: async function(SelectTerrain,SelectLandform){
             let wind123 = [];
@@ -471,14 +471,14 @@ export default {
                     let formData = new FormData();
                     formData.append('terrain',SelectTerrain);
                     formData.append('_method','put');
-                    const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+                    const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
                 } else if (this.windcorrosionjson[i].landtype == SelectLandform){
                     wind123[1] = this.windcorrosionjson[i].wind
                     corrosion[1] = this.windcorrosionjson[i].corrosion              
                     let formData = new FormData();
                     formData.append('landform',SelectLandform);
                     formData.append('_method','put');
-                    const response = await SaveOverPlan.UpdateOverPlan(1, formData);      
+                    const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);      
                 }
             }
             this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
@@ -488,13 +488,13 @@ export default {
             let formData = new FormData();
             formData.append('position',this.position);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
         updatelandcondition: async function(){
             let formData = new FormData();
             formData.append('landcondition',this.SelectLandcondition);
             formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(1, formData);
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         }
     },
 }
