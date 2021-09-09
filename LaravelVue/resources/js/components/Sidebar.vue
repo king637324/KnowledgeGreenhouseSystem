@@ -226,12 +226,11 @@
                                                 </router-link>
                                             </nav>
                                         </div>
-                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" style="font-size:16px;" data-target="#環控設計分析" aria-expanded="false" aria-controls="成本分析">
-                                            4.環控設計分析
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                        </a>
                                     </nav>
                                 </div>
+                                <router-link class="nav-link collapsed" style="font-size:18px;" to="/GreenhouseMasterPlan/GreenhouseResult">
+                                    E.溫室設計結果
+                                </router-link>
                             </nav>
                         </div>
                         
@@ -316,6 +315,7 @@
                                 <router-link to="/MaterialsAndDesignKnowledgeBase/Article" style="font-size:18px;" class="nav-link" exact>
                                     設計知識庫
                                 </router-link>
+
                             </nav>
                         </div>
 

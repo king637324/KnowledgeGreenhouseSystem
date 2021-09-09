@@ -19,7 +19,7 @@
                           <v-col md="4">
                             <label for="類別" style="color:rgba(0,0,0,.6); font-size:8px;">類別</label>
                             <b-select v-model="classIdx" name="類別">
-                              <option v-for="(crop, index) in user_class" :value="index" :key="index">
+                              <option v-for="(crop, index) in user_class" :value="crop" :key="index">
                                   {{crop}}
                               </option>
                             </b-select>
@@ -339,7 +339,7 @@
 
         //showform:true,
 
-        classIdx:0,
+        classIdx:'類別',
 
         allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
         position:0,
@@ -491,7 +491,7 @@
     recordallinfo: async function() {
         let get_id = [];
         let formData = new FormData();
-        formData.append('userclass','System') 
+        formData.append('userclass',this.classIdx) 
         formData.append('uid',this.$auth.user().id) 
         formData.append('usercodename',this.codename) 
         formData.append('palntclass',this.cropIdx) 

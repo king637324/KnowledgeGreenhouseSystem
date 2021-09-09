@@ -55,6 +55,7 @@ import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './vi
 import OverallPlanbase from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
 import PlanDesign from './views/GreenhouseMasterPlan/GreenhousePlanDesign.vue';
 import Widget from './views/GreenhouseMasterPlan/Greenhousewidget.vue';
+import Result from './views/GreenhouseMasterPlan/GreenhouseResult.vue';
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
@@ -378,6 +379,13 @@ const routes = [{
     path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseStructuralLoad',
     name: 'GreenhouseStructuralLoad',
     component: load,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/GreenhouseResult',
+    name: 'GreenhouseResult',
+    component: Result,
     meta: {
         auth: undefined
     }
