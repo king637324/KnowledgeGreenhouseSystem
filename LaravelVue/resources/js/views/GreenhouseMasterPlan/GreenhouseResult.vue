@@ -272,60 +272,416 @@
                     </thead>
                     <tr v-for="(material, index) in greenhouse_material" :key="index">
                         <th> 構建分布</th>
-                        <td> {{ material }}</td>
+                        <td> {{ material[0] }}</td>
                         <th> 規格選擇</th>
-                        <td> 123 </td>
+                        <td> {{ material[1] }} </td>
                         <th> 成本性</th>
-                        <td> 123 </td>
+                        <td> {{ material[2] }} </td>
                         <th> 結構風險</th>
-                        <td> 123 </td>
+                        <td> {{ material[3] }} </td>
                         <th> 作業難度</th>
-                        <td> 123 </td>
+                        <td> {{ material[4] }} </td>
                     </tr>
 
                 </table>
             </v-row>
             <v-row>
-                <table style="border:1px solid black; width:80vw; height:300px" border='1'>
-                    <thead class="table-active">
-                        <tr align="center">
-                            <td colspan="50">D.載重設計-重量預估</td>
-                        </tr>
-                    </thead>
-                    <tr v-for="(material, index) in greenhouse_material" :key="index">
-                        <th> 構建分布</th>
-                        <td> {{ material }}</td>
-                        <th> 規格選擇</th>
-                        <td> 123 </td>
-                        <th> 成本性</th>
-                        <td> 123 </td>
-                        <th> 結構風險</th>
-                        <td> 123 </td>
-                        <th> 作業難度</th>
-                        <td> 123 </td>
-                    </tr>
-                </table>
-            </v-row>
-            <v-row>
-                <table style="border:1px solid black; width:80vw; height:300px" border='1'>
-                    <thead class="table-active">
-                        <tr align="center">
-                            <td colspan="50">D.載重設計-成本分析</td>
-                        </tr>
-                    </thead>
-                    <tr v-for="(material, index) in greenhouse_material" :key="index">
-                        <th> 構建分布</th>
-                        <td> {{ material }}</td>
-                        <th> 規格選擇</th>
-                        <td> 123 </td>
-                        <th> 成本性</th>
-                        <td> 123 </td>
-                        <th> 結構風險</th>
-                        <td> 123 </td>
-                        <th> 作業難度</th>
-                        <td> 123 </td>
-                    </tr>
-                </table>
+                <v-col>
+                    <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
+                        <v-row>
+                            <v-col cols="12">
+                                <h3>重量預估</h3>
+                            </v-col>
+                            <v-col cols="12">
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>規範風速</td>
+                                            <td>風速加級</td>
+                                            <td>系統建議風速</td>
+                                            <td style="color:red">設計風速</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center" id="風速">
+                                        <td>{{ wind_speed }}</td>
+                                        <td>{{ wind_addspeed }}</td>
+                                        <td>{{ wind_speed*wind_addspeed }}</td>
+                                        <td style="color:red">{{ design_wind }}</td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                            <v-col cols="12">
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>標準跨距</td>
+                                            <td style="color:red">設計跨距</td>
+                                            <td>標準肩高</td>
+                                            <td style="color:red">設計肩高</td>
+                                            <td>連棟性</td>
+                                            <td style="color:red">設計連棟</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center" id="風速">
+                                        <td>8</td>
+                                        <td style="color:red">{{ design_span }}</td>
+                                        <td>3</td>
+                                        <td style="color:red">{{ design_shoulder }}</td>
+                                        <td>1</td>
+                                        <td style="color:red">{{ design_story }}</td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                            <v-col cols="12">
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>型式</td>
+                                            <td>名稱</td>
+                                            <td>kg/m2</td>
+                                            <td>風速指數</td>
+                                            <td>跨距指數</td>
+                                            <td>肩高指數</td>
+                                            <td>連棟指數</td>
+                                            <td>預估單量</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center" id="風速">
+                                        <td>{{ roof_type[roof_name.indexOf(radio_roof)] }}</td>
+                                        <td>{{ radio_roof }}</td>
+                                        <td>{{ WeightArray[0].roof_number }}</td>
+                                        <td>{{ Math.round(Math.floor(design_wind-30)/wind_speed*wind_addspeed*100)/100 }}</td>
+                                        <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
+                                        <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
+                                        <td>{{ Math.round(Math.floor(1-design_story)/5*100)/100 }}</td>
+                                        <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-30)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )) }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                            <v-col cols="12">
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>農地南北長度</td>
+                                            <td>農地東西長度</td>
+                                            <td>方位(長邊)</td>
+                                            <td>農地面積(m2)</td>
+                                            <td>拱跨距</td>
+                                            <td>拱數</td>
+                                            <td>寬跨距</td>
+                                            <td>跨數</td>
+                                            <td>溫室面積(m2)</td>
+                                            <td>土地使用率</td>
+                                            <td>溫室結構總重</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center" id="風速">
+                                        <td>{{ overplanArray[0].croplength }}</td>
+                                        <td>{{ overplanArray[0].cropwidth }}</td>
+                                        <td>{{ overplanArray[0].position }}</td>
+                                        <td>{{ overplanArray[0].croparea }}</td>
+                                        <td>4</td>
+                                        <td>{{ Math.floor(overplanArray[0].croplength/4*0.95) }}</td>
+                                        <td>{{ design_span }}</td>
+                                        <td>{{ Math.floor(overplanArray[0].cropwidth/design_span*0.95) }}</td>
+                                        <td>{{ Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span }}</td>
+                                        <td>{{ Math.round(Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span)/Math.floor(overplanArray[0].croparea)*100)/100*100 }}%</td>
+                                        <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span) }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                        </v-row>
+                    </div>
+                </v-col>
+                <v-col>
+                    <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
+                        <v-row>
+                            <v-col cols="12">
+                                <h3>成本分析</h3>
+                            </v-col>
+                            <v-col cols="12">
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>結構材料單價(kg)</td>
+                                            <td>結構材料總價(kg)</td>
+                                            <td>人工單價(元/kg)</td>
+                                            <td>溫室人工費</td>
+                                            <td>結構工程總價</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center">
+                                        <td>40</td>
+                                        <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40) }}
+                                        </td>
+                                        <td>10</td>
+                                        <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10) }}
+                                        </td>
+                                        <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40) }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                            <v-col cols="12">
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>披覆材料面積(m2)</td>
+                                            <td>披覆材料單價(元/m2)</td>
+                                            <td>披覆材料價(元)</td>
+                                            <td>披覆人工費(元/m2)</td>
+                                            <td>披覆材料人工費(元)</td>
+                                            <td>披覆工程總價</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center">
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5) }}</td>
+                                        <td>50</td>
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50) }}</td>
+                                        <td>10</td>
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10) }}</td>
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10) }}</td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                            <v-col cols="12">
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>整地面積(m2)</td>
+                                            <td>整地單價</td>
+                                            <td>整地費用</td>
+                                            <td>基礎數量</td>
+                                            <td>基礎單價</td>
+                                            <td>基礎費用</td>
+                                            <td>土建工程費用</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center">
+                                        <td>{{ Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth) }}</td>
+                                        <td>100</td>
+                                        <td>{{ Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2) }}</td>
+                                        <td>2000</td>
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000) }}</td>
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                            <v-col cols="12">
+                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                    <thead class="table-active">
+                                        <tr align="center">
+                                            <td>A.結構工程</td>
+                                            <td>B.披覆工程</td>
+                                            <td>C.土建工程</td>
+                                            <td>D.設計管理</td>
+                                            <td>合計</td>
+                                            <td>平方米單價</td>
+                                            <td>坪單價</td>
+                                        </tr>
+                                    </thead>
+                                    <tr align="center">
+                                        <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40) }}
+                                        </td>
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10) }}</td>
+                                        <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
+                                        <td>{{ Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1) }}
+                                        </td>
+                                        <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
+                                            Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1) }}
+                                        </td>
+                                        <td>{{ Math.floor(Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
+                                            Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1))/Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span)) }}
+                                        </td>
+                                        <td>{{ Math.floor(Math.floor(Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
+                                            Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
+                                            WeightArray[0].roof_number*
+                                            (
+                                                1+
+                                                Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
+                                                Math.round(Math.floor(design_span-8)/30*100)/100+
+                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
+                                                Math.round(Math.floor(1-design_story)/5*100)/100
+                                            )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                            Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1))/Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span))/0.3025) }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                        </v-row>
+                    </div>
+                </v-col>
             </v-row>
         </v-container>
     </div>   
@@ -360,7 +716,17 @@
         selecttemp:[],
         DesignJson:[],
         DesignArray:[],
-        greenhouse_material:['溫室管材','圓頂形式','圓拱距','基礎','跨距','肩高','長度','連續性','披覆材料']
+        greenhouse_material:[],
+        SimpleCircularArchDistancesJSON:[],
+        WeightArray:[],
+        WeightJson:[],
+        radio_roof:null,
+        design_wind:null,
+        design_span:null,
+        design_shoulder:null,
+        design_story:null,
+        roof_type:['WTG','SP','VTP','UTP','VBP','UBP','UP'],
+        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓形力霸','山型塑膠膜','圓型塑膠膜','簡易溫室'],
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -369,6 +735,22 @@
 
     methods: {
         async getJson(){
+            const W_Estimation = await fetch('/WeightJson',  {
+            method: 'GET',
+            });
+            this.WeightJson = await W_Estimation.json();
+            for(var i = 0; i < this.WeightJson.length; i++){
+                if (this.WeightJson[i].uid === this.$auth.user().id){
+                    this.WeightArray.push(this.WeightJson[i])
+                }      
+            }
+
+            this.radio_roof = this.WeightArray[0].roof_type
+            this.design_wind = this.WeightArray[0].wind_design
+            this.design_span = this.WeightArray[0].span_design
+            this.design_shoulder = this.WeightArray[0].shoulder_design
+            this.design_story = this.WeightArray[0].continue_design
+
             const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
             });
@@ -376,7 +758,6 @@
             for(var i = 0; i < this.OverPlanJson.length; i++){
                 if (this.OverPlanJson[i].uid === this.$auth.user().id){
                     this.overplanArray.push(this.OverPlanJson[i])
-                    this.now_user = this.OverPlanJson[i].pid
                 }
             }
             const Vegetable = await fetch('/VegetableJSON',  {
@@ -452,16 +833,6 @@
                 }
             }
 
-            const D_OverPlan = await fetch('/DesignJson',  {
-                method: 'GET',
-            });
-            this.DesignJson = await D_OverPlan.json();
-            for(var i = 0; i < this.DesignJson.length; i++){
-                if (this.DesignJson[i].uid === this.$auth.user().id){
-                    this.DesignArray.push(this.DesignJson[i])
-                }
-            }
-
             var StrLanding,StrPath; 
             for (var i = 0; i < this.regionalwindspeedjson.length; i++){
                 if (this.regionalwindspeedjson[i].County === this.overplanArray[0].localcity && this.regionalwindspeedjson[i].Region === this.overplanArray[0].localarea ){
@@ -520,6 +891,297 @@
             }
             this.wind_addspeed = Math.round(wind123[0]*wind123[1]*100)/100
             this.corrosion_add = Math.round(corrosion[0]*corrosion[1]*100)/100
+
+            const D_OverPlan = await fetch('/DesignJson',  {
+                method: 'GET',
+            });
+            this.DesignJson = await D_OverPlan.json();
+            for(var i = 0; i < this.DesignJson.length; i++){
+                if (this.DesignJson[i].uid === this.$auth.user().id){
+                    this.DesignArray.push(this.DesignJson[i])
+                }
+            }
+
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                this.greenhouse_material = [['溫室型材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
+            } else{
+                this.greenhouse_material = [['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
+            }
+
+            // 簡易型圓拱距
+            const SimpleCircularArchDistances = await fetch('/SimpleCircularArchDistanceJSON',  {
+                method: 'GET',
+            });
+            this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleCircularArchDistancesJSON.length; i++){
+                    if (this.SimpleCircularArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
+                        this.greenhouse_material[2].push(this.SimpleCircularArchDistancesJSON[i].BuildItem)
+                        this.greenhouse_material[2].push(this.SimpleCircularArchDistancesJSON[i].Cost)
+                        this.greenhouse_material[2].push(this.SimpleCircularArchDistancesJSON[i].StructuralRisk)
+                        this.greenhouse_material[2].push(this.SimpleCircularArchDistancesJSON[i].JobDifficulty)
+                    }
+                }
+            }
+            
+            // 簡易型披覆材料
+            const SimpleCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
+                method: 'GET',
+            });
+            this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleCoatingFilmsJSON.length; i++){
+                    if (this.SimpleCoatingFilmsJSON[i].BuildItem === this.DesignArray[0].drape){
+                        this.greenhouse_material[8].push(this.SimpleCoatingFilmsJSON[i].BuildItem)
+                        this.greenhouse_material[8].push(this.SimpleCoatingFilmsJSON[i].Cost)
+                        this.greenhouse_material[8].push(this.SimpleCoatingFilmsJSON[i].StructuralRisk)
+                        this.greenhouse_material[8].push(this.SimpleCoatingFilmsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+
+            // 簡易型連續性
+            const SimpleContinuitys = await fetch('/SimpleContinuityJSON',  {
+                method: 'GET',
+            });
+            this.SimpleContinuitysJSON = await SimpleContinuitys.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleContinuitysJSON.length; i++){
+                    if (this.SimpleContinuitysJSON[i].BuildItem === this.DesignArray[0].continue){
+                        this.greenhouse_material[7].push(this.SimpleContinuitysJSON[i].BuildItem)
+                        this.greenhouse_material[7].push(this.SimpleContinuitysJSON[i].Cost)
+                        this.greenhouse_material[7].push(this.SimpleContinuitysJSON[i].StructuralRisk)
+                        this.greenhouse_material[7].push(this.SimpleContinuitysJSON[i].JobDifficulty)
+                    }
+                }
+            }
+
+            // 簡易型圓頂形式
+            const SimpleDomeForms = await fetch('/SimpleDomeFormJSON',  {
+                method: 'GET',
+            });
+            this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleDomeFormsJSON.length; i++){
+                    if (this.SimpleDomeFormsJSON[i].BuildItem === this.DesignArray[0].rooftype){
+                        this.greenhouse_material[1].push(this.SimpleDomeFormsJSON[i].BuildItem)
+                        this.greenhouse_material[1].push(this.SimpleDomeFormsJSON[i].Cost)
+                        this.greenhouse_material[1].push(this.SimpleDomeFormsJSON[i].StructuralRisk)
+                        this.greenhouse_material[1].push(this.SimpleDomeFormsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+
+            // 簡易型基礎
+            const SimpleFoundations = await fetch('/SimpleFoundationJSON',  {
+                method: 'GET',
+            });
+            this.SimpleFoundationsJSON = await SimpleFoundations.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleFoundationsJSON.length; i++){
+                    if (this.SimpleFoundationsJSON[i].BuildItem === this.DesignArray[0].base){
+                        this.greenhouse_material[3].push(this.SimpleFoundationsJSON[i].BuildItem)
+                        this.greenhouse_material[3].push(this.SimpleFoundationsJSON[i].Cost)
+                        this.greenhouse_material[3].push(this.SimpleFoundationsJSON[i].StructuralRisk)
+                        this.greenhouse_material[3].push(this.SimpleFoundationsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+
+            // 簡易型溫室管材
+            const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
+                method: 'GET',
+            });
+            this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleGreenhousePipesJSON.length; i++){
+                    if (this.SimpleGreenhousePipesJSON[i].BuildItem === this.DesignArray[0].pipetype){
+                        this.greenhouse_material[0].push(this.SimpleGreenhousePipesJSON[i].BuildItem)
+                        this.greenhouse_material[0].push(this.SimpleGreenhousePipesJSON[i].Cost)
+                        this.greenhouse_material[0].push(this.SimpleGreenhousePipesJSON[i].StructuralRisk)
+                        this.greenhouse_material[0].push(this.SimpleGreenhousePipesJSON[i].JobDifficulty)
+                    }
+                }
+            
+            }
+            // 簡易型長度
+            const SimpleLengths = await fetch('/SimpleLengthJSON',  {
+                method: 'GET',
+            });
+            this.SimpleLengthsJSON = await SimpleLengths.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleLengthsJSON.length; i++){
+                    if (this.SimpleLengthsJSON[i].BuildItem === this.DesignArray[0].length){
+                        this.greenhouse_material[6].push(this.SimpleLengthsJSON[i].BuildItem)
+                        this.greenhouse_material[6].push(this.SimpleLengthsJSON[i].Cost)
+                        this.greenhouse_material[6].push(this.SimpleLengthsJSON[i].StructuralRisk)
+                        this.greenhouse_material[6].push(this.SimpleLengthsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+
+            // 簡易型肩高
+            const SimpleShoulderHeights = await fetch('/SimpleShoulderHeightJSON',  {
+                method: 'GET',
+            });
+            this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleShoulderHeightsJSON.length; i++){
+                    if (this.SimpleShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder){
+                        this.greenhouse_material[5].push(this.SimpleShoulderHeightsJSON[i].BuildItem)
+                        this.greenhouse_material[5].push(this.SimpleShoulderHeightsJSON[i].Cost)
+                        this.greenhouse_material[5].push(this.SimpleShoulderHeightsJSON[i].StructuralRisk)
+                        this.greenhouse_material[5].push(this.SimpleShoulderHeightsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+            
+            // 簡易型跨距
+            const SimpleSpans = await fetch('/SimpleSpanJSON',  {
+                method: 'GET',
+            });
+            this.SimpleSpansJSON = await SimpleSpans.json();
+            if (this.DesignArray[0].housetype === '簡易溫室'){
+                for(var i = 0; i < this.SimpleSpansJSON.length; i++){
+                    if (this.SimpleSpansJSON[i].BuildItem === this.DesignArray[0].span){
+                        this.greenhouse_material[4].push(this.SimpleSpansJSON[i].BuildItem)
+                        this.greenhouse_material[4].push(this.SimpleSpansJSON[i].Cost)
+                        this.greenhouse_material[4].push(this.SimpleSpansJSON[i].StructuralRisk)
+                        this.greenhouse_material[4].push(this.SimpleSpansJSON[i].JobDifficulty)
+                    }
+                }
+            }
+
+            
+            // 強固型連續性
+            const StrongContinuitys = await fetch('/StrongContinuityJSON',  {
+                method: 'GET',
+            });
+            this.StrongContinuitysJSON = await StrongContinuitys.json();
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                for(var i = 0; i < this.StrongContinuitysJSON.length; i++){
+                    if (this.StrongContinuitysJSON[i].BuildItem === this.DesignArray[0].continue){
+                        this.greenhouse_material[7].push(this.StrongContinuitysJSON[i].BuildItem)
+                        this.greenhouse_material[7].push(this.StrongContinuitysJSON[i].Cost)
+                        this.greenhouse_material[7].push(this.StrongContinuitysJSON[i].StructuralRisk)
+                        this.greenhouse_material[7].push(this.StrongContinuitysJSON[i].JobDifficulty)
+                    }
+                }
+            }
+            
+            // 強固型基礎
+            const StrongFoundations = await fetch('/StrongFoundationJSON',  {
+                method: 'GET',
+            });
+            this.StrongFoundationsJSON = await StrongFoundations.json();
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                for(var i = 0; i < this.StrongFoundationsJSON.length; i++){
+                    if (this.StrongFoundationsJSON[i].BuildItem === this.DesignArray[0].base){
+                        this.greenhouse_material[3].push(this.StrongFoundationsJSON[i].BuildItem)
+                        this.greenhouse_material[3].push(this.StrongFoundationsJSON[i].Cost)
+                        this.greenhouse_material[3].push(this.StrongFoundationsJSON[i].StructuralRisk)
+                        this.greenhouse_material[3].push(this.StrongFoundationsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+            
+            // 強固型溫室型材
+            const StrongGreenhousPprofiles = await fetch('/StrongGreenhouseProfileJSON',  {
+                method: 'GET',
+            });
+            this.StrongGreenhousPprofilesJSON = await StrongGreenhousPprofiles.json();
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                for(var i = 0; i < this.StrongGreenhousPprofilesJSON.length; i++){
+                    if (this.StrongGreenhousPprofilesJSON[i].BuildItem === this.DesignArray[0].pipetype){
+                        this.greenhouse_material[0].push(this.StrongGreenhousPprofilesJSON[i].BuildItem)
+                        this.greenhouse_material[0].push(this.StrongGreenhousPprofilesJSON[i].Cost)
+                        this.greenhouse_material[0].push(this.StrongGreenhousPprofilesJSON[i].StructuralRisk)
+                        this.greenhouse_material[0].push(this.StrongGreenhousPprofilesJSON[i].JobDifficulty)
+                    }
+                }
+            }
+
+            
+            // 強固型長度
+            const StrongLengths = await fetch('/StrongLengthJSON',  {
+                method: 'GET',
+            });
+            this.StrongLengthsJSON = await StrongLengths.json();
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                for(var i = 0; i < this.StrongLengthsJSON.length; i++){
+                    if (this.StrongLengthsJSON[i].BuildItem === this.DesignArray[0].length){
+                        this.greenhouse_material[6].push(this.StrongLengthsJSON[i].BuildItem)
+                        this.greenhouse_material[6].push(this.StrongLengthsJSON[i].Cost)
+                        this.greenhouse_material[6].push(this.StrongLengthsJSON[i].StructuralRisk)
+                        this.greenhouse_material[6].push(this.StrongLengthsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+            
+            // 強固型屋頂形式
+            const StrongRoofForms = await fetch('/StrongRoofFormJSON',  {
+                method: 'GET',
+            });
+            this.StrongRoofFormsJSON = await StrongRoofForms.json();
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                for(var i = 0; i < this.StrongRoofFormsJSON.length; i++){
+                    if (this.StrongRoofFormsJSON[i].BuildItem === this.DesignArray[0].rooftype){
+                        this.greenhouse_material[1].push(this.StrongRoofFormsJSON[i].BuildItem)
+                        this.greenhouse_material[1].push(this.StrongRoofFormsJSON[i].Cost)
+                        this.greenhouse_material[1].push(this.StrongRoofFormsJSON[i].StructuralRisk)
+                        this.greenhouse_material[1].push(this.StrongRoofFormsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+            
+            // 強固型肩高
+            const StrongShoulderHeights = await fetch('/StrongShoulderHeightJSON',  {
+                method: 'GET',
+            });
+            this.StrongShoulderHeightsJSON = await StrongShoulderHeights.json();
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                for(var i = 0; i < this.StrongShoulderHeightsJSON.length; i++){
+                    if (this.StrongShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder){
+                        this.greenhouse_material[5].push(this.StrongShoulderHeightsJSON[i].BuildItem)
+                        this.greenhouse_material[5].push(this.StrongShoulderHeightsJSON[i].Cost)
+                        this.greenhouse_material[5].push(this.StrongShoulderHeightsJSON[i].StructuralRisk)
+                        this.greenhouse_material[5].push(this.StrongShoulderHeightsJSON[i].JobDifficulty)
+                    }
+                }
+            }
+            
+            // 強固型跨距
+            const StrongSpans = await fetch('/StrongSpanJSON',  {
+                method: 'GET',
+            });
+            this.StrongSpansJSON = await StrongSpans.json();
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                for(var i = 0; i < this.StrongSpansJSON.length; i++){
+                    if (this.StrongSpansJSON[i].BuildItem === this.DesignArray[0].span){
+                        this.greenhouse_material[4].push(this.StrongSpansJSON[i].BuildItem)
+                        this.greenhouse_material[4].push(this.StrongSpansJSON[i].Cost)
+                        this.greenhouse_material[4].push(this.StrongSpansJSON[i].StructuralRisk)
+                        this.greenhouse_material[4].push(this.StrongSpansJSON[i].JobDifficulty)
+                    }
+                }
+            }
+            
+            // 強固型上拱距
+            const StrongUpperArchDistances = await fetch('/StrongUpperArchDistanceJSON',  {
+                method: 'GET',
+            });
+            this.StrongUpperArchDistancesJSON = await StrongUpperArchDistances.json();
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                for(var i = 0; i < this.StrongUpperArchDistancesJSON.length; i++){
+                    if (this.StrongUpperArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
+                        this.greenhouse_material[2].push(this.StrongUpperArchDistancesJSON[i].BuildItem)
+                        this.greenhouse_material[2].push(this.StrongUpperArchDistancesJSON[i].Cost)
+                        this.greenhouse_material[2].push(this.StrongUpperArchDistancesJSON[i].StructuralRisk)
+                        this.greenhouse_material[2].push(this.StrongUpperArchDistancesJSON[i].JobDifficulty)
+                    }
+                }
+            }
+
         },
         
     },
