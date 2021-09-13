@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Welcome from './views/Welcome.vue';
 import Home from './views/Home.vue';
 import Development from './views/Development.vue';
 
@@ -33,12 +32,9 @@ import GreenhouseStructureAnalysis_SimpleGreenhouse from './views/GreenhouseTech
 // 溫室總體規劃
 import GreenhouseMasterPlan_GeographicalEnvironmentAnalysis from './views/GreenhouseMasterPlan/GeographicalEnvironmentAnalysis.vue';
 import GreenhouseMasterPlan_CropSelection from './views/GreenhouseMasterPlan/GreenhouseCropSelection/CropSelection.vue';
-import GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis from './views/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis.vue';
-import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis.vue';
 import Steel from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseSteel.vue';
 import load from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseStructuralLoad.vue';
 import CoatedFilm from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseCoatedFilm.vue';
-import GreenhouseMasterPlan_GreenhouseConstructionCostAnalysisHard from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysisHard.vue';
 import GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis from './views/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis.vue';
 import GreenhouseMasterPlan_GreenhouseDesign from './views/GreenhouseMasterPlan/GreenhouseDesign.vue';
 
@@ -51,7 +47,6 @@ import GreenhouseMasterPlan_EnvironmentalControlDesign_LightEnvironment from './
 import EnvironmentNeed from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/LightEnvironment_need.vue';
 import TempEnvironmentNeed from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment_need.vue';
 import GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/TemperatureEnvironment.vue';
-import GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment from './views/GreenhouseMasterPlan/EnvironmentalControlDesign/GasEnvironment.vue';
 import OverallPlanbase from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.vue';
 import PlanDesign from './views/GreenhouseMasterPlan/GreenhousePlanDesign.vue';
 import Widget from './views/GreenhouseMasterPlan/Greenhousewidget.vue';
@@ -123,13 +118,6 @@ const routes = [{
     path: '/EnvironmentalControlDesign/TemperatureEnvironment',
     name: '環控設計_溫環境',
     component: GreenhouseMasterPlan_EnvironmentalControlDesign_TemperatureEnvironment,
-    meta: {
-        auth: undefined
-    }
-}, {
-    path: '/EnvironmentalControlDesign/GasEnvironment',
-    name: '環控設計_氣環境',
-    component: GreenhouseMasterPlan_EnvironmentalControlDesign_GasEnvironment,
     meta: {
         auth: undefined
     }
@@ -267,31 +255,6 @@ const routes = [{
         auth: undefined
     }
 }, {
-    path: '/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis',
-    name: '作物環境分析',
-    component: GreenhouseMasterPlan_CropEnvironmentalDemandAnalysis,
-    meta: {
-        auth: undefined
-    }
-}, {
-
-    path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/easy',
-    name: '溫室構造成本分析',
-    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysis,
-    meta: {
-        auth: undefined
-    }
-
-
-}, {
-    path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/hard',
-    name: '溫室構造成本分析',
-    component: GreenhouseMasterPlan_GreenhouseConstructionCostAnalysisHard,
-    meta: {
-        auth: undefined
-    }
-
-}, {
     path: '/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis',
     name: '溫室材料成本分析',
     component: GreenhouseMasterPlan_GreenhouseMaterialCostAnalysis,
@@ -316,13 +279,6 @@ const routes = [{
     path: '/categories',
     name: 'categories',
     component: Categories,
-    meta: {
-        auth: undefined
-    }
-}, {
-    path: '/123',
-    name: 'welcome',
-    component: Welcome,
     meta: {
         auth: undefined
     }

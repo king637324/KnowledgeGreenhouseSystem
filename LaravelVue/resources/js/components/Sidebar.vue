@@ -55,14 +55,6 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
 
-                        <!-- <div class="sb-sidenav-menu-heading">測試</div>
-
-                        <router-link to="/test" class="nav-link" exact>
-                            <b-icon icon="hammer"></b-icon> 頁面測試
-                        </router-link>
-                        <router-link to="/categories" class="nav-link" exact>
-                            Categories
-                        </router-link> -->
                         <div class="sb-sidenav-menu-heading">規劃</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#總體規劃" aria-expanded="false" style="font-size:20px;">
                             溫室總體規畫系統
@@ -74,9 +66,9 @@
                                 <router-link to="/GreenhouseMasterPlan/GreenhouseOverallPlanbase" class="nav-link" style="font-size:18px;" exact>
                                     A.溫室基本資訊輸入
                                 </router-link>
-                                <a class="nav-link collapseㄎd" href="#" data-toggle="collapse" data-target="#作物需求與環境分析" style="font-size:18px;" aria-expanded="false" aria-controls="成本分析">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#作物需求與環境分析" style="font-size:18px;" aria-expanded="false" aria-controls="成本分析">
                                     B.作物需求環境分析
-                                    <div class="sb-sidenav-collaㄅpse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="作物需求與環境分析" aria-labelledby="headingOne">
                                     <nav class="sb-sidenav-menu-nested nav">
@@ -318,66 +310,6 @@
 
                             </nav>
                         </div>
-
-
-
-                        
-                        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#溫室總體規劃系統" aria-expanded="false" aria-controls="溫室總體規劃系統">
-                            <div class="sb-nav-link-icon"><b-icon icon="book"></b-icon></div>
-                            溫室總體規劃系統
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a> -->
-
-                                <!-- <router-link to="/GreenhouseMasterPlan/CropSelection" class="nav-link" exact>
-                                    溫室作物選擇
-                                </router-link>
-
-                                <router-link to="/GreenhouseMasterPlan/CropEnvironmentalDemandAnalysis" class="nav-link" exact>
-                                    作物環境需求分析
-
-
-                                </router-link> -->
-
-
-
-
-
-                                <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#成本分析" aria-expanded="false" aria-controls="成本分析">
-
-
-                                    成本分析
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="成本分析" aria-labelledby="headingOne" data-parent="#溫室總體規劃系統">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" class="nav-link" exact>
-                                            溫室材料成本分析
-                                        </router-link>
-
-
-                                        <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseConstructionCostAnalysis/easy" class="nav-link" exact>
-
-
-                                            溫室構造成本分析
-                                        </router-link>
-                                        <router-link to="/Development" class="nav-link" exact>
-                                            生產設備成本分析
-                                        </router-link>
-                                        <router-link to="/Development" class="nav-link" exact>
-                                            環控設備成本分析
-                                        </router-link>
-                                        <router-link to="/Development" class="nav-link" exact>
-                                            生產營運成本分析
-                                        </router-link>
-                                    </nav>
-                                </div>
-
-                                <router-link to="/RiskAnalysis" class="nav-link" exact>
-                                    風險分析
-
-                                </router-link> -->
-
-
 
                         <div class="sb-sidenav-menu-heading">其他</div>
                         <router-link to="/UnitConversion" class="nav-link" style="font-size:20px;"  exact> 
