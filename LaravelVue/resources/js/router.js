@@ -54,8 +54,6 @@ import Result from './views/GreenhouseMasterPlan/GreenhouseResult.vue';
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
-import Categories from './views/Categories.vue';
-
 Vue.use(VueRouter);
 
 const routes = [{
@@ -272,13 +270,6 @@ const routes = [{
     path: '/UnitConversion',
     name: '各單位換算',
     component: UnitConversion,
-    meta: {
-        auth: undefined
-    }
-}, {
-    path: '/categories',
-    name: 'categories',
-    component: Categories,
     meta: {
         auth: undefined
     }

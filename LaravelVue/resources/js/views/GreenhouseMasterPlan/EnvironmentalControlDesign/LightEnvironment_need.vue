@@ -90,34 +90,34 @@
                             </v-col>
                         </v-row>
                         <table style="border:1px solid black;" border='1'>
-                        <tr align="center">
-                            <td></td>
-                            <td>1月份</td>
-                            <td>2月份</td>
-                            <td>3月份</td>
-                            <td>4月份</td>
-                            <td>5月份</td>
-                            <td>6月份</td>
-                            <td>7月份</td>
-                            <td>8月份</td>
-                            <td>9月份</td>
-                            <td>10月份</td>
-                            <td>11月份</td>
-                            <td>12月份</td>
-                            <td>平均</td>
-                        </tr>
-                        <tr align="center" id="HighTemperatureDifference">
-                            <td>全天空日射量</td>
-                            <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[0].data[String(n)+'月']/30*100)/100}}</td>
-                            <td>{{ Math.round(average_total/12*100)/100 }}</td>
-                        </tr>
-                        <tr align="center" id="HighApproach">
-                            <td>日照時數</td>
-                            <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[1].data[String(n)+'月']/30*100)/100}}</td>
-                            <td>{{ Math.round(average_sun/12*100)/100 }}</td>
-                        </tr>
+                            <tr align="center">
+                                <td></td>
+                                <td>1月份</td>
+                                <td>2月份</td>
+                                <td>3月份</td>
+                                <td>4月份</td>
+                                <td>5月份</td>
+                                <td>6月份</td>
+                                <td>7月份</td>
+                                <td>8月份</td>
+                                <td>9月份</td>
+                                <td>10月份</td>
+                                <td>11月份</td>
+                                <td>12月份</td>
+                                <td>平均</td>
+                            </tr>
+                            <tr align="center" id="HighTemperatureDifference">
+                                <td>全天空日射量</td>
+                                <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[0].data[String(n)+'月']/30*100)/100}}</td>
+                                <td>{{ Math.round(average_total/12*100)/100 }}</td>
+                            </tr>
+                            <tr align="center" id="HighApproach">
+                                <td>日照時數</td>
+                                <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[1].data[String(n)+'月']/30*100)/100}}</td>
+                                <td>{{ Math.round(average_sun/12*100)/100 }}</td>
+                            </tr>
                         
-                    </table>
+                        </table>
                     </v-container-fluid>
                 </b-card-text>
 

@@ -682,6 +682,111 @@
                         </v-row>
                     </div>
                 </v-col>
+                <v-row>
+                    <v-col>
+                        <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
+                            <v-row>
+                                <v-col cols="12">
+                                    <h3>光控分析</h3>
+                                </v-col>
+                                <v-col cols="12">
+                                    <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
+                                    <table style="border:1px solid black;" border='1'>
+                                        <tr align="center">
+                                            <td></td>
+                                            <td>1月份</td>
+                                            <td>2月份</td>
+                                            <td>3月份</td>
+                                            <td>4月份</td>
+                                            <td>5月份</td>
+                                            <td>6月份</td>
+                                            <td>7月份</td>
+                                            <td>8月份</td>
+                                            <td>9月份</td>
+                                            <td>10月份</td>
+                                            <td>11月份</td>
+                                            <td>12月份</td>
+                                            <td>平均</td>
+                                        </tr>
+                                        <tr align="center" id="HighTemperatureDifference">
+                                            <td>全天空日射量</td>
+                                            <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[0].data[String(n)+'月']/30*100)/100}}</td>
+                                            <td>{{ Math.round(average_total/12*100)/100 }}</td>
+                                        </tr>
+                                        <tr align="center" id="HighApproach">
+                                            <td>日照時數</td>
+                                            <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[1].data[String(n)+'月']/30*100)/100}}</td>
+                                            <td>{{ Math.round(average_sun/12*100)/100 }}</td>
+                                        </tr>
+                                    </table>
+                                </v-col>
+                            </v-row>
+                        </div>
+                    </v-col>
+                    <v-col>
+                        <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
+                            <v-row>
+                                <v-col cols="12">
+                                    <h3>溫控分析</h3>
+                                </v-col>
+                                <v-col cols="12">
+                                    <line-chart xtitle="月份" ytitle="溫度" :discrete="true" :data="CropTemperature" height="30vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
+                                    <table style="border:1px solid black;" border='1'>
+                                        <tr align="center">
+                                            <td></td>
+                                            <td>1月份</td>
+                                            <td>2月份</td>
+                                            <td>3月份</td>
+                                            <td>4月份</td>
+                                            <td>5月份</td>
+                                            <td>6月份</td>
+                                            <td>7月份</td>
+                                            <td>8月份</td>
+                                            <td>9月份</td>
+                                            <td>10月份</td>
+                                            <td>11月份</td>
+                                            <td>12月份</td>
+                                            <td>合計</td>
+                                        </tr>
+                                        <tr align="center" id="HighTemperatureDifference">
+                                            <td>高溫差</td>
+                                            <td v-for="(temperature, index) in StrHighTemperature" :key="index">
+                                                {{parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[1]+3}}
+                                            </td>
+                                            <td rowspan="2">{{ total_temp_high }}</td>
+                                        </tr>
+                                        <tr align="center" id="HighApproach">
+                                            <td>環控</td>
+                                            <td v-for="(temperature, index) in StrHighTemperature" :key="index" v-if="parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[1]+3 > 0" >
+                                                需降溫
+                                            </td>
+                                            <td v-else>
+                                                -
+                                            </td>
+
+                                        </tr>
+                                        <tr align="center">
+                                            <td>低溫差</td>
+                                            <td v-for="(temperature, index) in StrLowTemperature" :key="index">
+                                                {{parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[0]+3}}
+                                            </td>
+                                            <td rowspan="2">{{ total_temp_low }}</td>
+                                        </tr>
+                                        <tr align="center">
+                                            <td>環控</td>
+                                            <td v-for="(temperature, index) in StrLowTemperature" :key="index" v-if="parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[0]+3 < 0">
+                                                需加溫
+                                            </td>
+                                            <td v-else>
+                                                -
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </v-col>
+                            </v-row>
+                        </div>
+                    </v-col>
+                </v-row>
             </v-row>
         </v-container>
     </div>   
@@ -727,6 +832,24 @@
         design_story:null,
         roof_type:['WTG','SP','VTP','UTP','VBP','UBP','UP'],
         roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓形力霸','山型塑膠膜','圓型塑膠膜','簡易溫室'],
+        GloblRadSunShineChartData:[
+            {name: "日照時數(小時)", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+            {name: "全天空日射量(MJ/㎡)", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+        ],
+        StrHighTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最高月均溫
+        StrLowTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最低月均溫
+        StrOptimalTemperature:[0,0],
+        CropTemperature:[
+            {name: "溫室平均月均溫", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+            // {name: "地區最高月均溫", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+            {name: "作物生長最適溫區間", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+            {name: "作物生長最適溫區間", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
+        ],  // 所選作物的種植最適溫度 圖表用
+        total_temp_high:0,
+        total_temp_low:0,
+        OptimalGrowthTemperature: '-',
+        average_sun:0,
+        average_total:0,
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -1184,7 +1307,71 @@
                     }
                 }
             }
+            var StrGloblRad,StrSunShine; // 字串切割：全天空日射量、日照量
+            // 取得 風速、風力登陸分析、風力路徑分析
+            for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+                if((this.overplanArray[0].localcity == this.regionalwindspeedjson[i].County ) && (this.overplanArray[0].localarea == this.regionalwindspeedjson[i].Region )){
+                    StrGloblRad = this.regionalwindspeedjson[i].monthGloblRad.split(",");
+                    StrSunShine = this.regionalwindspeedjson[i].monthSunShine.split(",");
+                    break;
+                }
+            }
 
+            for (var i = 0; i < 12; i++) {
+                this.average_total += Math.round(StrGloblRad[i]/30*100)/100
+                this.average_sun += Math.round(StrSunShine[i]/30*100)/100
+            }
+
+            this.GloblRadSunShineChartData = [
+                {name: "全天空日射量(MJ/㎡)", data: {"1月":StrGloblRad[0],"2月":StrGloblRad[1],"3月":StrGloblRad[2],"4月":StrGloblRad[3],"5月":StrGloblRad[4],"6月":StrGloblRad[5],"7月":StrGloblRad[6],"8月":StrGloblRad[7],"9月":StrGloblRad[8],"10月":StrGloblRad[9],"11月":StrGloblRad[10],"12月":StrGloblRad[11]}},
+                {name: "日照時數(小時)", data: {"1月":StrSunShine[0],"2月":StrSunShine[1],"3月":StrSunShine[2],"4月":StrSunShine[3],"5月":StrSunShine[4],"6月":StrSunShine[5],"7月":StrSunShine[6],"8月":StrSunShine[7],"9月":StrSunShine[8],"10月":StrSunShine[9],"11月":StrSunShine[10],"12月":StrSunShine[11]}},
+            ];
+
+            for(var i = 0 ; i < this.vegetablejson.length ; i++){
+                if(this.vegetablejson[i].VegetableTypes === this.overplanArray[0].cropplant){
+                    this.OptimalGrowthTemperature = this.vegetablejson[i].OptimalGrowthTemperature;
+                    this.StrOptimalTemperature = this.OptimalGrowthTemperature.split("~");
+                    break;
+                }
+            }
+
+            // 更新 作物生長最適溫最高區間 的圖表
+            this.CropTemperature[1].data = {"1月":this.StrOptimalTemperature[0],"2月":this.StrOptimalTemperature[0],"3月":this.StrOptimalTemperature[0],"4月":this.StrOptimalTemperature[0],"5月":this.StrOptimalTemperature[0],"6月":this.StrOptimalTemperature[0],"7月":this.StrOptimalTemperature[0],"8月":this.StrOptimalTemperature[0],"9月":this.StrOptimalTemperature[0],"10月":this.StrOptimalTemperature[0],"11月":this.StrOptimalTemperature[0],"12月":this.StrOptimalTemperature[0]};
+            // 更新 作物生長最適溫最低區間 的圖表
+            this.CropTemperature[2].data = {"1月":this.StrOptimalTemperature[1],"2月":this.StrOptimalTemperature[1],"3月":this.StrOptimalTemperature[1],"4月":this.StrOptimalTemperature[1],"5月":this.StrOptimalTemperature[1],"6月":this.StrOptimalTemperature[1],"7月":this.StrOptimalTemperature[1],"8月":this.StrOptimalTemperature[1],"9月":this.StrOptimalTemperature[1],"10月":this.StrOptimalTemperature[1],"11月":this.StrOptimalTemperature[1],"12月":this.StrOptimalTemperature[1]};
+            for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+                if((this.overplanArray[0].localcity == this.regionalwindspeedjson[i].County ) && (this.overplanArray[0].localarea == this.regionalwindspeedjson[i].Region )){
+                    this.StrHighTemperature = this.regionalwindspeedjson[i].monthHighTemperature.split(",");
+                    this.StrLowTemperature = this.regionalwindspeedjson[i].monthLowTemperature.split(",");
+                    break;
+                }
+            }
+            // 更新 地區最低月均溫 的圖表
+            this.CropTemperature[0].data = {
+                "1月":parseFloat((parseInt(this.StrLowTemperature[0])+parseInt(this.StrHighTemperature[0]))/2)+3,
+                "2月":parseFloat((parseInt(this.StrLowTemperature[1])+parseInt(this.StrHighTemperature[1]))/2)+3,
+                "3月":parseFloat((parseInt(this.StrLowTemperature[2])+parseInt(this.StrHighTemperature[2]))/2)+3,
+                "4月":parseFloat((parseInt(this.StrLowTemperature[3])+parseInt(this.StrHighTemperature[3]))/2)+3,
+                "5月":parseFloat((parseInt(this.StrLowTemperature[4])+parseInt(this.StrHighTemperature[4]))/2)+3,
+                "6月":parseFloat((parseInt(this.StrLowTemperature[5])+parseInt(this.StrHighTemperature[5]))/2)+3,
+                "7月":parseFloat((parseInt(this.StrLowTemperature[6])+parseInt(this.StrHighTemperature[6]))/2)+3,
+                "8月":parseFloat((parseInt(this.StrLowTemperature[7])+parseInt(this.StrHighTemperature[7]))/2)+3,
+                "9月":parseFloat((parseInt(this.StrLowTemperature[8])+parseInt(this.StrHighTemperature[8]))/2)+3,
+                "10月":parseFloat((parseInt(this.StrLowTemperature[9])+parseInt(this.StrHighTemperature[9]))/2)+3,
+                "11月":parseFloat((parseInt(this.StrLowTemperature[10])+parseInt(this.StrHighTemperature[10]))/2)+3,
+                "12月":parseFloat((parseInt(this.StrLowTemperature[11])+parseInt(this.StrHighTemperature[11]))/2)+3,
+            };
+            this.total_temp_high = 0;
+            this.total_temp_low = 0;
+            for(var i = 0 ; i < 12 ; i++){
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0){
+                    this.total_temp_high += parseFloat(parseFloat((parseFloat(this.StrHighTemperature[i])+parseFloat(this.StrLowTemperature[i]))/2)-this.StrOptimalTemperature[1]+3)
+                }
+                
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0){  
+                    this.total_temp_low += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3)
+                }
+            }
         },
         
     },
