@@ -282,7 +282,18 @@
                         <th> 作業難度</th>
                         <td> {{ material[4] }} </td>
                     </tr>
-
+                    <tr>
+                        <th style="color:red"> 每平方米單價</th>
+                        <td style="color:red"> {{Math.floor(SimpleCostAdd*650)}} </td>
+                        <th style="color:red"> 每坪單價</th>
+                        <td style="color:red"> {{Math.floor(SimpleCostAdd*650/0.3025)}} </td>
+                        <th style="color:red"> 總價</th>
+                        <td style="color:red"> {{Math.floor(SimpleCostAdd*650*overplanArray[0].croparea)}} </td>
+                        <th style="color:red"> 風險指數</th>
+                        <td style="color:red"> {{SimpleStructuralRiskAdd}} </td>
+                        <th style="color:red"> 工期</th>
+                        <td style="color:red"> {{Math.round(20+SimpleJobDifficultyAdd*40*overplanArray[0].croparea/1000*100)/100}} </td>
+                    </tr>
                 </table>
             </v-row>
             <v-row>
@@ -850,6 +861,13 @@
         OptimalGrowthTemperature: '-',
         average_sun:0,
         average_total:0,
+        SimpleCostAdd:0,
+        SimpleCostratiosJSON:[],
+        SimpleCostratios:[],
+        SimpleJobDifficultyAdd:0,
+        SimpleStructuralRiskAdd:0,
+        SimpleTotalSimpleCost:0,
+        SimpleHousrBasePrice:500000,
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -1032,6 +1050,16 @@
                 this.greenhouse_material = [['溫室型材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
             } else{
                 this.greenhouse_material = [['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
+            }
+
+            const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
+            method: 'GET',
+            });
+            this.SimpleCostratiosJSON = await SimpleCostratios.json();
+            for(var i = 0 ; i < this.SimpleCostratiosJSON.length ; i++){
+                if(this.SimpleCostratiosJSON[i].Expert == "System"){
+                    this.SimpleCostratios.push(this.SimpleCostratiosJSON[i]);
+                }
             }
 
             // 簡易型圓拱距
@@ -1372,6 +1400,17 @@
                     this.total_temp_low += parseFloat(parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3)
                 }
             }
+
+            for (var i = 0; i < this.greenhouse_material.length; i++) {
+                this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.greenhouse_material[i][2] * this.SimpleCostratios[i].Cost / 100;
+                this.SimpleCostAdd += this.greenhouse_material[i][2] * this.SimpleCostratios[i].Cost / 100;
+                this.SimpleStructuralRiskAdd += this.greenhouse_material[i][3] * this.SimpleCostratios[i].StructuralRisk / 100;
+                this.SimpleJobDifficultyAdd += this.greenhouse_material[i][4] * this.SimpleCostratios[i].JobDifficulty/ 100;
+            }
+            this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
+            this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
+            this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);
+            this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
         },
         
     },
