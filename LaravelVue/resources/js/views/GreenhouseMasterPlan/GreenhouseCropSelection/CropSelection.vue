@@ -206,8 +206,8 @@
                         <td colspan="3" style='width:16vmin'> 生長溫度</td>
                         <td colspan="3" style='width:16vmin'> 發芽溫度 </td>
                         <td rowspan="2" style='width:13vmin'> CO₂增產率 </td>
-                        <td rowspan="2" style='width:13vmin' v-if="$auth.check()"> <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">編輯 </div></td>
-                        <td rowspan="2" style='width:13vmin' v-if="$auth.check()"> <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">刪除 </div> </td>
+                        <td rowspan="2" style='width:13vmin' v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> <div>編輯 </div></td>
+                        <td rowspan="2" style='width:13vmin' v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'"> <div>刪除 </div> </td>
                     </tr>
                     <tr align="center">
                         <td> 最低溫 </td>
@@ -237,14 +237,14 @@
                     <td> {{crop.OptimumGerminationTemperature}} </td>
                     <td> {{crop.HighestGerminationTemperature}} </td>
                     <td> {{crop.CO2IncreasedProductionRate}} </td>
-                    <td v-if="$auth.check()">
-                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                    <td v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                        <div>
                             <!-- 修改 -->
                             <button class="btn btn-primary btn-sm" v-on:click="EditCrop(crop)"><span class="fa fa-edit"></span></button>
                         </div>
                     </td>
-                    <td v-if="$auth.check()">
-                        <div v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                    <td v-if="$auth.user().identity === '管理者' || $auth.user().identity === '專家'">
+                        <div>
                             <!-- 刪除 -->
                             <button class="btn btn-danger btn-sm"  v-on:click="deleteCrop(crop.id)"><span class="fa fa-trash"></span></button>
                         </div>
