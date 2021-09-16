@@ -1493,7 +1493,7 @@
         checkedNames: [],
         
         /* 簡易型溫室 */
-        SelectSimple:[],
+        SelectSimple:[['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']],
         SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
         SimpleCostratios: [],               // 簡易型各建構項目比例
         SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
@@ -1739,7 +1739,7 @@
         this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
         for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
             if (this.SimpleCircularArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
-                this.SelectSimple.push(['圓拱距',this.SimpleCircularArchDistancesJSON[i]])
+                this.SelectSimple[2].push(this.SimpleCircularArchDistancesJSON[i])
             }
             if(this.SimpleCircularArchDistancesJSON[i].Expert == "System"){
                 this.SimpleCircularArchDistances.push(this.SimpleCircularArchDistancesJSON[i]);
@@ -1754,7 +1754,7 @@
         this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
         for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
             if (this.SimpleCoatingFilmsJSON[i].BuildItem === this.DesignArray[0].drape){
-                this.SelectSimple.push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
+                this.SelectSimple[8].push(this.SimpleCoatingFilmsJSON[i])
                 this.SelectRobust.push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
             }
             if(this.SimpleCoatingFilmsJSON[i].Expert == "System"){
@@ -1771,7 +1771,7 @@
         this.SimpleContinuitysJSON = await SimpleContinuitys.json();
         for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
             if (this.SimpleContinuitysJSON[i].BuildItem === this.DesignArray[0].continue){
-                this.SelectSimple.push(['連續性',this.SimpleContinuitysJSON[i]])
+                this.SelectSimple[7].push(this.SimpleContinuitysJSON[i])
             }
             if(this.SimpleContinuitysJSON[i].Expert == "System"){
                 this.SimpleContinuitys.push(this.SimpleContinuitysJSON[i]);
@@ -1784,7 +1784,7 @@
         this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
         for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
             if (this.SimpleDomeFormsJSON[i].BuildItem === this.DesignArray[0].rooftype){
-                this.SelectSimple.push(['圓頂形式',this.SimpleDomeFormsJSON[i]])
+                this.SelectSimple[1].push(this.SimpleDomeFormsJSON[i])
             }
             if(this.SimpleDomeFormsJSON[i].Expert == "System"){
                 this.SimpleDomeForms.push(this.SimpleDomeFormsJSON[i]);
@@ -1797,7 +1797,7 @@
         this.SimpleFoundationsJSON = await SimpleFoundations.json();
         for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
             if (this.SimpleFoundationsJSON[i].BuildItem === this.DesignArray[0].base){
-                this.SelectSimple.push(['基礎',this.SimpleFoundationsJSON[i]])
+                this.SelectSimple[3].push(this.SimpleFoundationsJSON[i])
             }
             if(this.SimpleFoundationsJSON[i].Expert == "System"){
                 this.SimpleFoundations.push(this.SimpleFoundationsJSON[i]);
@@ -1810,7 +1810,7 @@
         this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
         for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
             if (this.SimpleGreenhousePipesJSON[i].BuildItem === this.DesignArray[0].pipetype){
-                this.SelectSimple.push(['溫室管材',this.SimpleGreenhousePipesJSON[i]])
+                this.SelectSimple[0].push(this.SimpleGreenhousePipesJSON[i])
             }
             if(this.SimpleGreenhousePipesJSON[i].Expert == "System"){
                 this.SimpleGreenhousePipes.push(this.SimpleGreenhousePipesJSON[i]);
@@ -1823,7 +1823,7 @@
         this.SimpleLengthsJSON = await SimpleLengths.json();
         for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
             if (this.SimpleLengthsJSON[i].BuildItem === this.DesignArray[0].length){
-                this.SelectSimple.push(['長度',this.SimpleLengthsJSON[i]])
+                this.SelectSimple[6].push(this.SimpleLengthsJSON[i])
             }
             if(this.SimpleLengthsJSON[i].Expert == "System"){
                 this.SimpleLengths.push(this.SimpleLengthsJSON[i]);
@@ -1836,7 +1836,7 @@
         this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
         for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
             if (this.SimpleShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder){
-                this.SelectSimple.push(['肩高',this.SimpleShoulderHeightsJSON[i]])
+                this.SelectSimple[5].push(this.SimpleShoulderHeightsJSON[i])
             }
             if(this.SimpleShoulderHeightsJSON[i].Expert == "System"){
                 this.SimpleShoulderHeights.push(this.SimpleShoulderHeightsJSON[i]);
@@ -1849,7 +1849,7 @@
         this.SimpleSpansJSON = await SimpleSpans.json();
         for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
             if (this.SimpleSpansJSON[i].BuildItem === this.DesignArray[0].span){
-                this.SelectSimple.push(['跨距',this.SimpleSpansJSON[i]])
+                this.SelectSimple[4].push(this.SimpleSpansJSON[i])
             }
             if(this.SimpleSpansJSON[i].Expert == "System"){
                 this.SimpleSpans.push(this.SimpleSpansJSON[i]);
@@ -1863,8 +1863,9 @@
             for (var i = 0; i < this.SelectSimple.length; i++) {
                 this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
                 this.SimpleCostAdd += this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
-                this.SimpleStructuralRiskAdd += this.SelectSimple[i][1].StructuralRisk * this.SimpleCostratios[i].StructuralRisk / 100;
-                this.SimpleJobDifficultyAdd += this.SelectSimple[i][1].JobDifficulty * this.SimpleCostratios[i].JobDifficulty/ 100;
+                this.SimpleStructuralRiskAdd += this.SelectSimple[i][1].StructuralRisk * (this.SimpleCostratios[i].StructuralRisk / 100);
+                window.alert(this.SimpleCostratios[i].StructuralRisk)
+                this.SimpleJobDifficultyAdd += this.SelectSimple[i][1].JobDifficulty * (this.SimpleCostratios[i].JobDifficulty/ 100);
             }
             this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
             this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
