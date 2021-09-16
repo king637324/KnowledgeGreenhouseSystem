@@ -1405,10 +1405,8 @@
                 this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.greenhouse_material[i][2] * this.SimpleCostratios[i].Cost / 100;
                 this.SimpleCostAdd += this.greenhouse_material[i][2] * this.SimpleCostratios[i].Cost / 100;
                 this.SimpleStructuralRiskAdd += this.greenhouse_material[i][3] * (this.SimpleCostratios[i].StructuralRisk / 100);
-                window.alert(this.SimpleCostratios[i].StructuralRisk)
                 this.SimpleJobDifficultyAdd += this.greenhouse_material[i][4] * (this.SimpleCostratios[i].JobDifficulty/ 100);
             }
-            window.alert(this.SimpleStructuralRiskAdd+'-'+this.SimpleJobDifficultyAdd)
             this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
             this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
             this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);

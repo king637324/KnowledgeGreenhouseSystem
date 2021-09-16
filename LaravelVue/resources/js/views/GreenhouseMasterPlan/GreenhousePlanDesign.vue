@@ -1864,7 +1864,6 @@
                 this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
                 this.SimpleCostAdd += this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
                 this.SimpleStructuralRiskAdd += this.SelectSimple[i][1].StructuralRisk * (this.SimpleCostratios[i].StructuralRisk / 100);
-                window.alert(this.SimpleCostratios[i].StructuralRisk)
                 this.SimpleJobDifficultyAdd += this.SelectSimple[i][1].JobDifficulty * (this.SimpleCostratios[i].JobDifficulty/ 100);
             }
             this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
