@@ -476,8 +476,8 @@ export default {
             ProfileCost:null,
             ProfileTotal:null,
 
-            steelcheck:[],
-            steelcheck2:[],
+            steelarray:[],
+
             SteelJson:[],
             steel_name:[],
 
@@ -513,6 +513,8 @@ export default {
                 method: 'GET',
             });
             this.MaterialCostjson = await MaterialCostJSON.json();
+            this.steelarray = JSON.parse(JSON.stringify(this.MaterialCostjson));
+            
 
             // 美金價格
             const USDJSON = await fetch('/USDPriceJSON',  {
@@ -588,26 +590,26 @@ export default {
                     }
                 }
 
-                if(this.MaterialCostjson[i].Type == "管材"){
+                if(this.steelarray[i].Type == "管材"){
 
-                    this.MaterialCostjson[i].cost = Cost
-                    if (this.steel_name.indexOf(this.MaterialCostjson[i].MaterialName) != -1){
-                        this.MaterialCostjson[i].checked = true
+                    this.steelarray[i].cost = Cost
+                    if (this.steel_name.indexOf(this.steelarray[i].MaterialName) != -1){
+                        this.steelarray[i].checked = true
                     } else {
-                        this.MaterialCostjson[i].checked = false
+                       this.steelarray[i].checked = false
                     }
                     
-                    this.PipeData.push(this.MaterialCostjson[i]);
+                    this.PipeData.push(this.steelarray[i]);
 
-                }else if(this.MaterialCostjson[i].Type == "型材"){
-                    this.MaterialCostjson[i].cost = Cost
-                    if (this.steel_name.indexOf(this.MaterialCostjson[i].MaterialName) != -1){
-                        this.MaterialCostjson[i].checked = true
+                }else if(this.steelarray[i].Type == "型材"){
+                    this.steelarray[i].cost = Cost
+                    if (this.steel_name.indexOf(this.steelarray[i].MaterialName) != -1){
+                        this.steelarray[i].checked = true
                     } else {
-                        this.MaterialCostjson[i].checked = false
+                        this.steelarray[i].checked = false
                     }
                     
-                    this.ProfileData.push(this.MaterialCostjson[i]);
+                    this.ProfileData.push(this.steelarray[i]);
                 }
             }
 
@@ -616,10 +618,14 @@ export default {
 
         },updateSelectPipe:async function(checkid,checktype){   // 更新所選擇的管材
             let pipename = null;
+            let selectpipe_name = [];
             if (checktype === true && this.checkedPipe.indexOf(checkid) === -1){
                 this.checkedPipe.push(checkid)
+                for (var j = 0; j < this.selectPipe.length; j++) { 
+                    selectpipe_name.push(this.selectPipe[j].MaterialName)
+                }
                 for (var i = 0; i < this.PipeData.length; i++) {
-                    if(checkid === this.PipeData[i].id){
+                    if(checkid === this.PipeData[i].id && selectpipe_name.indexOf(this.PipeData[i].MaterialName) === -1){
                         this.PipeData[i].checked = false
                         this.selectPipe.push(this.PipeData[i]);
                     } 
@@ -634,6 +640,8 @@ export default {
                 for(var j = 0; j < this.selectPipe.length; j++){
                     if (this.selectPipe[j].MaterialName === pipename  && this.selectPipe[j].uid === this.$auth.user().id){
                         await Steel.deleteSteel(this.selectPipe[j].id);
+                        this.selectPipe.splice(j,1)
+                    } else if (this.selectPipe[j].MaterialName === pipename){
                         this.selectPipe.splice(j,1)
                     }
                 }

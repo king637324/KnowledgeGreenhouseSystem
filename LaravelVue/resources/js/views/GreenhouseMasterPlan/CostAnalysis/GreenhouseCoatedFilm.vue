@@ -35,7 +35,7 @@
                                                 <td style='width:8vmin'> 副作用 </td>
                                             </tr>
                                         </thead>
-                                        <tr align="center" v-for="(all, index) in CoatingFilmJSON" :key="index">
+                                        <tr align="center" v-for="(all, index) in FilmArray" :key="index">
                                             <td><input type="checkbox" v-model="all.checked" v-on:change="updateSelectPipe(all.id,all.checked)"></td>
                                             <td align="left"> {{all.material}}-{{all.BuildItem}}</td>
                                             <td>{{all.LightLoss}}</td>
@@ -268,6 +268,7 @@ export default {
                 method: 'GET',
             });
             this.CoatingFilmJSON = await CoatingFilmJSON.json();
+            this.FilmArray = JSON.parse(JSON.stringify(this.CoatingFilmJSON));
 
             const Knowledge = await fetch('/KnowledgeJSON',  {
                 method: 'GET',
@@ -307,17 +308,16 @@ export default {
                 if (this.FilmJson[i].uid === this.$auth.user().id){
                     this.filmname.push(this.FilmJson[i].BuildItem)
                     this.FilmJson[i].checked = true
-                    this.FilmArray.push(this.FilmJson[i])
                     this.checkedglass.push(this.FilmJson[i].id)
                     this.selectglass.push(this.FilmJson[i])
                 }
             }
-            for (var i = 0; i < this.CoatingFilmJSON.length; i++){
+            for (var i = 0; i < this.FilmArray.length; i++){
                 for (var j = 0; j < this.FilmJson.length; j++){
-                    if (this.filmname.indexOf(this.CoatingFilmJSON[i].BuildItem) === -1){
-                        this.CoatingFilmJSON[i].checked = false 
+                    if (this.filmname.indexOf(this.FilmArray[i].BuildItem) === -1){
+                        this.FilmArray[i].checked = false 
                     } else{
-                        this.CoatingFilmJSON[i].checked = true
+                        this.FilmArray[i].checked = true
                     }
                 }
             }
