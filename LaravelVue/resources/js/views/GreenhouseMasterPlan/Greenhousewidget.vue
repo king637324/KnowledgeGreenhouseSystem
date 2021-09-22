@@ -591,14 +591,15 @@
                 if (this.WeightJson[i].uid === this.$auth.user().id){
                     this.WeightArray.push(this.WeightJson[i])
                     this.now_user_two = this.WeightJson[i].id
+                    this.radio_roof = this.WeightArray[0].roof_type
+                    this.design_wind = this.WeightArray[0].wind_design
+                    this.design_span = this.WeightArray[0].span_design
+                    this.design_shoulder = this.WeightArray[0].shoulder_design
+                    this.design_story = this.WeightArray[0].continue_design
                 }      
             }
 
-            this.radio_roof = this.WeightArray[0].roof_type
-            this.design_wind = this.WeightArray[0].wind_design
-            this.design_span = this.WeightArray[0].span_design
-            this.design_shoulder = this.WeightArray[0].shoulder_design
-            this.design_story = this.WeightArray[0].continue_design
+            
 
             var filterfalg = false;
             // 篩選重複出現的縣市

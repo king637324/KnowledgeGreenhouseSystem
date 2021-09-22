@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@boboprofessor123 
+king637324
+/
+KnowledgeGreenhouseSystem
+Private
+1
+10
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+KnowledgeGreenhouseSystem/LaravelVue/resources/js/views/GreenhouseMasterPlan/GreenhousePlanDesign.vue
+
+unknown know
+Latest commit b521b0e 17 hours ago
+ History
+ 1 contributor
+2768 lines (2643 sloc)  189 KB
+  
 <template>
 
     <div>
@@ -1300,9 +1329,7 @@
 <!-- 
                 <v-btn fab dark style="position:fixed; bottom: 0; right: 0; z-index: 9999;" v-on:click="showform=false">
                   <b-icon icon="arrow-right"></b-icon>
-
                 </v-btn>
-
         <v-container-fluid v-if="showform==false">
             <v-row>
                 <v-col>
@@ -1321,7 +1348,6 @@
                                                         <h6 class="mb-0">
                                                             <b-icon icon="flower1"></b-icon> 
                                                             {{ time.getFullYear() }}/{{ time.getMonth()+1 }}/{{ time.getDate() }}-{{ OverPlan.plant }}-{{ index+1 }}
-
                                                             <button type="button" style="float:right; width:20px; height:20px;" v-on:click="deleterecord(OverPlan.pid)"><b-icon icon="X"></b-icon></button>
                                                         </h6>
                                                     </template>
@@ -1353,14 +1379,12 @@
                                 </b-card-group>
                             </b-card-text>
                         </b-card>
-
                     </b-card-group>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col>
                     <b-card-group deck>
-
                         <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                             <template #header>
                                 <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 規劃結果-比較分析</h6>
@@ -1453,7 +1477,6 @@
                         </b-card>
                     </b-card-group>                   
                 </v-col> 
-
                 <v-btn fab dark style="position:fixed; bottom: 0; right: 0; z-index: 9999;" v-on:click="showform=true">
                   <b-icon icon="arrow-left"></b-icon>
                 </v-btn>
@@ -1493,12 +1516,11 @@
         checkedNames: [],
         
         /* 簡易型溫室 */
-        SelectSimple:[['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']],
+        SelectSimple:[],
         SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
         SimpleCostratios: [],               // 簡易型各建構項目比例
         SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
         SimpleCircularArchDistances: [],    // 簡易型圓拱距
-
         SimpleCoatingFilmsJSON: [],             // 簡易型披覆材料
         SimpleCoatingFilms: [],             // 簡易型披覆材料
         SimpleContinuitysJSON: [],              // 簡易型連續性
@@ -1526,7 +1548,6 @@
         SimpleShoulderHeight:null,  // 簡易型肩高
         SimpleLength:null,  // 簡易型長度
         SimpleContinuity:null,  // 簡易型連續性
-
         SimpleCoatingFilm:null,  // 簡易型披覆材料
         SimpleHousrBasePrice:500000, // 簡易型溫室基本價格
         SimpleTotalSimpleCost:0,
@@ -1537,7 +1558,6 @@
         SelectRobust:[],
         StrongCostRatiosJSON: [],               // 強固型各建構項目比例
         StrongCostRatios: [],               // 強固型各建構項目比例
-
         StrongCoatingFilmsJSON: [],             // 強固型披覆材料
         StrongCoatingFilms: [],             // 強固型披覆材料
         StrongContinuitysJSON: [],              // 強固型連續性
@@ -1567,41 +1587,33 @@
         RobustShoulderHeight:null,   // 強固型肩高
         RobustLength:null,   // 強固型長度
         RobustContinuity:null,   // 強固型連續性
-
         RobustCoatingFilm:null,   // 強固型披覆材料
         RuggedHousrBasePrice :1500000,  // 強固型溫室基本價格
         RobustTotalCost:0,
         RobustCostAdd:0,
         RobustStructuralRiskAdd:0,
         RobustJobDifficultyAdd:0,
-
         time: new Date(),
         OverPlanJson: [],
         overplanArray: [],
-
         showform:true,
-
         allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
         position:0,
         knowledge:['==溫室設計==','溫室管材&型材','圓頂形式','圓拱距','基礎','跨距','肩高','長度','連續性','披覆材料'],
         material:['==材料設計==','型管材','披腹膜'],
         knowledgeIdx:'==溫室設計==',
         materialIdx:'==材料設計==',
-
         MaterialCostjson: [],
         LMEjson:[],
         USDjson:[],
         PipeData:[],
         ProfileData:[],
-
         USD:null,   // 美津
         SteelPrice:null, //鋼料價格
-
         /* LME 倫敦金屬價格 */
         MetalList:["鋁", "銅", "鋅", "鎳", "鉛", "錫", "鋁合金", "特種鋁合金", "鈷", "金", "銀", "廢鋼", "鋼筋"], // LME金屬排序
         MetalDate:null,
         MetalPrice:[],
-
         // 管材
         checkedPipe:[],
         selectPipe:[],
@@ -1621,7 +1633,6 @@
         GlassWeightiness:null,
         GlassCost:null,
         GlassTotal:null,
-
         // 型材
         checkedProfile:[],
         selectProfile:[],
@@ -1633,13 +1644,11 @@
         ProfileWeightiness:null,
         ProfileCost:null,
         ProfileTotal:null,
-
         selectglass:[],
         checkedglass:[],
         glass:[],
         SoftFilm:[],
         HardFilm:[],
-
         decide:['0','0','0','0'],
         housetypelist:['溫室管材','管材規格','溫室型材','型材規格'],
         housetype:null,
@@ -1662,7 +1671,6 @@
         OverPlanJson:[],
         DesignArray:[],
         DesignJson:[],
-
         filmcheck:[],
         steelcheck:[],
         steelcheck2:[],
@@ -1690,6 +1698,21 @@
     },
     methods: {
         async getJson(){
+
+        const J_OverPlan = await fetch('/OverPlanJson',  {
+        method: 'GET',
+        });
+        this.OverPlanJson = await J_OverPlan.json();
+            for(var i = 0; i < this.OverPlanJson.length; i++){
+                if (this.OverPlanJson[i].uid === this.$auth.user().id){
+                    this.overplanArray.push(this.OverPlanJson[i])
+                    this.now_user = this.OverPlanJson[i].pid
+            }
+        }
+        this.plantlength = this.overplanArray[0].croplength
+        this.plantwidth = this.overplanArray[0].cropwidth
+        this.area = this.plantlength*this.plantwidth
+        
         const D_OverPlan = await fetch('/DesignJson',  {
             method: 'GET',
             });
@@ -1739,22 +1762,20 @@
         this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
         for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
             if (this.SimpleCircularArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
-                this.SelectSimple[2].push(this.SimpleCircularArchDistancesJSON[i])
+                this.SelectSimple.push(['圓拱距',this.SimpleCircularArchDistancesJSON[i]])
             }
             if(this.SimpleCircularArchDistancesJSON[i].Expert == "System"){
                 this.SimpleCircularArchDistances.push(this.SimpleCircularArchDistancesJSON[i]);
             }
         }
-
         // 簡易型披覆材料
-
         const SimpleCoatingFilms = await fetch('/SimpleCoatingFilmJSON',  {
             method: 'GET',
         });
         this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
         for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
             if (this.SimpleCoatingFilmsJSON[i].BuildItem === this.DesignArray[0].drape){
-                this.SelectSimple[8].push(this.SimpleCoatingFilmsJSON[i])
+                this.SelectSimple[8].push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
                 this.SelectRobust.push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
             }
             if(this.SimpleCoatingFilmsJSON[i].Expert == "System"){
@@ -1771,7 +1792,7 @@
         this.SimpleContinuitysJSON = await SimpleContinuitys.json();
         for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
             if (this.SimpleContinuitysJSON[i].BuildItem === this.DesignArray[0].continue){
-                this.SelectSimple[7].push(this.SimpleContinuitysJSON[i])
+                this.SelectSimple.push(['連續性',this.SimpleContinuitysJSON[i]])
             }
             if(this.SimpleContinuitysJSON[i].Expert == "System"){
                 this.SimpleContinuitys.push(this.SimpleContinuitysJSON[i]);
@@ -1784,7 +1805,7 @@
         this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
         for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
             if (this.SimpleDomeFormsJSON[i].BuildItem === this.DesignArray[0].rooftype){
-                this.SelectSimple[1].push(this.SimpleDomeFormsJSON[i])
+                this.SelectSimple.push(['圓頂形式',this.SimpleDomeFormsJSON[i]])
             }
             if(this.SimpleDomeFormsJSON[i].Expert == "System"){
                 this.SimpleDomeForms.push(this.SimpleDomeFormsJSON[i]);
@@ -1797,7 +1818,7 @@
         this.SimpleFoundationsJSON = await SimpleFoundations.json();
         for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
             if (this.SimpleFoundationsJSON[i].BuildItem === this.DesignArray[0].base){
-                this.SelectSimple[3].push(this.SimpleFoundationsJSON[i])
+                this.SelectSimple[3].push(['基礎',this.SimpleFoundationsJSON[i]])
             }
             if(this.SimpleFoundationsJSON[i].Expert == "System"){
                 this.SimpleFoundations.push(this.SimpleFoundationsJSON[i]);
@@ -1810,7 +1831,7 @@
         this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
         for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
             if (this.SimpleGreenhousePipesJSON[i].BuildItem === this.DesignArray[0].pipetype){
-                this.SelectSimple[0].push(this.SimpleGreenhousePipesJSON[i])
+                this.SelectSimple.push(['溫室管材',this.SimpleGreenhousePipesJSON[i]])
             }
             if(this.SimpleGreenhousePipesJSON[i].Expert == "System"){
                 this.SimpleGreenhousePipes.push(this.SimpleGreenhousePipesJSON[i]);
@@ -1823,7 +1844,7 @@
         this.SimpleLengthsJSON = await SimpleLengths.json();
         for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
             if (this.SimpleLengthsJSON[i].BuildItem === this.DesignArray[0].length){
-                this.SelectSimple[6].push(this.SimpleLengthsJSON[i])
+                this.SelectSimple.push(['長度',this.SimpleLengthsJSON[i]])
             }
             if(this.SimpleLengthsJSON[i].Expert == "System"){
                 this.SimpleLengths.push(this.SimpleLengthsJSON[i]);
@@ -1836,7 +1857,7 @@
         this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
         for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
             if (this.SimpleShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder){
-                this.SelectSimple[5].push(this.SimpleShoulderHeightsJSON[i])
+                this.SelectSimple.push(['肩高',this.SimpleShoulderHeightsJSON[i]])
             }
             if(this.SimpleShoulderHeightsJSON[i].Expert == "System"){
                 this.SimpleShoulderHeights.push(this.SimpleShoulderHeightsJSON[i]);
@@ -1849,7 +1870,7 @@
         this.SimpleSpansJSON = await SimpleSpans.json();
         for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
             if (this.SimpleSpansJSON[i].BuildItem === this.DesignArray[0].span){
-                this.SelectSimple[4].push(this.SimpleSpansJSON[i])
+                this.SelectSimple.push(['跨距',this.SimpleSpansJSON[i]])
             }
             if(this.SimpleSpansJSON[i].Expert == "System"){
                 this.SimpleSpans.push(this.SimpleSpansJSON[i]);
@@ -1985,7 +2006,6 @@
                 this.StrongUpperArchDistances.push(this.StrongUpperArchDistancesJSON[i]);
             }
         }
-
         if(this.SelectRobust.length === 9 ){
             this.RobustTotalCost = 0,
             this.RobustCostAdd = 0,
@@ -2002,29 +2022,12 @@
             this.RobustStructuralRiskAdd =  this.RobustStructuralRiskAdd.toFixed(2);
             this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
         }
-
-        const J_OverPlan = await fetch('/OverPlanJson',  {
-            method: 'GET',
-            });
-        this.OverPlanJson = await J_OverPlan.json();
-            for(var i = 0; i < this.OverPlanJson.length; i++){
-                if (this.OverPlanJson[i].uid === this.$auth.user().id){
-                    this.overplanArray.push(this.OverPlanJson[i])
-                    this.now_user = this.OverPlanJson[i].pid
-            }
-        }
-        this.plantlength = this.overplanArray[0].croplength
-        this.plantwidth = this.overplanArray[0].cropwidth
-        this.area = this.plantlength*this.plantwidth
-
     
         const LMEMetalPrice = await fetch('/LMEMetalPriceJSON',  {
             method: 'GET',
         });
         this.LMEjson = await LMEMetalPrice.json();
-
         this.MetalDate = this.LMEjson[0][2];
-
         // 將LME倫敦金屬價格，照MetalList的順序排列
         for (var i = 0; i < this.MetalList.length; i++) {
             for (var j = 0; j < this.LMEjson.length; j++) {
@@ -2033,7 +2036,6 @@
                 }
             }
         }
-
         // 溫室構造成本
         const MaterialCostJSON = await fetch('/MaterialCostJSON',  {
             method: 'GET',
@@ -2045,7 +2047,6 @@
         });
         this.USDjson = await USDJSON.json();
         this.USD = this.USDjson[0].USD; // 抓取美金價格
-
         this.SteelPrice = Math.round(this.LMEjson[0][1]/this.USD)+1; //計算鋼料價格
         const F_OverPlan = await fetch('/UserFilmJson',  {
             method: 'GET',
@@ -2093,7 +2094,6 @@
                 }
             }
         }
-
         for (var i = 0; i < this.MaterialCostjson.length; i++) {
             var data=[];
             var dataCalculator=[];
@@ -2112,16 +2112,13 @@
             dataCalculator.push(this.MaterialCostjson[i].Galvalume);
             dataCalculator.push(this.MaterialCostjson[i].MagnesiumAluminumZincPlating);
             dataCalculator.push(this.MaterialCostjson[i].AfterBaking);
-
             for(var j = 0; j < dataCalculator.length; j++) {
                 // 確認是否有經過那道製程，有那道製程才能加入成本的計算
                 if(dataCalculator[j] != " " && dataCalculator[j] !=""){
                     Cost = Cost + parseFloat(dataCalculator[j]);
                 }
             }
-
             if(this.MaterialCostjson[i].Type == "管材"){
-
                 this.MaterialCostjson[i].cost = Cost
                 if (this.steel_name.indexOf(this.MaterialCostjson[i].MaterialName) != -1){
                     this.MaterialCostjson[i].checked = true
@@ -2146,9 +2143,7 @@
                 this.glass.push(this.SimpleCoatingFilmsJSON[i]);
             }
         }
-
     },
-
     
     
     updateSimpleRadio: async function(greentype,simple){  // 更新簡易型溫室選擇狀況，判斷是否有選滿9項
@@ -2440,10 +2435,8 @@
                 }
             }
         }
-
     },
     updateSelectGlass: async function(checkid,checktype){   // 更新所選擇的管材
-
         let glassname = null;
         if (checktype === true){
             this.checkedglass.push(checkid)
@@ -2470,21 +2463,17 @@
     },
     updatePipeCompare(){  // 更新所選管材的參數比較
         this.PipeTotal = parseFloat(this.PipeSpeed) + parseFloat(this.PipeStructuralRisk) + parseFloat(this.PipeCorrosive) + parseFloat(this.PipeWeightiness) + parseFloat(this.PipeCost);
-
         var Compare = 0,selectComparelist = [],rank = [];
         // 計算 比較值
         for (var i = 0; i < this.selectPipe.length; i++) {
             Compare = (this.selectPipe[i].Speed * Math.floor(parseFloat(this.PipeSpeed) / this.PipeTotal * 100) / 100) + (this.selectPipe[i].StructuralRisk * Math.floor(parseFloat(this.PipeStructuralRisk) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].Corrosive * Math.floor(parseFloat(this.PipeCorrosive) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].Weight * Math.floor(parseFloat(this.PipeWeightiness) / this.PipeTotal * 100) / 100) + ( this.selectPipe[i].cost * Math.floor(parseFloat(this.PipeCost) / this.PipeTotal * 100) / 100);
             Compare = Compare.toFixed(2);
-
             rank = [];
             rank.push(this.selectPipe[i].id);
             rank.push(Compare);
             rank.push(0);
             selectComparelist.push(rank);
-
         }
-
         /* 將所勾選的 管材進行氣泡排序 */
         var temp;
         for (var i = selectComparelist.length - 1; i > 0; i--) {
@@ -2496,13 +2485,11 @@
                 }
             }
         }
-
         /* 將所勾選的 管材進行排名 */
         for (var i = 0; i < selectComparelist.length; i++) {
             var a=i;
             selectComparelist[i][2] = ++a;
         }
-
         /* 將所勾選的 管材進行id序號的氣泡排序，才能使顯示是照順序的 */
         for (var i = selectComparelist.length - 1; i > 0; i--) {
             for (var j = 0; j <= i - 1; j++) {
@@ -2513,33 +2500,26 @@
                 }
             }
         }
-
         this.selectPipeRank = [],  // 排名
         this.selectPipeRankValue = []; // 排名值
-
         /* 將所勾選的 管材 比較值與排名 顯示 */
         for (var i = 0; i < selectComparelist.length; i++) {
             this.selectPipeRankValue.push(selectComparelist[i][2]);
             this.selectPipeRank.push(selectComparelist[i][1]);
         }
-
     },updateGlassCompare(){  // 更新所選管材的參數比較
         this.GlassTotal = parseFloat(this.GlassSpeed) + parseFloat(this.GlassStructuralRisk) + parseFloat(this.GlassCorrosive) + parseFloat(this.GlassWeightiness) + parseFloat(this.GlassCost);
-
         var Compare = 0,selectComparelist = [],rank = [];
         // 計算 比較值
         for (var i = 0; i < this.selectglass.length; i++) {
             Compare = (this.selectglass[i].LightLoss * Math.floor(parseFloat(this.GlassSpeed) / this.GlassTotal * 100) / 100) + (this.selectglass[i].StructuralRisk * Math.floor(parseFloat(this.GlassStructuralRisk) / this.GlassTotal * 100) / 100) + ( this.selectglass[i].JobDifficulty * Math.floor(parseFloat(this.GlassCorrosive) / this.GlassTotal * 100) / 100) + ( this.selectglass[i].Cost * Math.floor(parseFloat(this.GlassWeightiness) / this.GlassTotal * 100) / 100) + ( this.selectglass[i].SideEffect * Math.floor(parseFloat(this.GlassCost) / this.GlassTotal * 100) / 100);
             Compare = Compare.toFixed(2);
-
             rank = [];
             rank.push(this.selectglass[i].id);
             rank.push(Compare);
             rank.push(0);
             selectComparelist.push(rank);
-
         }
-
         /* 將所勾選的 管材進行氣泡排序 */
         var temp;
         for (var i = selectComparelist.length - 1; i > 0; i--) {
@@ -2551,13 +2531,11 @@
                 }
             }
         }
-
         /* 將所勾選的 管材進行排名 */
         for (var i = 0; i < selectComparelist.length; i++) {
             var a=i;
             selectComparelist[i][2] = ++a;
         }
-
         /* 將所勾選的 管材進行id序號的氣泡排序，才能使顯示是照順序的 */
         for (var i = selectComparelist.length - 1; i > 0; i--) {
             for (var j = 0; j <= i - 1; j++) {
@@ -2568,16 +2546,13 @@
                 }
             }
         }
-
         this.selectPipeRank = [],  // 排名
         this.selectPipeRankValue = []; // 排名值
-
         /* 將所勾選的 管材 比較值與排名 顯示 */
         for (var i = 0; i < selectComparelist.length; i++) {
             this.selectGlassRankValue.push(selectComparelist[i][2]);
             this.selectGlassRank.push(selectComparelist[i][1]);
         }
-
     },updateSelectProfile:async function(checkid,checktype){    // 更新所選擇的型材
             let pipename = null;
             if (checktype === true){
@@ -2602,25 +2577,20 @@
                     }
                 }
             }
-
     },
     updateProfileCompare(){   // 更新所選型材的參數比較
         this.ProfileTotal = parseFloat(this.ProfileSpeed) + parseFloat(this.ProfileStructuralRisk) + parseFloat(this.ProfileCorrosive) + parseFloat(this.ProfileWeightiness) + parseFloat(this.ProfileCost);
-
         var Compare = 0,selectComparelist = [],rank = [];
         // 計算 比較值
         for (var i = 0; i < this.selectProfile.length; i++) {
             Compare = (this.selectProfile[i].Speed * Math.floor(parseFloat(this.ProfileSpeed) / this.ProfileTotal * 100) / 100) + (this.selectProfile[i].StructuralRisk * Math.floor(parseFloat(this.ProfileStructuralRisk) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].Corrosive * Math.floor(parseFloat(this.ProfileCorrosive) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].Weight * Math.floor(parseFloat(this.ProfileWeightiness) / this.ProfileTotal * 100) / 100) + ( this.selectProfile[i].cost * Math.floor(parseFloat(this.ProfileCost) / this.ProfileTotal * 100) / 100);
             Compare = Compare.toFixed(2);
-
             rank = [];
             rank.push(this.selectProfile[i].id);
             rank.push(Compare);
             rank.push(0);
             selectComparelist.push(rank);
-
         }
-
         /* 將所勾選的 型材進行氣泡排序 */
         var temp;
         for (var i = selectComparelist.length - 1; i > 0; i--) {
@@ -2632,13 +2602,11 @@
                 }
             }
         }
-
         /* 將所勾選的 型材進行排名 */
         for (var i = 0; i < selectComparelist.length; i++) {
             var a=i;
             selectComparelist[i][2] = ++a;
         }
-
         /* 將所勾選的 型材進行id序號的氣泡排序，才能使顯示是照順序的 */
         for (var i = selectComparelist.length - 1; i > 0; i--) {
             for (var j = 0; j <= i - 1; j++) {
@@ -2649,18 +2617,14 @@
                 }
             }
         }
-
         this.selectProfileRank = [],  // 排名
         this.selectProfileRankValue = []; // 排名值
-
         /* 將所勾選的 型材 比較值與排名 顯示 */
         for (var i = 0; i < selectComparelist.length; i++) {
             this.selectProfileRankValue.push(selectComparelist[i][2]);
             this.selectProfileRank.push(selectComparelist[i][1]);
         }
-
     },
-
     countdecide(){
         this.decide = []
         this.decide.push(String(Math.floor(this.quality/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
@@ -2766,3 +2730,16 @@
 },
 }
 </script>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete

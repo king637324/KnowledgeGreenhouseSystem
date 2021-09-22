@@ -58,6 +58,7 @@ class UserSteelController extends Controller
         $user_steel->StructuralRisk = $request->StructuralRisk;
         $user_steel->Corrosive = $request->Corrosive;
         $user_steel->Weight = $request->Weight;
+        $user_steel->Cost = $request->Cost;
         $user_steel->save();
         return response()->json($user_steel);
     }

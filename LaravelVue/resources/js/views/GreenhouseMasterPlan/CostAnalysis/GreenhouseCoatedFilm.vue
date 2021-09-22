@@ -324,12 +324,12 @@ export default {
             
 
         },updateSelectPipe: async function(checkid,checktype){   // 更新所選擇的管材
-
+            
             let glassname = null;
-            if (checktype === true){
+            if (checktype === true && this.checkedglass.indexOf(checkid) === -1){
                 this.checkedglass.push(checkid)
                 for (var i = 0; i < this.CoatingFilmJSON.length; i++) {
-                    if(checkid === this.CoatingFilmJSON[i].id){
+                    if(checkid === this.CoatingFilmJSON[i].id && this.selectglass.indexOf(this.CoatingFilmJSON[i]) === -1){
                         this.CoatingFilmJSON[i].checked = false
                         this.selectglass.push(this.CoatingFilmJSON[i]);
                     } 

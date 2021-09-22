@@ -616,7 +616,7 @@ export default {
 
         },updateSelectPipe:async function(checkid,checktype){   // 更新所選擇的管材
             let pipename = null;
-            if (checktype === true){
+            if (checktype === true && this.checkedPipe.indexOf(checkid) === -1){
                 this.checkedPipe.push(checkid)
                 for (var i = 0; i < this.PipeData.length; i++) {
                     if(checkid === this.PipeData[i].id){
@@ -810,6 +810,7 @@ export default {
                     formData.append('StructuralRisk',data.StructuralRisk);
                     formData.append('Corrosive',data.Corrosive);
                     formData.append('Weight',data.Weight);
+                    formData.append('Cost',data.cost);
                     const response = await Steel.createSteel(formData);
                 }
             } else {

@@ -30,6 +30,7 @@ class user_steelinfo extends Model
         'StructuralRisk',
         'Corrosive',
         'Weight',
+        'Cost',
     ];
     public $timestamps = false;
 }
