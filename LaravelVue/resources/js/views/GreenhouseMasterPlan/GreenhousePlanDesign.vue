@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@boboprofessor123 
-king637324
-/
-KnowledgeGreenhouseSystem
-Private
-1
-10
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-KnowledgeGreenhouseSystem/LaravelVue/resources/js/views/GreenhouseMasterPlan/GreenhousePlanDesign.vue
-
-unknown know
-Latest commit b521b0e 17 hours ago
- History
- 1 contributor
-2768 lines (2643 sloc)  189 KB
-  
 <template>
 
     <div>
@@ -1326,161 +1297,6 @@ Latest commit b521b0e 17 hours ago
                         </b-card-text>
                     </b-card>
                 </b-card-group>
-<!-- 
-                <v-btn fab dark style="position:fixed; bottom: 0; right: 0; z-index: 9999;" v-on:click="showform=false">
-                  <b-icon icon="arrow-right"></b-icon>
-                </v-btn>
-        <v-container-fluid v-if="showform==false">
-            <v-row>
-                <v-col>
-                    <b-card-group>
-                        <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
-                            <template #header>
-                                <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 已儲存之規劃結果</h6>
-                            </template>
-                            <b-card-text>
-                                <b-card-group>
-                                    <v-container-fluid>
-                                        <v-row>
-                                            <v-col v-for="(OverPlan, index) in overplanArray" :key="index">
-                                                <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
-                                                    <template #header>
-                                                        <h6 class="mb-0">
-                                                            <b-icon icon="flower1"></b-icon> 
-                                                            {{ time.getFullYear() }}/{{ time.getMonth()+1 }}/{{ time.getDate() }}-{{ OverPlan.plant }}-{{ index+1 }}
-                                                            <button type="button" style="float:right; width:20px; height:20px;" v-on:click="deleterecord(OverPlan.pid)"><b-icon icon="X"></b-icon></button>
-                                                        </h6>
-                                                    </template>
-                                                    <b-card-text>
-                                                        <span>A.溫室作物：{{ OverPlan.plantclass }}-{{ OverPlan.plant }}</span><br>
-                                                        <span>B.栽種面積：{{ OverPlan.croplength }}*{{ OverPlan.cropwidth }}</span><br>
-                                                        <span>C.地點選擇：{{ OverPlan.localcity }}-{{ OverPlan.localarea }}</span><br>
-                                                        <span>D.地型選擇：{{ OverPlan.terrain }}-{{ OverPlan.landform }}</span><br>
-                                                        <span>E.溫室選擇：{{ OverPlan.greenhouse }}</span><br>
-                                                        <span v-if="OverPlan.greenhouse == '簡易溫室'">
-                                                            溫室設計：<br>F.溫室管材-{{ OverPlan.greenhousepipe }}<br>G.圓頂形式-{{ OverPlan.domeforms }}<br>
-                                                                    H.圓拱距-{{ OverPlan.circulararchdistances }}<br>I.簡易基礎-{{ OverPlan.foundations }}<br>
-                                                                    J.簡易跨距-{{ OverPlan.spans }}<br>K.簡易肩高-{{ OverPlan.shoulderheights }}<br>
-                                                                    L.簡易長度-{{ OverPlan.lengths }}<br>M.簡易連續性-{{ OverPlan.continuitys }}<br>
-                                                                    N.簡易披覆材料-{{ OverPlan.coatingfilms }}<br>
-                                                        </span><br>
-                                                        <span v-if="OverPlan.greenhouse == '強固溫室'">
-                                                            溫室設計：<br>F.溫室型材-{{ OverPlan.greenhousepipe }}<br>G.屋頂形式-{{ OverPlan.domeforms }}<br>
-                                                                    H.上拱距-{{ OverPlan.circulararchdistances }}<br>I.基礎-{{ OverPlan.foundations }}<br>
-                                                                    J.跨距-{{ OverPlan.spans }}<br>K.肩高-{{ OverPlan.shoulderheights }}<br>
-                                                                    L.長度-{{ OverPlan.lengths }}<br>M.連續性-{{ OverPlan.continuitys }}<br>
-                                                                    N.披覆材料-{{ OverPlan.coatingfilms }}<br>
-                                                        </span>
-                                                    </b-card-text>
-                                                </b-card>
-                                            </v-col>
-                                        </v-row>
-                                    </v-container-fluid>
-                                </b-card-group>
-                            </b-card-text>
-                        </b-card>
-                    </b-card-group>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
-                    <b-card-group deck>
-                        <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
-                            <template #header>
-                                <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 規劃結果-比較分析</h6>
-                            </template>
-                            <b-card-text>
-                                <div>
-                                    <h5>管 材 製 程 比 較 分 析</h5>
-                                    <v-container-fluid>
-                                        <v-row>
-                                            <v-col>
-                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                                    <thead class="table-active">
-                                                        <tr align="center">
-                                                            <td colspan="4"> 請輸入權重比 (分數 1~5 ) </td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-warning" style="font-size:1.5vmin; font-family:Microsoft JhengHei;">計算</button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr align="center">
-                                                            <td> 速度性 </td>
-                                                            <td> 結構風險 </td>
-                                                            <td> 腐蝕性 </td>
-                                                            <td> 重量性 </td>
-                                                            <td> 成本性 </td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr align="center">
-                                                        <td>
-                                                            <v-text-field
-                                                                label="請輸入速度性"
-                                                                
-                                                            ></v-text-field>
-                                                        </td>
-                                                        <td>
-                                                            <v-text-field
-                                                                label="請輸入結構風險"
-                                                                
-                                                            ></v-text-field>
-                                                        </td>
-                                                        <td>
-                                                            <v-text-field
-                                                                label="請輸入腐蝕性"
-                                                                
-                                                            ></v-text-field>
-                                                        </td>
-                                                        <td>
-                                                            <v-text-field
-                                                                label="請輸入重量性"
-                                                                
-                                                            ></v-text-field>
-                                                        </td>
-                                                        <td>
-                                                            <v-text-field
-                                                                label="請輸入成本性"
-                                                                
-                                                            ></v-text-field>
-                                                        </td>
-                                                    </tr>
-                                                    
-                                                </table>
-                                            </v-col>
-                                            <v-col>
-                                                <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                                    <thead class="table-active">
-                                                        <tr align="center">
-                                                            <td style='width:6.5vmin'> 速度性 </td>
-                                                            <td style='width:6.5vmin'> 結構<br>風險 </td>
-                                                            <td style='width:6.5vmin'> 腐蝕性 </td>
-                                                            <td style='width:6.5vmin'> 重量性 </td>
-                                                            <td style='width:6.5vmin'> 成本性 </td>
-                                                            <td style='width:6.5vmin'> 比較值 </td>
-                                                            <td style='width:6.5vmin'> 排名值 </td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr align="center">
-                                                        <td>test</td>
-                                                        <td>test</td>
-                                                        <td>test</td>
-                                                        <td>test</td>
-                                                        <td>test</td>
-                                                        <td>test</td>
-                                                        <td>test</td>
-                                                    </tr>
-                                                </table>
-                                            </v-col>
-                                        </v-row>
-                                    </v-container-fluid>
-                                </div>
-                            </b-card-text>
-                        </b-card>
-                    </b-card-group>                   
-                </v-col> 
-                <v-btn fab dark style="position:fixed; bottom: 0; right: 0; z-index: 9999;" v-on:click="showform=true">
-                  <b-icon icon="arrow-left"></b-icon>
-                </v-btn>
-            </v-row> -->
         </v-container-fluid>
     </div>
 </template>
@@ -1516,7 +1332,7 @@ Latest commit b521b0e 17 hours ago
         checkedNames: [],
         
         /* 簡易型溫室 */
-        SelectSimple:[],
+        SelectSimple:[['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']],
         SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
         SimpleCostratios: [],               // 簡易型各建構項目比例
         SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
@@ -1723,6 +1539,15 @@ Latest commit b521b0e 17 hours ago
                 this.now_user_design = this.DesignJson[i].id
             } 
         }
+
+        // if (this.DesignArray.length === 0){
+        //     let formData = new FormData();
+        //     formData.append('pipetype',this.SimpleGreenhousePipe);
+        //     const response = await Design.createDesign(formData);
+        //     SelectSimple[0].push()
+        // }
+        
+
         this.greenhouseradio = this.DesignArray[0].housetype
         if (this.DesignArray[0].housetype == '簡易溫室'){
             this.SimpleGreenhousePipe = this.DesignArray[0].pipetype
@@ -1745,6 +1570,7 @@ Latest commit b521b0e 17 hours ago
             this.RobustContinuity = this.DesignArray[0].continue
             this.RobustCoatingFilm = this.DesignArray[0].drape
         }
+
         // 簡易型各建構項目比例
         const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
             method: 'GET',
@@ -1761,9 +1587,12 @@ Latest commit b521b0e 17 hours ago
         });
         this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
         for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
-            if (this.SimpleCircularArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
-                this.SelectSimple.push(['圓拱距',this.SimpleCircularArchDistancesJSON[i]])
-            }
+
+                if (this.SimpleCircularArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
+                    this.SelectSimple[2].push(this.SimpleCircularArchDistancesJSON[i])
+                }
+
+            
             if(this.SimpleCircularArchDistancesJSON[i].Expert == "System"){
                 this.SimpleCircularArchDistances.push(this.SimpleCircularArchDistancesJSON[i]);
             }
@@ -1775,7 +1604,7 @@ Latest commit b521b0e 17 hours ago
         this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
         for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
             if (this.SimpleCoatingFilmsJSON[i].BuildItem === this.DesignArray[0].drape){
-                this.SelectSimple[8].push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
+                this.SelectSimple[8].push(this.SimpleCoatingFilmsJSON[i])
                 this.SelectRobust.push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
             }
             if(this.SimpleCoatingFilmsJSON[i].Expert == "System"){
@@ -1792,7 +1621,7 @@ Latest commit b521b0e 17 hours ago
         this.SimpleContinuitysJSON = await SimpleContinuitys.json();
         for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
             if (this.SimpleContinuitysJSON[i].BuildItem === this.DesignArray[0].continue){
-                this.SelectSimple.push(['連續性',this.SimpleContinuitysJSON[i]])
+                this.SelectSimple[7].push(this.SimpleContinuitysJSON[i])
             }
             if(this.SimpleContinuitysJSON[i].Expert == "System"){
                 this.SimpleContinuitys.push(this.SimpleContinuitysJSON[i]);
@@ -1805,7 +1634,7 @@ Latest commit b521b0e 17 hours ago
         this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
         for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
             if (this.SimpleDomeFormsJSON[i].BuildItem === this.DesignArray[0].rooftype){
-                this.SelectSimple.push(['圓頂形式',this.SimpleDomeFormsJSON[i]])
+                this.SelectSimple[1].push(this.SimpleDomeFormsJSON[i])
             }
             if(this.SimpleDomeFormsJSON[i].Expert == "System"){
                 this.SimpleDomeForms.push(this.SimpleDomeFormsJSON[i]);
@@ -1818,7 +1647,7 @@ Latest commit b521b0e 17 hours ago
         this.SimpleFoundationsJSON = await SimpleFoundations.json();
         for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
             if (this.SimpleFoundationsJSON[i].BuildItem === this.DesignArray[0].base){
-                this.SelectSimple[3].push(['基礎',this.SimpleFoundationsJSON[i]])
+                this.SelectSimple[3].push(this.SimpleFoundationsJSON[i])
             }
             if(this.SimpleFoundationsJSON[i].Expert == "System"){
                 this.SimpleFoundations.push(this.SimpleFoundationsJSON[i]);
@@ -1831,7 +1660,7 @@ Latest commit b521b0e 17 hours ago
         this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
         for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
             if (this.SimpleGreenhousePipesJSON[i].BuildItem === this.DesignArray[0].pipetype){
-                this.SelectSimple.push(['溫室管材',this.SimpleGreenhousePipesJSON[i]])
+                this.SelectSimple[0].push(this.SimpleGreenhousePipesJSON[i])
             }
             if(this.SimpleGreenhousePipesJSON[i].Expert == "System"){
                 this.SimpleGreenhousePipes.push(this.SimpleGreenhousePipesJSON[i]);
@@ -1844,7 +1673,7 @@ Latest commit b521b0e 17 hours ago
         this.SimpleLengthsJSON = await SimpleLengths.json();
         for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
             if (this.SimpleLengthsJSON[i].BuildItem === this.DesignArray[0].length){
-                this.SelectSimple.push(['長度',this.SimpleLengthsJSON[i]])
+                this.SelectSimple[6].push(this.SimpleLengthsJSON[i])
             }
             if(this.SimpleLengthsJSON[i].Expert == "System"){
                 this.SimpleLengths.push(this.SimpleLengthsJSON[i]);
@@ -1857,7 +1686,7 @@ Latest commit b521b0e 17 hours ago
         this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
         for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
             if (this.SimpleShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder){
-                this.SelectSimple.push(['肩高',this.SimpleShoulderHeightsJSON[i]])
+                this.SelectSimple[5].push(this.SimpleShoulderHeightsJSON[i])
             }
             if(this.SimpleShoulderHeightsJSON[i].Expert == "System"){
                 this.SimpleShoulderHeights.push(this.SimpleShoulderHeightsJSON[i]);
@@ -1870,7 +1699,7 @@ Latest commit b521b0e 17 hours ago
         this.SimpleSpansJSON = await SimpleSpans.json();
         for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
             if (this.SimpleSpansJSON[i].BuildItem === this.DesignArray[0].span){
-                this.SelectSimple.push(['跨距',this.SimpleSpansJSON[i]])
+                this.SelectSimple[4].push(this.SimpleSpansJSON[i])
             }
             if(this.SimpleSpansJSON[i].Expert == "System"){
                 this.SimpleSpans.push(this.SimpleSpansJSON[i]);

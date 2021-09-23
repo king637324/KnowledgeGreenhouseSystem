@@ -731,10 +731,18 @@
             formData.append('span_design',this.design_span); 
             formData.append('shoulder_design',this.design_shoulder);
             formData.append('continue_design',this.design_story);
+            const W_Estimation = await fetch('/WeightJson',  {
+            method: 'GET',
+            });
+            this.WeightJson = await W_Estimation.json();
             for(var i = 0; i < this.WeightJson.length; i++){
                 get_id.push(this.WeightJson[i].uid)
+                if (this.WeightJson[i].uid === this.$auth.user().id){
+                    this.now_user_two = this.WeightJson[i].id
+                }
             }
             if (get_id.indexOf(this.$auth.user().id) === -1){
+                formData.append('uid',this.$auth.user().id);
                 const response = await Weight.createWidget(formData)
                 this.WeightArray = []
                 this.WeightArray = response.data
