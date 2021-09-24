@@ -58,7 +58,6 @@
                                             </v-radio-group>
                                         </v-col>
                                     </v-row>
-                                    
                                     <v-row>
                                     <v-col md="2">
                                         <v-subheader>D.溫室設計</v-subheader>
@@ -377,7 +376,7 @@
                                                                 </tr>
                                                                 <tr align="center">
                                                                     <td> 披覆膜	</td>
-                                                                    <td> PE獨棟 </td>
+                                                                    <td> PE </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
                                                                     <td> 1.00 </td>
@@ -1326,13 +1325,13 @@
         selectRegion: null, // 所選地區的名稱
         SelectTerrain:0, // 選擇地形
         SelectLandform:0, // 選擇地貌
-        greenhouseradio: null, //透過radio button選擇要簡易還是強固
+        greenhouseradio: '', //透過radio button選擇要簡易還是強固
         Fluidjson: [],
         checkData:[],
         checkedNames: [],
         
         /* 簡易型溫室 */
-        SelectSimple:[['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']],
+        SelectSimple:[],
         SimpleCostratiosJSON: [],               // 簡易型各建構項目比例
         SimpleCostratios: [],               // 簡易型各建構項目比例
         SimpleCircularArchDistancesJSON: [],    // 簡易型圓拱距
@@ -1540,16 +1539,27 @@
             } 
         }
 
-        // if (this.DesignArray.length === 0){
-        //     let formData = new FormData();
-        //     formData.append('pipetype',this.SimpleGreenhousePipe);
-        //     const response = await Design.createDesign(formData);
-        //     SelectSimple[0].push()
-        // }
+        if (this.DesignArray.length === 0){
+            let formData = new FormData();
+            formData.append('uid',this.$auth.user().id);
+            formData.append('housetype','簡易溫室');
+            formData.append('pipetype','標準管材');
+            formData.append('rooftype','單一圓拱');
+            formData.append('circlespan','1M-1"');
+            formData.append('base','直插40cm');
+            formData.append('span','5.4m');
+            formData.append('shoulder','2m');
+            formData.append('length','30m');
+            formData.append('continue','獨棟');
+            formData.append('drape','PE');
+            const response = await Design.createDesign(formData);
+            this.DesignArray.push(response.data)
+        }
         
 
-        this.greenhouseradio = this.DesignArray[0].housetype
+        
         if (this.DesignArray[0].housetype == '簡易溫室'){
+            this.greenhouseradio = '簡易溫室'
             this.SimpleGreenhousePipe = this.DesignArray[0].pipetype
             this.SimpleDomeForm = this.DesignArray[0].rooftype
             this.SimpleCircularArchDistance = this.DesignArray[0].circlespan
@@ -1560,6 +1570,7 @@
             this.SimpleContinuity = this.DesignArray[0].continue
             this.SimpleCoatingFilm = this.DesignArray[0].drape
         } else {
+            this.greenhouseradio = '強固溫室'
             this.RobustGreenhouseProfile = this.DesignArray[0].pipetype
             this.RobustRoofForm = this.DesignArray[0].rooftype
             this.RobustUpperArch = this.DesignArray[0].circlespan
@@ -1588,9 +1599,9 @@
         this.SimpleCircularArchDistancesJSON = await SimpleCircularArchDistances.json();
         for(var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++){
 
-                if (this.SimpleCircularArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
-                    this.SelectSimple[2].push(this.SimpleCircularArchDistancesJSON[i])
-                }
+            if (this.SimpleCircularArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
+                this.SelectSimple.push(['圓拱距',this.SimpleCircularArchDistancesJSON[i]])
+            }
 
             
             if(this.SimpleCircularArchDistancesJSON[i].Expert == "System"){
@@ -1604,7 +1615,7 @@
         this.SimpleCoatingFilmsJSON = await SimpleCoatingFilms.json();
         for(var i = 0 ; i < this.SimpleCoatingFilmsJSON.length ; i++){
             if (this.SimpleCoatingFilmsJSON[i].BuildItem === this.DesignArray[0].drape){
-                this.SelectSimple[8].push(this.SimpleCoatingFilmsJSON[i])
+                this.SelectSimple.push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
                 this.SelectRobust.push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
             }
             if(this.SimpleCoatingFilmsJSON[i].Expert == "System"){
@@ -1621,7 +1632,7 @@
         this.SimpleContinuitysJSON = await SimpleContinuitys.json();
         for(var i = 0 ; i < this.SimpleContinuitysJSON.length ; i++){
             if (this.SimpleContinuitysJSON[i].BuildItem === this.DesignArray[0].continue){
-                this.SelectSimple[7].push(this.SimpleContinuitysJSON[i])
+                this.SelectSimple.push(['連續性',this.SimpleContinuitysJSON[i]])
             }
             if(this.SimpleContinuitysJSON[i].Expert == "System"){
                 this.SimpleContinuitys.push(this.SimpleContinuitysJSON[i]);
@@ -1634,7 +1645,7 @@
         this.SimpleDomeFormsJSON = await SimpleDomeForms.json();
         for(var i = 0 ; i < this.SimpleDomeFormsJSON.length ; i++){
             if (this.SimpleDomeFormsJSON[i].BuildItem === this.DesignArray[0].rooftype){
-                this.SelectSimple[1].push(this.SimpleDomeFormsJSON[i])
+                this.SelectSimple.push(['圓頂形式',this.SimpleDomeFormsJSON[i]])
             }
             if(this.SimpleDomeFormsJSON[i].Expert == "System"){
                 this.SimpleDomeForms.push(this.SimpleDomeFormsJSON[i]);
@@ -1647,7 +1658,7 @@
         this.SimpleFoundationsJSON = await SimpleFoundations.json();
         for(var i = 0 ; i < this.SimpleFoundationsJSON.length ; i++){
             if (this.SimpleFoundationsJSON[i].BuildItem === this.DesignArray[0].base){
-                this.SelectSimple[3].push(this.SimpleFoundationsJSON[i])
+                this.SelectSimple.push(['基礎',this.SimpleFoundationsJSON[i]])
             }
             if(this.SimpleFoundationsJSON[i].Expert == "System"){
                 this.SimpleFoundations.push(this.SimpleFoundationsJSON[i]);
@@ -1660,7 +1671,7 @@
         this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
         for(var i = 0 ; i < this.SimpleGreenhousePipesJSON.length ; i++){
             if (this.SimpleGreenhousePipesJSON[i].BuildItem === this.DesignArray[0].pipetype){
-                this.SelectSimple[0].push(this.SimpleGreenhousePipesJSON[i])
+                this.SelectSimple.push(['溫室管材',this.SimpleGreenhousePipesJSON[i]])
             }
             if(this.SimpleGreenhousePipesJSON[i].Expert == "System"){
                 this.SimpleGreenhousePipes.push(this.SimpleGreenhousePipesJSON[i]);
@@ -1673,7 +1684,7 @@
         this.SimpleLengthsJSON = await SimpleLengths.json();
         for(var i = 0 ; i < this.SimpleLengthsJSON.length ; i++){
             if (this.SimpleLengthsJSON[i].BuildItem === this.DesignArray[0].length){
-                this.SelectSimple[6].push(this.SimpleLengthsJSON[i])
+                this.SelectSimple.push(['長度',this.SimpleLengthsJSON[i]])
             }
             if(this.SimpleLengthsJSON[i].Expert == "System"){
                 this.SimpleLengths.push(this.SimpleLengthsJSON[i]);
@@ -1686,7 +1697,7 @@
         this.SimpleShoulderHeightsJSON = await SimpleShoulderHeights.json();
         for(var i = 0 ; i < this.SimpleShoulderHeightsJSON.length ; i++){
             if (this.SimpleShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder){
-                this.SelectSimple[5].push(this.SimpleShoulderHeightsJSON[i])
+                this.SelectSimple.push(['肩高',this.SimpleShoulderHeightsJSON[i]])
             }
             if(this.SimpleShoulderHeightsJSON[i].Expert == "System"){
                 this.SimpleShoulderHeights.push(this.SimpleShoulderHeightsJSON[i]);
@@ -1699,22 +1710,53 @@
         this.SimpleSpansJSON = await SimpleSpans.json();
         for(var i = 0 ; i < this.SimpleSpansJSON.length ; i++){
             if (this.SimpleSpansJSON[i].BuildItem === this.DesignArray[0].span){
-                this.SelectSimple[4].push(this.SimpleSpansJSON[i])
+                this.SelectSimple.push(['跨距',this.SimpleSpansJSON[i]])
             }
             if(this.SimpleSpansJSON[i].Expert == "System"){
                 this.SimpleSpans.push(this.SimpleSpansJSON[i]);
             }
         }
-        if(this.SelectSimple.length == 9 ){
+        if(this.SelectSimple.length == 9){
             this.SimpleTotalSimpleCost = 0,
             this.SimpleCostAdd = 0,
             this.SimpleStructuralRiskAdd = 0,
             this.SimpleJobDifficultyAdd = 0;
+            let SelectSimple_copy = new Array(9);
             for (var i = 0; i < this.SelectSimple.length; i++) {
-                this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
-                this.SimpleCostAdd += this.SelectSimple[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
-                this.SimpleStructuralRiskAdd += this.SelectSimple[i][1].StructuralRisk * (this.SimpleCostratios[i].StructuralRisk / 100);
-                this.SimpleJobDifficultyAdd += this.SelectSimple[i][1].JobDifficulty * (this.SimpleCostratios[i].JobDifficulty/ 100);
+                if (this.SelectSimple[i][0] === '溫室管材'){
+                    SelectSimple_copy[0] = this.SelectSimple[i]
+                }
+                else if (this.SelectSimple[i][0] === '圓頂形式') {
+                    SelectSimple_copy[1] = this.SelectSimple[i]
+                }
+                else if (this.SelectSimple[i][0] === '圓拱距') {
+                    SelectSimple_copy[2] = this.SelectSimple[i]
+                }
+                else if (this.SelectSimple[i][0] === '基礎') {  
+                    SelectSimple_copy[3] = this.SelectSimple[i]
+                }
+                else if (this.SelectSimple[i][0] === '跨距') {
+                    SelectSimple_copy[4] = this.SelectSimple[i]
+                }
+                else if (this.SelectSimple[i][0] === '肩高') {
+                    SelectSimple_copy[5] = this.SelectSimple[i]
+                }
+                else if (this.SelectSimple[i][0] === '長度') {
+                    SelectSimple_copy[6] = this.SelectSimple[i]
+                }
+                else if (this.SelectSimple[i][0] === '連續性') {
+                    SelectSimple_copy[7] = this.SelectSimple[i]
+                }
+                else if (this.SelectSimple[i][0] === '披覆材料') {
+                    SelectSimple_copy[8] = this.SelectSimple[i]
+                }
+            }
+            window.alert(SelectSimple_copy[0])
+            for (var i = 0; i < SelectSimple_copy.length; i++) {
+                this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
+                this.SimpleCostAdd += SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
+                this.SimpleStructuralRiskAdd += SelectSimple_copy[i][1].StructuralRisk * (this.SimpleCostratios[i].StructuralRisk / 100);
+                this.SimpleJobDifficultyAdd += SelectSimple_copy[i][1].JobDifficulty * (this.SimpleCostratios[i].JobDifficulty/ 100);
             }
             this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
             this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
@@ -1835,12 +1877,14 @@
                 this.StrongUpperArchDistances.push(this.StrongUpperArchDistancesJSON[i]);
             }
         }
-        if(this.SelectRobust.length === 9 ){
+
+        if(this.SelectRobust.length === 9){
             this.RobustTotalCost = 0,
             this.RobustCostAdd = 0,
             this.RobustStructuralRiskAdd = 0,
             this.RobustJobDifficultyAdd = 0;
             for (var i = 0; i < this.SelectRobust.length; i++) {
+                
                 this.RobustTotalCost += this.RuggedHousrBasePrice * this.SelectRobust[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
                 this.RobustCostAdd += this.SelectRobust[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
                 this.RobustStructuralRiskAdd += this.SelectRobust[i][1].StructuralRisk * this.StrongCostRatios[i].StructuralRisk / 100;
@@ -1850,6 +1894,7 @@
             this.RobustCostAdd =  this.RobustCostAdd.toFixed(2);
             this.RobustStructuralRiskAdd =  this.RobustStructuralRiskAdd.toFixed(2);
             this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
+            
         }
     
         const LMEMetalPrice = await fetch('/LMEMetalPriceJSON',  {
@@ -1989,7 +2034,7 @@
         for (var i = 0; i < this.greentype_simple.length; i++){
             if(this.greentype_simple[i] === '溫室管材'){
                 if (SelectSimple_name.indexOf('溫室管材') === -1){
-                    this.SelectSimple.push(['溫室管材',this.greeninfo_simple[i]])
+                    this.SelectSimple[0].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('溫室管材')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2000,7 +2045,7 @@
             }
             if(this.greentype_simple[i] === '圓頂形式'){
                 if (SelectSimple_name.indexOf('圓頂形式') === -1){
-                    this.SelectSimple.push(['圓頂形式',this.greeninfo_simple[i]])
+                    this.SelectSimple[1].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('圓頂形式')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2011,7 +2056,7 @@
             }
             if(this.greentype_simple[i] === '圓拱距'){
                 if (SelectSimple_name.indexOf('圓拱距') === -1){
-                    this.SelectSimple.push(['圓拱距',this.greeninfo_simple[i]])
+                    this.SelectSimple[2].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('圓拱距')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2022,7 +2067,7 @@
             }
             if(this.greentype_simple[i] === '基礎'){
                 if (SelectSimple_name.indexOf('基礎') === -1){
-                    this.SelectSimple.push(['基礎',this.greeninfo_simple[i]])
+                    this.SelectSimple[3].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('基礎')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2033,7 +2078,7 @@
             }
             if(this.greentype_simple[i] === '跨距'){
                 if (SelectSimple_name.indexOf('跨距') === -1){
-                    this.SelectSimple.push(['跨距',this.greeninfo_simple[i]])
+                    this.SelectSimple[4].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('跨距')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2044,7 +2089,7 @@
             }
             if(this.greentype_simple[i] === '肩高'){
                 if (SelectSimple_name.indexOf('肩高') === -1){
-                    this.SelectSimple.push(['肩高',this.greeninfo_simple[i]])
+                    this.SelectSimple[5].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('肩高')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2055,7 +2100,7 @@
             }
             if(this.greentype_simple[i] === '長度'){
                 if (SelectSimple_name.indexOf('長度') === -1){
-                    this.SelectSimple.push(['長度',this.greeninfo_simple[i]])
+                    this.SelectSimple[6].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('長度')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2066,7 +2111,7 @@
             }
             if(this.greentype_simple[i] === '連續性'){
                 if (SelectSimple_name.indexOf('連續性') === -1){
-                    this.SelectSimple.push(['連續性',this.greeninfo_simple[i]])
+                    this.SelectSimple[7].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('連續性')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2077,7 +2122,7 @@
             }
             if(this.greentype_simple[i] === '披覆材料'){
                 if (SelectSimple_name.indexOf('披覆材料') === -1){
-                    this.SelectSimple.push(['披覆材料',this.greeninfo_simple[i]])
+                    this.SelectSimple[8].push(this.greeninfo_simple[i])
                 } else{
                     this.SelectSimple[SelectSimple_name.indexOf('披覆材料')].splice(1,1,this.greeninfo_simple[i]) 
                 }
@@ -2119,7 +2164,7 @@
             var temp = [];
             if(this.greentype_robust[i] === '溫室型材'){
                 if (SelectRobust_name.indexOf('溫室型材') === -1){
-                    this.SelectRobust.push(['溫室型材',this.greeninfo_robust[i]])
+                    this.SelectRobust[0].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('溫室型材')].splice(1,1,this.greeninfo_robust[i]) 
                 }
@@ -2130,7 +2175,7 @@
             }
             if(this.greentype_robust[i] === '屋頂形式'){
                 if (SelectRobust_name.indexOf('屋頂形式') === -1){
-                    this.SelectRobust.push(['屋頂形式',this.greeninfo_robust[i]])
+                    this.SelectRobust[1].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('屋頂形式')].splice(1,1,this.greeninfo_robust[i]) 
                 }
@@ -2141,7 +2186,7 @@
             }
             if(this.greentype_robust[i] === '上拱距'){
                 if (SelectRobust_name.indexOf('上拱距') === -1){
-                    this.SelectRobust.push(['上拱距',this.greeninfo_robust[i]])
+                    this.SelectRobust[2].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('上拱距')].splice(1,1,this.greeninfo_robust[i]) 
                 }
@@ -2152,7 +2197,7 @@
             }
             if(this.greentype_robust[i] === '基礎'){
                 if (SelectRobust_name.indexOf('基礎') === -1){
-                    this.SelectRobust.push(['基礎',this.greeninfo_robust[i]])
+                    this.SelectRobust[3].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('基礎')].splice(1,1,this.greeninfo_robust[i]) 
                 }
@@ -2163,7 +2208,7 @@
             }
             if(this.greentype_robust[i] === '跨距'){
                 if (SelectRobust_name.indexOf('跨距') === -1){
-                    this.SelectRobust.push(['跨距',this.greeninfo_robust[i]])
+                    this.SelectRobust[4].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('跨距')].splice(1,1,this.greeninfo_robust[i]) 
                 }
@@ -2174,7 +2219,7 @@
             }
             if(this.greentype_robust[i] === '肩高'){
                 if (SelectRobust_name.indexOf('肩高') === -1){
-                    this.SelectRobust.push(['肩高',this.greeninfo_robust[i]])
+                    this.SelectRobust[5].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('肩高')].splice(1,1,this.greeninfo_robust[i]) 
                 }
@@ -2185,7 +2230,7 @@
             }
             if(this.greentype_robust[i] === '長度'){
                 if (SelectRobust_name.indexOf('長度') === -1){
-                    this.SelectRobust.push(['長度',this.greeninfo_robust[i]])
+                    this.SelectRobust[6].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('長度')].splice(1,1,this.greeninfo_robust[i]) 
                 }
@@ -2196,7 +2241,7 @@
             }
             if(this.greentype_robust[i] === '連續性'){
                 if (SelectRobust_name.indexOf('連續性') === -1){
-                    this.SelectRobust.push(['連續性',this.greeninfo_robust[i]])
+                    this.SelectRobust[7].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('連續性')].splice(1,1,this.greeninfo_robust[i]) 
                 }
@@ -2207,7 +2252,7 @@
             }
             if(this.greentype_robust[i] === '披覆材料'){
                 if (SelectRobust_name.indexOf('披覆材料') === -1){
-                    this.SelectRobust.push(['披覆材料',this.greeninfo_robust[i]])
+                    this.SelectRobust[8].push(this.greeninfo_robust[i])
                 } else{
                     this.SelectRobust[SelectRobust_name.indexOf('披覆材料')].splice(1,1,this.greeninfo_robust[i]) 
                 }

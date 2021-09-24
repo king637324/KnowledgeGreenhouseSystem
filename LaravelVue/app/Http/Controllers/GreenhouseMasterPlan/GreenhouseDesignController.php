@@ -36,7 +36,20 @@ class GreenhouseDesignController extends Controller
      */
     public function store(Request $request)
     {
-
+        $greenhousedesign = new greenhousedesign();
+        $greenhousedesign->uid = $request->uid;
+        $greenhousedesign->housetype = $request->housetype;
+        $greenhousedesign->pipetype = $request->pipetype;
+        $greenhousedesign->rooftype = $request->rooftype;
+        $greenhousedesign->circlespan = $request->circlespan;
+        $greenhousedesign->base = $request->base;
+        $greenhousedesign->span = $request->span;
+        $greenhousedesign->shoulder = $request->shoulder;
+        $greenhousedesign->length = $request->length;
+        $greenhousedesign->continue = $request->continue;
+        $greenhousedesign->drape = $request->drape;
+        $greenhousedesign->save();
+        return response()->json($greenhousedesign);
     }
 
     /**
