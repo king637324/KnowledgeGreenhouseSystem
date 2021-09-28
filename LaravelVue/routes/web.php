@@ -122,3 +122,6 @@ Route::get('/UserLightJson',[UserLightController::class, 'getJSON_UserLight']);
 
 use App\Http\Controllers\GreenhouseMasterPlan\UserTempController;
 Route::get('/UserTempJson',[UserTempController::class, 'getJSON_UserTemp']);
+
+use App\Http\Controllers\GreenhouseMasterPlan\GreenhouseResultController;
+Route::get('/UserResultJson',[GreenhouseResultController::class, 'getJSON_result']);

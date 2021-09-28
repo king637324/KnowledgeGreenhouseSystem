@@ -1751,7 +1751,6 @@
                     SelectSimple_copy[8] = this.SelectSimple[i]
                 }
             }
-            window.alert(SelectSimple_copy[0])
             for (var i = 0; i < SelectSimple_copy.length; i++) {
                 this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
                 this.SimpleCostAdd += SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;

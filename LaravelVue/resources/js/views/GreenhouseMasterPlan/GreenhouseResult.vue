@@ -8,6 +8,24 @@
         <hr>
         <v-container>
             <v-row>
+                <v-col cols="1">
+                    <button type="button" class="btn btn-primary" v-on:click="saveresult" v-if="saveform === '本張表單'">儲存</button>
+                </v-col>
+                <v-col cols="2">
+                    <b-select v-model="saveform" v-for="(Result, index) in ResultJson" :key="index">
+                        <option>
+                            本張表單
+                        </option>
+                        <option>
+                            {{ Result.name }}
+                        </option>
+                    </b-select>
+                </v-col>
+                <v-col>
+                    <v-text-field label="表單名稱" v-model="formname" style="width:50%"></v-text-field>
+                </v-col>
+            </v-row>
+            <v-row>
                 <table style="border:1px solid black; width:80vw; height:300px" border='1'>
                     <thead class="table-active">
                         <tr align="center">
@@ -808,6 +826,7 @@
 </template>
 
 <script>
+    import * as result from '../../services/greenhouse_result.js';
     export default {
     data: () => ({
         overplanArray:[],
@@ -830,10 +849,14 @@
         WindPath:[],
         FilmJson:[],
         FilmArray:[],
+        FilmArray_id:[],
         selectpipe:[],
+        selectsteel_id:[],
         selectprofile:[],
         selectlight:[],
+        selectlight_id:[],
         selecttemp:[],
+        selecttemp_id:[],
         DesignJson:[],
         DesignArray:[],
         greenhouse_material:[],
@@ -872,6 +895,10 @@
         SimpleStructuralRiskAdd:0,
         SimpleTotalSimpleCost:0,
         SimpleHousrBasePrice:500000,
+        saveform:'本張表單',
+        formname:null,
+        wind_totalinfo:[],
+        ResultJson:[],
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -892,6 +919,12 @@
                     this.WeightArray.push(this.WeightJson[i])
                 }      
             }
+
+            const Result_user = await fetch('/UserResultJson',  {
+            method: 'GET',
+            });
+            this.ResultJson = await Result_user.json();
+
 
             this.radio_roof = this.WeightArray[0].roof_type
             this.design_wind = this.WeightArray[0].wind_design
@@ -944,6 +977,7 @@
             for(var i = 0; i < this.FilmJson.length; i++){
                 if (this.FilmJson[i].uid === this.$auth.user().id){
                     this.FilmArray.push(this.FilmJson[i])
+                    this.FilmArray_id.push(this.FilmJson[i].id)
                 }
             }
 
@@ -955,8 +989,10 @@
                 if (this.SteelJson[i].uid === this.$auth.user().id){
                     if (this.SteelJson[i].Type === '管材'){
                         this.selectpipe.push(this.SteelJson[i])
+                        this.selectsteel_id.push(this.SteelJson[i].id)
                     } else{
                         this.selectprofile.push(this.SteelJson[i])
+                        this.selectsteel_id.push(this.SteelJson[i].id)
                     }
                 }
             }
@@ -968,6 +1004,7 @@
             for (var i = 0; i < this.LightJson.length; i++){
                 if (this.LightJson[i].uid === this.$auth.user().id){
                     this.selectlight.push(this.LightJson[i])
+                    this.selectlight_id.push(this.LightJson[i].id)
                 }
             }
 
@@ -978,6 +1015,7 @@
             for (var i = 0; i < this.UserTempJson.length; i++){
                 if (this.UserTempJson[i].uid === this.$auth.user().id){
                     this.selecttemp.push(this.UserTempJson[i])
+                    this.selecttemp_id.push(this.UserTempJson[i].id)
                 }
             }
 
@@ -985,6 +1023,7 @@
             for (var i = 0; i < this.regionalwindspeedjson.length; i++){
                 if (this.regionalwindspeedjson[i].County === this.overplanArray[0].localcity && this.regionalwindspeedjson[i].Region === this.overplanArray[0].localarea ){
                     this.wind_speed = this.regionalwindspeedjson[i].SpeedPerSecond
+                    this.wind_totalinfo.push(this.wind_speed)
                     this.Landing = this.regionalwindspeedjson[i].WindLandingId;
                     this.Path = this.regionalwindspeedjson[i].WindPathId;
 
@@ -1007,6 +1046,7 @@
                 for(var j = 0 ; j < this.WindLand.length ; j++){
                     if(StrLanding[i] == this.WindLand[j].item_Id){
                         this.LandingProbability += parseFloat(this.WindLand[j].percentage,10);    // parseFloat() 將字串轉成浮點數做計算
+                        this.wind_totalinfo.push(this.LandingProbability)
                     }
                 }
             }
@@ -1014,7 +1054,8 @@
             for(var i = 0 ; i <  StrPath.length; i++){
                 for(var j = 0 ; j < this.WindPath.length ; j++){
                     if(StrPath[i] == this.WindPath[j].item_Id){
-                        this.PathProbability += parseFloat(this.WindPath[j].percentage,10);    // parseFloat() 將字串轉成浮點數做計算
+                        this.PathProbability += parseFloat(this.WindPath[j].percentage,10); 
+                        this.wind_totalinfo.push(this.PathProbability)
                     }
                 }
             }
@@ -1023,6 +1064,8 @@
                 if (Number(this.wind_speed) > Number(this.windspeedjson[i].SpeedMin) && Number(this.wind_speed) < Number(this.windspeedjson[i].SpeedMax)){
                     this.wind_rank = this.windspeedjson[i].Series
                     this.wind_name = this.windspeedjson[i].Wind
+                    this.wind_totalinfo.push(this.wind_rank)
+                    this.wind_totalinfo.push(this.wind_name)
                 }
             }
 
@@ -1039,6 +1082,8 @@
             }
             this.wind_addspeed = Math.round(wind123[0]*wind123[1]*100)/100
             this.corrosion_add = Math.round(corrosion[0]*corrosion[1]*100)/100
+            this.wind_totalinfo.push(this.wind_addspeed)
+            this.wind_totalinfo.push(this.corrosion_add)
 
             const D_OverPlan = await fetch('/DesignJson',  {
                 method: 'GET',
@@ -1416,7 +1461,20 @@
             this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);
             this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
         },
-        
+        saveresult: async function() {
+            let formData = new FormData();
+            formData.append('name',this.formname);
+            formData.append('uid',this.$auth.user().id);
+            formData.append('baseid', this.overplanArray[0].pid);
+            formData.append('lightid',this.selectlight_id.toString());
+            formData.append('tempid',this.selecttemp_id.toString());
+            formData.append('windid',this.wind_totalinfo.toString());
+            formData.append('filmid',this.FilmArray_id.toString());
+            formData.append('steelid',this.selectsteel_id.toString());
+            formData.append('greenhouseid',this.DesignJson[0].id);
+            formData.append('weightid',this.WeightJson[0].id);
+            const response = await result.createResult(formData)
+        }
     },
 }
 </script>
