@@ -8,11 +8,8 @@
         <hr>
         <v-container>
             <v-row>
-                <v-col cols="1">
-                    <button type="button" class="btn btn-primary" v-on:click="saveresult" v-if="saveform === '本張表單'">儲存</button>
-                </v-col>
                 <v-col cols="2">
-                    <b-select v-model="saveform" v-for="(Result, index) in ResultJson" :key="index">
+                    <b-select v-model="saveform" v-for="(Result, index) in ResultJson" :key="index" v-on:change="resultchange">
                         <option>
                             本張表單
                         </option>
@@ -20,9 +17,12 @@
                             {{ Result.name }}
                         </option>
                     </b-select>
+                </v-col> 
+                <v-col cols="1">
+                    <button type="button" class="btn btn-primary" v-on:click="saveresult" v-if="saveform === '本張表單'">儲存</button>
                 </v-col>
                 <v-col>
-                    <v-text-field label="表單名稱" v-model="formname" style="width:50%"></v-text-field>
+                    <v-text-field label="表單名稱" v-model="formname" style="width:50%" v-if="saveform === '本張表單'"></v-text-field>
                 </v-col>
             </v-row>
             <v-row>
@@ -933,7 +933,7 @@
             this.design_story = this.WeightArray[0].continue_design
 
             const J_OverPlan = await fetch('/OverPlanJson',  {
-            method: 'GET',
+                method: 'GET',
             });
             this.OverPlanJson = await J_OverPlan.json();
             for(var i = 0; i < this.OverPlanJson.length; i++){
@@ -977,7 +977,7 @@
             for(var i = 0; i < this.FilmJson.length; i++){
                 if (this.FilmJson[i].uid === this.$auth.user().id){
                     this.FilmArray.push(this.FilmJson[i])
-                    this.FilmArray_id.push(this.FilmJson[i].id)
+                    this.FilmArray_id.push(this.FilmJson[i].material+'-'+this.FilmJson[i].BuildItem)
                 }
             }
 
@@ -992,7 +992,7 @@
                         this.selectsteel_id.push(this.SteelJson[i].id)
                     } else{
                         this.selectprofile.push(this.SteelJson[i])
-                        this.selectsteel_id.push(this.SteelJson[i].id)
+                        this.selectsteel_id.push(this.SteelJson[i].MaterialName)
                     }
                 }
             }
@@ -1004,7 +1004,7 @@
             for (var i = 0; i < this.LightJson.length; i++){
                 if (this.LightJson[i].uid === this.$auth.user().id){
                     this.selectlight.push(this.LightJson[i])
-                    this.selectlight_id.push(this.LightJson[i].id)
+                    this.selectlight_id.push(this.LightJson[i].ControlItem+'-'+this.LightJson[i].ControlSystem)
                 }
             }
 
@@ -1015,7 +1015,7 @@
             for (var i = 0; i < this.UserTempJson.length; i++){
                 if (this.UserTempJson[i].uid === this.$auth.user().id){
                     this.selecttemp.push(this.UserTempJson[i])
-                    this.selecttemp_id.push(this.UserTempJson[i].id)
+                    this.selecttemp_id.push(this.UserTempJson[i].ControlItem+'-'+this.UserTempJson[i].ControlSystem)
                 }
             }
 
@@ -1462,19 +1462,32 @@
             this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
         },
         saveresult: async function() {
+            let overplan = [this.overplanArray[0].userclass,this.overplanArray[0].usercodename,this.overplanArray[0].palntclass,this.overplanArray[0].cropplant,this.overplanArray[0].localcity,this.overplanArray[0].localarea,this.overplanArray[0].terrain,this.overplanArray[0].landform,this.overplanArray[0].landcondition,this.overplanArray[0].croplength,this.overplanArray[0].cropwidth,this.overplanArray[0].croparea,this.overplanArray[0].position]
+            let Design = [this.DesignArray[0].housetype,this.DesignArray[0].pipetype,this.DesignArray[0].rooftype,this.DesignArray[0].circlespan,this.DesignArray[0].base,this.DesignArray[0].span,this.DesignArray[0].shoulder,this.DesignArray[0].length,this.DesignArray[0].continue,this.DesignArray[0].drape]
+            let Weight = [this.WeightArray[0].roof_type,this.WeightArray[0].roof_number,this.WeightArray[0].wind_design,this.WeightArray[0].span_design,this.WeightArray[0].shoulder_design,this.WeightArray[0].continue_design,]
+
             let formData = new FormData();
             formData.append('name',this.formname);
             formData.append('uid',this.$auth.user().id);
-            formData.append('baseid', this.overplanArray[0].pid);
+            formData.append('baseid', overplan.toString());
             formData.append('lightid',this.selectlight_id.toString());
             formData.append('tempid',this.selecttemp_id.toString());
             formData.append('windid',this.wind_totalinfo.toString());
             formData.append('filmid',this.FilmArray_id.toString());
             formData.append('steelid',this.selectsteel_id.toString());
-            formData.append('greenhouseid',this.DesignJson[0].id);
-            formData.append('weightid',this.WeightJson[0].id);
+            formData.append('greenhouseid',Design.toString());
+            formData.append('weightid',Weight.toString());
             const response = await result.createResult(formData)
-        }
+        },
+        // resultchange() {
+        //     if (this.saveform != '本張表單') {
+        //         for (var i = 0; i < this.ResultJson.length; i++) {
+        //             if (this.ResultJson[i].name === this.saveform) {
+
+        //             }
+        //         }
+        //     }
+        // }
     },
 }
 </script>
