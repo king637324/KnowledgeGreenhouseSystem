@@ -83,7 +83,11 @@ class GreenhouseDesignController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request['pipetype']){
+        if ($request['housetype'] && $request['pipetype'] && $request['rooftype'] && $request['circlespan'] && $request['base'] && $request['span'] && $request['shoulder'] && $request['length'] && $request['continue'] && $request['drape']){
+            $data = $request->only(['housetype','pipetype','rooftype','circlespan','base','span','shoulder','length','continue','drape']);
+            $EditCropData  = greenhousedesign::where('id',$id);
+            $EditCropData->update($data);
+        } else if ($request['pipetype']){
             $data = $request->only(['pipetype']);
             $EditCropData  = greenhousedesign::where('id',$id);
             $EditCropData->update($data);
