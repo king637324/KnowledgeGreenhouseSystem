@@ -772,17 +772,17 @@
                                             </h5>
                                             <h5>
                                                 請選擇欲更改之材料種類：
-                                                <b-select style="width:20vmin" v-model="material" v-if="system_change === '簡易溫室'" :value="system_pipe[0]" v-on:change="material_change">
+                                                <b-select style="width:20vmin" v-model="material_class" v-if="system_change === '簡易溫室'" :value="system_pipe[0]" v-on:change="material_change">
                                                     <option v-for="(pipe, index) in system_pipe">
                                                         {{ pipe }}
                                                     </option>
                                                 </b-select>
-                                                <b-select style="width:20vmin" v-model="material" v-else-if="system_change === '強固溫室'" :value="system_profile[0]" v-on:change="material_change">
+                                                <b-select style="width:20vmin" v-model="material_class" v-else-if="system_change === '強固溫室'" :value="system_profile[0]" v-on:change="material_change">
                                                     <option v-for="(profile, index) in system_profile">
                                                         {{ profile }}
                                                     </option>
                                                 </b-select>
-                                                <b-select style="width:20vmin" v-if="material !== null" v-model="material_item[0]" v-on:change="material_check">
+                                                <b-select style="width:20vmin" v-if="material_class !== null" v-model="material_item[0]" v-on:change="addmaterialinfo">
                                                     <option>
                                                         ===請選擇材料===
                                                     </option>
@@ -794,12 +794,12 @@
                                             <v-container>
                                                 <v-row v-if="material_item[0] !== '===請選擇材料==='">
                                                     <v-col>{{ material_item[0].BuildItem }}：</v-col>
-                                                    <v-col><v-text-field hint="成本性" persistent-hint :label="material_item[0].Cost"></v-text-field></v-col>
-                                                    <v-col><v-text-field hint="風險性" persistent-hint :label="material_item[0].StructuralRisk"></v-text-field></v-col>
-                                                    <v-col><v-text-field hint="工作難度" persistent-hint :label="material_item[0].JobDifficulty"></v-text-field></v-col>
+                                                    <v-col><v-text-field persistent-hint label="成本性" v-model="change_cost"></v-text-field></v-col>
+                                                    <v-col><v-text-field persistent-hint label="風險性" v-model="change_risk"></v-text-field></v-col>
+                                                    <v-col><v-text-field persistent-hint label="工作難度" v-model="change_job"></v-text-field></v-col>
                                                 </v-row>
                                             </v-container>
-                                            <button v-if="material_item[0] !== '===請選擇材料==='" type="button" class="btn btn-primary" style="float:right;">確認</button>
+                                            <button v-if="material_item[0] !== '===請選擇材料==='" type="button" class="btn btn-primary" style="float:right;" v-on:click="material_check">確認</button>
                                         </b-card-text>
                                     </b-card>
                                 </v-row>
@@ -1564,9 +1564,12 @@
         system_change:'簡易溫室',
         system_pipe:['===選擇材料===','溫室管材','圓頂形式','圓拱距','基礎','跨距','肩高','長度','連續性','披覆材料'],
         system_profile:['===選擇材料===','溫室型材','屋頂形式','上拱距','基礎','跨距','肩高','長度','連續性','披覆材料'],
-        material:'===選擇材料===',
+        material_class:'===選擇材料===',
         material_array:[],
         material_item:['===請選擇材料==='],
+        change_cost:null,
+        change_risk:null,
+        change_job:null,
     }),
     created:function(){  // 網頁載入時，一開始就載入
         if (this.$auth.check() === false) {
@@ -1576,7 +1579,6 @@
     },
     methods: {
         async getJson(){
-
             const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
             });
@@ -2913,28 +2915,64 @@
             }
         },
         material_change:async function (){
-            if (this.material === '溫室管材') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleGreenhousePipesJSON));
-            } else if (this.material === '圓頂形式') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleDomeFormsJSON));
-            } else if (this.material === '圓拱距') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleCircularArchDistancesJSON));
-            } else if (this.material === '基礎') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleFoundationsJSON));
-            } else if (this.material === '跨距') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleSpansJSON));
-            } else if (this.material === '肩高') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleShoulderHeightsJSON));
-            } else if (this.material === '長度') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleLengthsJSON));
-            } else if (this.material === '連續性') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleContinuitysJSON));
-            } else if (this.material === '披覆材料') {
-                this.material_array = JSON.parse(JSON.stringify(this.SimpleCoatingFilmsJSON));
+            if (this.system_change === '簡易溫室') {
+                if (this.material_class === '溫室管材') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleGreenhousePipesJSON));
+                } else if (this.material_class === '圓頂形式') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleDomeFormsJSON));
+                } else if (this.material_class === '圓拱距') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleCircularArchDistancesJSON));
+                } else if (this.material_class === '基礎') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleFoundationsJSON));
+                } else if (this.material_class === '跨距') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleSpansJSON));
+                } else if (this.material_class === '肩高') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleShoulderHeightsJSON));
+                } else if (this.material_class === '長度') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleLengthsJSON));
+                } else if (this.material_class === '連續性') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleContinuitysJSON));
+                } else if (this.material_class === '披覆材料') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleCoatingFilmsJSON));
+                }
+            } else if (this.system_change === '強固溫室') {
+                if (this.material_class === '溫室型材') {
+                    this.material_array = JSON.parse(JSON.stringify(this.StrongGreenhousPprofilesJSON));
+                } else if (this.material_class === '屋頂形式') {
+                    this.material_array = JSON.parse(JSON.stringify(this.StrongRoofFormsJSON));
+                } else if (this.material_class === '上拱距') {
+                    this.material_array = JSON.parse(JSON.stringify(this.StrongUpperArchDistancesJSON));
+                } else if (this.material_class === '基礎') {
+                    this.material_array = JSON.parse(JSON.stringify(this.StrongFoundationsJSON));
+                } else if (this.material_class === '跨距') {
+                    this.material_array = JSON.parse(JSON.stringify(this.StrongSpansJSON));
+                } else if (this.material_class === '肩高') {
+                    this.material_array = JSON.parse(JSON.stringify(this.StrongShoulderHeightsJSON));
+                } else if (this.material_class === '長度') {
+                    this.material_array = JSON.parse(JSON.stringify(this.StrongLengthsJSON));
+                } else if (this.material_class === '連續性') {
+                    this.material_array = JSON.parse(JSON.stringify(this.StrongContinuitysJSON));
+                } else if (this.material_class === '披覆材料') {
+                    this.material_array = JSON.parse(JSON.stringify(this.SimpleCoatingFilmsJSON));
+                }
             }
-        },material_check:async function (){
-            
         },
+        addmaterialinfo:async function (){
+            this.change_cost = this.material_item[0].Cost
+            this.change_risk = this.material_item[0].StructuralRisk
+            this.change_job = this.material_item[0].JobDifficulty
+        },
+        material_check:async function (){
+            let formData = new FormData();
+            formData.append('greenhousetype',this.system_change);
+            formData.append('item',this.material_class);
+            formData.append('Expert',this.overplanArray[0].usercodename);
+            formData.append('BuildItem',this.material_item[0].BuildItem);
+            formData.append('Cost',this.change_cost);
+            formData.append('StructuralRisk',this.change_risk);
+            formData.append('JobDifficulty',this.change_job);
+            const response = await Design.createDesign(formData);
+        }
     },
 }
 </script>
