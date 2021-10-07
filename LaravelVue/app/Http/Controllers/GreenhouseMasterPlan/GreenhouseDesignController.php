@@ -321,6 +321,84 @@ class GreenhouseDesignController extends Controller
             $EditCropData  = greenhousedesign::where('id',$id);
             $EditCropData->update($data);
         }
+
+        if ($request['greenhousetype'] == '簡易溫室'){
+            if ($request['item'] == '溫室管材') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplegreenhousepipe::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '圓頂形式') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplecostratio::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '圓拱距') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplecirculararchdistance::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '基礎') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplefoundation::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '跨距') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplespan::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '肩高') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simpleshoulderheight::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '長度') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplelength::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '連續性') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplecontinuity::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '披覆材料') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplecoatingfilm::where('id',$id);
+                $EditCropData->update($data);
+            }
+        } else if ($request['greenhousetype'] == '強固溫室'){
+            if ($request['item'] == '溫室型材') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = stronggreenhouseprofile::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '屋頂形式') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = strongroofform::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '上拱距') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = strongupperarchdistance::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '基礎') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = strongfoundation::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '跨距') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = strongspan::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '肩高') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = strongshoulderheight::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '長度') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = stronglength::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '連續性') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = strongcontinuity::where('id',$id);
+                $EditCropData->update($data);
+            } else if ($request['item'] == '披覆材料') {
+                $data = $request->only(['Cost','StructuralRisk','JobDifficulty']);
+                $EditCropData  = simplecoatingfilm::where('id',$id);
+                $EditCropData->update($data);
+            }
+        }
     }
 
     /**

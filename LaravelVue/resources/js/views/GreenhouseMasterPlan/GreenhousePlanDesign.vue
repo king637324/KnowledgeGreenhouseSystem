@@ -787,7 +787,7 @@
                                                         ===請選擇材料===
                                                     </option>
                                                     <option v-for="(item, index) in material_array" :value="item">
-                                                        {{ item.BuildItem }}
+                                                        {{ item }}
                                                     </option>
                                                 </b-select>
                                             </h5>
@@ -2171,121 +2171,6 @@
                 const response = await Design.UpdateDesign(this.now_user_design, formData);
             }
     
-            // if (this.SelectSimple.length === 9) {
-            //     let formData = new FormData();
-            //     formData.append('pipetype',this.SelectSimple[0][1].BuildItem);
-            //     formData.append('rooftype',this.SelectSimple[1][1].BuildItem);
-            //     formData.append('circlespan',this.SelectSimple[2][1].BuildItem);
-            //     formData.append('base',this.SelectSimple[3][1].BuildItem);
-            //     formData.append('span',this.SelectSimple[4][1].BuildItem);
-            //     formData.append('shoulder',this.SelectSimple[5][1].BuildItem);
-            //     formData.append('length',this.SelectSimple[6][1].BuildItem);
-            //     formData.append('continue',this.SelectSimple[7][1].BuildItem);
-            //     formData.append('drape',this.SelectSimple[8][1].BuildItem);
-            //     formData.append('_method','put');
-            //     const response = await Design.UpdateDesign(this.now_user_design, formData);
-            // }
-            // for (var i = 0; i < this.SelectSimple_name.length; i++){
-            //     if(this.SelectSimple_name[i] === '溫室管材'){
-            //         if (this.SelectSimple_name.indexOf('溫室管材') === -1){
-            //             this.SelectSimple.push(['溫室管材',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('溫室管材')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('pipetype',this.SimpleGreenhousePipe);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            //     if(this.greentype_simple[i] === '圓頂形式'){
-            //         if (this.SelectSimple_name.indexOf('圓頂形式') === -1){
-            //             this.SelectSimple.push(['圓頂形式',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('圓頂形式')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('rooftype',this.SimpleDomeForm);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            //     if(this.greentype_simple[i] === '圓拱距'){
-            //         if (this.SelectSimple_name.indexOf('圓拱距') === -1){
-            //             this.SelectSimple.push(['圓拱距',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('圓拱距')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('circlespan',this.SimpleCircularArchDistance);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            //     if(this.greentype_simple[i] === '基礎'){
-            //         if (this.SelectSimple_name.indexOf('基礎') === -1){
-            //             this.SelectSimple.push(['基礎',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('基礎')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('base',this.SimpleFoundation);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            //     if(this.greentype_simple[i] === '跨距'){
-            //         if (this.SelectSimple_name.indexOf('跨距') === -1){
-            //             this.SelectSimple.push(['跨距',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('跨距')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('span',this.SimpleSpan);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            //     if(this.greentype_simple[i] === '肩高'){
-            //         if (this.SelectSimple_name.indexOf('肩高') === -1){
-            //             this.SelectSimple.push(['肩高',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('肩高')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('shoulder',this.SimpleShoulderHeight);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            //     if(this.greentype_simple[i] === '長度'){
-            //         if (this.SelectSimple_name.indexOf('長度') === -1){
-            //             this.SelectSimple.push(['長度',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('長度')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('length',this.SimpleLength);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            //     if(this.greentype_simple[i] === '連續性'){
-            //         if (this.SelectSimple_name.indexOf('連續性') === -1){
-            //             this.SelectSimple.push(['連續性',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('連續性')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('continue',this.SimpleContinuity);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            //     if(this.greentype_simple[i] === '披覆材料'){
-            //         if (this.SelectSimple_name.indexOf('披覆材料') === -1){
-            //             this.SelectSimple.push(['披覆材料',this.greeninfo_simple[i]])
-            //         } else{
-            //             this.SelectSimple[this.SelectSimple_name.indexOf('披覆材料')].splice(1,1,this.greeninfo_simple[i]) 
-            //         }
-            //         let formData = new FormData();
-            //         formData.append('drape',this.SimpleCoatingFilm);
-            //         formData.append('_method','put');
-            //         const response = await Design.UpdateDesign(this.now_user_design, formData);
-            //     }
-            // }
             if(this.SelectSimple.length === 9 ){
                 this.SimpleTotalSimpleCost = 0,
                 this.SimpleCostAdd = 0,
@@ -2917,61 +2802,281 @@
         material_change:async function (){
             if (this.system_change === '簡易溫室') {
                 if (this.material_class === '溫室管材') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleGreenhousePipesJSON));
+                    this.material_array = ['標準管材','高強管材','耐蝕管材','高強高耐蝕管材']
                 } else if (this.material_class === '圓頂形式') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleDomeFormsJSON));
+                    this.material_array = ['單一圓拱','下橫樑','上1/3橫梁','上二橫梁','T型樑','三支集中樑','三支垂支梁','V型樑','W型樑']
                 } else if (this.material_class === '圓拱距') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleCircularArchDistancesJSON));
+                    this.material_array = ['1M-1"','1M-1-1/4"','1M-1-1/2"','1.5M-1-1/2"','2M-2""','0.5M-1""','0.5-3/4""','0.5-1/2""']
                 } else if (this.material_class === '基礎') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleFoundationsJSON));
+                    this.material_array = ['直插40cm','直插50cm','直插30cm','直插40cm+地錨','直插50cm+地錨','直插30cm+地錨']
                 } else if (this.material_class === '跨距') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleSpansJSON));
+                    this.material_array = ['5.4m','6m','7.2m','8m']
                 } else if (this.material_class === '肩高') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleShoulderHeightsJSON));
+                    this.material_array = ['2m','2.5m','3m','3.5m','4m']
                 } else if (this.material_class === '長度') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleLengthsJSON));
+                    this.material_array = ['30m','60m','90m','120m']
                 } else if (this.material_class === '連續性') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleContinuitysJSON));
+                    this.material_array = ['獨棟','二連棟','三連棟','四連棟']
                 } else if (this.material_class === '披覆材料') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleCoatingFilmsJSON));
+                    this.material_array = ['玻璃-普通','玻璃-高強度','玻璃-高功能','柔性膜-PVC','柔性膜-PE','柔性膜-EVA','柔性膜-PET','柔性膜-PO','柔性膜-ETFE','硬質板-FRP','硬質板-FRA','硬質板-MMA','硬質板-PC']
                 }
             } else if (this.system_change === '強固溫室') {
                 if (this.material_class === '溫室型材') {
-                    this.material_array = JSON.parse(JSON.stringify(this.StrongGreenhousPprofilesJSON));
+                    this.material_array = ['標準型材','高強型材','耐蝕型材','高強高耐蝕型材']
                 } else if (this.material_class === '屋頂形式') {
-                    this.material_array = JSON.parse(JSON.stringify(this.StrongRoofFormsJSON));
+                    this.material_array = ['圓頂UBP','圓力霸UTP','山型VBP','山力霸VTP','W型力霸','單斜SP']
                 } else if (this.material_class === '上拱距') {
-                    this.material_array = JSON.parse(JSON.stringify(this.StrongUpperArchDistancesJSON));
+                    this.material_array = ['2M','1.33M','1M']
                 } else if (this.material_class === '基礎') {
-                    this.material_array = JSON.parse(JSON.stringify(this.StrongFoundationsJSON));
+                    this.material_array = ['獨立基礎','連續樑','快速基礎']
                 } else if (this.material_class === '跨距') {
-                    this.material_array = JSON.parse(JSON.stringify(this.StrongSpansJSON));
+                    this.material_array = ['6m','7m','8m','9m','10m']
                 } else if (this.material_class === '肩高') {
-                    this.material_array = JSON.parse(JSON.stringify(this.StrongShoulderHeightsJSON));
+                    this.material_array = ['3m','3.5m','4m','4.5m','5m']
                 } else if (this.material_class === '長度') {
-                    this.material_array = JSON.parse(JSON.stringify(this.StrongLengthsJSON));
+                    this.material_array = ['30m','60m','90m','120m']
                 } else if (this.material_class === '連續性') {
-                    this.material_array = JSON.parse(JSON.stringify(this.StrongContinuitysJSON));
+                    this.material_array = ['獨棟','二連棟','三連棟','四連棟']
                 } else if (this.material_class === '披覆材料') {
-                    this.material_array = JSON.parse(JSON.stringify(this.SimpleCoatingFilmsJSON));
+                    this.material_array = ['玻璃-普通','玻璃-高強度','玻璃-高功能','柔性膜-PVC','柔性膜-PE','柔性膜-EVA','柔性膜-PET','柔性膜-PO','柔性膜-ETFE','硬質板-FRP','硬質板-FRA','硬質板-MMA','硬質板-PC']
                 }
             }
         },
         addmaterialinfo:async function (){
-            this.change_cost = this.material_item[0].Cost
-            this.change_risk = this.material_item[0].StructuralRisk
-            this.change_job = this.material_item[0].JobDifficulty
+            let greenhousejson = []
+            if (this.system_change === '簡易溫室') {
+                if (this.material_class === '溫室管材') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '圓頂形式') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleDomeFormJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '圓拱距') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleCircularArchDistanceJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '基礎') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleFoundationJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '跨距') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleSpanJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '肩高') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleShoulderHeightJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '長度') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleLengthJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '連續性') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleContinuityJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '披覆材料') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleCoatingFilmJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                }
+            } else if (this.system_change === '強固溫室') {
+                if (this.material_class === '溫室型材') {
+                    const SimpleGreenhousePipes = await fetch('/StrongGreenhouseProfileJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '屋頂形式') {
+                    const SimpleGreenhousePipes = await fetch('/StrongRoofFormJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '上拱距') {
+                    const SimpleGreenhousePipes = await fetch('/StrongUpperArchDistanceJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '基礎') {
+                    const SimpleGreenhousePipes = await fetch('/StrongFoundationJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '跨距') {
+                    const SimpleGreenhousePipes = await fetch('/StrongSpanJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '肩高') {
+                    const SimpleGreenhousePipes = await fetch('/StrongShoulderHeightJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '長度') {
+                    const SimpleGreenhousePipes = await fetch('/StrongLengthJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '連續性') {
+                    const SimpleGreenhousePipes = await fetch('/StrongContinuityJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '披覆材料') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                }
+            }
+            for (var i = 0; i < greenhousejson.length; i++){
+                if (greenhousejson[i].Expert === this.overplanArray[0].usercodename && greenhousejson[i].BuildItem === material_item[0]){
+                    this.change_cost = greenhousejson[i].Cost
+                    this.change_risk = greenhousejson[i].StructuralRisk
+                    this.change_job = greenhousejson[i].JobDifficulty
+                }
+            }
         },
         material_check:async function (){
-            let formData = new FormData();
-            formData.append('greenhousetype',this.system_change);
-            formData.append('item',this.material_class);
-            formData.append('Expert',this.overplanArray[0].usercodename);
-            formData.append('BuildItem',this.material_item[0].BuildItem);
-            formData.append('Cost',this.change_cost);
-            formData.append('StructuralRisk',this.change_risk);
-            formData.append('JobDifficulty',this.change_job);
-            const response = await Design.createDesign(formData);
+            let builditem = []
+            let greenhousejson = []
+            let material_id = []
+            if (this.system_change === '簡易溫室') {
+                if (this.material_class === '溫室管材') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '圓頂形式') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleDomeFormJSON',  {
+                        method: 'GET',
+                    });
+                    this.greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '圓拱距') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleCircularArchDistanceJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '基礎') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleFoundationJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '跨距') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleSpanJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '肩高') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleShoulderHeightJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '長度') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleLengthJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '連續性') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleContinuityJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '披覆材料') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleCoatingFilmJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                }
+            } else if (this.system_change === '強固溫室') {
+                if (this.material_class === '溫室型材') {
+                    const SimpleGreenhousePipes = await fetch('/StrongGreenhouseProfileJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '屋頂形式') {
+                    const SimpleGreenhousePipes = await fetch('/StrongRoofFormJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '上拱距') {
+                    const SimpleGreenhousePipes = await fetch('/StrongUpperArchDistanceJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '基礎') {
+                    const SimpleGreenhousePipes = await fetch('/StrongFoundationJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '跨距') {
+                    const SimpleGreenhousePipes = await fetch('/StrongSpanJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '肩高') {
+                    const SimpleGreenhousePipes = await fetch('/StrongShoulderHeightJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '長度') {
+                    const SimpleGreenhousePipes = await fetch('/StrongLengthJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '連續性') {
+                    const SimpleGreenhousePipes = await fetch('/StrongContinuityJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '披覆材料') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
+                        method: 'GET',
+                    });
+                    greenhousejson = await SimpleGreenhousePipes.json();
+                }
+            }
+            
+            for (var i = 0; i < greenhousejson.length; i++){
+                if (greenhousejson[i].Expert === this.overplanArray[0].usercodename){
+                    builditem.push(greenhousejson[i].BuildItem)
+                    material_id.push(greenhousejson[i].id)
+                }
+            }
+            //window.alert(expert.indexOf(this.overplanArray[0].usercodename)+'-'+builditem.indexOf(this.material_item[0].BuildItem))
+            if (builditem.indexOf(this.material_item[0].BuildItem) === -1){
+                let formData = new FormData();
+                formData.append('greenhousetype',this.system_change);
+                formData.append('item',this.material_class);
+                formData.append('Expert',this.overplanArray[0].usercodename);
+                formData.append('BuildItem',this.material_item[0].BuildItem);
+                formData.append('Cost',this.change_cost);
+                formData.append('StructuralRisk',this.change_risk);
+                formData.append('JobDifficulty',this.change_job);
+                const response = await Design.createDesign(formData);
+                window.alert('新增完畢')
+            } else if (builditem.indexOf(this.material_item[0].BuildItem) !== -1){
+                let formData = new FormData();
+                formData.append('greenhousetype',this.system_change);
+                formData.append('item',this.material_class);
+                formData.append('Cost',this.change_cost);
+                formData.append('StructuralRisk',this.change_risk);
+                formData.append('JobDifficulty',this.change_job);
+                formData.append('_method','put'); 
+                const response = await Design.UpdateDesign(material_id[builditem.indexOf(this.material_item[0].BuildItem)],formData);
+                window.alert('修改完畢')
+            }
+            
         }
     },
 }
