@@ -25,7 +25,7 @@
                             </b-select>
                           </v-col>
                           <v-col md="4">
-                            <v-text-field label="代號" v-model="codename"></v-text-field>
+                            <v-text-field label="代號" v-model="codename" disabled></v-text-field>
                           </v-col>                  
                         </v-row>
                         <v-row>
@@ -246,7 +246,7 @@
                 this.now_user = this.OverPlanJson[i].pid
             }
         }
-        this.codename = this.overplanArray[0].usercodename
+        this.codename = this.$auth.user().name
         this.cropIdx = this.overplanArray[0].palntclass
         this.cityIdx = this.overplanArray[0].localcity
         this.SelectTerrain = this.overplanArray[0].terrain
