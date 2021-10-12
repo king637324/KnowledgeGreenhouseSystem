@@ -777,7 +777,7 @@
                                                     <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
                                                 </v-radio-group>
                                             </h5>
-                                            {{SelectSimple}}
+                                            {{SelectRobust}}
                                             <h5>
                                                 請選擇欲更改之材料種類：
                                                 <b-select style="width:20vmin" v-model="material_class" v-if="system_change === '簡易溫室'" :value="system_pipe[0]" v-on:change="material_change">
@@ -1569,6 +1569,7 @@
         greeninfo_simple:[],
         greeninfo_robust:[],
         SelectSimple_name:[],
+        SelectRobust_name:[],
         system_change:'簡易溫室',
         system_pipe:['===選擇材料===','溫室管材','圓頂形式','圓拱距','基礎','跨距','肩高','長度','連續性','披覆材料'],
         system_profile:['===選擇材料===','溫室型材','屋頂形式','上拱距','基礎','跨距','肩高','長度','連續性','披覆材料'],
@@ -1580,7 +1581,6 @@
         change_job:null,
         system_user: ["System"],
         systemIdx: "System",
-        SimpleCircular_user: [],
     }),
     created:function(){  // 網頁載入時，一開始就載入
         if (this.$auth.check() === false) {
@@ -1695,12 +1695,12 @@
                 if (this.SimpleCoatingFilmsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.SimpleCoatingFilmsJSON[i].Expert) === -1){
                     this.system_user.push(this.SimpleCoatingFilmsJSON[i].Expert)
                 }
-                if (this.SimpleCoatingFilmsJSON[i].BuildItem === this.DesignArray[0].drape){
+                if (this.SimpleCoatingFilmsJSON[i].BuildItem === this.DesignArray[0].drape && this.SimpleCoatingFilmsJSON[i].Expert === "System"){
                     this.SelectSimple.push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
                     this.SelectRobust.push(['披覆材料',this.SimpleCoatingFilmsJSON[i]])
                 }
-                if(this.SimpleCoatingFilmsJSON[i].Expert == "System"){
-                    this.SimpleCoatingFilms.push(this.SimpleCoatingFilmsJSON[i]);
+                if(this.SimpleCoatingFilmsJSON[i].Expert === "System"){
+                    this.SimpleCoatingFilms.push(JSON.parse(JSON.stringify(this.SimpleCoatingFilmsJSON[i])));
                 }
                 if(this.SimpleCoatingFilmsJSON[i].material){
                     this.glass.push(this.SimpleCoatingFilmsJSON[i]);
@@ -1715,11 +1715,11 @@
                 if (this.SimpleContinuitysJSON[i].Expert !== 'System' && this.system_user.indexOf(this.SimpleContinuitysJSON[i].Expert) === -1){
                     this.system_user.push(this.SimpleContinuitysJSON[i].Expert)
                 }
-                if (this.SimpleContinuitysJSON[i].BuildItem === this.DesignArray[0].continue){
+                if (this.SimpleContinuitysJSON[i].BuildItem === this.DesignArray[0].continue && this.SimpleContinuitysJSON[i].Expert === "System"){
                     this.SelectSimple.push(['連續性',this.SimpleContinuitysJSON[i]])
                 }
-                if(this.SimpleContinuitysJSON[i].Expert == "System"){
-                    this.SimpleContinuitys.push(this.SimpleContinuitysJSON[i]);
+                if(this.SimpleContinuitysJSON[i].Expert === "System"){
+                    this.SimpleContinuitys.push(JSON.parse(JSON.stringify(this.SimpleContinuitysJSON[i])));
                 }
             }
             // 簡易型圓頂形式
@@ -1731,11 +1731,11 @@
                 if (this.SimpleDomeFormsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.SimpleDomeFormsJSON[i].Expert) === -1){
                     this.system_user.push(this.SimpleDomeFormsJSON[i].Expert)
                 }
-                if (this.SimpleDomeFormsJSON[i].BuildItem === this.DesignArray[0].rooftype){
+                if (this.SimpleDomeFormsJSON[i].BuildItem === this.DesignArray[0].rooftype && this.SimpleDomeFormsJSON[i].Expert === "System"){
                     this.SelectSimple.push(['圓頂形式',this.SimpleDomeFormsJSON[i]])
                 }
-                if(this.SimpleDomeFormsJSON[i].Expert == "System"){
-                    this.SimpleDomeForms.push(this.SimpleDomeFormsJSON[i]);
+                if(this.SimpleDomeFormsJSON[i].Expert === "System"){
+                    this.SimpleDomeForms.push(JSON.parse(JSON.stringify(this.SimpleDomeFormsJSON[i])));
                 }
             }
             // 簡易型基礎
@@ -1747,11 +1747,11 @@
                 if (this.SimpleFoundationsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.SimpleFoundationsJSON[i].Expert) === -1){
                     this.system_user.push(this.SimpleFoundationsJSON[i].Expert)
                 }
-                if (this.SimpleFoundationsJSON[i].BuildItem === this.DesignArray[0].base){
+                if (this.SimpleFoundationsJSON[i].BuildItem === this.DesignArray[0].base && this.SimpleFoundationsJSON[i].Expert === "System"){
                     this.SelectSimple.push(['基礎',this.SimpleFoundationsJSON[i]])
                 }
-                if(this.SimpleFoundationsJSON[i].Expert == "System"){
-                    this.SimpleFoundations.push(this.SimpleFoundationsJSON[i]);
+                if(this.SimpleFoundationsJSON[i].Expert === "System"){
+                    this.SimpleFoundations.push(JSON.parse(JSON.stringify(this.SimpleFoundationsJSON[i])));
                 }
             }
             // 簡易型溫室管材
@@ -1763,11 +1763,11 @@
                 if (this.SimpleGreenhousePipesJSON[i].Expert !== 'System' && this.system_user.indexOf(this.SimpleGreenhousePipesJSON[i].Expert) === -1){
                     this.system_user.push(this.SimpleGreenhousePipesJSON[i].Expert)
                 }
-                if (this.SimpleGreenhousePipesJSON[i].BuildItem === this.DesignArray[0].pipetype){
+                if (this.SimpleGreenhousePipesJSON[i].BuildItem === this.DesignArray[0].pipetype && this.SimpleGreenhousePipesJSON[i].Expert === "System"){
                     this.SelectSimple.push(['溫室管材',this.SimpleGreenhousePipesJSON[i]])
                 }
-                if(this.SimpleGreenhousePipesJSON[i].Expert == "System"){
-                    this.SimpleGreenhousePipes.push(this.SimpleGreenhousePipesJSON[i]);
+                if(this.SimpleGreenhousePipesJSON[i].Expert === "System"){
+                    this.SimpleGreenhousePipes.push(JSON.parse(JSON.stringify(this.SimpleGreenhousePipesJSON[i])));
                 }
             }
             // 簡易型長度
@@ -1779,11 +1779,11 @@
                 if (this.SimpleLengthsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.SimpleLengthsJSON[i].Expert) === -1){
                     this.system_user.push(this.SimpleLengthsJSON[i].Expert)
                 }
-                if (this.SimpleLengthsJSON[i].BuildItem === this.DesignArray[0].length){
+                if (this.SimpleLengthsJSON[i].BuildItem === this.DesignArray[0].length && this.SimpleLengthsJSON[i].Expert === "System"){
                     this.SelectSimple.push(['長度',this.SimpleLengthsJSON[i]])
                 }
-                if(this.SimpleLengthsJSON[i].Expert == "System"){
-                    this.SimpleLengths.push(this.SimpleLengthsJSON[i]);
+                if(this.SimpleLengthsJSON[i].Expert === "System"){
+                    this.SimpleLengths.push(JSON.parse(JSON.stringify(this.SimpleLengthsJSON[i])));
                 }
             }
             // 簡易型肩高
@@ -1795,11 +1795,11 @@
                 if (this.SimpleShoulderHeightsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.SimpleShoulderHeightsJSON[i].Expert) === -1){
                     this.system_user.push(this.SimpleShoulderHeightsJSON[i].Expert)
                 }
-                if (this.SimpleShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder){
+                if (this.SimpleShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder && this.SimpleShoulderHeightsJSON[i].Expert === "System"){
                     this.SelectSimple.push(['肩高',this.SimpleShoulderHeightsJSON[i]])
                 }
-                if(this.SimpleShoulderHeightsJSON[i].Expert == "System"){
-                    this.SimpleShoulderHeights.push(this.SimpleShoulderHeightsJSON[i]);
+                if(this.SimpleShoulderHeightsJSON[i].Expert === "System"){
+                    this.SimpleShoulderHeights.push(JSON.parse(JSON.stringify(this.SimpleShoulderHeightsJSON[i])));
                 }
             }
             // 簡易型跨距
@@ -1811,11 +1811,11 @@
                 if (this.SimpleSpansJSON[i].Expert !== 'System' && this.system_user.indexOf(this.SimpleSpansJSON[i].Expert) === -1){
                     this.system_user.push(this.SimpleSpansJSON[i].Expert)
                 }
-                if (this.SimpleSpansJSON[i].BuildItem === this.DesignArray[0].span){
+                if (this.SimpleSpansJSON[i].BuildItem === this.DesignArray[0].span && this.SimpleSpansJSON[i].Expert === "System"){
                     this.SelectSimple.push(['跨距',this.SimpleSpansJSON[i]])
                 }
-                if(this.SimpleSpansJSON[i].Expert == "System"){
-                    this.SimpleSpans.push(this.SimpleSpansJSON[i]);
+                if(this.SimpleSpansJSON[i].Expert === "System"){
+                    this.SimpleSpans.push(JSON.parse(JSON.stringify(this.SimpleSpansJSON[i])));
                 }
             }
             if(this.SelectSimple.length == 9){
@@ -1883,11 +1883,11 @@
                 if (this.StrongContinuitysJSON[i].Expert !== 'System' && this.system_user.indexOf(this.StrongContinuitysJSON[i].Expert) === -1){
                     this.system_user.push(this.StrongContinuitysJSON[i].Expert)
                 }
-                if (this.StrongContinuitysJSON[i].BuildItem === this.DesignArray[0].continue){
+                if (this.StrongContinuitysJSON[i].BuildItem === this.DesignArray[0].continue && this.StrongContinuitysJSON[i].Expert === "System"){
                     this.SelectRobust.push(['連續性',this.StrongContinuitysJSON[i]])
                 }
-                if(this.StrongContinuitysJSON[i].Expert == "System"){
-                    this.StrongContinuitys.push(this.StrongContinuitysJSON[i]);
+                if(this.StrongContinuitysJSON[i].Expert === "System"){
+                    this.StrongContinuitys.push(JSON.parse(JSON.stringify(this.StrongContinuitysJSON[i])));
                 }
             }
             // 強固型基礎
@@ -1899,11 +1899,11 @@
                 if (this.StrongFoundationsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.StrongFoundationsJSON[i].Expert) === -1){
                     this.system_user.push(this.StrongFoundationsJSON[i].Expert)
                 }
-                if (this.StrongFoundationsJSON[i].BuildItem === this.DesignArray[0].base){
+                if (this.StrongFoundationsJSON[i].BuildItem === this.DesignArray[0].base && this.StrongFoundationsJSON[i].Expert === "System"){
                     this.SelectRobust.push(['基礎',this.StrongFoundationsJSON[i]])
                 }
-                if(this.StrongFoundationsJSON[i].Expert == "System"){
-                    this.StrongFoundations.push(this.StrongFoundationsJSON[i]);
+                if(this.StrongFoundationsJSON[i].Expert === "System"){
+                    this.StrongFoundations.push(JSON.parse(JSON.stringify(this.StrongFoundationsJSON[i])));
                 }
             }
             // 強固型溫室型材
@@ -1915,11 +1915,11 @@
                 if (this.StrongGreenhousPprofilesJSON[i].Expert !== 'System' && this.system_user.indexOf(this.StrongGreenhousPprofilesJSON[i].Expert) === -1){
                     this.system_user.push(this.StrongGreenhousPprofilesJSON[i].Expert)
                 }
-                if (this.StrongGreenhousPprofilesJSON[i].BuildItem === this.DesignArray[0].pipetype){
+                if (this.StrongGreenhousPprofilesJSON[i].BuildItem === this.DesignArray[0].pipetype && this.StrongGreenhousPprofilesJSON[i].Expert === "System"){
                     this.SelectRobust.push(['溫室型材',this.StrongGreenhousPprofilesJSON[i]])
                 }
-                if(this.StrongGreenhousPprofilesJSON[i].Expert == "System"){
-                    this.StrongGreenhousPprofiles.push(this.StrongGreenhousPprofilesJSON[i]);
+                if(this.StrongGreenhousPprofilesJSON[i].Expert === "System"){
+                    this.StrongGreenhousPprofiles.push(JSON.parse(JSON.stringify(this.StrongGreenhousPprofilesJSON[i])));
                 }
             }
             // 強固型長度
@@ -1931,11 +1931,11 @@
                 if (this.StrongLengthsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.StrongLengthsJSON[i].Expert) === -1){
                     this.system_user.push(this.StrongLengthsJSON[i].Expert)
                 }
-                if (this.StrongLengthsJSON[i].BuildItem === this.DesignArray[0].length){
+                if (this.StrongLengthsJSON[i].BuildItem === this.DesignArray[0].length && this.StrongLengthsJSON[i].Expert === "System"){
                     this.SelectRobust.push(['長度',this.StrongLengthsJSON[i]])
                 }
-                if(this.StrongLengthsJSON[i].Expert == "System"){
-                    this.StrongLengths.push(this.StrongLengthsJSON[i]);
+                if(this.StrongLengthsJSON[i].Expert === "System"){
+                    this.StrongLengths.push(JSON.parse(JSON.stringify(this.StrongLengthsJSON[i])));
                 }
             }
             // 強固型屋頂形式
@@ -1947,11 +1947,11 @@
                 if (this.StrongRoofFormsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.StrongRoofFormsJSON[i].Expert) === -1){
                     this.system_user.push(this.StrongRoofFormsJSON[i].Expert)
                 }
-                if (this.StrongRoofFormsJSON[i].BuildItem === this.DesignArray[0].rooftype){
+                if (this.StrongRoofFormsJSON[i].BuildItem === this.DesignArray[0].rooftype && this.StrongRoofFormsJSON[i].Expert === "System"){
                     this.SelectRobust.push(['屋頂形式',this.StrongRoofFormsJSON[i]])
                 }
-                if(this.StrongRoofFormsJSON[i].Expert == "System"){
-                    this.StrongRoofForms.push(this.StrongRoofFormsJSON[i]);
+                if(this.StrongRoofFormsJSON[i].Expert === "System"){
+                    this.StrongRoofForms.push(JSON.parse(JSON.stringify(this.StrongRoofFormsJSON[i])));
                 }
             }
             // 強固型肩高
@@ -1963,11 +1963,11 @@
                 if (this.StrongShoulderHeightsJSON[i].Expert !== 'System' && this.system_user.indexOf(this.StrongShoulderHeightsJSON[i].Expert) === -1){
                     this.system_user.push(this.StrongShoulderHeightsJSON[i].Expert)
                 }
-                if (this.StrongShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder){
+                if (this.StrongShoulderHeightsJSON[i].BuildItem === this.DesignArray[0].shoulder && this.StrongShoulderHeightsJSON[i].Expert === "System"){
                     this.SelectRobust.push(['肩高',this.StrongShoulderHeightsJSON[i]])
                 }
-                if(this.StrongShoulderHeightsJSON[i].Expert == "System"){
-                    this.StrongShoulderHeights.push(this.StrongShoulderHeightsJSON[i]);
+                if(this.StrongShoulderHeightsJSON[i].Expert === "System"){
+                    this.StrongShoulderHeights.push(JSON.parse(JSON.stringify(this.StrongShoulderHeightsJSON[i])));
                 }
             }
             // 強固型跨距
@@ -1979,11 +1979,11 @@
                 if (this.StrongSpansJSON[i].Expert !== 'System' && this.system_user.indexOf(this.StrongSpansJSON[i].Expert) === -1){
                     this.system_user.push(this.StrongSpansJSON[i].Expert)
                 }
-                if (this.StrongSpansJSON[i].BuildItem === this.DesignArray[0].span){
+                if (this.StrongSpansJSON[i].BuildItem === this.DesignArray[0].span && this.StrongSpansJSON[i].Expert === "System"){
                     this.SelectRobust.push(['跨距',this.StrongSpansJSON[i]])
                 }
-                if(this.StrongSpansJSON[i].Expert == "System"){
-                    this.StrongSpans.push(this.StrongSpansJSON[i]);
+                if(this.StrongSpansJSON[i].Expert === "System"){
+                    this.StrongSpans.push(JSON.parse(JSON.stringify(this.StrongSpansJSON[i])));
                 }
             }
             // 強固型上拱距
@@ -1995,11 +1995,11 @@
                 if (this.StrongUpperArchDistancesJSON[i].Expert !== 'System' && this.system_user.indexOf(this.StrongUpperArchDistancesJSON[i].Expert) === -1){
                     this.system_user.push(this.StrongUpperArchDistancesJSON[i].Expert)
                 }
-                if (this.StrongUpperArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan){
+                if (this.StrongUpperArchDistancesJSON[i].BuildItem === this.DesignArray[0].circlespan && this.StrongUpperArchDistancesJSON[i].Expert === "System"){
                     this.SelectRobust.push(['上拱距',this.StrongUpperArchDistancesJSON[i]])
                 }
-                if(this.StrongUpperArchDistancesJSON[i].Expert == "System"){
-                    this.StrongUpperArchDistances.push(this.StrongUpperArchDistancesJSON[i]);
+                if(this.StrongUpperArchDistancesJSON[i].Expert === "System"){
+                    this.StrongUpperArchDistances.push(JSON.parse(JSON.stringify(this.StrongUpperArchDistancesJSON[i])));
                 }
             }
 
@@ -2280,132 +2280,62 @@
             }
         },
         updateRobustRadio: async function(greentype,robust){
-            let SelectRobust_name = [];
-            if (this.greentype_robust.indexOf(greentype) === -1){
-                this.greentype_robust.push(greentype)
-                this.greeninfo_robust.push(robust)
-            } else{
-                this.greeninfo_robust.splice(this.greentype_robust.indexOf(greentype),1,robust)
-            }
             for (var i = 0; i < this.SelectRobust.length; i++){
-                SelectRobust_name.push(this.SelectRobust[i][0])
+                this.SelectRobust_name.push(this.SelectRobust[i][0])
             }
-            if (this.SelectRobust.length === 9) {
+            if (this.SelectRobust_name.indexOf(greentype) === -1){
+                this.SelectRobust_name.push(greentype)
+                this.SelectRobust.push([greentype,robust])
+            } else {
+                this.SelectRobust[this.SelectRobust_name.indexOf(greentype)].splice(1,1,robust)
+            }
+            if (greentype === '溫室型材') {
                 let formData = new FormData();
-                formData.append('pipetype',this.SelectRobust[0][1].BuildItem);
-                formData.append('rooftype',this.SelectRobust[1][1].BuildItem);
-                formData.append('circlespan',this.SelectRobust[2][1].BuildItem);
-                formData.append('base',this.SelectRobust[3][1].BuildItem);
-                formData.append('span',this.SelectRobust[4][1].BuildItem);
-                formData.append('shoulder',this.SelectRobust[5][1].BuildItem);
-                formData.append('length',this.SelectRobust[6][1].BuildItem);
-                formData.append('continue',this.SelectRobust[7][1].BuildItem);
-                formData.append('drape',this.SelectRobust[8][1].BuildItem);
+                formData.append('pipetype',robust.BuildItem);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            } else if (greentype === '屋頂形式') {
+                let formData = new FormData();
+                formData.append('rooftype',robust.BuildItem);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            } else if (greentype === '上拱距') {
+                let formData = new FormData();
+                formData.append('circlespan',robust.BuildItem);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            } else if (greentype === '基礎') {
+                let formData = new FormData();
+                formData.append('base',robust.BuildItem);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            } else if (greentype === '跨距') {
+                let formData = new FormData();
+                formData.append('span',robust.BuildItem);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            } else if (greentype === '肩高') {
+                let formData = new FormData();
+                formData.append('shoulder',robust.BuildItem);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            } else if (greentype === '長度') {
+                let formData = new FormData();
+                formData.append('length',robust.BuildItem);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            } else if (greentype === '連續性') {
+                let formData = new FormData();
+                formData.append('continue',robust.BuildItem);
+                formData.append('_method','put');
+                const response = await Design.UpdateDesign(this.now_user_design, formData);
+            } else if (greentype === '披覆材料') {
+                let formData = new FormData();
+                formData.append('drape',robust.BuildItem);
                 formData.append('_method','put');
                 const response = await Design.UpdateDesign(this.now_user_design, formData);
             }
-            for (var i = 0; i < this.greentype_robust.length; i++){
-                var temp = [];
-                if(this.greentype_robust[i] === '溫室型材'){
-                    if (SelectRobust_name.indexOf('溫室型材') === -1){
-                        this.SelectRobust.push(['溫室型材',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('溫室型材')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('pipetype',this.RobustGreenhouseProfile);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-                if(this.greentype_robust[i] === '屋頂形式'){
-                    if (SelectRobust_name.indexOf('屋頂形式') === -1){
-                        this.SelectRobust.push(['屋頂形式',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('屋頂形式')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('rooftype',this.RobustRoofForm);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-                if(this.greentype_robust[i] === '上拱距'){
-                    if (SelectRobust_name.indexOf('上拱距') === -1){
-                        this.SelectRobust.push(['上拱距',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('上拱距')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('circlespan',this.RobustUpperArch);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-                if(this.greentype_robust[i] === '基礎'){
-                    if (SelectRobust_name.indexOf('基礎') === -1){
-                        this.SelectRobust.push(['基礎',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('基礎')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('base',this.RobustFoundation);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-                if(this.greentype_robust[i] === '跨距'){
-                    if (SelectRobust_name.indexOf('跨距') === -1){
-                        this.SelectRobust.push(['跨距',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('跨距')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('span',this.RobustSpan);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-                if(this.greentype_robust[i] === '肩高'){
-                    if (SelectRobust_name.indexOf('肩高') === -1){
-                        this.SelectRobust.push(['肩高',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('肩高')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('shoulder',this.RobustShoulderHeight);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-                if(this.greentype_robust[i] === '長度'){
-                    if (SelectRobust_name.indexOf('長度') === -1){
-                        this.SelectRobust.push(['長度',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('長度')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('length',this.RobustLength);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-                if(this.greentype_robust[i] === '連續性'){
-                    if (SelectRobust_name.indexOf('連續性') === -1){
-                        this.SelectRobust.push(['連續性',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('連續性')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('continue',this.RobustContinuity);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-                if(this.greentype_robust[i] === '披覆材料'){
-                    if (SelectRobust_name.indexOf('披覆材料') === -1){
-                        this.SelectRobust.push(['披覆材料',this.greeninfo_robust[i]])
-                    } else{
-                        this.SelectRobust[SelectRobust_name.indexOf('披覆材料')].splice(1,1,this.greeninfo_robust[i]) 
-                    }
-                    let formData = new FormData();
-                    formData.append('drape',this.RobustCoatingFilm);
-                    formData.append('_method','put');
-                    const response = await Design.UpdateDesign(this.now_user_design, formData);
-                }
-            }
+    
             if(this.SelectRobust.length === 9 ){
                 this.RobustTotalCost = 0,
                 this.RobustCostAdd = 0,
@@ -2442,11 +2372,10 @@
                     }
                 }
                 for (var i = 0; i < SelectRobust_copy.length; i++) {
-                    
-                    this.RobustTotalCost += this.RuggedHousrBasePrice * SelectRobust_copy[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
+                    this.RobustTotalCost += this.SimpleHousrBasePrice * SelectRobust_copy[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
                     this.RobustCostAdd += SelectRobust_copy[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
-                    this.RobustStructuralRiskAdd += SelectRobust_copy[i][1].StructuralRisk * this.StrongCostRatios[i].StructuralRisk / 100;
-                    this.RobustJobDifficultyAdd += SelectRobust_copy[i][1].JobDifficulty * this.StrongCostRatios[i].JobDifficulty/ 100;
+                    this.RobustStructuralRiskAdd += SelectRobust_copy[i][1].StructuralRisk * (this.StrongCostRatios[i].StructuralRisk / 100);
+                    this.RobustJobDifficultyAdd += SelectRobust_copy[i][1].JobDifficulty * (this.StrongCostRatios[i].JobDifficulty/ 100);
                 }
                 this.RobustTotalCost =  parseInt(this.RobustTotalCost);
                 this.RobustCostAdd =  this.RobustCostAdd.toFixed(2);
@@ -3144,22 +3073,66 @@
             
         },
         systemuser_change:async function (){
-            for (var i = 0 ; i < this.SimpleCircularArchDistancesJSON.length ; i++) {
-                if (this.SimpleCircularArchDistancesJSON[i].Expert === this.systemIdx) {
-                    this.SimpleCircular_user.push(JSON.parse(JSON.stringify(this.SimpleCircularArchDistancesJSON[i])));
-                }
-            }
-            for (var i = 0 ; i < this.SimpleCircularArchDistances.length ; i++) {
-                for (var j = 0 ; j < this.SimpleCircular_user.length ; j++) { 
-                    if (this.SimpleCircularArchDistances[i].BuildItem === this.SimpleCircular_user[j].BuildItem) {
-                        this.SimpleCircularArchDistances.splice(i,1,this.SimpleCircular_user[j])
+            if (this.greenhouseradio === '簡易溫室') {
+                let all_simplejson = [
+                this.SimpleCircularArchDistancesJSON,this.SimpleCoatingFilmsJSON,this.SimpleContinuitysJSON,this.SimpleDomeFormsJSON,this.SimpleFoundationsJSON,
+                this.SimpleGreenhousePipesJSON,this.SimpleGreenhousePipesJSON,this.SimpleLengthsJSON,this.SimpleShoulderHeightsJSON,this.SimpleSpansJSON
+                ]
+                let all_simple = [
+                    this.SimpleCircularArchDistances,this.SimpleCoatingFilms,this.SimpleContinuitys,this.SimpleDomeForms,this.SimpleFoundation,
+                    this.SimpleGreenhousePipes,this.SimpleGreenhousePipes,this.SimpleLengths,this.SimpleShoulderHeights,this.SimpleSpans
+                ]
+                for (var i = 0 ; i < all_simplejson.length ; i++) {
+                    let SimpleCircular_user = []
+                    for (var j = 0 ; j < all_simplejson[i].length ; j++) {
+                        if (all_simplejson[i][j].Expert === this.systemIdx) {
+                            SimpleCircular_user.push(JSON.parse(JSON.stringify(all_simplejson[i][j])));
+                        }
+                    }
+                    for (var j = 0 ; j < all_simple[i].length ; j++) {
+                        for (var k = 0 ; k < SimpleCircular_user.length ; k++) { 
+                            if (all_simple[i][j].BuildItem === SimpleCircular_user[k].BuildItem) {
+                                all_simple[i].splice(j,1,SimpleCircular_user[k])
+                            }
+                        }
+                    }
+                    for (var j = 0 ; j < this.SelectSimple.length ; j++) {
+                        for (var k = 0 ; k < SimpleCircular_user.length ; k++) { 
+                            if (this.SelectSimple[j][1].BuildItem === SimpleCircular_user[k].BuildItem) {
+                                this.SelectSimple[j].splice(1,1,SimpleCircular_user[k])
+                            }
+                        }
                     }
                 }
-            }
-            for (var i = 0 ; i < this.SelectSimple.length ; i++) {
-                for (var j = 0 ; j < this.SimpleCircular_user.length ; j++) { 
-                    if (this.SelectSimple[i][1].BuildItem === this.SimpleCircular_user[j].BuildItem) {
-                        this.SelectSimple[i].splice(1,1,this.SimpleCircular_user[j])
+            } else if (this.greenhouseradio === '強固溫室') {
+                let all_simplejson = [
+                this.StrongContinuitysJSON,this.StrongFoundationsJSON,this.StrongGreenhousPprofilesJSON,this.StrongLengthsJSON,this.StrongRoofFormsJSON,
+                this.StrongShoulderHeightsJSON,this.StrongSpansJSON,this.StrongUpperArchDistancesJSON,this.SimpleCoatingFilmsJSON
+                ]
+                let all_simple = [
+                    this.StrongContinuitys,this.StrongFoundations,this.StrongGreenhousPprofiles,this.StrongLengths,this.StrongRoofForms,
+                    this.StrongShoulderHeights,this.StrongSpans,this.StrongUpperArchDistances,this.SimpleCoatingFilms
+                ]
+                for (var i = 0 ; i < all_simplejson.length ; i++) {
+                    let SimpleCircular_user = []
+                    for (var j = 0 ; j < all_simplejson[i].length ; j++) {
+                        if (all_simplejson[i][j].Expert === this.systemIdx) {
+                            SimpleCircular_user.push(JSON.parse(JSON.stringify(all_simplejson[i][j])));
+                        }
+                    }
+                    for (var j = 0 ; j < all_simple[i].length ; j++) {
+                        for (var k = 0 ; k < SimpleCircular_user.length ; k++) { 
+                            if (all_simple[i][j].BuildItem === SimpleCircular_user[k].BuildItem) {
+                                all_simple[i].splice(j,1,SimpleCircular_user[k])
+                            }
+                        }
+                    }
+                    for (var j = 0 ; j < this.SelectRobust.length ; j++) {
+                        for (var k = 0 ; k < SimpleCircular_user.length ; k++) { 
+                            if (this.SelectRobust[j][1].BuildItem === SimpleCircular_user[k].BuildItem) {
+                                this.SelectRobust[j].splice(1,1,SimpleCircular_user[k])
+                            }
+                        }
                     }
                 }
             }
