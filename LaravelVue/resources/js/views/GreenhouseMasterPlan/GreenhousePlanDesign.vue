@@ -3079,7 +3079,7 @@
                     window.alert('修改完畢')
                 }
             } else {
-                window.alert(this.material_item[0].split('-')[1])
+                window.alert(builditem.indexOf(this.material_item[0].split('-')[1]))
                 if (builditem.indexOf(this.material_item[0].split('-')[1]) === -1){
                     let formData = new FormData();
                     formData.append('greenhousetype',this.system_change);
