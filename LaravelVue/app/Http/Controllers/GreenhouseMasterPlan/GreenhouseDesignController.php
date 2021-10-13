@@ -148,10 +148,13 @@ class GreenhouseDesignController extends Controller
             } else if ($request['item'] == '披覆材料') {
                 $simplecoatingfilm = new simplecoatingfilm();
                 $simplecoatingfilm->Expert = $request->Expert;
+                $simplecoatingfilm->material = $request->material;
                 $simplecoatingfilm->BuildItem = $request->BuildItem;
+                $simplecoatingfilm->LightLoss = $request->LightLoss;
                 $simplecoatingfilm->Cost = $request->Cost;
                 $simplecoatingfilm->StructuralRisk = $request->StructuralRisk;
                 $simplecoatingfilm->JobDifficulty = $request->JobDifficulty;
+                $simplecoatingfilm->SideEffect = $request->SideEffect;
                 $simplecoatingfilm->save();
                 return response()->json($simplecoatingfilm);
             }
@@ -231,10 +234,13 @@ class GreenhouseDesignController extends Controller
             } else if ($request['item'] == '披覆材料') {
                 $simplecoatingfilm = new simplecoatingfilm();
                 $simplecoatingfilm->Expert = $request->Expert;
+                $simplecoatingfilm->material = $request->material;
                 $simplecoatingfilm->BuildItem = $request->BuildItem;
+                $simplecoatingfilm->LightLoss = $request->LightLoss;
                 $simplecoatingfilm->Cost = $request->Cost;
                 $simplecoatingfilm->StructuralRisk = $request->StructuralRisk;
                 $simplecoatingfilm->JobDifficulty = $request->JobDifficulty;
+                $simplecoatingfilm->SideEffect = $request->SideEffect;
                 $simplecoatingfilm->save();
                 return response()->json($simplecoatingfilm);
             }

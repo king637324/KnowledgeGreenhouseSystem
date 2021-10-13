@@ -1581,6 +1581,7 @@
         change_job:null,
         system_user: ["System"],
         systemIdx: "System",
+        change_light:null,
     }),
     created:function(){  // 網頁載入時，一開始就載入
         if (this.$auth.check() === false) {
@@ -2930,14 +2931,20 @@
                 }
             }
             for (var i = 0; i < greenhousejson.length; i++){
-                if (greenhousejson[i].Expert === this.overplanArray[0].usercodename && greenhousejson[i].BuildItem === this.material_item[0]){
+                if (greenhousejson[i].Expert === this.overplanArray[0].usercodename && greenhousejson[i].BuildItem === this.material_item[0] || greenhousejson[i].BuildItem === this.material_item[0].split('-')[1]){
                     this.change_cost = greenhousejson[i].Cost
                     this.change_risk = greenhousejson[i].StructuralRisk
                     this.change_job = greenhousejson[i].JobDifficulty
-                } else if(greenhousejson[i].Expert === 'System' && greenhousejson[i].BuildItem === this.material_item[0]){
+                    try {
+                        this.change_light = greenhousejson[i].LightLoss
+                    } catch (e) {}
+                } else if(greenhousejson[i].Expert === 'System' && greenhousejson[i].BuildItem === this.material_item[0] || greenhousejson[i].BuildItem === this.material_item[0].split('-')[1]){
                     this.change_cost = greenhousejson[i].Cost
                     this.change_risk = greenhousejson[i].StructuralRisk
                     this.change_job = greenhousejson[i].JobDifficulty
+                    try {
+                        this.change_light = greenhousejson[i].LightLoss
+                    } catch (e) {}
                 }
             }
         },
@@ -3047,29 +3054,59 @@
                     material_id.push(greenhousejson[i].id)
                 }
             }
-            //window.alert(expert.indexOf(this.overplanArray[0].usercodename)+'-'+builditem.indexOf(this.material_item[0].BuildItem))
-            if (builditem.indexOf(this.material_item[0]) === -1){
-                let formData = new FormData();
-                formData.append('greenhousetype',this.system_change);
-                formData.append('item',this.material_class);
-                formData.append('Expert',this.overplanArray[0].usercodename);
-                formData.append('BuildItem',this.material_item[0]);
-                formData.append('Cost',this.change_cost);
-                formData.append('StructuralRisk',this.change_risk);
-                formData.append('JobDifficulty',this.change_job);
-                const response = await Design.createDesign(formData);
-                window.alert('新增完畢')
-            } else if (builditem.indexOf(this.material_item[0]) !== -1){
-                let formData = new FormData();
-                formData.append('greenhousetype',this.system_change);
-                formData.append('item',this.material_class);
-                formData.append('Cost',this.change_cost);
-                formData.append('StructuralRisk',this.change_risk);
-                formData.append('JobDifficulty',this.change_job);
-                formData.append('_method','put'); 
-                const response = await Design.UpdateDesign(material_id[builditem.indexOf(this.material_item[0])],formData);
-                window.alert('修改完畢')
+            window.alert(this.material_item[0].split('-').length)
+            if (this.material_item[0].split('-').length !== 2){
+                if (builditem.indexOf(this.material_item[0]) === -1){
+                    let formData = new FormData();
+                    formData.append('greenhousetype',this.system_change);
+                    formData.append('item',this.material_class);
+                    formData.append('Expert',this.overplanArray[0].usercodename);
+                    formData.append('BuildItem',this.material_item[0]);
+                    formData.append('Cost',this.change_cost);
+                    formData.append('StructuralRisk',this.change_risk);
+                    formData.append('JobDifficulty',this.change_job);
+                    const response = await Design.createDesign(formData);
+                    window.alert('新增完畢')
+                } else if (builditem.indexOf(this.material_item[0]) !== -1){
+                    let formData = new FormData();
+                    formData.append('greenhousetype',this.system_change);
+                    formData.append('item',this.material_class);
+                    formData.append('Cost',this.change_cost);
+                    formData.append('StructuralRisk',this.change_risk);
+                    formData.append('JobDifficulty',this.change_job);
+                    formData.append('_method','put'); 
+                    const response = await Design.UpdateDesign(material_id[builditem.indexOf(this.material_item[0])],formData);
+                    window.alert('修改完畢')
+                }
+            } else {
+                window.alert(this.material_item[0].split('-')[1])
+                if (builditem.indexOf(this.material_item[0].split('-')[1]) === -1){
+                    let formData = new FormData();
+                    formData.append('greenhousetype',this.system_change);
+                    formData.append('item',this.material_class);
+                    formData.append('Expert',this.overplanArray[0].usercodename);
+                    formData.append('material',this.material_item[0].split('-')[0]);
+                    formData.append('LightLoss',this.change_light);
+                    formData.append('BuildItem',this.material_item[0].split('-')[1]);
+                    formData.append('Cost',this.change_cost);
+                    formData.append('StructuralRisk',this.change_risk);
+                    formData.append('JobDifficulty',this.change_job);
+                    formData.append('SideEffect','1');
+                    const response = await Design.createDesign(formData);
+                    window.alert('新增完畢')
+                } else if (builditem.indexOf(this.material_item[0].split('-')[1]) !== -1){
+                    let formData = new FormData();
+                    formData.append('greenhousetype',this.system_change);
+                    formData.append('item',this.material_class);
+                    formData.append('Cost',this.change_cost);
+                    formData.append('StructuralRisk',this.change_risk);
+                    formData.append('JobDifficulty',this.change_job);
+                    formData.append('_method','put'); 
+                    const response = await Design.UpdateDesign(material_id[builditem.indexOf(this.material_item[0].split('-')[1])],formData);
+                    window.alert('修改完畢')
+                }
             }
+            
             
         },
         systemuser_change:async function (){
