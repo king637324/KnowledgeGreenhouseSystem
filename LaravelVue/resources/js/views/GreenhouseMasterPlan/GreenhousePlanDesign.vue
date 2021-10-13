@@ -2792,43 +2792,43 @@
         material_change:async function (){
             if (this.system_change === '簡易溫室') {
                 if (this.material_class === '溫室管材') {
-                    this.material_array = ['標準管材','高強管材','耐蝕管材','高強高耐蝕管材']
+                    this.material_array = ['高強管材','耐蝕管材','高強高耐蝕管材']
                 } else if (this.material_class === '圓頂形式') {
-                    this.material_array = ['單一圓拱','下橫樑','上1/3橫梁','上二橫梁','T型樑','三支集中樑','三支垂支梁','V型樑','W型樑']
+                    this.material_array = ['下橫樑','上1/3橫梁','上二橫梁','T型樑','三支集中樑','三支垂支梁','V型樑','W型樑']
                 } else if (this.material_class === '圓拱距') {
-                    this.material_array = ['1M-1"','1M-1-1/4"','1M-1-1/2"','1.5M-1-1/2"','2M-2""','0.5M-1""','0.5-3/4""','0.5-1/2""']
+                    this.material_array = ['1M-1-1/4"','1M-1-1/2"','1.5M-1-1/2"','2M-2""','0.5M-1""','0.5-3/4""','0.5-1/2""']
                 } else if (this.material_class === '基礎') {
-                    this.material_array = ['直插40cm','直插50cm','直插30cm','直插40cm+地錨','直插50cm+地錨','直插30cm+地錨']
+                    this.material_array = ['直插50cm','直插30cm','直插40cm+地錨','直插50cm+地錨','直插30cm+地錨']
                 } else if (this.material_class === '跨距') {
-                    this.material_array = ['5.4m','6m','7.2m','8m']
+                    this.material_array = ['6m','7.2m','8m']
                 } else if (this.material_class === '肩高') {
-                    this.material_array = ['2m','2.5m','3m','3.5m','4m']
+                    this.material_array = ['2.5m','3m','3.5m','4m']
                 } else if (this.material_class === '長度') {
-                    this.material_array = ['30m','60m','90m','120m']
+                    this.material_array = ['60m','90m','120m']
                 } else if (this.material_class === '連續性') {
-                    this.material_array = ['獨棟','二連棟','三連棟','四連棟']
+                    this.material_array = ['二連棟','三連棟','四連棟']
                 } else if (this.material_class === '披覆材料') {
-                    this.material_array = ['玻璃-普通','玻璃-高強度','玻璃-高功能','柔性膜-PVC','柔性膜-PE','柔性膜-EVA','柔性膜-PET','柔性膜-PO','柔性膜-ETFE','硬質板-FRP','硬質板-FRA','硬質板-MMA','硬質板-PC']
+                    this.material_array = ['玻璃-普通','玻璃-高強度','玻璃-高功能','柔性膜-PVC','柔性膜-EVA','柔性膜-PET','柔性膜-PO','柔性膜-ETFE','硬質板-FRP','硬質板-FRA','硬質板-MMA','硬質板-PC']
                 }
             } else if (this.system_change === '強固溫室') {
                 if (this.material_class === '溫室型材') {
-                    this.material_array = ['標準型材','高強型材','耐蝕型材','高強高耐蝕型材']
+                    this.material_array = ['高強型材','耐蝕型材','高強高耐蝕型材']
                 } else if (this.material_class === '屋頂形式') {
-                    this.material_array = ['圓頂UBP','圓力霸UTP','山型VBP','山力霸VTP','W型力霸','單斜SP']
+                    this.material_array = ['圓力霸UTP','山型VBP','山力霸VTP','W型力霸','單斜SP']
                 } else if (this.material_class === '上拱距') {
-                    this.material_array = ['2M','1.33M','1M']
+                    this.material_array = ['1.33M','1M']
                 } else if (this.material_class === '基礎') {
-                    this.material_array = ['獨立基礎','連續樑','快速基礎']
+                    this.material_array = ['連續樑','快速基礎']
                 } else if (this.material_class === '跨距') {
-                    this.material_array = ['6m','7m','8m','9m','10m']
+                    this.material_array = ['7m','8m','9m','10m']
                 } else if (this.material_class === '肩高') {
-                    this.material_array = ['3m','3.5m','4m','4.5m','5m']
+                    this.material_array = ['3.5m','4m','4.5m','5m']
                 } else if (this.material_class === '長度') {
-                    this.material_array = ['30m','60m','90m','120m']
+                    this.material_array = ['60m','90m','120m']
                 } else if (this.material_class === '連續性') {
-                    this.material_array = ['獨棟','二連棟','三連棟','四連棟']
+                    this.material_array = ['二連棟','三連棟','四連棟']
                 } else if (this.material_class === '披覆材料') {
-                    this.material_array = ['玻璃-普通','玻璃-高強度','玻璃-高功能','柔性膜-PVC','柔性膜-PE','柔性膜-EVA','柔性膜-PET','柔性膜-PO','柔性膜-ETFE','硬質板-FRP','硬質板-FRA','硬質板-MMA','硬質板-PC']
+                    this.material_array = ['玻璃-普通','玻璃-高強度','玻璃-高功能','柔性膜-PVC','柔性膜-EVA','柔性膜-PET','柔性膜-PO','柔性膜-ETFE','硬質板-FRP','硬質板-FRA','硬質板-MMA','硬質板-PC']
                 }
             }
         },
@@ -3104,6 +3104,52 @@
                         }
                     }
                 }
+                if(this.SelectSimple.length == 9){
+                    this.SimpleTotalSimpleCost = 0,
+                    this.SimpleCostAdd = 0,
+                    this.SimpleStructuralRiskAdd = 0,
+                    this.SimpleJobDifficultyAdd = 0;
+                    let SelectSimple_copy = new Array(9);
+                    for (var i = 0; i < this.SelectSimple.length; i++) {
+                        if (this.SelectSimple[i][0] === '溫室管材'){
+                            SelectSimple_copy[0] = this.SelectSimple[i]
+                        }
+                        else if (this.SelectSimple[i][0] === '圓頂形式') {
+                            SelectSimple_copy[1] = this.SelectSimple[i]
+                        }
+                        else if (this.SelectSimple[i][0] === '圓拱距') {
+                            SelectSimple_copy[2] = this.SelectSimple[i]
+                        }
+                        else if (this.SelectSimple[i][0] === '基礎') {  
+                            SelectSimple_copy[3] = this.SelectSimple[i]
+                        }
+                        else if (this.SelectSimple[i][0] === '跨距') {
+                            SelectSimple_copy[4] = this.SelectSimple[i]
+                        }
+                        else if (this.SelectSimple[i][0] === '肩高') {
+                            SelectSimple_copy[5] = this.SelectSimple[i]
+                        }
+                        else if (this.SelectSimple[i][0] === '長度') {
+                            SelectSimple_copy[6] = this.SelectSimple[i]
+                        }
+                        else if (this.SelectSimple[i][0] === '連續性') {
+                            SelectSimple_copy[7] = this.SelectSimple[i]
+                        }
+                        else if (this.SelectSimple[i][0] === '披覆材料') {
+                            SelectSimple_copy[8] = this.SelectSimple[i]
+                        }
+                    }
+                    for (var i = 0; i < SelectSimple_copy.length; i++) {
+                        this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
+                        this.SimpleCostAdd += SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
+                        this.SimpleStructuralRiskAdd += SelectSimple_copy[i][1].StructuralRisk * (this.SimpleCostratios[i].StructuralRisk / 100);
+                        this.SimpleJobDifficultyAdd += SelectSimple_copy[i][1].JobDifficulty * (this.SimpleCostratios[i].JobDifficulty/ 100);
+                    }
+                    this.SimpleTotalSimpleCost =  parseInt(this.SimpleTotalSimpleCost);
+                    this.SimpleCostAdd =  this.SimpleCostAdd.toFixed(2);
+                    this.SimpleStructuralRiskAdd =  this.SimpleStructuralRiskAdd.toFixed(2);
+                    this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
+                }
             } else if (this.greenhouseradio === '強固溫室') {
                 let all_simplejson = [
                 this.StrongContinuitysJSON,this.StrongFoundationsJSON,this.StrongGreenhousPprofilesJSON,this.StrongLengthsJSON,this.StrongRoofFormsJSON,
@@ -3134,6 +3180,52 @@
                             }
                         }
                     }
+                }
+                if(this.SelectRobust.length === 9 ){
+                    this.RobustTotalCost = 0,
+                    this.RobustCostAdd = 0,
+                    this.RobustStructuralRiskAdd = 0,
+                    this.RobustJobDifficultyAdd = 0;
+                    let SelectRobust_copy = new Array(9);
+                    for (var i = 0; i < this.SelectRobust.length; i++) {
+                        if (this.SelectRobust[i][0] === '溫室型材'){
+                            SelectRobust_copy[0] = this.SelectRobust[i]
+                        }
+                        else if (this.SelectRobust[i][0] === '屋頂形式') {
+                            SelectRobust_copy[1] = this.SelectRobust[i]
+                        }
+                        else if (this.SelectRobust[i][0] === '上拱距') {
+                            SelectRobust_copy[2] = this.SelectRobust[i]
+                        }
+                        else if (this.SelectRobust[i][0] === '基礎') {  
+                            SelectRobust_copy[3] = this.SelectRobust[i]
+                        }
+                        else if (this.SelectRobust[i][0] === '跨距') {
+                            SelectRobust_copy[4] = this.SelectRobust[i]
+                        }
+                        else if (this.SelectRobust[i][0] === '肩高') {
+                            SelectRobust_copy[5] = this.SelectRobust[i]
+                        }
+                        else if (this.SelectRobust[i][0] === '長度') {
+                            SelectRobust_copy[6] = this.SelectRobust[i]
+                        }
+                        else if (this.SelectRobust[i][0] === '連續性') {
+                            SelectRobust_copy[7] = this.SelectRobust[i]
+                        }
+                        else if (this.SelectRobust[i][0] === '披覆材料') {
+                            SelectRobust_copy[8] = this.SelectRobust[i]
+                        }
+                    }
+                    for (var i = 0; i < SelectRobust_copy.length; i++) {
+                        this.RobustTotalCost += this.SimpleHousrBasePrice * SelectRobust_copy[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
+                        this.RobustCostAdd += SelectRobust_copy[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
+                        this.RobustStructuralRiskAdd += SelectRobust_copy[i][1].StructuralRisk * (this.StrongCostRatios[i].StructuralRisk / 100);
+                        this.RobustJobDifficultyAdd += SelectRobust_copy[i][1].JobDifficulty * (this.StrongCostRatios[i].JobDifficulty/ 100);
+                    }
+                    this.RobustTotalCost =  parseInt(this.RobustTotalCost);
+                    this.RobustCostAdd =  this.RobustCostAdd.toFixed(2);
+                    this.RobustStructuralRiskAdd =  this.RobustStructuralRiskAdd.toFixed(2);
+                    this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
                 }
             }
         },
