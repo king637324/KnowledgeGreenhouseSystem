@@ -3106,7 +3106,7 @@
                     window.alert('修改完畢')
                 }
             }
-            
+            this.system_user.push(this.$auth.user().name)
             
         },
         systemuser_change:async function (){
