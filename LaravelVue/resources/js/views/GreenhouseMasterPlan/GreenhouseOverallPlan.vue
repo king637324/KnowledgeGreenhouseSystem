@@ -360,19 +360,17 @@
         formData.append('risk',this.risk) 
         formData.append('speed',this.speed) 
         formData.append('cost',this.cost) 
+        const J_OverPlan = await fetch('/OverPlanJson',  {
+            method: 'GET',
+        });
+        this.OverPlanJson = await J_OverPlan.json();
         for(var i = 0; i < this.OverPlanJson.length; i++){
+            if (this.OverPlanJson[i].uid === this.$auth.user().id){
+                this.now_user = this.OverPlanJson[i].pid
+            }
             get_id.push(this.OverPlanJson[i].uid)
         }
-        // const J_OverPlan = await fetch('/OverPlanJson',  {
-        //     method: 'GET',
-        // });
-        // this.OverPlanJson = await J_OverPlan.json();
-        // for(var i = 0; i < this.OverPlanJson.length; i++){
-        //     if (this.OverPlanJson[i].uid === this.$auth.user().id){
-        //         this.overplanArray.push(this.OverPlanJson[i])
-        //         this.now_user = this.OverPlanJson[i].pid
-        //     }
-        // }
+        
         if (get_id.indexOf(this.$auth.user().id) === -1){
             const response = await SaveOverPlan.createOverPlan(formData)
             this.overplanArray = []
@@ -385,7 +383,6 @@
             this.overplanArray = response.data
             window.alert('修改完畢')
         }
-
     },
     deleterecord: async function(DeleteId){ 
         await SaveOverPlan.deleteOverPlan(DeleteId);
