@@ -703,11 +703,39 @@ export default {
             }
 
         },updateSelectProfile:async function(checkid,checktype){    // 更新所選擇的型材
-            let pipename = null;
-            if (checktype === true){
+            // let pipename = null;
+            // if (checktype === true){
+            //     this.checkedProfile.push(checkid)
+            //     for (var i = 0; i < this.ProfileData.length; i++) {
+            //         if(checkid === this.ProfileData[i].id){
+            //             this.ProfileData[i].checked = false
+            //             this.selectProfile.push(this.ProfileData[i]);
+            //         } 
+            //     }
+            // } else{
+            //     this.checkedProfile.splice(this.checkedProfile.indexOf(checkid),1)
+            //     for (var i = 0; i < this.ProfileData.length; i++){
+            //         if (this.ProfileData[i].id === checkid){
+            //             pipename = this.ProfileData[i].MaterialName
+            //         }
+            //     }
+            //     for(var j = 0; j < this.selectProfile.length; j++){
+            //         if (this.selectProfile[j].MaterialName === pipename && this.selectProfile[j].uid === this.$auth.user().id){
+            //             await Steel.deleteSteel(this.selectProfile[j].id);
+            //             this.selectProfile.splice(j,1)
+            //         }
+            //     }
+            // }
+
+            let profilename = null;
+            let selectprofile_name = [];
+            if (checktype === true && this.checkedProfile.indexOf(checkid) === -1){
                 this.checkedProfile.push(checkid)
+                for (var j = 0; j < this.selectProfile.length; j++) { 
+                    selectprofile_name.push(this.selectProfile[j].MaterialName)
+                }
                 for (var i = 0; i < this.ProfileData.length; i++) {
-                    if(checkid === this.ProfileData[i].id){
+                    if(checkid === this.ProfileData[i].id && selectprofile_name.indexOf(this.ProfileData[i].MaterialName) === -1){
                         this.ProfileData[i].checked = false
                         this.selectProfile.push(this.ProfileData[i]);
                     } 
@@ -716,12 +744,14 @@ export default {
                 this.checkedProfile.splice(this.checkedProfile.indexOf(checkid),1)
                 for (var i = 0; i < this.ProfileData.length; i++){
                     if (this.ProfileData[i].id === checkid){
-                        pipename = this.ProfileData[i].MaterialName
+                        profilename = this.ProfileData[i].MaterialName
                     }
                 }
                 for(var j = 0; j < this.selectProfile.length; j++){
-                    if (this.selectProfile[j].MaterialName === pipename && this.selectProfile[j].uid === this.$auth.user().id){
+                    if (this.selectProfile[j].MaterialName === profilename  && this.selectProfile[j].uid === this.$auth.user().id){
                         await Steel.deleteSteel(this.selectProfile[j].id);
+                        this.selectProfile.splice(j,1)
+                    } else if (this.selectProfile[j].MaterialName === profilename){
                         this.selectProfile.splice(j,1)
                     }
                 }
