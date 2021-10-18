@@ -9,11 +9,11 @@
         <v-container>
             <v-row>
                 <v-col cols="2">
-                    <b-select v-model="saveform" v-for="(Result, index) in ResultJson" v-on:change="resultchange">
+                    <b-select v-model="saveform" v-on:change="resultchange">
                         <option>
                             本張表單
                         </option>
-                        <option>
+                        <option v-for="(Result, index) in ResultJson">
                             {{ Result.name }}
                         </option>
                     </b-select>
@@ -235,7 +235,7 @@
                         </tr>
                         <tr align="center" style="border-bottom: 3pt solid black;">
                             <th> CO₂增產率</th>
-                            <td>{{ result_plant.CO2IncreasedProductionRate }}</td>
+                            <td colspan="3">{{ result_plant.CO2IncreasedProductionRate }}</td>
                         </tr>
                         <thead class="table-active">
                             <tr align="center">
@@ -2341,6 +2341,11 @@
             formData.append('greenhouseid',Design.toString());
             formData.append('weightid',Weight.toString());
             const response = await result.createResult(formData)
+            const Result_user = await fetch('/UserResultJson',  {
+                method: 'GET',
+            });
+            this.ResultJson = await Result_user.json();
+            window.alert('新增成功')
         },
         resultchange() {
             this.FilmResult_Array = []
