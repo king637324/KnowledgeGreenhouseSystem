@@ -9,15 +9,15 @@
         <v-container>
             <v-row>
                 <v-col cols="2">
-                    <b-select v-model="saveform" v-for="(Result, index) in ResultJson" v-on:change="resultchange">
+                    <b-select v-model="saveform" v-on:change="resultchange">
                         <option>
                             本張表單
                         </option>
-                        <option>
+                        <option v-for="(Result, index) in ResultJson">
                             {{ Result.name }}
                         </option>
                     </b-select>
-                </v-col> 
+                </v-col>
                 <v-col cols="1">
                     <button type="button" class="btn btn-primary" v-on:click="saveresult" v-if="saveform === '本張表單'">儲存</button>
                 </v-col>
@@ -2341,6 +2341,11 @@
             formData.append('greenhouseid',Design.toString());
             formData.append('weightid',Weight.toString());
             const response = await result.createResult(formData)
+            const Result_user = await fetch('/UserResultJson',  {
+                method: 'GET',
+            });
+            this.ResultJson = await Result_user.json();
+            window.alert('新增成功')
         },
         resultchange() {
             this.FilmResult_Array = []
