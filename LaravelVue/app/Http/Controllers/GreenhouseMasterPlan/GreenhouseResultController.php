@@ -41,7 +41,11 @@ class GreenhouseResultController extends Controller
         $greenhouseresult->uid = $request->uid;
         $greenhouseresult->baseid = $request->baseid;
         $greenhouseresult->lightid = $request->lightid;
+        $greenhouseresult->alllightvalue = $request->alllightvalue;
+        $greenhouseresult->onelightvalue = $request->onelightvalue;
         $greenhouseresult->tempid = $request->tempid;
+        $greenhouseresult->lowtempvalue = $request->lowtempvalue;
+        $greenhouseresult->hightempvalue = $request->hightempvalue;
         $greenhouseresult->windid = $request->windid;
         $greenhouseresult->filmid = $request->filmid;
         $greenhouseresult->steelid = $request->steelid;
