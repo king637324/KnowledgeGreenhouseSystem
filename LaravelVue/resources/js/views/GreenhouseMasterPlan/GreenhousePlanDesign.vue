@@ -777,7 +777,6 @@
                                                     <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
                                                 </v-radio-group>
                                             </h5>
-                                            {{SelectRobust}}
                                             <h5>
                                                 請選擇欲更改之材料種類：
                                                 <b-select style="width:20vmin" v-model="material_class" v-if="system_change === '簡易溫室'" :value="system_pipe[0]" v-on:change="material_change">

@@ -235,7 +235,7 @@
                         </tr>
                         <tr align="center" style="border-bottom: 3pt solid black;">
                             <th> CO₂增產率</th>
-                            <td>{{ result_plant.CO2IncreasedProductionRate }}</td>
+                            <td colspan="3">{{ result_plant.CO2IncreasedProductionRate }}</td>
                         </tr>
                         <thead class="table-active">
                             <tr align="center">
