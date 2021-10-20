@@ -9,7 +9,7 @@
             <b-card-group deck v-if="showform==true">
                 <v-container-fluid>
                     <v-row>
-                        <v-col>
+                        <v-col cols="6">
                             <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                 <template #header>
                                     <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長環境需求</h6>
@@ -664,7 +664,7 @@
                                 </b-card-text>
                             </b-card>
                         </v-col>
-                        <v-col>
+                        <v-col cols="6">
                             <v-container-fluid>
                                 <v-row>
                                     <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">

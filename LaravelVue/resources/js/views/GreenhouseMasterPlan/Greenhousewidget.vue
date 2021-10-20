@@ -158,7 +158,7 @@
                                                         <td>{{ Math.round(Math.floor(design_wind-30)/SpeedPerSecond*data_wind*100)/100 }}</td>
                                                         <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
                                                         <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
-                                                        <td>{{ Math.round(Math.floor(1-design_story)/5*100)/100 }}</td>
+                                                        <td>{{ Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100 }}</td>
                                                         <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
@@ -535,7 +535,7 @@
         allposition:['方位','東','南','西','北','東南','東北','西南','西北'],
         position:'方位',
         roof_type:['WTG','SP','VTP','UTP','VBP','UBP','UP'],
-        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓形力霸','山型塑膠膜','圓型塑膠膜','簡易溫室'],
+        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓形力霸','山型塑膠膜','圓形塑膠膜','簡易溫室'],
         roof_number:[16,16,15,14,13,12,6],
         SpeedPerSecond: null, 
         data_wind: 0,
