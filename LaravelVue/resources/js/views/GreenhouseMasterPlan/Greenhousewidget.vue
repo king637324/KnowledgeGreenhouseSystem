@@ -143,12 +143,12 @@
                                                         <tr align="center">
                                                             <td>型式</td>
                                                             <td>名稱</td>
-                                                            <td>kg/m2</td>
+                                                            <td>標準單重(kg/m2)</td>
                                                             <td>風速指數</td>
                                                             <td>跨距指數</td>
                                                             <td>肩高指數</td>
                                                             <td>連棟指數</td>
-                                                            <td>預估單量</td>
+                                                            <td>預估單重</td>
                                                         </tr>
                                                     </thead>
                                                     <tr align="center" id="風速">
@@ -285,7 +285,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tr align="center">
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+Math.floor(plantlength+plantwidth)*2*1.5) }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+Math.floor(plantlength+plantwidth)*2*1.2) }}</td>
                                                         <td>{{ 50 }}</td>
                                                         <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+Math.floor(plantlength+plantwidth)*2*1.5*50) }}</td>
                                                         <td>{{ 10 }}</td>
