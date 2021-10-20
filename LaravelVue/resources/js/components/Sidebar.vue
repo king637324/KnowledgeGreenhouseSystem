@@ -169,7 +169,9 @@
                                         <div class="collapse" id="載重設計分析" aria-labelledby="headingOne">
 
                                             <nav class="sb-sidenav-menu-nested nav">
-                                                
+                                                <router-link to="/GreenhouseMasterPlan/GreenhouseOwn" style="font-size:12px;" class="nav-link" exact>
+                                                    (1).自載重
+                                                </router-link>
                                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#風載重" style="font-size:12px;" aria-expanded="false" aria-controls="成本分析">
                                                     (2)風載重
                                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
