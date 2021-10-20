@@ -6,7 +6,7 @@
             自載重
         </h3>
         <hr>
-        <table style="border:1px solid black; font-size: 1.5vmin; width:50em; height:50em; margin-left:35em;" border='1'>
+        <!-- <table style="border:1px solid black; font-size: 1.5vmin; width:50em; height:50em; margin-left:35em;" border='1'>
             <thead class="table-active">
                 <tr align="center">
                     <td>型式</td>
@@ -19,7 +19,8 @@
                 <td>{{ roof_name[index] }}</td>
                 <td>{{ roof_number[index] }}</td>
             </tr>
-        </table>
+        </table> -->
+        <center><img src="/image/widget.jpeg" width="1000px"></center>
     </div>
 </template>
 

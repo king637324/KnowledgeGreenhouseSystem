@@ -42,6 +42,7 @@
                         <!-- LME倫敦金屬價格 -->
                         <div>
                             <img src="/image/steel.png" width="800px">
+                            <img src="/image/country_steel.jpeg" width="800px">
                         </div>
                     </v-col>
                     <v-col md="1"></v-col>
