@@ -51,6 +51,7 @@ import OverallPlanbase from './views/GreenhouseMasterPlan/GreenhouseOverallPlan.
 import PlanDesign from './views/GreenhouseMasterPlan/GreenhousePlanDesign.vue';
 import Widget from './views/GreenhouseMasterPlan/Greenhousewidget.vue';
 import Result from './views/GreenhouseMasterPlan/GreenhouseResult.vue';
+import Own from './views/GreenhouseMasterPlan/GreenhouseOwn.vue';
 import UnitConversion from './views/UnitConversion.vue';
 import QandA from './views/QandA.vue';
 
@@ -333,6 +334,13 @@ const routes = [{
     path: '/GreenhouseMasterPlan/GreenhouseResult',
     name: 'GreenhouseResult',
     component: Result,
+    meta: {
+        auth: undefined
+    }
+}, {
+    path: '/GreenhouseMasterPlan/GreenhouseOwn',
+    name: 'GreenhouseOwn',
+    component: Own,
     meta: {
         auth: undefined
     }
