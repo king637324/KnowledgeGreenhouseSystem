@@ -26,7 +26,7 @@
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
-                                            <v-btn x-large block :disabled="!valid" color="green" @click="Login"> Login </v-btn>
+                                            <v-btn x-large block :disabled="!valid" color="green" @click="Login"> 登入 </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -68,7 +68,7 @@
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
-                                            <v-btn x-large block :disabled="!valid" color="green" @click="Register">Register</v-btn>
+                                            <v-btn x-large block :disabled="!valid" color="green" @click="Register">註冊</v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -88,8 +88,8 @@ export default {
             dialog: true,
             tab: 0,
             tabs: [
-                {name:"Login", icon:"mdi-account"},
-                {name:"Register", icon:"mdi-account-outline"}
+                {name:"登入", icon:"mdi-account"},
+                {name:"註冊", icon:"mdi-account-outline"}
             ],
             valid: true,
             errors: {},

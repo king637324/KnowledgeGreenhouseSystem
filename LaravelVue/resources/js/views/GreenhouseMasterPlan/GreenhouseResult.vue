@@ -2326,15 +2326,73 @@
             let overplan = [this.overplanArray[0].userclass,this.overplanArray[0].usercodename,this.overplanArray[0].palntclass,this.overplanArray[0].cropplant,this.overplanArray[0].localcity,this.overplanArray[0].localarea,this.overplanArray[0].terrain,this.overplanArray[0].landform,this.overplanArray[0].landcondition,this.overplanArray[0].croplength,this.overplanArray[0].cropwidth,this.overplanArray[0].croparea,this.overplanArray[0].position]
             let Design = [this.DesignArray[0].housetype,this.DesignArray[0].pipetype,this.DesignArray[0].rooftype,this.DesignArray[0].circlespan,this.DesignArray[0].base,this.DesignArray[0].span,this.DesignArray[0].shoulder,this.DesignArray[0].length,this.DesignArray[0].continue,this.DesignArray[0].drape]
             let Weight = [this.WeightArray[0].roof_type,this.WeightArray[0].roof_number,this.WeightArray[0].wind_design,this.WeightArray[0].span_design,this.WeightArray[0].shoulder_design,this.WeightArray[0].continue_design,]
+            let alllight = [
+                this.GloblRadSunShineChartData[0].data['1月'],
+                this.GloblRadSunShineChartData[0].data['2月'],
+                this.GloblRadSunShineChartData[0].data['3月'],
+                this.GloblRadSunShineChartData[0].data['4月'],
+                this.GloblRadSunShineChartData[0].data['5月'],
+                this.GloblRadSunShineChartData[0].data['6月'],
+                this.GloblRadSunShineChartData[0].data['7月'],
+                this.GloblRadSunShineChartData[0].data['8月'],
+                this.GloblRadSunShineChartData[0].data['9月'],
+                this.GloblRadSunShineChartData[0].data['10月'],
+                this.GloblRadSunShineChartData[0].data['11月'],
+                this.GloblRadSunShineChartData[0].data['12月'],
+            ]
+            let onelight = [
+                this.GloblRadSunShineChartData[1].data['1月'],
+                this.GloblRadSunShineChartData[1].data['2月'],
+                this.GloblRadSunShineChartData[1].data['3月'],
+                this.GloblRadSunShineChartData[1].data['4月'],
+                this.GloblRadSunShineChartData[1].data['5月'],
+                this.GloblRadSunShineChartData[1].data['6月'],
+                this.GloblRadSunShineChartData[1].data['7月'],
+                this.GloblRadSunShineChartData[1].data['8月'],
+                this.GloblRadSunShineChartData[1].data['9月'],
+                this.GloblRadSunShineChartData[1].data['10月'],
+                this.GloblRadSunShineChartData[1].data['11月'],
+                this.GloblRadSunShineChartData[1].data['12月'],
+            ]
+            let hightemp = [
+                this.StrHighTemperature[0],
+                this.StrHighTemperature[1],
+                this.StrHighTemperature[2],
+                this.StrHighTemperature[3],
+                this.StrHighTemperature[4],
+                this.StrHighTemperature[5],
+                this.StrHighTemperature[6],
+                this.StrHighTemperature[7],
+                this.StrHighTemperature[8],
+                this.StrHighTemperature[9],
+                this.StrHighTemperature[10],
+                this.StrHighTemperature[11],
+            ]
+            let lowtemp = [
+                this.StrLowTemperature[0],
+                this.StrLowTemperature[1],
+                this.StrLowTemperature[2],
+                this.StrLowTemperature[3],
+                this.StrLowTemperature[4],
+                this.StrLowTemperature[5],
+                this.StrLowTemperature[6],
+                this.StrLowTemperature[7],
+                this.StrLowTemperature[8],
+                this.StrLowTemperature[9],
+                this.StrLowTemperature[10],
+                this.StrLowTemperature[11],
+            ]
 
             let formData = new FormData();
             formData.append('name',this.formname);
             formData.append('uid',this.$auth.user().id);
             formData.append('baseid', overplan.toString());
             formData.append('lightid',this.selectlight_id.toString());
-            formData.append('lightvalue',this.selectlight_id.toString());
+            formData.append('alllightvalue',alllight.toString());
+            formData.append('onelightvalue',onelight.toString());
             formData.append('tempid',this.selecttemp_id.toString());
-            formData.append('tempvalue',this.selecttemp_id.toString());
+            formData.append('lowtempvalue',lowtemp.toString());
+            formData.append('hightempvalue',hightemp.toString());
             formData.append('windid',this.wind_totalinfo.toString());
             formData.append('filmid',this.FilmArray_id.toString());
             formData.append('steelid',this.selectsteel_id.toString());
