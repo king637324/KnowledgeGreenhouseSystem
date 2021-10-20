@@ -109,17 +109,17 @@
                                         <router-link to="/GreenhouseMasterPlan/GreenhouseCoatedFilm" style="font-size:16px;" class="nav-link" exact>
                                             1.披覆材料設計
                                         </router-link>
-
                                         <router-link to="/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis" style="font-size:16px;" class="nav-link" exact>
                                             2.結構材料設計
                                         </router-link>
-
-                                        <router-link to="/GreenhouseMasterPlan/GreenhousePlanDesign" style="font-size:16px;" class="nav-link" exact>
-                                            3.溫室型式設計
+                                        <router-link to="/GreenhouseMasterPlan/Greenhousewidget" style="font-size:16px;" class="nav-link" exact>
+                                            3.溫室載重設計
                                         </router-link>
-
+                                        <router-link to="/GreenhouseMasterPlan/GreenhousePlanDesign" style="font-size:16px;" class="nav-link" exact>
+                                            4.溫室型式設計
+                                        </router-link>
                                         <a class="nav-link collapsed" href="#" data-toggle="collapse" style="font-size:16px;" data-target="#環控設計" aria-expanded="false" aria-controls="成本分析">
-                                            4.溫室環控設計
+                                            5.溫室環控設計
                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                         </a>
 
@@ -169,9 +169,7 @@
                                         <div class="collapse" id="載重設計分析" aria-labelledby="headingOne">
 
                                             <nav class="sb-sidenav-menu-nested nav">
-                                                <router-link to="/GreenhouseMasterPlan/Greenhousewidget" style="font-size:12px;" class="nav-link" exact>
-                                                    (1).結構載重
-                                                </router-link>
+                                                
                                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#風載重" style="font-size:12px;" aria-expanded="false" aria-controls="成本分析">
                                                     (2)風載重
                                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
