@@ -406,13 +406,25 @@
                             <th> 作業難度</th>
                             <td> {{ material[4] }} </td>
                         </tr>
-                        <tr>
+                        <tr v-if="greenhouse_material[0][0] === '溫室管材'">
                             <th style="color:red"> 每平方米單價</th>
                             <td style="color:red"> {{Math.floor(SimpleCostAdd*650)}} </td>
                             <th style="color:red"> 每坪單價</th>
                             <td style="color:red"> {{Math.floor(SimpleCostAdd*650/0.3025)}} </td>
                             <th style="color:red"> 總價</th>
                             <td style="color:red"> {{Math.floor(SimpleCostAdd*650*overplanArray[0].croparea)}} </td>
+                            <th style="color:red"> 風險指數</th>
+                            <td style="color:red"> {{SimpleStructuralRiskAdd}} </td>
+                            <th style="color:red"> 工期</th>
+                            <td style="color:red"> {{Math.round(20+SimpleJobDifficultyAdd*40*overplanArray[0].croparea/1000*100)/100}} </td>
+                        </tr>
+                        <tr v-if="greenhouse_material[0][0] === '溫室型材'">
+                            <th style="color:red"> 每平方米單價</th>
+                            <td style="color:red"> {{Math.floor(SimpleCostAdd*1300)}} </td>
+                            <th style="color:red"> 每坪單價</th>
+                            <td style="color:red"> {{Math.floor(SimpleCostAdd*1300/0.3025)}} </td>
+                            <th style="color:red"> 總價</th>
+                            <td style="color:red"> {{Math.floor(SimpleCostAdd*1300*overplanArray[0].croparea)}} </td>
                             <th style="color:red"> 風險指數</th>
                             <td style="color:red"> {{SimpleStructuralRiskAdd}} </td>
                             <th style="color:red"> 工期</th>
@@ -473,12 +485,12 @@
                                             <tr align="center">
                                                 <td>型式</td>
                                                 <td>名稱</td>
-                                                <td>kg/m2</td>
+                                                <td>標準單重(kg/m2)</td>
                                                 <td>風速指數</td>
                                                 <td>跨距指數</td>
                                                 <td>肩高指數</td>
                                                 <td>連棟指數</td>
-                                                <td>預估單量</td>
+                                                <td>預估單重</td>
                                             </tr>
                                         </thead>
                                         <tr align="center" id="風速">
@@ -488,7 +500,7 @@
                                             <td>{{ Math.round(Math.floor(design_wind-30)/wind_speed*wind_addspeed*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
-                                            <td>{{ Math.round(Math.floor(1-design_story)/5*100)/100 }}</td>
+                                            <td>{{ Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100 }}</td>
                                             <td>{{ Math.floor(WeightArray[0].roof_number*
                                                 (
                                                     1+
@@ -615,12 +627,12 @@
                                             </tr>
                                         </thead>
                                         <tr align="center">
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story)) }}</td>
                                             <td>50</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50) }}</td>
                                             <td>10</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10) }}</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10) }}</td>
                                         </tr>
                                     </table>
                                 </v-col>
@@ -679,7 +691,7 @@
                                                     Math.round(Math.floor(1-design_story)/5*100)/100
                                                 )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40) }}
                                             </td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10) }}</td>
                                             <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
                                             <td>{{ Math.floor(Math.floor(WeightArray[0].roof_number*
                                                 (
@@ -697,7 +709,7 @@
                                                     Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                     Math.round(Math.floor(1-design_story)/5*100)/100
                                                 )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
                                                 Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1) }}
                                             </td>
                                             <td>{{ Math.floor(WeightArray[0].roof_number*
@@ -716,7 +728,7 @@
                                                     Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                     Math.round(Math.floor(1-design_story)/5*100)/100
                                                 )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
                                                 Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
                                                 Math.floor(Math.floor(WeightArray[0].roof_number*
                                                 (
@@ -734,7 +746,7 @@
                                                     Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                     Math.round(Math.floor(1-design_story)/5*100)/100
                                                 )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
                                                 Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1) }}
                                             </td>
                                             <td>{{ Math.floor(Math.floor(Math.floor(WeightArray[0].roof_number*
@@ -753,7 +765,7 @@
                                                     Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                     Math.round(Math.floor(1-design_story)/5*100)/100
                                                 )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
                                                 Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
                                                 Math.floor(Math.floor(WeightArray[0].roof_number*
                                                 (
@@ -771,7 +783,7 @@
                                                     Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                     Math.round(Math.floor(1-design_story)/5*100)/100
                                                 )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
                                                 Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1))/Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span)) }}
                                             </td>
                                             <td>{{ Math.floor(Math.floor(Math.floor(Math.floor(WeightArray[0].roof_number*
@@ -790,7 +802,7 @@
                                                     Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                     Math.round(Math.floor(1-design_story)/5*100)/100
                                                 )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
                                                 Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
                                                 Math.floor(Math.floor(WeightArray[0].roof_number*
                                                 (
@@ -808,7 +820,7 @@
                                                     Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                     Math.round(Math.floor(1-design_story)/5*100)/100
                                                 )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+Math.floor(overplanArray[0].croplength+overplanArray[0].cropwidth)*2*1.5*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
                                                 Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1))/Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span))/0.3025) }}
                                             </td>
                                         </tr>
@@ -1413,12 +1425,12 @@
                                             </tr>
                                         </thead>
                                         <tr align="center">
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5) }}</td>
+                                            <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story)) }}</td>
                                             <td>50</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50) }}</td>
                                             <td>10</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10) }}</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10) }}</td>
                                         </tr>
                                     </table>
                                 </v-col>
@@ -1477,7 +1489,7 @@
                                                     Math.round(Math.floor(1-designcounter_result)/5*100)/100
                                                 )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40) }}
                                             </td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10) }}</td>
                                             <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100 }}</td>
                                             <td>{{ Math.floor(Math.floor(roofnumber_result*
                                                 (
@@ -1495,7 +1507,7 @@
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
                                                     Math.round(Math.floor(1-designcounter_result)/5*100)/100
                                                 )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
                                                 Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1) }}
                                             </td>
                                             <td>{{ Math.floor(roofnumber_result*
@@ -1514,7 +1526,7 @@
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
                                                     Math.round(Math.floor(1-designcounter_result)/5*100)/100
                                                 )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
                                                 Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100+
                                                 Math.floor(Math.floor(roofnumber_result*
                                                 (
@@ -1532,7 +1544,7 @@
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
                                                     Math.round(Math.floor(1-designcounter_result)/5*100)/100
                                                 )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
                                                 Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1) }}
                                             </td>
                                             <td>{{ Math.floor(Math.floor(Math.floor(roofnumber_result*
@@ -1551,7 +1563,7 @@
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
                                                     Math.round(Math.floor(1-designcounter_result)/5*100)/100
                                                 )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
                                                 Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100+
                                                 Math.floor(Math.floor(roofnumber_result*
                                                 (
@@ -1569,7 +1581,7 @@
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
                                                     Math.round(Math.floor(1-designcounter_result)/5*100)/100
                                                 )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
                                                 Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1))/Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result)) }}
                                             </td>
                                             <td>{{ Math.floor(Math.floor(Math.floor(Math.floor(roofnumber_result*
@@ -1588,7 +1600,7 @@
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
                                                     Math.round(Math.floor(1-designcounter_result)/5*100)/100
                                                 )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
                                                 Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100+
                                                 Math.floor(Math.floor(roofnumber_result*
                                                 (
@@ -1606,7 +1618,7 @@
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
                                                     Math.round(Math.floor(1-designcounter_result)/5*100)/100
                                                 )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+Math.floor(BaseResult[9]+BaseResult[10])*2*1.5*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
                                                 Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1))/Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result))/0.3025) }}
                                             </td>
                                         </tr>
@@ -1680,7 +1692,7 @@
         SteelprofileResult_Array:[],
         DesignResult_Array:[],
         roof_type:['WTG','SP','VTP','UTP','VBP','UBP','UP'],
-        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓形力霸','山型塑膠膜','圓型塑膠膜','簡易溫室'],
+        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓形力霸','山型塑膠膜','圓形塑膠膜','簡易溫室'],
         GloblRadSunShineChartData:[
             {name: "日照時數(小時)", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
             {name: "全天空日射量(MJ/㎡)", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
