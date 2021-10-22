@@ -46,6 +46,8 @@ class GreenhouseResultController extends Controller
         $greenhouseresult->tempid = $request->tempid;
         $greenhouseresult->lowtempvalue = $request->lowtempvalue;
         $greenhouseresult->hightempvalue = $request->hightempvalue;
+        $greenhouseresult->highoptimal = $request->highoptimal;
+        $greenhouseresult->lowoptimal = $request->lowoptimal;
         $greenhouseresult->windid = $request->windid;
         $greenhouseresult->filmid = $request->filmid;
         $greenhouseresult->steelid = $request->steelid;

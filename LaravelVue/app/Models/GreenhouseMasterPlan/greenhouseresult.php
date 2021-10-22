@@ -19,6 +19,8 @@ class greenhouseresult extends Model
         'tempid',
         'lowtempvalue',
         'hightempvalue',
+        'highoptimal',
+        'lowoptimal',
         'windid',
         'filmid',
         'steelid',
