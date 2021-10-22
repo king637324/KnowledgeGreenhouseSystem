@@ -501,13 +501,13 @@
                                             <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100 }}</td>
-                                            <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            <td>{{ Math.floor(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-30)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/parseFloat(wind_speed)*parseFloat(wind_addspeed)*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
                                                 )) }}
                                             </td>
                                         </tr>
@@ -629,10 +629,10 @@
                                         <tr align="center">
                                             <td>{{ Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story)) }}</td>
                                             <td>50</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50 }}</td>
                                             <td>10</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10) }}</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10 }}</td>
+                                            <td>{{ Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10) }}</td>
                                         </tr>
                                     </table>
                                 </v-col>
@@ -1294,13 +1294,13 @@
                                             <td>{{ Math.round(Math.floor(designspan_result-8)/30*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(designshoulder_result-3)/6*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100 }}</td>
-                                            <td>{{ Math.floor(roofnumber_result*
+                                            <td>{{ Math.floor(parseFloar(roofnumber_result)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-30)/wind_speed_result*wind_addspeed_result*100)/100+
-                                                    Math.round(Math.floor(designspan_result-8)/30*100)/100+
-                                                    Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
+                                                    Math.round(Math.floor(parseFloar(designwind_result)-30)/parseFloar(wind_speed_result)*parseFloar(wind_addspeed_result)*100)/100+
+                                                    Math.round(Math.floor(parseFloar(designspan_result)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloar(designshoulder_result)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
                                                 )) }}
                                             </td>
                                         </tr>
@@ -1422,10 +1422,10 @@
                                         <tr align="center">
                                             <td>{{ Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story)) }}</td>
                                             <td>50</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story))*50 }}</td>
                                             <td>10</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10) }}</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story))*10 }}</td>
+                                            <td>{{ Math.floor(Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story))*10) }}</td>
                                         </tr>
                                     </table>
                                 </v-col>
