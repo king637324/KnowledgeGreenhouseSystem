@@ -61,7 +61,7 @@
                             <v-row>
                                 <v-col cols="2"><v-subheader>C.設計數據</v-subheader></v-col>
                                 <v-col>
-                                    <v-text-field :label="'設計風速(建議'+SpeedPerSecond*data_wind+'m/s)'" v-model="design_wind" v-on:change="updatedesign"></v-text-field>
+                                    <v-text-field :label="'設計風速(建議'+design_wind+'m/s)'" v-model="design_wind" v-on:change="updatedesign"></v-text-field>
                                 </v-col>
                                 <v-col>
                                     <v-text-field label="設計跨距(m)" v-model="design_span" v-on:change="updatedesign"></v-text-field>
@@ -110,7 +110,7 @@
                                                     <tr align="center" id="風速">
                                                         <td>{{ SpeedPerSecond }}</td>
                                                         <td>{{ data_wind }}</td>
-                                                        <td>{{ SpeedPerSecond*data_wind }}</td>
+                                                        <td>{{ design_wind }}</td>
                                                         <td style="color:red">{{ design_wind }}</td>
                                                     </tr>
                                                 </table>
@@ -155,18 +155,18 @@
                                                         <td>{{ roof_type[roof_name.indexOf(radio_roof)] }}</td>
                                                         <td>{{ radio_roof }}</td>
                                                         <td>{{ roof_number[roof_name.indexOf(radio_roof)] }}</td>
-                                                        <td>{{ Math.round(Math.floor(design_wind-30)/SpeedPerSecond*data_wind*100)/100 }}</td>
+                                                        <td>{{ Math.round(Math.floor(design_wind-30)/design_wind*100)/100 }}</td>
                                                         <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
                                                         <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
                                                         <td>{{ Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100 }}</td>
-                                                        <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                        <td>{{ Math.round(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-30)/SpeedPerSecond*data_wind*100)/100+
-                                                                Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                                Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )) }}
+                                                                (Math.round(Math.floor(design_wind-30)/design_wind*100)/100)+
+                                                                (Math.round(Math.floor(design_span-8)/30*100)/100)+
+                                                                (Math.round(Math.floor(design_shoulder-3)/6*100)/100)+
+                                                                (Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100)
+                                                            )*100)/100 }}
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -194,19 +194,19 @@
                                                         <td>{{ position }}</td>
                                                         <td>{{ Math.floor(plantlength*plantwidth) }}</td>
                                                         <td>4</td>
-                                                        <td>{{ Math.floor(plantlength/4*0.95) }}</td>
-                                                        <td>{{ design_span }}</td>
-                                                        <td>{{ Math.floor(plantwidth/design_span*0.95) }}</td>
-                                                        <td>{{ Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span }}</td>
+                                                        <td>{{ Math.floor(parseFloat(plantlength)/4*0.95) }}</td>
+                                                        <td>8</td>
+                                                        <td>{{ Math.floor(plantwidth/8*0.95) }}</td>
+                                                        <td>{{ Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8 }}</td>
                                                         <td>{{ Math.round(Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)/Math.floor(plantlength*plantwidth)*100)/100*100 }}%</td>
-                                                        <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                        <td>{{ Math.floor((Math.round(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
-                                                                Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                                Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                                Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span) }}
+                                                                (Math.round(Math.floor(design_wind-30)/design_wind*100)/100)+
+                                                                (Math.round(Math.floor(design_span-8)/30*100)/100)+
+                                                                (Math.round(Math.floor(design_shoulder-3)/6*100)/100)+
+                                                                (Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100)
+                                                            )*100)/100)*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8) }}
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -233,41 +233,41 @@
                                                     </thead>
                                                     <tr align="center">
                                                         <td>40</td>
-                                                        <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                        <td>{{Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40) }}
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40 }}
                                                         </td>
                                                         <td>10</td>
                                                         <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10) }}
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10 }}
                                                         </td>
                                                         <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40) }}
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40 }}
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -287,10 +287,11 @@
                                                     <tr align="center">
                                                         <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story)) }}</td>
                                                         <td>{{ 50 }}</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50) }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50 }}</td>
                                                         <td>{{ 10 }}</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10) }}</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10) }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10 }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10 }}</td>
                                                     </tr>
                                                 </table>
                                             </v-col>
@@ -311,10 +312,10 @@
                                                         <td>{{ Math.floor(plantlength*plantwidth) }}</td>
                                                         <td>{{ 100 }}</td>
                                                         <td>{{ Math.floor(plantlength*plantwidth)*100 }}</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2) }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2) }}</td>
                                                         <td>2000</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000) }}</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100 }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000) }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100 }}</td>
                                                     </tr>
                                                 </table>
                                             </v-col>
@@ -335,151 +336,156 @@
                                                         <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40) }}
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40 }}
                                                         </td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10) }}</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100 }}</td>
-                                                        <td>{{ Math.floor(Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                        <td>{{  Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10 }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100 }}</td>
+                                                        <td>{{ (Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40+
-                                                            Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)*0.1) }}
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40+
+                                                             Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10+
+                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)*0.1 }}
                                                         </td>
-                                                        <td>{{ Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                        <td>{{ (Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100+
-                                                            Math.floor(Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40+
+                                                             Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10+
+                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)+((Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40+
-                                                            Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)*0.1) }}
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40+
+                                                             Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10+
+                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)*0.1) }}
                                                         </td>
-                                                        <td>{{ Math.floor(Math.floor(Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                        <td>{{ Math.round(((Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100+
-                                                            Math.floor(Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40+
+                                                             Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10+
+                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)+((Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40+
-                                                            Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)*0.1))/Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)) }}
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40+
+                                                             Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10+
+                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)*0.1))/(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8)) }}
                                                         </td>
-                                                        <td>{{ Math.floor(Math.floor(Math.floor(Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                        <td>{{ Math.round(((Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100+
-                                                            Math.floor(Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40+
+                                                             Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10+
+                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)+((Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*10+
-                                                            roof_number[roof_name.indexOf(radio_roof)]*
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*10+
+                                                            Math.floor(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
-                                                                Math.round(Math.floor(design_wind-SpeedPerSecond*data_wind)/SpeedPerSecond*data_wind*100)/100+
+                                                                Math.round(Math.floor(design_wind-30)/design_wind*100)/100+
                                                                 Math.round(Math.floor(design_span-8)/30*100)/100+
                                                                 Math.round(Math.floor(design_shoulder-3)/6*100)/100+
                                                                 Math.round(Math.floor(1-design_story)/5*100)/100
-                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*40+
-                                                            Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*50+Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(plantlength)+Math.floor(plantwidth))*2*1.5*10)+
-                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/design_span*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)*0.1))/Math.floor(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span))/0.3025) }}
+                                                            )*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/design_span*0.95)*4*design_span)*40+
+                                                             Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10+
+                                                            Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100)*0.1))/(Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8)/0.3025) }}
                                                         </td>
                                                     </tr>
                                                 </table>

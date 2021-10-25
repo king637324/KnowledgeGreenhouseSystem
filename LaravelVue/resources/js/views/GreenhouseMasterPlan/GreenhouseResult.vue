@@ -497,18 +497,18 @@
                                             <td>{{ roof_type[roof_name.indexOf(radio_roof)] }}</td>
                                             <td>{{ radio_roof }}</td>
                                             <td>{{ WeightArray[0].roof_number }}</td>
-                                            <td>{{ Math.round(Math.floor(design_wind-30)/wind_speed*wind_addspeed*100)/100 }}</td>
+                                            <td>{{ Math.round(Math.floor(design_wind-30)/design_wind*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(design_span-8)/30*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(design_shoulder-3)/6*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100 }}</td>
-                                            <td>{{ Math.floor(parseFloat(WeightArray[0].roof_number)*
+                                            <td>{{ Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/parseFloat(wind_speed)*parseFloat(wind_addspeed)*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
                                                     Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
                                                     Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
                                                     Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
-                                                )) }}
+                                                )*100)/100 }}
                                             </td>
                                         </tr>
                                     </table>
@@ -537,18 +537,18 @@
                                             <td>{{ overplanArray[0].croparea }}</td>
                                             <td>4</td>
                                             <td>{{ Math.floor(overplanArray[0].croplength/4*0.95) }}</td>
-                                            <td>{{ design_span }}</td>
-                                            <td>{{ Math.floor(overplanArray[0].cropwidth/design_span*0.95) }}</td>
-                                            <td>{{ Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span }}</td>
-                                            <td>{{ Math.round(Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span)/Math.floor(overplanArray[0].croparea)*100)/100*100 }}%</td>
-                                            <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            <td>8</td>
+                                            <td>{{ Math.floor(overplanArray[0].cropwidth/8*0.95) }}</td>
+                                            <td>{{ Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8 }}</td>
+                                            <td>{{ Math.round(Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)/Math.floor(overplanArray[0].croparea)*100)/100*100 }}%</td>
+                                            <td>{{ Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8) }}
                                             </td>
                                         </tr>
                                     </table>
@@ -575,41 +575,41 @@
                                         </thead>
                                         <tr align="center">
                                             <td>40</td>
-                                            <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            <td>{{ Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40 }}
                                             </td>
                                             <td>10</td>
-                                            <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            <td>{{ Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10 }}
                                             </td>
-                                            <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            <td>{{ Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10 }}
                                             </td>
                                         </tr>
                                     </table>
@@ -653,10 +653,10 @@
                                             <td>{{ Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth) }}</td>
                                             <td>100</td>
                                             <td>{{ Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2) }}</td>
                                             <td>2000</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000) }}</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
                                         </tr>
                                     </table>
                                 </v-col>
@@ -674,154 +674,151 @@
                                             </tr>
                                         </thead>
                                         <tr align="center">
-                                            <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            <td>{{  Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10 }}
                                             </td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10) }}</td>
-                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
-                                            <td>{{ Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            <td>{{ Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100 }}</td>
+                                            <td>{{ Math.floor(Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10+
+                                                Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1 }}
                                             </td>
-                                            <td>{{ Math.floor(WeightArray[0].roof_number*
+                                            <td>{{ Math.floor(Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
-                                                Math.floor(Math.floor(WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10+
+                                                Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)+Math.floor(Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10+
+                                                Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1 }}
                                             </td>
-                                            <td>{{ Math.floor(Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            <td>{{ Math.floor((Math.floor(Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
-                                                Math.floor(Math.floor(WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10+
+                                                Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)+Math.floor(Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1))/Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span)) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10+
+                                                Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1)/(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)) }}
                                             </td>
-                                            <td>{{ Math.floor(Math.floor(Math.floor(Math.floor(WeightArray[0].roof_number*
+                                            <td>{{ Math.floor((Math.floor(Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100+
-                                                Math.floor(Math.floor(WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10+
+                                                Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)+Math.floor(Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*10+
-                                                WeightArray[0].roof_number*
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*40+
+                                                Math.floor((Math.round(parseFloat(WeightArray[0].roof_number)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(design_wind-wind_speed*wind_addspeed)/wind_speed*wind_addspeed*100)/100+
-                                                    Math.round(Math.floor(design_span-8)/30*100)/100+
-                                                    Math.round(Math.floor(design_shoulder-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-design_story)/5*100)/100
-                                                )*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*40+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*50+Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span*1.2+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*2*1.5*10)+
-                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/design_span*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1))/Math.floor(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/design_span*0.95)*4*design_span))/0.3025) }}
+                                                    Math.round(Math.floor(parseFloat(design_wind)-30)/design_wind*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_span)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(design_shoulder)-3)/6*100)/100+
+                                                    Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100
+                                                )*100)/100)*Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)*10+
+                                                Math.floor(Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(overplanArray[0].croplength)*Math.floor(overplanArray[0].cropwidth)*1.3+(Math.floor(overplanArray[0].croplength)+Math.floor(overplanArray[0].cropwidth))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(overplanArray[0].croplength/4*0.95+1)*Math.floor(overplanArray[0].cropwidth/8*0.95+1)*1.2*2000)+Math.floor(overplanArray[0].croplength*overplanArray[0].cropwidth)*100)*0.1)/(Math.floor(overplanArray[0].croplength/4*0.95)*Math.floor(overplanArray[0].cropwidth/8*0.95)*4*8)/0.3025) }}
                                             </td>
                                         </tr>
                                     </table>
@@ -853,7 +850,7 @@
                         </tr>
                         <tr align="center">
                             <th> 栽種面積</th>
-                            <td colspan="3"> {{BaseResult[9]}} * {{BaseResult[10]}} =  {{BaseResult[11]}} 方位：{{BaseResult[12]}}</td>
+                            <td colspan="3"> {{BaseResult[10]}} * {{BaseResult[9]}} =  {{BaseResult[11]}} 方位：{{BaseResult[12]}}</td>
                         </tr>
                     </table>
                 </v-row>
@@ -1290,16 +1287,16 @@
                                             <td>{{ roof_type[roof_name.indexOf(roofname_result)] }}</td>
                                             <td>{{ roofname_result }}</td>
                                             <td>{{ roofnumber_result }}</td>
-                                            <td>{{ Math.round(Math.floor(designwind_result-30)/wind_speed_result*wind_addspeed_result*100)/100 }}</td>
+                                            <td>{{ Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(designspan_result-8)/30*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(designshoulder_result-3)/6*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100 }}</td>
-                                            <td>{{ Math.floor(parseFloar(roofnumber_result)*
+                                            <td>{{ Math.floor(parseFloat(roofnumber_result)*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(parseFloar(designwind_result)-30)/parseFloar(wind_speed_result)*parseFloar(wind_addspeed_result)*100)/100+
-                                                    Math.round(Math.floor(parseFloar(designspan_result)-8)/30*100)/100+
-                                                    Math.round(Math.floor(parseFloar(designshoulder_result)-3)/6*100)/100+
+                                                    Math.round(Math.floor(parseFloat(designwind_result)-30)/designwind_result*100)/100+
+                                                    Math.round(Math.floor(parseFloat(designspan_result)-8)/30*100)/100+
+                                                    Math.round(Math.floor(parseFloat(designshoulder_result)-3)/6*100)/100+
                                                     Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
                                                 )) }}
                                             </td>
@@ -1324,24 +1321,24 @@
                                             </tr>
                                         </thead>
                                         <tr align="center" id="風速">
-                                            <td>{{ BaseResult[9] }}</td>
                                             <td>{{ BaseResult[10] }}</td>
+                                            <td>{{ BaseResult[9] }}</td>
                                             <td>{{ BaseResult[12] }}</td>
                                             <td>{{ BaseResult[11] }}</td>
                                             <td>4</td>
-                                            <td>{{ Math.floor(BaseResult[10]/4*0.95) }}</td>
-                                            <td>{{ designspan_result }}</td>
-                                            <td>{{ Math.floor(BaseResult[9]/design_span*0.95) }}</td>
-                                            <td>{{ Math.floor(BaseResult[10]/4*0.95)*Math.floor(BaseResult[9]/designspan_result*0.95)*4*designspan_result }}</td>
-                                            <td>{{ Math.round(Math.floor(Math.floor(BaseResult[10]/4*0.95)*Math.floor(BaseResult[9]/designspan_result*0.95)*4*designspan_result)/Math.floor(BaseResult[11])*100)/100*100 }}%</td>
+                                            <td>{{ Math.floor(BaseResult[9]/4*0.95) }}</td>
+                                            <td>8</td>
+                                            <td>{{ Math.floor(BaseResult[10]/8*0.95) }}</td>
+                                            <td>{{ Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8 }}</td>
+                                            <td>{{ Math.round(Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8)/Math.floor(BaseResult[11])*100)/100*100 }}%</td>
                                             <td>{{ Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[10]/4*0.95)*Math.floor(BaseResult[9]/designspan_result*0.95)*4*designspan_result) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8) }}
                                             </td>
                                         </tr>
                                     </table>
@@ -1371,38 +1368,38 @@
                                             <td>{{ Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[10]/4*0.95)*Math.floor(BaseResult[9]/designspan_result*0.95)*4*designspan_result*40) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40) }}
                                             </td>
                                             <td>10</td>
                                             <td>{{ Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[10]/4*0.95)*Math.floor(BaseResult[9]/designspan_result*0.95)*4*designspan_result*10) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10) }}
                                             </td>
                                             <td>{{ Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[10]/4*0.95)*Math.floor(BaseResult[9]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[10]/4*0.95)*Math.floor(BaseResult[9]/designspan_result*0.95)*4*designspan_result*40) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10) }}
                                             </td>
                                         </tr>
                                     </table>
@@ -1420,12 +1417,12 @@
                                             </tr>
                                         </thead>
                                         <tr align="center">
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story)) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story)) }}</td>
                                             <td>50</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story))*50 }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50 }}</td>
                                             <td>10</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story))*10 }}</td>
-                                            <td>{{ Math.floor(Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story))*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10 }}</td>
+                                            <td>{{ Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10) }}</td>
                                         </tr>
                                     </table>
                                 </v-col>
@@ -1443,13 +1440,13 @@
                                             </tr>
                                         </thead>
                                         <tr align="center">
-                                            <td>{{ Math.floor(BaseResult[9]*BaseResult[10]) }}</td>
+                                            <td>{{ Math.floor(BaseResult[10]*BaseResult[9]) }}</td>
                                             <td>100</td>
-                                            <td>{{ Math.floor(BaseResult[9]*BaseResult[10])*100 }}</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2) }}</td>
+                                            <td>{{ Math.floor(BaseResult[10]*BaseResult[9])*100 }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2) }}</td>
                                             <td>2000</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000) }}</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100 }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100 }}</td>
                                         </tr>
                                     </table>
                                 </v-col>
@@ -1470,151 +1467,148 @@
                                             <td>{{ Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10) }}
                                             </td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10) }}</td>
-                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100 }}</td>
-                                            <td>{{ Math.floor(Math.floor(roofnumber_result*
+                                            <td>{{ Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100 }}</td>
+                                            <td>{{ Math.floor((Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10))+
+                                                Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1 }}
                                             </td>
-                                            <td>{{ Math.floor(roofnumber_result*
+                                            <td>{{ Math.floor(Math.floor((Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100+
-                                                Math.floor(Math.floor(roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10))+
+                                                Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)+(Math.floor((Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10))+
+                                                Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1)) }}
                                             </td>
-                                            <td>{{ Math.floor(Math.floor(Math.floor(roofnumber_result*
+                                            <td>{{ Math.floor(Math.floor(Math.floor((Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100+
-                                                Math.floor(Math.floor(roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10))+
+                                                Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)+(Math.floor((Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1))/Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result)) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10))+
+                                                Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1))/Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8))  }}
                                             </td>
-                                            <td>{{ Math.floor(Math.floor(Math.floor(Math.floor(roofnumber_result*
+                                            <td>{{ Math.floor(Math.floor(Math.floor(Math.floor((Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100+
-                                                Math.floor(Math.floor(roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10))+
+                                                Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)+(Math.floor((Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*10+
-                                                roofnumber_result*
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*40)+
+                                                Math.floor(roofnumber_result*
                                                 (
                                                     1+
-                                                    Math.round(Math.floor(designwind_result-wind_speed_result*wind_addspeed_result)/wind_speed_result*wind_addspeed_result*100)/100+
+                                                    Math.round(Math.floor(designwind_result-30)/designwind_result*100)/100+
                                                     Math.round(Math.floor(designspan_result-8)/30*100)/100+
                                                     Math.round(Math.floor(designshoulder_result-3)/6*100)/100+
-                                                    Math.round(Math.floor(1-designcounter_result)/5*100)/100
-                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*40+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50+Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*10)+
-                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/designspan_result*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1))/Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result))/0.3025) }}
+                                                    Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100
+                                                )*Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8*10))+
+                                                Math.floor(Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*50+Math.floor(Math.floor(BaseResult[10])*Math.floor(BaseResult[9])*1.3+(Math.floor(BaseResult[10])+Math.floor(BaseResult[9]))*1.2*(1+0.3/design_story))*10)+
+                                                Math.floor(Math.floor(BaseResult[9]/4*0.95+1)*Math.floor(BaseResult[10]/8*0.95+1)*1.2*2000)+Math.floor(BaseResult[9]*BaseResult[10])*100)*0.1))/Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/8*0.95)*4*8))/0.3025) }}
                                             </td>
                                         </tr>
                                     </table>
