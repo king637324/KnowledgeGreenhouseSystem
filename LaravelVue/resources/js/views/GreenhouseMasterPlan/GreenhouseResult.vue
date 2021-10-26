@@ -884,6 +884,62 @@
                             <th> 光飽和點</th>
                             <td>{{ result_plant.LightSaturationPoint }}</td>
                         </tr>
+                    </table>
+                    <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
+                        <v-row>
+                            <v-col cols="12">
+                                <h3>光控分析</h3>
+                            </v-col>
+                            <v-col cols="12">
+                                <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
+                                <table style="border:1px solid black;" border='1'>
+                                    <tr align="center">
+                                        <td></td>
+                                        <td>1月份</td>
+                                        <td>2月份</td>
+                                        <td>3月份</td>
+                                        <td>4月份</td>
+                                        <td>5月份</td>
+                                        <td>6月份</td>
+                                        <td>7月份</td>
+                                        <td>8月份</td>
+                                        <td>9月份</td>
+                                        <td>10月份</td>
+                                        <td>11月份</td>
+                                        <td>12月份</td>
+                                        <td>平均</td>
+                                    </tr>
+                                    <tr align="center" id="HighTemperatureDifference">
+                                        <td>全天空日射量</td>
+                                        <td v-for="(all,index) in all_light">{{Math.round(parseFloat(all)/30*100)/100}}</td>
+                                        <td>{{ Math.round(average_total/12*100)/100 }}</td>
+                                    </tr>
+                                    <tr align="center" id="HighApproach">
+                                        <td>日照時數</td>
+                                        <td v-for="(one,index) in one_light">{{Math.round(parseFloat(one)/30*100)/100}}</td>
+                                        <td>{{ Math.round(average_sun/12*100)/100 }}</td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <table style="border:1px solid black; width:80vw; height:300px;" border='1'>
+                        <tr align="center" v-for="(light, index) in LightResult_Array" >
+                            <th> 材料名稱</th>
+                            <td> {{light.ControlItem}}-{{light.ControlSystem}} </td>
+                            <th> 品質控制差異</th>
+                            <td> {{light.QualityControl}} </td>
+                            <th> 結構風險</th>
+                            <td> {{light.StructuralRisk}} </td>
+                            <th> 作業難度</th>
+                            <td> {{light.JobDifficulty}} </td>
+                            <th> 成本性</th>
+                            <td> {{light.Cost}} </td>
+                            <th> 副作用</th>
+                            <td> {{light.SideEffect}} </td>
+                        </tr>
+                    </table>
+                    <table style="border:1px solid black; width:80vw; height:300px;" border='1'>
                         <tr align="center">
                             <th> 溫度適應性</th>
                             <td colspan="3">{{ result_plant.Temperatureadaptability }}</td>
@@ -906,6 +962,85 @@
                             <th> 發芽最低溫</th>
                             <td>{{ result_plant.LowestGerminationTemperature }}</td>
                         </tr>
+                    </table>
+                    <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
+                        <v-row>
+                            <v-col cols="12">
+                                <h3>溫控分析</h3>
+                            </v-col>
+                            <v-col cols="12">
+                                <line-chart xtitle="月份" ytitle="溫度" :discrete="true" :data="CropTemperature" height="30vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
+                                <table style="border:1px solid black;" border='1'>
+                                    <tr align="center">
+                                        <td></td>
+                                        <td>1月份</td>
+                                        <td>2月份</td>
+                                        <td>3月份</td>
+                                        <td>4月份</td>
+                                        <td>5月份</td>
+                                        <td>6月份</td>
+                                        <td>7月份</td>
+                                        <td>8月份</td>
+                                        <td>9月份</td>
+                                        <td>10月份</td>
+                                        <td>11月份</td>
+                                        <td>12月份</td>
+                                        <td>合計</td>
+                                    </tr>
+                                    <tr align="center" id="HighTemperatureDifference">
+                                        <td>高溫差</td>
+                                        <td v-for="(temperature, index) in high_temp" >
+                                            {{parseFloat((parseFloat(low_temp[index])+parseFloat(high_temp[index]))/2)-parseFloat(low_optimal)+3}}
+                                        </td>
+                                        <td rowspan="2">{{ total_temp_high }}</td>
+                                    </tr>
+                                    <tr align="center" id="HighApproach">
+                                        <td>環控</td>
+                                        <td v-for="(temperature, index) in high_temp"  v-if="parseFloat((parseFloat(low_temp[index])+parseFloat(high_temp[index]))/2)-parseFloat(low_optimal)+3 > 0" >
+                                            需降溫
+                                        </td>
+                                        <td v-else>
+                                            -
+                                        </td>
+
+                                    </tr>
+                                    <tr align="center">
+                                        <td>低溫差</td>
+                                        <td v-for="(temperature, index) in low_temp" >
+                                            {{parseFloat((parseFloat(low_temp[index])+parseFloat(high_temp[index]))/2)-parseFloat(high_optimal)+3}}
+                                        </td>
+                                        <td rowspan="2">{{ total_temp_low }}</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td>環控</td>
+                                        <td v-for="(temperature, index) in low_temp"  v-if="parseFloat((parseFloat(low_temp[index])+parseFloat(high_temp[index]))/2)-parseFloat(high_optimal)+3 < 0">
+                                            需加溫
+                                        </td>
+                                        <td v-else>
+                                            -
+                                        </td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <table style="border:1px solid black; width:80vw; height:300px;" border='1'>
+                        <tr align="center" v-for="(temp, index) in TempResult_Array" >
+                            <th> 材料名稱</th>
+                            <td> {{temp.ControlItem}}-{{temp.ControlSystem}} </td>
+                            <th> 品質控制差異</th>
+                            <td> {{temp.QualityControl}} </td>
+                            <th> 結構風險</th>
+                            <td> {{temp.StructuralRisk}} </td>
+                            <th> 作業難度</th>
+                            <td> {{temp.JobDifficulty}} </td>
+                            <th> 成本性</th>
+                            <td> {{temp.Cost}} </td>
+                            <th> 副作用</th>
+                            <td> {{temp.SideEffect}} </td>
+                        </tr>
+                    </table>
+                    <table style="border:1px solid black; width:80vw; height:300px;" border='1'>
                         <tr align="center">
                             <th> 風速</th>
                             <td>{{ wind_speed_result }}</td>
@@ -927,6 +1062,10 @@
                         <tr align="center">
                             <th> 腐蝕加級</th>
                             <td>{{ corrosion_add_result }}</td>
+                        </tr>
+                        <tr align="center" style="border-bottom: 3pt solid black;">
+                            <th> CO₂增產率</th>
+                            <td colspan="3">{{ result_plant.CO2IncreasedProductionRate }}</td>
                         </tr>
                     </table>
                 </v-row>
@@ -952,152 +1091,8 @@
                             <th> 副作用</th>
                             <td> {{film.SideEffect}} </td>
                         </tr>
-
-                        <thead class="table-active">
-                            <tr align="center">
-                                <td colspan="50" style="font-size:20px;font-weight:bold;">C.溫室規劃設計-光控材料</td>
-                            </tr>
-                        </thead>
-                        <tr align="center" v-for="(light, index) in LightResult_Array" >
-                            <th> 材料名稱</th>
-                            <td> {{light.ControlItem}}-{{light.ControlSystem}} </td>
-                            <th> 品質控制差異</th>
-                            <td> {{light.QualityControl}} </td>
-                            <th> 結構風險</th>
-                            <td> {{light.StructuralRisk}} </td>
-                            <th> 作業難度</th>
-                            <td> {{light.JobDifficulty}} </td>
-                            <th> 成本性</th>
-                            <td> {{light.Cost}} </td>
-                            <th> 副作用</th>
-                            <td> {{light.SideEffect}} </td>
-                        </tr>
-                        <thead class="table-active">
-                            <tr align="center">
-                                <td colspan="50" style="font-size:20px;font-weight:bold;">C.溫室規劃設計-溫控材料</td>
-                            </tr>
-                        </thead>
-                        <tr align="center" v-for="(temp, index) in TempResult_Array" >
-                            <th> 材料名稱</th>
-                            <td> {{temp.ControlItem}}-{{temp.ControlSystem}} </td>
-                            <th> 品質控制差異</th>
-                            <td> {{temp.QualityControl}} </td>
-                            <th> 結構風險</th>
-                            <td> {{temp.StructuralRisk}} </td>
-                            <th> 作業難度</th>
-                            <td> {{temp.JobDifficulty}} </td>
-                            <th> 成本性</th>
-                            <td> {{temp.Cost}} </td>
-                            <th> 副作用</th>
-                            <td> {{temp.SideEffect}} </td>
-                        </tr>
                     </table>
                 </v-row>
-                <v-row>
-                        <v-col>
-                            <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
-                                <v-row>
-                                    <v-col cols="12">
-                                        <h3>光控分析</h3>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
-                                        <table style="border:1px solid black;" border='1'>
-                                            <tr align="center">
-                                                <td></td>
-                                                <td>1月份</td>
-                                                <td>2月份</td>
-                                                <td>3月份</td>
-                                                <td>4月份</td>
-                                                <td>5月份</td>
-                                                <td>6月份</td>
-                                                <td>7月份</td>
-                                                <td>8月份</td>
-                                                <td>9月份</td>
-                                                <td>10月份</td>
-                                                <td>11月份</td>
-                                                <td>12月份</td>
-                                                <td>平均</td>
-                                            </tr>
-                                            <tr align="center" id="HighTemperatureDifference">
-                                                <td>全天空日射量</td>
-                                                <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[0].data[String(n)+'月']/30*100)/100}}</td>
-                                                <td>{{ Math.round(average_total/12*100)/100 }}</td>
-                                            </tr>
-                                            <tr align="center" id="HighApproach">
-                                                <td>日照時數</td>
-                                                <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[1].data[String(n)+'月']/30*100)/100}}</td>
-                                                <td>{{ Math.round(average_sun/12*100)/100 }}</td>
-                                            </tr>
-                                        </table>
-                                    </v-col>
-                                </v-row>
-                            </div>
-                        </v-col>
-                        <v-col>
-                            <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
-                                <v-row>
-                                    <v-col cols="12">
-                                        <h3>溫控分析</h3>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <line-chart xtitle="月份" ytitle="溫度" :discrete="true" :data="CropTemperature" height="30vmin" :colors="['DodgerBlue', 'Red', 'LightSalmon', 'LightSalmon']" :curve="false"></line-chart>
-                                        <table style="border:1px solid black;" border='1'>
-                                            <tr align="center">
-                                                <td></td>
-                                                <td>1月份</td>
-                                                <td>2月份</td>
-                                                <td>3月份</td>
-                                                <td>4月份</td>
-                                                <td>5月份</td>
-                                                <td>6月份</td>
-                                                <td>7月份</td>
-                                                <td>8月份</td>
-                                                <td>9月份</td>
-                                                <td>10月份</td>
-                                                <td>11月份</td>
-                                                <td>12月份</td>
-                                                <td>合計</td>
-                                            </tr>
-                                            <tr align="center" id="HighTemperatureDifference">
-                                                <td>高溫差</td>
-                                                <td v-for="(temperature, index) in StrHighTemperature" >
-                                                    {{parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[1]+3}}
-                                                </td>
-                                                <td rowspan="2">{{ total_temp_high }}</td>
-                                            </tr>
-                                            <tr align="center" id="HighApproach">
-                                                <td>環控</td>
-                                                <td v-for="(temperature, index) in StrHighTemperature"  v-if="parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[1]+3 > 0" >
-                                                    需降溫
-                                                </td>
-                                                <td v-else>
-                                                    -
-                                                </td>
-
-                                            </tr>
-                                            <tr align="center">
-                                                <td>低溫差</td>
-                                                <td v-for="(temperature, index) in StrLowTemperature" >
-                                                    {{parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[0]+3}}
-                                                </td>
-                                                <td rowspan="2">{{ total_temp_low }}</td>
-                                            </tr>
-                                            <tr align="center">
-                                                <td>環控</td>
-                                                <td v-for="(temperature, index) in StrLowTemperature"  v-if="parseFloat((parseFloat(StrLowTemperature[index])+parseFloat(StrHighTemperature[index]))/2)-StrOptimalTemperature[0]+3 < 0">
-                                                    需加溫
-                                                </td>
-                                                <td v-else>
-                                                    -
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </v-col>
-                                </v-row>
-                            </div>
-                        </v-col>
-                    </v-row>
                 <br/>
                 <v-row>
                     <table style="border:1px solid black; width:80vw; height:300px" border='1'>
@@ -1283,12 +1278,12 @@
                                             <tr align="center">
                                                 <td>型式</td>
                                                 <td>名稱</td>
-                                                <td>kg/m2</td>
+                                                <td>標準單重(kg/m2)</td>
                                                 <td>風速指數</td>
                                                 <td>跨距指數</td>
                                                 <td>肩高指數</td>
                                                 <td>連棟指數</td>
-                                                <td>預估單量</td>
+                                                <td>預估單重</td>
                                             </tr>
                                         </thead>
                                         <tr align="center" id="風速">
@@ -1298,7 +1293,7 @@
                                             <td>{{ Math.round(Math.floor(designwind_result-30)/wind_speed_result*wind_addspeed_result*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(designspan_result-8)/30*100)/100 }}</td>
                                             <td>{{ Math.round(Math.floor(designshoulder_result-3)/6*100)/100 }}</td>
-                                            <td>{{ Math.round(Math.floor(1-designcounter_result)/5*100)/100 }}</td>
+                                            <td>{{ Math.round(Math.floor(1-designcounter_result)/(designcounter_result*5)*100)/100 }}</td>
                                             <td>{{ Math.floor(roofnumber_result*
                                                 (
                                                     1+
@@ -1425,7 +1420,7 @@
                                             </tr>
                                         </thead>
                                         <tr align="center">
-                                            <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story)) }}</td>
+                                            <td>{{ Math.floor(Math.floor(BaseResult[9])*Math.floor(BaseResult[10])*1.3+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*1.2*(1+0.3/design_story)) }}</td>
                                             <td>50</td>
                                             <td>{{ Math.floor(Math.floor(BaseResult[9]/4*0.95)*Math.floor(BaseResult[10]/designspan_result*0.95)*4*designspan_result*1.2+(Math.floor(BaseResult[9])+Math.floor(BaseResult[10]))*2*1.5*50) }}</td>
                                             <td>10</td>
@@ -1743,6 +1738,12 @@
         designspan_result:0,
         designshoulder_result:0,
         designcounter_result:0,
+        low_temp: [],
+        high_temp: [],
+        all_light: [],
+        one_light: [],
+        high_optimal: null,
+        low_optimal: null,
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -2405,6 +2406,8 @@
             formData.append('tempid',this.selecttemp_id.toString());
             formData.append('lowtempvalue',lowtemp.toString());
             formData.append('hightempvalue',hightemp.toString());
+            formData.append('highoptimal',this.StrOptimalTemperature[0].toString());
+            formData.append('lowoptimal',this.StrOptimalTemperature[1].toString());
             formData.append('windid',this.wind_totalinfo.toString());
             formData.append('filmid',this.FilmArray_id.toString());
             formData.append('steelid',this.selectsteel_id.toString());
@@ -2429,7 +2432,13 @@
                     if (this.ResultJson[i].name === this.saveform) {
                         this.BaseResult = this.ResultJson[i].baseid.split(',')
                         this.LightResult = this.ResultJson[i].lightid.split(',')
+                        this.all_light = this.ResultJson[i].alllightvalue.split(',')
+                        this.one_light = this.ResultJson[i].onelightvalue.split(',')
                         this.TempResult = this.ResultJson[i].tempid.split(',')
+                        this.low_temp = this.ResultJson[i].lowtempvalue.split(',')
+                        this.high_temp = this.ResultJson[i].hightempvalue.split(',')
+                        this.low_optimal = this.ResultJson[i].lowoptimal
+                        this.high_optimal = this.ResultJson[i].highoptimal
                         this.WindResult = this.ResultJson[i].windid.split(',')
                         this.FilmResult = this.ResultJson[i].filmid.split(',')
                         this.SteelResult = this.ResultJson[i].steelid.split(',')

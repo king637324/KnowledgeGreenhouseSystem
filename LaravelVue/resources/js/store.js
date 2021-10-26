@@ -12,8 +12,8 @@ export default new Vuex.Store({
         // apiURL: 'http://127.0.0.1:5000/api',
         // serverPath: 'http://127.0.0.1:5000',
 
-        apiURL: 'http://103.118.27.148/api',
-        serverPath: 'http://103.118.27.148',
+        apiURL: 'https://103.118.27.148/api',
+        serverPath: 'https://103.118.27.148',
 
 
     },
