@@ -47,7 +47,7 @@
                         </tr>
                         <tr align="center">
                             <th> 栽種面積</th>
-                            <td colspan="3"> {{overplanArray[0].croplength}} * {{overplanArray[0].cropwidth}} =  {{overplanArray[0].croparea}} 方位：{{overplanArray[0].position}}</td>
+                            <td colspan="3"> {{overplanArray[0].croplength}} * {{overplanArray[0].cropwidth}} =  {{overplanArray[0].croparea}} <br> 方位：{{overplanArray[0].position}}</td>
                         </tr>
                     </table>
                 </v-row>
