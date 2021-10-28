@@ -130,7 +130,7 @@
                 header-bg-variant="info"
             >
                 <template #header>
-                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>光環境-設備控制</h6>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>光環境-設備選擇</h6>
                 </template>
                 <h5>
                     請勾選欲比較之材料
@@ -174,7 +174,7 @@
                 header-bg-variant="info"
             >
                 <template #header>
-                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>光環境-遮光控制</h6>
+                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>光環境-設備比較</h6>
                 </template>
 
                 <div v-if="checkedLight.length != 0">

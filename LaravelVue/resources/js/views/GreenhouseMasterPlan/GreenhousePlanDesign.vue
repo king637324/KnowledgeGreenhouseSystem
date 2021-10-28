@@ -12,7 +12,7 @@
                         <v-col cols="6">
                             <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                 <template #header>
-                                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長環境需求</h6>
+                                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-型式設計</h6>
                                 </template>
                                 <b-card-text>
                                     <v-form>
@@ -669,7 +669,7 @@
                                 <v-row>
                                     <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                         <template #header>
-                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 規劃結果-比較分析</h6>
+                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-知識庫</h6>
                                         </template>
                                         <b-card-text>
                                             <h5>
@@ -767,7 +767,7 @@
                                 <v-row v-if="overplanArray[0].userclass === '專家'">
                                     <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                         <template #header>
-                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 規劃結果-比較分析</h6>
+                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 總體規劃-專家係數設定</h6>
                                         </template>
                                         <b-card-text>
                                             <h5>
@@ -818,7 +818,7 @@
             <b-card-group>
                 <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                     <template #header>
-                        <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長環境需求</h6>
+                        <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-型管材and披腹膜</h6>
                     </template>
                 
                     <b-card-text>

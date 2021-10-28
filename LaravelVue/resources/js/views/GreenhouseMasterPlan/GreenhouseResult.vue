@@ -27,10 +27,10 @@
             </v-row>
             <div v-if="saveform === '本張表單'">
                 <v-row>
-                    <table style="border:1px solid black; width:80vw; height:300px" border='1'>
+                    <table style="border:1px solid black; width:80vw; height:300px  border-top:0px;" border='1'>
                         <thead class="table-active">
-                            <tr align="center">
-                                <td colspan="10" style="font-size:20px;font-weight:bold; border-top:0px; border-left:0px; border-right:0px;">A.基本資料</td>
+                            <tr align="center" style="font-size:20px;font-weight:bold; border-top:0px; border-left:0px; border-right:0px;">
+                                <td colspan="10">A.基本資料</td>
                             </tr>
                         </thead>
                         <tr align="center">
