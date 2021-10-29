@@ -13,7 +13,7 @@
                         <v-container>
                             <v-row>
                                 <v-col><v-subheader>A.屋頂形式</v-subheader></v-col>
-                                <v-radio-group row v-model="radio_roof" v-on:change="updaterooftype">
+                                <v-radio-group row v-model="radio_roof">
                                     <v-col><v-radio label="玻璃溫室" value="玻璃溫室"></v-radio></v-col>
                                     <v-col><v-radio label="斜頂溫室" value="斜頂溫室"></v-radio></v-col>
                                     <v-col><v-radio label="山型力霸" value="山型力霸"></v-radio></v-col>
@@ -27,7 +27,7 @@
                                 <v-col cols="2"><v-subheader>B.風速評估</v-subheader></v-col>
                                 <v-col>
                                     <label for="縣市" style="color:rgba(0,0,0,.6); font-size:8px;">縣市</label>
-                                    <b-select v-model="cityIdx" v-on:change="updateCity" name="縣市">
+                                    <b-select v-model="cityIdx" name="縣市">
                                         <option v-for="(data, index) in City" :value="data" :key="index">
                                             {{data}}
                                         </option>
@@ -35,7 +35,7 @@
                                 </v-col>
                                 <v-col>
                                     <label for="地區" style="color:rgba(0,0,0,.6); font-size:8px;">地區</label>
-                                    <b-select v-model="regionIdx" v-on:change="updateRegion" name="地區">
+                                    <b-select v-model="regionIdx" name="地區">
                                         <option v-for="(data, index) in Region" :value="data" :key="index">
                                             {{data}}
                                         </option>
@@ -43,14 +43,14 @@
                                 </v-col>
                                 <v-col>
                                     <label for="地形" style="color:rgba(0,0,0,.6); font-size:8px;">地形</label>
-                                    <b-select v-model="SelectTerrain" name="地形" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)">
+                                    <b-select v-model="SelectTerrain" name="地形">
                                         <option value="0">地形</option>
                                         <option v-for="(data, index) in windcorrosionjson" :value="data.landtype" :key="index" v-if="data.land=='地形'">{{ data.landtype }}</option>
                                     </b-select>
                                 </v-col>
                                 <v-col>
                                     <label for="地貌" style="color:rgba(0,0,0,.6); font-size:8px;">地貌</label>
-                                    <b-select v-model="SelectLandform" name="地貌" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)">
+                                    <b-select v-model="SelectLandform" name="地貌">
                                         <option value="0">地貌</option>
                                         <option value="建築物">建築物</option>
                                         <option value="空曠">空曠</option>
@@ -61,34 +61,35 @@
                             <v-row>
                                 <v-col cols="2"><v-subheader>C.設計數據</v-subheader></v-col>
                                 <v-col>
-                                    <v-text-field :label="'設計風速(建議'+design_wind+'m/s)'" v-model="design_wind" v-on:change="updatedesign"></v-text-field>
+                                    <v-text-field :label="'設計風速(建議'+design_wind+'m/s)'" v-model="design_wind"></v-text-field>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="設計跨距(m)" v-model="design_span" v-on:change="updatedesign"></v-text-field>
+                                    <v-text-field label="設計跨距(m)" v-model="design_span"></v-text-field>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="設計肩高(m)" v-model="design_shoulder" v-on:change="updatedesign"></v-text-field>
+                                    <v-text-field label="設計肩高(m)" v-model="design_shoulder"></v-text-field>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="設計連棟" v-model="design_story" v-on:change="updatedesign"></v-text-field>
+                                    <v-text-field label="設計連棟" v-model="design_story"></v-text-field>
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col cols="2"><v-subheader>D.栽種面積</v-subheader></v-col>
                                 <v-col>
-                                    <v-text-field label="南北長度(m)" v-model="plantlength" v-on:change="areacount"></v-text-field>
+                                    <v-text-field label="南北長度(m)" v-model="plantlength"></v-text-field>
                                 </v-col>  
                                 <v-col>
-                                    <v-text-field label="東西長度(m)" v-model="plantwidth" v-on:change="areacount"></v-text-field>
+                                    <v-text-field label="東西長度(m)" v-model="plantwidth"></v-text-field>
                                 </v-col>        
                                 <v-col>
                                     <label for="方位" style="color:rgba(0,0,0,.6); font-size:8px;">方位</label>
-                                    <b-select v-model="position" name="方位"  v-on:change="updateposition()">
+                                    <b-select v-model="position" name="方位">
                                         <option v-for="(data, index) in allposition" :value="data" :key="index">
                                             {{data}}
                                         </option>
                                     </b-select>
-                                </v-col>                      
+                                </v-col>  
+                                <button type="button" class="btn btn-primary" v-on:click="updatewidgetinfo(SelectTerrain,SelectLandform)">確認</button>                  
                             </v-row>
                             <v-row>
                                 <v-col>
@@ -552,6 +553,7 @@
         area:0,
         now_user: null,
         now_user_two:null,
+        windcorrosionjson: [],
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -660,33 +662,30 @@
             this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
             this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
         },
-        updateCity: async function(){     // 更新所選擇的縣市
+        updatewidgetinfo: async function(SelectTerrain,SelectLandform){
+            let wind123 = [];
+            let get_id = [];
+            let corrosion = []; // 更新所選擇的縣市
+            let formData = new FormData();
+            let formData2 = new FormData();
             this.SpeedPerSecond = null;
             for(var i = 0 ; i < this.City.length ; i++){
                 if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
             }
             // 將地區資料初始化
             this.selectRegion = null;
-            this.regionIdx = 0;
             this.Region = ['==請選擇地區=='];
+            this.LandingProbability = 0,
+            this.PathProbability = 0,
+            this.Landing = null,
+            this.Path = null;
+            this.area = (this.plantlength*this.plantwidth)/10000
             // 篩選所選縣市的地區
             for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
                 if(this.regionalwindspeedjson[i].County == this.selectCity){
                     this.Region.push(this.regionalwindspeedjson[i].Region);
                 }
             }
-            let formData = new FormData();
-            formData.append('localcity',this.cityIdx);
-            formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        },
-        updateRegion: async function(){   // 更新所選擇的地區
-            // 將地區資料初始化
-            this.LandingProbability = 0,
-            this.PathProbability = 0,
-            this.Landing = null,
-            this.Path = null;
-            // 從所選的地區id 找到 所選的地區名稱
             for(var i = 0 ; i < this.Region.length ; i++){
                 if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
             }
@@ -695,41 +694,165 @@
                     this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
                 }
             }
-            let formData = new FormData();
-            formData.append('localarea',this.regionIdx);
-            formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        },
-        updatewindcorrosion: async function(SelectTerrain,SelectLandform){
-            let wind123 = [];
-            let corrosion = [];
+            
             for (var i = 0; i < this.windcorrosionjson.length; i++){
                 if (this.windcorrosionjson[i].landtype == SelectTerrain){
                     wind123[0] = this.windcorrosionjson[i].wind
                     corrosion[0] = this.windcorrosionjson[i].corrosion
-                    let formData = new FormData();
                     formData.append('terrain',SelectTerrain);
-                    formData.append('_method','put');
-                    const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
                 } else if (this.windcorrosionjson[i].landtype == SelectLandform){
                     wind123[1] = this.windcorrosionjson[i].wind
                     corrosion[1] = this.windcorrosionjson[i].corrosion     
-                    let formData = new FormData();
-                    formData.append('landform',SelectLandform);
-                    formData.append('_method','put');
-                    const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);                
+                    formData.append('landform',SelectLandform);          
                 }
             }
+            formData.append('formData','formData');
+            formData.append('localcity',this.cityIdx);
+            formData.append('localarea',this.regionIdx);
+            formData.append('croplength',this.plantlength);
+            formData.append('cropwidth',this.plantwidth);
+            formData.append('croparea',this.area);
+            formData.append('position',this.position);
+            formData.append('_method','put');
+            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
             this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
             this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
+
+            formData2.append('roof_type',this.radio_roof);
+            formData2.append('roof_number',this.roof_number[this.roof_name.indexOf(this.radio_roof)]); 
+            formData2.append('wind_design',this.design_wind);
+            formData2.append('span_design',this.design_span); 
+            formData2.append('shoulder_design',this.design_shoulder);
+            formData2.append('continue_design',this.design_story);
+
+            const W_Estimation = await fetch('/WeightJson',  {
+            method: 'GET',
+            });
+            this.WeightJson = await W_Estimation.json();
+            for(var i = 0; i < this.WeightJson.length; i++){
+                get_id.push(this.WeightJson[i].uid)
+                if (this.WeightJson[i].uid === this.$auth.user().id){
+                    this.now_user_two = this.WeightJson[i].id
+                }
+            }
+            if (get_id.indexOf(this.$auth.user().id) === -1){
+                formData2.append('uid',this.$auth.user().id);
+                const response = await Weight.createWidget(formData2)
+                this.WeightArray = []
+                this.WeightArray = response.data
+            } else{
+                formData2.append('_method','put');
+                const response = await Weight.UpdateWidget(this.now_user_two,formData2)
+                this.WeightArray = []
+                this.WeightArray = response.data
+                console.log(response.data)
+            }
+            window.alert('修改完畢')
         },
-        updaterooftype: async function(){
-            let formData = new FormData();
-            formData.append('roof_type',this.radio_roof);
-            formData.append('roof_number',this.roof_number[this.roof_name.indexOf(this.radio_roof)]); 
-            formData.append('_method','put');
-            const response = await Weight.UpdateWidget(this.now_user_two, formData);
-        },
+        // updateCity: async function(){    
+        //     let wind123 = [];
+        //     let corrosion = []; // 更新所選擇的縣市
+        //     let formData = new FormData();
+        //     this.SpeedPerSecond = null;
+        //     for(var i = 0 ; i < this.City.length ; i++){
+        //         if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
+        //     }
+        //     // 將地區資料初始化
+        //     this.selectRegion = null;
+        //     this.regionIdx = 0;
+        //     this.Region = ['==請選擇地區=='];
+        //     this.LandingProbability = 0,
+        //     this.PathProbability = 0,
+        //     this.Landing = null,
+        //     this.Path = null;
+        //     this.area = (this.plantlength*this.plantwidth)/10000
+        //     // 篩選所選縣市的地區
+        //     for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+        //         if(this.regionalwindspeedjson[i].County == this.selectCity){
+        //             this.Region.push(this.regionalwindspeedjson[i].Region);
+        //         }
+        //     }
+        //     for(var i = 0 ; i < this.Region.length ; i++){
+        //         if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
+        //     }
+        //     for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+        //         if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
+        //             this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
+        //         }
+        //     }
+            
+        //     for (var i = 0; i < this.windcorrosionjson.length; i++){
+        //         if (this.windcorrosionjson[i].landtype == SelectTerrain){
+        //             wind123[0] = this.windcorrosionjson[i].wind
+        //             corrosion[0] = this.windcorrosionjson[i].corrosion
+        //             formData.append('terrain',SelectTerrain);
+        //         } else if (this.windcorrosionjson[i].landtype == SelectLandform){
+        //             wind123[1] = this.windcorrosionjson[i].wind
+        //             corrosion[1] = this.windcorrosionjson[i].corrosion     
+        //             formData.append('landform',SelectLandform);          
+        //         }
+        //     }
+        //     formData.append('localcity',this.cityIdx);
+        //     formData.append('localarea',this.regionIdx);
+        //     formData.append('croplength',this.plantlength);
+        //     formData.append('cropwidth',this.plantwidth);
+        //     formData.append('croparea',this.area);
+        //     formData.append('position',this.position);
+        //     formData.append('_method','put');
+        //     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
+        //     this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
+        //     this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
+        // },
+        // updateRegion: async function(){   // 更新所選擇的地區
+        //     // 將地區資料初始化
+        //     this.LandingProbability = 0,
+        //     this.PathProbability = 0,
+        //     this.Landing = null,
+        //     this.Path = null;
+        //     // 從所選的地區id 找到 所選的地區名稱
+        //     for(var i = 0 ; i < this.Region.length ; i++){
+        //         if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
+        //     }
+        //     for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
+        //         if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
+        //             this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
+        //         }
+        //     }
+        //     let formData = new FormData();
+        //     formData.append('localarea',this.regionIdx);
+        //     formData.append('_method','put');
+        //     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
+        // },
+        // updatewindcorrosion: async function(SelectTerrain,SelectLandform){
+        //     let wind123 = [];
+        //     let corrosion = [];
+        //     for (var i = 0; i < this.windcorrosionjson.length; i++){
+        //         if (this.windcorrosionjson[i].landtype == SelectTerrain){
+        //             wind123[0] = this.windcorrosionjson[i].wind
+        //             corrosion[0] = this.windcorrosionjson[i].corrosion
+        //             let formData = new FormData();
+        //             formData.append('terrain',SelectTerrain);
+        //             formData.append('_method','put');
+        //             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
+        //         } else if (this.windcorrosionjson[i].landtype == SelectLandform){
+        //             wind123[1] = this.windcorrosionjson[i].wind
+        //             corrosion[1] = this.windcorrosionjson[i].corrosion     
+        //             let formData = new FormData();
+        //             formData.append('landform',SelectLandform);
+        //             formData.append('_method','put');
+        //             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);                
+        //         }
+        //     }
+        //     this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
+        //     this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
+        // },
+        // updaterooftype: async function(){
+        //     let formData = new FormData();
+        //     formData.append('roof_type',this.radio_roof);
+        //     formData.append('roof_number',this.roof_number[this.roof_name.indexOf(this.radio_roof)]); 
+        //     formData.append('_method','put');
+        //     const response = await Weight.UpdateWidget(this.now_user_two, formData);
+        // },
         updatedesign: async function(){
             let get_id = [];
             let formData = new FormData();
@@ -759,22 +882,22 @@
                 this.WeightArray = response.data
             }
         },
-        areacount:async function(){
+        // areacount:async function(){
             
-            this.area = (this.plantlength*this.plantwidth)/10000
-            let formData = new FormData();
-            formData.append('croplength',this.plantlength);
-            formData.append('cropwidth',this.plantwidth);
-            formData.append('croparea',this.area);
-            formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        },
-        updateposition: async function(){
-            let formData = new FormData();
-            formData.append('position',this.position);
-            formData.append('_method','put');
-            const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        },
+        //     this.area = (this.plantlength*this.plantwidth)/10000
+        //     let formData = new FormData();
+        //     formData.append('croplength',this.plantlength);
+        //     formData.append('cropwidth',this.plantwidth);
+        //     formData.append('croparea',this.area);
+        //     formData.append('_method','put');
+        //     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
+        // },
+        // updateposition: async function(){
+        //     let formData = new FormData();
+        //     formData.append('position',this.position);
+        //     formData.append('_method','put');
+        //     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
+        // },
     },
 }
 </script>

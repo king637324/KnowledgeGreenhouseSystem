@@ -1600,6 +1600,10 @@
                         this.now_user = this.OverPlanJson[i].pid
                 }
             }
+            if (this.overplanArray.length === 0) {
+                window.alert('尚未填寫基本資料，請填寫！')
+                document.location.href="/#/GreenhouseMasterPlan/GreenhouseOverallPlanbase"
+            }
             this.plantlength = this.overplanArray[0].croplength
             this.plantwidth = this.overplanArray[0].cropwidth
             this.area = this.plantlength*this.plantwidth

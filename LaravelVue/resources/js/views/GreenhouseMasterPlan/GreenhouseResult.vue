@@ -1796,6 +1796,10 @@
                     this.overplanArray.push(this.OverPlanJson[i])
                 }
             }
+            if (this.overplanArray.length === 0) {
+                window.alert('尚未填寫基本資料，請填寫！')
+                document.location.href="/#/GreenhouseMasterPlan/GreenhouseOverallPlanbase"
+            }
             const Vegetable = await fetch('/VegetableJSON',  {
                 method: 'GET',
             });
@@ -1805,6 +1809,26 @@
                     this.result_plant = JSON.parse(JSON.stringify(this.vegetablejson[i]));
                 }
             }
+
+            const D_OverPlan = await fetch('/DesignJson',  {
+                method: 'GET',
+            });
+            this.DesignJson = await D_OverPlan.json();
+            for(var i = 0; i < this.DesignJson.length; i++){
+                if (this.DesignJson[i].uid === this.$auth.user().id){
+                    this.DesignArray.push(this.DesignJson[i])
+                }
+            }
+            if (this.DesignArray.length === 0) {
+                window.alert('尚未填寫溫室型式設計，請填寫！')
+                document.location.href="/#/GreenhouseMasterPlan/GreenhousePlanDesign"
+            }
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                this.greenhouse_material = [['溫室型材'],['屋頂形式'],['上拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
+            } else{
+                this.greenhouse_material = [['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
+            }
+            
             const RegionalWindSpeed = await fetch('/RegionalWindSpeedJSON',  {
                 method: 'GET',
             });
@@ -1954,22 +1978,6 @@
             this.corrosion_add = Math.round(corrosion[0]*corrosion[1]*100)/100
             this.wind_totalinfo.push(this.wind_addspeed)
             this.wind_totalinfo.push(this.corrosion_add)
-
-            const D_OverPlan = await fetch('/DesignJson',  {
-                method: 'GET',
-            });
-            this.DesignJson = await D_OverPlan.json();
-            for(var i = 0; i < this.DesignJson.length; i++){
-                if (this.DesignJson[i].uid === this.$auth.user().id){
-                    this.DesignArray.push(this.DesignJson[i])
-                }
-            }
-
-            if (this.DesignArray[0].housetype === '強固溫室'){
-                this.greenhouse_material = [['溫室型材'],['屋頂形式'],['上拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
-            } else{
-                this.greenhouse_material = [['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
-            }
 
             const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
             method: 'GET',
