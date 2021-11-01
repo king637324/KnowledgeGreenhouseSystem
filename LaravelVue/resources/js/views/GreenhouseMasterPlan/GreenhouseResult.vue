@@ -2330,6 +2330,15 @@
             this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
         },
         saveresult: async function() {
+            for(var i = 0 ; i < this.ResultJson.length ; i++){
+                if (this.ResultJson[i].uid === this.$auth.user().id){
+                    if (this.ResultJson[i].name === this.formname) {
+                        window.alert('表單名稱已重複')
+                        return 0
+                    }
+                }
+            }
+            
             let overplan = [this.overplanArray[0].userclass,this.overplanArray[0].usercodename,this.overplanArray[0].palntclass,this.overplanArray[0].cropplant,this.overplanArray[0].localcity,this.overplanArray[0].localarea,this.overplanArray[0].terrain,this.overplanArray[0].landform,this.overplanArray[0].landcondition,this.overplanArray[0].croplength,this.overplanArray[0].cropwidth,this.overplanArray[0].croparea,this.overplanArray[0].position]
             let Design = [this.DesignArray[0].housetype,this.DesignArray[0].pipetype,this.DesignArray[0].rooftype,this.DesignArray[0].circlespan,this.DesignArray[0].base,this.DesignArray[0].span,this.DesignArray[0].shoulder,this.DesignArray[0].length,this.DesignArray[0].continue,this.DesignArray[0].drape]
             let Weight = [this.WeightArray[0].roof_type,this.WeightArray[0].roof_number,this.WeightArray[0].wind_design,this.WeightArray[0].span_design,this.WeightArray[0].shoulder_design,this.WeightArray[0].continue_design,]
