@@ -226,6 +226,8 @@ export default {
             overplanArray:[],
             OverPlanJson:[],
             now_user:null,
+            total_temp_high: 0,
+            total_temp_low: 0,
         }
     },
     created:function(){  // 網頁載入時，一開始就載入

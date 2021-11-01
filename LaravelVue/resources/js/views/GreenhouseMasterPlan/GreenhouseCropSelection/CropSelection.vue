@@ -172,12 +172,12 @@
 
 
 
-            <b-select v-model="ExpertIdx" v-on:change="updateExpertTable" style="font-size: 2vmin; width:25vmin" >
+            <b-select v-model="ExpertIdx" v-on:change="updateExpertTable" style="width:25vmin" >
                 <option v-for="(data, index) in ExpertOrder" :value="index" :key="index">
                     {{data}}
                 </option>
             </b-select>
-            <b-select v-model="cropIdx" v-on:change="updateCropTable" style="font-size: 2vmin; width:25vmin" >
+            <b-select v-model="cropIdx" v-on:change="updateCropTable" style="width:25vmin" >
                 <option v-for="(data, index) in CropOrder" :value="data" :key="index">
                     {{data}}
                 </option>

@@ -1857,6 +1857,7 @@
                         SelectSimple_copy[8] = this.SelectSimple[i]
                     }
                 }
+                this.SelectSimple = JSON.parse(JSON.stringify(SelectSimple_copy))
                 for (var i = 0; i < SelectSimple_copy.length; i++) {
                     this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
                     this.SimpleCostAdd += SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
@@ -2042,6 +2043,7 @@
                         SelectRobust_copy[8] = this.SelectRobust[i]
                     }
                 }
+                this.SelectRobust = JSON.parse(JSON.stringify(SelectRobust_copy))
                 for (var i = 0; i < SelectRobust_copy.length; i++) {
                     
                     this.RobustTotalCost += this.RuggedHousrBasePrice * SelectRobust_copy[i][1].Cost * this.StrongCostRatios[i].Cost / 100;

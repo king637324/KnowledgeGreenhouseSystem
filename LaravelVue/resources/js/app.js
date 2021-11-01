@@ -72,10 +72,10 @@ Vue.use(VueAuth, auth)
 
 Vue.use(VJstree);
 Vue.use(VueTreeNavigation);
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 Vue.use(IconsPlugin);
-Vue.use(Chartkick.use(Chart))
-Vue.use(VueScrollTo)
+Vue.use(Chartkick.use(Chart));
+Vue.use(VueScrollTo);
 Vue.use(FlashMessage);
 Vue.use(CKEditor);
 Vue.use(BootstrapVue);
