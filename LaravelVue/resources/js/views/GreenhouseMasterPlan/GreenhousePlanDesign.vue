@@ -7,803 +7,813 @@
         </h3>
         <hr>
             <b-card-group deck v-if="showform==true">
-                <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
-                    <template #header>
-                        <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-型式設計</h6>
-                    </template>
-                    <b-card-text>
-                        <v-form>
+                <v-container-fluid>
+                    <v-row>
+                        <v-col md="6" cols="12">
+                            <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
+                                <template #header>
+                                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-型式設計</h6>
+                                </template>
+                                <b-card-text>
+                                    <v-form>
+                                        <v-container-fluid>
+                                            <v-row>
+                                                <v-col md="2">
+                                                    <v-subheader>A.決策權重</v-subheader>
+                                                </v-col>
+                                                <v-col md="2">
+                                                    <v-text-field :hint="decide[0]" persistent-hint label="輸入品質性能" v-model="quality" v-on:change="countdecide"></v-text-field>
+                                                </v-col>
+                                                <v-col md="2">
+                                                    <v-text-field :hint="decide[1]" persistent-hint label="輸入風險性" v-model="risk" v-on:change="countdecide"></v-text-field>
+                                                </v-col>
+                                                <v-col md="2">
+                                                    <v-text-field :hint="decide[2]" persistent-hint label="輸入速度性" v-model="speed" v-on:change="countdecide"></v-text-field>
+                                                </v-col>
+                                                <v-col md="2">
+                                                    <v-text-field :hint="decide[3]" persistent-hint label="輸入成本性" v-model="cost" v-on:change="countdecide"></v-text-field>
+                                                </v-col>
+                                            </v-row>    
+                                            <v-row>
+                                                <v-col cols="12" md="2">
+                                                    <v-subheader>B.栽種面積</v-subheader>
+                                                </v-col>
+                                                <v-col cols="12" md="2">
+                                                    <v-text-field label="南北長度(m)" v-model="plantlength" v-on:change="areacount"></v-text-field>
+                                                </v-col>  
+                                                <v-col cols="12" md="2">
+                                                    <v-text-field label="東西長度(m)" v-model="plantwidth" v-on:change="areacount"></v-text-field>
+                                                </v-col>    
+                                                <v-col cols="12" md="2">
+                                                    <v-text-field readonly label="面積試算(平方公尺)" v-model="area"></v-text-field>
+                                                </v-col>    
+                                                                        
+                                            </v-row>
+                                            <v-row>
+                                                <v-col md="2">
+                                                    <v-subheader>C.溫室選擇</v-subheader>
+                                                </v-col>
+                                                <v-col md="4">
+                                                    <v-radio-group row v-model="greenhouseradio" v-on:change="updateRoofType">
+                                                        <v-radio label="簡易溫室" id="簡易溫室" value="簡易溫室"></v-radio>
+                                                        <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
+                                                    </v-radio-group>
+                                                </v-col>
+                                                <v-col md="4">
+                                                    <b-select v-model="systemIdx" style="width:20vmin" v-on:change="systemuser_change">
+                                                        <option v-for="(system, index) in system_user" :value="system">
+                                                            {{system}}
+                                                        </option>
+                                                    </b-select>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col md="2">
+                                                    <v-subheader>D.溫室設計</v-subheader>
+                                                </v-col>
+                                                <v-col md="8" v-if="greenhouseradio == '簡易溫室'">
+                                                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                    <thead class="table-active">
+                                                        <tr align="center">
+                                                            <td style='width:15vmin'>構建分部</td>
+                                                            <td>規格</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr align="center" id="溫室管材">
+                                                        <td>溫室管材{{greeninfo_simple}}</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleGreenhousePipes" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio('溫室管材',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/MaterialStructureAnalysis/RoundPipe"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center" id="圓頂形式">
+                                                        <td>圓頂形式</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleDomeForms" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio('圓頂形式',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/GreenhouseFluidAnalysis/DomeGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center" id="圓拱距">
+                                                        <td>圓拱距</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCircularArchDistances" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio('圓拱距',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center" id="簡易基礎">
+                                                        <td>基礎</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleFoundations" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleFoundation" v-on:change="updateSimpleRadio('基礎',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center" id="簡易跨距">
+                                                        <td>跨距</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleSpans" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleSpan" v-on:change="updateSimpleRadio('跨距',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center" id="簡易肩高">
+                                                        <td>肩高</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleShoulderHeights" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio('肩高',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center" id="簡易長度">
+                                                        <td>長度</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleLengths" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleLength" v-on:change="updateSimpleRadio('長度',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center" id="簡易連續性">
+                                                        <td>連續性</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleContinuitys" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleContinuity" v-on:change="updateSimpleRadio('連續性',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>                    
+                                                    </tr>
+                                                    <tr align="center" id="簡易披覆材料">
+                                                        <td>披覆材料</td>
+                                                        <td align="left">
+                                                            <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilms" :key="index">
+                                                                <input type="radio" :value="simple.BuildItem" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio('披覆材料',simple)">
+                                                                <label>{{simple.BuildItem}}</label>
+                                                            </div>
+                                                            <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                            <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                        </td>
+                                                    </tr>
+                                                    </table>
+                                                </v-col>
+                                                <v-col md="8" v-else-if="greenhouseradio == '強固溫室'">
+                                                    <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
+                                                        <thead class="table-active">
+                                                            <tr align="center">
+                                                                <td style='width:15vmin'>構建分部</td>
+                                                                <td>規格</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tr align="center" id="溫室型材">
+                                                            <td>溫室型材</td>
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio('溫室型材',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/MaterialStructureAnalysis/ProfilePipe"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center" id="屋頂形式">
+                                                            <td>屋頂形式</td>
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustRoofForm" v-on:change="updateRobustRadio('屋頂形式',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/GreenhouseFluidAnalysis/GreenhouseWindPressureChart"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center" id="上拱距">
+                                                            <td>上拱距</td>
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustUpperArch" v-on:change="updateRobustRadio('上拱距',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center" id="基礎">
+                                                            <td>基礎</td>
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustFoundation" v-on:change="updateRobustRadio('基礎',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center" id="跨距">
+                                                            <td>跨距</td>
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" style="valign:center;" v-for="(robust, index) in StrongSpans" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustSpan" v-on:change="updateRobustRadio('跨距',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center" id="肩高">
+                                                            <td>肩高</td>
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio('肩高',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center" id="長度">
+                                                            <td>長度</td>
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustLength" v-on:change="updateRobustRadio('長度',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center" id="連續性">
+                                                            <td>連續性</td>
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustContinuity" v-on:change="updateRobustRadio('連續性',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="center" id="披覆材料">
+                                                            <td>披覆材料</td>
+
+                                                            <td align="left">
+                                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in SimpleCoatingFilms" :key="index">
+                                                                    <input type="radio" :value="robust.BuildItem" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio('披覆材料',robust)">
+                                                                    <label>{{robust.BuildItem}}</label>
+                                                                </div>
+
+                                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
+                                                                <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col>
+                                                <b-card header-tag="header" v-if="greenhouseradio == '簡易溫室'">
+                                                    <template #header>
+                                                        <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本、風 險、工 時、預 估</h6>
+                                                    </template>
+                                                    <b-card-text>
+                                                        <br>
+                                                        <!-- 標準簡易型溫室成本價格 -->
+                                                        <v-container>
+                                                            <v-row>
+                                                                <v-col>
+                                                                    <table style="border:1px solid black; " border='1'>
+                                                                        <thead class="table-active">
+                                                                            <tr align="center">
+                                                                                <td>構建分部</td>
+                                                                                <td>標準規格</td>
+                                                                                <td>成本性</td>
+                                                                                <td>結構風險</td>
+                                                                                <td>作業難度</td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tr align="center">
+                                                                            <td> 溫室管材 </td>
+                                                                            <td> 標準管材 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 圓頂形式 </td>
+                                                                            <td> 單一圓拱 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 圓拱距 </td>
+                                                                            <td> 1M-1" </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 基礎 </td>
+                                                                            <td> 直插40cm </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 跨距 </td>
+                                                                            <td> 5.4m </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 肩高 </td>
+                                                                            <td> 2m </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 長度 </td>
+                                                                            <td> 30m </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 連續性	 </td>
+                                                                            <td> 獨棟 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 披覆膜	</td>
+                                                                            <td> PE </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 參數分析 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        
+                                                                        <tr align="center">
+                                                                            <td rowspan="3">成本分析</td>
+                                                                            <td>每平方米單價</td>
+                                                                            <td colspan="3">NT$ 650</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>每坪單價</td>
+                                                                            <td colspan="3">NT$ 2149</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>總價</td>
+                                                                            <td colspan="3">NT$ {{650*area}}</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>風險分析</td>
+                                                                            <td>風險指數</td>
+                                                                            <td colspan="3">1.0</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>工時分析</td>
+                                                                            <td>工期</td>
+                                                                            <td colspan="3">{{Math.round(20+1*40*area/1000*100)/100}}</td>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                </v-col>
+                                                                <v-col>
+                                                                    <div class="p-2 bd-highlight">
+                                                                        <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                                                            <thead class="table-active">
+                                                                                <tr align="center">
+                                                                                    <td>構建分部</td>
+                                                                                    <td>規格選擇</td>
+                                                                                    <td>成本性</td>
+                                                                                    <td>結構風險</td>
+                                                                                    <td>作業難度</td>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tr align="center" v-for="(select, index) in SelectSimple" :key="index">
+                                                                                
+                                                                                <td> {{select[0]}}</td>
+                                                                                <td> {{select[1].BuildItem}} </td>
+                                                                                <td> {{select[1].Cost}} </td>
+                                                                                <td> {{select[1].StructuralRisk}} </td>
+                                                                                <td> {{select[1].JobDifficulty}} </td>
+                                                                            </tr>
+                                                                            <tr align="center">
+                                                                                <td colspan=""> 參數分析 </td>
+                                                                                <td>  </td>
+                                                                                <td> {{SimpleCostAdd}} </td>
+                                                                                <td> {{SimpleStructuralRiskAdd}} </td>
+                                                                                <td> {{SimpleJobDifficultyAdd}} </td>
+
+                                                                            </tr>
+                                                                            
+                                                                            <tr align="center">
+                                                                                <td rowspan="3">成本分析</td>
+                                                                                <td>每平方米單價</td>
+                                                                                <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650)}}</td>
+                                                                            </tr>
+                                                                            <tr align="center">
+                                                                                <td>每坪單價</td>
+                                                                                <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650/0.3025)}}</td>
+                                                                            </tr>
+                                                                            <tr align="center">
+                                                                                <td>總價</td>
+                                                                                <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650*area)}}</td>
+                                                                            </tr>
+                                                                            <tr align="center">
+                                                                                <td>風險分析</td>
+                                                                                <td>風險指數</td>
+                                                                                <td colspan="3">{{SimpleStructuralRiskAdd}}</td>
+                                                                            </tr>
+                                                                            <tr align="center">
+                                                                                <td>工時分析</td>
+                                                                                <td>工期</td>
+                                                                                <td colspan="3">{{Math.round(20+SimpleJobDifficultyAdd*40*area/1000*100)/100}}</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </v-col>
+                                                            </v-row>
+                                                        </v-container>
+                                                    </b-card-text>
+                                                </b-card>
+                                                <b-card header-tag="header" v-else-if="greenhouseradio == '強固溫室'">
+                                                    <template #header>
+                                                        <h6 class="mb-0"><b-icon icon="building"></b-icon> 強 固 型 溫 室 成 本、風 險、工 時、預 估</h6>
+                                                    </template>
+                                                    <b-card-text>
+                                                        <br>
+                                                        <!-- 標準簡易型溫室成本價格 -->
+                                                        <v-container>
+                                                            <v-row>
+                                                                <v-col>
+                                                                    <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                                                        <thead class="table-active">
+                                                                            <tr align="center">
+                                                                                <td>構建分部</td>
+                                                                                <td>標準規格</td>
+                                                                                <td>成本性</td>
+                                                                                <td>結構風險</td>
+                                                                                <td>作業難度</td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tr align="center">
+                                                                            <td> 溫室型材 </td>
+                                                                            <td> 標準型材 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 屋頂形式 </td>
+                                                                            <td> 圓頂UBP </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 上拱距 </td>
+                                                                            <td> 2M </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 基礎 </td>
+                                                                            <td> 獨立基礎 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 跨距 </td>
+                                                                            <td> 6m </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 肩高 </td>
+                                                                            <td> 3m </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 長度 </td>
+                                                                            <td> 30m </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 連續性	</td>
+                                                                            <td> 獨棟 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 披覆膜 </td>
+                                                                            <td> PE </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td> 參數分析 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                            <td> 1.00 </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td rowspan="3">成本分析</td>
+                                                                            <td>每平方米單價</td>
+                                                                            <td colspan="3">NT$ 1300</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>每坪單價</td>
+                                                                            <td colspan="3">NT$ 4298</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>總價</td>
+                                                                            <td colspan="3">NT$ 1300</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>風險分析</td>
+                                                                            <td>風險指數</td>
+                                                                            <td colspan="3">1.0</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>工時分析</td>
+                                                                            <td>工期</td>
+                                                                            <td colspan="3">{{Math.round(30+1*60*area/1000*100)/100}}</td>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                </v-col>
+                                                                <v-col>
+                                                                    <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
+                                                                        <thead class="table-active">
+                                                                            <tr align="center">
+                                                                                <td>構建分部</td>
+                                                                                <td>規格選擇</td>
+                                                                                <td>成本性</td>
+                                                                                <td>結構風險</td>
+                                                                                <td>作業難度</td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tr align="center" v-for="(select, index) in  SelectRobust" :key="index">
+                                                                            <td> {{select[0]}}</td>
+                                                                            <td> {{select[1].BuildItem}} </td>
+                                                                            <td> {{select[1].Cost}} </td>
+                                                                            <td> {{select[1].StructuralRisk}} </td>
+                                                                            <td> {{select[1].JobDifficulty}} </td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td colspan=""> 參數分析 </td>
+                                                                            <td>  </td>
+                                                                            <td> {{RobustCostAdd}} </td>
+                                                                            <td> {{RobustStructuralRiskAdd}} </td>
+                                                                            <td> {{RobustJobDifficultyAdd}} </td>
+
+                                                                        </tr>
+                                                                
+                                                                        <tr align="center">
+                                                                            <td rowspan="3">成本分析</td>
+                                                                            <td>每平方米單價</td>
+                                                                            <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300)}}</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>每坪單價</td>
+                                                                            <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300/0.3025)}}</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>總價</td>
+                                                                            <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300*area)}}</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>風險分析</td>
+                                                                            <td>風險指數</td>
+                                                                            <td colspan="3">{{RobustStructuralRiskAdd}}</td>
+                                                                        </tr>
+                                                                        <tr align="center">
+                                                                            <td>工時分析</td>
+                                                                            <td>工期</td>
+                                                                            <td colspan="3">{{Math.round(30+RobustJobDifficultyAdd*60*area/1000*100)/100}}</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </v-col>
+                                                            </v-row>
+                                                        </v-container>
+                                                    </b-card-text>
+                                                </b-card>
+                                                </v-col>
+                                            </v-row>                    
+                                        </v-container-fluid>
+                                        </v-form>
+                                        <br><br><br><br><br><br>
+
+                                </b-card-text>
+                            </b-card>
+                        </v-col>
+                        <v-col md="6" cols="12">
                             <v-container-fluid>
                                 <v-row>
-                                    <v-col md="2">
-                                        <v-subheader>A.決策權重</v-subheader>
-                                    </v-col>
-                                    <v-col md="2">
-                                        <v-text-field :hint="decide[0]" persistent-hint label="輸入品質性能" v-model="quality" v-on:change="countdecide"></v-text-field>
-                                    </v-col>
-                                    <v-col md="2">
-                                        <v-text-field :hint="decide[1]" persistent-hint label="輸入風險性" v-model="risk" v-on:change="countdecide"></v-text-field>
-                                    </v-col>
-                                    <v-col md="2">
-                                        <v-text-field :hint="decide[2]" persistent-hint label="輸入速度性" v-model="speed" v-on:change="countdecide"></v-text-field>
-                                    </v-col>
-                                    <v-col md="2">
-                                        <v-text-field :hint="decide[3]" persistent-hint label="輸入成本性" v-model="cost" v-on:change="countdecide"></v-text-field>
-                                    </v-col>
-                                </v-row>    
-                                <v-row>
-                                    <v-col cols="12" md="2">
-                                        <v-subheader>B.栽種面積</v-subheader>
-                                    </v-col>
-                                    <v-col cols="12" md="2">
-                                        <v-text-field label="南北長度(m)" v-model="plantlength" v-on:change="areacount"></v-text-field>
-                                    </v-col>  
-                                    <v-col cols="12" md="2">
-                                        <v-text-field label="東西長度(m)" v-model="plantwidth" v-on:change="areacount"></v-text-field>
-                                    </v-col>    
-                                    <v-col cols="12" md="2">
-                                        <v-text-field readonly label="面積試算(平方公尺)" v-model="area"></v-text-field>
-                                    </v-col>    
-                                                            
-                                </v-row>
-                                <v-row>
-                                    <v-col md="2">
-                                        <v-subheader>C.溫室選擇</v-subheader>
-                                    </v-col>
-                                    <v-col md="4">
-                                        <v-radio-group row v-model="greenhouseradio" v-on:change="updateRoofType">
-                                            <v-radio label="簡易溫室" id="簡易溫室" value="簡易溫室"></v-radio>
-                                            <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
-                                        </v-radio-group>
-                                    </v-col>
-                                    <v-col md="4">
-                                        <b-select v-model="systemIdx" style="width:20vmin" v-on:change="systemuser_change">
-                                            <option v-for="(system, index) in system_user" :value="system">
-                                                {{system}}
-                                            </option>
-                                        </b-select>
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col md="2">
-                                        <v-subheader>D.溫室設計</v-subheader>
-                                    </v-col>
-                                    <v-col md="8" v-if="greenhouseradio == '簡易溫室'">
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                        <thead class="table-active">
-                                            <tr align="center">
-                                                <td style='width:15vmin'>構建分部</td>
-                                                <td>規格</td>
-                                            </tr>
-                                        </thead>
-                                        <tr align="center" id="溫室管材">
-                                            <td>溫室管材{{greeninfo_simple}}</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleGreenhousePipes" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleGreenhousePipe" v-on:change="updateSimpleRadio('溫室管材',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/MaterialStructureAnalysis/RoundPipe"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>
-                                        </tr>
-                                        <tr align="center" id="圓頂形式">
-                                            <td>圓頂形式</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleDomeForms" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleDomeForm" v-on:change="updateSimpleRadio('圓頂形式',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/GreenhouseFluidAnalysis/DomeGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>
-                                        </tr>
-                                        <tr align="center" id="圓拱距">
-                                            <td>圓拱距</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCircularArchDistances" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleCircularArchDistance" v-on:change="updateSimpleRadio('圓拱距',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>
-                                        </tr>
-                                        <tr align="center" id="簡易基礎">
-                                            <td>基礎</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleFoundations" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleFoundation" v-on:change="updateSimpleRadio('基礎',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>
-                                        </tr>
-                                        <tr align="center" id="簡易跨距">
-                                            <td>跨距</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleSpans" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleSpan" v-on:change="updateSimpleRadio('跨距',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>
-                                        </tr>
-                                        <tr align="center" id="簡易肩高">
-                                            <td>肩高</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleShoulderHeights" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleShoulderHeight" v-on:change="updateSimpleRadio('肩高',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>
-                                        </tr>
-                                        <tr align="center" id="簡易長度">
-                                            <td>長度</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleLengths" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleLength" v-on:change="updateSimpleRadio('長度',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/GreenhouseStructureAnalysis/SimpleGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>
-                                        </tr>
-                                        <tr align="center" id="簡易連續性">
-                                            <td>連續性</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleContinuitys" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleContinuity" v-on:change="updateSimpleRadio('連續性',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>                    
-                                        </tr>
-                                        <tr align="center" id="簡易披覆材料">
-                                            <td>披覆材料</td>
-                                            <td align="left">
-                                                <div class="d-inline-flex p-2 bd-highlight" v-for="(simple, index) in SimpleCoatingFilms" :key="index">
-                                                    <input type="radio" :value="simple.BuildItem" v-model="SimpleCoatingFilm" v-on:change="updateSimpleRadio('披覆材料',simple)">
-                                                    <label>{{simple.BuildItem}}</label>
-                                                </div>
-                                                <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                            </td>
-                                        </tr>
-                                        </table>
-                                    </v-col>
-                                    <v-col md="8" v-else-if="greenhouseradio == '強固溫室'">
-                                        <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
-                                            <thead class="table-active">
-                                                <tr align="center">
-                                                    <td style='width:15vmin'>構建分部</td>
-                                                    <td>規格</td>
-                                                </tr>
-                                            </thead>
-                                            <tr align="center" id="溫室型材">
-                                                <td>溫室型材</td>
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongGreenhousPprofiles" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustGreenhouseProfile" v-on:change="updateRobustRadio('溫室型材',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/MaterialStructureAnalysis/ProfilePipe"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                                </td>
-                                            </tr>
-                                            <tr align="center" id="屋頂形式">
-                                                <td>屋頂形式</td>
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongRoofForms" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustRoofForm" v-on:change="updateRobustRadio('屋頂形式',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/GreenhouseFluidAnalysis/GreenhouseWindPressureChart"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                                </td>
-                                            </tr>
-                                            <tr align="center" id="上拱距">
-                                                <td>上拱距</td>
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongUpperArchDistances" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustUpperArch" v-on:change="updateRobustRadio('上拱距',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                                </td>
-                                            </tr>
-                                            <tr align="center" id="基礎">
-                                                <td>基礎</td>
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongFoundations" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustFoundation" v-on:change="updateRobustRadio('基礎',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                                </td>
-                                            </tr>
-                                            <tr align="center" id="跨距">
-                                                <td>跨距</td>
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" style="valign:center;" v-for="(robust, index) in StrongSpans" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustSpan" v-on:change="updateRobustRadio('跨距',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                                </td>
-                                            </tr>
-                                            <tr align="center" id="肩高">
-                                                <td>肩高</td>
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongShoulderHeights" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustShoulderHeight" v-on:change="updateRobustRadio('肩高',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                                </td>
-                                            </tr>
-                                            <tr align="center" id="長度">
-                                                <td>長度</td>
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongLengths" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustLength" v-on:change="updateRobustRadio('長度',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/GreenhouseStructureAnalysis/RobustGreenhouse"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-
-                                                </td>
-                                            </tr>
-                                            <tr align="center" id="連續性">
-                                                <td>連續性</td>
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in StrongContinuitys" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustContinuity" v-on:change="updateRobustRadio('連續性',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                                </td>
-                                            </tr>
-                                            <tr align="center" id="披覆材料">
-                                                <td>披覆材料</td>
-
-                                                <td align="left">
-                                                    <div class="d-inline-flex p-2 bd-highlight" v-for="(robust, index) in SimpleCoatingFilms" :key="index">
-                                                        <input type="radio" :value="robust.BuildItem" v-model="RobustCoatingFilm" v-on:change="updateRobustRadio('披覆材料',robust)">
-                                                        <label>{{robust.BuildItem}}</label>
-                                                    </div>
-
-                                                    <a href="/#/GreenhouseMasterPlan/CostAnalysis/GreenhouseMaterialCostAnalysis"><b-icon class="d-inline-flex" style="float:right;" icon="receipt"></b-icon></a>
-                                                    <a href="/#/MaterialsAndDesignKnowledgeBase/Article"><b-icon class="d-inline-flex" style="float:right;" icon="patch-question-fill"></b-icon></a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col>
-                                    <b-card header-tag="header" v-if="greenhouseradio == '簡易溫室'">
+                                    <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                         <template #header>
-                                            <h6 class="mb-0"><b-icon icon="building"></b-icon> 簡 易 型 溫 室 成 本、風 險、工 時、預 估</h6>
+                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-知識庫</h6>
                                         </template>
                                         <b-card-text>
-                                            <br>
-                                            <!-- 標準簡易型溫室成本價格 -->
-                                            <v-container>
-                                                <v-row>
-                                                    <v-col>
-                                                        <table style="border:1px solid black; " border='1'>
-                                                            <thead class="table-active">
-                                                                <tr align="center">
-                                                                    <td>構建分部</td>
-                                                                    <td>標準規格</td>
-                                                                    <td>成本性</td>
-                                                                    <td>結構風險</td>
-                                                                    <td>作業難度</td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tr align="center">
-                                                                <td> 溫室管材 </td>
-                                                                <td> 標準管材 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 圓頂形式 </td>
-                                                                <td> 單一圓拱 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 圓拱距 </td>
-                                                                <td> 1M-1" </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 基礎 </td>
-                                                                <td> 直插40cm </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 跨距 </td>
-                                                                <td> 5.4m </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 肩高 </td>
-                                                                <td> 2m </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 長度 </td>
-                                                                <td> 30m </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 連續性	 </td>
-                                                                <td> 獨棟 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 披覆膜	</td>
-                                                                <td> PE </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 參數分析 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            
-                                                            <tr align="center">
-                                                                <td rowspan="3">成本分析</td>
-                                                                <td>每平方米單價</td>
-                                                                <td colspan="3">NT$ 650</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>每坪單價</td>
-                                                                <td colspan="3">NT$ 2149</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>總價</td>
-                                                                <td colspan="3">NT$ {{650*area}}</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>風險分析</td>
-                                                                <td>風險指數</td>
-                                                                <td colspan="3">1.0</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>工時分析</td>
-                                                                <td>工期</td>
-                                                                <td colspan="3">{{Math.round(20+1*40*area/1000*100)/100}}</td>
-                                                            </tr>
-
-                                                        </table>
-                                                    </v-col>
-                                                    <v-col>
-                                                        <div class="p-2 bd-highlight">
-                                                            <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                                                <thead class="table-active">
-                                                                    <tr align="center">
-                                                                        <td>構建分部</td>
-                                                                        <td>規格選擇</td>
-                                                                        <td>成本性</td>
-                                                                        <td>結構風險</td>
-                                                                        <td>作業難度</td>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tr align="center" v-for="(select, index) in SelectSimple" :key="index">
-                                                                    
-                                                                    <td> {{select[0]}}</td>
-                                                                    <td> {{select[1].BuildItem}} </td>
-                                                                    <td> {{select[1].Cost}} </td>
-                                                                    <td> {{select[1].StructuralRisk}} </td>
-                                                                    <td> {{select[1].JobDifficulty}} </td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td colspan=""> 參數分析 </td>
-                                                                    <td>  </td>
-                                                                    <td> {{SimpleCostAdd}} </td>
-                                                                    <td> {{SimpleStructuralRiskAdd}} </td>
-                                                                    <td> {{SimpleJobDifficultyAdd}} </td>
-
-                                                                </tr>
-                                                                
-                                                                <tr align="center">
-                                                                    <td rowspan="3">成本分析</td>
-                                                                    <td>每平方米單價</td>
-                                                                    <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650)}}</td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>每坪單價</td>
-                                                                    <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650/0.3025)}}</td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>總價</td>
-                                                                    <td colspan="3">NT$ {{Math.floor(SimpleCostAdd*650*area)}}</td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>風險分析</td>
-                                                                    <td>風險指數</td>
-                                                                    <td colspan="3">{{SimpleStructuralRiskAdd}}</td>
-                                                                </tr>
-                                                                <tr align="center">
-                                                                    <td>工時分析</td>
-                                                                    <td>工期</td>
-                                                                    <td colspan="3">{{Math.round(20+SimpleJobDifficultyAdd*40*area/1000*100)/100}}</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                    </v-col>
-                                                </v-row>
-                                            </v-container>
+                                            <h5>
+                                                請選擇欲察看之知識庫：
+                                                <b-select v-model="knowledgeIdx" style="width:20vmin" >
+                                                    <option v-for="(know, index) in knowledge" :value="know">
+                                                        {{know}}
+                                                    </option>
+                                                </b-select>
+                                            </h5>
+                                            <div v-if="knowledgeIdx=='溫室管材&型材'">
+                                                <v-radio-group row v-model="housetype"> 
+                                                    <v-radio v-for="(type, index) in housetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                                </v-radio-group>
+                                                <img src="/image/溫室管材.JPG" v-if="housetype=='溫室管材'">
+                                                <img src="/image/管材規格(1).JPG" v-if="housetype=='管材規格'">
+                                                <img src="/image/管材規格(2).JPG" v-if="housetype=='管材規格'">
+                                                <img src="/image/管材規格(3).JPG" v-if="housetype=='管材規格'">
+                                                <img src="/image/溫室型材.JPG" v-if="housetype=='溫室型材'">
+                                                <img src="/image/型材規格(1).JPG" v-if="housetype=='型材規格'">
+                                                <img src="/image/型材規格(2).JPG" v-if="housetype=='型材規格'">
+                                                <img src="/image/型材規格(3).JPG" v-if="housetype=='型材規格'">
+                                            </div>
+                                            <div v-if="knowledgeIdx=='圓頂形式'">
+                                                <v-radio-group row v-model="pipetype"> 
+                                                    <v-radio v-for="(type, index) in pipetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                                </v-radio-group>
+                                                <img src="/image/強固溫室.JPG" v-if="pipetype=='強固溫室'">
+                                                <img src="/image/強固溫室(1).JPG" v-if="pipetype=='強固溫室'">
+                                                <img src="/image/強固溫室(2).JPG" v-if="pipetype=='強固溫室'">
+                                                <img src="/image/簡易溫室(1).JPG" v-if="pipetype=='簡易溫室'">
+                                                <img src="/image/簡易溫室(2).JPG" v-if="pipetype=='簡易溫室'">
+                                                <img src="/image/使用年限.JPG" v-if="pipetype=='使用年限'">
+                                                <img src="/image/溫室屋頂強化結構.JPG" v-if="pipetype=='溫室屋頂強化結構'">
+                                                <img src="/image/強固溫室型式標準圖(1).JPG" v-if="pipetype=='強固溫室型式標準圖'">
+                                                <img src="/image/強固溫室型式標準圖(2).JPG" v-if="pipetype=='強固溫室型式標準圖'">
+                                                <img src="/image/強固溫室型式標準圖(3).JPG" v-if="pipetype=='強固溫室型式標準圖'">
+                                                <img src="/image/強固溫室型式標準圖(4).JPG" v-if="pipetype=='強固溫室型式標準圖'">
+                                                <img src="/image/強固溫室型式標準圖(5).JPG" v-if="pipetype=='強固溫室型式標準圖'">
+                                            </div>
+                                            <div v-if="knowledgeIdx=='圓拱距'">
+                                                <v-radio-group row v-model="rooftype"> 
+                                                    <v-radio v-for="(type, index) in rooftypelist" :value="type" :label="type" :key="index"></v-radio>
+                                                </v-radio-group>
+                                                <img src="/image/溫室圓拱距(桁距)設計.JPG" v-if="rooftype=='溫室圓拱距(桁距)設計'">
+                                            </div>
+                                            <div v-if="knowledgeIdx=='基礎'">
+                                                <v-radio-group row v-model="basetype"> 
+                                                    <v-radio v-for="(type, index) in basetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                                </v-radio-group>
+                                                <img src="/image/簡易型溫室基礎(1).JPG" v-if="basetype=='簡易型溫室基礎'">
+                                                <img src="/image/簡易型溫室基礎(2).JPG" v-if="basetype=='簡易型溫室基礎'">
+                                                <img src="/image/溫室基礎地質分析.JPG" v-if="basetype=='溫室基礎地質分析'">
+                                                <img src="/image/溫室基礎設計.JPG" v-if="basetype=='溫室基礎設計'">
+                                                <img src="/image/溫室基礎設計.JPG" v-if="basetype=='溫室基礎設計'">
+                                                <img src="/image/基礎設計流程圖.JPG" v-if="basetype=='基礎設計流程圖'">
+                                                <img src="/image/強固基礎(1).JPG" v-if="basetype=='強固基礎'">
+                                                <img src="/image/強固基礎(2).JPG" v-if="basetype=='強固基礎'">
+                                                <img src="/image/強固基礎(3).JPG" v-if="basetype=='強固基礎'">
+                                                <img src="/image/強固基礎(4).JPG" v-if="basetype=='強固基礎'">
+                                                <img src="/image/地質分析.JPG" v-if="basetype=='地質分析'">
+                                            </div>
+                                            <div v-if="knowledgeIdx=='跨距'">
+                                                <v-radio-group row v-model="housepictype"> 
+                                                    <v-radio v-for="(type, index) in housepictypelist" :value="type" :label="type" :key="index"></v-radio>
+                                                </v-radio-group>
+                                                <img src="/image/簡易溫室跨距設計(1).JPG" v-if="housepictype=='簡易溫室跨距設計'">
+                                                <img src="/image/簡易溫室跨距設計(2).JPG" v-if="housepictype=='簡易溫室跨距設計'">
+                                            </div>
+                                            <div v-if="knowledgeIdx=='肩高'">
+                                                <v-radio-group row v-model="shorttype"> 
+                                                    <v-radio v-for="(type, index) in shorttypelist" :value="type" :label="type" :key="index"></v-radio>
+                                                </v-radio-group>
+                                                <img src="/image/簡易溫室肩高設計.JPG" v-if="shorttype=='簡易溫室肩高設計'">
+                                                <img src="/image/簡易溫室肩高設計(2).JPG" v-if="shorttype=='簡易溫室肩高設計'">
+                                            </div>
+                                            <div v-if="knowledgeIdx=='長度'">
+                                                
+                                            </div>
+                                            <div v-if="knowledgeIdx=='連續性'">
+                                                <v-radio-group row v-model="continuoustype"> 
+                                                    <v-radio v-for="(type, index) in continuoustypelist" :value="type" :label="type" :key="index"></v-radio>
+                                                </v-radio-group>
+                                                <img src="/image/溫室型式構造.JPG" v-if="continuoustype=='溫室型式構造'">
+                                            </div>
+                                            <div v-if="knowledgeIdx=='披覆材料'">
+                                                <v-radio-group row v-model="drapetype"> 
+                                                    <v-radio v-for="(type, index) in drapetypelist" :value="type" :label="type" :key="index"></v-radio>
+                                                </v-radio-group>
+                                                <img src="/image/溫室型式構造.JPG" v-if="drapetype=='溫室型式構造'">
+                                            </div>
                                         </b-card-text>
                                     </b-card>
-                                    <b-card header-tag="header" v-else-if="greenhouseradio == '強固溫室'">
+                                </v-row>
+                                <v-row v-if="overplanArray[0].userclass === '專家'">
+                                    <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                         <template #header>
-                                            <h6 class="mb-0"><b-icon icon="building"></b-icon> 強 固 型 溫 室 成 本、風 險、工 時、預 估</h6>
+                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 總體規劃-專家係數設定</h6>
                                         </template>
                                         <b-card-text>
-                                            <br>
-                                            <!-- 標準簡易型溫室成本價格 -->
+                                            <h5>
+                                                請選擇欲更改之溫室型態：
+                                                <v-radio-group row v-model="system_change"> 
+                                                    <v-radio label="簡易溫室" id="簡易溫室" value="簡易溫室"></v-radio>
+                                                    <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
+                                                </v-radio-group>
+                                            </h5>
+                                            <h5>
+                                                請選擇欲更改之材料種類：
+                                                <b-select style="width:20vmin" v-model="material_class" v-if="system_change === '簡易溫室'" :value="system_pipe[0]" v-on:change="material_change">
+                                                    <option v-for="(pipe, index) in system_pipe">
+                                                        {{ pipe }}
+                                                    </option>
+                                                </b-select>
+                                                <b-select style="width:20vmin" v-model="material_class" v-else-if="system_change === '強固溫室'" :value="system_profile[0]" v-on:change="material_change">
+                                                    <option v-for="(profile, index) in system_profile">
+                                                        {{ profile }}
+                                                    </option>
+                                                </b-select>
+                                                <b-select style="width:20vmin" v-if="material_class !== null" v-model="material_item[0]" v-on:change="addmaterialinfo">
+                                                    <option>
+                                                        ===請選擇材料===
+                                                    </option>
+                                                    <option v-for="(item, index) in material_array" :value="item">
+                                                        {{ item }}
+                                                    </option>
+                                                </b-select>
+                                            </h5>
                                             <v-container>
-                                                <v-row>
-                                                    <v-col>
-                                                        <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                                            <thead class="table-active">
-                                                                <tr align="center">
-                                                                    <td>構建分部</td>
-                                                                    <td>標準規格</td>
-                                                                    <td>成本性</td>
-                                                                    <td>結構風險</td>
-                                                                    <td>作業難度</td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tr align="center">
-                                                                <td> 溫室型材 </td>
-                                                                <td> 標準型材 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 屋頂形式 </td>
-                                                                <td> 圓頂UBP </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 上拱距 </td>
-                                                                <td> 2M </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 基礎 </td>
-                                                                <td> 獨立基礎 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 跨距 </td>
-                                                                <td> 6m </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 肩高 </td>
-                                                                <td> 3m </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 長度 </td>
-                                                                <td> 30m </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 連續性	</td>
-                                                                <td> 獨棟 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 披覆膜 </td>
-                                                                <td> PE </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td> 參數分析 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                                <td> 1.00 </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td rowspan="3">成本分析</td>
-                                                                <td>每平方米單價</td>
-                                                                <td colspan="3">NT$ 1300</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>每坪單價</td>
-                                                                <td colspan="3">NT$ 4298</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>總價</td>
-                                                                <td colspan="3">NT$ 1300</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>風險分析</td>
-                                                                <td>風險指數</td>
-                                                                <td colspan="3">1.0</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>工時分析</td>
-                                                                <td>工期</td>
-                                                                <td colspan="3">{{Math.round(30+1*60*area/1000*100)/100}}</td>
-                                                            </tr>
-
-                                                        </table>
-                                                    </v-col>
-                                                    <v-col>
-                                                        <table style="border:1px solid black; font-size: 1.7vmin" border='1'>
-                                                            <thead class="table-active">
-                                                                <tr align="center">
-                                                                    <td>構建分部</td>
-                                                                    <td>規格選擇</td>
-                                                                    <td>成本性</td>
-                                                                    <td>結構風險</td>
-                                                                    <td>作業難度</td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tr align="center" v-for="(select, index) in  SelectRobust" :key="index">
-                                                                <td> {{select[0]}}</td>
-                                                                <td> {{select[1].BuildItem}} </td>
-                                                                <td> {{select[1].Cost}} </td>
-                                                                <td> {{select[1].StructuralRisk}} </td>
-                                                                <td> {{select[1].JobDifficulty}} </td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td colspan=""> 參數分析 </td>
-                                                                <td>  </td>
-                                                                <td> {{RobustCostAdd}} </td>
-                                                                <td> {{RobustStructuralRiskAdd}} </td>
-                                                                <td> {{RobustJobDifficultyAdd}} </td>
-
-                                                            </tr>
-                                                    
-                                                            <tr align="center">
-                                                                <td rowspan="3">成本分析</td>
-                                                                <td>每平方米單價</td>
-                                                                <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300)}}</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>每坪單價</td>
-                                                                <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300/0.3025)}}</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>總價</td>
-                                                                <td colspan="3">NT$ {{Math.floor(RobustCostAdd*1300*area)}}</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>風險分析</td>
-                                                                <td>風險指數</td>
-                                                                <td colspan="3">{{RobustStructuralRiskAdd}}</td>
-                                                            </tr>
-                                                            <tr align="center">
-                                                                <td>工時分析</td>
-                                                                <td>工期</td>
-                                                                <td colspan="3">{{Math.round(30+RobustJobDifficultyAdd*60*area/1000*100)/100}}</td>
-                                                            </tr>
-                                                        </table>
-                                                    </v-col>
+                                                <v-row v-if="material_item[0] !== '===請選擇材料==='">
+                                                    <v-col>{{ material_item[0] }}：</v-col>
+                                                    <v-col><v-text-field persistent-hint label="成本性" v-model="change_cost"></v-text-field></v-col>
+                                                    <v-col><v-text-field persistent-hint label="風險性" v-model="change_risk"></v-text-field></v-col>
+                                                    <v-col><v-text-field persistent-hint label="工作難度" v-model="change_job"></v-text-field></v-col>
                                                 </v-row>
                                             </v-container>
+                                            <button v-if="material_item[0] !== '===請選擇材料==='" type="button" class="btn btn-primary" style="float:right;" v-on:click="material_check">確認</button>
                                         </b-card-text>
                                     </b-card>
-                                    </v-col>
-                                </v-row>                    
+                                </v-row>
                             </v-container-fluid>
-                            </v-form>
-                            <br><br><br><br><br><br>
-
-                    </b-card-text>
-                </b-card>
-
-                        <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
-                            <template #header>
-                                <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-知識庫</h6>
-                            </template>
-                            <b-card-text>
-                                <h5>
-                                    請選擇欲察看之知識庫：
-                                    <b-select v-model="knowledgeIdx" style="width:20vmin" >
-                                        <option v-for="(know, index) in knowledge" :value="know">
-                                            {{know}}
-                                        </option>
-                                    </b-select>
-                                </h5>
-                                <div v-if="knowledgeIdx=='溫室管材&型材'">
-                                    <v-radio-group row v-model="housetype"> 
-                                        <v-radio v-for="(type, index) in housetypelist" :value="type" :label="type" :key="index"></v-radio>
-                                    </v-radio-group>
-                                    <img src="/image/溫室管材.JPG" v-if="housetype=='溫室管材'">
-                                    <img src="/image/管材規格(1).JPG" v-if="housetype=='管材規格'">
-                                    <img src="/image/管材規格(2).JPG" v-if="housetype=='管材規格'">
-                                    <img src="/image/管材規格(3).JPG" v-if="housetype=='管材規格'">
-                                    <img src="/image/溫室型材.JPG" v-if="housetype=='溫室型材'">
-                                    <img src="/image/型材規格(1).JPG" v-if="housetype=='型材規格'">
-                                    <img src="/image/型材規格(2).JPG" v-if="housetype=='型材規格'">
-                                    <img src="/image/型材規格(3).JPG" v-if="housetype=='型材規格'">
-                                </div>
-                                <div v-if="knowledgeIdx=='圓頂形式'">
-                                    <v-radio-group row v-model="pipetype"> 
-                                        <v-radio v-for="(type, index) in pipetypelist" :value="type" :label="type" :key="index"></v-radio>
-                                    </v-radio-group>
-                                    <img src="/image/強固溫室.JPG" v-if="pipetype=='強固溫室'">
-                                    <img src="/image/強固溫室(1).JPG" v-if="pipetype=='強固溫室'">
-                                    <img src="/image/強固溫室(2).JPG" v-if="pipetype=='強固溫室'">
-                                    <img src="/image/簡易溫室(1).JPG" v-if="pipetype=='簡易溫室'">
-                                    <img src="/image/簡易溫室(2).JPG" v-if="pipetype=='簡易溫室'">
-                                    <img src="/image/使用年限.JPG" v-if="pipetype=='使用年限'">
-                                    <img src="/image/溫室屋頂強化結構.JPG" v-if="pipetype=='溫室屋頂強化結構'">
-                                    <img src="/image/強固溫室型式標準圖(1).JPG" v-if="pipetype=='強固溫室型式標準圖'">
-                                    <img src="/image/強固溫室型式標準圖(2).JPG" v-if="pipetype=='強固溫室型式標準圖'">
-                                    <img src="/image/強固溫室型式標準圖(3).JPG" v-if="pipetype=='強固溫室型式標準圖'">
-                                    <img src="/image/強固溫室型式標準圖(4).JPG" v-if="pipetype=='強固溫室型式標準圖'">
-                                    <img src="/image/強固溫室型式標準圖(5).JPG" v-if="pipetype=='強固溫室型式標準圖'">
-                                </div>
-                                <div v-if="knowledgeIdx=='圓拱距'">
-                                    <v-radio-group row v-model="rooftype"> 
-                                        <v-radio v-for="(type, index) in rooftypelist" :value="type" :label="type" :key="index"></v-radio>
-                                    </v-radio-group>
-                                    <img src="/image/溫室圓拱距(桁距)設計.JPG" v-if="rooftype=='溫室圓拱距(桁距)設計'">
-                                </div>
-                                <div v-if="knowledgeIdx=='基礎'">
-                                    <v-radio-group row v-model="basetype"> 
-                                        <v-radio v-for="(type, index) in basetypelist" :value="type" :label="type" :key="index"></v-radio>
-                                    </v-radio-group>
-                                    <img src="/image/簡易型溫室基礎(1).JPG" v-if="basetype=='簡易型溫室基礎'">
-                                    <img src="/image/簡易型溫室基礎(2).JPG" v-if="basetype=='簡易型溫室基礎'">
-                                    <img src="/image/溫室基礎地質分析.JPG" v-if="basetype=='溫室基礎地質分析'">
-                                    <img src="/image/溫室基礎設計.JPG" v-if="basetype=='溫室基礎設計'">
-                                    <img src="/image/溫室基礎設計.JPG" v-if="basetype=='溫室基礎設計'">
-                                    <img src="/image/基礎設計流程圖.JPG" v-if="basetype=='基礎設計流程圖'">
-                                    <img src="/image/強固基礎(1).JPG" v-if="basetype=='強固基礎'">
-                                    <img src="/image/強固基礎(2).JPG" v-if="basetype=='強固基礎'">
-                                    <img src="/image/強固基礎(3).JPG" v-if="basetype=='強固基礎'">
-                                    <img src="/image/強固基礎(4).JPG" v-if="basetype=='強固基礎'">
-                                    <img src="/image/地質分析.JPG" v-if="basetype=='地質分析'">
-                                </div>
-                                <div v-if="knowledgeIdx=='跨距'">
-                                    <v-radio-group row v-model="housepictype"> 
-                                        <v-radio v-for="(type, index) in housepictypelist" :value="type" :label="type" :key="index"></v-radio>
-                                    </v-radio-group>
-                                    <img src="/image/簡易溫室跨距設計(1).JPG" v-if="housepictype=='簡易溫室跨距設計'">
-                                    <img src="/image/簡易溫室跨距設計(2).JPG" v-if="housepictype=='簡易溫室跨距設計'">
-                                </div>
-                                <div v-if="knowledgeIdx=='肩高'">
-                                    <v-radio-group row v-model="shorttype"> 
-                                        <v-radio v-for="(type, index) in shorttypelist" :value="type" :label="type" :key="index"></v-radio>
-                                    </v-radio-group>
-                                    <img src="/image/簡易溫室肩高設計.JPG" v-if="shorttype=='簡易溫室肩高設計'">
-                                    <img src="/image/簡易溫室肩高設計(2).JPG" v-if="shorttype=='簡易溫室肩高設計'">
-                                </div>
-                                <div v-if="knowledgeIdx=='長度'">
-                                    
-                                </div>
-                                <div v-if="knowledgeIdx=='連續性'">
-                                    <v-radio-group row v-model="continuoustype"> 
-                                        <v-radio v-for="(type, index) in continuoustypelist" :value="type" :label="type" :key="index"></v-radio>
-                                    </v-radio-group>
-                                    <img src="/image/溫室型式構造.JPG" v-if="continuoustype=='溫室型式構造'">
-                                </div>
-                                <div v-if="knowledgeIdx=='披覆材料'">
-                                    <v-radio-group row v-model="drapetype"> 
-                                        <v-radio v-for="(type, index) in drapetypelist" :value="type" :label="type" :key="index"></v-radio>
-                                    </v-radio-group>
-                                    <img src="/image/溫室型式構造.JPG" v-if="drapetype=='溫室型式構造'">
-                                </div>
-                            </b-card-text>
-                        </b-card>
-
-                    <div v-if="overplanArray[0].userclass === '專家'">
-                        <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
-                            <template #header>
-                                <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 總體規劃-專家係數設定</h6>
-                            </template>
-                            <b-card-text>
-                                <h5>
-                                    請選擇欲更改之溫室型態：
-                                    <v-radio-group row v-model="system_change"> 
-                                        <v-radio label="簡易溫室" id="簡易溫室" value="簡易溫室"></v-radio>
-                                        <v-radio label="強固溫室" id="強固溫室" value="強固溫室"></v-radio>
-                                    </v-radio-group>
-                                </h5>
-                                <h5>
-                                    請選擇欲更改之材料種類：
-                                    <b-select style="width:20vmin" v-model="material_class" v-if="system_change === '簡易溫室'" :value="system_pipe[0]" v-on:change="material_change">
-                                        <option v-for="(pipe, index) in system_pipe">
-                                            {{ pipe }}
-                                        </option>
-                                    </b-select>
-                                    <b-select style="width:20vmin" v-model="material_class" v-else-if="system_change === '強固溫室'" :value="system_profile[0]" v-on:change="material_change">
-                                        <option v-for="(profile, index) in system_profile">
-                                            {{ profile }}
-                                        </option>
-                                    </b-select>
-                                    <b-select style="width:20vmin" v-if="material_class !== null" v-model="material_item[0]" v-on:change="addmaterialinfo">
-                                        <option>
-                                            ===請選擇材料===
-                                        </option>
-                                        <option v-for="(item, index) in material_array" :value="item">
-                                            {{ item }}
-                                        </option>
-                                    </b-select>
-                                </h5>
-                                <v-container>
-                                    <v-row v-if="material_item[0] !== '===請選擇材料==='">
-                                        <v-col>{{ material_item[0] }}：</v-col>
-                                        <v-col><v-text-field persistent-hint label="成本性" v-model="change_cost"></v-text-field></v-col>
-                                        <v-col><v-text-field persistent-hint label="風險性" v-model="change_risk"></v-text-field></v-col>
-                                        <v-col><v-text-field persistent-hint label="工作難度" v-model="change_job"></v-text-field></v-col>
-                                    </v-row>
-                                </v-container>
-                                <button v-if="material_item[0] !== '===請選擇材料==='" type="button" class="btn btn-primary" style="float:right;" v-on:click="material_check">確認</button>
-                            </b-card-text>
-                        </b-card>
-                    </div>
+                        </v-col>
+                    </v-row>
+                </v-container-fluid>
             </b-card-group>
             <b-card-group>
                 <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
@@ -3360,7 +3370,9 @@
 }
 </script>
 <style scoped>
-    img{ 
-        width: 100%;
+    @media screen and (max-width: 768px) { 
+        img {
+            width:100%
+        }
     }
 </style>
