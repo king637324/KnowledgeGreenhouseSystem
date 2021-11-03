@@ -93,7 +93,7 @@
                         </v-row>
                         <v-row>
                             <v-col md="12">
-                                <table style="border:1px solid black;" border='1' width="50%">
+                                <table style="border:1px solid black;" border='1' id="daylight">
                                     <thead class="table-active">
                                         <th></th>
                                         <th>1月</th>
@@ -466,3 +466,10 @@ export default {
 }
 
 </script>
+<style scoped>
+    @media screen and (max-width: 768px) {
+        #daylight {
+            font-size: 1px;
+        }
+    }
+</style>

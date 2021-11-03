@@ -89,7 +89,7 @@
                                 <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
                             </v-col>
                         </v-row>
-                        <table style="border:1px solid black;" border='1'>
+                        <table style="border:1px solid black;" border='1' id="daylight">
                             <tr align="center">
                                 <td></td>
                                 <td>1月份</td>
@@ -778,3 +778,10 @@ export default {
 }
 
 </script>
+<style scoped>
+    @media screen and (max-width: 768px) {
+        #daylight {
+            font-size: 1px;
+        }
+    }
+</style>

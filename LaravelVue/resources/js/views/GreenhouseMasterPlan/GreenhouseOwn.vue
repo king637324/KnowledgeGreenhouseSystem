@@ -6,20 +6,6 @@
             自載重
         </h3>
         <hr>
-        <!-- <table style="border:1px solid black; font-size: 1.5vmin; width:50em; height:50em; margin-left:35em;" border='1'>
-            <thead class="table-active">
-                <tr align="center">
-                    <td>型式</td>
-                    <td>名稱</td>
-                    <td>kg/m2</td>
-                </tr>
-            </thead>
-            <tr align="center" v-for="(data, index) in roof_type" :key="index">
-                <td>{{ roof_type[index] }}</td>
-                <td>{{ roof_name[index] }}</td>
-                <td>{{ roof_number[index] }}</td>
-            </tr>
-        </table> -->
         <center><img src="/image/widget.jpeg" width="1000px"></center>
     </div>
 </template>

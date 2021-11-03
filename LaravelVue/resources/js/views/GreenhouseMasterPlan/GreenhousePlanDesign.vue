@@ -68,10 +68,10 @@
                                                 </v-col>
                                             </v-row>
                                             <v-row>
-                                                <v-col md="2">
+                                                <v-col md="2" cols="2">
                                                     <v-subheader>D.溫室設計</v-subheader>
                                                 </v-col>
-                                                <v-col md="8" v-if="greenhouseradio == '簡易溫室'">
+                                                <v-col md="8" cols="9" v-if="greenhouseradio == '簡易溫室'">
                                                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                                     <thead class="table-active">
                                                         <tr align="center">
