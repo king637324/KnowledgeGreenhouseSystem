@@ -27,10 +27,10 @@
             </v-row>
             <div v-if="saveform === '本張表單'">
                 <v-row>
-                    <table style="border:1px solid black; width:80vw; height:300px" border='1'>
+                    <table style="border:1px solid black; width:80vw; height:300px  border-top:0px;" border='1'>
                         <thead class="table-active">
-                            <tr align="center">
-                                <td colspan="10" style="font-size:20px;font-weight:bold; border-top:0px; border-left:0px; border-right:0px;">A.基本資料</td>
+                            <tr align="center" style="font-size:20px;font-weight:bold; border-top:0px; border-left:0px; border-right:0px;">
+                                <td colspan="10">A.基本資料</td>
                             </tr>
                         </thead>
                         <tr align="center">
@@ -47,7 +47,7 @@
                         </tr>
                         <tr align="center">
                             <th> 栽種面積</th>
-                            <td colspan="3"> {{overplanArray[0].croplength}} * {{overplanArray[0].cropwidth}} =  {{overplanArray[0].croparea}} 方位：{{overplanArray[0].position}}</td>
+                            <td colspan="3"> {{overplanArray[0].croplength}} * {{overplanArray[0].cropwidth}} =  {{overplanArray[0].croparea}} <br> 方位：{{overplanArray[0].position}}</td>
                         </tr>
                     </table>
                 </v-row>
@@ -1796,6 +1796,10 @@
                     this.overplanArray.push(this.OverPlanJson[i])
                 }
             }
+            if (this.overplanArray.length === 0) {
+                window.alert('尚未填寫基本資料，請填寫！')
+                document.location.href="/#/GreenhouseMasterPlan/GreenhouseOverallPlanbase"
+            }
             const Vegetable = await fetch('/VegetableJSON',  {
                 method: 'GET',
             });
@@ -1805,6 +1809,26 @@
                     this.result_plant = JSON.parse(JSON.stringify(this.vegetablejson[i]));
                 }
             }
+
+            const D_OverPlan = await fetch('/DesignJson',  {
+                method: 'GET',
+            });
+            this.DesignJson = await D_OverPlan.json();
+            for(var i = 0; i < this.DesignJson.length; i++){
+                if (this.DesignJson[i].uid === this.$auth.user().id){
+                    this.DesignArray.push(this.DesignJson[i])
+                }
+            }
+            if (this.DesignArray.length === 0) {
+                window.alert('尚未填寫溫室型式設計，請填寫！')
+                document.location.href="/#/GreenhouseMasterPlan/GreenhousePlanDesign"
+            }
+            if (this.DesignArray[0].housetype === '強固溫室'){
+                this.greenhouse_material = [['溫室型材'],['屋頂形式'],['上拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
+            } else{
+                this.greenhouse_material = [['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
+            }
+            
             const RegionalWindSpeed = await fetch('/RegionalWindSpeedJSON',  {
                 method: 'GET',
             });
@@ -1954,22 +1978,6 @@
             this.corrosion_add = Math.round(corrosion[0]*corrosion[1]*100)/100
             this.wind_totalinfo.push(this.wind_addspeed)
             this.wind_totalinfo.push(this.corrosion_add)
-
-            const D_OverPlan = await fetch('/DesignJson',  {
-                method: 'GET',
-            });
-            this.DesignJson = await D_OverPlan.json();
-            for(var i = 0; i < this.DesignJson.length; i++){
-                if (this.DesignJson[i].uid === this.$auth.user().id){
-                    this.DesignArray.push(this.DesignJson[i])
-                }
-            }
-
-            if (this.DesignArray[0].housetype === '強固溫室'){
-                this.greenhouse_material = [['溫室型材'],['屋頂形式'],['上拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
-            } else{
-                this.greenhouse_material = [['溫室管材'],['圓頂形式'],['圓拱距'],['基礎'],['跨距'],['肩高'],['長度'],['連續性'],['披覆材料']]
-            }
 
             const SimpleCostratios = await fetch('/SimpleCostRatioJSON',  {
             method: 'GET',

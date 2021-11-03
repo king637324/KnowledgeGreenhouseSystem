@@ -77,15 +77,10 @@ class WeightEstimationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request['roof_type']){
-            $data = $request->only(['roof_type','roof_number']);
-            $EditCropData  = weight_estimation::where('id',$id);
-            $EditCropData->update($data);
-        } else if($request['wind_design']) {
-            $data = $request->only(['wind_design','span_design','shoulder_design','continue_design']);
-            $EditCropData  = weight_estimation::where('id',$id);
-            $EditCropData->update($data);
-        }
+        $data = $request->only(['roof_type','roof_number','wind_design','span_design','shoulder_design','continue_design']);
+        $EditCropData  = weight_estimation::where('id',$id);
+        $EditCropData->update($data);
+        
     }
 
     /**

@@ -133,7 +133,13 @@ class OverPlanController extends Controller
             $EditCropData  = saveoverplan::where('pid',$id);
             $EditCropData->update($data);
         }
-        
+        if ($request['formData']){
+            $data = $request->only(
+                ['localcity','localarea','terrain','landform','croplength','cropwidth','croparea','position']
+            );
+            $EditCropData  = saveoverplan::where('pid',$id);
+            $EditCropData->update($data);
+        }
     }
 
     /**

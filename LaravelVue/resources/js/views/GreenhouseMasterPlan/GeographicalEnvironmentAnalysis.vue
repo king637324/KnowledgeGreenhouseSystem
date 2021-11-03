@@ -69,7 +69,7 @@
                                     <v-text-field label="寬度(m)" v-model="plantwidth" v-on:change="areacount" style="font-size: 2vmin; width:10vmin"></v-text-field>
                                 </v-col>    
                                 <v-col>
-                                    <v-text-field readonly label="面積試算" v-model="area" style="font-size: 2vmin; width:10vmin"></v-text-field>
+                                    <v-text-field readonly label="面積試算(m^2)" v-model="area" style="font-size: 2vmin; width:10vmin"></v-text-field>
                                 </v-col>  
                             </v-row>
                         </v-container-fluid>
@@ -243,7 +243,7 @@ export default {
             this.SelectLandcondition = this.overplanArray[0].landcondition
             this.plantlength = this.overplanArray[0].croplength
             this.plantwidth = this.overplanArray[0].cropwidth
-            this.area = (this.plantlength*this.plantwidth)/10000
+            this.area = (this.plantlength*this.plantwidth)
 
             var filterfalg = false;
             // 篩選重複出現的縣市

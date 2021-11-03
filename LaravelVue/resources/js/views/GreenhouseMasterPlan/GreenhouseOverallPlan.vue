@@ -212,6 +212,7 @@
     },
     methods: {
         async getJson(){
+        this.codename = this.$auth.user().name
         const Vegetable = await fetch('/VegetableJSON',  {
             method: 'GET',
         });
@@ -246,7 +247,7 @@
                 this.now_user = this.OverPlanJson[i].pid
             }
         }
-        this.codename = this.$auth.user().name
+        this.classIdx = this.overplanArray[0].userclass
         this.cropIdx = this.overplanArray[0].palntclass
         this.cityIdx = this.overplanArray[0].localcity
         this.SelectTerrain = this.overplanArray[0].terrain

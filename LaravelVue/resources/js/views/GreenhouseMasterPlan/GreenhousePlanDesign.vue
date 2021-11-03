@@ -12,7 +12,7 @@
                         <v-col cols="6">
                             <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                 <template #header>
-                                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長環境需求</h6>
+                                    <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-型式設計</h6>
                                 </template>
                                 <b-card-text>
                                     <v-form>
@@ -669,7 +669,7 @@
                                 <v-row>
                                     <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                         <template #header>
-                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 規劃結果-比較分析</h6>
+                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-知識庫</h6>
                                         </template>
                                         <b-card-text>
                                             <h5>
@@ -767,7 +767,7 @@
                                 <v-row v-if="overplanArray[0].userclass === '專家'">
                                     <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                         <template #header>
-                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 規劃結果-比較分析</h6>
+                                            <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 總體規劃-專家係數設定</h6>
                                         </template>
                                         <b-card-text>
                                             <h5>
@@ -818,7 +818,7 @@
             <b-card-group>
                 <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                     <template #header>
-                        <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長環境需求</h6>
+                        <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-型管材and披腹膜</h6>
                     </template>
                 
                     <b-card-text>
@@ -1479,7 +1479,7 @@
         position:0,
         knowledge:['==溫室設計==','溫室管材&型材','圓頂形式','圓拱距','基礎','跨距','肩高','長度','連續性','披覆材料'],
         material:['==材料設計==','型管材','披腹膜'],
-        knowledgeIdx:'==溫室設計==',
+        knowledgeIdx:'溫室管材&型材',
         materialIdx:'==材料設計==',
         MaterialCostjson: [],
         LMEjson:[],
@@ -1529,7 +1529,7 @@
         HardFilm:[],
         decide:['0','0','0','0'],
         housetypelist:['溫室管材','管材規格','溫室型材','型材規格'],
-        housetype:null,
+        housetype:'溫室管材',
         pipetypelist:['強固溫室','簡易溫室','使用年限','溫室屋頂強化結構','強固溫室型式標準圖'],
         pipetype:null,
         rooftypelist:['溫室圓拱距(桁距)設計'],
@@ -1599,6 +1599,10 @@
                         this.overplanArray.push(this.OverPlanJson[i])
                         this.now_user = this.OverPlanJson[i].pid
                 }
+            }
+            if (this.overplanArray.length === 0) {
+                window.alert('尚未填寫基本資料，請填寫！')
+                document.location.href="/#/GreenhouseMasterPlan/GreenhouseOverallPlanbase"
             }
             this.plantlength = this.overplanArray[0].croplength
             this.plantwidth = this.overplanArray[0].cropwidth
@@ -2961,7 +2965,7 @@
                     const SimpleGreenhousePipes = await fetch('/SimpleDomeFormJSON',  {
                         method: 'GET',
                     });
-                    this.greenhousejson = await SimpleGreenhousePipes.json();
+                    greenhousejson = await SimpleGreenhousePipes.json();
                 } else if (this.material_class === '圓拱距') {
                     const SimpleGreenhousePipes = await fetch('/SimpleCircularArchDistanceJSON',  {
                         method: 'GET',
@@ -3053,7 +3057,6 @@
                     material_id.push(greenhousejson[i].id)
                 }
             }
-            window.alert(this.material_item[0].split('-').length)
             if (this.material_item[0].split('-').length !== 2){
                 if (builditem.indexOf(this.material_item[0]) === -1){
                     let formData = new FormData();
@@ -3105,8 +3108,104 @@
                     window.alert('修改完畢')
                 }
             }
-            this.system_user.push(this.$auth.user().name)
-            
+            if (this.system_user.indexOf(this.$auth.user().name) === -1) {
+                this.system_user.push(this.$auth.user().name)
+            }
+            if (this.system_change === '簡易溫室') {
+                if (this.material_class === '溫室管材') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '圓頂形式') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleDomeFormJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleDomeFormJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '圓拱距') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleCircularArchDistanceJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleCircularArchDistancesJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '基礎') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleFoundationJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleFoundationsJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '跨距') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleSpanJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleSpansJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '肩高') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleShoulderHeightJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleShoulderHeightsJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '長度') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleLengthJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleGreenhousesPipes = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '連續性') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleContinuityJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleContinuitysJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '披覆材料') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleCoatingFilmJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleCoatingFilmsJSON = await SimpleGreenhousePipes.json();
+                }
+            } else if (this.system_change === '強固溫室') {
+                if (this.material_class === '溫室型材') {
+                    const SimpleGreenhousePipes = await fetch('/StrongGreenhouseProfileJSON',  {
+                        method: 'GET',
+                    });
+                    this.StrongGreenhouseProfilesJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '屋頂形式') {
+                    const SimpleGreenhousePipes = await fetch('/StrongRoofFormJSON',  {
+                        method: 'GET',
+                    });
+                    this.StrongRoofFormsJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '上拱距') {
+                    const SimpleGreenhousePipes = await fetch('/StrongUpperArchDistanceJSON',  {
+                        method: 'GET',
+                    });
+                    this.StrongUpperArchDistancesJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '基礎') {
+                    const SimpleGreenhousePipes = await fetch('/StrongFoundationJSON',  {
+                        method: 'GET',
+                    });
+                    this.StrongFoundationsJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '跨距') {
+                    const SimpleGreenhousePipes = await fetch('/StrongSpanJSON',  {
+                        method: 'GET',
+                    });
+                    this.StrongSpansJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '肩高') {
+                    const SimpleGreenhousePipes = await fetch('/StrongShoulderHeightJSON',  {
+                        method: 'GET',
+                    });
+                    this.StrongShoulderHeightsJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '長度') {
+                    const SimpleGreenhousePipes = await fetch('/StrongLengthJSON',  {
+                        method: 'GET',
+                    });
+                    this.StrongLengthsJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '連續性') {
+                    const SimpleGreenhousePipes = await fetch('/StrongContinuityJSON',  {
+                        method: 'GET',
+                    });
+                    this.StrongContinuitysJSON = await SimpleGreenhousePipes.json();
+                } else if (this.material_class === '披覆材料') {
+                    const SimpleGreenhousePipes = await fetch('/SimpleGreenhousePipeJSON',  {
+                        method: 'GET',
+                    });
+                    this.SimpleGreenhousePipesJSON = await SimpleGreenhousePipes.json();
+                }
+            }
         },
         systemuser_change:async function (){
             if (this.greenhouseradio === '簡易溫室') {
