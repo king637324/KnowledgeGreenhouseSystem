@@ -418,8 +418,8 @@
                                                                         </tr>
                                                                         <tr align="center">
                                                                             <td>工時分析</td>
-                                                                            <td>工期</td>
-                                                                            <td colspan="3">{{Math.round(20+1*40*area/1000*100)/100}}</td>
+                                                                            <td>工時</td>
+                                                                            <td colspan="3">{{400*Math.round((1+(area*0.2/1000))*100)/100}}</td>
                                                                         </tr>
 
                                                                     </table>
@@ -473,8 +473,8 @@
                                                                             </tr>
                                                                             <tr align="center">
                                                                                 <td>工時分析</td>
-                                                                                <td>工期</td>
-                                                                                <td colspan="3">{{Math.round(20+SimpleJobDifficultyAdd*40*area/1000*100)/100}}</td>
+                                                                                <td>工時</td>
+                                                                                <td colspan="3">{{(Math.round(20+SimpleJobDifficultyAdd*40*area/1000*100)/100)*Math.round((1+(area*0.2/1000))*100)/100}}</td>
                                                                             </tr>
                                                                         </table>
                                                                     </div>
@@ -593,8 +593,8 @@
                                                                         </tr>
                                                                         <tr align="center">
                                                                             <td>工時分析</td>
-                                                                            <td>工期</td>
-                                                                            <td colspan="3">{{Math.round(30+1*60*area/1000*100)/100}}</td>
+                                                                            <td>工時</td>
+                                                                            <td colspan="3">{{600*Math.round((1+(area*0.2/1000))*100)/100}}</td>
                                                                         </tr>
 
                                                                     </table>
@@ -646,8 +646,8 @@
                                                                         </tr>
                                                                         <tr align="center">
                                                                             <td>工時分析</td>
-                                                                            <td>工期</td>
-                                                                            <td colspan="3">{{Math.round(30+RobustJobDifficultyAdd*60*area/1000*100)/100}}</td>
+                                                                            <td>工時</td>
+                                                                            <td colspan="3">{{(Math.round(30+RobustJobDifficultyAdd*60*area/1000*100)/100)*Math.round((1+(area*0.2/1000))*100)/100}}</td>
                                                                         </tr>
                                                                     </table>
                                                                 </v-col>
