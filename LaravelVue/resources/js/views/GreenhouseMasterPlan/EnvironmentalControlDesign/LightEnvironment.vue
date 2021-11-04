@@ -15,14 +15,14 @@
                     <h6 class="mb-0"><b-icon icon="flower1"></b-icon> 種植植物生長光環境與種植地區環境分析</h6>
                 </template>
                 <b-card-text>
-                    <p><span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">生長光環境</span></p>
-                    <b-select v-model="cropIdx" v-on:change="updateCrop" style="width:20vmin" >
+                    <p><span class="badge badge-pill badge-secondary">生長光環境</span></p>
+                    <b-select v-model="cropIdx" v-on:change="updateCrop"  >
                         <option v-for="(crop, index) in CropOrder" :value="crop" :key="index">
                             {{crop}}
                         </option>
                     </b-select>
 
-                    <b-select v-model="plantIdx" v-on:change="updatePlant" style="width:20vmin" >
+                    <b-select v-model="plantIdx" v-on:change="updatePlant"  >
                         <option v-for="(plant, index) in GrowPlants" :value="plant" :key="index">
                             {{plant}}
                         </option>
@@ -74,52 +74,55 @@
                         <v-row>
                             <v-col md="12">
                                 <p>
-                                    <span class="badge badge-pill badge-secondary" style="font-size: 1.8vmin">光資源</span>
+                                    <span class="badge badge-pill badge-secondary">光資源</span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <b-select v-model="cityIdx" v-on:change="updateCity" style="width:20vmin" >
+                                    <b-select v-model="cityIdx" v-on:change="updateCity"  >
                                         <option v-for="(city, index) in City" :value="city" :key="index">
                                             {{city}}
                                         </option>
                                     </b-select>
 
-                                    <b-select v-model="regionIdx" v-on:change="updateRegion" style="width:20vmin" >
+                                    <b-select v-model="regionIdx" v-on:change="updateRegion"  >
                                         <option v-for="(region, index) in Region" :value="region" :key="index">
                                             {{region}}
                                         </option>
                                     </b-select>
                                 </p>
-                                <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" height="30vmin" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
+                                <line-chart xtitle="月份" ytitle="日照時數 & 全天空日射量" :data="GloblRadSunShineChartData" :colors="['Gold', 'DarkTurquoise']" :curve="false"></line-chart>
                             </v-col>
                         </v-row>
-                        <table style="border:1px solid black;" border='1'>
-                        <tr align="center">
-                            <td></td>
-                            <td>1月份</td>
-                            <td>2月份</td>
-                            <td>3月份</td>
-                            <td>4月份</td>
-                            <td>5月份</td>
-                            <td>6月份</td>
-                            <td>7月份</td>
-                            <td>8月份</td>
-                            <td>9月份</td>
-                            <td>10月份</td>
-                            <td>11月份</td>
-                            <td>12月份</td>
-                            <td>平均</td>
-                        </tr>
-                        <tr align="center" id="HighTemperatureDifference">
-                            <td>全天空日射量</td>
-                            <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[0].data[String(n)+'月']/30*100)/100}}</td>
-                            <td>{{ Math.round(average_total/12*100)/100 }}</td>
-                        </tr>
-                        <tr align="center" id="HighApproach">
-                            <td>日照時數</td>
-                            <td v-for="n in 12">{{Math.round(GloblRadSunShineChartData[1].data[String(n)+'月']/30*100)/100}}</td>
-                            <td>{{ Math.round(average_sun/12*100)/100 }}</td>
-                        </tr>
-                        
-                    </table>
+                        <v-row>
+                            <v-col md="12">
+                                <table style="border:1px solid black;" border='1' id="daylight">
+                                    <thead class="table-active">
+                                        <th></th>
+                                        <th>1月</th>
+                                        <th>2月</th>
+                                        <th>3月</th>
+                                        <th>4月</th>
+                                        <th>5月</th>
+                                        <th>6月</th>
+                                        <th>7月</th>
+                                        <th>8月</th>
+                                        <th>9月</th>
+                                        <th>10月</th>
+                                        <th>11月</th>
+                                        <th>12月</th>
+                                        <th>平均</th>
+                                    </thead>
+                                    <tr id="HighTemperatureDifference">
+                                        <td>全天空日射量</td>
+                                        <td v-for="n in 12">{{String(Math.round(GloblRadSunShineChartData[0].data[String(n)+'月']/30*100)/100)}}</td>
+                                        <td>{{ String(Math.round(average_total/12*100)/100) }}</td>
+                                    </tr>
+                                    <tr id="HighApproach">
+                                        <td>日照時數</td>
+                                        <td v-for="n in 12">{{String(Math.round(GloblRadSunShineChartData[1].data[String(n)+'月']/30*100)/100)}}</td>
+                                        <td>{{ String(Math.round(average_sun/12*100)/100) }}</td>
+                                    </tr>
+                                </table>
+                            </v-col>
+                    </v-row>
                     </v-container-fluid>
                 </b-card-text>
 
@@ -463,3 +466,10 @@ export default {
 }
 
 </script>
+<style scoped>
+    @media screen and (max-width: 768px) {
+        #daylight {
+            font-size: 1px;
+        }
+    }
+</style>

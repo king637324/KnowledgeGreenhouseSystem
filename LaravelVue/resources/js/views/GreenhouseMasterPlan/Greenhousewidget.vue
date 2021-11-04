@@ -8,24 +8,24 @@
         <hr>
         <v-container-fluid>
             <v-row>
-                <v-col class="col-md-8 offset-md-2">
+                <v-col class="col-lg-8 col-xs-12 offset-lg-2">
                     <v-form>
                         <v-container>
                             <v-row>
                                 <v-col><v-subheader>A.屋頂形式</v-subheader></v-col>
                                 <v-radio-group row v-model="radio_roof">
-                                    <v-col><v-radio label="玻璃溫室" value="玻璃溫室"></v-radio></v-col>
-                                    <v-col><v-radio label="斜頂溫室" value="斜頂溫室"></v-radio></v-col>
-                                    <v-col><v-radio label="山型力霸" value="山型力霸"></v-radio></v-col>
-                                    <v-col><v-radio label="圓形力霸" value="圓形力霸"></v-radio></v-col>
-                                    <v-col><v-radio label="山型塑膠膜" value="山型塑膠膜"></v-radio></v-col>
-                                    <v-col><v-radio label="圓形塑膠膜" value="圓形塑膠膜"></v-radio> </v-col>
-                                    <v-col><v-radio label="簡易溫室" value="簡易溫室"></v-radio> </v-col>
+                                    <v-col class="col-xs-6"><v-radio label="玻璃溫室" value="玻璃溫室"></v-radio></v-col>
+                                    <v-col class="col-xs-6"><v-radio label="斜頂溫室" value="斜頂溫室"></v-radio></v-col>
+                                    <v-col class="col-xs-6"><v-radio label="山型力霸" value="山型力霸"></v-radio></v-col>
+                                    <v-col class="col-xs-6"><v-radio label="圓形力霸" value="圓形力霸"></v-radio></v-col>
+                                    <v-col class="col-xs-6"><v-radio label="山型塑膠膜" value="山型塑膠膜"></v-radio></v-col>
+                                    <v-col class="col-xs-6"><v-radio label="圓形塑膠膜" value="圓形塑膠膜"></v-radio> </v-col>
+                                    <v-col class="col-xs-6"><v-radio label="簡易溫室" value="簡易溫室"></v-radio> </v-col>
                                 </v-radio-group>
                             </v-row>
                             <v-row>
                                 <v-col cols="2"><v-subheader>B.風速評估</v-subheader></v-col>
-                                <v-col>
+                                <v-col class="col-xs-6">
                                     <label for="縣市" style="color:rgba(0,0,0,.6); font-size:8px;">縣市</label>
                                     <b-select v-model="cityIdx" name="縣市">
                                         <option v-for="(data, index) in City" :value="data" :key="index">
@@ -33,7 +33,7 @@
                                         </option>
                                     </b-select>
                                 </v-col>
-                                <v-col>
+                                <v-col class="col-xs-6">
                                     <label for="地區" style="color:rgba(0,0,0,.6); font-size:8px;">地區</label>
                                     <b-select v-model="regionIdx" name="地區">
                                         <option v-for="(data, index) in Region" :value="data" :key="index">
@@ -41,14 +41,14 @@
                                         </option>
                                     </b-select>
                                 </v-col>
-                                <v-col>
+                                <v-col class="col-xs-6">
                                     <label for="地形" style="color:rgba(0,0,0,.6); font-size:8px;">地形</label>
                                     <b-select v-model="SelectTerrain" name="地形">
                                         <option value="0">地形</option>
                                         <option v-for="(data, index) in windcorrosionjson" :value="data.landtype" :key="index" v-if="data.land=='地形'">{{ data.landtype }}</option>
                                     </b-select>
                                 </v-col>
-                                <v-col>
+                                <v-col class="col-xs-6">
                                     <label for="地貌" style="color:rgba(0,0,0,.6); font-size:8px;">地貌</label>
                                     <b-select v-model="SelectLandform" name="地貌">
                                         <option value="0">地貌</option>
@@ -749,110 +749,6 @@
             }
             window.alert('修改完畢')
         },
-        // updateCity: async function(){    
-        //     let wind123 = [];
-        //     let corrosion = []; // 更新所選擇的縣市
-        //     let formData = new FormData();
-        //     this.SpeedPerSecond = null;
-        //     for(var i = 0 ; i < this.City.length ; i++){
-        //         if(this.City[i] == this.cityIdx)    this.selectCity = this.City[i];
-        //     }
-        //     // 將地區資料初始化
-        //     this.selectRegion = null;
-        //     this.regionIdx = 0;
-        //     this.Region = ['==請選擇地區=='];
-        //     this.LandingProbability = 0,
-        //     this.PathProbability = 0,
-        //     this.Landing = null,
-        //     this.Path = null;
-        //     this.area = (this.plantlength*this.plantwidth)/10000
-        //     // 篩選所選縣市的地區
-        //     for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
-        //         if(this.regionalwindspeedjson[i].County == this.selectCity){
-        //             this.Region.push(this.regionalwindspeedjson[i].Region);
-        //         }
-        //     }
-        //     for(var i = 0 ; i < this.Region.length ; i++){
-        //         if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
-        //     }
-        //     for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
-        //         if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
-        //             this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
-        //         }
-        //     }
-            
-        //     for (var i = 0; i < this.windcorrosionjson.length; i++){
-        //         if (this.windcorrosionjson[i].landtype == SelectTerrain){
-        //             wind123[0] = this.windcorrosionjson[i].wind
-        //             corrosion[0] = this.windcorrosionjson[i].corrosion
-        //             formData.append('terrain',SelectTerrain);
-        //         } else if (this.windcorrosionjson[i].landtype == SelectLandform){
-        //             wind123[1] = this.windcorrosionjson[i].wind
-        //             corrosion[1] = this.windcorrosionjson[i].corrosion     
-        //             formData.append('landform',SelectLandform);          
-        //         }
-        //     }
-        //     formData.append('localcity',this.cityIdx);
-        //     formData.append('localarea',this.regionIdx);
-        //     formData.append('croplength',this.plantlength);
-        //     formData.append('cropwidth',this.plantwidth);
-        //     formData.append('croparea',this.area);
-        //     formData.append('position',this.position);
-        //     formData.append('_method','put');
-        //     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        //     this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
-        //     this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
-        // },
-        // updateRegion: async function(){   // 更新所選擇的地區
-        //     // 將地區資料初始化
-        //     this.LandingProbability = 0,
-        //     this.PathProbability = 0,
-        //     this.Landing = null,
-        //     this.Path = null;
-        //     // 從所選的地區id 找到 所選的地區名稱
-        //     for(var i = 0 ; i < this.Region.length ; i++){
-        //         if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
-        //     }
-        //     for(var i = 0 ; i < this.regionalwindspeedjson.length ; i++){
-        //         if((this.selectCity == this.regionalwindspeedjson[i].County ) && (this.selectRegion == this.regionalwindspeedjson[i].Region )){
-        //             this.SpeedPerSecond = this.regionalwindspeedjson[i].SpeedPerSecond;
-        //         }
-        //     }
-        //     let formData = new FormData();
-        //     formData.append('localarea',this.regionIdx);
-        //     formData.append('_method','put');
-        //     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        // },
-        // updatewindcorrosion: async function(SelectTerrain,SelectLandform){
-        //     let wind123 = [];
-        //     let corrosion = [];
-        //     for (var i = 0; i < this.windcorrosionjson.length; i++){
-        //         if (this.windcorrosionjson[i].landtype == SelectTerrain){
-        //             wind123[0] = this.windcorrosionjson[i].wind
-        //             corrosion[0] = this.windcorrosionjson[i].corrosion
-        //             let formData = new FormData();
-        //             formData.append('terrain',SelectTerrain);
-        //             formData.append('_method','put');
-        //             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        //         } else if (this.windcorrosionjson[i].landtype == SelectLandform){
-        //             wind123[1] = this.windcorrosionjson[i].wind
-        //             corrosion[1] = this.windcorrosionjson[i].corrosion     
-        //             let formData = new FormData();
-        //             formData.append('landform',SelectLandform);
-        //             formData.append('_method','put');
-        //             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);                
-        //         }
-        //     }
-        //     this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
-        //     this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
-        // },
-        // updaterooftype: async function(){
-        //     let formData = new FormData();
-        //     formData.append('roof_type',this.radio_roof);
-        //     formData.append('roof_number',this.roof_number[this.roof_name.indexOf(this.radio_roof)]); 
-        //     formData.append('_method','put');
-        //     const response = await Weight.UpdateWidget(this.now_user_two, formData);
-        // },
         updatedesign: async function(){
             let get_id = [];
             let formData = new FormData();
@@ -882,22 +778,6 @@
                 this.WeightArray = response.data
             }
         },
-        // areacount:async function(){
-            
-        //     this.area = (this.plantlength*this.plantwidth)/10000
-        //     let formData = new FormData();
-        //     formData.append('croplength',this.plantlength);
-        //     formData.append('cropwidth',this.plantwidth);
-        //     formData.append('croparea',this.area);
-        //     formData.append('_method','put');
-        //     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        // },
-        // updateposition: async function(){
-        //     let formData = new FormData();
-        //     formData.append('position',this.position);
-        //     formData.append('_method','put');
-        //     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-        // },
     },
 }
 </script>

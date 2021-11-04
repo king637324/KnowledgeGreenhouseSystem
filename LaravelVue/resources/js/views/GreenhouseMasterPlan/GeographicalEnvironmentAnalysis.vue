@@ -4,7 +4,7 @@
         <h2>地理環境分析</h2>
         <hr>
 
-        <div class="d-flex justify-content-around">
+        <div class="total-typhone justify-content-around">
             <div class="p-2 bd-highlight">
                 <div class="card">
                     <label class="card-header  bg-info text-white" style="font-size: 2.3vmin">地區選擇</label>
@@ -13,7 +13,7 @@
                             <v-row>
                                 <v-col>
                                     <label for="縣市" style="color:rgba(0,0,0,.6); font-size:8px;">縣市</label>
-                                    <b-select v-model="cityIdx" v-on:change="updateCity" style="font-size: 2vmin; width:10vmin" name="縣市">
+                                    <b-select v-model="cityIdx" v-on:change="updateCity"  name="縣市">
                                         <option v-for="(data, index) in City" :value="data" :key="index">
                                             {{data}}
                                         </option>
@@ -21,7 +21,7 @@
                                 </v-col>  
                                 <v-col>  
                                     <label for="地區" style="color:rgba(0,0,0,.6); font-size:8px;">地區</label>
-                                    <b-select v-model="regionIdx" v-on:change="updateRegion" style="font-size: 2vmin; width:10vmin" name="地區">
+                                    <b-select v-model="regionIdx" v-on:change="updateRegion"  name="地區">
                                         <option v-for="(data, index) in Region" :value="data" :key="index">
                                             {{data}}
                                         </option>
@@ -29,7 +29,7 @@
                                 </v-col> 
                                 <v-col>  
                                     <label for="方位" style="color:rgba(0,0,0,.6); font-size:8px;">方位</label>
-                                    <b-select v-model="position" name="方位" v-on:change="updateposition()" style="font-size: 2vmin; width:10vmin">
+                                    <b-select v-model="position" name="方位" v-on:change="updateposition()">
                                         <option v-for="(data, index) in allposition" :value="data" :key="index">
                                             {{data}}
                                         </option>
@@ -39,21 +39,21 @@
                             <v-row>
                                 <v-col>
                                     <label for="地形" style="color:rgba(0,0,0,.6); font-size:8px;">地形</label>
-                                    <b-select v-model="SelectTerrain" name="地形" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)" style="font-size: 2vmin; width:10vmin">
+                                    <b-select v-model="SelectTerrain" name="地形" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)" >
                                         <option value="0">地形</option>
                                         <option v-for="(data, index) in windcorrosionjson" :value="data.landtype" :key="index" v-if="data.land=='地形'">{{ data.landtype }}</option>
                                     </b-select>
                                 </v-col>  
                                 <v-col>  
                                     <label for="地貌" style="color:rgba(0,0,0,.6); font-size:8px;">地貌</label>
-                                    <b-select v-model="SelectLandform" name="地貌" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)" style="font-size: 2vmin; width:10vmin">
+                                    <b-select v-model="SelectLandform" name="地貌" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)" >
                                         <option value="0">地貌</option>
                                         <option v-for="(data, index) in windcorrosionjson" :value="data.landtype" :key="index" v-if="data.land=='地貌'">{{ data.landtype }}</option>
                                     </b-select>
                                 </v-col>
                                 <v-col>
                                     <label for="地況" style="color:rgba(0,0,0,.6); font-size:8px;">地況</label>
-                                    <b-select v-model="SelectLandcondition" name="地況" v-on:change="updatelandcondition()" style="font-size: 2vmin; width:10vmin">
+                                    <b-select v-model="SelectLandcondition" name="地況" v-on:change="updatelandcondition()" >
                                         <option value="0">地況</option>
                                         <option value="硬質土">硬質土</option>
                                         <option value="軟質土">軟質土</option>
@@ -63,13 +63,13 @@
                             </v-row>
                             <v-row>
                                 <v-col>
-                                    <v-text-field label="長度(m)" v-model="plantlength" v-on:change="areacount" style="font-size: 2vmin; width:10vmin"></v-text-field>
+                                    <v-text-field label="長度(m)" v-model="plantlength" v-on:change="areacount" ></v-text-field>
                                 </v-col>  
                                 <v-col>
-                                    <v-text-field label="寬度(m)" v-model="plantwidth" v-on:change="areacount" style="font-size: 2vmin; width:10vmin"></v-text-field>
+                                    <v-text-field label="寬度(m)" v-model="plantwidth" v-on:change="areacount" ></v-text-field>
                                 </v-col>    
                                 <v-col>
-                                    <v-text-field readonly label="面積試算(m^2)" v-model="area" style="font-size: 2vmin; width:10vmin"></v-text-field>
+                                    <v-text-field readonly label="面積試算(m^2)" v-model="area" ></v-text-field>
                                 </v-col>  
                             </v-row>
                         </v-container-fluid>
@@ -95,8 +95,8 @@
             <div class="p-2 bd-highlight">
                 <!-- 風力登陸分析 圖片 -->
                 <div>
-                    <p align="center" style="font-size: 3vmin">風力登陸分析</p>
-                    <img src = "/images/地理環境分析/風力登陸分析 (1911～2017).png"  style='width:30vmin'>
+                    <p align="center">風力登陸分析</p>
+                    <img src = "/images/地理環境分析/風力登陸分析 (1911～2017).png">
                 </div>
                 <br><br>
 
@@ -123,8 +123,8 @@
 
                 <!-- 風力路徑分析 圖片 -->
                 <div>
-                    <p align="center" style="font-size: 3vmin">風力路徑分析</p>
-                    <img src = "/images/地理環境分析/風力路徑分析 (1911～2017).png" style='width:30vmin'>
+                    <p align="center">風力路徑分析</p>
+                    <img src = "/images/地理環境分析/風力路徑分析 (1911～2017).png">
                 </div>
                 <br><br>
 
@@ -502,3 +502,13 @@ export default {
     },
 }
 </script>
+<style scoped>
+.total-typhone {
+    display: flex;
+}
+@media screen and (max-width: 768px) {
+    .total-typhone {
+        display: block;
+    }
+}
+</style>

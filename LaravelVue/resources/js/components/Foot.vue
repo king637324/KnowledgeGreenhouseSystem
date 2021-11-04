@@ -4,7 +4,7 @@
     <v-footer>
       <v-card flat tile width="100%" class="red lighten-1 text-center"  style="background-color:#C4E1E1">
         <v-card-text>
-            <img src = '/image/MIRDC.png' width="600">
+            <img src = '/image/MIRDC.png' width="300">
             &nbsp;&nbsp;&nbsp;
             <img src = '/image/ARICA.jpg' width="300">
         </v-card-text>

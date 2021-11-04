@@ -9,7 +9,7 @@
             <b-card-group deck v-if="showform==true">
                 <v-container-fluid>
                     <v-row>
-                        <v-col cols="6">
+                        <v-col md="6" cols="12">
                             <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
                                 <template #header>
                                     <h6 class="mb-0"><b-icon icon="flower1"></b-icon>總體規劃-型式設計</h6>
@@ -68,10 +68,10 @@
                                                 </v-col>
                                             </v-row>
                                             <v-row>
-                                                <v-col md="2">
+                                                <v-col md="2" cols="2">
                                                     <v-subheader>D.溫室設計</v-subheader>
                                                 </v-col>
-                                                <v-col md="8" v-if="greenhouseradio == '簡易溫室'">
+                                                <v-col md="8" cols="9" v-if="greenhouseradio == '簡易溫室'">
                                                     <table style="border:1px solid black; font-size: 1.5vmin" border='1'>
                                                     <thead class="table-active">
                                                         <tr align="center">
@@ -664,7 +664,7 @@
                                 </b-card-text>
                             </b-card>
                         </v-col>
-                        <v-col cols="6">
+                        <v-col md="6" cols="12">
                             <v-container-fluid>
                                 <v-row>
                                     <b-card header-tag="header" header-text-variant="white" header-bg-variant="info">
@@ -1857,6 +1857,7 @@
                         SelectSimple_copy[8] = this.SelectSimple[i]
                     }
                 }
+                this.SelectSimple = JSON.parse(JSON.stringify(SelectSimple_copy))
                 for (var i = 0; i < SelectSimple_copy.length; i++) {
                     this.SimpleTotalSimpleCost += this.SimpleHousrBasePrice * SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
                     this.SimpleCostAdd += SelectSimple_copy[i][1].Cost * this.SimpleCostratios[i].Cost / 100;
@@ -2042,6 +2043,7 @@
                         SelectRobust_copy[8] = this.SelectRobust[i]
                     }
                 }
+                this.SelectRobust = JSON.parse(JSON.stringify(SelectRobust_copy))
                 for (var i = 0; i < SelectRobust_copy.length; i++) {
                     
                     this.RobustTotalCost += this.RuggedHousrBasePrice * SelectRobust_copy[i][1].Cost * this.StrongCostRatios[i].Cost / 100;
@@ -3367,3 +3369,10 @@
     },
 }
 </script>
+<style scoped>
+    @media screen and (max-width: 768px) { 
+        img {
+            width:100%
+        }
+    }
+</style>
