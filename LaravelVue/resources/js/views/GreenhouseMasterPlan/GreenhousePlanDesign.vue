@@ -2112,7 +2112,20 @@
             this.SteelJson = await S_OverPlan.json();
             for(var i = 0; i < this.SteelJson.length; i++){
                 if (this.SteelJson[i].uid === this.$auth.user().id){
-                    this.SteelJson[i].cost = 100
+                    this.SteelJson[i].cost = Math.floor(Number(this.SteelPrice)+
+                        Number(this.SteelJson[i].HighStrengthMaterial)+
+                        Number(this.SteelJson[i].SteelBillet)+
+                        Number(this.SteelJson[i].HotRolledSteelSheet)+
+                        Number(this.SteelJson[i].ColdRolledSteelSheet)+
+                        Number(this.SteelJson[i].ContinuousHotDipGalvanizing)+
+                        Number(this.SteelJson[i].ContinuousPaint)+
+                        Number(this.SteelJson[i].ColdForming)+
+                        Number(this.SteelJson[i].Welding)+
+                        Number(this.SteelJson[i].Processing)+
+                        Number(this.SteelJson[i].AfterHotDipGalvanizing)+
+                        Number(this.SteelJson[i].Galvalume)+
+                        Number(this.SteelJson[i].MagnesiumAluminumZincPlating)+
+                        Number(this.SteelJson[i].AfterBaking))
                     this.SteelJson[i].checked = true
                     for (var j = 0; j < this.MaterialCostjson.length; j++) {
                         if (this.MaterialCostjson[j].MaterialName == this.SteelJson[i].MaterialName){
