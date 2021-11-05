@@ -524,36 +524,36 @@
   import * as Weight from '../../services/weight_estimation.js';
   export default {
     data: () => ({
-        radio_roof:null,
-        cityIdx:null,
-        regionIdx:null,
-        City:['縣市',],
-        Region:['地區',],
-        regionalwindspeedjson:[],
+        radio_roof:null, //所選擇之屋頂
+        cityIdx:null, //所選擇之城市
+        regionIdx:null, //所選擇之地區
+        City:['縣市',], //城市陣列
+        Region:['地區',], //地區陣列
+        regionalwindspeedjson:[], //各地區風速的資料
         SelectLandform:null, // 選擇地貌
-        SelectTerrain:0,
+        SelectTerrain:0, // 選擇地型
         SelectLandcondition:0, // 選擇地況
-        design_wind:0,
-        design_span:0,
-        design_shoulder:0,
-        design_story:0,
-        plantlength:0,
-        plantwidth:0,
-        allposition:['方位','東','南','西','北','東南','東北','西南','西北'],
-        position:'方位',
-        roof_type:['WTG','SP','VTP','UTP','VBP','UBP','UP'],
-        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓形力霸','山型塑膠膜','圓形塑膠膜','簡易溫室'],
-        roof_number:[16,16,15,14,13,12,6],
-        SpeedPerSecond: null, 
-        data_wind: 0,
-        WeightArray:[],
-        WeightJson:[],
-        overplanArray:[],
-        OverPlanJson:[],
-        area:0,
-        now_user: null,
-        now_user_two:null,
-        windcorrosionjson: [],
+        design_wind:0, //設計風速
+        design_span:0, //設計跨距
+        design_shoulder:0, //設計肩高
+        design_story:0, //設計連棟
+        plantlength:0, //長度
+        plantwidth:0, //寬度
+        allposition:['方位','東','南','西','北','東南','東北','西南','西北'], //全部的方位
+        position:'方位', //所選擇的方位
+        roof_type:['WTG','SP','VTP','UTP','VBP','UBP','UP'], //屋訂形式
+        roof_name:['玻璃溫室','斜頂溫室','山型力霸','圓形力霸','山型塑膠膜','圓形塑膠膜','簡易溫室'], //屋頂名稱
+        roof_number:[16,16,15,14,13,12,6], //屋頂系數
+        SpeedPerSecond: null, //風速(m/s)
+        data_wind: 0, //風速加級
+        WeightArray:[], //取出使用者輸入風設計的資料(array)
+        WeightJson:[], //取出使用者輸入風設計的資料(json)
+        overplanArray:[], //取出使用者的資料(array)
+        OverPlanJson:[], //取出使用者的資料(json)
+        area:0, //面積
+        now_user: null, //現在的使用者
+        now_user_two:null, //現在的使用者(紀錄的是WeightJson裡的使用者)
+        windcorrosionjson: [], //取出風速腐蝕加級的資料
     }),
 
     created:function(){  // 網頁載入時，一開始就載入
@@ -565,15 +565,17 @@
     
     methods: {
         async getJson(){
+            //風速腐蝕加級
             const windcorrosion = await fetch('/WindCorrosionsJSON',  {
                 method: 'GET',
             });
             this.windcorrosionjson = await windcorrosion.json();
+            //各地區風速的資料
             const RegionalWindSpeed = await fetch('/RegionalWindSpeedJSON',  {
                 method: 'GET',
             });
             this.regionalwindspeedjson = await RegionalWindSpeed.json();
-
+            //基本資料
             const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
             });
@@ -584,17 +586,19 @@
                     this.now_user = this.OverPlanJson[i].pid
                 }
             }
+            //將取出的資料顯示要畫面上
             this.cityIdx = this.overplanArray[0].localcity
             this.SelectTerrain = this.overplanArray[0].terrain
             this.SelectLandform = this.overplanArray[0].landform
             this.position = this.overplanArray[0].position
             this.plantlength = this.overplanArray[0].croplength
             this.plantwidth = this.overplanArray[0].cropwidth
-
+            //使用者輸入設計的資料
             const W_Estimation = await fetch('/WeightJson',  {
             method: 'GET',
             });
             this.WeightJson = await W_Estimation.json();
+            //將取出的資料顯示要畫面上
             for(var i = 0; i < this.WeightJson.length; i++){
                 if (this.WeightJson[i].uid === this.$auth.user().id){
                     this.WeightArray.push(this.WeightJson[i])
@@ -662,7 +666,7 @@
             this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
             this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
         },
-        updatewidgetinfo: async function(SelectTerrain,SelectLandform){
+        updatewidgetinfo: async function(SelectTerrain,SelectLandform){ //按下確認後更新資料庫資料
             let wind123 = [];
             let get_id = [];
             let corrosion = []; // 更新所選擇的縣市

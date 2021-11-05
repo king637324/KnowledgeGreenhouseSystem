@@ -439,10 +439,10 @@ export default {
     data(){
         return{
             MaterialCostjson: [],
-            LMEjson:[],
-            USDjson:[],
-            PipeData:[],
-            ProfileData:[],
+            LMEjson:[], //LME 倫敦金屬價格 
+            USDjson:[], //美金json
+            PipeData:[], //管材資料
+            ProfileData:[], //型材資料
 
             USD:null,   // 美金
             SteelPrice:null, //鋼料價格
@@ -450,21 +450,21 @@ export default {
             /* LME 倫敦金屬價格 */
             MetalList:["鋁", "銅", "鋅", "鎳", "鉛", "錫", "鋁合金", "特種鋁合金", "鈷", "金", "銀", "廢鋼", "鋼筋"], // LME金屬排序
             MetalDate:null,
-            MetalPrice:[],
+            MetalPrice:[], //鋼鐵價格
 
             // 管材
-            checkedPipe:[],
-            selectPipe:[],
-            selectPipeRank:[],
-            selectPipeRankValue:[],
-            PipeSpeed:null,
-            PipeStructuralRisk:null,
-            PipeCorrosive:null,
-            PipeWeightiness:null,
-            PipeCost:null,
-            PipeTotal:null,
+            checkedPipe:[], //已被選到的項目
+            selectPipe:[], //選擇的管材
+            selectPipeRank:[], //管材的排名
+            selectPipeRankValue:[], //管材的排名數值
+            PipeSpeed:null, //管材的速度性
+            PipeStructuralRisk:null, //管材的風險
+            PipeCorrosive:null, //管材的腐蝕性
+            PipeWeightiness:null, //管材的重量性
+            PipeCost:null, //管材的成本性
+            PipeTotal:null, //管材的總和
 
-            // 型材
+            // 型材(命名方式參考以上管材)
             checkedProfile:[],
             selectProfile:[],
             selectProfileRank:[],
@@ -477,7 +477,6 @@ export default {
             ProfileTotal:null,
 
             steelarray:[],
-
             SteelJson:[],
             steel_name:[],
 
@@ -531,7 +530,7 @@ export default {
             
             this.SteelJson = await S_OverPlan.json();
             for(var i = 0; i < this.SteelJson.length; i++){
-                if (this.SteelJson[i].uid === this.$auth.user().id){
+                if (this.SteelJson[i].uid === this.$auth.user().id){ //計算金屬總成本
                     this.SteelJson[i].cost = 
                         Math.floor(Number(this.SteelPrice)+
                         Number(this.SteelJson[i].HighStrengthMaterial)+
@@ -548,7 +547,7 @@ export default {
                         Number(this.SteelJson[i].MagnesiumAluminumZincPlating)+
                         Number(this.SteelJson[i].AfterBaking))
                     this.SteelJson[i].checked = true
-                    for (var j = 0; j < this.MaterialCostjson.length; j++) {
+                    for (var j = 0; j < this.MaterialCostjson.length; j++) { //將取到的資料顯示到畫面
                         if (this.MaterialCostjson[j].MaterialName == this.SteelJson[i].MaterialName){
                             if (this.MaterialCostjson[j].Type === '管材'){
                                 this.checkedPipe.push(this.MaterialCostjson[j].id)
