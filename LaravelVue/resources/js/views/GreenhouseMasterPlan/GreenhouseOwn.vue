@@ -6,7 +6,7 @@
             自載重
         </h3>
         <hr>
-        <center><img src="/image/widget.jpeg" width="1000px"></center>
+        <center><img src="/image/widget.jpeg" width="100%"></center>
     </div>
 </template>
 

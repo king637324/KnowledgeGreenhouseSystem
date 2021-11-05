@@ -177,20 +177,13 @@ export default {
     data(){
         return{
             MaterialCostjson: [],
-            LMEjson:[],
-            USDjson:[],
-            PipeData:[],
-            ProfileData:[],
-
+            LMEjson:[], //LME倫敦金屬價格
+            USDjson:[], //美金價格
             USD:null,   // 美金
             SteelPrice:null, //鋼料價格
 
-            /* LME 倫敦金屬價格 */
             MetalList:["鋁", "銅", "鋅", "鎳", "鉛", "錫", "鋁合金", "特種鋁合金", "鈷", "金", "銀", "廢鋼", "鋼筋"], // LME金屬排序
-            MetalDate:null,
-            MetalPrice:[],
 
-            // 管材
             selectglass:[],
             selectPipeRank:[],
             selectPipeRankValue:[],
@@ -201,29 +194,15 @@ export default {
             PipeCost:null,
             PipeTotal:null,
 
-            // 型材
-            checkedProfile:[],
             selectProfile:[],
             selectProfileRank:[],
-            selectProfileRankValue:[],
-            ProfileSpeed:null,
-            ProfileStructuralRisk:null,
-            ProfileCorrosive:null,
-            ProfileWeightiness:null,
-            ProfileCost:null,
-            ProfileTotal:null,
             CoatingFilmJSON:[],
             checkedglass:[],
             glass:[],
-            SoftFilm:[],
-            HardFilm:[],
-
             Knowledgejson:[],
-
             glasscontent:[],
             softcontent:[],
             hardcontent:[],
-
             glassshow:true,
             softshow:false,
             hardshow:false,
@@ -245,17 +224,6 @@ export default {
                 method: 'GET',
             });
             this.LMEjson = await LMEMetalPrice.json();
-
-            this.MetalDate = this.LMEjson[0][2];
-
-            // 將LME倫敦金屬價格，照MetalList的順序排列
-            for (var i = 0; i < this.MetalList.length; i++) {
-                for (var j = 0; j < this.LMEjson.length; j++) {
-                    if (this.MetalList[i] == this.LMEjson[j][0]) {
-                        this.MetalPrice.push(this.LMEjson[j]);
-                    }
-                }
-            }
 
             // 溫室構造成本
             const MaterialCostJSON = await fetch('/MaterialCostJSON',  {
@@ -300,10 +268,13 @@ export default {
                 }
             }
 
+            //使用者選取Film的資料表
             const F_OverPlan = await fetch('/UserFilmJson',  {
                 method: 'GET',
             });
             this.FilmJson = await F_OverPlan.json();
+
+            //將取出的資料顯示到網頁上
             for(var i = 0; i < this.FilmJson.length; i++){
                 if (this.FilmJson[i].uid === this.$auth.user().id){
                     this.filmname.push(this.FilmJson[i].BuildItem)
@@ -404,7 +375,7 @@ export default {
             }
 
         },
-        updatefilm:async function (data,check){
+        updatefilm:async function (data,check){ //更新所選的film
             let filmname = [];
             if (check === true){
                 const F_OverPlan = await fetch('/UserFilmJson',  {

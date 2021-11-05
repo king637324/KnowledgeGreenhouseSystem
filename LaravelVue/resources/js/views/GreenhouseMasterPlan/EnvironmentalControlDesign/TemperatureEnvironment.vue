@@ -169,7 +169,6 @@ import * as SaveOverPlan from '../../../services/saveoverplan_service.js';
 export default {
     data(){
         return {
-            tabIndex: 0,
             vegetablejson:[],
             windspeedjson:[],  // 風速對照表
             regionalwindspeedjson:[],   // 縣市地區資料

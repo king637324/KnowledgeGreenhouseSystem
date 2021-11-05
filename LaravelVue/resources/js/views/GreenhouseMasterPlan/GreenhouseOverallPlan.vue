@@ -156,15 +156,14 @@
   import * as SaveOverPlan from '../../services/saveoverplan_service.js';
   export default {
     data: () => ({
-        cropIdx: null,
-        plantIdx: null,
-        selectCrop: null,
-        vegetablejson:[],
+        cropIdx: null, //所選作物分類
+        plantIdx: null, //所選作物種類
+        selectCrop: null, //所選作物
+        vegetablejson:[], //儲存vegetable資料表所回傳的數值
         CropOrder: ["分類","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
         GrowPlants: ['作物',],
-        plantlength: 0,
-        plantwidth: 0,
-        tabIndex: 0,
+        plantlength: 0, //種植長度
+        plantwidth: 0, //種植寬度
         regionalwindspeedjson:[],   // 縣市地區資料
         City:['縣市',],   // 縣市選單的陣列表
         cityIdx: null, // 所選縣市的id
@@ -176,33 +175,23 @@
         SelectLandform:0, // 選擇地貌
         SelectLandcondition:0, // 選擇地況
         greenhouseradio: null, //透過radio button選擇要簡易還是強固
-        Fluidjson: [],
-        checkData:[],
-        checkedNames: [],
+        OverPlanJson: [], //儲存基本資料(json)
+        overplanArray: [], //儲存基本資料(array)
 
+        classIdx:'類別', //使用者分類
 
-        time: new Date(),
-        OverPlanJson: [],
-        overplanArray: [],
+        allposition:['方位','東','南','西','北','東南','西南','東北','西北'], //方位的array
+        position:0, //儲存方位id
+        quality:0, //品質系數
+        risk:0, //風險係數
+        speed:0, //速度系數
+        cost:0, //成本系數
+        decide:['0','0','0','0'], //決策權重
+        area:0, //面積
 
-        //showform:true,
-
-        classIdx:'類別',
-
-        allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
-        position:0,
-        quality:0,
-        risk:0,
-        speed:0,
-        cost:0,
-        decide:['0','0','0','0'],
-        area:0,
-
-        user_class: ['類別','農民','專家','設計者'],
-        codename:'None',
-        user_index: 0,
-
-        now_user: null,
+        user_class: ['類別','農民','專家','設計者'], //使用者分類(選項用)
+        codename:'None', //儲存代號
+        now_user: null, //紀錄目前的使用者資料
     }),
     created:function(){  // 網頁載入時，一開始就載入
         if (this.$auth.check() === false) {
@@ -212,7 +201,8 @@
     },
     methods: {
         async getJson(){
-        this.codename = this.$auth.user().name
+        this.codename = this.$auth.user().name //使用者名稱
+        //作物資料
         const Vegetable = await fetch('/VegetableJSON',  {
             method: 'GET',
         });
@@ -232,11 +222,7 @@
             if(!filterfalg) this.City.push(this.regionalwindspeedjson[i].County);
         }
 
-        const res = await fetch('/FluidAnalysisJSON',  {
-            method: 'GET',
-        });
-        this.Fluidjson = await res.json();
-        
+        //基本資料
         const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
         });
@@ -247,6 +233,7 @@
                 this.now_user = this.OverPlanJson[i].pid
             }
         }
+        //拿出資料後放入畫面的欄位
         this.classIdx = this.overplanArray[0].userclass
         this.cropIdx = this.overplanArray[0].palntclass
         this.cityIdx = this.overplanArray[0].localcity
@@ -340,7 +327,7 @@
             if(this.Region[i] == this.regionIdx)    this.selectRegion = this.Region[i];
         }
     },
-    recordallinfo: async function() {
+    recordallinfo: async function() { //按下送出後存入資料庫內
         let get_id = [];
         let formData = new FormData();
         formData.append('userclass',this.classIdx) 
@@ -385,18 +372,12 @@
             window.alert('修改完畢')
         }
     },
-    deleterecord: async function(DeleteId){ 
-        await SaveOverPlan.deleteOverPlan(DeleteId);
-        this.overplanArray = this.overplanArray.filter(obj =>{
-            return obj.pid != DeleteId;
-        });
-    },
 
-    areacount(){
+    areacount(){ //計算面積
         this.area = this.plantlength*this.plantwidth
     },
 
-    countdecide(){
+    countdecide(){ //計算決策
         this.decide = []
         this.decide.push(String(Math.floor(this.quality/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))
         this.decide.push(String(Math.floor(this.risk/(parseInt(this.quality)+parseInt(this.risk)+parseInt(this.cost)+parseInt(this.speed))*100)+'%'))

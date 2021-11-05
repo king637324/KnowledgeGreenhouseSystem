@@ -444,8 +444,7 @@ export default {
     data() {
         return {
             valid: false,
-            tabIndex: 0,
-            vegetablejson:[],
+            vegetablejson:[], //作物的資料
             ExpertSelect:[], // 顯示 此專家的資料
             CropSelect:[], // 顯示 作物的資料
 
@@ -457,9 +456,9 @@ export default {
             cropIdx: null, // 所選作物的id
             selectCrop: null, // 所選作物的名稱
             plantIdx: null, // 所選作物的id
-            GrowPlants:['==請選擇作物==',],
-            overplanArray:[],
-            OverPlanJson:[],
+            GrowPlants:['==請選擇作物==',], //作物資料
+            overplanArray:[], //基本資料(array)
+            OverPlanJson:[], //基本資料(json)
 
             CropRules: [
                 v => !!v || '必填',
@@ -472,7 +471,7 @@ export default {
             LowestGerminationTemperature: '-',
             OptimumGerminationTemperature: '-',
             HighestGerminationTemperature: '-',
-            CropData:{
+            CropData:{  //之後要存入資料庫的格式
                 id: null,
                 Expert: null,
                 classification: null,
@@ -553,13 +552,12 @@ export default {
             // console.log(this.$auth.user()); // 可以取得使用者資料
 
             // 作物資訊資料表
-
-
             const Vegetable = await fetch('/VegetableJSON',  {
                 method: 'GET',
             });
             this.vegetablejson = await Vegetable.json();
 
+            //基本資料
             const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
             });
@@ -570,7 +568,7 @@ export default {
                         this.now_user = this.OverPlanJson[i].pid
                     }
             }
-            this.cropIdx = this.overplanArray[0].palntclass
+            this.cropIdx = this.overplanArray[0].palntclass //將以儲存之作物資料顯示出來
 
             var filterfalg = false;
             for(var i = 0 ; i < this.vegetablejson.length ; i++){

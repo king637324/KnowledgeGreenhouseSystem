@@ -444,7 +444,7 @@ export default {
             PipeData:[],
             ProfileData:[],
 
-            USD:null,   // 美津
+            USD:null,   // 美金
             SteelPrice:null, //鋼料價格
 
             /* LME 倫敦金屬價格 */

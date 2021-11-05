@@ -139,8 +139,7 @@ import * as SaveOverPlan from '../../../services/saveoverplan_service.js';
 export default {
     data(){
         return{
-            tabIndex: 0,
-            vegetablejson:[],
+            vegetablejson:[], //作物資料
             windspeedjson:[],  // 風速對照表
             regionalwindspeedjson:[],   // 縣市地區資料
 
@@ -191,11 +190,11 @@ export default {
                 {name: "日照時數(小時)", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
                 {name: "全天空日射量(MJ/㎡)", data: {"1月":null,"2月":null,"3月":null,"4月":null,"5月":null,"6月":null,"7月":null,"8月":null,"9月":null,"10月":null,"11月":null,"12月":null}},
             ],  // 日照時數與全天空日射量 圖表用
-            average_sun:0,
-            average_total:0,
-            overplanArray:[],
-            OverPlanJson:[],
-            now_user:null,
+            average_sun:0, //平均值-日照時數
+            average_total:0, //平均值-全天空日射量
+            overplanArray:[], //基本資料
+            OverPlanJson:[], //基本資料
+            now_user:null, //目前使用者
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -236,6 +235,7 @@ export default {
             });
             this.LightDesignData = await Light_info.json();
 
+            //基本資料
             const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
             });
@@ -246,6 +246,8 @@ export default {
                         this.now_user = this.OverPlanJson[i].pid
                     }
             }
+
+            //將取到的資料顯示在網頁上
             this.cropIdx = this.overplanArray[0].palntclass
             this.cityIdx = this.overplanArray[0].localcity
 
@@ -449,25 +451,13 @@ export default {
             formData.append('_method','put');
             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
-        },updateLightSensingRadio(){    // 光感測選擇
-            console.log("---updateLightSensingRadio---");
-            console.log("LightSensing:",this.LightSensing);
-            this.LightSensingIntroduction = this.LightSensing[1];
-        },updateLightDesignRadio(){     // 光設計選擇
-            console.log("---updateLightDesignRadio---");
-            console.log("LightDesign:",this.LightDesign);
-            this.LightDesignIntroduction = this.LightDesign[1];
-        },updateLightControlRadio(){    // 光控制選擇
-            console.log("---updateLightControlRadio---");
-            console.log("LightControl:",this.LightControl);
-            this.LightControlIntroduction = this.LightControl[1];
         }
     }
 }
 
 </script>
 <style scoped>
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 768px) { /*RWD*/
         #daylight {
             font-size: 1px;
         }

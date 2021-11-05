@@ -153,7 +153,6 @@ import * as SaveOverPlan from '../../services/saveoverplan_service.js';
 export default {
     data() {
         return {
-            tabIndex: 0,
             windspeedjson:[],  // 風速對照表
             regionalwindspeedjson:[],   // 縣市地區資料
             windlandingandpathjson:[],  // 風力登陸分析、風力路徑分析
@@ -178,21 +177,21 @@ export default {
             LandingProbability: 0, // 進行颱風登陸分析機率加總
             PathProbability: 0, // 進行颱風路徑分析機率加總
 
-            SelectTerrain:'地形',
-            SelectLandform:'地貌',
-            SelectLandcondition:'地況',
-            allposition:['方位','東','南','西','北','東南','西南','東北','西北'],
-            position:'方位',
+            SelectTerrain:'地形', //選擇的地形
+            SelectLandform:'地貌', //選擇的地貌
+            SelectLandcondition:'地況', //選擇的地況
+            allposition:['方位','東','南','西','北','東南','西南','東北','西北'], //方位陣列
+            position:'方位', //選擇的方位
 
-            plantlength:0,
-            plantwidth:0,
-            area:0,
-            windcorrosionjson: [],
-            data_wind: 0,
-            data_corrosion: 0,
-            overplanArray:[],
-            OverPlanJson:[],
-            now_user:null,
+            plantlength:0, //作物長度
+            plantwidth:0, //作物寬度
+            area:0, //面積
+            windcorrosionjson: [], //地形與腐蝕級距資料
+            data_wind: 0, //風速加級
+            data_corrosion: 0, //腐蝕加級
+            overplanArray:[], //基本資料(array)
+            OverPlanJson:[], //基本資料(json)
+            now_user:null, //紀錄目前的使用者
         }
     },
     created:function(){  // 網頁載入時，一開始就載入
@@ -226,6 +225,7 @@ export default {
             });
             this.windlandingandpathjson = await WindLandingAndPath.json();
 
+            //基本資料
             const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
             });
@@ -236,6 +236,7 @@ export default {
                         this.now_user = this.OverPlanJson[i].pid
                     }
             }
+            //將資料顯示到畫面
             this.cityIdx = this.overplanArray[0].localcity
             this.position = this.overplanArray[0].position
             this.SelectTerrain = this.overplanArray[0].terrain
@@ -454,7 +455,7 @@ export default {
             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
 
         },    
-        areacount:async function(){
+        areacount:async function(){ //計算面積
             
             this.area = (this.plantlength*this.plantwidth)
             let formData = new FormData();
@@ -464,7 +465,8 @@ export default {
             formData.append('_method','put');
             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
-        updatewindcorrosion: async function(SelectTerrain,SelectLandform){
+
+        updatewindcorrosion: async function(SelectTerrain,SelectLandform){ //計算腐蝕與風速加級
             let wind123 = [];
             let corrosion = [];
             for (var i = 0; i < this.windcorrosionjson.length; i++){
@@ -487,13 +489,13 @@ export default {
             this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
             this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
         },
-        updateposition: async function(){
+        updateposition: async function(){ //更新方位
             let formData = new FormData();
             formData.append('position',this.position);
             formData.append('_method','put');
             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
-        updatelandcondition: async function(){
+        updatelandcondition: async function(){ //更新地況
             let formData = new FormData();
             formData.append('landcondition',this.SelectLandcondition);
             formData.append('_method','put');
@@ -506,7 +508,7 @@ export default {
 .total-typhone {
     display: flex;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) { /*RWD*/
     .total-typhone {
         display: block;
     }
