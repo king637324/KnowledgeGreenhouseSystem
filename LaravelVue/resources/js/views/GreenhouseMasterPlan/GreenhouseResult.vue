@@ -415,8 +415,8 @@
                             <td style="color:red"> {{Math.floor(SimpleCostAdd*650*overplanArray[0].croparea)}} </td>
                             <th style="color:red"> 風險指數</th>
                             <td style="color:red"> {{SimpleStructuralRiskAdd}} </td>
-                            <th style="color:red"> 工期</th>
-                            <td style="color:red"> {{Math.round(20+SimpleJobDifficultyAdd*40*overplanArray[0].croparea/1000*100)/100}} </td>
+                            <th style="color:red"> 工時</th>
+                            <td style="color:red"> {{(Math.round(20+SimpleJobDifficultyAdd*40*overplanArray[0].croparea/1000*100)/100)*Math.round((1+(overplanArray[0].croparea*0.2/1000))*100)/100}} </td>
                         </tr>
                         <tr v-if="greenhouse_material[0][0] === '溫室型材'">
                             <th style="color:red"> 每平方米單價</th>
@@ -427,8 +427,8 @@
                             <td style="color:red"> {{Math.floor(SimpleCostAdd*1300*overplanArray[0].croparea)}} </td>
                             <th style="color:red"> 風險指數</th>
                             <td style="color:red"> {{SimpleStructuralRiskAdd}} </td>
-                            <th style="color:red"> 工期</th>
-                            <td style="color:red"> {{Math.round(20+SimpleJobDifficultyAdd*40*overplanArray[0].croparea/1000*100)/100}} </td>
+                            <th style="color:red"> 工時</th>
+                            <td style="color:red"> {{(Math.round(20+SimpleJobDifficultyAdd*60*overplanArray[0].croparea/1000*100)/100)*Math.round((1+(overplanArray[0].croparea*0.2/1000))*100)/100}} </td>
                         </tr>
                     </table>
                 </v-row>
@@ -1217,8 +1217,8 @@
                             <td style="color:red"> {{Math.floor(SimpleCostAdd_Result*650*BaseResult[11])}} </td>
                             <th style="color:red"> 風險指數</th>
                             <td style="color:red"> {{SimpleStructuralRiskAdd_Result}} </td>
-                            <th style="color:red"> 工期</th>
-                            <td style="color:red"> {{Math.round(20+SimpleJobDifficultyAdd_Result*40*BaseResult[11]/1000*100)/100}} </td>
+                            <th style="color:red"> 工時</th>
+                            <td style="color:red"> {{(Math.round(20+SimpleJobDifficultyAdd_Result*40*BaseResult[11]/1000*100)/100)*Math.round((1+(BaseResult[11]*0.2/1000))*100)/100}} </td>
                         </tr>
                     </table>
                 </v-row>
@@ -1871,16 +1871,37 @@
             this.SteelJson = await S_OverPlan.json();
             for(var i = 0; i < this.SteelJson.length; i++){
                 if (this.SteelJson[i].uid === this.$auth.user().id){
-                    if (this.SteelJson[i].Type === '管材'){
-                        this.selectpipe.push(this.SteelJson[i])
-                        this.selectsteel_id.push(this.SteelJson[i].MaterialName)
-                    } else{
-                        this.selectprofile.push(this.SteelJson[i])
-                        this.selectsteel_id.push(this.SteelJson[i].MaterialName)
+                    this.SteelJson[i].cost = 
+                        Math.floor(Number(this.SteelPrice)+
+                        Number(this.SteelJson[i].HighStrengthMaterial)+
+                        Number(this.SteelJson[i].SteelBillet)+
+                        Number(this.SteelJson[i].HotRolledSteelSheet)+
+                        Number(this.SteelJson[i].ColdRolledSteelSheet)+
+                        Number(this.SteelJson[i].ContinuousHotDipGalvanizing)+
+                        Number(this.SteelJson[i].ContinuousPaint)+
+                        Number(this.SteelJson[i].ColdForming)+
+                        Number(this.SteelJson[i].Welding)+
+                        Number(this.SteelJson[i].Processing)+
+                        Number(this.SteelJson[i].AfterHotDipGalvanizing)+
+                        Number(this.SteelJson[i].Galvalume)+
+                        Number(this.SteelJson[i].MagnesiumAluminumZincPlating)+
+                        Number(this.SteelJson[i].AfterBaking))
+                    this.SteelJson[i].checked = true
+                    for (var j = 0; j < this.MaterialCostjson.length; j++) {
+                        if (this.MaterialCostjson[j].MaterialName == this.SteelJson[i].MaterialName){
+                            if (this.MaterialCostjson[j].Type === '管材'){
+                                this.checkedPipe.push(this.MaterialCostjson[j].id)
+                                this.selectPipe.push(this.SteelJson[i])
+                                this.steel_name.push(this.SteelJson[i].MaterialName)
+                            }else{
+                                this.checkedProfile.push(this.MaterialCostjson[j].id)
+                                this.selectProfile.push(this.SteelJson[i])
+                                this.steel_name.push(this.SteelJson[i].MaterialName)
+                            }
+                        }
                     }
                 }
             }
-
             const Light_info = await fetch('/LightJson',  {
                 method: 'GET',
             });
