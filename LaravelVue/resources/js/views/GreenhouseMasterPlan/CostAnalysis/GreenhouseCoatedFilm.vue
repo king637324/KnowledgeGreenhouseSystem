@@ -100,6 +100,7 @@
                                                         label="請輸入透光損失"
                                                         v-model="PipeSpeed"
                                                     ></v-text-field>
+                                            
                                                 </td>
                                                 <td>
                                                     <v-text-field
