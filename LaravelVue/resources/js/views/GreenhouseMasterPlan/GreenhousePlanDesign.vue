@@ -1370,28 +1370,9 @@
   import * as Film from '../../services/user_film.js';
   export default {
     data: () => ({
-        cropIdx: 0,
-        plantIdx: 0,
-        selectCrop: null,
-        vegetablejson:[],
-        CropOrder: ["分類","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"],
-        GrowPlants: ['作物',],
         plantlength: 0,
         plantwidth: 0,
-        tabIndex: 0,
-        regionalwindspeedjson:[],   // 縣市地區資料
-        City:['縣市',],   // 縣市選單的陣列表
-        cityIdx: 0, // 所選縣市的id
-        selectCity: null, // 所選縣市的名稱
-        Region:['地區',], // 地區選單的陣列表
-        regionIdx: 0,   // 所選地區的id
-        selectRegion: null, // 所選地區的名稱
-        SelectTerrain:0, // 選擇地形
-        SelectLandform:0, // 選擇地貌
         greenhouseradio: '', //透過radio button選擇要簡易還是強固
-        Fluidjson: [],
-        checkData:[],
-        checkedNames: [],
         
         /* 簡易型溫室 */
         SelectSimple:[],
@@ -1549,9 +1530,6 @@
         OverPlanJson:[],
         DesignArray:[],
         DesignJson:[],
-        filmcheck:[],
-        steelcheck:[],
-        steelcheck2:[],
         quality:0,
         speed:0,
         risk:0,
@@ -1563,10 +1541,7 @@
         filmname:[],
         now_user:null,
         now_user_design:null,
-        greentype_simple:[],
-        greentype_robust:[],
         greeninfo_simple:[],
-        greeninfo_robust:[],
         SelectSimple_name:[],
         SelectRobust_name:[],
         system_change:'簡易溫室',
@@ -1590,6 +1565,7 @@
     },
     methods: {
         async getJson(){
+            //基本資料
             const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
             });
@@ -1608,6 +1584,7 @@
             this.plantwidth = this.overplanArray[0].cropwidth
             this.area = this.plantlength*this.plantwidth
             
+            //設計資料
             const D_OverPlan = await fetch('/DesignJson',  {
                 method: 'GET',
                 });
@@ -2112,7 +2089,20 @@
             this.SteelJson = await S_OverPlan.json();
             for(var i = 0; i < this.SteelJson.length; i++){
                 if (this.SteelJson[i].uid === this.$auth.user().id){
-                    this.SteelJson[i].cost = 100
+                    this.SteelJson[i].cost = Math.floor(Number(this.SteelPrice)+
+                        Number(this.SteelJson[i].HighStrengthMaterial)+
+                        Number(this.SteelJson[i].SteelBillet)+
+                        Number(this.SteelJson[i].HotRolledSteelSheet)+
+                        Number(this.SteelJson[i].ColdRolledSteelSheet)+
+                        Number(this.SteelJson[i].ContinuousHotDipGalvanizing)+
+                        Number(this.SteelJson[i].ContinuousPaint)+
+                        Number(this.SteelJson[i].ColdForming)+
+                        Number(this.SteelJson[i].Welding)+
+                        Number(this.SteelJson[i].Processing)+
+                        Number(this.SteelJson[i].AfterHotDipGalvanizing)+
+                        Number(this.SteelJson[i].Galvalume)+
+                        Number(this.SteelJson[i].MagnesiumAluminumZincPlating)+
+                        Number(this.SteelJson[i].AfterBaking))
                     this.SteelJson[i].checked = true
                     for (var j = 0; j < this.MaterialCostjson.length; j++) {
                         if (this.MaterialCostjson[j].MaterialName == this.SteelJson[i].MaterialName){
@@ -2181,7 +2171,7 @@
         },
         
         
-        updateSimpleRadio: async function(greentype,simple){
+        updateSimpleRadio: async function(greentype,simple){ //選擇管材時觸發此函式 更新資料庫內的資料
             for (var i = 0; i < this.SelectSimple.length; i++){
                 this.SelectSimple_name.push(this.SelectSimple[i][0])
             }
@@ -2285,7 +2275,7 @@
                 this.SimpleJobDifficultyAdd =  this.SimpleJobDifficultyAdd.toFixed(2);
             }
         },
-        updateRobustRadio: async function(greentype,robust){
+        updateRobustRadio: async function(greentype,robust){  //選擇型材時觸發此函式 更新資料庫內的資料
             for (var i = 0; i < this.SelectRobust.length; i++){
                 this.SelectRobust_name.push(this.SelectRobust[i][0])
             }
@@ -2389,7 +2379,7 @@
                 this.RobustJobDifficultyAdd =  this.RobustJobDifficultyAdd.toFixed(2);
             }
         },
-        updateRoofType: async function(){
+        updateRoofType: async function(){  //當選擇的項目已經九個時觸發 
             let formData = new FormData();
             if (this.SelectSimple.length === 9 && this.greenhouseradio === '簡易溫室') {
                 let SelectSimple_copy = new Array(9);
