@@ -1452,7 +1452,6 @@
         RobustCostAdd:0,
         RobustStructuralRiskAdd:0,
         RobustJobDifficultyAdd:0,
-        time: new Date(),
         OverPlanJson: [],
         overplanArray: [],
         showform:true,
@@ -1985,7 +1984,7 @@
                 }
             }
 
-            if(this.SelectRobust.length === 9){
+            if(this.SelectRobust.length === 9){ //如果有九項，就計算成本之類的
                 this.RobustTotalCost = 0,
                 this.RobustCostAdd = 0,
                 this.RobustStructuralRiskAdd = 0,
@@ -2088,7 +2087,7 @@
                 
             this.SteelJson = await S_OverPlan.json();
             for(var i = 0; i < this.SteelJson.length; i++){
-                if (this.SteelJson[i].uid === this.$auth.user().id){
+                if (this.SteelJson[i].uid === this.$auth.user().id){  //計算金屬成本
                     this.SteelJson[i].cost = Math.floor(Number(this.SteelPrice)+
                         Number(this.SteelJson[i].HighStrengthMaterial)+
                         Number(this.SteelJson[i].SteelBillet)+

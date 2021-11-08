@@ -18,7 +18,7 @@ def countdown_24_hours():
         "host": "127.0.0.1",
         "port": 3306,
         "user": "root",
-        "password": "mirdcuc",
+        "password": "",
         "db": "laravelvuetest",
         "charset": "utf8"
     }
