@@ -223,6 +223,9 @@
                                 <router-link class="nav-link collapsed" style="font-size:18px;" to="/GreenhouseMasterPlan/GreenhouseResult">
                                     E.溫室設計結果
                                 </router-link>
+                                <router-link class="nav-link collapsed" style="font-size:18px;" to="/#">
+                                    F.測試區
+                                </router-link>
                             </nav>
                         </div>
                         
