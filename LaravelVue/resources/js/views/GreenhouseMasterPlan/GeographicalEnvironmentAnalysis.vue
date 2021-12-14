@@ -39,21 +39,21 @@
                             <v-row>
                                 <v-col>
                                     <label for="地形" style="color:rgba(0,0,0,.6); font-size:8px;">地形</label>
-                                    <b-select v-model="SelectTerrain" name="地形" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)" >
+                                    <b-select v-model="SelectTerrain" name="地形" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform,SelectLandcondition)" >
                                         <option value="0">地形</option>
                                         <option v-for="(data, index) in windcorrosionjson" :value="data.landtype" :key="index" v-if="data.land=='地形'">{{ data.landtype }}</option>
                                     </b-select>
                                 </v-col>  
                                 <v-col>  
                                     <label for="地貌" style="color:rgba(0,0,0,.6); font-size:8px;">地貌</label>
-                                    <b-select v-model="SelectLandform" name="地貌" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform)" >
+                                    <b-select v-model="SelectLandform" name="地貌" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform,SelectLandcondition)" >
                                         <option value="0">地貌</option>
                                         <option v-for="(data, index) in windcorrosionjson" :value="data.landtype" :key="index" v-if="data.land=='地貌'">{{ data.landtype }}</option>
                                     </b-select>
                                 </v-col>
                                 <v-col>
                                     <label for="地況" style="color:rgba(0,0,0,.6); font-size:8px;">地況</label>
-                                    <b-select v-model="SelectLandcondition" name="地況" v-on:change="updatelandcondition()" >
+                                    <b-select v-model="SelectLandcondition" name="地況" v-on:change="updatewindcorrosion(SelectTerrain,SelectLandform,SelectLandcondition)" >
                                         <option value="0">地況</option>
                                         <option value="硬質土">硬質土</option>
                                         <option value="軟質土">軟質土</option>
@@ -85,6 +85,7 @@
                         <h5>颱風路徑總機率： {{PathProbability}} %</h5>
                         <h5>風速加級： {{ data_wind }}</h5>
                         <h5>腐蝕加級： {{ data_corrosion }}</h5>
+                        <h5>基礎加級： {{ data_foundation }}</h5>
                         <br>
                         <h6>備註：風速為臺灣地區各地之基本設計風速 </h6>
 
@@ -189,6 +190,7 @@ export default {
             windcorrosionjson: [], //地形與腐蝕級距資料
             data_wind: 0, //風速加級
             data_corrosion: 0, //腐蝕加級
+            data_foundation: 0, //基礎加級
             overplanArray:[], //基本資料(array)
             OverPlanJson:[], //基本資料(json)
             now_user:null, //紀錄目前的使用者
@@ -349,17 +351,26 @@ export default {
 
             let wind123 = [];
             let corrosion = [];
+            let foundation = [];
             for (var i = 0; i < this.windcorrosionjson.length; i++){
                 if (this.windcorrosionjson[i].landtype == this.SelectTerrain){
                     wind123[0] = this.windcorrosionjson[i].wind
                     corrosion[0] = this.windcorrosionjson[i].corrosion
+                    foundation[0] = this.windcorrosionjson[i].foundation
                 } else if (this.windcorrosionjson[i].landtype == this.SelectLandform){
                     wind123[1] = this.windcorrosionjson[i].wind
                     corrosion[1] = this.windcorrosionjson[i].corrosion                  
+                    foundation[1] = this.windcorrosionjson[i].foundation 
+                }
+                 else if (this.windcorrosionjson[i].landtype == this.SelectLandcondition){
+                    wind123[2] = this.windcorrosionjson[i].wind
+                    corrosion[2] = this.windcorrosionjson[i].corrosion        
+                    foundation[2] = this.windcorrosionjson[i].foundation          
                 }
             }
-            this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
-            this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
+            this.data_wind = Math.round(wind123[0]*wind123[1]*wind123[2]*100)/100
+            this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*corrosion[2]*100)/100
+            this.data_foundation = Math.round(foundation[0]*foundation[1]*foundation[2]*100)/100
 
         },updateCity: async function(){     // 更新所選擇的縣市
             // 從所選的縣市id 找到 所選的縣市名稱
@@ -466,28 +477,40 @@ export default {
             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
         },
 
-        updatewindcorrosion: async function(SelectTerrain,SelectLandform){ //計算腐蝕與風速加級
+        updatewindcorrosion: async function(SelectTerrain,SelectLandform,SelectLandcondition){ //計算腐蝕與風速加級
             let wind123 = [];
             let corrosion = [];
+            let foundation = [];
             for (var i = 0; i < this.windcorrosionjson.length; i++){
                 if (this.windcorrosionjson[i].landtype == SelectTerrain){
                     wind123[0] = this.windcorrosionjson[i].wind
                     corrosion[0] = this.windcorrosionjson[i].corrosion
+                    foundation[0] = this.windcorrosionjson[i].foundation   
                     let formData = new FormData();
                     formData.append('terrain',SelectTerrain);
                     formData.append('_method','put');
                     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
                 } else if (this.windcorrosionjson[i].landtype == SelectLandform){
                     wind123[1] = this.windcorrosionjson[i].wind
-                    corrosion[1] = this.windcorrosionjson[i].corrosion              
+                    corrosion[1] = this.windcorrosionjson[i].corrosion  
+                    foundation[1] = this.windcorrosionjson[i].foundation   
                     let formData = new FormData();
                     formData.append('landform',SelectLandform);
                     formData.append('_method','put');
                     const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);      
+                } else if (this.windcorrosionjson[i].landtype == SelectLandcondition){
+                    wind123[2] = this.windcorrosionjson[i].wind
+                    corrosion[2] = this.windcorrosionjson[i].corrosion         
+                    foundation[2] = this.windcorrosionjson[i].foundation   
+                    let formData = new FormData();
+                    formData.append('landcondition',this.SelectLandcondition);
+                    formData.append('_method','put');
+                    const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);      
                 }
             }
-            this.data_wind = Math.round(wind123[0]*wind123[1]*100)/100
-            this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*100)/100
+            this.data_wind = Math.round(wind123[0]*wind123[1]*wind123[2]*100)/100
+            this.data_corrosion = Math.round(corrosion[0]*corrosion[1]*corrosion[2]*100)/100
+            this.data_foundation = Math.round(foundation[0]*foundation[1]*foundation[2]*100)/100
         },
         updateposition: async function(){ //更新方位
             let formData = new FormData();
