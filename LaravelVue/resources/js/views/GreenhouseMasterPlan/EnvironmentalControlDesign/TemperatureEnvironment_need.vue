@@ -576,10 +576,10 @@ export default {
             }
             for (var i = 0; i < 12; i++){
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0) {
-                    this.count_subtemp += 1
+                    this.count_addtemp += 1
                 }
                 if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0) {
-                    this.count_addtemp += 1
+                    this.count_subtemp += 1
                 }
                 
             }
@@ -642,7 +642,15 @@ export default {
             formData.append('cropplant',this.plantIdx);
             formData.append('_method','put');
             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-
+            for (var i = 0; i < 12; i++){
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0) {
+                    this.count_addtemp += 1
+                }
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0) {
+                    this.count_subtemp += 1
+                }
+                
+            }
         },updateCity: async function(){     // 更新所選擇的縣市
             // 從所選的縣市id 找到 所選的縣市名稱
             for(var i = 0 ; i < this.City.length ; i++){

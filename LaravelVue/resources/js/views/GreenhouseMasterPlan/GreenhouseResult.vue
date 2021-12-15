@@ -415,8 +415,8 @@
                             <td style="color:red"> {{Math.floor(SimpleCostAdd*650*overplanArray[0].croparea)}} </td>
                             <th style="color:red"> 風險指數</th>
                             <td style="color:red"> {{SimpleStructuralRiskAdd}} </td>
-                            <th style="color:red"> 工時</th>
-                            <td style="color:red"> {{(Math.round(20+SimpleJobDifficultyAdd*40*overplanArray[0].croparea/1000*100)/100)*Math.round((1+(overplanArray[0].croparea*0.2/1000))*100)/100}} </td>
+                            <th style="color:red"> 工作日</th>
+                            <td style="color:red"> {{Math.round(20+(Math.round(SimpleJobDifficultyAdd*40*100)/100)*Math.round((1+Math.round(overplanArray[0].croparea*0.2/1000*100)/100)*100)/100*100)/100}} </td>
                         </tr>
                         <tr v-if="greenhouse_material[0][0] === '溫室型材'">
                             <th style="color:red"> 每平方米單價</th>
@@ -427,8 +427,8 @@
                             <td style="color:red"> {{Math.floor(SimpleCostAdd*1300*overplanArray[0].croparea)}} </td>
                             <th style="color:red"> 風險指數</th>
                             <td style="color:red"> {{SimpleStructuralRiskAdd}} </td>
-                            <th style="color:red"> 工時</th>
-                            <td style="color:red"> {{(Math.round(20+SimpleJobDifficultyAdd*60*overplanArray[0].croparea/1000*100)/100)*Math.round((1+(overplanArray[0].croparea*0.2/1000))*100)/100}} </td>
+                            <th style="color:red"> 工作日</th>
+                            <td style="color:red"> {{Math.round(30+(Math.round(SimpleJobDifficultyAdd*60*100)/100)*Math.round((1+Math.round(overplanArray[0].croparea*0.2/1000*100)/100)*100)/100*100)/100}} </td>
                         </tr>
                     </table>
                 </v-row>
@@ -1217,8 +1217,8 @@
                             <td style="color:red"> {{Math.floor(SimpleCostAdd_Result*650*BaseResult[11])}} </td>
                             <th style="color:red"> 風險指數</th>
                             <td style="color:red"> {{SimpleStructuralRiskAdd_Result}} </td>
-                            <th style="color:red"> 工時</th>
-                            <td style="color:red"> {{(Math.round(20+SimpleJobDifficultyAdd_Result*40*BaseResult[11]/1000*100)/100)*Math.round((1+(BaseResult[11]*0.2/1000))*100)/100}} </td>
+                            <th style="color:red"> 工作日</th>
+                            <td style="color:red"> {{Math.round(20+(Math.round(SimpleJobDifficultyAdd_Result*40*100)/100)*Math.round((1+Math.round(BaseResult[11]*0.2/1000*100)/100)*100)/100*100)/100}} </td>
                         </tr>
                     </table>
                 </v-row>
