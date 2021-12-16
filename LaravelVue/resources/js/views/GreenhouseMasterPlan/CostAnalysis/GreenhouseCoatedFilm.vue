@@ -210,7 +210,14 @@
 
                                         <br>
                                         <br>
-                                        <h6>備註： - 為尚無資料</h6>
+                                        <p>備註： - 為尚無資料</p>
+                                        <p>作物生理： <span style="color:red;">{{ plantIdx }}</span>為<span style="color:red;">{{ Goodlight }}</span>,光週期為<span style="color:red;">{{ Photoperiod }}</span></p>
+                                        <p>場域光環境： 
+                                            <span style="color:red;">{{ String(Math.round(average_sun/12*100)/100) }}</span>
+                                            為
+                                            <span style="color:red;" >{{ LightSun }}</span>
+                                        </p>
+                                        <p>光環境差異分析：<span style="color:red;">{{ LightSun }}</span>下,需適時<span style="color:red;">{{ NeedLight }}</span></p>
 
                                     </b-card-text>
                                 </b-card>
@@ -611,6 +618,76 @@ export default {
                 this.average_total += Math.round(StrGloblRad[i]/30*100)/100
                 this.average_sun += Math.round(StrSunShine[i]/30*100)/100
             }
+            if ( String(Math.round(this.average_sun/12*100)/100) >= 6 ){ 
+                this.LightSun = '長日照氣候'
+                if ( this.Photoperiod === '中日植物' || this.Photoperiod === '短日植物' ) {
+                    this.NeedLight = '遮光'
+                }else {
+                    this.NeedLight = '很合適'
+                }
+            } else if( String(Math.round(this.average_sun/12*100)/100) < 6 && String(Math.round(this.average_sun/12*100)/100) >= 4 ){ 
+                this.LightSun='中日照氣候' 
+                if ( this.Photoperiod === '長日植物' ) {
+                    this.NeedLight = '遮光'
+                }else if ( this.Photoperiod === '短日植物' ) {
+                    this.NeedLight = '補光'
+                } else {
+                    this.NeedLight = '很合適'
+                }
+            } else { 
+                this.LightSun='短日照氣候' 
+                if ( this.Photoperiod === '中日植物' || this.Photoperiod === '長日植物' ) {
+                    this.NeedLight = '補光'
+                }else {
+                    this.NeedLight = '很合適'
+                }
+            }
+            for (var i = 1; i < 13; i++){
+                if ( this.Goodlight === '好光型作物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[0].data[String(i)+'月']/30*100)/100 < 15 ){
+                        this.LightValue.push('需補光')
+                    }else {
+                        this.LightValue.push('')
+                    }
+                } else if ( this.Goodlight === '中間型作物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[0].data[String(i)+'月']/30*100)/100 > 15 ){
+                        this.LightValue.push('需遮光')
+                    } else if ( Math.round(this.GloblRadSunShineChartData[0].data[String(i)+'月']/30*100)/100 < 12 ) {
+                        this.LightValue.push('需補光')
+                    } else {
+                        this.LightValue.push('')
+                    }
+                } else if ( this.Goodlight === '弱光型作物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[0].data[String(i)+'月']/30*100)/100 > 12 ){
+                        this.LightValue.push('需遮光')
+                    } else {
+                        this.LightValue.push('')
+                    }
+                }
+            }
+            for (var i = 1; i < 13; i++){
+                if ( this.Photoperiod === '長日植物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[1].data[String(i)+'月']/30*100)/100 < 6 ){
+                        this.LightTime.push('需補光')
+                    }else {
+                        this.LightTime.push('')
+                    }
+                } else if ( this.Photoperiod === '中日植物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[1].data[String(i)+'月']/30*100)/100 > 6 ){
+                        this.LightTime.push('需遮光')
+                    } else if ( Math.round(this.GloblRadSunShineChartData[1].data[String(i)+'月']/30*100)/100 < 4 ) {
+                        this.LightTime.push('需補光')
+                    } else {
+                        this.LightTime.push('')
+                    }
+                } else if ( this.Photoperiod === '短日植物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[1].data[String(i)+'月']/30*100)/100 > 4 ){
+                        this.LightTime.push('需遮光')
+                    } else {
+                        this.LightTime.push('')
+                    }
+                }
+            }
 
             
 
@@ -770,6 +847,76 @@ export default {
             formData.append('cropplant',this.plantIdx);
             formData.append('_method','put');
             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
+            if ( String(Math.round(this.average_sun/12*100)/100) >= 6 ){ 
+                this.LightSun = '長日照氣候'
+                if ( this.Photoperiod === '中日植物' || this.Photoperiod === '短日植物' ) {
+                    this.NeedLight = '遮光'
+                }else {
+                    this.NeedLight = '很合適'
+                }
+            } else if( String(Math.round(this.average_sun/12*100)/100) < 6 && String(Math.round(this.average_sun/12*100)/100) >= 4 ){ 
+                this.LightSun='中日照氣候' 
+                if ( this.Photoperiod === '長日植物' ) {
+                    this.NeedLight = '遮光'
+                }else if ( this.Photoperiod === '短日植物' ) {
+                    this.NeedLight = '補光'
+                } else {
+                    this.NeedLight = '很合適'
+                }
+            } else { 
+                this.LightSun='短日照氣候' 
+                if ( this.Photoperiod === '中日植物' || this.Photoperiod === '長日植物' ) {
+                    this.NeedLight = '補光'
+                }else {
+                    this.NeedLight = '很合適'
+                }
+            }
+            for (var i = 1; i < 13; i++){
+                if ( this.Goodlight === '好光型作物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[0].data[String(i)+'月']/30*100)/100 < 15 ){
+                        this.LightValue.push('需補光')
+                    }else {
+                        this.LightValue.push('')
+                    }
+                } else if ( this.Goodlight === '中間型作物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[0].data[String(i)+'月']/30*100)/100 > 15 ){
+                        this.LightValue.push('需遮光')
+                    } else if ( Math.round(this.GloblRadSunShineChartData[0].data[String(i)+'月']/30*100)/100 < 12 ) {
+                        this.LightValue.push('需補光')
+                    } else {
+                        this.LightValue.push('')
+                    }
+                } else if ( this.Goodlight === '弱光型作物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[0].data[String(i)+'月']/30*100)/100 > 12 ){
+                        this.LightValue.push('需遮光')
+                    } else {
+                        this.LightValue.push('')
+                    }
+                }
+            }
+            for (var i = 1; i < 13; i++){
+                if ( this.Photoperiod === '長日植物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[1].data[String(i)+'月']/30*100)/100 < 6 ){
+                        this.LightTime.push('需補光')
+                    }else {
+                        this.LightTime.push('')
+                    }
+                } else if ( this.Photoperiod === '中日植物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[1].data[String(i)+'月']/30*100)/100 > 6 ){
+                        this.LightTime.push('需遮光')
+                    } else if ( Math.round(this.GloblRadSunShineChartData[1].data[String(i)+'月']/30*100)/100 < 4 ) {
+                        this.LightTime.push('需補光')
+                    } else {
+                        this.LightTime.push('')
+                    }
+                } else if ( this.Photoperiod === '短日植物' ) {
+                    if ( Math.round(this.GloblRadSunShineChartData[1].data[String(i)+'月']/30*100)/100 > 4 ){
+                        this.LightTime.push('需遮光')
+                    } else {
+                        this.LightTime.push('')
+                    }
+                }
+            }
 
         },updateCity: async function(){     // 更新所選擇的縣市
             // 從所選的縣市id 找到 所選的縣市名稱
