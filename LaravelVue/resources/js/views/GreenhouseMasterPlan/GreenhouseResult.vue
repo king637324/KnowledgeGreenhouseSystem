@@ -1218,7 +1218,11 @@
                             <th style="color:red"> 風險指數</th>
                             <td style="color:red"> {{SimpleStructuralRiskAdd_Result}} </td>
                             <th style="color:red"> 工作日</th>
+<<<<<<< HEAD
                             <td style="color:red"> {{Math.round((Math.round(20+SimpleJobDifficultyAdd_Result*40*BaseResult[11]/1000*100)/100)*Math.round((1+(BaseResult[11]*0.2/1000))*100)/100*100)/100}} </td>
+=======
+                            <td style="color:red"> {{Math.round(20+(Math.round(SimpleJobDifficultyAdd_Result*40*100)/100)*Math.round((1+Math.round(BaseResult[11]*0.2/1000*100)/100)*100)/100*100)/100}} </td>
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
                         </tr>
                     </table>
                 </v-row>

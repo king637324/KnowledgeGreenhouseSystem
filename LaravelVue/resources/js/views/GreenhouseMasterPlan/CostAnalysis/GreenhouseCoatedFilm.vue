@@ -208,8 +208,13 @@
                                             </tr>
                                         </table>
 
+<<<<<<< HEAD
                                         <br>
                                         <br>
+=======
+                                        <br>
+                                        <br>
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
                                         <p>備註： - 為尚無資料</p>
                                         <p>作物生理： <span style="color:red;">{{ plantIdx }}</span>為<span style="color:red;">{{ Goodlight }}</span>,光週期為<span style="color:red;">{{ Photoperiod }}</span></p>
                                         <p>場域光環境： 
@@ -278,19 +283,25 @@
                                                             <td v-for="n in 12">{{String(Math.round(GloblRadSunShineChartData[0].data[String(n)+'月']/30*100)/100)}}</td>
                                                             <td>{{ String(Math.round(average_total/12*100)/100) }}</td>
                                                         </tr>
+<<<<<<< HEAD
                                                         <tr id="HighTemperatureDifference">
                                                             <td>光控</td>
                                                             <td v-for="n in 12">{{LightValue[n]}}</td>
                                                         </tr>
+=======
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
                                                         <tr id="HighApproach">
                                                             <td>日照時數</td>
                                                             <td v-for="n in 12">{{String(Math.round(GloblRadSunShineChartData[1].data[String(n)+'月']/30*100)/100)}}</td>
                                                             <td>{{ String(Math.round(average_sun/12*100)/100) }}</td>
                                                         </tr>
+<<<<<<< HEAD
                                                         <tr id="HighApproach">
                                                             <td>光控</td>
                                                             <td v-for="n in 12">{{LightTime[n]}}</td>
                                                         </tr>
+=======
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
                                                     </table>
                                                 </v-col>
                                         </v-row>
@@ -341,6 +352,7 @@ export default {
             checkedglass:[], //被勾選的披覆膜
             glass: [],
             Knowledgejson:[],
+<<<<<<< HEAD
             glasscontent:[], //披覆膜知識庫
             softcontent:[], //軟性薄膜知識庫
             hardcontent:[], //硬質塑膠知識庫
@@ -350,10 +362,33 @@ export default {
             FilmJson:[], //使用者選的披覆膜材料JSON
             FilmArray:[], //使用者選的披覆膜材料Array
             filmname:[], //使用者選的披覆膜材料name
+=======
+            glasscontent:[],
+            softcontent:[],
+            hardcontent:[],
+            glassshow:true,
+            softshow:false,
+            hardshow:false,
+            FilmJson:[],
+            FilmArray:[],
+            filmname:[],
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
             vegetablejson:[], //作物資料
             windspeedjson:[],  // 風速對照表
             regionalwindspeedjson:[],   // 縣市地區資料
 
+<<<<<<< HEAD
+=======
+            LightSensingData: [],    //光感測
+            LightSensing: null,    //光感測的選擇
+            LightSensingIntroduction: null,    //光感測選擇的介紹
+            LightDesignData: [],    //光設計
+            LightDesign: null,    //光設計的選擇
+            LightDesignIntroduction: null,    //光設計選擇的介紹
+            LightControlData: [],    //光控制
+            LightControl: null,    //光控制的選擇
+            LightControlIntroduction: null,    //光控制選擇的介紹
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
 
             /* 種植植物生長環境需求*/
             CropOrder:["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"], // 作物分類的選單陣列表
@@ -362,12 +397,21 @@ export default {
             GrowPlants:['==請選擇作物==',],
             plantIdx: null, // 所選作物的id
             selectplant: null, // 所選作物的名稱
+<<<<<<< HEAD
             Goodlight: '-', //好光姓
             Photoperiod: '-', //光週期
             Illuminance: '-', //光照度
             PPFD: '-', //光合光子密度
             LightSaturationPoint: '-', //光飽和點
             LightCompensationPoint: '-', //光補償點
+=======
+            Goodlight: '-',
+            Photoperiod: '-',
+            Illuminance: '-',
+            PPFD: '-',
+            LightSaturationPoint: '-',
+            LightCompensationPoint: '-',
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
             
             /* 種植地區環境分析 */
             City:['==請選擇縣市==',],   // 縣市選單的陣列表
@@ -380,6 +424,12 @@ export default {
             StrHighTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最高月均溫
             StrLowTemperature:[0,0,0,0,0,0,0,0,0,0,0,0], // 字串切割  地區最低月均溫
 
+<<<<<<< HEAD
+=======
+            SelectTerrain:null, // 選擇地形
+            SelectLandform:null, // 選擇地貌
+
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
             Series: '-', // 風力級數
             Wind: '-',   // 風的名稱
             SpeedPerSecond: '-',    // 風速
@@ -503,7 +553,16 @@ export default {
             });
             this.windlandingandpathjson = await WindLandingAndPath.json();
 
+<<<<<<< HEAD
             //使用者基本資料
+=======
+            // 光環境
+            const Light_info = await fetch('/LightJson',  {
+                method: 'GET',
+            });
+            this.LightDesignData = await Light_info.json();
+
+>>>>>>> d74efdae4c09a3bae8b2640f65f90b0d17296642
             const J_OverPlan = await fetch('/OverPlanJson',  {
             method: 'GET',
             });
