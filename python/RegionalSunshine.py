@@ -4,10 +4,6 @@ from selenium import webdriver  # Python呼叫瀏覽器的套件
 from re import sub
 from decimal import Decimal
 import time
-from apscheduler.schedulers.background import BackgroundScheduler  
-from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor  
-from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore  
-from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR   
 from apscheduler.schedulers.blocking import BlockingScheduler
 import datetime 
 

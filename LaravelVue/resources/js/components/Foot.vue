@@ -12,7 +12,7 @@
         <v-divider></v-divider>
 
         <v-card-text class="white--text">
-            <h4>聯絡窗口&nbsp;E-mail&nbsp;:&nbsp;0651095@nkust.edu.tw&nbsp;or&nbsp;C107110143@nkust.edu.tw</h4>
+            <h4>聯絡窗口&nbsp;E-mail&nbsp;:C107110143@nkust.edu.tw</h4>
             <h4>MIRDC UC 開發</h4>  
             <h4>
                 網站總拜訪人數：

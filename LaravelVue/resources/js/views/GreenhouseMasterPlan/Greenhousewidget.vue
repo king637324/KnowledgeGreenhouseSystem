@@ -61,16 +61,16 @@
                             <v-row>
                                 <v-col cols="2"><v-subheader>C.設計數據</v-subheader></v-col>
                                 <v-col>
-                                    <v-text-field :label="'設計風速(建議'+design_wind+'m/s)'" v-model="design_wind"></v-text-field>
+                                    <v-text-field :label="'設計風速(建議'+data_wind*SpeedPerSecond+'m/s)'" v-model="design_wind"></v-text-field>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="設計跨距(m)" v-model="design_span"></v-text-field>
+                                    <v-text-field label="設計跨距(建議:8)(m)" v-model="design_span"></v-text-field>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="設計肩高(m)" v-model="design_shoulder"></v-text-field>
+                                    <v-text-field label="設計肩高(建議:3)(m)" v-model="design_shoulder"></v-text-field>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="設計連棟" v-model="design_story"></v-text-field>
+                                    <v-text-field label="設計連棟(建議:1)" v-model="design_story"></v-text-field>
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -243,7 +243,7 @@
                                                                 (Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100)
                                                             )*100)/100)*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8)*40 }}
                                                         </td>
-                                                        <td>10</td>
+                                                        <td>40</td>
                                                         <td>{{ Math.floor((Math.round(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
@@ -251,7 +251,7 @@
                                                                 (Math.round(Math.floor(design_span-8)/30*100)/100)+
                                                                 (Math.round(Math.floor(design_shoulder-3)/6*100)/100)+
                                                                 (Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100)
-                                                            )*100)/100)*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8)*10 }}
+                                                            )*100)/100)*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8)*40 }}
                                                         </td>
                                                         <td>{{ Math.floor((Math.round(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
@@ -260,7 +260,7 @@
                                                                 (Math.round(Math.floor(design_span-8)/30*100)/100)+
                                                                 (Math.round(Math.floor(design_shoulder-3)/6*100)/100)+
                                                                 (Math.round(Math.floor(1-design_story)/(design_story*5)*100)/100)
-                                                            )*100)/100)*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8)*10+
+                                                            )*100)/100)*Math.floor(plantlength/4*0.95)*Math.floor(plantwidth/8*0.95)*4*8)*40+
                                                             Math.floor((Math.round(roof_number[roof_name.indexOf(radio_roof)]*
                                                             (
                                                                 1+
@@ -289,10 +289,10 @@
                                                         <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story)) }}</td>
                                                         <td>{{ 50 }}</td>
                                                         <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50 }}</td>
-                                                        <td>{{ 10 }}</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10 }}</td>
+                                                        <td>{{ 80 }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*80 }}</td>
                                                         <td>{{ Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*50+
-                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*10 }}</td>
+                                                            Math.floor(Math.floor(plantlength)*Math.floor(plantwidth)*1.3+(Math.floor(plantlength)+Math.floor(plantwidth))*1.2*(1+0.3/design_story))*80 }}</td>
                                                     </tr>
                                                 </table>
                                             </v-col>
@@ -314,9 +314,9 @@
                                                         <td>{{ 100 }}</td>
                                                         <td>{{ Math.floor(plantlength*plantwidth)*100 }}</td>
                                                         <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2) }}</td>
-                                                        <td>2000</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000) }}</td>
-                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*2000)+Math.floor(plantlength*plantwidth)*100 }}</td>
+                                                        <td>3000</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*3000) }}</td>
+                                                        <td>{{ Math.floor(Math.floor(plantlength/4*0.95+1)*Math.floor(plantwidth/8*0.95+1)*1.2*3000)+Math.floor(plantlength*plantwidth)*100 }}</td>
                                                     </tr>
                                                 </table>
                                             </v-col>

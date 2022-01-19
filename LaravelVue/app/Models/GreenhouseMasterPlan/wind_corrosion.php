@@ -10,7 +10,7 @@ class wind_corrosion extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id','land','landtype','wind','corrosion',
+        'id','land','landtype','wind','corrosion','foundation',
     ];
 
     public $timestamps = false;

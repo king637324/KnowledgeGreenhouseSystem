@@ -64,7 +64,10 @@
 
                     <br>
                     <br>
-                    <h6>備註： - 為尚無資料</h6>
+                    <h6>備註： - 為不須動作</h6>
+                    <p>作物溫度適應性：<span style="color:red;">{{ Temperatureadaptability }}</span>，最適生長溫度為<span style="color:red;">{{ OptimalGrowthTemperature }}</span>℃</p>
+                    <p>溫室有<span style="color:red;">{{ count_addtemp }}</span>月需加溫</p>
+                    <p>溫室有<span style="color:red;">{{ count_subtemp }}</span>月需降溫</p>
                 </b-card-text>
             </b-card>
             <b-card
@@ -325,6 +328,8 @@ export default {
             tabIndex: 0,
             vegetablejson:[],
             regionalwindspeedjson:[],   // 縣市地區資料
+            count_addtemp: 0,
+            count_subtemp: 0,
 
             /* 種植植物生長環境需求*/
             CropOrder:["==請選擇作物分類==","根菜","莖菜","葉菜","花菜","果菜","糧食","水果","花"], // 作物分類的選單陣列表
@@ -569,6 +574,15 @@ export default {
                     this.TempData.push(this.Tempjson[i]);
                 }
             }
+            for (var i = 0; i < 12; i++){
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0) {
+                    this.count_addtemp += 1
+                }
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0) {
+                    this.count_subtemp += 1
+                }
+                
+            }
 
         },updateCrop: async function(){     // 更新所選擇的作物分類
             // 從所選的作物id 找到 所選作物分類
@@ -628,7 +642,15 @@ export default {
             formData.append('cropplant',this.plantIdx);
             formData.append('_method','put');
             const response = await SaveOverPlan.UpdateOverPlan(this.now_user, formData);
-
+            for (var i = 0; i < 12; i++){
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[0]+3 < 0) {
+                    this.count_addtemp += 1
+                }
+                if (parseFloat((parseFloat(this.StrLowTemperature[i])+parseFloat(this.StrHighTemperature[i]))/2)-this.StrOptimalTemperature[1]+3 > 0) {
+                    this.count_subtemp += 1
+                }
+                
+            }
         },updateCity: async function(){     // 更新所選擇的縣市
             // 從所選的縣市id 找到 所選的縣市名稱
             for(var i = 0 ; i < this.City.length ; i++){
